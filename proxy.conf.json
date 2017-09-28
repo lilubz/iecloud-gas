@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "http://10.4.60.200:8080",
+    "secure": false
+  }
+}

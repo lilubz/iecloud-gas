@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <title>UpdateBrowser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+  <style>
+    body {
+      font-family: "Microsoft YaHei", 微软雅黑, "STHei", 华文黑体, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    body,
+    div,
+    ul,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      padding: 0;
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span {
+      font-weight: normal;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+      background-image: url(assets/img/browser.jpg);
+      background-repeat: repeat;
+      background-size: auto;
+    }
+
+    .update-browser {
+      width: 484px;
+      height: 613px;
+      background-clip: border-box;
+      background-image: url(assets/img/browser_wrapper.png);
+      background-repeat: no-repeat;
+      clear: both;
+      position: absolute;
+      top: 49%;
+      left: 50%;
+      margin-top: -306.5px;
+      margin-left: -242px;
+      background-clip: border-box;
+      background-position-x: left;
+      background-position-y: top;
+      background-origin: padding-box;
+      background-color: transparent;
+    }
+
+    .update-browser h1 {
+      text-align: center;
+      font-size: 24px;
+      color: #212121;
+      padding-top: 63px;
+      line-height: 24px
+    }
+
+    .update-browser span {
+      color: #999;
+      line-height: 24px;
+      padding: 24px 57px 15px 57px;
+      font-size: 14px;
+      display: block;
+    }
+
+    ul {
+      list-style-type: none;
+      list-style-position: outside;
+      list-style-image: none;
+    }
+
+    .update-browser ul {
+      padding: 0 46px;
+      margin: 0 5px;
+      overflow: hidden;
+    }
+
+    .browser_link li {
+      width: 180px;
+      height: 55px;
+      text-align: center;
+      margin: 0 5px 10px 5px;
+      position: relative;
+      float: left;
+      background-image: url(assets/img/icon_border.png);
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-position-x: left;
+      background-position-y: top;
+      background-clip: border-box;
+      background-origin: padding-box;
+      background-color: transparent;
+      background-attachment: scroll;
+    }
+
+    .browser_link li:hover {
+      background-color: #F3F3F3;
+    }
+
+    .browser_link a {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-image: url(assets/img/browser_icon.png);
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-position-x: 0%;
+      background-position-y: 0%;
+      background-clip: border-box;
+      background-origin: padding-box;
+      background-color: transparent;
+      background-attachment: scroll;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .ie a {
+      background-position-x: -190px;
+      background-position-y: 0px;
+    }
+
+    .firefox a {
+      background-position-x: 0px;
+      background-position-y: -65px;
+    }
+
+    .copyright {
+      width: 100%;
+      color: #b3b3b3;
+      text-align: center;
+      font-size: 12px;
+      bottom: 0px;
+      position: absolute;
+      padding-bottom: 52px;
+    }
+
+    .copyright ul {
+      line-height: 30px;
+      margin-left: 8px;
+      display: inline-block;
+    }
+
+    .copyright li {
+      line-height: 11px;
+      padding: 0 8px;
+      border-left: 1px solid #d3d3d3;
+      display: inline-block;
+    }
+
+    .copyright a {
+      color: #6c96f3;
+    }
+
+    .foot {
+      line-height: 30px;
+      display: block;
+      font-size: 12px;
+    }
+
+    strong {
+      color: #666;
+    }
+
+  </style>
+
+  <script>
+    //低于ie9提示用户更新浏览器
+    (function () {
+      var ua = window.navigator.userAgent.toLowerCase();
+      var regIE = new RegExp("msie (\\d+\\.\\d+);");
+      if (regIE.test(ua)) {
+        if (parseFloat(RegExp['$1']) < 9) {
+          return;
+        }
+      }
+      window.location.href = "/";
+    })();
+
+  </script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="update-browser">
+      <h1>请升级您的浏览器</h1>
+      <span>尊敬的用户，您现在使用的 Internet Explore 浏览器版本过低，请升级至 Internet Explorer 9+ 版本或使用其他浏览器（ 如：Google Chrome 或 Mozilla Firefox ），以便您能继续访问我们的网站。</span>
+      <ul class="browser_link">
+        <li class="chrome">
+          <a href="http://www.google.cn/intl/zh-CN/chrome/browser/" target="_blank"></a>
+        </li>
+        <li class="ie">
+          <a href="http://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads" target="_blank"></a>
+        </li>
+        <li class="firefox">
+          <a href="http://www.mozilla.org/zh-CN/firefox/new/" target="_blank"></a>
+        </li>
+
+      </ul>
+      <span>
+            如果您使用的是360浏览器，请切换到<strong>极速模式</strong>，或者点击<a href="http://se.360.cn/" target="_blank" style="font-size:15px;">这里</a>升级到最新版本。
+          </span>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2017, Smartisan Digital Co., Ltd. All Rights Reserved.爱易云(杭州)智能科技有限公司</span>
+      <ul>
+        <li>
+          <a href="javascript:;">法律声明</a>
+        </li>
+        <li>
+          <a href="javascript:;">隐私条款</a>
+        </li>
+      </ul>
+      <span class="foot">京ICP备14041720号-1 京ICP证140622号 京公网安备11010502025474</span>
+    </div>
+  </div>
+</body>
+
+</html>

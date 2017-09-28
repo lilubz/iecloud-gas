@@ -1,14 +1,48 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+  <base href="/">
   <meta charset="utf-8">
   <title>GasCli</title>
-  <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
+<style>
+  img.loading {
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+</style>
+
+<script>
+  //低于ie9提示用户更新浏览器
+  (function () {
+    var ua = window.navigator.userAgent.toLowerCase();
+    var regIE = new RegExp("msie (\\d+\\.\\d+);");
+    if (regIE.test(ua)) {
+      if (parseFloat(RegExp['$1']) < 9) {
+        window.location.href = '/update-browser.html';
+      }
+    }
+  })();
+
+</script>
+
 <body>
-  <app-root></app-root>
+  <app-root>
+    <img class="loading" src="assets/img/loading-black.gif" alt="">
+  </app-root>
 </body>
+
 </html>
