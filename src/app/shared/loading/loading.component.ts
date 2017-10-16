@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $: any;
-
 @Component({
   selector: 'gas-loading',
   templateUrl: './loading.component.html',
@@ -12,7 +10,7 @@ export class LoadingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $("#loading-text").text('test');
+
   }
 
 }
