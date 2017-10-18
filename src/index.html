@@ -10,34 +10,34 @@
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
 
-<style>
-  img.loading {
-    position: fixed;
-    width: 48px;
-    height: 48px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-  }
-
-</style>
-
-<script>
-  //低于ie9提示用户更新浏览器
-  (function () {
-    var ua = window.navigator.userAgent.toLowerCase();
-    var regIE = new RegExp("msie (\\d+\\.\\d+);");
-    if (regIE.test(ua)) {
-      if (parseFloat(RegExp['$1']) < 9) {
-        window.location.href = '/update-browser.html';
-      }
+  <style>
+    img.loading {
+      position: fixed;
+      width: 48px;
+      height: 48px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
     }
-  })();
 
-</script>
+  </style>
+
+  <script>
+    //低于ie9提示用户更新浏览器
+    (function () {
+      var ua = window.navigator.userAgent.toLowerCase();
+      var regIE = new RegExp("msie (\\d+\\.\\d+);");
+      if (regIE.test(ua)) {
+        if (parseFloat(RegExp['$1']) < 9) {
+          window.location.href = '/update-browser.html';
+        }
+      }
+    })();
+
+  </script>
+</head>
 
 <body>
   <app-root>
