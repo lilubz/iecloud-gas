@@ -1,0 +1,21 @@
+<div class="ui-g-2">
+  <div class="ui-g-12">
+    <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
+  </div>
+  <div class="ui-g-12">气瓶条码</div>
+  <div class="ui-g-12">
+    <input type="text" pInputText>
+  </div>
+  <div class="ui-g-12">
+    <button pButton type="button" label="查询"></button>
+  </div>
+  <div class="ui-g-12">
+    <button pButton type="button" label="气瓶信息概览"></button>
+  </div>
+  <div class="ui-g-12">
+    <button pButton type="button" label="综合查询"></button>
+  </div>
+</div>
+<div class="ui-g-10">
+  <router-outlet></router-outlet>
+</div>

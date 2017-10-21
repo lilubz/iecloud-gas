@@ -1,0 +1,18 @@
+<div class="ui-g-12">
+  <p-dropdown [options]="queryOptions" [(ngModel)]="queryKey"></p-dropdown>
+  <input *ngIf="queryKey=='操作'" type="text" pInputText [(ngModel)]="queryOperation" />
+  <p-calendar *ngIf="queryKey=='日期'" [(ngModel)]="queryDate" dateFormat="yy-mm-dd" [monthNavigator]="true" [yearNavigator]="true"
+    yearRange="2017:2030" [locale]="zh_CN"></p-calendar>
+  <button pButton type="button" (click)="getList()" label="查询" class="ui-button-secondary"></button>
+</div>
+
+<div class="ui-g-12">
+  <p-dataTable [value]="logs" scrollable="true" scrollHeight="400px" [rows]="pageSize" [paginator]="true" [rowsPerPageOptions]="[5,10,20]"
+    [responsive]="true" resizableColumns="true" reorderableColumns="true" [totalRecords]="totalRecords" [responsive]="true">
+
+    <p-column field="time" header="时间" [sortable]="true"></p-column>
+    <p-column field="operation" header="操作记录"></p-column>
+    <p-column field="ip" header="ip"></p-column>
+    <p-column field="userName" header="操作用户"></p-column>
+  </p-dataTable>
+</div>

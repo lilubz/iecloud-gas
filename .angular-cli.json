@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "gas-template"
+    "name": "iecloud-gas"
   },
   "apps": [{
     "root": "src",
@@ -22,7 +22,7 @@
       "scss/styles.scss"
     ],
     "scripts": [
-      "./assets/js/classList.min.js"
+      
     ],
     "environmentSource": "environments/environment.ts",
     "environments": {

@@ -3,11 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LayoutComponent } from './shared/layout/layout.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: []
   },
   {
     path: '',
@@ -15,37 +22,9 @@ export const routes: Routes = [
     canActivate: [],
     children: [
       {
-        path: 'user/register',
-        component: LayoutComponent
-      },
-      {
-        path: 'user/identification',
-        component: LayoutComponent
-      },
-      {
-        path: 'gas-cylinder/information',
-        component: LayoutComponent
-      },
-      {
-        path: 'gas-cylinder/tag',
-        component: LayoutComponent
-      },
-      {
-        path: 'information/export',
-        component: LayoutComponent
-      },
-      {
-        path: 'information/import',
-        component: LayoutComponent
-      },
-      {
-        path: 'system/management',
-        component: LayoutComponent
-      },
-      {
-        path: 'system/log',
-        component: LayoutComponent
-      },
+        path: 'supervise',
+        loadChildren: './supervise/supervise.module#SuperviseModule'
+      }
     ]
   },
   {
@@ -54,10 +33,9 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login',
-    // component: LoginComponent
+    redirectTo: 'supervise'
   }
-]
+];
 
 @NgModule({
   imports: [

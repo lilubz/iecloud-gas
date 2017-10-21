@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HttpService {
 
-  private formHeaders = new Headers({ "Content-Type": "application/x-www-form-urlencoded; charser=UTF-8" });
+  private formHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
 
   constructor(private http: Http) { }
   // 重封装get请求
@@ -49,10 +49,12 @@ export class HttpService {
   }
 
   transformRequest(obj) {
-    let str = [];
-    for (let p in obj) {
-      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    const str = [];
+    for (const p in obj) {
+      if (p) {
+        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+      }
     }
-    return str.join("&");
+    return str.join('&');
   }
 }

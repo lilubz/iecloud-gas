@@ -1,2 +1,15 @@
-<Label class="layout" text="Hello LayoutComponent!">sfgs</Label>
-<router-outlet></router-outlet>
+<div class="ui-g slider">
+  <div class="ui-g-2 border_01">
+    <div class="ui-g-12 border_head">
+      <a href="javascript:;" [routerLink]="['/home']" routerLinkActive="active">基础信息录入管理系统</a>
+    </div>
+
+    <div class="ui-g-12">
+      <p-tieredMenu [model]="menus"></p-tieredMenu>
+    </div>
+
+  </div>
+  <div class="ui-g-10 ">
+    <router-outlet></router-outlet>
+  </div>
+</div>

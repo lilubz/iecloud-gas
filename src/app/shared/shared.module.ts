@@ -1,32 +1,73 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
-import { AutoCompleteModule } from "primeng/primeng";
+import {
+  AutoCompleteModule,
+  ButtonModule,
+  CalendarModule,
+  DataTableModule,
+  DropdownModule,
+  DialogModule,
+  InputTextModule,
+  MegaMenuModule,
+  MenuModule,
+  PanelModule,
+  TieredMenuModule,
+  SharedModule as _SharedModule
+} from 'primeng/primeng';
 
 import { LoadingComponent } from './loading/loading.component';
 import { LayoutComponent } from './layout/layout.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-
     AutoCompleteModule,
+    ButtonModule,
+    // BrowserAnimationsModule,
+    // BrowserModule,
+    CalendarModule,
+    CommonModule,
+    DropdownModule,
+    DataTableModule,
+    DialogModule,
+    FormsModule,
+    InputTextModule,
+    MegaMenuModule,
+    MenuModule,
+    PanelModule,
+    RouterModule,
+    TieredMenuModule,
+    _SharedModule,
   ],
   declarations: [
-    LoadingComponent,
-    LayoutComponent
+    LayoutComponent,
+    LoadingComponent
   ],
+
   exports: [
-    RouterModule,
-    CommonModule,
-    FormsModule,
-
     AutoCompleteModule,
+    // BrowserAnimationsModule,
+    // BrowserModule,
+    ButtonModule,
+    CalendarModule,
+    CommonModule,
+    DataTableModule,
+    DropdownModule,
+    DialogModule,
+    FormsModule,
+    InputTextModule,
+    MegaMenuModule,
+    MenuModule,
+    PanelModule,
+    RouterModule,
+    TieredMenuModule,
+    _SharedModule,
 
+    LayoutComponent,
     LoadingComponent
   ]
 })
