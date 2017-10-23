@@ -10,10 +10,26 @@ body {
 }
 
 // 表格样式
-.ui-datatable th.ui-state-default {
-  /*datatable表头颜色*/
-  background-color: rgb(0, 151, 232);
+
+/* datatable表头颜色 */
+
+.ui-datatable .ui-datatable-thead>tr>th {
+  background: #1a5e93;
   color: #fff;
+  font-weight: bolder;
+}
+
+.ui-datatable .ui-datatable-tfoot>tr>td {
+  background: #93b845;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.ui-datatable .ui-datatable-thead>tr>th,
+.ui-datatable .ui-datatable-tfoot>tr>td,
+.ui-datatable .ui-datatable-data>tr>td {
+  text-align: center;
+  border-color: #797979;
 }
 
 // 菜单栏样式

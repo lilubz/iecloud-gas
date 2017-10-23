@@ -2,9 +2,10 @@ import { CylinderComponent } from './cylinder.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CylinderOverviewComponent } from './cylinder-overview/cylinder-overview.component';
 import { CylinderListComponent } from './cylinder-list/cylinder-list.component';
 import { CylinderDetailComponent } from './cylinder-detail/cylinder-detail.component';
+import { CylinderOverviewEnterpriseComponent } from './cylinder-overview/cylinder-overview-enterprise.component';
+import { CylinderOverviewCountyComponent } from './cylinder-overview/cylinder-overview-county.component';
 const routes: Routes = [
   {
     path: 'cylinder',
@@ -34,11 +35,23 @@ const routes: Routes = [
       },
       {
         path: 'overview',
-        component: CylinderOverviewComponent,
+        redirectTo: 'overview/county',
+        pathMatch: 'full'
+      },
+      {
+        path: 'overview/county',
+        component: CylinderOverviewCountyComponent,
         data: {
-          title: '气瓶概览'
+          title: '区域概览'
         },
-      }
+      },
+      {
+        path: 'overview/enterprise/:id',
+        component: CylinderOverviewEnterpriseComponent,
+        data: {
+          title: '企业概览'
+        },
+      },
     ]
   }
 ];
