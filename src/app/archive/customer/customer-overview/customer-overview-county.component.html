@@ -1,0 +1,29 @@
+<h2 class="title">区域情况总体概览</h2>
+
+<!-- 区域概览 -->
+<p-dataTable [value]="countyCustomers" [responsive]="true" [responsive]="true">
+
+  <p-column header="序号">
+    <ng-template pTemplate="body" let-index="rowIndex">
+      {{index + 1}}
+    </ng-template>
+  </p-column>
+  <p-column field="areaName" header="区域">
+    <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
+      <a href="javascript:0;" [routerLink]="['../enterprise', countyCylinder.areaID]" class="area">{{countyCylinder[col.field]}}</a>
+    </ng-template>
+  </p-column>
+  <p-column field="customerNum" header="用户数"></p-column>
+
+  <p-footerColumnGroup>
+    <p-row>
+      <p-column footer=""></p-column>
+      <p-column footer="合计"></p-column>
+      <p-column [footer]="calculateTotal('customerNum', countyCustomers)"></p-column>
+    </p-row>
+  </p-footerColumnGroup>
+
+  <ng-template pTemplate="emptymessage">
+    未查询到数据
+  </ng-template>
+</p-dataTable>

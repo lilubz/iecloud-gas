@@ -11,7 +11,7 @@ import { CylinderOverviewService } from './cylinder-overview.service';
   styleUrls: ['./cylinder-overview-enterprise.component.css']
 })
 export class CylinderOverviewEnterpriseComponent implements OnInit {
-  areaID;
+  areaID: string;
 
   enterpriseCylinders: Array<{
     enterpriseName: string;
