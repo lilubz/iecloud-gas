@@ -22,9 +22,19 @@ export const routes: Routes = [
     canActivate: [],
     children: [
       {
-        path: 'supervise',
-        loadChildren: './supervise/supervise.module#SuperviseModule'
-      }
+        path: 'archive',
+        loadChildren: './archive/archive.module#ArchiveModule',
+        data: {
+          title: '基础档案'
+        }
+      },
+      // {
+      //   path: 'system',
+      //   loadChildren: './system/system.module#SystemModule',
+      //   data: {
+      //     title: '系统配置'
+      //   }
+      // }
     ]
   },
   {
@@ -33,7 +43,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'supervise'
+    redirectTo: 'archive'
   }
 ];
 

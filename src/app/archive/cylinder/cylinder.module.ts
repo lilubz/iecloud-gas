@@ -14,7 +14,6 @@ import { CylinderOverviewService } from './cylinder-overview/cylinder-overview.s
   imports: [
     SharedModule,
     CylinderRoutingModule,
-
   ],
   declarations: [
     CylinderComponent,
