@@ -3,15 +3,21 @@ import { HttpModule } from '@angular/http';
 
 import { HttpService } from './http.service';
 import { APIProvide } from './api';
+import { AuthGuard } from './auth-guard.service';
 import { DATE_LOCALIZATION, zh_CN } from './date-localization';
+import { LoginService } from './../login/login.service';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @NgModule({
   imports: [
     HttpModule
   ],
   providers: [
-    HttpService,
     APIProvide,
+    AuthGuard,
+    HttpService,
+    MessageService,
+    LoginService,
     {
       provide: DATE_LOCALIZATION,
       useValue: zh_CN

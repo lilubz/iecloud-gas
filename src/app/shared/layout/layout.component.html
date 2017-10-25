@@ -1,14 +1,15 @@
 <div class="ui-g layout">
   <!-- <div class="ui-g-12 ui-g-nopad"> -->
   <!-- <div class="ui-g-12 ui-g-nopad"> -->
-    <div class="ui-g-nopad header" [routerLink]="['/home']">
-      <img src="/assets/img/supervise-logo.png" class="logo" alt="">
-      <span class="title-top">智慧燃气安全监管</span>
-      <span class="title-bottom">大数据平台</span>
-    </div>
+  <div class="ui-g-nopad header" [routerLink]="['/home']">
+    <img src="/assets/img/supervise-logo.png" class="logo" alt="">
+    <span class="title-top">智慧燃气安全监管</span>
+    <span class="title-bottom">大数据平台</span>
+  </div>
   <!-- </div> -->
   <div class="ui-g-nopad sidebar">
     <p-tieredMenu [model]="menus"></p-tieredMenu>
+    <button pButton type="button" label="退出登录" (click)="logout()"></button>
   </div>
   <div class="ui-g-12 ui-g-nopad">
     <router-outlet></router-outlet>
