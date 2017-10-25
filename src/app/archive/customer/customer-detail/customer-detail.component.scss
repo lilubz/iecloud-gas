@@ -1,0 +1,87 @@
+@mixin bg_color01($color01:#1a5687) {
+  background-color: $color01;
+}
+
+@mixin bg_color02 ($color02:#1a5687) {
+  background-color: $color02;
+}
+
+@mixin common($text_align:center, $line-height:40px, $height:40px) {
+  text-align: $text_align;
+  line-height: $line-height;
+  height: $height;
+  float: left;
+  border: 1px solid #797979;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+$whiteColor:white;
+.cylinder-detail {
+  .padding-none {
+    padding: 0;
+  }
+  .span_detail {
+    width: 40%;
+    @include common();
+  }
+  .span_detail01 {
+    width: 60%;
+    @include common();
+  }
+  .bg_color01 {
+    @include bg_color01();
+    color: $whiteColor;
+  }
+  .span_gasleft {
+    width: 20%;
+    @include common();
+    @include bg_color01(#cccccc)
+  }
+  .span_gasaddress {
+    width: 10%;
+    @include common();
+    @include bg_color01(#cccccc)
+  }
+  .span_textleft {
+    width: 80%;
+    @include common();
+  }
+  .span_textaddress {
+    width: 90%;
+    @include common();
+  }
+  .span_gasright {
+    width: 30%;
+    @include common();
+    @include bg_color01(#cccccc)
+  }
+  .span_textright {
+    width: 70%;
+    @include common();
+  } // .photo-head {
+  //   width: 11.66666%;
+  //   @include bg_color01(#cccccc);
+  //   @include common(center,100px,100px);
+  // }
+  .photo-container {
+    width: 50%;
+    @include common(left, 1, 120px);
+    .photo-view {
+      width: 80px;
+      height: 80px;
+      padding: 5px 5px;
+      box-sizing: border-box;
+    }
+  }
+  .result-container{
+    height: 150px;
+    overflow: auto;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+  }
+  .user-result{
+    font-size: 10px;
+    overflow: hidden;
+  }
+}
