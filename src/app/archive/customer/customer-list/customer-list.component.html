@@ -1,0 +1,76 @@
+
+<div class="ui-g">
+  <div class="ui-g-10">
+    <div class="ui-12">
+      <div class="ui-g-4">
+        <div class="inputgroup">
+          <span>所在区域：</span>
+          <p-dropdown [options]="searchOpt.area" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.areaID" (onChange)="onChangeAreaID($event)"></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-5">
+        <div class="inputgroup">
+          <span>供气企业：</span>
+          <p-dropdown [options]="searchOpt.company" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.companyID"></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-3">
+        <p-checkbox name="group1" value="New York" label="只看有合同" [(ngModel)]="searchParams.hasPact" binary="true"></p-checkbox>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <div class="inputgroup">
+          <span>用户名称：</span>
+          <input type="text" pInputText placeholder="" style="width:calc(100% - 100px);" [(ngModel)]="searchParams.userName">
+        </div>
+      </div>
+      <div class="ui-g-8">
+        <div class="inputgroup">
+          <span>地址：</span>
+          <input type="text" pInputText placeholder="" style="width:calc(100% - 100px);" [(ngModel)]="searchParams.address">
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <div class="inputgroup">
+          <span> 客户类别：</span>
+          <p-dropdown [options]="searchOpt.company" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.customerType"></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-8">
+        <div class="inputgroup">
+          <span> 用户性质：</span>
+          <p-dropdown [options]="searchOpt.company" [style]="{'width':'20%'}" [(ngModel)]="searchParams.userAttr[0]" (onChange)="onChangeuserAttr1($event)"></p-dropdown>
+          <p-dropdown [options]="searchOpt.company" [style]="{'width':'20%'}" [(ngModel)]="searchParams.userAttr[1]"></p-dropdown>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-2">
+    <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-dataTable [value]="area" dataKey="area0" [paginator]="true" [rows]="30" [headerCheckboxToggleAllPages]="false" scrollable="true"
+      scrollHeight="700px" [rowsPerPageOptions]="[10,20,30]" [totalRecords]="500" scrollWidth="" (onPage)="onPageChange($event)">
+      <p-column [style]="{'width':'200px'}" field="area0" header="序号"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area1" header="条码"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area2" header="所属行政区"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area3" header="经营企业"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area4" header="气瓶规格"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area5" header="充装介质"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area6" header="状态"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area7" header="制造年月"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area8" header="末检日期"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area9" header="下检日期"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area10" header="出厂编号"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area11" header="自有编号"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area12" header="电子编号（预留）"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area13" header="登记时间"></p-column>
+      <p-column [style]="{'width':'150px'}" field="area14" header="制造单位"></p-column>
+    </p-dataTable>
+  </div>
+</div>

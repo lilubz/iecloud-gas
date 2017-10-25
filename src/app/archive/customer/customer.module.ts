@@ -7,6 +7,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerOverviewService } from './customer-overview/customer-overview.service';
 
 import { CustomerComponent } from './customer.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerOverviewEnterpriseComponent } from './customer-overview/customer-overview-enterprise.component';
 import { CustomerOverviewCountyComponent } from './customer-overview/customer-overview-county.component';
 @NgModule({
@@ -17,6 +18,7 @@ import { CustomerOverviewCountyComponent } from './customer-overview/customer-ov
   ],
   declarations: [
     CustomerComponent,
+    CustomerListComponent,
     CustomerDetailComponent,
     CustomerOverviewEnterpriseComponent,
     CustomerOverviewCountyComponent

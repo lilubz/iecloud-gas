@@ -1,53 +1,54 @@
 <div class="ui-g">
   <div class="ui-g-10">
-    <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-5">
+    <div class="ui-g" style="margin-bottom:10px">
+      <div class="ui-g-5 ui-g-nopad">
         <div class="inputgroup">
-          <span> 经营企业：</span>
-          <p-dropdown [options]="searchOpt.company" [style]="{'width':'100px'}"></p-dropdown>
+          <span> 经营企业</span>
+          <p-dropdown [options]="searchOpt.company" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.enterpriseName"></p-dropdown>
         </div>
       </div>
-      <div class="ui-g-4">
+      <div class="ui-g-4 ui-g-nopad">
         <div class="inputgroup">
-          <span> 制造单位：</span>
-          <p-dropdown [options]="searchOpt.make" [style]="{'width':'100px'}"></p-dropdown>
+          <span> 制造单位</span>
+          <p-dropdown [options]="searchOpt.make" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.productionUnit"></p-dropdown>
         </div>
       </div>
-      <div class="ui-g-3">
-        <div class="inputgroup" style="text-align:right;">
-          <span> 状态：</span>
-          <p-dropdown [options]="searchOpt.status" [style]="{'width':'80px'}"></p-dropdown>
+      <div class="ui-g-3 ui-g-nopad">
+        <div class="inputgroup">
+          <span>状态</span>
+          <p-dropdown [options]="searchOpt.status" [style]="{'width':'calc(100% - 40px'}" [(ngModel)]="searchParams.state"></p-dropdown>
         </div>
       </div>
     </div>
-
-    <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-4">
+    <div class="ui-g ">
+      <div class="ui-g-4 ui-g-nopad">
         <div class="inputgroup">
-          <span> 气瓶编码：</span>
-          <input type="text" pInputText placeholder="" size="8">
+          <span> 气瓶编码</span>
+          <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.cylinderCode">
         </div>
       </div>
-      <div class="ui-g-4">
+      <div class="ui-g-4 ui-g-nopad">
         <div class="inputgroup">
-          <span> 自有编号：</span>
-          <input type="text" pInputText placeholder="" size="8">
+          <span> 自有编号</span>
+          <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.serialNumber">
         </div>
       </div>
-      <div class="ui-g-4">
+      <div class="ui-g-4 ui-g-nopad">
         <div class="inputgroup" style="text-align:right;">
-          <span> 出厂编号：</span>
-          <input type="text" pInputText placeholder="" size="8">
+          <span> 出厂编号</span>
+          <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.factoryNumber">
         </div>
       </div>
     </div>
   </div>
-  <div class="ui-g-2">
-    <button pButton type="button" label="查询" style="height:80%;width:100%;"></button>
+  <div class="ui-g-2 ui-g-nopad">
+    <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
   </div>
+</div>
+<div class="ui-g">
   <div class="ui-g-12">
-    <p-dataTable [value]="area" dataKey="area0" [paginator]="true" [rows]="30" [headerCheckboxToggleAllPages]="false" scrollable="true"
-      scrollHeight="700px" [rowsPerPageOptions]="[10,20,30]" [totalRecords]="500" scrollWidth="">
+    <p-dataTable [value]="area" dataKey="area0" [paginator]="true" [rows]="pageParams.pageSize" [headerCheckboxToggleAllPages]="false" scrollable="true"
+      scrollHeight="700px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.pageCount" (onPage)="onPageChange($event)">
       <p-column [style]="{'width':'200px'}" field="area0" header="序号"></p-column>
       <p-column [style]="{'width':'150px'}" field="area1" header="条码"></p-column>
       <p-column [style]="{'width':'150px'}" field="area2" header="所属行政区"></p-column>
@@ -66,4 +67,3 @@
     </p-dataTable>
   </div>
 </div>
-

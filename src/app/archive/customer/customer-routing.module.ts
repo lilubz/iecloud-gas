@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CustomerComponent } from './customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerOverviewEnterpriseComponent } from './customer-overview/customer-overview-enterprise.component';
 import { CustomerOverviewCountyComponent } from './customer-overview/customer-overview-county.component';
 const routes: Routes = [
@@ -25,13 +26,13 @@ const routes: Routes = [
           title: '用户详情'
         },
       },
-    //   {
-    //     path: 'list',
-    //     component: CylinderListComponent,
-    //     data: {
-    //       title: '用户列表'
-    //     },
-    //   },
+      {
+        path: 'list',
+        component: CustomerListComponent,
+        data: {
+          title: '用户列表'
+        },
+      },
     //   {
     //     path: 'overview',
     //     redirectTo: 'overview/county',

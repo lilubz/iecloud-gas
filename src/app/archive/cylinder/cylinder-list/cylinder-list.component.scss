@@ -1,0 +1,21 @@
+div[class^="ui"]{
+  padding:0;
+}
+
+.inputgroup{
+  padding:3px;
+}
+
+.inputgroup>span {
+  color: rgb(102, 102, 102);
+}
+
+.searchBtn {
+  margin-top: 10px;
+  margin-left: 15px;
+  height: 65px;
+  width: 90px;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-radius: 5px;
+}

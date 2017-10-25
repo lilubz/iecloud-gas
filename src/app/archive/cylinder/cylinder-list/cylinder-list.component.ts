@@ -2,15 +2,76 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import {
+  ActivatedRoute
+} from '@angular/router';
 
+import {
+  CylinderListService
+} from './cylinder-list.service';
 @Component({
   selector: 'gas-cylinder-list',
   templateUrl: './cylinder-list.component.html',
-  styleUrls: ['./cylinder-list.component.css']
+  styleUrls: ['./cylinder-list.component.scss'],
+  providers: [CylinderListService]
 })
 
 export class CylinderListComponent implements OnInit {
-  constructor() {}
+  cylinders: Array < {
+    cylinderCode: String;
+    borough: String;
+    enterpriseName: String;
+    specification: String;
+    fillingMedium: String;
+    serviceCondition: String;
+    productionDate: String;
+    endCheckdate: String;
+    nextCheckdate: String;
+    factoryNumber: String;
+    EserialNumber: String;
+    registrationTime: String;
+    productionUnit: String;
+    serialNumber: String;
+  } > ;
+  pageParams: {
+    enterpriseName ? : String;
+    productionUnit ? : String;
+    state ? : String;
+    cylinderCode ? : String;
+    serialNumber ? : String;
+    factoryNumber ? : String;
+    pageNumber ? : Number;
+    pageSize ? : Number;
+    pageOption ? : Array < Number > ;
+    pageCount ? : Number;
+  } = {
+    enterpriseName: '',
+    productionUnit: '',
+    state: '',
+    cylinderCode: '',
+    serialNumber: '',
+    factoryNumber: '',
+    pageNumber: 1,
+    pageSize: 20,
+    pageOption: [10, 20, 30, 40],
+    pageCount: 400
+  };
+  searchParams: {
+    enterpriseName ? : String;
+    productionUnit ? : String;
+    state ? : String;
+    cylinderCode ? : String;
+    serialNumber ? : String;
+    factoryNumber ? : String;
+  } = {
+    enterpriseName: '',
+    productionUnit: '',
+    state: '',
+    cylinderCode: '',
+    serialNumber: '',
+    factoryNumber: '',
+  };
+  constructor(private routerInfo: ActivatedRoute, private cylinderListService: CylinderListService) {}
   searchOpt = {
     company: [{
         label: '全部',
@@ -80,7 +141,68 @@ export class CylinderListComponent implements OnInit {
     }
     this.area = temparr;
   }
+  onSearch(page ? ) {
+    let params = {};
+    if (page) {
+      params = this.pageParams;
+      params['pageNumber'] = page.pageNumber;
+      params['pageSize'] = page.size;
+    } else {
+      params = this.searchParams;
+      params['pageNumber'] = 1;
+      params['pageSize'] = 10;
+    }
+    console.log(params);
+    // this.cylinderListService.getCylinders(params).then(data => {
+    //   if (data.status === 0) {
+    //     this.cylinders = data.data.list;
+    //   } else {
+
+    //   }
+    // });
+  }
+  onPageChange(pageInfo) {
+    // 设置好分页参数后，使用searchParams发送请求。
+    const page: {
+      pageSize: Number,
+      pageNumber: Number
+    } = {
+      pageSize: pageInfo.rows,
+      pageNumber: pageInfo.first / pageInfo.rows + 1
+    };
+    this.onSearch(page);
+  }
   ngOnInit() {
     this.copyData();
+    // this.getCylinderSearchOpt();
+    // this.routerInfo.snapshot.params["id"];
+    const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
+    if (enterpriseID) {
+      this.searchParams.enterpriseName = enterpriseID;
+      this.onSearch();
+    }
+    console.log(enterpriseID);
+  }
+
+  getCylinders(params: Object) {
+    this.cylinderListService.getCylinders(params).then(data => {
+      if (data.status === 0) {
+
+      } else {
+
+      }
+    });
+  }
+  getCylinderSearchOpt() {
+    this.cylinderListService.getCylinderSearchOpt({
+
+    }).then(data => {
+      if (data.status === 0) {
+        this.searchOpt = data.searchOpt;
+      } else {
+
+      }
+    });
   }
 }
+
