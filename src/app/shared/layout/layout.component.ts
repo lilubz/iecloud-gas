@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MenuItem } from 'primeng/components/common/menuitem';
 
 @Component({
   selector: 'gas-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class LayoutComponent implements OnInit {
@@ -16,12 +17,13 @@ export class LayoutComponent implements OnInit {
     this.menus = [
       {
         label: '首页',
-        icon: 'fa-file-o',
+        icon: 'menu-icon home-icon',
         routerLink: ['/home']
       },
       {
         label: '基础档案',
-        icon: 'fa-edit',
+        icon: 'menu-icon archive-icon',
+        routerLink: ['/archive/'],
         items: [
           { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
           { label: '用户档案', routerLink: ['/archive/customer'] },
@@ -33,32 +35,28 @@ export class LayoutComponent implements OnInit {
       },
       {
         label: '配送监管',
-        icon: 'fa-file-o',
+        icon: 'menu-icon distribution-icon',
         routerLink: ['/home']
       },
       {
         label: '监管事务',
-        icon: 'fa-file-o',
+        icon: 'menu-icon supervise-icon',
         routerLink: ['/home']
       },
       {
         label: '可视化',
-        icon: 'fa-file-o',
+        icon: 'menu-icon visualization-icon',
         routerLink: ['/home']
       },
       {
         label: '统计查询',
-        icon: 'fa-file-o',
+        icon: 'menu-icon statistic-icon',
         routerLink: ['/home']
       },
       {
         label: '系统配置',
-        icon: 'fa-file-o',
+        icon: 'menu-icon system-icon',
         routerLink: ['/home']
-      },
-      { separator: true },
-      {
-        label: 'Quit', icon: 'fa-minus'
       }
     ];
   }

@@ -9,11 +9,6 @@ import { CylinderOverviewCountyComponent } from './cylinder-overview/cylinder-ov
 const routes: Routes = [
   {
     path: 'cylinder',
-    redirectTo: 'cylinder/overview',
-    pathMatch: 'full'
-  },
-  {
-    path: 'cylinder',
     component: CylinderComponent,
     data: {
       title: '监管档案'
@@ -53,7 +48,11 @@ const routes: Routes = [
         },
       },
     ]
-  }
+  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'cylinder/overview'
+  // }
 ];
 
 @NgModule({

@@ -1,35 +1,39 @@
-<h2 class="title">区域情况总体概览</h2>
+<div class="ui-g-12 overview">
 
-<!-- 区域概览 -->
-<p-dataTable [value]="countyCylinders" [responsive]="true" [responsive]="true">
+  <h2 class="title">区域情况总体概览</h2>
 
-  <p-column header="序号">
-    <ng-template pTemplate="body" let-index="rowIndex">
-      {{index + 1}}
+  <!-- 区域概览 -->
+  <p-dataTable [value]="countyCylinders" [responsive]="true" [responsive]="true">
+
+    <p-column header="序号">
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column>
+    <p-column field="areaName" header="区域">
+      <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
+        <a href="javascript:0;" [routerLink]="['../enterprise', countyCylinder.areaID]" class="area">{{countyCylinder[col.field]}}</a>
+      </ng-template>
+    </p-column>
+    <p-column field="cylinderNum" header="气瓶数"></p-column>
+    <p-column field="normalNum" header="正常"></p-column>
+    <p-column field="expireNum" header="过期"></p-column>
+    <p-column field="scrapNum" header="报废"></p-column>
+
+    <p-footerColumnGroup>
+      <p-row>
+        <p-column footer=""></p-column>
+        <p-column footer="合计"></p-column>
+        <p-column [footer]="calculateTotal('cylinderNum', countyCylinders)"></p-column>
+        <p-column [footer]="calculateTotal('normalNum', countyCylinders)"></p-column>
+        <p-column [footer]="calculateTotal('expireNum', countyCylinders)"></p-column>
+        <p-column [footer]="calculateTotal('scrapNum', countyCylinders)"></p-column>
+      </p-row>
+    </p-footerColumnGroup>
+
+    <ng-template pTemplate="emptymessage">
+      未查询到数据
     </ng-template>
-  </p-column>
-  <p-column field="areaName" header="区域">
-    <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
-      <a href="javascript:0;" [routerLink]="['../enterprise', countyCylinder.areaID]" class="area">{{countyCylinder[col.field]}}</a>
-    </ng-template>
-  </p-column>
-  <p-column field="cylinderNum" header="气瓶数"></p-column>
-  <p-column field="normalNum" header="正常"></p-column>
-  <p-column field="expireNum" header="过期"></p-column>
-  <p-column field="scrapNum" header="报废"></p-column>
+  </p-dataTable>
 
-  <p-footerColumnGroup>
-    <p-row>
-      <p-column footer=""></p-column>
-      <p-column footer="合计"></p-column>
-      <p-column [footer]="calculateTotal('cylinderNum', countyCylinders)"></p-column>
-      <p-column [footer]="calculateTotal('normalNum', countyCylinders)"></p-column>
-      <p-column [footer]="calculateTotal('expireNum', countyCylinders)"></p-column>
-      <p-column [footer]="calculateTotal('scrapNum', countyCylinders)"></p-column>
-    </p-row>
-  </p-footerColumnGroup>
-
-  <ng-template pTemplate="emptymessage">
-    未查询到数据
-  </ng-template>
-</p-dataTable>
+</div>

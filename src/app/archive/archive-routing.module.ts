@@ -6,7 +6,12 @@ import { ArchiveComponent } from './archive.component';
 const routes: Routes = [
   {
     path: 'cylinder',
-    redirectTo: 'cylinder',
+    redirectTo: 'cylinder/overview',
+    pathMatch: 'full'
+  },
+  {
+    path: 'customer',
+    redirectTo: 'customer/overview',
     pathMatch: 'full'
   }
 ];

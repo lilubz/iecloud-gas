@@ -9,11 +9,6 @@ import { CustomerOverviewCountyComponent } from './customer-overview/customer-ov
 const routes: Routes = [
   {
     path: 'customer',
-    redirectTo: 'customer/overview',
-    pathMatch: 'full'
-  },
-  {
-    path: 'customer',
     component: CustomerComponent,
     data: {
       title: '用户档案'
@@ -33,39 +28,6 @@ const routes: Routes = [
           title: '用户列表'
         },
       },
-    //   {
-    //     path: 'overview',
-    //     redirectTo: 'overview/county',
-    //     pathMatch: 'full'
-    //   },
-    //   {
-    //     path: 'overview/county',
-    //     component: CylinderOverviewCountyComponent,
-    //     data: {
-    //       title: '区域概览'
-    //     },
-    //   },
-    //   {
-    //     path: 'overview/enterprise/:id',
-    //     component: CylinderOverviewEnterpriseComponent,
-    //     data: {
-    //       title: '企业概览'
-    //     },
-    //   },
-      //   {
-      //     path: 'detail',
-      //     component: CylinderDetailComponent,
-      //     data: {
-      //       title: '用户详情'
-      //     },
-      //   },
-      //   {
-      //     path: 'list',
-      //     component: CylinderListComponent,
-      //     data: {
-      //       title: '用户列表'
-      //     },
-      //   },
       {
         path: 'overview',
         redirectTo: 'overview/county',
@@ -86,7 +48,11 @@ const routes: Routes = [
         },
       },
     ]
-  }
+  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'cylinder/overview'
+  // }
 ];
 
 @NgModule({

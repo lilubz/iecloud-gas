@@ -1,15 +1,18 @@
-<div class="ui-g slider">
-  <div class="ui-g-2 border_01">
-    <div class="ui-g-12 border_head">
-      <a href="javascript:;" [routerLink]="['/home']" routerLinkActive="active">基础信息录入管理系统</a>
+<div class="ui-g layout">
+  <!-- <div class="ui-g-12 ui-g-nopad"> -->
+  <!-- <div class="ui-g-12 ui-g-nopad"> -->
+    <div class="ui-g-nopad header" [routerLink]="['/home']">
+      <img src="/assets/img/supervise-logo.png" class="logo" alt="">
+      <span class="title-top">智慧燃气安全监管</span>
+      <span class="title-bottom">大数据平台</span>
     </div>
-
-    <div class="ui-g-12">
-      <p-tieredMenu [model]="menus"></p-tieredMenu>
-    </div>
-
+  <!-- </div> -->
+  <div class="ui-g-nopad sidebar">
+    <p-tieredMenu [model]="menus"></p-tieredMenu>
   </div>
-  <div class="ui-g-10">
+  <div class="ui-g-12 ui-g-nopad">
     <router-outlet></router-outlet>
   </div>
+  <!-- </div> -->
+
 </div>

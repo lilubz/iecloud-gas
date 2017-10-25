@@ -1,20 +1,22 @@
-<h2 class="title">企业一览表</h2>
-<!-- 企业概览 -->
-<p-dataTable [value]="enterpriseCustomers" [responsive]="true" [responsive]="true">
+<div class="ui-g-12 overview">
+  <h2 class="title">企业一览表</h2>
+  <!-- 企业概览 -->
+  <p-dataTable [value]="enterpriseCustomers" [responsive]="true" [responsive]="true">
 
-  <p-column header="序号">
-    <ng-template pTemplate="body" let-index="rowIndex">
-      {{index + 1}}
-    </ng-template>
-  </p-column>
-  <p-column field="enterpriseName" header="企业名称" footer="合计">
-    <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
-      <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCylinder.enterpriseID}]" class="area">{{countyCylinder[col.field]}}</a>
-    </ng-template>
-  </p-column>
-  <p-column field="customerNum" header="气瓶数" [footer]="calculateTotal('customerNum', enterpriseCustomers)"></p-column>
+    <p-column header="序号">
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column>
+    <p-column field="enterpriseName" header="企业名称" footer="合计">
+      <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
+        <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCylinder.enterpriseID}]" class="area">{{countyCylinder[col.field]}}</a>
+      </ng-template>
+    </p-column>
+    <p-column field="customerNum" header="气瓶数" [footer]="calculateTotal('customerNum', enterpriseCustomers)"></p-column>
 
-  <ng-template pTemplate="emptymessage">
-    未查询到数据
-  </ng-template>
-</p-dataTable>
+    <ng-template pTemplate="emptymessage">
+      未查询到数据
+    </ng-template>
+  </p-dataTable>
+</div>
