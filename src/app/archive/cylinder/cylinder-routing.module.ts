@@ -15,11 +15,11 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'detail',
+        path: 'detail/:id',
         component: CylinderDetailComponent,
         data: {
           title: '气瓶详情'
-        },
+        }
       },
       {
         path: 'list',
@@ -50,8 +50,8 @@ const routes: Routes = [
     ]
   },
   // {
-  //   path: '**',
-  //   redirectTo: 'cylinder/overview'
+  //   path: 'detail/',
+  //   redirectTo: 'detail'
   // }
 ];
 

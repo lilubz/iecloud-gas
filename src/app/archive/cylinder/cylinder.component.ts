@@ -13,8 +13,14 @@ export class CylinderComponent implements OnInit {
     { label: '温州市', value: '温州市' }
   ];
   selectedCity = this.cities[0].value;
-
+  gasInput: any;
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.gasInput = '';
+    // getid(){
+
+    // }
+    // this.gasInput = 1;
+  }
 }

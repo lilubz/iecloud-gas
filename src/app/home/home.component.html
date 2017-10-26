@@ -1,14 +1,76 @@
 <div class="home">
-<div class="ui-g-12" style="height: 10%;">
-    <div class="ui-g-3 img_container" style="background-color:pink;"><img src="/assets/img/home/logo.png" ></div>
-    <div class="ui-g-7"  style="background-color:blue;height:100%">head2</div>
-    <div class="ui-g-2" style="background-color:pink;height:100%">head3</div>
-</div>
-<div class="ui-g-12" style="height:80%">
-    <div class="ui-g-1 sidebar" style="background-color:blue;">sidebar</div>
-    <div class="ui-g-3 sidebar" style="background-color:white;">content1</div>
-    <div class="ui-g-6 sidebar" style="background-color:grey;">content2</div>
-    <div class="ui-g-2 sidebar" style="background-color:pink;">content3</div>
-</div>
-<div class="ui-g-12"  style="background-color:pink;height:10%">footer</div>
+  <div class="ui-g-12 ui-g-nopad" style="height: 70px;">
+    <div class="ui-g-3  img_container">
+      <div class="ui-g-nopad header" [routerLink]="['/home']">
+        <img src="/assets/img/supervise-logo.png" class="logo" alt="">
+        <span class="title-top">智慧燃气安全监管</span>
+        <span class="title-bottom">大数据平台</span>
+      </div>
+    </div>
+    <div class="ui-g-7 header-middle ">
+      <img src="/assets/img/home/visualization-bottom.png" class="bottom_img">
+      <span>{{curTime}}</span>
+    </div>
+    <div class="ui-g-2 header-right " style="height:100%">
+      <div class="fixed-right" style="height:100%">
+        <div class="left">监管信息 0</div>
+        <div class="right">严重信息 0</div>
+      </div>
+    </div>
+  </div>
+  <div class=" ui-g-nopad sidebar">
+    <p-tieredMenu [model]="menus"></p-tieredMenu>
+  </div>
+  <div class="ui-g-12  padding_midlr middle-content">
+    <div class="ui-g-3   padding-lr" style="height:100%">
+      <div class="ui-g-12 padding-lr bg-img" style="height:15%;">
+        <p>待办事项</p>
+        <span>共0件，其中0件加急事件</span>
+      </div>
+      <div class="ui-g-12 padding-lr bg-img duban" style="height:30%">
+        <p>督察督办</p>
+       
+        <img src="/assets/img/home/u151.png" class="img-super">
+        <div class="ui-g-8 ui-offset-1">
+            <li>①超期 <span>0</span></li>
+            <li >②处理中<span>0</span></li>
+            <li >③未处理<span>0</span></li>
+        </div>
+        <div></div>
+      </div>
+      <div class="ui-g-12 padding-lr bg-img gas-bottle" style="height:39%;">
+        <p>辖区钢瓶信息</p>
+        <div class="ui-g-12 daiban">
+          <table cellspacing="0" cellpadding="0" border="1" width="100%">
+            <tr><td>正常</td> <td>2138712</td></tr>
+            <tr><td>过期</td> <td>672</td></tr>
+            <tr><td>报废</td> <td>12387</td></tr>
+            <tr><td>总计</td> <td>2174096</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="ui-g-12 padding-lr bg-img" style="height:15%">
+        <p>待办事项</p>
+        <span style="color:#92D050">合计：272403</span>
+      </div>
+    </div>
+    <div class="ui-g-7 ui-g-nopad " style="height:100%">
+      <div class="ui-g-12 ui-g-nopad" style="height:8%;text-align:center">
+        <p style="float:left">待办事项</p>
+        <span style="color:#cccccc;font-size:1.2em;margin-left:-6em">{{DateTime}}</span>
+      </div>
+      <div class="ui-g-12 bg-img01" style="height:30%;"><span>(无)</span></div>
+      <div class="ui-g-12 " style="height:10%">
+        <p style="float:left">通知</p>
+      </div>
+      <div class="ui-g-12  bg-img01" style="height:52%;"><span>(无)</span></div>
+    </div>
+    <div class="ui-g-2 bg-img02 " style="height:100%;"><p>信息滚动：</p>
+      <span>(无)</span>
+    </div>
+  </div>
+
+  <div class="ui-g-12 footer">
+    <a><img src="/assets/img/home/u319.png"></a>
+    <a><img src="/assets/img/home/u321.png"></a></div>
 </div>
