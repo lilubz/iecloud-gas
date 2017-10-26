@@ -10,9 +10,10 @@ import { ArchiveComponent } from './archive.component';
 @NgModule({
   imports: [
     SharedModule,
-    ArchiveRoutingModule,
     CylinderModule,
-    CustomerModule
+    CustomerModule,
+
+    ArchiveRoutingModule,
   ],
   declarations: [
     ArchiveComponent,

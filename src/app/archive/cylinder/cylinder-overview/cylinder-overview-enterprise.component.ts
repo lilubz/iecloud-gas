@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 
+import { MessageService } from 'primeng/components/common/messageservice';
 import { CylinderOverviewService } from './cylinder-overview.service';
 
 @Component({
   selector: 'gas-cylinder-overview-enterprise',
-  templateUrl: './cylinder-overview-enterprise.component.html',
-  styleUrls: ['./cylinder-overview-enterprise.component.css']
+  templateUrl: './cylinder-overview-enterprise.component.html'
 })
 export class CylinderOverviewEnterpriseComponent implements OnInit {
-  areaID: string;
 
   enterpriseCylinders: Array<{
     enterpriseName: string;
@@ -22,36 +21,20 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
     enterpriseID: string;
   }> = [];
 
-  constructor(private cylinderOverviewService: CylinderOverviewService, private route: ActivatedRoute) { }
+  constructor(private cylinderOverviewService: CylinderOverviewService, private route: ActivatedRoute,
+    private messageService: MessageService) { }
 
   ngOnInit() {
-    this.enterpriseCylinders = [
-      {
-        enterpriseName: '企业有限公司',
-        cylinderNum: 1232,
-        normalNum: 1232,
-        expireNum: 1232,
-        scrapNum: 1232,
-        enterpriseID: '企业有限公司'
-      }
-    ];
-
-    // TODO: 使用Resolve预先获取组件数据
-    this.areaID = this.route.snapshot.paramMap.get('id');
-    // this.getEnterprisesOverview();
-  }
-
-  getEnterprisesOverview() {
-    console.log(this.areaID);
-    this.cylinderOverviewService.getCountiesOverview({
-      areaID: this.areaID
-    }).then(data => {
-      if (data.status === 0) {
-        this.enterpriseCylinders = data.data.list;
-      } else {
-
-      }
-    });
+    this.route.paramMap
+      .switchMap((params: ParamMap) => {
+        return this.cylinderOverviewService.getEnterprisesOverview({ areaID: params.get('id') });
+      }).subscribe(data => {
+        if (data.status === 0) {
+          this.enterpriseCylinders = data.data;
+        } else {
+          this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
+        }
+      });
   }
 
   // TODO: 这里可能会有性能问题，因为首次加载会执行20次（4次调用*5列），再次点击会执行10次

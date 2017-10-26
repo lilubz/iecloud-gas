@@ -6,9 +6,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { LoginService } from './../../login/login.service';
 @Component({
   selector: 'gas-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  templateUrl: './layout.component.html'
 })
 
 export class LayoutComponent implements OnInit {
@@ -39,27 +37,27 @@ export class LayoutComponent implements OnInit {
       {
         label: '配送监管',
         icon: 'menu-icon distribution-icon',
-        routerLink: ['/home']
+        // routerLink: ['/home']
       },
       {
         label: '监管事务',
         icon: 'menu-icon supervise-icon',
-        routerLink: ['/home']
+        // routerLink: ['/home']
       },
       {
         label: '可视化',
         icon: 'menu-icon visualization-icon',
-        routerLink: ['/home']
+        // routerLink: ['/home']
       },
       {
         label: '统计查询',
         icon: 'menu-icon statistic-icon',
-        routerLink: ['/home']
+        // routerLink: ['/home']
       },
       {
         label: '系统配置',
         icon: 'menu-icon system-icon',
-        routerLink: ['/home']
+        // routerLink: ['/home']
       }
     ];
   }
@@ -67,10 +65,14 @@ export class LayoutComponent implements OnInit {
   logout() {
     this.loginService.logout({}).then(data => {
       if (data.status === 0) {
-        this.router.navigate(['/login']);
+
       } else {
         this.messageService.add({ severity: 'error', summary: '注销失败', detail: data.msg });
       }
+      this.router.navigate(['/login']);
+    }).catch(res => {
+      this.messageService.add({ severity: 'error', summary: '注销失败', detail: res.json().msg });
+      this.router.navigate(['/login']);
     });
   }
 }

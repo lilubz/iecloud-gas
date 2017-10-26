@@ -15,6 +15,10 @@ const API = {
   // 系统管理
   'queryLog': URL + '',
 
+  // 基础档案
+  'getCylinderCountiesOverview': URL + 'basicInformation/gasCylinder/GcCountInfoByRegion.do',
+  'getCylinderEnterpriseOverview': URL + 'basicInformation/gasCylinder/getGroupGasCylinderOverview.do',
+
   // 登录
   'signIn': URL + 'user/login.do',
   'signUp': URL + 'user/login.do',

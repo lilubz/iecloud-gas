@@ -31,7 +31,7 @@ export class LoginComponent implements OnDestroy {
       password: this.password
     }).then(data => {
       if (data.status === 0) {
-        sessionStorage.setItem('user', data.data);
+        sessionStorage.setItem('user', JSON.stringify(data.data));
         this.router.navigate(['/archive']);
       } else {
         this.messageService.add({ severity: 'error', summary: '登录失败', detail: data.msg });

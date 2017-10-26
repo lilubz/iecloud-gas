@@ -13,6 +13,11 @@ const routes: Routes = [
     path: 'customer',
     redirectTo: 'customer/overview',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'cylinder/overview',
+    pathMatch: 'full'
   }
 ];
 

@@ -4,8 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CustomerOverviewService } from './customer-overview.service';
 @Component({
   selector: 'gas-customer-overview-enterprise',
-  templateUrl: './customer-overview-enterprise.component.html',
-  styleUrls: ['./customer-overview-enterprise.component.css']
+  templateUrl: './customer-overview-enterprise.component.html'
 })
 export class CustomerOverviewEnterpriseComponent implements OnInit {
   areaID: string;

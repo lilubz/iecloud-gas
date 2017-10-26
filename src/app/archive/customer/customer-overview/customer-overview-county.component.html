@@ -2,14 +2,14 @@
   <h2 class="title">区域情况总体概览</h2>
 
   <!-- 区域概览 -->
-  <p-dataTable [value]="countyCustomers" [responsive]="true" [responsive]="true">
+  <p-dataTable [value]="countyCustomers" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'">
 
-    <p-column header="序号">
+    <p-column header="序号" [style]="{'width':'50px'}">
       <ng-template pTemplate="body" let-index="rowIndex">
         {{index + 1}}
       </ng-template>
     </p-column>
-    <p-column field="areaName" header="区域">
+    <p-column field="areaName" header="区域" [style]="{'width':'50%'}">
       <ng-template let-col let-countyCustomer="rowData" pTemplate="body">
         <a href="javascript:0;" [routerLink]="['../enterprise', countyCustomer.areaID]" class="area">{{countyCustomer[col.field]}}</a>
       </ng-template>

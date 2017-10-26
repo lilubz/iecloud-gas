@@ -1,48 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CylinderOverviewService } from './cylinder-overview.service';
+import { MessageService } from 'primeng/components/common/messageservice';
 @Component({
   selector: 'gas-cylinder-overview-county',
-  templateUrl: './cylinder-overview-county.component.html',
-  styleUrls: ['./cylinder-overview-county.component.css']
+  templateUrl: './cylinder-overview-county.component.html'
 })
 export class CylinderOverviewCountyComponent implements OnInit {
 
   countyCylinders: {
-    areaName: string,
-    cylinderNum: number,
-    normalNum: number,
-    expireNum: number,
-    scrapNum: number,
-    areaID: string
+    name: string,
+    totalCount: number,
+    normalCount: number,
+    expireCount: number,
+    scrapCount: number,
+    regionId: string,
+    parentRegionId: string
   }[] = [];
 
 
-  constructor(private cylinderOverviewService: CylinderOverviewService) { }
+  constructor(private cylinderOverviewService: CylinderOverviewService, private messageService: MessageService) { }
 
   ngOnInit() {
-    for (let i = 0; i < 11; i++) {
-      this.countyCylinders.push(
-        {
-          areaName: '鹿城区',
-          cylinderNum: 235,
-          normalNum: 235,
-          expireNum: 235,
-          scrapNum: 235,
-          areaID: 'string'
-        }
-      );
-    }
+    this.getCountiesOverview();
   }
 
   getCountiesOverview() {
     this.cylinderOverviewService.getCountiesOverview({
-
+      areaID: '330300'// 330300--温州市id
     }).then(data => {
       if (data.status === 0) {
-        this.countyCylinders = data.data.list;
+        this.countyCylinders = data.data;
       } else {
-
+        this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
       }
     });
   }

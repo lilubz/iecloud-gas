@@ -12,13 +12,13 @@ export class CylinderOverviewService {
 
   getCountiesOverview(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.queryLog, params)
+      .withCredentialsPostRequest(this.API.getCylinderCountiesOverview, params)
       .catch(this.handleError);
   }
 
   getEnterprisesOverview(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.queryLog, params)
+      .withCredentialsPostRequest(this.API.getCylinderEnterpriseOverview, params)
       .catch(this.handleError);
   }
 

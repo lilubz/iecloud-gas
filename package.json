@@ -1,6 +1,6 @@
 {
-  "name": "gas-info-input",
-  "version": "0.0.0",
+  "name": "iecloud-gas",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

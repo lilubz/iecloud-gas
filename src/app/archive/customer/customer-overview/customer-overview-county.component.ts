@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerOverviewService } from './customer-overview.service';
 @Component({
   selector: 'gas-customer-overview-county',
-  templateUrl: './customer-overview-county.component.html',
-  styleUrls: ['./customer-overview-county.component.css']
+  templateUrl: './customer-overview-county.component.html'
 })
 export class CustomerOverviewCountyComponent implements OnInit {
   countyCustomers: {
@@ -29,7 +28,7 @@ export class CustomerOverviewCountyComponent implements OnInit {
 
   getCountiesOverview() {
     this.customerOverviewService.getCountiesOverview({
-
+      areaID: '330300'// 330300--温州市id
     }).then(data => {
       if (data.status === 0) {
         this.countyCustomers = data.data.list;
