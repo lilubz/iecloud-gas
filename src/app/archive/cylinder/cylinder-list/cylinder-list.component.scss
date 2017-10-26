@@ -1,6 +1,9 @@
 div[class^="ui"]{
   padding:0;
 }
+div.pad {
+  padding: 5px 15px;
+}
 
 .inputgroup{
   padding:3px;

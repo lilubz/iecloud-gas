@@ -15,6 +15,10 @@ const API = {
   // 系统管理
   'queryLog': URL + '',
 
+  // 气瓶综合查询
+  'cylinderSelectOpt': URL + 'basicInformation/gasCylinder/getDropInfo.do',
+  'getCylinders': URL + 'basicInformation/gasCylinder/searchGasCylinder.do',
+
   // 登录
   'signIn': URL + 'user/login.do',
   'signUp': URL + 'user/login.do',

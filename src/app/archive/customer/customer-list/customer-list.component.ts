@@ -2,6 +2,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import {
+  ActivatedRoute
+} from '@angular/router';
 
 import {
   CustomerListService
@@ -14,7 +17,7 @@ import {
 })
 
 export class CustomerListComponent implements OnInit {
-  constructor(private customerListService: CustomerListService) {}
+  constructor(private routerInfo: ActivatedRoute, private customerListService: CustomerListService) {}
   customerList: Array < {
     index ? : number;
     barCode ? : String;
@@ -79,31 +82,42 @@ export class CustomerListComponent implements OnInit {
   area: any;
   searchOpt = {
     area: [{
-        label: '鹿城区',
-        value: '鹿城区'
-      },
-      {
-        label: '龙湾区',
-        value: '龙湾区'
-      },
-      {
-        label: '乐清市',
-        value: '乐清市'
-      }
-    ],
-    company: [{
         label: '全部',
         value: '全部'
       },
       {
-        label: '杭州余杭獐山钢瓶有限公司',
-        value: '杭州余杭獐山钢瓶有限公司'
+        label: '龙湾区',
+        value: 'lwq'
       },
       {
-        label: '杭州天龙钢瓶有限公司',
-        value: '杭州天龙钢瓶有限公司'
+        label: '乐清市',
+        value: 'yqs'
       }
     ],
+    company: [{
+      label: '全部',
+      value: '全部'
+    }],
+    companyOpt: {
+      lwq: [{
+          label: '龙湾区-杭州余杭獐山钢瓶有限公司',
+          value: '龙湾区-杭州余杭獐山钢瓶有限公司'
+        },
+        {
+          label: '龙湾区-杭州天龙钢瓶有限公司',
+          value: '龙湾区-杭州天龙钢瓶有限公司'
+        }
+      ],
+      yqs: [{
+          label: '-乐清市杭州余杭獐山钢瓶有限公司',
+          value: '-乐清市杭州余杭獐山钢瓶有限公司'
+        },
+        {
+          label: '-乐清市杭州天龙钢瓶有限公司',
+          value: '-乐清市杭州天龙钢瓶有限公司'
+        }
+      ],
+    },
     customerType: [{
         label: '全部',
         value: '全部'
@@ -121,7 +135,24 @@ export class CustomerListComponent implements OnInit {
         value: '报废'
       }
     ],
-    customerType1: [{
+    userAttr1: [{
+        label: '全部',
+        value: 'all'
+      },
+      {
+        label: '正常',
+        value: 'zc'
+      },
+      {
+        label: '过期',
+        value: 'gq'
+      },
+      {
+        label: '报废',
+        value: 'bf'
+      }
+    ],
+    userAttr2: [{
         label: '全部',
         value: '全部'
       },
@@ -138,23 +169,39 @@ export class CustomerListComponent implements OnInit {
         value: '报废'
       }
     ],
-    customerType2: [{
+    userAttr2Library: {
+      all: [{
         label: '全部',
         value: '全部'
-      },
-      {
-        label: '正常',
-        value: '正常'
-      },
-      {
-        label: '过期',
-        value: '过期'
-      },
-      {
-        label: '报废',
-        value: '报废'
-      }
-    ],
+      }],
+      zc: [{
+          label: '正常1',
+          value: '正常1'
+        },
+        {
+          label: '正常2',
+          value: '正常2'
+        },
+      ],
+      gq: [{
+          label: '过期1',
+          value: '过期1'
+        },
+        {
+          label: '过期2',
+          value: '过期2'
+        },
+      ],
+      bf: [{
+          label: '报废1',
+          value: '报废1'
+        },
+        {
+          label: '报废2',
+          value: '报废2'
+        },
+      ],
+    },
   };
   copyData() {
     const temparr = [];
@@ -226,21 +273,28 @@ export class CustomerListComponent implements OnInit {
 
   ngOnInit() {
     this.copyData();
+    const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
+    if (enterpriseID) {
+      this.searchParams.address = enterpriseID;
+      this.onSearch();
+    }
+    console.log(enterpriseID);
   }
 
   onSearch() {
     console.log(this.searchParams);
   }
 
-  onChangeAreaID(...arg) { // 根据改变后的数值设置二级下拉框的数据
+  onChangeAreaID(arg) { // 根据改变后的数值设置二级下拉框的数据
     console.dir('改变了所在区域:');
-
-    console.dir(arg);
+    this.searchOpt.company = this.searchOpt.companyOpt[arg.value];
+    console.log(arg.value);
   }
 
-  onChangeuserAttr1(...arg) {
+  onChangeuserAttr1(arg) {
     console.dir('改变了用户性质:');
-    console.dir(arg);
+    console.dir(arg.value);
+    this.searchOpt.userAttr2 = this.searchOpt.userAttr2Library[arg.value];
   }
   onPageChange(event) {
     console.log(event);
@@ -257,4 +311,3 @@ export class CustomerListComponent implements OnInit {
     });
   }
 }
-

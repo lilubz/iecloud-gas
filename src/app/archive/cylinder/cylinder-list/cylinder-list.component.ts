@@ -9,6 +9,9 @@ import {
 import {
   CylinderListService
 } from './cylinder-list.service';
+import {
+  MessageService
+} from 'primeng/components/common/messageservice';
 @Component({
   selector: 'gas-cylinder-list',
   templateUrl: './cylinder-list.component.html',
@@ -17,24 +20,26 @@ import {
 })
 
 export class CylinderListComponent implements OnInit {
+  constructor(private routerInfo: ActivatedRoute, private cylinderListService: CylinderListService,
+    private messageService: MessageService) {}
   cylinders: Array < {
-    cylinderCode: String;
-    borough: String;
-    enterpriseName: String;
-    specification: String;
-    fillingMedium: String;
-    serviceCondition: String;
-    productionDate: String;
-    endCheckdate: String;
-    nextCheckdate: String;
-    factoryNumber: String;
-    EserialNumber: String;
-    registrationTime: String;
-    productionUnit: String;
-    serialNumber: String;
+    cylinderCode ? : String;
+    borough ? : String;
+    enterpriseName ? : String;
+    specification ? : String;
+    fillingMedium ? : String;
+    serviceCondition ? : String;
+    productionDate ? : String;
+    endCheckdate ? : String;
+    nextCheckdate ? : String;
+    factoryNumber ? : String;
+    EserialNumber ? : String;
+    registrationTime ? : String;
+    productionUnit ? : String;
+    serialNumber ? : String;
   } > ;
   pageParams: {
-    enterpriseName ? : String;
+    enterpriseName ?: String;
     productionUnit ? : String;
     state ? : String;
     cylinderCode ? : String;
@@ -43,7 +48,7 @@ export class CylinderListComponent implements OnInit {
     pageNumber ? : Number;
     pageSize ? : Number;
     pageOption ? : Array < Number > ;
-    pageCount ? : Number;
+    total ? : Number;
   } = {
     enterpriseName: '',
     productionUnit: '',
@@ -54,115 +59,83 @@ export class CylinderListComponent implements OnInit {
     pageNumber: 1,
     pageSize: 20,
     pageOption: [10, 20, 30, 40],
-    pageCount: 400
+    total: 400
   };
   searchParams: {
     enterpriseName ? : String;
     productionUnit ? : String;
-    state ? : String;
-    cylinderCode ? : String;
+    state ? : Number;
+    cylinderCode ? : Number;
     serialNumber ? : String;
     factoryNumber ? : String;
   } = {
     enterpriseName: '',
     productionUnit: '',
-    state: '',
-    cylinderCode: '',
+    state: 0,
+    cylinderCode: 0,
     serialNumber: '',
     factoryNumber: '',
   };
-  constructor(private routerInfo: ActivatedRoute, private cylinderListService: CylinderListService) {}
+
   searchOpt = {
-    company: [{
-        label: '全部',
-        value: '全部'
-      },
-      {
-        label: '温州市中燃华颢燃气有限公司',
-        value: '温州市中燃华颢燃气有限公司'
-      },
-      {
-        label: '温州市华昌石油液化气有限公司',
-        value: '温州市华昌石油液化气有限公司'
-      }
-    ],
-    make: [{
-        label: '全部',
-        value: '全部'
-      },
-      {
-        label: '杭州余杭獐山钢瓶有限公司',
-        value: '杭州余杭獐山钢瓶有限公司'
-      },
-      {
-        label: '杭州天龙钢瓶有限公司',
-        value: '杭州天龙钢瓶有限公司'
-      }
-    ],
+    company: [],
+    make: [],
     status: [{
-        label: '全部',
-        value: '全部'
-      },
-      {
         label: '正常',
-        value: '正常'
+        value: '0'
       },
       {
         label: '过期',
-        value: '过期'
+        value: '1'
       },
-      {
-        label: '报废',
-        value: '报废'
-      }
     ]
   };
-  area: any;
-  copyData() {
-    const temparr = [];
-    for (let i = 0; i < 300; i++) {
-      const temp = {};
-      temp['area0'] = i;
-      temp['area1'] = Math.floor(Math.random() * 1000000);
-      temp['area2'] = '鹿城区';
-      temp['area3'] = '温州市中燃华颢燃气有限公司';
-      temp['area4'] = 'YSP35.5';
-      temp['area5'] = '液化石油气';
-      temp['area6'] = '正常';
-      temp['area7'] = '2008 - ' + Math.floor(Math.random() * 12);
-      temp['area8'] = '2010 - ' + Math.floor(Math.random() * 12);
-      temp['area9'] = '2015 - ' + Math.floor(Math.random() * 12);
-      temp['area10'] = 200801010485 + i;
-      temp['area11'] = 'CZH - 657124';
-      temp['area12'] = '';
-      temp['area13'] = '';
-      temp['area14'] = '杭州余杭獐山钢瓶有限公司';
-      temparr.push(temp);
-    }
-    this.area = temparr;
-  }
+
   onSearch(page ? ) {
-    let params = {};
+    const paramsKey = [
+      'enterpriseName',
+      'productionUnit',
+      'state',
+      'cylinderCode',
+      'serialNumber',
+      'factoryNumber',
+    ];
+    const params = {};
+
+    // 有参数表示翻页，使用上次的查询参数，没有参数是新的查询，使用双向绑定的参数。
     if (page) {
-      params = this.pageParams;
+      for (let i = 0; i < paramsKey.length; i++) {
+        params[paramsKey[i]] = this.pageParams[paramsKey[i]];
+      }
       params['pageNumber'] = page.pageNumber;
-      params['pageSize'] = page.size;
+      params['pageSize'] = page.pageSize;
     } else {
-      params = this.searchParams;
+      for (let i = 0; i < paramsKey.length; i++) {
+        params[paramsKey[i]] = this.searchParams[paramsKey[i]];
+        this.pageParams[paramsKey[i]] = this.searchParams[paramsKey[i]];
+      }
       params['pageNumber'] = 1;
-      params['pageSize'] = 10;
+      params['pageSize'] = this.pageParams.pageSize;
     }
     console.log(params);
-    // this.cylinderListService.getCylinders(params).then(data => {
-    //   if (data.status === 0) {
-    //     this.cylinders = data.data.list;
-    //   } else {
 
-    //   }
-    // });
+    this.cylinderListService.getCylinders(params).then(data => {
+      if (data.status === 0) {
+        this.cylinders = data.data.list;
+        this.pageParams.total = data.data.total > 10 ? data.data.total : 400;
+        console.log(data);
+      } else {
+        this.cylinders = [];
+        this.messageService.add({
+          severity: 'warn',
+          summary: '查询结果',
+          detail: data.msg
+        });
+      }
+    });
   }
+
   onPageChange(pageInfo) {
-    // 设置好分页参数后，使用searchParams发送请求。
     const page: {
       pageSize: Number,
       pageNumber: Number
@@ -172,37 +145,26 @@ export class CylinderListComponent implements OnInit {
     };
     this.onSearch(page);
   }
+
   ngOnInit() {
-    this.copyData();
-    // this.getCylinderSearchOpt();
-    // this.routerInfo.snapshot.params["id"];
+    this.getCylinderSearchOpt();
     const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
-    if (enterpriseID) {
+    if (enterpriseID !== 'undefined') {
       this.searchParams.enterpriseName = enterpriseID;
       this.onSearch();
     }
-    console.log(enterpriseID);
   }
 
-  getCylinders(params: Object) {
-    this.cylinderListService.getCylinders(params).then(data => {
-      if (data.status === 0) {
-
-      } else {
-
-      }
-    });
-  }
   getCylinderSearchOpt() {
     this.cylinderListService.getCylinderSearchOpt({
 
     }).then(data => {
       if (data.status === 0) {
-        this.searchOpt = data.searchOpt;
+        this.searchOpt.company = data.data.enterpriseName;
+        this.searchOpt.make = data.data.productionUnit;
       } else {
 
       }
     });
   }
 }
-
