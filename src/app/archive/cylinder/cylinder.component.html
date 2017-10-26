@@ -13,10 +13,10 @@
       <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
     </div>
     <div class="ui-g-12">
-      <input type="text" pInputText>
+      <input type="text" pInputText [(ngModel)]="gasInput">
     </div>
     <div class="ui-g-12">
-      <button pButton type="button" label="查询" [routerLink]="['./detail']"></button>
+      <button pButton type="button" label="查询" [routerLink]="['./detail',gasInput]"></button>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-const nina = 'http://192.168.1.8:8089/';
+const nina = 'http://192.168.1.8:8080/';
 const tiejun = 'http://192.168.1.113:8080/';
 const feifeng = 'http://192.168.1.26:8080/';
 const guotao = 'http://192.168.1.107:28081/';
@@ -11,7 +11,8 @@ const URL = local;
 const API = {
   // 项目地址
   'url': URL,
-
+  // 气瓶档案
+  'queryCylinderDetail': URL + 'basicInformation/gasCylinder/searchGCInfoByCylinderCode.do',
   // 系统管理
   'queryLog': URL + '',
 
