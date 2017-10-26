@@ -219,6 +219,12 @@ input {
 
 /* 消息提示 */
 
+.ui-growl {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .ui-growl-item-container.ui-state-highlight.ui-growl-message-error {
   background-color: #D32F2F;
   border-color: #D32F2F;

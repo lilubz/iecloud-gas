@@ -1,69 +1,87 @@
-<div class="ui-g">
-  <div class="ui-g-10">
-    <div class="ui-g" style="margin-bottom:10px">
-      <div class="ui-g-5 ui-g-nopad">
-        <div class="inputgroup">
-          <span> 经营企业</span>
-          <p-dropdown [options]="searchOpt.company" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.enterpriseName"></p-dropdown>
+<div class="cylinderList">
+  <div class="ui-g pad">
+    <div class="ui-g-10">
+      <div class="ui-g" style="margin-bottom:10px">
+        <div class="ui-g-5 ui-g-nopad">
+          <div class="inputgroup">
+            <span> 经营企业</span>
+            <p-dropdown [options]="searchOpt.company" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.enterpriseName"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup">
+            <span> 制造单位</span>
+            <p-dropdown [options]="searchOpt.make" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.productionUnit"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-3 ui-g-nopad">
+          <div class="inputgroup">
+            <span>状态</span>
+            <p-dropdown [options]="searchOpt.status" [style]="{'width':'calc(100% - 40px'}" [(ngModel)]="searchParams.state"></p-dropdown>
+          </div>
         </div>
       </div>
-      <div class="ui-g-4 ui-g-nopad">
-        <div class="inputgroup">
-          <span> 制造单位</span>
-          <p-dropdown [options]="searchOpt.make" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.productionUnit"></p-dropdown>
+      <div class="ui-g ">
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup">
+            <span> 气瓶编码</span>
+            <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.cylinderCode">
+          </div>
         </div>
-      </div>
-      <div class="ui-g-3 ui-g-nopad">
-        <div class="inputgroup">
-          <span>状态</span>
-          <p-dropdown [options]="searchOpt.status" [style]="{'width':'calc(100% - 40px'}" [(ngModel)]="searchParams.state"></p-dropdown>
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup">
+            <span> 自有编号</span>
+            <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.serialNumber">
+          </div>
+        </div>
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup" style="text-align:right;">
+            <span> 出厂编号</span>
+            <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.factoryNumber">
+          </div>
         </div>
       </div>
     </div>
-    <div class="ui-g ">
-      <div class="ui-g-4 ui-g-nopad">
-        <div class="inputgroup">
-          <span> 气瓶编码</span>
-          <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.cylinderCode">
-        </div>
-      </div>
-      <div class="ui-g-4 ui-g-nopad">
-        <div class="inputgroup">
-          <span> 自有编号</span>
-          <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.serialNumber">
-        </div>
-      </div>
-      <div class="ui-g-4 ui-g-nopad">
-        <div class="inputgroup" style="text-align:right;">
-          <span> 出厂编号</span>
-          <input type="text" pInputText placeholder="" style="width:55%;" [(ngModel)]="searchParams.factoryNumber">
-        </div>
-      </div>
+    <div class="ui-g-2 ui-g-nopad">
+      <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
     </div>
   </div>
-  <div class="ui-g-2 ui-g-nopad">
-    <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
-  </div>
-</div>
-<div class="ui-g">
-  <div class="ui-g-12">
-    <p-dataTable [value]="area" dataKey="area0" [paginator]="true" [rows]="pageParams.pageSize" [headerCheckboxToggleAllPages]="false" scrollable="true"
-      scrollHeight="700px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.pageCount" (onPage)="onPageChange($event)">
-      <p-column [style]="{'width':'200px'}" field="area0" header="序号"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area1" header="条码"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area2" header="所属行政区"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area3" header="经营企业"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area4" header="气瓶规格"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area5" header="充装介质"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area6" header="状态"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area7" header="制造年月"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area8" header="末检日期"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area9" header="下检日期"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area10" header="出厂编号"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area11" header="自有编号"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area12" header="电子编号（预留）"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area13" header="登记时间"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area14" header="制造单位"></p-column>
-    </p-dataTable>
+  <div class="ui-g pad">
+    <div class="ui-g-12">
+      <p-dataTable [value]="cylinders" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageParams.pageSize" scrollable="true"
+        scrollHeight="510px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.total" (onLazyLoad)="onPageChange($event)">
+        <p-column [style]="{'width':'200px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码"></p-column>
+        <p-column [style]="{'width':'150px'}" field="regionName" header="所属行政区"></p-column>
+        <p-column [style]="{'width':'150px'}" field="enterpriseName" header="经营企业"></p-column>
+        <p-column [style]="{'width':'150px'}" field="type" header="气瓶规格"></p-column>
+        <p-column [style]="{'width':'150px'}" field="fillingMedium" header="充装介质"></p-column>
+        <p-column [style]="{'width':'150px'}" field="serviceCondition" header="状态"></p-column>
+        <p-column [style]="{'width':'150px'}" header="制造年月">
+          <ng-template let-first="rowData" pTemplate="body">
+            <span>{{first.productionDate|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" header="末检日期">
+          <ng-template let-end="rowData" pTemplate="body">
+            <span>{{end.endCheckDate|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" header="下检日期">
+          <ng-template let-next="rowData" pTemplate="body">
+            <span>{{next.nextCheckDate|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" field="serialNumber" header="出厂编号"></p-column>
+        <p-column [style]="{'width':'150px'}" field="enterpriseCylinderCode" header="自有编号"></p-column>
+        <p-column [style]="{'width':'150px'}" field="electronNumber" header="电子编号（预留）"></p-column>
+        <p-column [style]="{'width':'150px'}" field="area13" header="登记时间"></p-column>
+        <p-column [style]="{'width':'150px'}" field="productionUnit" header="制造单位"></p-column>
+      </p-dataTable>
+    </div>
   </div>
 </div>

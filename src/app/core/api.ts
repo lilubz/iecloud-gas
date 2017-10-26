@@ -15,9 +15,13 @@ const API = {
   // 系统管理
   'queryLog': URL + '',
 
-  // 基础档案
+  // 气瓶信息概览
   'getCylinderCountiesOverview': URL + 'basicInformation/gasCylinder/GcCountInfoByRegion.do',
   'getCylinderEnterpriseOverview': URL + 'basicInformation/gasCylinder/getGroupGasCylinderOverview.do',
+
+  // 气瓶综合查询
+  'cylinderSelectOpt': URL + 'basicInformation/gasCylinder/getDropInfo.do',
+  'getCylinders': URL + 'basicInformation/gasCylinder/searchGasCylinder.do',
 
   // 登录
   'signIn': URL + 'user/login.do',

@@ -12,13 +12,13 @@ export class CylinderListService {
 
   getCylinderSearchOpt(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.queryLog, params)
+      .withCredentialsPostRequest(this.API.cylinderSelectOpt, params)
       .catch(this.handleError);
   }
 
   getCylinders(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.queryLog, params)
+      .withCredentialsPostRequest(this.API.getCylinders, params)
       .catch(this.handleError);
   }
 
