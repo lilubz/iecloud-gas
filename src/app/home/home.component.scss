@@ -17,7 +17,7 @@ $darkBlue:#000099;
   background-image: url(/assets/img/home/visualization-bg.jpg); // opacity: ;
   .img_container {
     height: 100%;
-    background-color: #333;
+    // background-color: #333;
     .header {
       position: fixed;
       top: 0;
@@ -259,26 +259,6 @@ $darkBlue:#000099;
       background-repeat: no-repeat;
       background-size: 100% 100%;
       background-image: url(/assets/img/home/u95.png);
-    }
-  }
-  .footer {
-    height: 10%; // background-color: rgb(32, 58, 59);
-    margin-top: 5px;
-    position: relative;
-    a {
-      position: fixed;
-      bottom: 0;
-      text-decoration: none;
-      display: block;
-      width: 60px;
-      height: 63px;
-      float: left;
-      &:nth-child(2) {
-        left: 70px;
-      }
-      img {
-        width: 100%;
-      }
     }
   }
 }

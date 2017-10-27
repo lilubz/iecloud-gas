@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { LoginService } from './../login/login.service';
 import { MenuItem } from 'primeng/components/common/menuitem';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'gas-home',
@@ -10,10 +14,10 @@ import { MenuItem } from 'primeng/components/common/menuitem';
 
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService, private messageService: MessageService, private router: Router) { }
   menus: MenuItem[];
-  curTime: any ;
-  DateTime: any ;
+  curTime: any;
+  DateTime: any;
 
   ngOnInit() {
     this.menus = [
@@ -64,6 +68,20 @@ export class HomeComponent implements OnInit {
     setInterval(() => {
       this.curTime = new Date().toLocaleTimeString();
       this.DateTime = new Date().toLocaleDateString();
-           }, 1000);
+    }, 1000);
+  }
+
+  logout() {
+    this.loginService.logout({}).then(data => {
+      if (data.status === 0) {
+
+      } else {
+        this.messageService.add({ severity: 'error', summary: '注销失败', detail: data.msg });
+      }
+      this.router.navigate(['/login']);
+    }).catch(res => {
+      this.messageService.add({ severity: 'error', summary: '注销失败', detail: res.json().msg });
+      this.router.navigate(['/login']);
+    });
   }
 }
