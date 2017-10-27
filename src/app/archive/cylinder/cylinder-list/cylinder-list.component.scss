@@ -1,24 +1,30 @@
-div[class^="ui"]{
-  padding:0;
-}
-div.pad {
-  padding: 5px 15px;
-}
+.cylinderList{
+  div[class^="ui"] {
+    padding: 0;
+  }
 
-.inputgroup{
-  padding:3px;
-}
+    div.padding {
+    padding: 5px 15px;
+  }
 
-.inputgroup>span {
-  color: rgb(102, 102, 102);
-}
+  .inputgroup {
+    padding: 3px;
+    >span{
+      color: rgb(102, 102, 102);
+    }
+  }
 
-.searchBtn {
-  margin-top: 10px;
-  margin-left: 15px;
-  height: 65px;
-  width: 90px;
-  font-size: 1.3em;
-  font-weight: bold;
-  border-radius: 5px;
+  .searchBtn {
+    margin-top: 10px;
+    margin-left: 15px;
+    height: 65px;
+    width: 90px;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  .textInput{
+    width:55%;
+    max-width:180px;
+  }
 }

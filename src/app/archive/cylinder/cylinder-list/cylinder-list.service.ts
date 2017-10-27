@@ -16,11 +16,19 @@ export class CylinderListService {
       .catch(this.handleError);
   }
 
-  getCylinders(params: any): Promise<any> {
+  getCylinders(params: any): any {
     return this.httpService
       .withCredentialsPostRequest(this.API.getCylinders, params)
       .catch(this.handleError);
   }
+
+  // private handleError(error: any): Promise<any> {
+  //   const promise = new Promise(function (resolve, reject) {
+  //     resolve(error);
+  //   });
+
+  //   return promise;
+  // }
 
   private handleError(error: any): Promise<any> {
     // console.error('An error occurred', error);

@@ -25,7 +25,7 @@ export class CylinderListComponent implements OnInit {
   cylinders: Array<{
     cylinderCode?: String;
     borough?: String;
-    enterpriseName?: String;
+    enterpriseNumber?: String;
     specification?: String;
     fillingMedium?: String;
     serviceCondition?: String;
@@ -39,7 +39,7 @@ export class CylinderListComponent implements OnInit {
     serialNumber?: String;
   }>;
   pageParams: {
-    enterpriseName?: String;
+    enterpriseNumber?: String;
     productionUnit?: String;
     state?: String;
     cylinderCode?: String;
@@ -50,7 +50,7 @@ export class CylinderListComponent implements OnInit {
     pageOption?: Array<Number>;
     total?: Number;
   } = {
-    enterpriseName: '',
+    enterpriseNumber: '',
     productionUnit: '',
     state: '',
     cylinderCode: '',
@@ -62,14 +62,14 @@ export class CylinderListComponent implements OnInit {
     total: 400
   };
   searchParams: {
-    enterpriseName?: String;
+    enterpriseNumber?: Number;
     productionUnit?: String;
     state?: Number;
     cylinderCode?: Number;
     serialNumber?: String;
     factoryNumber?: String;
   } = {
-    enterpriseName: '',
+    enterpriseNumber: 1,
     productionUnit: '',
     state: 0,
     cylinderCode: 0,
@@ -78,22 +78,32 @@ export class CylinderListComponent implements OnInit {
   };
 
   searchOpt = {
-    company: [],
-    make: [],
+    company: [{
+      label: '全部 ',
+      value: 1
+    }],
+    make: [{
+      label: '全部 ',
+      value: 1
+    }],
     status: [{
-      label: '正常',
-      value: '0'
+      label: '全部 ',
+      value: -1
     },
     {
-      label: '过期',
-      value: '1'
+      label: '正常 ',
+      value: 0
+    },
+    {
+      label: '过期 ',
+      value: 1
     },
     ]
   };
 
   onSearch(page?) {
     const paramsKey = [
-      'enterpriseName',
+      'enterpriseNumber',
       'productionUnit',
       'state',
       'cylinderCode',
@@ -119,19 +129,18 @@ export class CylinderListComponent implements OnInit {
     }
     console.log(params);
 
-    this.cylinderListService.getCylinders(params).then(data => {
+    this.cylinderListService.getCylinders(params).then((data) => {
+      console.log(data);
       if (data.status === 0) {
         this.cylinders = data.data.list;
-        this.pageParams.total = data.data.total > 10 ? data.data.total : 400;
-        console.log(data);
+        this.pageParams.total = data.data.total !== 0 ? data.data.total : 400;
       } else {
         this.cylinders = [];
-        this.messageService.add({
-          severity: 'warn',
-          summary: '查询结果',
-          detail: data.msg
-        });
+        this.setMessages('warn', '查询结果', '响应：' + data.msg);
       }
+    }, (error) => {
+      this.cylinders = [];
+      this.setMessages('error', '查询失败', '错误代码：' + error.status);
     });
   }
 
@@ -149,10 +158,12 @@ export class CylinderListComponent implements OnInit {
   ngOnInit() {
     this.getCylinderSearchOpt();
     const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
-    if (enterpriseID !== 'undefined') {
-      this.searchParams.enterpriseName = enterpriseID;
+    if (enterpriseID !== undefined) {
+      console.log('in');
+      this.searchParams.enterpriseNumber = enterpriseID;
       this.onSearch();
     }
+    console.log(enterpriseID);
   }
 
   getCylinderSearchOpt() {
@@ -160,11 +171,22 @@ export class CylinderListComponent implements OnInit {
 
     }).then(data => {
       if (data.status === 0) {
-        this.searchOpt.company = data.data.enterpriseName;
-        this.searchOpt.make = data.data.productionUnit;
+        const all = [{ label: '全部', value: -1 }];
+        this.searchOpt.company = all.concat(data.data.enterpriseName);
+        this.searchOpt.make = all.concat(data.data.productionUnit);
       } else {
-
+        this.setMessages('error', '查询结果', '响应：' + data.msg);
       }
+    }, error => {
+      this.setMessages('error', '查询失败', '错误代码：' + error.status);
+    });
+  }
+
+  setMessages(type, title, msg) {
+    this.messageService.add({
+      severity: type,
+      summary: title,
+      detail: msg,
     });
   }
 }
