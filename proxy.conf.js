@@ -20,15 +20,25 @@ const PROXY_CONFIG = [
   //     "^/api": ""
   //   }
   // },
+  // {
+  //   context: [
+  //     "/api",
+  //   ],
+  //   target: "http://192.168.1.107:28080",// 涛哥
+  //   secure: false,
+  //   "pathRewrite": {
+  //     "^/api": ""
+  //   }
+  // },
   {
     context: [
-      "/api",
+      "/wenZhouGas",
     ],
-    target: "http://192.168.1.107:28080",// 涛哥
+    target: "http://60.190.114.126/",// 线上
     secure: false,
-    "pathRewrite": {
-      "^/api": ""
-    }
+    // "pathRewrite": {
+    //   "^/wenZhouGas": ""
+    // }
   },
   
 ];

@@ -1,19 +1,13 @@
-
 import {
-    Injectable
-  } from '@angular/core';
-  import {
-    Headers,
-    Http,
-    ResponseContentType
-  } from '@angular/http';
-  import 'rxjs/add/operator/toPromise';
-  import {
-      HttpService
-    } from './../../../core/http.service';
-  import { API_TOKEN } from './../../../core/api';
-  @Injectable()
-  export class CustomerDetailService {
+  Injectable
+} from '@angular/core';
+import { Headers } from '@angular/http';
+import {
+  HttpService
+} from './../../../core/http.service';
+import { API_TOKEN } from './../../../core/api';
+@Injectable()
+export class CustomerDetailService {
   //   constructor(private http: Http, private HttpService: HttpService) {}
 
   // querySingle(params: any): Promise < any > {
@@ -23,4 +17,4 @@ import {
   //   private handleError(error: any): Promise<any> {
   //     return Promise.reject(error.message || error);
   // }
-  }
+}

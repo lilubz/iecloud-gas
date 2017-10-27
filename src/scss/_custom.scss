@@ -21,17 +21,21 @@ body {
   font-family: "Microsoft YaHei", "Arial", "黑体", "宋体", sans-serif;
 }
 
+
 /* 全局CSS样式 */
 
-.text-left{
+.text-left {
   text-align: left;
 }
-.text-right{
+
+.text-right {
   text-align: right;
 }
-.text-center{
+
+.text-center {
   text-align: center;
 }
+
 
 /* datatable */
 
@@ -64,7 +68,8 @@ input {
 .layout {
   .header-left,
   .menu,
-  .sidebar {
+  .sidebar,
+  .footer {
     position: fixed;
   }
   /* 头部左侧 */
@@ -122,6 +127,9 @@ input {
           color: #8e9799;
           font-weight: bolder;
         }
+        .ui-state-active {
+          background: #dadada !important;
+        }
       }
     }
     .ui-tieredmenu {
@@ -150,25 +158,25 @@ input {
       background-position: center;
     }
     .home-icon {
-      background-image: url(/assets/img/home.png);
+      background-image: url(../assets/img/home.png);
     }
     .archive-icon {
-      background-image: url(/assets/img/archive.png);
+      background-image: url(../assets/img/archive.png);
     }
     .distribution-icon {
-      background-image: url(/assets/img/distribution.png);
+      background-image: url(../assets/img/distribution.png);
     }
     .supervise-icon {
-      background-image: url(/assets/img/supervise.png);
+      background-image: url(../assets/img/supervise.png);
     }
     .visualization-icon {
-      background-image: url(/assets/img/visualization.png);
+      background-image: url(../assets/img/visualization.png);
     }
     .statistic-icon {
-      background-image: url(/assets/img/statistic.png);
+      background-image: url(../assets/img/statistic.png);
     }
     .system-icon {
-      background-image: url(/assets/img/system.png);
+      background-image: url(../assets/img/system.png);
     }
   }
 }
@@ -208,11 +216,11 @@ input {
 
 .footer {
   $shortcut-width: 40px;
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   height: $footer-height;
+  position: fixed;
   img.shortcut {
     height: $shortcut-width;
     width: $shortcut-width;

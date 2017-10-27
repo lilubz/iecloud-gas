@@ -2,19 +2,19 @@
   <div class="ui-g-12 ui-g-nopad" style="height: 70px;">
     <div class="ui-g-3  img_container">
       <div class="ui-g-nopad header" [routerLink]="['/home']">
-        <img src="/assets/img/supervise-logo.png" class="logo" alt="">
+        <img src="./assets/img/supervise-logo.png" class="logo" alt="">
         <span class="title-top">智慧燃气安全监管</span>
         <span class="title-bottom">大数据平台</span>
       </div>
     </div>
-    <div class="ui-g-7 header-middle ">
-      <img src="/assets/img/home/visualization-bottom.png" class="bottom_img">
+    <div class="ui-g-6 header-middle ">
+      <img src="./assets/img/home/visualization-bottom.png" class="bottom_img">
       <span>{{curTime}}</span>
     </div>
-    <div class="ui-g-2 header-right " style="height:100%">
+    <div class="ui-g-3  header-right " style="height:100%">
       <div class="fixed-right" style="height:100%">
-        <div class="left">监管信息 0</div>
-        <div class="right">严重信息 0</div>
+        <div class="left" style="left: 10%;">监管信息 0</div>
+        <div class="right" >严重信息 0</div>
       </div>
     </div>
   </div>
@@ -25,12 +25,12 @@
     <div class="ui-g-3   padding-lr" style="height:100%">
       <div class="ui-g-12 padding-lr bg-img" style="height:15%;">
         <p>待办事项</p>
-        <span>共0件，其中0件加急事件</span>
+        <span>共<a href="javascript:;">0</a>件，其中<a href="javascript:;">0</a>件加急事件</span>
       </div>
       <div class="ui-g-12 padding-lr bg-img duban" style="height:30%">
         <p>督察督办</p>
 
-        <img src="/assets/img/home/u151.png" class="img-super">
+        <img src="./assets/img/home/u151.png" class="img-super">
         <div class="ui-g-8 ui-offset-1">
           <li>①超期
             <span>0</span>
@@ -72,29 +72,29 @@
         <span style="color:#92D050">合计：272403</span>
       </div>
     </div>
-    <div class="ui-g-7 ui-g-nopad " style="height:100%">
+    <div class="ui-g-6 ui-g-nopad " style="height:100%">
       <div class="ui-g-12 ui-g-nopad" style="height:8%;text-align:center">
-        <p style="float:left">待办事项</p>
+        <p style="float:left;color:#000099;font-size:1.3em;">待办事项</p>
         <span style="color:#cccccc;font-size:1.2em;margin-left:-6em">{{DateTime}}</span>
       </div>
       <div class="ui-g-12 bg-img01" style="height:30%;">
         <span>(无)</span>
       </div>
       <div class="ui-g-12 " style="height:10%">
-        <p style="float:left">通知</p>
+        <p style="float:left;color:#000099;font-size:1.3em;">通知</p>
       </div>
       <div class="ui-g-12  bg-img01" style="height:52%;">
         <span>(无)</span>
       </div>
     </div>
-    <div class="ui-g-2 bg-img02 " style="height:100%;">
+    <div class="ui-g-3 bg-img02 " style="height:100%;width: 22.5%;">
       <p>信息滚动：</p>
       <span>(无)</span>
     </div>
   </div>
 
   <div class="ui-g-nopad footer">
-    <img src="/assets/img/home/u319.png" class="shortcut">
-    <img src="/assets/img/home/u321.png" class="shortcut" (click)="logout()">
+    <img src="./assets/img/home/u319.png" class="shortcut">
+    <img src="./assets/img/home/u321.png" class="shortcut" (click)="logout()">
   </div>
 </div>

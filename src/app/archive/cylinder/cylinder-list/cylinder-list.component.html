@@ -30,13 +30,13 @@
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
             <span> 自有编号</span>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.serialNumber">
+            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.ownNumber">
           </div>
         </div>
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup" style="text-align:right;">
             <span> 出厂编号</span>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.factoryNumber">
+            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.serialNumber">
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码"></p-column>
         <p-column [style]="{'width':'150px'}" field="regionName" header="所属行政区"></p-column>
-        <p-column [style]="{'width':'150px'}" field="enterpriseNumber" header="经营企业"></p-column>
+        <p-column [style]="{'width':'150px'}" field="enterpriseName" header="经营企业"></p-column>
         <p-column [style]="{'width':'150px'}" field="type" header="气瓶规格"></p-column>
         <p-column [style]="{'width':'150px'}" field="fillingMedium" header="充装介质"></p-column>
         <p-column [style]="{'width':'150px'}" field="serviceCondition" header="状态"></p-column>
@@ -89,6 +89,5 @@
 
       </p-dataTable>
     </div>
-    <p-growl [sticky]="false" [life]="3000"></p-growl>
   </div>
 </div>

@@ -26,8 +26,12 @@ export class CylinderOverviewCountyComponent implements OnInit {
   }
 
   getCountiesOverview() {
+    let areaID = '';
+    if (sessionStorage.getItem('user') !== 'undefined') {
+      areaID = JSON.parse(sessionStorage.getItem('user')).regionId;
+    }
     this.cylinderOverviewService.getCountiesOverview({
-      areaID: '330300'// 330300--温州市id
+      areaID: areaID
     }).then(data => {
       if (data.status === 0) {
         this.countyCylinders = data.data;

@@ -78,6 +78,7 @@ export class HomeComponent implements OnInit {
       } else {
         this.messageService.add({ severity: 'error', summary: '注销失败', detail: data.msg });
       }
+      sessionStorage.removeItem('user');
       this.router.navigate(['/login']);
     }).catch(res => {
       this.messageService.add({ severity: 'error', summary: '注销失败', detail: res.json().msg });

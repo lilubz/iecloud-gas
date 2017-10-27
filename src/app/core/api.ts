@@ -4,10 +4,10 @@ const nina = 'http://192.168.1.8:8080/';
 const tiejun = 'http://192.168.1.113:8080/';
 const feifeng = 'http://192.168.1.26:8080/';
 const guotao = 'http://192.168.1.107:28081/';
-const release = 'http://59.110.233.230/iecloud/';
-const local = 'http://localhost:4200/api/';
+const release = '/wenZhouGas/';
+const local = 'http://192.168.1.100:4200/api/';
 
-const URL = local;
+const URL = release;
 const API = {
   // 项目地址
   'url': URL,

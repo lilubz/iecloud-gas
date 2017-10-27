@@ -30,21 +30,20 @@
       var ua = window.navigator.userAgent.toLowerCase();
       var regIE = new RegExp("msie (\\d+\\.\\d+);");
       if (regIE.test(ua)) {
-        if (parseFloat(RegExp['$1']) < 9) {
-          window.location.href = '/update-browser.html';
+        if (parseFloat(RegExp['$1']) < 10) {
+          window.location.href = './update-browser.html';
         }
       }
     })();
 
   </script>
 
-  <script src="./assets/js/classList.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script> -->
+  <!-- <script src="./assets/js/classList.min.js"></script> -->
 </head>
 
 <body>
   <gas-root>
-    <img class="loading" src="assets/img/loading-black.gif" alt="">
+    <img class="loading" src="./assets/img/loading-black.gif" alt="">
   </gas-root>
 </body>
 

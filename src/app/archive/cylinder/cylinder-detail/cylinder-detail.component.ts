@@ -1,8 +1,9 @@
-import { Observable } from 'rxjs/Observable';
 import {Component, OnInit} from '@angular/core';
-// import { detailList } from './detail';
-import {CylinderDetailService} from './cylinder-detail.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+// import { detailList } from './detail';
+import { MessageService } from 'primeng/components/common/messageservice';
+import {CylinderDetailService} from './cylinder-detail.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
@@ -15,9 +16,11 @@ import 'rxjs/add/operator/map';
 
 export class CylinderDetailComponent implements OnInit {
     cylinderCode: any;
-    data: any;
+    // data: any;
 
   detailList:  {
+    gcLabelInfo: any,
+    gcSpecification: any,
     regionName: string,
     enterpriseName: string,
     serviceCondition: string,
@@ -51,10 +54,14 @@ export class CylinderDetailComponent implements OnInit {
   photoList: Array < {
     pictureUrl: string;
   } > ;
-  constructor(private CylinderDetailService: CylinderDetailService, private route: ActivatedRoute, private router: Router) {
+  constructor(private CylinderDetailService: CylinderDetailService,
+    private route: ActivatedRoute,
+    private router: Router, private messageService: MessageService) {
   }
   initDetail() {
     this.detailList = {
+      gcLabelInfo: {},
+      gcSpecification: {},
       regionName: '',
       enterpriseName: '',
       serviceCondition: '',
@@ -97,7 +104,11 @@ export class CylinderDetailComponent implements OnInit {
         this.detailList = data.data;
         console.log(this.detailList);
       }else {
-        console.log('查询失败');
+        this.messageService.add({
+          severity: 'warn',
+          summary: '查询结果',
+          detail: '请输入正确的气瓶条码'
+        });
       }
     });
     this.initDetail();

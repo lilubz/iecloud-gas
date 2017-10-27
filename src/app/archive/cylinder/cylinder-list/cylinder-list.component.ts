@@ -23,72 +23,72 @@ export class CylinderListComponent implements OnInit {
   constructor(private routerInfo: ActivatedRoute, private cylinderListService: CylinderListService,
     private messageService: MessageService) { }
   cylinders: Array<{
-    cylinderCode?: String;
-    borough?: String;
-    enterpriseNumber?: String;
-    specification?: String;
-    fillingMedium?: String;
-    serviceCondition?: String;
-    productionDate?: String;
-    endCheckdate?: String;
-    nextCheckdate?: String;
-    factoryNumber?: String;
-    EserialNumber?: String;
-    registrationTime?: String;
-    productionUnit?: String;
-    serialNumber?: String;
+    cylinderCode?: string;
+    borough?: string;
+    enterpriseName?: string;
+    specification?: string;
+    fillingMedium?: string;
+    serviceCondition?: string;
+    productionDate?: string;
+    endCheckdate?: string;
+    nextCheckdate?: string;
+    ownNumber?: string;
+    EserialNumber?: string;
+    registrationTime?: string;
+    productionUnit?: string;
+    serialNumber?: string;
   }>;
   pageParams: {
-    enterpriseNumber?: String;
-    productionUnit?: String;
-    state?: String;
-    cylinderCode?: String;
-    serialNumber?: String;
-    factoryNumber?: String;
-    pageNumber?: Number;
-    pageSize?: Number;
+    enterpriseNumber?: string;
+    productionUnit?: string;
+    state?: string;
+    cylinderCode?: string;
+    serialNumber?: string;
+    ownNumber?: string;
+    pageNumber?: number;
+    pageSize?: number;
     pageOption?: Array<Number>;
-    total?: Number;
+    total?: number;
   } = {
     enterpriseNumber: '',
     productionUnit: '',
     state: '',
     cylinderCode: '',
     serialNumber: '',
-    factoryNumber: '',
+    ownNumber: '',
     pageNumber: 1,
     pageSize: 20,
     pageOption: [10, 20, 30, 40],
     total: 400
   };
   searchParams: {
-    enterpriseNumber?: Number;
-    productionUnit?: String;
-    state?: Number;
-    cylinderCode?: Number;
-    serialNumber?: String;
-    factoryNumber?: String;
+    enterpriseNumber?: string;
+    productionUnit?: string;
+    state?: string;
+    cylinderCode?: string;
+    serialNumber?: string;
+    ownNumber?: string;
   } = {
-    enterpriseNumber: 1,
+    enterpriseNumber: '',
     productionUnit: '',
-    state: 0,
-    cylinderCode: 0,
+    state: '',
+    cylinderCode: '',
     serialNumber: '',
-    factoryNumber: '',
+    ownNumber: '',
   };
 
   searchOpt = {
     company: [{
       label: '全部 ',
-      value: 1
+      value: ''
     }],
     make: [{
       label: '全部 ',
-      value: 1
+      value: ''
     }],
     status: [{
       label: '全部 ',
-      value: -1
+      value: ''
     },
     {
       label: '正常 ',
@@ -108,7 +108,7 @@ export class CylinderListComponent implements OnInit {
       'state',
       'cylinderCode',
       'serialNumber',
-      'factoryNumber',
+      'ownNumber',
     ];
     const params = {};
 
@@ -171,7 +171,7 @@ export class CylinderListComponent implements OnInit {
 
     }).then(data => {
       if (data.status === 0) {
-        const all = [{ label: '全部', value: -1 }];
+        const all = [{ label: '全部', value: '' }];
         this.searchOpt.company = all.concat(data.data.enterpriseName);
         this.searchOpt.make = all.concat(data.data.productionUnit);
       } else {

@@ -9,6 +9,11 @@ import { CustomerOverviewCountyComponent } from './customer-overview/customer-ov
 const routes: Routes = [
   {
     path: 'customer',
+    redirectTo: 'customer/overview',
+    pathMatch: 'full'
+  },
+  {
+    path: 'customer',
     component: CustomerComponent,
     data: {
       title: '用户档案'

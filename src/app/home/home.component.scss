@@ -12,9 +12,9 @@ $darkBlue:#000099;
   background-size: 100% 100%;
   color: white;
   @media (max-height: 768px) {
-    font-size: 13px;
+    font-size: 16px;
   }
-  background-image: url(/assets/img/home/visualization-bg.jpg); // opacity: ;
+  background-image: url(../../assets/img/home/visualization-bg.jpg); // opacity: ;
   .img_container {
     height: 100%;
     // background-color: #333;
@@ -103,25 +103,25 @@ $darkBlue:#000099;
     background-position: center;
   }
   .home-icon {
-    background-image: url(/assets/img/home.png);
+    background-image: url(../../assets/img/home.png);
   }
   .archive-icon {
-    background-image: url(/assets/img/archive.png);
+    background-image: url(../../assets/img/archive.png);
   }
   .distribution-icon {
-    background-image: url(/assets/img/distribution.png);
+    background-image: url(../../assets/img/distribution.png);
   }
   .supervise-icon {
-    background-image: url(/assets/img/supervise.png);
+    background-image: url(../../assets/img/supervise.png);
   }
   .visualization-icon {
-    background-image: url(/assets/img/visualization.png);
+    background-image: url(../../assets/img/visualization.png);
   }
   .statistic-icon {
-    background-image: url(/assets/img/statistic.png);
+    background-image: url(../../assets/img/statistic.png);
   }
   .system-icon {
-    background-image: url(/assets/img/system.png);
+    background-image: url(../../assets/img/system.png);
   }
   .header-middle {
     .bottom_img {
@@ -141,28 +141,38 @@ $darkBlue:#000099;
     }
   }
   .header-right {
-    border-left: 8px #f3b400 solid;
-    border-right: 8px #f3b400 solid;
+    
     height: 70px; //   float: right;
     position: relative;
     .fixed-right {
       // text-align: center;
+      border-left: 5px #f3b400 solid;
+      border-right: 5px #f3b400 solid;
+      width: 75%;
       display: block;
       color: white;
       font-size: 1.2em; // margin: 0 auto;
       font-family: 'Arial';
-      font-weight: 400;
+      font-weight: 600;
+      padding-right: 1.8em;
+      margin-left: 2%;
+      background-image:linear-gradient(to right,#857a45,#344650,#293f53,#344650,#857a45);
       .left {
-        position: fixed;
+        position: absolute;
         width: 100px;
         height: 30px;
-        margin-top: 15px; // display: inline-block;
+        margin-top: 15px;
+          // display: inline-block;
       }
       .right {
         @extend .left;
-        margin-left: 6em;
+         right: 15%;
+         color: $redColor;
+        @media (max-width:1100px) {
+          right: 12%;
+        }
       }
-    } // background-image:linear-gradient(to right,#f3b400,yellow,red)
+    } 
   }
   .padding_midlr {
     padding: 0 0.5em;
@@ -180,11 +190,26 @@ $darkBlue:#000099;
       font-weight: 600;
       color: #3399FF;
       text-indent: 0.5em;
+      -webkit-margin-before: 0.7em;
+      -webkit-margin-after: 0.6em;
+      @media (max-height:700px) {
+        display: block;
+        -webkit-margin-before: 0.2em;
+        -webkit-margin-after: 0em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+      }
     }
     span {
       font-size: 1em;
       font-weight: 600;
       margin-left: 0.5em;
+      a{
+        width: 20px;
+        display: inline-block;
+        color: red;
+        font-size: 25px;
+      }
     }
     .duban {
       img {
@@ -202,7 +227,7 @@ $darkBlue:#000099;
         padding: 0 0em 1.5em 1.5em;
         display: block; // box-sizing: border-box;
         @media (max-height: 650px) {
-          padding: 0 0 0.8em 3em;
+          padding: 0 0 0.6em 2em;
         }
         &:first-child {
           color: $yellowColor;
@@ -216,7 +241,7 @@ $darkBlue:#000099;
           box-sizing: border-box;
           padding-right: 2em;
           @media (max-height: 650px) {
-            padding-right: 2.5em;
+            padding-right: 2em;
           }
         }
       }
@@ -248,17 +273,17 @@ $darkBlue:#000099;
     .bg-img {
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      background-image: url(/assets/img/home/u61.png);
+      background-image: url(../../assets/img/home/u61.png);
     }
     .bg-img01 {
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      background-image: url(/assets/img/home/u72.png);
+      background-image: url(../../assets/img/home/u72.png);
     }
     .bg-img02 {
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      background-image: url(/assets/img/home/u95.png);
+      background-image: url(../../assets/img/home/u95.png);
     }
   }
 }

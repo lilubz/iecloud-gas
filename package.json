@@ -23,6 +23,7 @@
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
+    "intl": "^1.2.5",
     "node-sass": "^4.5.3",
     "primeng": "^4.2.2",
     "rxjs": "^5.4.2",
@@ -30,7 +31,7 @@
   },
   "devDependencies": {
     "@angular/cli": "1.4.0",
-    "@angular/compiler-cli": "^4.2.4",
+    "@angular/compiler-cli": "^4.4.6",
     "@angular/language-service": "^4.2.4",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",

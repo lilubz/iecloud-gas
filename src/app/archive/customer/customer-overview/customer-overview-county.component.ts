@@ -20,7 +20,7 @@ export class CustomerOverviewCountyComponent implements OnInit {
         {
           areaName: '鹿城区',
           customerNum: 235,
-          areaID: 'string'
+          areaID: '330302'
         }
       );
     }
