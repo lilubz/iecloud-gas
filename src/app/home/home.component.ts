@@ -80,9 +80,6 @@ export class HomeComponent implements OnInit {
       }
       sessionStorage.removeItem('user');
       this.router.navigate(['/login']);
-    }).catch(res => {
-      this.messageService.add({ severity: 'error', summary: '注销失败', detail: res.json().msg });
-      this.router.navigate(['/login']);
     });
   }
 }

@@ -91,7 +91,7 @@ input {
       width: $header-left-width - 3*($header-height - $logo-height) - $logo-width;
       float: right;
       text-align: center;
-      font-size: ($header-left-width - 3*($header-height - $logo-height) - $logo-width)/8;
+      font-size: ($header-left-width - 3*($header-height - $logo-height) - $logo-width)/8.5;
       line-height: $header-height/2;
       color: #fff;
       font-weight: bolder;

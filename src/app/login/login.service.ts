@@ -12,24 +12,16 @@ export class LoginService {
 
   signIn(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.signIn, params)
-      .catch(this.handleError);
+      .withCredentialsPostRequest(this.API.signIn, params);
   }
 
   signUp(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.queryLog, params)
-      .catch(this.handleError);
+      .withCredentialsPostRequest(this.API.queryLog, params);
   }
 
   logout(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.logout, params)
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+      .withCredentialsPostRequest(this.API.logout, params);
   }
 }

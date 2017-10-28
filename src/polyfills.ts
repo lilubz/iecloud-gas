@@ -33,8 +33,6 @@ import 'core-js/es6/regexp';
 import 'core-js/es6/map';
 import 'core-js/es6/weak-map';
 import 'core-js/es6/set';
-import 'core-js/es6/promise';
-// import 'core-js/client/shim.min.js';
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
@@ -49,6 +47,7 @@ import 'core-js/es7/reflect';
  * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
  **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+// import './assets/js/polyfills/web-animations-js/web-animations.min'; // 不兼容ie9
 
 
 
@@ -67,15 +66,26 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  * Date, currency, decimal and percent pipes.
  * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
  */
-import 'intl';  // Run `npm install --save intl`.
+// import 'intl';  // Run `npm install --save intl`.
+import './assets/js/polyfills/intl';
 /**
  * Need to import at least one locale-data with intl.
  */
-import 'intl/locale-data/jsonp/en';
+// import 'intl/locale-data/jsonp/en';
+import './assets/js/polyfills/intl/locale-data/jsonp/zh';
+
+
+// 以下几个包由于用包管理器安装容易出问题，所以把他们下载下来
+
+/**
+ * 用 [Http](guide/http) 发送和接收二进制数据
+ * 用于兼容ie9
+ */
+import './assets/js/polyfills/typedarray';
+import './assets/js/polyfills/formdata';
+import './assets/js/polyfills/Blob';
 
 /**
  *
  */
-import './assets/js/polyfills/typedarray.js';
-import './assets/js/polyfills/formdata.js';
-import './assets/js/polyfills/Blob.js';
+import './assets/js/polyfills/classList';

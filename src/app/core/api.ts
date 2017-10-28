@@ -1,11 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
-const nina = 'http://192.168.1.8:8080/';
-const tiejun = 'http://192.168.1.113:8080/';
-const feifeng = 'http://192.168.1.26:8080/';
-const guotao = 'http://192.168.1.107:28081/';
 const release = '/wenZhouGas/';
-const local = 'http://192.168.1.100:4200/api/';
+const local = '/api/';
 
 const URL = release;
 const API = {

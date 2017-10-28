@@ -189,7 +189,7 @@
       var ua = window.navigator.userAgent.toLowerCase();
       var regIE = new RegExp("msie (\\d+\\.\\d+);");
       if (regIE.test(ua)) {
-        if (parseFloat(RegExp['$1']) < 10) {
+        if (parseFloat(RegExp['$1']) < 9) {
           return;
         }
       }
