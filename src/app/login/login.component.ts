@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { LoginService } from './login.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { UserStateService } from './../core/userState.service';
 @Component({
   selector: 'gas-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnDestroy {
   password = '';
 
   constructor( @Inject(DOCUMENT) private document: Document, private renderer: Renderer2,
-    private loginService: LoginService, private messageService: MessageService, private router: Router) {
+    private loginService: LoginService, private messageService: MessageService, private router: Router,
+    private userStateService: UserStateService) {
     this.renderer.addClass(this.document.body, 'login-body');
     this.renderer.setStyle(this.document.querySelector('html'), 'height', '100%');
   }
@@ -29,17 +31,6 @@ export class LoginComponent implements OnDestroy {
     this.loginService.signIn({
       phone: this.userName,
       password: this.password
-    }).then(data => {
-      console.log(data);
-      if (data.status === 0) {
-        sessionStorage.setItem('user', JSON.stringify(data.data));
-        this.router.navigate(['/archive']);
-      } else if (data.status === 4) {
-        sessionStorage.setItem('user', data.data ? JSON.stringify(data.data) : '');
-        this.router.navigate(['/archive']);
-      } else {
-        this.messageService.add({ severity: 'error', summary: '登录失败', detail: data.msg });
-      }
     });
   }
 }

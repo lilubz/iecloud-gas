@@ -72,14 +72,6 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
-    this.loginService.logout({}).then(data => {
-      if (data.status === 0) {
-
-      } else {
-        this.messageService.add({ severity: 'error', summary: '注销失败', detail: data.msg });
-      }
-      sessionStorage.removeItem('user');
-      this.router.navigate(['/login']);
-    });
+    this.loginService.logout();
   }
 }

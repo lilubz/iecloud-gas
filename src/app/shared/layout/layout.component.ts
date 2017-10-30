@@ -4,6 +4,7 @@ import { MenuItem } from 'primeng/components/common/menuitem';
 import { MessageService } from 'primeng/components/common/messageservice';
 
 import { LoginService } from './../../login/login.service';
+import { UserStateService } from './../../core/userState.service';
 @Component({
   selector: 'gas-layout',
   templateUrl: './layout.component.html'
@@ -12,7 +13,8 @@ import { LoginService } from './../../login/login.service';
 export class LayoutComponent implements OnInit {
   menus: MenuItem[];
 
-  constructor(private messageService: MessageService, private loginService: LoginService, private router: Router) { }
+  constructor(private messageService: MessageService, private loginService: LoginService, private router: Router,
+    private userStateService: UserStateService) { }
 
   ngOnInit() {
     this.menus = [
@@ -37,40 +39,32 @@ export class LayoutComponent implements OnInit {
       {
         label: '配送监管',
         icon: 'menu-icon distribution-icon',
-        // routerLink: ['/home']
+        routerLink: ['/delivery']
       },
       {
         label: '监管事务',
         icon: 'menu-icon supervise-icon',
-        // routerLink: ['/home']
+        routerLink: ['/supervise']
       },
       {
         label: '可视化',
         icon: 'menu-icon visualization-icon',
-        // routerLink: ['/home']
+        routerLink: ['/visualization']
       },
       {
         label: '统计查询',
         icon: 'menu-icon statistic-icon',
-        // routerLink: ['/home']
+        routerLink: ['/statistic']
       },
       {
         label: '系统配置',
         icon: 'menu-icon system-icon',
-        // routerLink: ['/home']
+        routerLink: ['/system']
       }
     ];
   }
 
   logout() {
-    this.loginService.logout({}).then(data => {
-      if (data.status === 0) {
-
-      } else {
-        this.messageService.add({ severity: 'error', summary: '注销失败', detail: data.msg });
-      }
-      sessionStorage.removeItem('user');
-      this.router.navigate(['/login']);
-    });
+    this.loginService.logout();
   }
 }

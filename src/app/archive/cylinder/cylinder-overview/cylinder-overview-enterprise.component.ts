@@ -11,6 +11,7 @@ import { CylinderOverviewService } from './cylinder-overview.service';
   templateUrl: './cylinder-overview-enterprise.component.html'
 })
 export class CylinderOverviewEnterpriseComponent implements OnInit {
+  loading = false;
 
   enterpriseCylinders: Array<{
     enterpriseName: string;
@@ -25,6 +26,7 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
     private messageService: MessageService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.route.paramMap
       .switchMap((params: ParamMap) => {
         return this.cylinderOverviewService.getEnterprisesOverview({ areaID: params.get('id') });
@@ -34,6 +36,7 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
         }
+        this.loading = false;
       });
   }
 

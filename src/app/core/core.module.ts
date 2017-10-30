@@ -7,6 +7,7 @@ import { AuthGuard } from './auth-guard.service';
 import { DATE_LOCALIZATION, zh_CN } from './date-localization';
 import { LoginService } from './../login/login.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { UserStateService } from './userState.service';
 
 @NgModule({
   imports: [
@@ -16,8 +17,9 @@ import { MessageService } from 'primeng/components/common/messageservice';
     APIProvide,
     AuthGuard,
     HttpService,
-    MessageService,
     LoginService,
+    MessageService,
+    UserStateService,
     {
       provide: DATE_LOCALIZATION,
       useValue: zh_CN

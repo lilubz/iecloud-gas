@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CylinderOverviewService } from './cylinder-overview.service';
+import { LoadingComponent } from './../../../shared/loading/loading.component';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { UserStateService } from './../../../core/userState.service';
 @Component({
   selector: 'gas-cylinder-overview-county',
   templateUrl: './cylinder-overview-county.component.html'
 })
 export class CylinderOverviewCountyComponent implements OnInit {
-
+  loading = false;
   countyCylinders: {
     name: string,
     totalCount: number,
@@ -19,16 +21,18 @@ export class CylinderOverviewCountyComponent implements OnInit {
   }[] = [];
 
 
-  constructor(private cylinderOverviewService: CylinderOverviewService, private messageService: MessageService) { }
+  constructor(private cylinderOverviewService: CylinderOverviewService, private messageService: MessageService,
+    private userStateService: UserStateService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.getCountiesOverview();
   }
 
   getCountiesOverview() {
     let areaID = '';
-    if (sessionStorage.getItem('user') !== 'undefined') {
-      areaID = JSON.parse(sessionStorage.getItem('user')).regionId;
+    if (this.userStateService.getUser()) {
+      areaID = this.userStateService.getUser().regionId;
     }
     this.cylinderOverviewService.getCountiesOverview({
       areaID: areaID
@@ -38,6 +42,7 @@ export class CylinderOverviewCountyComponent implements OnInit {
       } else {
         this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
       }
+      this.loading = false;
     });
   }
 

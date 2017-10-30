@@ -3,7 +3,7 @@
   <h2 class="title">区域情况总体概览</h2>
 
   <!-- 区域概览 -->
-  <p-dataTable [value]="countyCylinders" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'">
+  <p-dataTable [value]="countyCylinders" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" [loading]="loading" emptyMessage="未查询到数据">
 
     <p-column header="序号" [style]="{'width':'50px'}">
       <ng-template pTemplate="body" let-index="rowIndex">
@@ -30,10 +30,6 @@
         <p-column [footer]="calculateTotal('scrapCount', countyCylinders)"></p-column>
       </p-row>
     </p-footerColumnGroup>
-
-    <ng-template pTemplate="emptymessage">
-      未查询到数据
-    </ng-template>
   </p-dataTable>
 
 </div>

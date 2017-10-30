@@ -2,7 +2,7 @@
 
   <h2 class="title">企业一览表</h2>
   <!-- 企业概览 -->
-  <p-dataTable [value]="enterpriseCylinders" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'">
+  <p-dataTable [value]="enterpriseCylinders" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" [loading]="loading" emptyMessage="未查询到数据">
 
     <p-column header="序号" [style]="{'width':'50px'}">
       <ng-template pTemplate="body" let-index="rowIndex">
@@ -18,10 +18,6 @@
     <p-column field="normalNum" header="正常" [footer]="calculateTotal('normalNum', enterpriseCylinders)"></p-column>
     <p-column field="expireNum" header="过期" [footer]="calculateTotal('expireNum', enterpriseCylinders)"></p-column>
     <p-column field="scrapNum" header="报废" [footer]="calculateTotal('scrapNum', enterpriseCylinders)"></p-column>
-
-    <ng-template pTemplate="emptymessage">
-      未查询到数据
-    </ng-template>
   </p-dataTable>
 
 </div>

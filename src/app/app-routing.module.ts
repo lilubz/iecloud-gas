@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -35,17 +36,37 @@ export const routes: Routes = [
       //   data: {
       //     title: '系统配置'
       //   }
-      // }
+      // },
+      {
+        path: 'delivery',
+        component: PageNotFoundComponent
+      },
+      {
+        path: 'supervise',
+        component: PageNotFoundComponent
+      },
+      {
+        path: 'visualization',
+        component: PageNotFoundComponent
+      },
+      {
+        path: 'statistic',
+        component: PageNotFoundComponent
+      },
+      {
+        path: 'system',
+        component: PageNotFoundComponent
+      },
     ]
   },
   {
     path: 'login',
     component: LoginComponent,
   },
-  {
-    path: '**',
-    redirectTo: 'archive'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: 'archive'
+  // }
 ];
 
 @NgModule({

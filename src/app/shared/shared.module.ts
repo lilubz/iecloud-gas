@@ -24,6 +24,7 @@ import {
 
 import { LoadingComponent } from './loading/loading.component';
 import { LayoutComponent } from './layout/layout.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { LayoutComponent } from './layout/layout.component';
   ],
   declarations: [
     LayoutComponent,
-    LoadingComponent
+    LoadingComponent,
+    PageNotFoundComponent
   ],
 
   exports: [
@@ -74,7 +76,8 @@ import { LayoutComponent } from './layout/layout.component';
     _SharedModule,
 
     LayoutComponent,
-    LoadingComponent
+    LoadingComponent,
+    PageNotFoundComponent
   ]
 })
 export class SharedModule { }

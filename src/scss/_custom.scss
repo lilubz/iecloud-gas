@@ -101,6 +101,7 @@ input {
   .menu {
     left: 0;
     top: $header-height;
+    bottom: $footer-height;
     width: $menu-width;
     z-index: 9999;
     .ui-menu {
@@ -188,6 +189,7 @@ input {
   position: fixed;
   left: $menu-width;
   top: $header-height;
+  bottom: $footer-height;
   padding: 10px;
   width: $header-left-width - $menu-width - 20;
 }
@@ -196,7 +198,6 @@ input {
 /* 右侧内容区 */
 
 .main {
-  // margin-top: -70px;
   padding-left: $header-left-width;
   padding-bottom: $footer-height;
   .overview {

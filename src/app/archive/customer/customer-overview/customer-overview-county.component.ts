@@ -15,7 +15,7 @@ export class CustomerOverviewCountyComponent implements OnInit {
   constructor(private customerOverviewService: CustomerOverviewService) { }
 
   ngOnInit() {
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 1; i++) {
       this.countyCustomers.push(
         {
           areaName: '鹿城区',
