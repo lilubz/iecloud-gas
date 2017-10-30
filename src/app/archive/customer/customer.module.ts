@@ -1,3 +1,4 @@
+import { CylinderOverviewService } from './../cylinder/cylinder-overview/cylinder-overview.service';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

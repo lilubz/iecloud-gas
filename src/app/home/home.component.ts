@@ -1,3 +1,4 @@
+import { CylinderOverviewService } from './../archive/cylinder/cylinder-overview/cylinder-overview.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,17 +10,34 @@ import { MessageService } from 'primeng/components/common/messageservice';
   selector: 'gas-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  providers: [CylinderOverviewService],
   encapsulation: ViewEncapsulation.None
 })
 
 export class HomeComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private messageService: MessageService, private router: Router) { }
+  constructor(private loginService: LoginService,
+    private messageService: MessageService,
+     private router: Router
+    , private cylinderOverviewService: CylinderOverviewService) { }
+
   menus: MenuItem[];
   curTime: any;
   DateTime: any;
+  sum: any = 0;
+  countyCylinders: {
+    name: string,
+    totalCount: number,
+    normalCount: number,
+    expireCount: number,
+    scrapCount: number,
+    regionId: string,
+    parentRegionId: string
+  }[] = [];
+
 
   ngOnInit() {
+    this.getCountiesOverview();
     this.menus = [
       {
         label: '首页',
@@ -74,4 +92,34 @@ export class HomeComponent implements OnInit {
   logout() {
     this.loginService.logout();
   }
+  getCountiesOverview() {
+    let areaID = '';
+    if (sessionStorage.getItem('user') !== 'undefined') {
+      areaID = JSON.parse(sessionStorage.getItem('user')).regionId;
+    }
+    this.cylinderOverviewService.getCountiesOverview({
+      areaID: areaID
+    }).then(data => {
+      if (data.status === 0) {
+          for (let i = 0; i < data.data.length; i++) {
+            if (areaID === data.data[i].regionId) {
+              this.sum = data.data[i].totalCount;
+              if (this.sum === null) {
+                this.sum = 0;
+              }
+              // console.log(data.data[i].totalCount);
+            }else {
+              this.sum += data.data[i].totalCount;
+            }
+          //  console.log(data.data[0].totalCount);
+          }
+          // console.log(this.sum);
+          // return sum;
+      } else {
+        this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
+      }
+    });
+  }
+
+
 }

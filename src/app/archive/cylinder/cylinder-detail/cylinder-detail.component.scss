@@ -17,16 +17,16 @@
 }
 $whiteColor:white;
 
+.ta-c{
+  text-align: center;
+}
 .cylinder-detail {
-  .padding-none {
-    padding: 0;
-  }
   .span_detail {
     width: 40%;
     @include common();
   }
   .span_detail01{
-      width: 60%;
+    width: 60%;
     @include common();  
   }
   .bg_color01 {

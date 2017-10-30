@@ -16,11 +16,14 @@ import 'rxjs/add/operator/map';
 
 export class CylinderDetailComponent implements OnInit {
     cylinderCode: any;
+    loading: any;
     // data: any;
 
   detailList:  {
     gcLabelInfo: any,
     gcSpecification: any,
+    inspector: any,
+    cylinderCode: string,
     regionName: string,
     enterpriseName: string,
     serviceCondition: string,
@@ -51,9 +54,9 @@ export class CylinderDetailComponent implements OnInit {
     scrapDisposalSituation: string,
     scrapDisposalDate: string,
   };
-  photoList: Array < {
+  photoList: Array<{
     pictureUrl: string;
-  } > ;
+  }>;
   constructor(private CylinderDetailService: CylinderDetailService,
     private route: ActivatedRoute,
     private router: Router, private messageService: MessageService) {
@@ -62,6 +65,8 @@ export class CylinderDetailComponent implements OnInit {
     this.detailList = {
       gcLabelInfo: {},
       gcSpecification: {},
+      inspector: {},
+      cylinderCode: '',
       regionName: '',
       enterpriseName: '',
       serviceCondition: '',
@@ -95,22 +100,26 @@ export class CylinderDetailComponent implements OnInit {
   }
   ngOnInit() {
     this.route.paramMap
-    .switchMap((params: ParamMap) => {
-      // console.log(11);
-      return this.CylinderDetailService.querySingle({cylinderCode: params.get('id')});
-    }).subscribe((data) => {
-      // console.log(data);
-      if (data.status === 0) {
-        this.detailList = data.data;
-        console.log(this.detailList);
-      }else {
-        this.messageService.add({
-          severity: 'warn',
-          summary: '查询结果',
-          detail: '请输入正确的气瓶条码'
-        });
-      }
-    });
+      .switchMap((params: ParamMap) => {
+        // console.log(11);
+        // this.loading = true;
+        return this.CylinderDetailService.querySingle({ cylinderCode: params.get('id') });
+      }).subscribe((data) => {
+        // console.log(data);
+        this.loading = data.status;
+        if (data.status === 0) {
+          this.detailList = data.data;
+          // console.log(this.detailList);
+        } else {
+          this.messageService.add({
+            severity: 'warn',
+            summary: '查询结果',
+            detail: '请输入正确的气瓶条码'
+          });
+        }
+        // this.loading = false;
+      });
     this.initDetail();
+    this.loading = '';
   }
 }
