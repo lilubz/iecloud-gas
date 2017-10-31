@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './../login/login.service';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { UserStateService } from './../core/userState.service';
 
 @Component({
   selector: 'gas-home',
@@ -18,8 +19,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private loginService: LoginService,
     private messageService: MessageService,
-     private router: Router
-    , private cylinderOverviewService: CylinderOverviewService) { }
+    private router: Router,
+    private userStateService: UserStateService,
+    private cylinderOverviewService: CylinderOverviewService) { }
 
   menus: MenuItem[];
   curTime: any;
@@ -93,33 +95,45 @@ export class HomeComponent implements OnInit {
     this.loginService.logout();
   }
   getCountiesOverview() {
-    let areaID = '';
-    if (sessionStorage.getItem('user') !== 'undefined') {
-      areaID = JSON.parse(sessionStorage.getItem('user')).regionId;
-    }
-    this.cylinderOverviewService.getCountiesOverview({
-      areaID: areaID
-    }).then(data => {
-      if (data.status === 0) {
-          for (let i = 0; i < data.data.length; i++) {
-            if (areaID === data.data[i].regionId) {
-              this.sum = data.data[i].totalCount;
-              if (this.sum === null) {
-                this.sum = 0;
-              }
-              // console.log(data.data[i].totalCount);
-            }else {
-              this.sum += data.data[i].totalCount;
-            }
-          //  console.log(data.data[0].totalCount);
+    const user = this.userStateService.getUser();
+    if (user.organizationType === 1) {
+      this.cylinderOverviewService
+        .getCylinderEnterpriseOverviewByOrganizationId({
+          organizationId: user.organizationId || ''
+        }).then(data => {
+          if (data.status === 0) {
+            this.sum = this.calculateTotal('cylinderNum', data.data);
+          } else {
+            this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
           }
-          // console.log(this.sum);
-          // return sum;
-      } else {
-        this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
-      }
-    });
+        });
+    } else {
+      this.cylinderOverviewService
+        .getCountiesOverview({
+          areaID: user.regionId || ''
+        }).then(data => {
+          if (data.status === 0) {
+            for (let i = 0; i < data.data.length; i++) {
+              if (user.regionId === data.data[i].regionId) {
+                this.sum = data.data[i].totalCount || 0;
+                break;
+              } else {
+                this.sum += data.data[i].totalCount || 0;
+              }
+            }
+          } else {
+            this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
+          }
+        });
+    }
   }
 
-
+  calculateTotal(prop: string, data: any) {
+    let sum = 0;
+    for (let i = 0; i < data.length; i++) {
+      const element = data[i];
+      sum += element[prop];
+    }
+    return sum;
+  }
 }

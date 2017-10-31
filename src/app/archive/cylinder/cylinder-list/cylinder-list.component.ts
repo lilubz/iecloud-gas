@@ -127,10 +127,8 @@ export class CylinderListComponent implements OnInit {
       params['pageNumber'] = 1;
       params['pageSize'] = this.pageParams.pageSize;
     }
-    console.log(params);
 
     this.cylinderListService.getCylinders(params).then((data) => {
-      console.log(data);
       if (data.status === 0) {
         this.cylinders = data.data.list;
         this.pageParams.total = data.data.total !== 0 ? data.data.total : 400;
@@ -159,11 +157,9 @@ export class CylinderListComponent implements OnInit {
     this.getCylinderSearchOpt();
     const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
     if (enterpriseID !== undefined) {
-      console.log('in');
       this.searchParams.enterpriseNumber = enterpriseID;
       this.onSearch();
     }
-    console.log(enterpriseID);
   }
 
   getCylinderSearchOpt() {

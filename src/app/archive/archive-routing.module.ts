@@ -16,10 +16,26 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '**',
-    // redirectTo: 'cylinder/overview',
-    // pathMatch: 'full'
+    path: 'enterprise',
     component: PageNotFoundComponent
+  },
+  {
+    path: 'car',
+    component: PageNotFoundComponent
+  },
+  {
+    path: 'employee',
+    component: PageNotFoundComponent
+  },
+  {
+    path: 'media',
+    component: PageNotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'cylinder/overview',
+    pathMatch: 'full'
+    // component: PageNotFoundComponent
   }
 ];
 

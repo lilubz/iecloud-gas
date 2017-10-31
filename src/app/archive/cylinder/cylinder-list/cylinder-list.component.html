@@ -5,7 +5,8 @@
         <div class="ui-g-5 ui-g-nopad">
           <div class="inputgroup">
             <span> 经营企业</span>
-            <p-dropdown [options]="searchOpt.company" [style]="{'width':'calc(100% - 100px','max-width':'300px'}" [(ngModel)]="searchParams.enterpriseNumber"></p-dropdown>          </div>
+            <p-dropdown [options]="searchOpt.company" [style]="{'width':'calc(100% - 100px','max-width':'300px'}" [(ngModel)]="searchParams.enterpriseNumber"></p-dropdown>
+          </div>
         </div>
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
@@ -16,7 +17,8 @@
         <div class="ui-g-3 ui-g-nopad">
           <div class="inputgroup text-right">
             <span>状态</span>
-            <p-dropdown [options]="searchOpt.status" [style]="{'width':'calc(100% - 40px)','max-width':'110px','text-align':'left'}" [(ngModel)]="searchParams.state"></p-dropdown>
+            <p-dropdown [options]="searchOpt.status" [style]="{'width':'calc(100% - 40px)','max-width':'110px','text-align':'left'}"
+              [(ngModel)]="searchParams.state"></p-dropdown>
           </div>
         </div>
       </div>
@@ -54,7 +56,11 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码"></p-column>
+        <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码">
+          <ng-template let-col let-cylinder="rowData" pTemplate="body">
+            <a href="javascript:0;" [routerLink]="['../detail', cylinder.gasLabelNumber]">{{ cylinder.gasLabelNumber }}</a>
+          </ng-template>
+        </p-column>
         <p-column [style]="{'width':'150px'}" field="regionName" header="所属行政区"></p-column>
         <p-column [style]="{'width':'150px'}" field="enterpriseName" header="经营企业"></p-column>
         <p-column [style]="{'width':'150px'}" field="type" header="气瓶规格"></p-column>
@@ -83,7 +89,7 @@
 
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
-             未查询到数据
+            未查询到数据
           </div>
         </ng-template>
 

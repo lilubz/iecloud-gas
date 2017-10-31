@@ -6,6 +6,7 @@ import { CylinderListComponent } from './cylinder-list/cylinder-list.component';
 import { CylinderDetailComponent } from './cylinder-detail/cylinder-detail.component';
 import { CylinderOverviewEnterpriseComponent } from './cylinder-overview/cylinder-overview-enterprise.component';
 import { CylinderOverviewCountyComponent } from './cylinder-overview/cylinder-overview-county.component';
+import { CylinderOverviewService } from './cylinder-overview/cylinder-overview.service';
 const routes: Routes = [
   {
     path: 'cylinder',
@@ -41,6 +42,7 @@ const routes: Routes = [
       {
         path: 'overview/county',
         component: CylinderOverviewCountyComponent,
+        canActivate: [CylinderOverviewService],
         data: {
           title: '区域概览'
         },

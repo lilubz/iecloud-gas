@@ -3,8 +3,9 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 
-import { MessageService } from 'primeng/components/common/messageservice';
 import { CylinderOverviewService } from './cylinder-overview.service';
+import { MessageService } from 'primeng/components/common/messageservice';
+import { UserStateService } from './../../../core/userState.service';
 
 @Component({
   selector: 'gas-cylinder-overview-enterprise',
@@ -23,13 +24,19 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
   }> = [];
 
   constructor(private cylinderOverviewService: CylinderOverviewService, private route: ActivatedRoute,
-    private messageService: MessageService) { }
+    private messageService: MessageService, private userStateService: UserStateService) { }
 
   ngOnInit() {
     this.loading = true;
     this.route.paramMap
       .switchMap((params: ParamMap) => {
-        return this.cylinderOverviewService.getEnterprisesOverview({ areaID: params.get('id') });
+        if (this.userStateService.getUser().organizationType === 1) {
+          return this.cylinderOverviewService
+            .getCylinderEnterpriseOverviewByOrganizationId({ organizationId: params.get('id') });
+        } else {
+          return this.cylinderOverviewService
+            .getCylinderEnterpriseOverviewByAreaId({ areaID: params.get('id') });
+        }
       }).subscribe(data => {
         if (data.status === 0) {
           this.enterpriseCylinders = data.data;

@@ -117,7 +117,12 @@ export class CylinderDetailComponent implements OnInit {
             detail: '请输入正确的气瓶条码'
           });
         }
-        // this.loading = false;
+      }, error => {
+        this.messageService.add({
+          severity: 'warn',
+          summary: '查询结果',
+          detail: '请输入正确的气瓶条码'
+        });
       });
     this.initDetail();
     this.loading = '';

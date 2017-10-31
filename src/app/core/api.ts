@@ -14,7 +14,8 @@ const API = {
 
   // 气瓶信息概览
   'getCylinderCountiesOverview': URL + 'basicInformation/gasCylinder/GcCountInfoByRegion.do',
-  'getCylinderEnterpriseOverview': URL + 'basicInformation/gasCylinder/getGroupGasCylinderOverview.do',
+  'getCylinderEnterpriseOverviewByAreaId': URL + 'basicInformation/gasCylinder/getGroupGasCylinderOverview.do',
+  'getCylinderEnterpriseOverviewByOrganizationId': URL + 'basicInformation/gasCylinder/getGroupGasInfo.do',
 
   // 气瓶综合查询
   'cylinderSelectOpt': URL + 'basicInformation/gasCylinder/getDropInfo.do',

@@ -26,13 +26,13 @@ export class LayoutComponent implements OnInit {
       {
         label: '基础档案',
         icon: 'menu-icon archive-icon',
-        routerLink: ['/archive/'],
+        routerLink: ['/archive'],
         items: [
           { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
           { label: '用户档案', routerLink: ['/archive/customer'] },
           { label: '企业档案', routerLink: ['/archive/enterprise'] },
           { label: '车辆信息', routerLink: ['/archive/car'] },
-          { label: '从业人员信息', routerLink: ['/archive/employee '] },
+          { label: '从业人员信息', routerLink: ['/archive/employee'] },
           { label: '视频图像', routerLink: ['/archive/media'] },
         ]
       },

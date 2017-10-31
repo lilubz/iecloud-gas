@@ -1,19 +1,16 @@
-.cylinderList{
+.cylinderList {
   div[class^="ui"] {
     padding: 0;
   }
-
-    div.padding {
+  div.padding {
     padding: 5px 15px;
   }
-
   .inputgroup {
     padding: 3px;
-    >span{
+    >span {
       color: rgb(102, 102, 102);
     }
   }
-
   .searchBtn {
     margin-top: 10px;
     margin-left: 15px;
@@ -23,8 +20,11 @@
     font-weight: bold;
     border-radius: 5px;
   }
-  .textInput{
-    width:55%;
-    max-width:180px;
+  .textInput {
+    width: 55%;
+    max-width: 180px;
+  }
+  a {
+    color: #3399ff;
   }
 }
