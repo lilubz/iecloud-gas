@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { LoginComponent } from './login/login.component';
 
-export const routes: Routes = [
+const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
@@ -56,6 +56,13 @@ export const routes: Routes = [
       {
         path: 'system',
         component: PageNotFoundComponent
+      },
+      {
+        path: 'input',
+        loadChildren: './input/input.module#InputModule',
+        data: {
+          title: '信息录入'
+        }
       },
     ]
   },

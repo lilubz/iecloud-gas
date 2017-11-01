@@ -1,0 +1,27 @@
+.group {
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 4px;
+  >span {
+    display: block;
+    width: 100%;
+    color: #868686; // font-weight: bolder;
+    line-height: 50px;
+    font-size: 16px;
+  }
+  a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #000;
+    line-height: 40px;
+    &.active {
+      color: #3399ff;
+    }
+    span {
+      &::before {
+        margin: 5px;
+      }
+    }
+  }
+}

@@ -27,6 +27,10 @@ export class LoginService {
           this.messageService.add({ severity: 'error', summary: '登录失败', detail: data.msg });
           return false;
         }
+      }).catch(error => {
+        console.log(error);
+        throw error;
+
       });
   }
 

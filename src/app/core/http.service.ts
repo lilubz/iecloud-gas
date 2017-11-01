@@ -72,10 +72,12 @@ export class HttpService {
     //   this.userStateService.getUser() = null;
     //   this.router.navigate(['/']);
     // }
+    console.log('checklogin' + data);
     return data;
   }
 
   private handleError(error: any): Promise<any> {
+    console.log(error);
     if (error.json().status === 10) {
       this.userStateService.setUser(null);
       this.router.navigate(['/login']);

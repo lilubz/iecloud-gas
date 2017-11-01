@@ -60,6 +60,11 @@ export class LayoutComponent implements OnInit {
         label: '系统配置',
         icon: 'menu-icon system-icon',
         routerLink: ['/system']
+      },
+      {
+        label: '信息录入',
+        icon: 'menu-icon system-icon',
+        routerLink: ['/input']
       }
     ];
   }

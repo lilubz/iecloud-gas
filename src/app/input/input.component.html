@@ -1,0 +1,25 @@
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <span class="nav_item">用户</span>
+    <a href="javascript:;" [routerLink]="['user-info']" routerLinkActive="active">
+      <span class="fa fa-pencil-square-o">用户实名登记</span> 
+    </a>
+    <a href="javascript:;" [routerLink]="['user-card']" routerLinkActive="active">
+      <span class="fa fa-id-card-o">用户身份认证卡</span> 
+    </a>
+    <span class="nav_item">气瓶</span>
+    <a href="javascript:;" [routerLink]="['cylinder-info']" routerLinkActive="active">
+      <span class="fa fa-file-text-o">气瓶基本信息</span> 
+    </a>
+    <a href="javascript:;" [routerLink]="['cylinder-tag']" routerLinkActive="active">
+      <span class="fa fa-bookmark-o">气瓶标签分配</span> 
+    </a>
+    <span class="nav_item">批量操作</span>
+    <a href="javascript:;" [routerLink]="['upload']" routerLinkActive="active">
+      <span class="fa fa-cloud">信息批量导入</span> 
+    </a>
+  </div>
+</div>
+<div class="ui-g-12 main">
+  <router-outlet></router-outlet>
+</div>
