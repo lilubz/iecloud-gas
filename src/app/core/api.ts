@@ -21,10 +21,18 @@ const API = {
   'cylinderSelectOpt': URL + 'basicInformation/gasCylinder/getDropInfo.do',
   'getCylinders': URL + 'basicInformation/gasCylinder/searchGasCylinder.do',
 
+  // 用户综合查询
+  'getCustomerList': URL + 'basicInformation/gcUserInfo/listUserInfoSelective.do',
+  // 'getCustomerDropdownOpt': URL + 'userInfo/getGcUserDropDownData.do',
+  'getDropdownForUserNature': URL + 'basicInformation/gcUserInfo/listUserNature.do',
+  'getDropdownForUserType': URL + 'basicInformation/gcUserInfo/listUserType.do',
+  'getDropdownForRegionSysUser': URL + 'basicInformation/region/listRegionInfo.do',
+  'getDropdownForCorpInfoInRegion': URL + 'basicInformation/corpInfo/listCorpInfoInRegion.do',
+
   // 登录
-  'signIn': URL + 'user/login.do',
+  'signIn': URL + 'sysUserPermissions/user/login.do',
   'signUp': URL + 'user/login.do',
-  'logout': URL + 'user/logout.do',
+  'logout': URL + 'sysUserPermissions/user/logout.do',
 };
 
 export let API_TOKEN = new InjectionToken<any>('API');

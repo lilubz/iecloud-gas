@@ -1,21 +1,20 @@
-
 <div class="ui-g pad">
   <div class="ui-g-10">
     <div class="ui-12">
       <div class="ui-g-4">
         <div class="inputgroup">
           <span>所在区域：</span>
-          <p-dropdown [options]="searchOpt.area" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.areaID" (onChange)="onChangeAreaID($event)"></p-dropdown>
+          <p-dropdown [options]="dropdownOpt.region" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.regionId" (onChange)="onChangeAreaID($event)"></p-dropdown>
         </div>
       </div>
       <div class="ui-g-5">
         <div class="inputgroup">
           <span>供气企业：</span>
-          <p-dropdown [options]="searchOpt.company" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.companyID"></p-dropdown>
+          <p-dropdown [options]="dropdownOpt.company" [style]="{'width':'calc(100% - 100px)'}" [(ngModel)]="searchParams.enterpriseNumber"></p-dropdown>
         </div>
       </div>
       <div class="ui-g-3">
-        <p-checkbox name="group1" value="New York" label="只看有合同" [(ngModel)]="searchParams.hasPact" binary="true"></p-checkbox>
+        <p-checkbox name="group1" label="只看有合同" [(ngModel)]="searchParams.haveContract" binary="true"></p-checkbox>
       </div>
     </div>
     <div class="ui-g-12">
@@ -27,8 +26,8 @@
       </div>
       <div class="ui-g-8">
         <div class="inputgroup">
-          <span>地址：</span>
-          <input type="text" pInputText placeholder="" style="width:calc(100% - 100px);" [(ngModel)]="searchParams.address">
+          <span>地&#12288;&#12288;址：</span>
+          <input type="text" pInputText placeholder="" style="width:calc(100% - 150px);" [(ngModel)]="searchParams.address">
         </div>
       </div>
     </div>
@@ -36,14 +35,13 @@
       <div class="ui-g-4">
         <div class="inputgroup">
           <span> 客户类别：</span>
-          <p-dropdown [options]="searchOpt.customerType" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.customerType"></p-dropdown>
+          <p-dropdown [options]="dropdownOpt.userType" [style]="{'width':'calc(100% - 100px'}" [(ngModel)]="searchParams.userTypeId"></p-dropdown>
         </div>
       </div>
       <div class="ui-g-8">
         <div class="inputgroup">
           <span> 用户性质：</span>
-          <p-dropdown [options]="searchOpt.userAttr1" [style]="{'width':'20%'}" [(ngModel)]="searchParams.userAttr[0]" (onChange)="onChangeuserAttr1($event)"></p-dropdown>
-          <p-dropdown [options]="searchOpt.userAttr2" [style]="{'width':'20%'}" [(ngModel)]="searchParams.userAttr[1]"></p-dropdown>
+          <p-dropdown [options]="dropdownOpt.userNature" [style]="{'width':'20%'}" [(ngModel)]="searchParams.userNatureId"></p-dropdown>
         </div>
       </div>
     </div>
@@ -54,23 +52,39 @@
 </div>
 <div class="ui-g pad">
   <div class="ui-g-12">
-    <p-dataTable [value]="area" dataKey="area0" [paginator]="true" [rows]="30" [headerCheckboxToggleAllPages]="false" scrollable="true"
-      scrollHeight="700px" [rowsPerPageOptions]="[10,20,30]" [totalRecords]="500" scrollWidth="" (onPage)="onPageChange($event)" [lazy]="false">
-      <p-column [style]="{'width':'200px'}" field="area0" header="序号"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area1" header="用户编码"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area2" header="燃气用户"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area3" header="所属行政区"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area4" header="地址"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area5" header="供气企业"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area6" header="客户类别"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area7" header="用户性质"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area8" header="身份证号"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area9" header="负责人"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area10" header="联系电话"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area11" header="在用气瓶数"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area12" header="合同编号"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area13" header="合同有效期"></p-column>
-      <p-column [style]="{'width':'150px'}" field="area14" header="合同附件"></p-column>
+    <p-dataTable [value]="customerList" [lazy]="true" dataKey="userNumber" [paginator]="true" [rows]="pageParams.pageSize" scrollable="true"
+      scrollHeight="510px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.total" (onLazyLoad)="onPageChange($event)">
+      <p-column [style]="{'width':'100px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" field="userNumber" header="用户编码"></p-column>
+      <p-column [style]="{'width':'150px'}" field="userName" header="燃气用户"></p-column>
+      <p-column [style]="{'width':'150px'}" field="regionName" header="所属行政区"></p-column>
+      <p-column [style]="{'width':'150px'}" field="address" header="地址"></p-column>
+      <p-column [style]="{'width':'150px'}" field="enterpriseName" header="供气企业"></p-column>
+      <p-column [style]="{'width':'150px'}" field="userType" header="客户类别"></p-column>
+      <p-column [style]="{'width':'150px'}" field="userNature" header="用户性质"></p-column>
+      <p-column [style]="{'width':'150px'}" field="certificateName" header="证件类型"></p-column>
+      <p-column [style]="{'width':'200px'}" field="certificateId" header="证件编号"></p-column>
+      <p-column [style]="{'width':'150px'}" field="principal" header="负责人"></p-column>
+      <p-column [style]="{'width':'150px'}" field="phone" header="联系电话"></p-column>
+      <p-column [style]="{'width':'150px'}" field="gcCount" header="在用气瓶数"></p-column>
+      <p-column [style]="{'width':'150px'}" field="contractNo" header="合同编号"></p-column>
+      <p-column [style]="{'width':'150px'}" header="合同有效期">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.contractDeadLine|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" field="contractAppendixUrl" header="合同附件"></p-column>
+
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+
     </p-dataTable>
   </div>
 </div>

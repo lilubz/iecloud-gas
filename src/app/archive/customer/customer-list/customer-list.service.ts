@@ -10,15 +10,33 @@ export class CustomerListService {
 
   constructor(private httpService: HttpService, @Inject(API_TOKEN) private API) { }
 
-  getCustomerSearchOpt(params: any): Promise<any> {
+  getDropdownForUserNature(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.queryLog, params)
+      .getRequest(this.API.getDropdownForUserNature, params)
       .catch(this.handleError);
   }
 
-  getCustomers(params: any): Promise<any> {
+  getDropdownForUserType(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.queryLog, params)
+      .getRequest(this.API.getDropdownForUserType, params)
+      .catch(this.handleError);
+  }
+
+  getDropdownForRegionSysUser(params: any): Promise<any> {
+    return this.httpService
+      .getRequest(this.API.getDropdownForRegionSysUser, params)
+      .catch(this.handleError);
+  }
+
+  getDropdownForCorpInfoInRegion(params: any): Promise<any> {
+    return this.httpService
+      .getRequest(this.API.getDropdownForCorpInfoInRegion, params)
+      .catch(this.handleError);
+  }
+
+  getCustomerList(params: any): Promise<any> {
+    return this.httpService
+      .getRequest(this.API.getCustomerList, params)
       .catch(this.handleError);
   }
 

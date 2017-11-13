@@ -127,19 +127,7 @@ export class CylinderListComponent implements OnInit {
       params['pageNumber'] = 1;
       params['pageSize'] = this.pageParams.pageSize;
     }
-
-    this.cylinderListService.getCylinders(params).then((data) => {
-      if (data.status === 0) {
-        this.cylinders = data.data.list;
-        this.pageParams.total = data.data.total !== 0 ? data.data.total : 400;
-      } else {
-        this.cylinders = [];
-        this.setMessages('warn', '查询结果', '响应：' + data.msg);
-      }
-    }, (error) => {
-      this.cylinders = [];
-      this.setMessages('error', '查询失败', '错误代码：' + error.status);
-    });
+    this.getCylinders(params);
   }
 
   onPageChange(pageInfo) {
@@ -177,7 +165,22 @@ export class CylinderListComponent implements OnInit {
       this.setMessages('error', '查询失败', '错误代码：' + error.status);
     });
   }
+  getCylinders(params?) {
+    this.cylinderListService.getCylinders(params).then((data) => {
+      if (data.status === 0) {
+        this.cylinders = data.data.list;
 
+        // TODO 返回的数据中没有total=0， 需要跟进。
+        this.pageParams.total = data.data.total !== 0 ? data.data.total : 400;
+      } else {
+        this.cylinders = [];
+        this.setMessages('warn', '查询结果', '响应：' + data.msg);
+      }
+    }, (error) => {
+      this.cylinders = [];
+      this.setMessages('error', '查询失败', '错误代码：' + error.status);
+    });
+  }
   setMessages(type, title, msg) {
     this.messageService.add({
       severity: type,

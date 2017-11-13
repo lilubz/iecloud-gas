@@ -1,0 +1,30 @@
+.upload{
+  padding-left:1em;
+  
+  .detail{
+    padding-left:2em;
+  }
+
+  .download{
+    float:right;
+    margin-right:3em;
+  }
+
+  ul{
+    padding-left:2em;
+    list-style: none;
+  }
+
+  .input-group{
+    line-height:50px;
+  }
+
+  li.input-group:nth-child(3) {
+    margin-top:40px;
+  }
+
+  .fileUpload{
+    position: relative;
+    top: 10px;
+  }
+}
