@@ -1,3 +1,138 @@
-<p>
-  user-card works!
-</p>
+<!-- <div class="ui-g-12">
+  <div class="ui-g-8">
+    <h3>用户身份认证卡</h3>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-9">
+        <button pButton type="button" (click)="bindCardVisible=true" icon="fa-link" label="绑定" class="bind"></button>
+        <button pButton type="button" (click)="applyCardVisible=true" icon="fa-plus" label="认证卡申请" class="ui-button-secondary"></button>
+      </div>
+      <div class="ui-g-3">
+        <button pButton type="button" label="查看绑定记录"></button>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      <p-dataTable [value]="customerCards" [loading]="loading" emptyMessage="未查询到数据" [paginator]="true" [rows]="10" scrollable="true"
+        [totalRecords]="20" [rowsPerPageOptions]="[5,10,20]">
+        <p-column header="序号" [style]="{'width':'50px'}">
+          <ng-template pTemplate="body" let-index="rowIndex">
+            {{index + 1}}
+          </ng-template>
+        </p-column>
+        <p-column field="cardNo" header="用户身份认证卡编号" [style]="{'width':'30%'}"></p-column>
+        <p-column field="region" header="所在行政区"></p-column>
+        <p-column field="enterprise" header="供气企业"></p-column>
+        <p-column field="customerCardState" header="用户身份认证卡状态">
+          <ng-template let-col let-customerCard="rowData" pTemplate="body">
+            <a href="javascript:0;">{{customerCard[col.field]}}</a>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+
+  </div>
+  <div class="ui-g-4 tips">
+    <h3 class="warning">注意事项：</h3>
+    <p> ①新录入未分配：请先在“
+      <strong>实名用户基本信息</strong>”中填写/导入基础信息，再进行关联； </p>
+    <p> ②如存在已绑定关联历史记录： 在模板中直接填写对应气瓶的标签编号，于“信息网络上传”中一次性导入。 </p>
+    <strong>
+      <i class="warning">（请勿二次导入）</i>
+    </strong>
+  </div>
+</div>
+
+<p-dialog [visible]="applyCardVisible" [showHeader]="false" [modal]="true">
+  <div class="ui-g-12">
+    <div class="ui-g-4">
+      申请数量
+      <span class="error">*</span>
+    </div>
+    <div class="ui-g-8">
+      <input type="text" [(ngModel)]="applyCard.applyNumber" pInputText placeholder="申请数量">
+    </div>
+    <div class="ui-g-4">
+      申请说明
+    </div>
+    <div class="ui-g-8">
+      <input type="text" [(ngModel)]="applyCard.applyExplain" pInputText placeholder="申请说明">
+    </div>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="fa-check" (click)="applyCardVisible=false" label="申请"></button>
+    <button type="button" pButton icon="fa-close" (click)="applyCardVisible=false" label="取消" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog [visible]="bindCardVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="600"
+  [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
+  <h3 class="title">绑定</h3>
+  <div class="ui-g-12">
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-4">
+        <p-dropdown appendTo="body" [options]="customerIDTypes" [autoWidth]="false" [(ngModel)]="bindCustomerToCard.customerIDType"
+          [style]="{'width':'150px'}"></p-dropdown>
+      </div>
+      <div class="ui-g-8">
+        <p-autoComplete [(ngModel)]="bindCustomerToCard.customerID" [suggestions]="customerSuggestions" (completeMethod)="searchCustomer($event)"
+          (onSelect)="selectSuggestedCustomer($event)" [size]="20" [minLength]="1" [maxlength]="20" [placeholder]="bindCustomerToCard.customerIDType">
+          <ng-template let-customer pTemplate="item">
+            <div style="width:400px;">{{ customer.IDName }} -- {{ customer.residentialAddress }} -- {{ customer.cardNo }}</div>
+          </ng-template>
+        </p-autoComplete>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-2"> 用户名称 </div>
+      <div class="ui-g-4">
+        <input type="text" [(ngModel)]="selectedCustomer.IDName" pInputText placeholder="用户名称" [disabled]="true">
+      </div>
+      <div class="ui-g-2"> 用户编码 </div>
+      <div class="ui-g-4">
+        <input type="text" [(ngModel)]="selectedCustomer.customerID" pInputText placeholder="用户编码" [disabled]="true">
+      </div>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-2"> 证件名称 </div>
+      <div class="ui-g-4">
+        <input type="text" [(ngModel)]="selectedCustomer.IDType" pInputText placeholder="证件名称" [disabled]="true">
+      </div>
+      <div class="ui-g-2"> 证件编号 </div>
+      <div class="ui-g-4">
+        <input type="text" [(ngModel)]="selectedCustomer.IDNumber" pInputText placeholder="证件编号" [disabled]="true">
+      </div>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-2"> 居住地址 </div>
+      <div class="ui-g-4">
+        <input type="text" [(ngModel)]="selectedCustomer.residentialAddress" pInputText placeholder="居住地址" [disabled]="true">
+      </div>
+      <div class="ui-g-2"> 用户状态 </div>
+      <div class="ui-g-4">
+        <input type="text" [(ngModel)]="selectedCustomer.state" pInputText placeholder="用户状态" [disabled]="true">
+      </div>
+    </div>
+    <hr>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-3"> 当前身份认证卡编号 </div>
+      <div class="ui-g-5">
+        <input type="text" [(ngModel)]="selectedCustomerCard.cardNo" pInputText placeholder="当前身份认证卡编号">
+      </div>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-3"> 供气企业 </div>
+      <div class="ui-g-5">
+        <input type="text" [(ngModel)]="selectedCustomerCard.enterprise" pInputText placeholder="供气企业" [disabled]="true">
+      </div>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-3"> 供气站点 </div>
+      <div class="ui-g-5">
+        <input type="text" [(ngModel)]="selectedCustomerCard.gasSite" pInputText placeholder="供气站点" [disabled]="true">
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="fa-check" (click)="bindCardVisible=false" label="申请"></button>
+    <button type="button" pButton icon="fa-close" (click)="bindCardVisible=false" label="取消" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog> -->

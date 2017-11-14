@@ -1,15 +1,15 @@
-
 import { Injectable } from '@angular/core';
 import { Headers, Http, ResponseContentType } from '@angular/http';
 import { Router } from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 
+import { User } from './../model/User.model';
 @Injectable()
 export class UserStateService {
-  private user: any;
+  private user: User;
 
-  setUser(user) {
+  setUser(user: User) {
     if (user) {
       sessionStorage.setItem('user', JSON.stringify(user));
       this.user = user;
@@ -17,7 +17,7 @@ export class UserStateService {
       this.user = null;
     }
   }
-  getUser() {
+  getUser(): User {
     if (!this.user) {
       const user = sessionStorage.getItem('user');
       if (user !== 'undefined' && user !== 'null' && user !== '') {

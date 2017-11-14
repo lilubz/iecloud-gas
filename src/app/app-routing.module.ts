@@ -57,13 +57,13 @@ const routes: Routes = [
         path: 'system',
         component: PageNotFoundComponent
       },
-      {
-        path: 'input',
-        loadChildren: './input/input.module#InputModule',
-        data: {
-          title: '信息录入'
-        }
-      },
+      // {
+      //   path: 'input',
+      //   loadChildren: './input/input.module#InputModule',
+      //   data: {
+      //     title: '信息录入'
+      //   }
+      // },
     ]
   },
   {

@@ -16,6 +16,9 @@
   overflow: hidden;
 }
 
+.ta-c{
+  text-align: center;
+}
 $whiteColor:white;
 .cylinder-detail {
   .padding-none {
@@ -74,14 +77,15 @@ $whiteColor:white;
       box-sizing: border-box;
     }
   }
-  .result-container{
-    height: 150px;
-    overflow: auto;
-    box-sizing: border-box;
-    border: 1px solid #cccccc;
-  }
-  .user-result{
-    font-size: 10px;
-    overflow: hidden;
-  }
+  
+}
+.result-container{
+  height: 150px;
+  overflow: auto;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+}
+.user-result{
+  font-size: 10px;
+  overflow: hidden;
 }

@@ -1,22 +1,47 @@
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
-    <span class="nav_item">用户</span>
+    <span>用户</span>
     <a href="javascript:;" [routerLink]="['user-info']" routerLinkActive="active">
-      <span class="fa fa-pencil-square-o">用户实名登记</span> 
+      <span>
+        <i class="fa fa-pencil-square-o fa-fw"></i>&nbsp;  用户实名登记
+      </span>
     </a>
     <a href="javascript:;" [routerLink]="['user-card']" routerLinkActive="active">
-      <span class="fa fa-id-card-o">用户身份认证卡</span> 
+      <span>
+        <i class="fa fa-id-card-o fa-fw"></i>&nbsp; 用户身份认证卡
+      </span>
     </a>
-    <span class="nav_item">气瓶</span>
+    <span>气瓶</span>
     <a href="javascript:;" [routerLink]="['cylinder-info']" routerLinkActive="active">
-      <span class="fa fa-file-text-o">气瓶基本信息</span> 
+      <span>
+        <i class="fa fa-file-text-o fa-fw"></i>&nbsp; 气瓶基本信息
+      </span>
     </a>
     <a href="javascript:;" [routerLink]="['cylinder-tag']" routerLinkActive="active">
-      <span class="fa fa-bookmark-o">气瓶标签分配</span> 
+      <span>
+        <i class="fa fa-bookmark-o fa-fw"></i>&nbsp; 气瓶标签分配</span>
     </a>
-    <span class="nav_item">批量操作</span>
+    <span>批量操作</span>
     <a href="javascript:;" [routerLink]="['upload']" routerLinkActive="active">
-      <span class="fa fa-cloud">信息批量导入</span> 
+      <span>
+        <i class="fa fa-cloud-upload fa-fw"></i>&nbsp; 信息批量导入
+      </span>
+    </a>
+    <a href="javascript:;" [routerLink]="['upload']" routerLinkActive="active">
+      <span>
+        <i class="fa fa-cloud-download fa-fw"></i>&nbsp; 信息批量导出
+      </span>
+    </a>
+    <span>企业审核</span>
+    <a href="javascript:;" [routerLink]="['upload']" routerLinkActive="active">
+      <span>
+        <i class="fa fa-pencil-square-o fa-fw"></i>&nbsp; 身份认证卡审核
+      </span>
+    </a>
+    <a href="javascript:;" [routerLink]="['upload']" routerLinkActive="active">
+      <span>
+        <i class="fa fa-pencil-square-o fa-fw"></i>&nbsp; 气瓶标签审核
+      </span>
     </a>
   </div>
 </div>

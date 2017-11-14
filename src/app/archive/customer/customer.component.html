@@ -16,10 +16,10 @@
       <p-dropdown [options]="UserID" [(ngModel)]="selectedUserID"></p-dropdown>
     </div>
     <div class="ui-g-12">
-      <input type="text" pInputText>
+      <input type="text" pInputText [(ngModel)]="UserText">
     </div>
     <div class="ui-g-12">
-      <button pButton type="button" label="查询" [routerLink]="['./detail']"></button>
+      <button pButton type="button" label="查询" [routerLink]="['./detail',{city:selectedCity,type:selectedUserID ? selectedUserID: '',typeNumber:UserText ? UserText:'' }]"></button>
     </div>
   </div>
 </div>

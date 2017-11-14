@@ -16,11 +16,11 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
 
   enterpriseCylinders: Array<{
     enterpriseName: string;
-    cylinderNum: number;
-    normalNum: number;
-    expireNum: number;
-    scrapNum: number;
-    enterpriseID: string;
+    totalCount: number;
+    normalCount: number;
+    expireCount: number;
+    scrapCount: number;
+    enterpriseNumber: string;
   }> = [];
 
   constructor(private cylinderOverviewService: CylinderOverviewService, private route: ActivatedRoute,
@@ -35,7 +35,7 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
             .getCylinderEnterpriseOverviewByOrganizationId({ organizationId: params.get('id') });
         } else {
           return this.cylinderOverviewService
-            .getCylinderEnterpriseOverviewByAreaId({ areaID: params.get('id') });
+            .getCylinderEnterpriseOverviewByAreaId({ regionId: params.get('id') });
         }
       }).subscribe(data => {
         if (data.status === 0) {

@@ -19,8 +19,12 @@ export class LoginService {
     return this.httpService
       .withCredentialsPostRequest(this.API.signIn, params)
       .then(data => {
-        if (data.status === 0 || data.status === 4) {// 登录成功或已经登录
+        if (data.status === 0) {// 登录成功
           this.userStateService.setUser(data.data || '');
+          this.router.navigate(['/archive']);
+          return true;
+        } else if (data.status === 4) {// 已经登录
+          this.messageService.add({ severity: 'warning', summary: '您已登录', detail: '如需登录其它账号请先退出再登录！' });
           this.router.navigate(['/archive']);
           return true;
         } else {

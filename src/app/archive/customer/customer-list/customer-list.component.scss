@@ -1,14 +1,15 @@
 div[class^="ui"] {
   padding: 0;
 }
-div.pad{
-  padding:5px 15px;
+
+div.pad {
+  padding: 5px 15px;
 }
+
 .inputgroup {
   padding: 3px;
-  >span{
+  >span {
     color: rgb(102, 102, 102);
-
   }
 }
 
@@ -19,6 +20,9 @@ div.pad{
   width: 90px;
   font-size: 1.3em;
   font-weight: bold;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
+a {
+  color: #3399ff;
+}

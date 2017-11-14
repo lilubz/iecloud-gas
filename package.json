@@ -23,6 +23,7 @@
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
+    "ng2-validation": "^4.2.0",
     "node-sass": "^4.5.3",
     "primeng": "^4.2.2",
     "rxjs": "^5.4.2",

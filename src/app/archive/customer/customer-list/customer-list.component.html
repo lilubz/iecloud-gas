@@ -59,6 +59,11 @@
           <span>{{index+1}}</span>
         </ng-template>
       </p-column>
+      <p-column [style]="{'width':'150px'}" field="userNumber" header="用户编码">
+        <ng-template let-col let-user="rowData" pTemplate="body">
+          <a href="javascript:0;" [routerLink]="['../detail', {city:'330301',type:'userCardNumber',typeNumber:user.userNumber}]">{{ user.userNumber }}</a>
+        </ng-template>
+      </p-column>
       <p-column [style]="{'width':'150px'}" field="userNumber" header="用户编码"></p-column>
       <p-column [style]="{'width':'150px'}" field="userName" header="燃气用户"></p-column>
       <p-column [style]="{'width':'150px'}" field="regionName" header="所属行政区"></p-column>

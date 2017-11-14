@@ -1,147 +1,117 @@
-<div class="cylinder-detail">
-  <div class="ui-g-12">
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasleft bg_colorR">客户名称</span>
-      <span class="span_textleft"></span>
-    </div>
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasright bg_colorR">性别</span>
-      <span class="span_textright"></span>
-    </div>
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasleft bg_colorR">证件类型</span>
-      <span class="span_textleft"></span>
-
-    </div>
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasright bg_colorR">证件号</span>
-      <span class="span_textright"></span>
-    </div>
-    <div class="ui-g-12 padding-none">
-      <span class="span_gasaddress bg_colorR">证件地址</span>
-      <span class="span_textaddress"></span>
-
-    </div>
-
-
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasleft bg_colorR">用户性质</span>
-      <span class="span_textleft"></span>
-    </div>
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasright bg_colorR">负责人</span>
-      <span class="span_textright"></span>
-
-    </div>
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasleft bg_colorR">联系人</span>
-      <span class="span_textleft"></span>
-    </div>
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasright bg_colorR">联系电话</span>
-      <span class="span_textright"></span>
-
-    </div>
-    <div class="ui-g-12 padding-none">
-      <span class="span_gasaddress bg_colorR">联系地址</span>
-      <span class="span_textaddress"></span>
-    </div>
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasleft bg_colorR">登记时间</span>
-      <span class="span_textleft"></span>
-
-    </div>
-    <div class="ui-g-6 padding-none">
-      <span class="span_gasright bg_colorR">登记人</span>
-      <span class="span_textright"></span>
-    </div>
-    <!-- <div class=" bg_colorR photo-head">照片</div>
-    <div class="photo-content">
-      <img src="/assets/img/u44.png" class="photo-view">
-      
-      <img src="/assets/img/u44.png" class="photo-view">
-    </div> -->
-    <!-- ng-src -->
-    <div class="ui-g-12 padding-none">
-      <div class="photo-container">
-        <div class="ui-g-12">证件(附件)</div>
-        <!-- <img src="/assets/img/u44.png" class="photo-view">
-        <img src="/assets/img/u44.png" class="photo-view">
-        <img src="/assets/img/u44.png" class="photo-view"> -->
+<div class="ta-c" *ngIf="loading!=0">
+  <h2>查不到此信息</h2>
+</div>
+<div *ngIf="loading===0">
+  <div class="cylinder-detail" >
+    <div class="ui-g-12">
+      <div class="ui-g-12 padding-none">
+        <div class="ui-g-6 padding-none">
+          <span class="span_gasleft bg_colorR">客户名称</span>
+          <span class="span_textleft">{{detailLists.userName}}</span>
+        </div>
+        <div class="ui-g-6 padding-none">
+          <span class="span_gasright bg_colorR">性别</span>
+          <span class="span_textright">{{detailLists.gender}}</span>
+        </div>
       </div>
-      <div class="photo-container">
-        <div class="ui-g-12">合同(附件)</div>
-        <!-- <img src="/assets/img/u44.png" class="photo-view">
-        <img src="/assets/img/u44.png" class="photo-view"> -->
+      <div class="ui-g-12 padding-none">
+        <div class="ui-g-6 padding-none">
+          <span class="span_gasleft bg_colorR">证件类型</span>
+          <span class="span_textleft">{{detailLists.certificateName}}</span>
+        </div>
+        <div class="ui-g-6 padding-none">
+          <span class="span_gasright bg_colorR">证件号</span>
+          <span class="span_textright">{{detailLists.certificateId}}</span>
+        </div>
+      </div>
+      <div class="ui-g-12 padding-none">
+        <span class="span_gasaddress bg_colorR">证件地址</span>
+        <span class="span_textaddress">{{detailLists.certificateAddress}}</span>
+      </div>
+      <div class="ui-g-6 padding-none">
+        <span class="span_gasleft bg_colorR">用户类型</span>
+        <span class="span_textleft">{{detailLists.userTypeName}}</span>
+      </div>
+      <div class="ui-g-6 padding-none">
+        <span class="span_gasright bg_colorR">负责人</span>
+        <span class="span_textright">{{detailLists.principal}}</span>
+      </div>
+      <div class="ui-g-6 padding-none">
+        <span class="span_gasleft bg_colorR">联系人</span>
+        <span class="span_textleft">{{detailLists.linkman}}</span>
+      </div>
+      <div class="ui-g-6 padding-none">
+        <span class="span_gasright bg_colorR">联系电话</span>
+        <span class="span_textright">{{detailLists.phone}}</span>
+      </div>
+      <div class="ui-g-12 padding-none">
+        <span class="span_gasaddress bg_colorR">派送地址</span>
+        <span class="span_textaddress">{{detailLists.deliveryAddress}}</span>
+      </div>
+      <div class="ui-g-6 padding-none">
+        <span class="span_gasleft bg_colorR">登记时间</span>
+        <span class="span_textleft">{{detailLists.registrationTime | date: "y-MM-dd"}}</span>
+      </div>
+      <div class="ui-g-6 padding-none">
+        <span class="span_gasright bg_colorR">登记人</span>
+        <span class="span_textright">{{detailLists.registrant}}</span>
+      </div>
+      <div class="ui-g-12 padding-none">
+        <div class="photo-container">
+          <div class="ui-g-12">证件(附件)</div>
+          <img ng-src="detailLists.certificateAppendixUrl" class="photo-view">
+        </div>
+        <div class="photo-container">
+          <div class="ui-g-12">合同(附件)</div>
+          <img ng-src="detailLists.contractAppendixUrl" class="photo-view">
+
+        </div>
       </div>
     </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4 padding-none padding-none">
+        <span class="span_detail bg_color01">所属行政区域</span>
+        <span class="span_detail01">{{detailLists.regionName}}</span>
+      </div>
+      <div class="ui-g-4 padding-none ">
+        <span class="span_detail bg_color01">所属企业名称</span>
+        <span class="span_detail01">{{detailLists.corpName}}</span>
+      </div>
+      <div class="ui-g-4 padding-none">
+        <span class="span_detail bg_color01">站点</span>
+        <span class="span_detail01">{{detailLists.stationName}}</span>
+      </div>
+      <div class="ui-g-4 padding-none">
+        <span class="span_detail bg_color01"> 使用状态</span>
+        <span class="span_detail01">{{detailLists.status}}</span>
+      </div>
+      <div class="ui-g-4 padding-none">
+        <span class="span_detail bg_color01">用户编码</span>
+        <span class="span_detail01">{{detailLists.userNumber}}</span>
+      </div>
+      <div class="ui-g-4 padding-none">
+        <span class="span_detail bg_color01">在用气瓶数</span>
+        <span class="span_detail01">{{detailLists.gcCount}}</span>
+      </div>
+    </div>
+
   </div>
-  <div class="ui-g-12" *ngFor="let detailList of detailList">
-    <div class="ui-g-4 padding-none padding-none">
-      <span class="span_detail bg_color01">所属行政区域</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 padding-none ">
-      <span class="span_detail bg_color01">所属企业名称</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 padding-none">
-      <span class="span_detail bg_color01">站点</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 padding-none">
-      <span class="span_detail bg_color01">客户代码</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 padding-none">
-      <span class="span_detail bg_color01">用户编码</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 padding-none">
-      <span class="span_detail bg_color01">在用气瓶数</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 padding-none">
-      <span class="span_detail bg_color01">当前持有者身份</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 padding-none">
-      <span class="span_detail bg_color01">当前流转环节起始时间</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 padding-none">
-      <span class="span_detail bg_color01">
-      </span>
-      <span class="span_detail01"></span>
-    </div>
-  </div>
+  <div >
   <div class="ui-g-12">
-    <span>1</span>个查询结果：</div>
+    <span>{{detailList.length?detailList.length:0}}</span>个查询结果：
+  </div>
   <div class="ui-g-12 result-container">
-    无查询结果
-    <!-- <div class="ui-g-8 padding-none">
-      <div class="ui-g-1 user-result">1.</div>
-      <div class="ui-g-2 user-result">337123312</div>
-      <div class="ui-g-2 user-result">李安全</div>
-      <div class="ui-g-3 user-result">浙江省温州市乐清市白象镇</div>
-      <div class="ui-g-2 user-result">zws22122</div>
-      <div class="ui-g-2 user-result">1234674628</div>
+    <div *ngIf="!detailList.length">无查询结果</div>
+    <div *ngIf="detailList.length">
+    <div class="ui-g-8 padding-none"  (click)="ondetail(i)" *ngFor="let DetailList of detailList,let i=index">
+      <div class="ui-g-1 user-result">{{i+1}}</div>
+      <div class="ui-g-3 user-result">{{DetailList.certificateId?DetailList.certificateId:'无'}}</div>
+      <div class="ui-g-2 user-result">{{DetailList.userName?DetailList.userName:'无'}}</div>
+      <div class="ui-g-2 user-result">{{DetailList.deliveryAddress?DetailList.deliveryAddress:'无'}}</div>
+      <div class="ui-g-2 user-result">{{DetailList.userNumber?DetailList.userNumber:'无'}}</div>
+      <div class="ui-g-2 user-result">{{DetailList.phone?DetailList.phone:'无'}}</div>
     </div>
-    <div class="ui-g-8 padding-none">
-      <div class="ui-g-1 user-result">2.</div>
-      <div class="ui-g-2 user-result">337123312</div>
-      <div class="ui-g-2 user-result">李安全</div>
-      <div class="ui-g-3 user-result">浙江省温州市乐清市白象镇</div>
-      <div class="ui-g-2 user-result">zws22122</div>
-      <div class="ui-g-2 user-result">1234674628</div>
-    </div>
-    <div class="ui-g-8 padding-none">
-      <div class="ui-g-1 user-result">3.</div>
-      <div class="ui-g-2 user-result">337123312</div>
-      <div class="ui-g-2 user-result">李安全</div>
-      <div class="ui-g-3 user-result">浙江省温州市乐清市白象镇</div>
-      <div class="ui-g-2 user-result">zws22122</div>
-      <div class="ui-g-2 user-result">1234674628</div>
-    </div> -->
   </div>
+  </div>
+</div>
 </div>

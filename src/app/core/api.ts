@@ -4,18 +4,24 @@ const release = '/wenZhouGas/';
 const local = '/api/';
 
 const URL = release;
-const API = {
+export const API = {
   // 项目地址
   'url': URL,
   // 气瓶档案
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/searchGCInfoByCylinderCode.do',
+  'queryCustomerDetail': URL + 'basicInformation/gcUserInfo/getUserDetailInfo.do',
   // 系统管理
   'queryLog': URL + '',
 
   // 气瓶信息概览
-  'getCylinderCountiesOverview': URL + 'basicInformation/gasCylinder/GcCountInfoByRegion.do',
-  'getCylinderEnterpriseOverviewByAreaId': URL + 'basicInformation/gasCylinder/getGroupGasCylinderOverview.do',
-  'getCylinderEnterpriseOverviewByOrganizationId': URL + 'basicInformation/gasCylinder/getGroupGasInfo.do',
+  'getCylinderCountiesOverview': URL + 'basicInformation/gasCylinder/getGcCountInfoGroupByRegion.do',
+  'getCylinderEnterpriseOverviewByAreaId': URL + 'basicInformation/gasCylinder/getGcCountGroupByCorp.do',
+  'getCylinderEnterpriseOverviewByOrganizationId': URL + 'basicInformation/gasCylinder/getGcCountByOrganization.do',
+
+  // 用户信息概览
+  'getCustomerCountiesOverview': URL + 'basicInformation/gcUserInfo/getUserCountGroupByRegion.do',
+  'getCustomerEnterpriseOverviewByAreaId': URL + 'basicInformation/gcUserInfo/getUserCountByRegionAndCorp.do',
+  'getCustomerEnterpriseOverviewByOrganizationId': URL + 'basicInformation/gcUserInfo/getUserCountByOrganization.do',
 
   // 气瓶综合查询
   'cylinderSelectOpt': URL + 'basicInformation/gasCylinder/getDropInfo.do',
@@ -31,7 +37,7 @@ const API = {
 
   // 登录
   'signIn': URL + 'sysUserPermissions/user/login.do',
-  'signUp': URL + 'user/login.do',
+  'signUp': URL + 'sysUserPermissions/login.do',
   'logout': URL + 'sysUserPermissions/user/logout.do',
 };
 

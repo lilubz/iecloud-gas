@@ -6,7 +6,7 @@ $logo-width: 60px;
 $logo-height: 60px;
 $footer-height: 60px;
 $html-bg-color: #f5f5f6;
-$theme-color: #1a5e93;
+$theme-color: #0097e8;
 //
 html,
 body {
@@ -59,7 +59,7 @@ body {
 }
 
 input {
-  width: inherit;
+  width: 100%;
 }
 
 
@@ -216,6 +216,7 @@ a {
   color: #3399ff;
 }
 
+
 /* 页脚快捷操作区 */
 
 .footer {
@@ -225,6 +226,7 @@ a {
   width: 100%;
   height: $footer-height;
   position: fixed;
+  background-color: #d3d3d3;
   img.shortcut {
     height: $shortcut-width;
     width: $shortcut-width;

@@ -11,13 +11,13 @@
     </p-column>
     <p-column field="enterpriseName" header="企业名称" footer="合计" [style]="{'width':'30%'}">
       <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
-        <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCylinder.enterpriseID}]" class="area">{{countyCylinder[col.field]}}</a>
+        <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCylinder.enterpriseNumber}]" class="area">{{countyCylinder[col.field]}}</a>
       </ng-template>
     </p-column>
-    <p-column field="cylinderNum" header="气瓶数" [footer]="calculateTotal('cylinderNum', enterpriseCylinders)"></p-column>
-    <p-column field="normalNum" header="正常" [footer]="calculateTotal('normalNum', enterpriseCylinders)"></p-column>
-    <p-column field="expireNum" header="过期" [footer]="calculateTotal('expireNum', enterpriseCylinders)"></p-column>
-    <p-column field="scrapNum" header="报废" [footer]="calculateTotal('scrapNum', enterpriseCylinders)"></p-column>
+    <p-column field="totalCount" header="气瓶数" [footer]="calculateTotal('totalCount', enterpriseCylinders)"></p-column>
+    <p-column field="normalCount" header="正常" [footer]="calculateTotal('normalCount', enterpriseCylinders)"></p-column>
+    <p-column field="expireCount" header="过期" [footer]="calculateTotal('expireCount', enterpriseCylinders)"></p-column>
+    <p-column field="scrapCount" header="报废" [footer]="calculateTotal('scrapCount', enterpriseCylinders)"></p-column>
   </p-dataTable>
 
 </div>

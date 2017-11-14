@@ -1,0 +1,17 @@
+.cylinder-info {
+    font-size: 16px;
+    .inputgroup {
+        padding: 3px;
+        >span {
+            color: rgb(102, 102, 102);
+        }
+    }
+    .textInput {
+        // width: 40%; 
+        width:calc(100% - 130px);
+        max-width: 300px;
+    }
+    ._choose{
+        height:70px;border-radius:20px;border:1px solid black;text-align:center
+    }
+}

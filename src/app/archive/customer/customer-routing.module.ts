@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { CustomerOverviewService } from './customer-overview/customer-overview.service';
 import { CustomerComponent } from './customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
       {
         path: 'overview/county',
         component: CustomerOverviewCountyComponent,
+        canActivate: [CustomerOverviewService],
         data: {
           title: '区域概览'
         },

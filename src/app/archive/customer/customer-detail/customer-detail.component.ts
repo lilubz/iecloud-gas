@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { detailList } from './test';
+import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
 
 import { CustomerDetailService } from './customer-detail.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs/Observable';
-
+import { MessageService } from 'primeng/components/common/messageservice';
 @Component({
   selector: 'gas-customer-detail',
   templateUrl: './customer-detail.component.html',
@@ -14,52 +13,130 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class CustomerDetailComponent implements OnInit {
-  // searchParams: {
-  //   cylinderCode: string;
-  // };
-  // gasInput: any;
   detailList: Array<{
-    borough: string;
-    enterpriseName: string;
-    serviceCondition: string;
-    fillingState: string;
-    // borough: string;
-    // borough: string;
-    // borough: string;
-    // borough: string;
-    // borough: string;
-    // borough: string;
-    // borough: string;
-    // borough: string;
-    // borough: string;
+    userName: string,
+    gender: string,
+    certificateName: string,
+    certificateId: string,
+    certificateAddress: string,
+    userTypeName: string,
+    principal: string,
+    linkman: string,
+    phone: string,
+    deliveryAddress: string,
+    registrationTime: string,
+    registrant: string,
+    certificateAppendixUrl: string,
+    contractAppendixUrl: string,
+    regionName: string,
+    corpName: string,
+    stationName: string,
+    status: string,
+    userNumber: string,
+    gcCount: string,
+  }> = [{
+    userName: '',
+    gender: '',
+    certificateName: '',
+    certificateId: '',
+    certificateAddress: '',
+    userTypeName: '',
+    principal: '',
+    linkman: '',
+    phone: '',
+    deliveryAddress: '',
+    registrationTime: '',
+    registrant: '',
+    certificateAppendixUrl: '',
+    contractAppendixUrl: '',
+    regionName: '',
+    corpName: '',
+    stationName: '',
+    status: '',
+    userNumber: '',
+    gcCount: '',
+  }];
+  detailLists: any;
+  loading: any;
+  // photoList: Array<{
+  //   pictureUrl: string;
+  // }>;
+  constructor(
+    private route: ActivatedRoute,
+    private CustomerDetailService: CustomerDetailService,
+    private router: Router,
+    private messageService: MessageService
+  ) { }
 
-  }>;
-  photoList: Array<{
-    pictureUrl: string;
-  }>;
-  // constructor(private CustomerDetailService: CustomerDetailService) { }
-  // constructor(private route: ActivatedRoute,
-  //   private CustomerDetailService: CustomerDetailService,
-  //  private router: Router,
-  // ) {}
-  getList() {
-    this.detailList = detailList;
-    console.log(detailList);
-    // console.log(this.route.params);
-    // this.route.params
-    // .subscribe(params => {
-    //   this.gasInput = params['gasInput'];
-    //   console.log(this.gasInput);
-    // });
-  //   const params = {
-  //     cylinderCode: this.searchParams.cylinderCode,
-  //   };
-  //   this.CustomerDetailService.querySingle(params).then(data => {
-  //     this.detailList = data.data.list;
-  //     this.photoList = data.data.pictureList;
-  //   });
+  initDetailList() {
+    this.detailList = [
+      {
+        userName: '',
+        gender: '',
+        certificateName: '',
+        certificateId: '',
+        certificateAddress: '',
+        userTypeName: '',
+        principal: '',
+        linkman: '',
+        phone: '',
+        deliveryAddress: '',
+        registrationTime: '',
+        registrant: '',
+        certificateAppendixUrl: '',
+        contractAppendixUrl: '',
+        regionName: '',
+        corpName: '',
+        stationName: '',
+        status: '',
+        userNumber: '',
+        gcCount: '',
+      }
+    ];
+    this.detailLists = {};
   }
-  ngOnInit() {
-    this.getList();
+  queryDetail() {
+    this.route.paramMap
+      .switchMap((params: ParamMap) => {
+        return this.CustomerDetailService.querySingle(
+          { 'regionId': params.get('city'), 'type': params.get('type'), 'typeNumber': params.get('typeNumber') });
+      }).subscribe((data) => {
+        this.loading = data.status;
+        if (data.status === 0) {
+          this.detailList = data.data;
+          this.ondetail(0);
+          for (let i = 0; i < this.detailList.length; i++) {
+            if (this.detailList[i].gender === '0') {
+              this.detailList[i].gender = '男';
+            } else if (this.detailList[i].gender === '1') {
+              this.detailList[i].gender = '女';
+            } else {
+              this.detailList[i].gender = '';
+            }
+          }
+        } else {
+          this.messageService.add({
+            severity: 'warn',
+            summary: '查询结果',
+            detail: '请输入正确的气瓶条码'
+          });
+        }
+      }, error => {
+        this.messageService.add({
+          severity: 'warn',
+          summary: '查询结果',
+          detail: '请输入正确的气瓶条码'
+        });
+      });
   }
+  ondetail(aa) {
+    this.detailLists = this.detailList[aa];
+  }
+
+ngOnInit() {
+  this.queryDetail();
+  this.initDetailList();
+  this.loading = '';
+}
+
 }

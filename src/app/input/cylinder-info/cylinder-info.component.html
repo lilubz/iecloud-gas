@@ -1,3 +1,212 @@
-<p>
-  cylinder-info works!
-</p>
+<!-- <div class="ui-g cylinder-info">
+  <div class="ui-g-12">
+    <form [formGroup]="infoForm" (ngSubmit)="onSubmit(infoForm.value)" novalidate>
+    <div class="ui-g-9" style="box-shadow: 0 0 5px #c0c0c0;">
+      <div class="ui-g-12">
+        <div class="">
+          <b>气瓶基础信息</b>
+        </div>
+      </div>
+      <div class="ui-g-12 ">
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>气瓶出厂编号</span>
+              <input type="text" class="textInput" pInputText placeholder="11" formControlName="gasNumber" >
+
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>企业自有编号</span>
+              <input type="text" class="textInput" pInputText placeholder="CYJ118778">
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>产权性质&#12288;&#12288;</span>
+              <p-dropdown [options]="property" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
+            </div>
+            {{selectedProperty}}
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>产权单位&#12288;&#12288;</span>
+              <input type="text" class="textInput" pInputText placeholder="CYJ118778">
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>生产单位&#12288;&#12288;</span>
+              <p-dropdown [options]="manufactureName" editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>进站日期&#12288;&#12288;</span>
+              <p-calendar  [locale]="cn"  dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+            </div>
+            {{cylinderInfo.stopDate}}
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>制造日期&#12288;&#12288;</span>
+              <p-calendar  [locale]="cn" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>报废日期&#12288;&#12288;</span>
+              <p-calendar  [locale]="cn" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12" style="border-top:2px dashed #c0c0c0">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>设备品种&#12288;&#12288;</span>
+              <p-dropdown [options]="equipmentVarieties" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>充装介质&#12288;&#12288;</span>
+              <p-dropdown [options]="fillingMedia" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>型号规格&#12288;&#12288;</span>
+              <p-dropdown [options]="model" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>容积&#12288;&#12288;&#12288;&#12288;</span>
+              <input type="text" class="textInput" pInputText placeholder="" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>瓶体原始重量</span>
+              <input type="text" class="textInput" pInputText placeholder="" disabled>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>设计壁厚&#12288;&#12288;</span>
+              <input type="text" class="textInput" pInputText placeholder="" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>水压试验压力</span>
+              <input type="text" class="textInput" pInputText placeholder="" disabled>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>公称工作压力</span>
+              <input type="text" class="textInput" pInputText placeholder="" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>上次检测单位</span>
+              <p-dropdown [options]="lastTestUnit" editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>检验编号&#12288;&#12288;</span>
+              <input type="text" class="textInput" pInputText placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>上次检测日期</span>
+              <p-calendar  [locale]="cn" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>
+                <b style="color:red;">*</b>下次检测日期</span>
+              <p-calendar  [locale]="cn" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="ui-g-12" style="border-top:2px dashed #c0c0c0">
+        <div class="ui-g-2">
+          <b>附件</b>
+        </div>
+        <div class="ui-g-8">
+          <p-fileUpload name="myfile[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
+        </div>
+      </div>
+      <div class="ui-g-2">
+        <button pButton type="submit" label="Submit"></button>
+      </div>
+    </div>
+    </form>
+    <div class="ui-g-3">
+      <div class="ui-g-12 _choose">
+        <p-fileUpload mode="basic" name="demo[]" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)" chooseLabel="气瓶基础信息导入"></p-fileUpload>
+      </div>
+      <div class="ui-g-12">
+        <h3>注意事项：</h3>
+        <p>如需批量导入，请按模板格式填写后导入。</p>
+        <p>特别提醒：如已绑定标签，请于“信息网络上传”中导入。</p>
+        <p>（请于勿二次导入）</p>
+        <h3>---------备注：</h3>
+        <p>相关单位可人工填写也可下拉选择。</p>
+        <h3>---------备注：</h3>
+        <p>规格型号确定后，容积原始重量等自动确定。</p>
+        <h3>---------备注：</h3>
+        <p>字段“使用登记代码”由后台自动生成。</p>
+        <p>格式为：333905000003。 其中333为温州代码，905位企业代码。
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+ -->

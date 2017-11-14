@@ -1,6 +1,6 @@
 .group {
   border: 1px solid;
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 4px;
   >span {
     display: block;
@@ -17,11 +17,6 @@
     line-height: 40px;
     &.active {
       color: #3399ff;
-    }
-    span {
-      &::before {
-        margin: 5px;
-      }
     }
   }
 }

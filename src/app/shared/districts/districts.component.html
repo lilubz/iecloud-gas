@@ -1,0 +1,14 @@
+<select [(ngModel)]="_province" (change)="changeProvince()" [disabled]="disabledProvince">
+  <option value="">--请选择--</option>
+  <option *ngFor="let province of districts" [ngValue]="province">{{province.name}}</option>
+</select>
+
+<select [(ngModel)]="_city" (change)="changeCity()" [disabled]="disabledCity">
+  <option value="">--请选择--</option>
+  <option *ngFor="let city of _province?.childs" [ngValue]="city">{{city.name}}</option>
+</select>
+
+<select [(ngModel)]="_county" (change)="select()" [disabled]="disabledCounty">
+  <option value="">--请选择--</option>
+  <option *ngFor="let county of _city?.childs" [ngValue]="county">{{county.name}}</option>
+</select>

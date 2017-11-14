@@ -1,40 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MessageService } from 'primeng/components/common/messageservice';
+import { UserStateService } from './../../../core/userState.service';
 import { CustomerOverviewService } from './customer-overview.service';
 @Component({
   selector: 'gas-customer-overview-county',
   templateUrl: './customer-overview-county.component.html'
 })
 export class CustomerOverviewCountyComponent implements OnInit {
+  loading: boolean;
   countyCustomers: {
-    areaName: string,
-    customerNum: number,
-    areaID: string
+    regionName: string,
+    userCount: number,
+    regionId: string
   }[] = [];
 
-  constructor(private customerOverviewService: CustomerOverviewService) { }
+  constructor(private customerOverviewService: CustomerOverviewService, private messageService: MessageService,
+    private userStateService: UserStateService) { }
 
   ngOnInit() {
-    for (let i = 0; i < 1; i++) {
-      this.countyCustomers.push(
-        {
-          areaName: '鹿城区',
-          customerNum: 235,
-          areaID: '330302'
-        }
-      );
-    }
+    this.loading = true;
+    this.getCountiesOverview();
   }
 
   getCountiesOverview() {
-    this.customerOverviewService.getCountiesOverview({
-      areaID: '330300'// 330300--温州市id
-    }).then(data => {
+    this.customerOverviewService.getCountiesOverview({}).then(data => {
       if (data.status === 0) {
-        this.countyCustomers = data.data.list;
+        this.countyCustomers = data.data;
       } else {
-
+        this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
       }
+      this.loading = false;
     });
   }
 

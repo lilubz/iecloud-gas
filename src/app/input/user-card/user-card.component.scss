@@ -1,0 +1,46 @@
+.tips {
+  .warning {
+    color: red;
+    text-decoration-line: underline;
+  }
+  strong {
+    text-decoration-line: underline
+  }
+}
+
+a {
+  color: #3399ff;
+  text-decoration: none;
+}
+
+.bind {
+  border-radius: 10px;
+  height: 42px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.error {
+  color: red;
+}
+
+input {
+  width: 100%;
+}
+
+hr {
+  border-top: none;
+  border-bottom: 1px dashed grey;
+}
+
+p-dialog {
+  .title {
+    background: #3399ff;
+    margin: 0;
+    color: white;
+    padding: 10px;
+  }
+  .ui-dialog {
+    box-sizing: border-box;
+  }
+}

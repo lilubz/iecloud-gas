@@ -8,18 +8,20 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 })
 export class CustomerComponent implements OnInit {
   cities: SelectItem[] = [
-    { label: '温州市', value: '温州市' }
+    { label: '温州市', value: '330301' }
   ];
+  UserText: string;
+  selectedUserID: string;
   UserID: SelectItem[] = [
-    { label: '证件号', value: '证件号' },
-    { label: '用户卡号', value: '用户卡号' },
-    { label: '手机号', value: '手机号' },
+    { label: '证件号', value: 'idNumber' },
+    { label: '用户卡号', value: 'userCardNumber' },
+    { label: '手机号', value: 'phone' },
   ];
   selectedCity = this.cities[0].value;
-  selectedUserID = this.UserID[0].value;
   constructor() { }
 
   ngOnInit() {
+  this.selectedUserID = 'idNumber';
   }
 
 }

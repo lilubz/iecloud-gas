@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit {
           organizationId: user.organizationId || ''
         }).then(data => {
           if (data.status === 0) {
-            this.sum = this.calculateTotal('cylinderNum', data.data);
+            this.sum = this.calculateTotal('totalCount', data.data);
           } else {
             this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
           }

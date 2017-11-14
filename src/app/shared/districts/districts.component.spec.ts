@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CylinderInfoComponent } from './cylinder-info.component';
+import { DistrictsComponent } from './districts.component';
 
-describe('CylinderInfoComponent', () => {
-  let component: CylinderInfoComponent;
-  let fixture: ComponentFixture<CylinderInfoComponent>;
+describe('DistrictsComponent', () => {
+  let component: DistrictsComponent;
+  let fixture: ComponentFixture<DistrictsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CylinderInfoComponent ]
+      declarations: [ DistrictsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CylinderInfoComponent);
+    fixture = TestBed.createComponent(DistrictsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

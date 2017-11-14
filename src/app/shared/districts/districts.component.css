@@ -1,0 +1,7 @@
+select {
+  height: 30px;
+  border-radius: 3px;
+  border-color: rgb(214, 214, 214);
+  font-size: inherit;
+  line-height: inherit;
+}

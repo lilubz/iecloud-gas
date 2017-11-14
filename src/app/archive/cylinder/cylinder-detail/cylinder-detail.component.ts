@@ -101,8 +101,6 @@ export class CylinderDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap
       .switchMap((params: ParamMap) => {
-        // console.log(11);
-        // this.loading = true;
         return this.CylinderDetailService.querySingle({ cylinderCode: params.get('id') });
       }).subscribe((data) => {
         // console.log(data);

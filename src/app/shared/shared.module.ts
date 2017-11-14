@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { BrowserModule } from '@angular/platform-browser';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+
 
 import {
   AutoCompleteModule,
@@ -20,12 +21,13 @@ import {
   MenuModule,
   PanelModule,
   TieredMenuModule,
-  SharedModule as _SharedModule
+  SharedModule as _SharedModule,
 } from 'primeng/primeng';
 
 import { LoadingComponent } from './loading/loading.component';
 import { LayoutComponent } from './layout/layout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DistrictsComponent } from './districts/districts.component';
 
 @NgModule({
   imports: [
@@ -41,6 +43,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     DialogModule,
     FileUploadModule,
     FormsModule,
+    ReactiveFormsModule,
+    FileUploadModule,
     GrowlModule,
     InputTextModule,
     MegaMenuModule,
@@ -48,12 +52,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PanelModule,
     RouterModule,
     TieredMenuModule,
-    _SharedModule,
+    _SharedModule
   ],
   declarations: [
     LayoutComponent,
     LoadingComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DistrictsComponent
   ],
 
   exports: [
@@ -67,6 +72,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     DataTableModule,
     DropdownModule,
     DialogModule,
+    FileUploadModule,
     FormsModule,
     FileUploadModule,
     GrowlModule,
@@ -77,10 +83,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     RouterModule,
     TieredMenuModule,
     _SharedModule,
-
     LayoutComponent,
     LoadingComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DistrictsComponent
   ]
 })
 export class SharedModule { }

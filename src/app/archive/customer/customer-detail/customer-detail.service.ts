@@ -1,5 +1,5 @@
 import {
-  Injectable
+  Injectable, Inject
 } from '@angular/core';
 import { Headers } from '@angular/http';
 import {
@@ -8,13 +8,13 @@ import {
 import { API_TOKEN } from './../../../core/api';
 @Injectable()
 export class CustomerDetailService {
-  //   constructor(private http: Http, private HttpService: HttpService) {}
+  constructor(private HttpService: HttpService, @Inject(API_TOKEN) private API) { }
 
-  // querySingle(params: any): Promise < any > {
-  //     return this.HttpService.formPostRequest(API_TOKEN.querySingleUrl, params)
-  //       .catch(this.handleError);
-  //   }
-  //   private handleError(error: any): Promise<any> {
-  //     return Promise.reject(error.message || error);
-  // }
+  querySingle(params: any): Promise<any> {
+    return this.HttpService.getRequest(this.API.queryCustomerDetail, params)
+      .catch(this.handleError);
+  }
+  private handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error);
+  }
 }
