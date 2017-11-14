@@ -11,7 +11,7 @@ export class CylinderDetailService {
   constructor(private HttpService: HttpService, @Inject(API_TOKEN) private API) { }
 
   querySingle(params: any): Promise<any> {
-    return this.HttpService.formPostRequest(this.API.queryCylinderDetail, params)
+    return this.HttpService.getRequest(this.API.queryCylinderDetail, params)
       .catch(this.handleError);
   }
   private handleError(error: any): Promise<any> {

@@ -175,7 +175,7 @@ export class CustomerListComponent implements OnInit {
   }
   getDropdownForCorpInfoInRegion(params?) {
     this.customerListService.getDropdownForCorpInfoInRegion(params).then(data => {
-      console.log(data);
+      // console.log(data);
       if (data.status === 0) {
         this.dropdownOpt.company = data.data.list;
         const list = data.data.map((item) => {

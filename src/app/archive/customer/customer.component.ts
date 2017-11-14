@@ -8,7 +8,7 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 })
 export class CustomerComponent implements OnInit {
   cities: SelectItem[] = [
-    { label: '温州市', value: '330301' }
+    { label: '温州市', value: '330300' }
   ];
   UserText: string;
   selectedUserID: string;

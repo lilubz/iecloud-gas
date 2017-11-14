@@ -45,9 +45,9 @@ const PROXY_CONFIG = [
   //   ],
   //   target: "http://60.190.114.126/",// 线上
   //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
-  //   }
+  //   // "pathRewrite": {
+  //   //   "^/wenZhouGas": ""
+  //   // }
   // },
   
 ];

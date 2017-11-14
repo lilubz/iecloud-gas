@@ -8,7 +8,7 @@ export const API = {
   // 项目地址
   'url': URL,
   // 气瓶档案
-  'queryCylinderDetail': URL + 'basicInformation/gasCylinder/searchGCInfoByCylinderCode.do',
+  'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',
   'queryCustomerDetail': URL + 'basicInformation/gcUserInfo/getUserDetailInfo.do',
   // 系统管理
   'queryLog': URL + '',
