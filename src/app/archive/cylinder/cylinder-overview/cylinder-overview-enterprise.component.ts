@@ -44,6 +44,9 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
           this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
         }
         this.loading = false;
+      }, error => {
+        this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
+        this.loading = false;
       });
   }
 

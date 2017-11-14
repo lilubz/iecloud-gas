@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Headers, Http, ResponseContentType } from '@angular/http';
 import { Router } from '@angular/router';
@@ -78,13 +77,26 @@ export class HttpService {
   private handleError(error: any): Promise<any> {
     console.log(error);
     console.log(error.status);
-    if (error.status / 100 === 2) {
-
-      if (error.json().status === 10) {
-        this.userStateService.setUser(null);
-        this.router.navigate(['/login']);
-      }
-    }
+    this.httpStatusFilter(error);
     return Promise.reject(error.message || error);
+  }
+
+  private httpStatusFilter(res: Response | any) {
+    switch (res.status) {
+      case 100:
+        break;
+      case 200:
+        break;
+      case 300:
+        break;
+      case 400:
+        if (res.json().status === 10) {
+          this.userStateService.setUser(null);
+          this.router.navigate(['/login']);
+        }
+        break;
+      case 500:
+        break;
+    }
   }
 }

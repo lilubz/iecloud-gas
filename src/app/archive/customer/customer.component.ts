@@ -13,9 +13,9 @@ export class CustomerComponent implements OnInit {
   UserText: string;
   selectedUserID: string;
   UserID: SelectItem[] = [
-    { label: '证件号', value: 'idNumber' },
+    { label: '证件编号', value: 'idNumber' },
     { label: '用户卡号', value: 'userCardNumber' },
-    { label: '手机号', value: 'phone' },
+    { label: '联系电话', value: 'phone' },
   ];
   selectedCity = this.cities[0].value;
   constructor() { }

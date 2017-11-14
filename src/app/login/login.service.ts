@@ -50,11 +50,15 @@ export class LoginService {
         this.userStateService.setUser(null);
         this.router.navigate(['/login']);
         if (data.status !== 0) {
-          this.messageService.add({ severity: 'error', summary: '注销失败', detail: data.msg });
+          this.messageService.add({ severity: 'error', summary: '注销异常', detail: data.msg });
           return false;
         } else {
           return true;
         }
+      }).catch(error => {
+        this.messageService.add({ severity: 'error', summary: '注销异常', detail: error.statusText });
+        this.userStateService.setUser(null);
+        this.router.navigate(['/login']);
       });
   }
 }

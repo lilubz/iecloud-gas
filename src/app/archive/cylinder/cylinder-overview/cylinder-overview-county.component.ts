@@ -34,14 +34,18 @@ export class CylinderOverviewCountyComponent implements OnInit {
     if (this.userStateService.getUser()) {
       areaID = this.userStateService.getUser().regionId;
     }
-    this.cylinderOverviewService.getCountiesOverview({}).then(data => {
-      if (data.status === 0) {
-        this.countyCylinders = data.data;
-      } else {
-        this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
-      }
-      this.loading = false;
-    });
+    this.cylinderOverviewService.getCountiesOverview({})
+      .then(data => {
+        if (data.status === 0) {
+          this.countyCylinders = data.data;
+        } else {
+          this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
+        }
+        this.loading = false;
+      }).catch(error => {
+        this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
+        this.loading = false;
+      });
   }
 
   // TODO:这里可能会有性能问题，因为首次加载会执行20次（4次调用*5列），再次点击会执行10次
