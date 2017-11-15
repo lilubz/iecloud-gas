@@ -19,7 +19,7 @@ import { SystemLogComponent } from './system/system-log/system-log.component';
     LoginComponent,
     SystemLogComponent,
     ManagementComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -9,39 +9,41 @@ import { Customer } from './../user-info/Customer.model';
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
+  // 绑定卡时的客户查询类型
   customerIDTypes: SelectItem[] = [
-    { label: '用户名称', value: '用户名称' },
-    { label: '用户编码', value: '用户编码' },
     { label: '证件编号', value: '证件编号' },
+    { label: '用户名称', value: '用户名称' },
   ];
-
+  gasSites: SelectItem[]; // 绑定卡时的供气站点下拉列表
+  // 绑定用户卡模态框数据
   bindCustomerToCard: {
-    customerIDType: string;
+    site: string;
     customerID: string;
-    cardNo: string;
+    customerCardNumber: string;
   } = {
-    customerIDType: '用户名称',
+    customerCardNumber: '',
     customerID: '',
-    cardNo: ''
-  };//绑定用户卡模态框数据
+    site: '',
+  };
 
+  // 申请用户卡模态框数据
   applyCard: {
     applyNumber: string;
     applyExplain: string;
   } = {
     applyNumber: 'number',
     applyExplain: 'string'
-  };// 申请用户卡模态框数据
+  };
 
-  customerCards: CustomerCard[] = [];// 已申请用户卡列表
-  customerSuggestions: Customer[] = [];// 用户卡绑定--客户搜索建议列表
-  selectedCustomer: Customer = new Customer();// 用户卡绑定--选中的用户
-  selectedCustomerCard: CustomerCard = new CustomerCard();// 用户卡绑定--选中的用户卡
+  customerCards: CustomerCard[] = []; // 已申请用户卡列表
+  customerSuggestions: Customer[] = []; // 用户卡绑定--客户搜索建议列表
+  selectedCustomer: Customer = new Customer(); // 用户卡绑定--选中的用户
+  selectedCustomerCard: CustomerCard = new CustomerCard(); // 用户卡绑定--选中的用户卡
 
   constructor() { }
 
   ngOnInit() {
-    for (var i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
       this.customerCards.push(new CustomerCard());
     }
   }

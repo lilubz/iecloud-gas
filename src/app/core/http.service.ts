@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, ResponseContentType } from '@angular/http';
+import { Headers, Http, ResponseContentType, RequestOptionsArgs } from '@angular/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
@@ -37,9 +37,10 @@ export class HttpService {
   }
 
   // 重封装post请求，允许cookie，参数序列化
-  withCredentialsPostRequest(url, data) {
+  withCredentialsPostRequest(url, data, options?: RequestOptionsArgs) {
     return this.http
-      .post(url, this.transformRequest(data), { headers: this.formHeaders, withCredentials: true })
+      .post(url, this.transformRequest(data),
+      Object.assign({}, { headers: this.formHeaders, withCredentials: true }, options))
       .toPromise()
       .then(res => this.checkLogin(res.json()))
       .catch(error => this.handleError(error));

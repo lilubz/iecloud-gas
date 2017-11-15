@@ -1,0 +1,31 @@
+<div class="sidebar">
+    <div class="ui-g ui-g-nopad group">
+      <a href="javascript:;" [routerLink]="['customer']" routerLinkActive="active">
+        <span>
+          <i class="fa fa-user-o fa-fw"></i>&nbsp;  用户基本信息
+        </span>
+      </a>
+      <a href="javascript:;" [routerLink]="['cylinder']" routerLinkActive="active">
+        <span>
+          <i class="fa fa-id-card-o fa-fw"></i>&nbsp; 气瓶基本信息
+        </span>
+      </a>
+      <hr>
+      <a href="javascript:;" [routerLink]="['delivery-man-verification']" routerLinkActive="active">
+        <span>
+          <i class="fa fa-file-text-o fa-fw"></i>&nbsp; 送气工审核
+        </span>
+      </a>
+      <a href="javascript:;" [routerLink]="['cylinder-tag-verification']" routerLinkActive="active">
+        <span>
+          <i class="fa fa-bookmark-o fa-fw"></i>&nbsp; 气瓶标签审核</span>
+      </a>
+      <a href="javascript:;" [routerLink]="['customer-card-verification']" routerLinkActive="active">
+        <span>
+          <i class="fa fa-bookmark-o fa-fw"></i>&nbsp; 用户身份认证卡审核</span>
+      </a>
+    </div>
+  </div>
+  <div class="ui-g-12 main">
+    <router-outlet></router-outlet>
+  </div>

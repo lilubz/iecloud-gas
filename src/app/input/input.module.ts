@@ -4,6 +4,7 @@ import { SharedModule } from './../shared/shared.module';
 import { InputRoutingModule } from './input-routing.module';
 
 import { UserInfoService } from './user-info/user-info.service';
+import { UserCardService } from './user-card/user-card.service';
 
 import { InputComponent } from './input.component';
 import { UserCardComponent } from './user-card/user-card.component';
@@ -26,7 +27,8 @@ import { UploadComponent } from './upload/upload.component';
     UploadComponent,
   ],
   providers: [
-    UserInfoService
+    UserInfoService,
+    UserCardService
   ]
 })
 export class InputModule { }

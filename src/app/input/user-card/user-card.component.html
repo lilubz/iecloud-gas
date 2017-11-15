@@ -23,7 +23,7 @@
         <p-column field="enterprise" header="供气企业"></p-column>
         <p-column field="customerCardState" header="用户身份认证卡状态">
           <ng-template let-col let-customerCard="rowData" pTemplate="body">
-            <a href="javascript:0;">{{customerCard[col.field]}}</a>
+            <a href="javascript:0;" (click)="bindCardVisible=true;bindCustomerToCard.customerCardNumber=customerCard.cardNo">{{customerCard[col.field]}}</a>
           </ng-template>
         </p-column>
       </p-dataTable>
@@ -86,10 +86,6 @@
       <div class="ui-g-4">
         <input type="text" [(ngModel)]="selectedCustomer.IDName" pInputText placeholder="用户名称" [disabled]="true">
       </div>
-      <div class="ui-g-2"> 用户编码 </div>
-      <div class="ui-g-4">
-        <input type="text" [(ngModel)]="selectedCustomer.customerID" pInputText placeholder="用户编码" [disabled]="true">
-      </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-2"> 证件名称 </div>
@@ -115,7 +111,7 @@
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-3"> 当前身份认证卡编号 </div>
       <div class="ui-g-5">
-        <input type="text" [(ngModel)]="selectedCustomerCard.cardNo" pInputText placeholder="当前身份认证卡编号">
+        <input type="text" [(ngModel)]="bindCustomerToCard.customerCardNumber" pInputText placeholder="当前身份认证卡编号" maxlength="30">
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
@@ -127,7 +123,7 @@
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-3"> 供气站点 </div>
       <div class="ui-g-5">
-        <input type="text" [(ngModel)]="selectedCustomerCard.gasSite" pInputText placeholder="供气站点" [disabled]="true">
+        <p-dropdown appendTo="body" [options]="gasSites" [autoWidth]="false" [(ngModel)]="bindCustomerToCard.gasSite" [style]="{'width':'200px'}"></p-dropdown>
       </div>
     </div>
   </div>
