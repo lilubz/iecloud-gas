@@ -133,10 +133,10 @@ export class CustomerDetailComponent implements OnInit {
     this.detailLists = this.detailList[aa];
   }
 
-ngOnInit() {
-  this.queryDetail();
-  this.initDetailList();
-  this.loading = '';
-}
+  ngOnInit() {
+    this.queryDetail();
+    this.initDetailList();
+    this.loading = '';
+  }
 
 }

@@ -1,6 +1,5 @@
-
 import { Injectable } from '@angular/core';
-import { Headers, Http, ResponseContentType } from '@angular/http';
+import { Headers, Http, ResponseContentType, RequestOptionsArgs } from '@angular/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
@@ -38,9 +37,10 @@ export class HttpService {
   }
 
   // 重封装post请求，允许cookie，参数序列化
-  withCredentialsPostRequest(url, data) {
+  withCredentialsPostRequest(url, data, options?: RequestOptionsArgs) {
     return this.http
-      .post(url, this.transformRequest(data), { headers: this.formHeaders, withCredentials: true })
+      .post(url, this.transformRequest(data),
+      Object.assign({}, { headers: this.formHeaders, withCredentials: true }, options))
       .toPromise()
       .then(res => this.checkLogin(res.json()))
       .catch(error => this.handleError(error));
@@ -78,13 +78,26 @@ export class HttpService {
   private handleError(error: any): Promise<any> {
     console.log(error);
     console.log(error.status);
-    if (error.status / 100 === 2) {
-
-      if (error.json().status === 10) {
-        this.userStateService.setUser(null);
-        this.router.navigate(['/login']);
-      }
-    }
+    this.httpStatusFilter(error);
     return Promise.reject(error.message || error);
+  }
+
+  private httpStatusFilter(res: Response | any) {
+    switch (res.status) {
+      case 100:
+        break;
+      case 200:
+        break;
+      case 300:
+        break;
+      case 400:
+        if (res.json().status === 10) {
+          this.userStateService.setUser(null);
+          this.router.navigate(['/login']);
+        }
+        break;
+      case 500:
+        break;
+    }
   }
 }
