@@ -4,6 +4,8 @@ import { SharedModule } from './../shared/shared.module';
 import { VerificationRoutingModule } from './verification-routing.module';
 
 import { VerificationComponent } from './verification.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { CylinderTagComponent } from './cylinder-tag/cylinder-tag.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -11,7 +13,9 @@ import { VerificationComponent } from './verification.component';
     VerificationRoutingModule
   ],
   declarations: [
-    VerificationComponent
+    VerificationComponent,
+    UserCardComponent,
+    CylinderTagComponent
   ],
   providers: [
 

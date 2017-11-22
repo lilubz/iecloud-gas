@@ -101,6 +101,9 @@ export class CustomerListComponent implements OnInit {
     this.getDropdownForUserNature();
     this.getDropdownForUserType();
     this.getDropdownForRegionSysUser();
+    this.getDropdownForCorpInfoInRegion({
+      regionId: ''
+    });
     const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
     if (typeof enterpriseID !== 'undefined') {
       this.searchParams.enterpriseNumber = enterpriseID;
@@ -160,9 +163,7 @@ export class CustomerListComponent implements OnInit {
     this.customerListService.getCustomerList(params).then((data) => {
       if (data.status === 0) {
         this.customerList = data.data.list;
-
-        // TODO 下面这行代码是临时的。
-        this.pageParams.total = data.data.total !== 0 ? data.data.total : 400;
+        this.pageParams.total = data.data.total;
       } else {
         this.customerList = [];
         this.setMessages('warn', '查询结果', '响应：' + data.msg);
@@ -175,7 +176,6 @@ export class CustomerListComponent implements OnInit {
   }
   getDropdownForCorpInfoInRegion(params?) {
     this.customerListService.getDropdownForCorpInfoInRegion(params).then(data => {
-      // console.log(data);
       if (data.status === 0) {
         this.dropdownOpt.company = data.data.list;
         const list = data.data.map((item) => {

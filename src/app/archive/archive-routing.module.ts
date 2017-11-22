@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CylinderComponent } from './cylinder/cylinder.component';
+import { EmployeeComponent } from './employee/employee.component';
 import { ArchiveComponent } from './archive.component';
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'employee',
-    component: PageNotFoundComponent
+    redirectTo: 'employee/dispatcher',
+    pathMatch: 'full'
   },
   {
     path: 'media',

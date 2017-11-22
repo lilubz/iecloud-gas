@@ -1,4 +1,5 @@
 .upload{
+  position: relative;
   padding-left:1em;
   
   .detail{
@@ -6,8 +7,10 @@
   }
 
   .download{
-    float:right;
-    margin-right:3em;
+    position:absolute;
+    left:39em;
+    line-height: 30px;
+    margin:10px 0;
   }
 
   ul{
@@ -27,4 +30,5 @@
     position: relative;
     top: 10px;
   }
+
 }

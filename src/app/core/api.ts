@@ -29,11 +29,31 @@ export const API = {
 
   // 用户综合查询
   'getCustomerList': URL + 'basicInformation/gcUserInfo/listUserInfoSelective.do',
-  // 'getCustomerDropdownOpt': URL + 'userInfo/getGcUserDropDownData.do',
   'getDropdownForUserNature': URL + 'basicInformation/gcUserInfo/listUserNature.do',
   'getDropdownForUserType': URL + 'basicInformation/gcUserInfo/listUserType.do',
   'getDropdownForRegionSysUser': URL + 'basicInformation/region/listRegionInfo.do',
   'getDropdownForCorpInfoInRegion': URL + 'basicInformation/corpInfo/listCorpInfoInRegion.do',
+
+  // 气瓶标签分配
+  'listTagApplication': URL + 'basicInformation/gasCylinder/listTagApplication.do',
+  'getUnboundGcLabelInfo': URL + 'basicInformation/gasCylinder/listUnboundGcLabelInfo.do',
+  'getUnboundCylinderInfo': URL + 'basicInformation/gasCylinder/listUnboundGcSimpleInfo.do',
+  'getGcLabelInfo': URL + 'basicInformation/gasCylinder/getGcLabelInfo.do',
+  'getGcBasicInfo': URL + 'basicInformation/gasCylinder/listGcBasicInfo.do',
+  'sendTagBinding': URL + 'basicInformation/gasCylinder/listTagBinding.do',
+
+  // 配送人员信息
+  'getDispatcherInfo': URL + 'basicInformation/corpInfo/listDispatcherInfo.do',
+
+  // 身份认证卡审核
+  'getUserCertNumApply': URL + 'basicInformation/gcUserInfo/getUserCertNumApply.do',
+  'getCheckApply': URL + 'basicInformation/gcUserInfo/checkUserCertCardApply.do',
+
+  // 信息批量导入
+  'importUser': URL + 'dataImport/gcUser/importGcUserCertInfo.do',
+  'importGc': URL + 'dataImport/gasCylinder/importGasLableInfo.do',
+  'importCard': URL + 'dataImport/gcUser/importGcUserCertInfoUnbound.do',
+  'importTag': URL + 'dataImport/gasCylinder/importGasCylinderUnboundLable.do',
 
   // 登录
   'signIn': URL + 'sysUserPermissions/user/login.do',

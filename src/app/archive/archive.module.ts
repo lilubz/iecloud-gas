@@ -5,6 +5,7 @@ import { ArchiveRoutingModule } from './archive-routing.module';
 
 import { CustomerModule } from './customer/customer.module';
 import { CylinderModule } from './cylinder/cylinder.module';
+import { EmployeeModule } from './employee/employee.module';
 import { ArchiveComponent } from './archive.component';
 
 @NgModule({
@@ -12,7 +13,7 @@ import { ArchiveComponent } from './archive.component';
     SharedModule,
     CylinderModule,
     CustomerModule,
-
+    EmployeeModule,
     ArchiveRoutingModule,
   ],
   declarations: [

@@ -69,11 +69,41 @@
         margin:15px 0;
         width:100%;
       }
+      >textarea{
+        width:244px;
+        height: 70px;
+        resize: none;
+      }
     }
 
     button{
       margin:0 15px;
     }
   }
-
+  .cancel{
+    background-color:#bcbcbc;
+    border-color:#bcbcbc;
+  }
+  .helpBlock{
+    color:#f00;
+    text-align: left;
+    text-indent: 2em;
+  }
+  .attention{
+    padding:20px;
+    h3{
+      font-weight: bold;
+      font-size: 18px;
+      color: #f00;
+      text-decoration:underline;
+    }
+    p{
+      margin-bottom:20px;
+    }
+    .warn{
+      font-style:oblique;
+      text-decoration:underline;
+      color:#FF0000;
+    }
+  }
 }

@@ -1,0 +1,20 @@
+  .dispatcher {
+
+  padding-left:20px;
+  [class^='ui']{
+    padding:0;
+  }
+  .input-group{
+    margin-bottom:15px;
+    label{
+      font-size:12px;
+    }
+  }
+  #searchBtn{
+    .ui-button-text{
+      padding:4px 12px !important;
+    }
+  }
+
+
+}

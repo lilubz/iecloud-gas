@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VerificationComponent } from './verification.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { CylinderTagComponent } from './cylinder-tag/cylinder-tag.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,14 +27,14 @@ const routes: Routes = [
       //   path: 'delivery-man-verification',
       //   component:
       // },
-      // {
-      //   path: 'cylinder-tag-verification',
-      //   component:
-      // },
-      // {
-      //   path: 'user-card-verification',
-      //   component:
-      // },
+      {
+        path: 'cylinder-tag',
+        component: CylinderTagComponent
+      },
+      {
+        path: 'user-card',
+        component: UserCardComponent
+      },
     ]
   },
   {
