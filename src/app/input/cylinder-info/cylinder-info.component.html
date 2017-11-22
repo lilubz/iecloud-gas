@@ -1,6 +1,5 @@
-<!-- <div class="ui-g cylinder-info">
+<div class="ui-g cylinder-info">
   <div class="ui-g-12">
-    <form [formGroup]="infoForm" (ngSubmit)="onSubmit(infoForm.value)" novalidate>
     <div class="ui-g-9" style="box-shadow: 0 0 5px #c0c0c0;">
       <div class="ui-g-12">
         <div class="">
@@ -13,7 +12,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>气瓶出厂编号</span>
-              <input type="text" class="textInput" pInputText placeholder="11" formControlName="gasNumber" >
+              <input type="text"   required maxlength="15" [(ngModel)]="cylinderInfo.serialNumber" class="textInput" pInputText placeholder="气瓶出厂编号" >
 
             </div>
           </div>
@@ -21,7 +20,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>企业自有编号</span>
-              <input type="text" class="textInput" pInputText placeholder="CYJ118778">
+              <input type="text" class="textInput" maxlength="20" required (blur)="searchCylinder(cylinderInfo.enterpriseCylinderCode)" [(ngModel)]="cylinderInfo.enterpriseCylinderCode" pInputText placeholder="CYJ118778">
             </div>
           </div>
         </div>
@@ -31,15 +30,14 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>产权性质&#12288;&#12288;</span>
-              <p-dropdown [options]="property" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
+              <p-dropdown [options]="property" [(ngModel)]="cylinderInfo.productNature" (onChange)="onchangeProperty(cylinderInfo.productNature)" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
             </div>
-            {{selectedProperty}}
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>产权单位&#12288;&#12288;</span>
-              <input type="text" class="textInput" pInputText placeholder="CYJ118778">
+              <input type="text" class="textInput" required  pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName" [disabled]="this.selectedProperty">
             </div>
           </div>
         </div>
@@ -48,16 +46,28 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>生产单位&#12288;&#12288;</span>
-              <p-dropdown [options]="manufactureName" editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+              <p-dropdown [options]="manufactureName" [(ngModel)]="cylinderInfo.manufacturingOrganizationName" editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>进站日期&#12288;&#12288;</span>
-              <p-calendar  [locale]="cn"  dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+              <p-calendar  [locale]="cn" #intoStationDate
+              (onSelect)="selectedIntoStationDate($event)"
+              [maxDate]="expectedScrapTime.value"
+              [minDate]="timeManufacture.value"
+              placeholder="2017-10-1"
+              [showButtonBar]="true"
+               dateFormat="yy-mm-dd"  
+               showOtherMonths="true"
+                selectOtherMonths="true" 
+                [monthNavigator]="true" 
+                [yearNavigator]="true" 
+                yearRange="1970:2050" 
+                readonlyInput="true"
+                [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
-            {{cylinderInfo.stopDate}}
           </div>
         </div>
         <div class="ui-g-12">
@@ -65,14 +75,25 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>制造日期&#12288;&#12288;</span>
-              <p-calendar  [locale]="cn" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+              <p-calendar  [locale]="cn"
+              #timeManufacture
+              (onSelect)="selectedTimeManufacture($event)"
+              [maxDate]="intoStationDate.value"
+              readonlyInput="true" 
+              [showButtonBar]="true"
+              placeholder="2017-08-08" dateFormat="yy-mm-dd"  showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"  [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>报废日期&#12288;&#12288;</span>
-              <p-calendar  [locale]="cn" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+              <p-calendar  [locale]="cn" #expectedScrapTime
+              (onSelect)="selectedExpectedScrapTime($event)"
+               readonlyInput="true"  dateFormat="yy-mm-dd"
+               [minDate]="intoStationDate.value"
+               [showButtonBar]="true"
+               placeholder="2021-01-01" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
         </div>
@@ -81,14 +102,14 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>设备品种&#12288;&#12288;</span>
-              <p-dropdown [options]="equipmentVarieties" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+              <p-dropdown [options]="equipmentVarieties" [(ngModel)]="cylinderInfo.equipmentVarieties" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>充装介质&#12288;&#12288;</span>
-              <p-dropdown [options]="fillingMedia" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+              <p-dropdown [options]="fillingMedia" [(ngModel)]="cylinderInfo.fillingMedia" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
             </div>
           </div>
         </div>
@@ -97,78 +118,74 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>型号规格&#12288;&#12288;</span>
-              <p-dropdown [options]="model" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+              <p-dropdown [options]="model" [(ngModel)]="cylinderInfo.specificationId" (onChange)="onChangeModel($event)" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>容积&#12288;&#12288;&#12288;&#12288;</span>
-              <input type="text" class="textInput" pInputText placeholder="" disabled>
-            </div>
-          </div>
-        </div>
-        <div class="ui-g-12">
-          <div class="ui-g-6 ui-g-nopad">
-            <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>瓶体原始重量</span>
-              <input type="text" class="textInput" pInputText placeholder="" disabled>
-            </div>
-          </div>
-          <div class="ui-g-6 ui-g-nopad">
-            <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>设计壁厚&#12288;&#12288;</span>
-              <input type="text" class="textInput" pInputText placeholder="" disabled>
+              <span>&nbsp;容积&#12288;&#12288;&#12288;&#12288;</span>
+              <input type="text" [(ngModel)]="cylinderInfo.volume" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
         </div>
         <div class="ui-g-12">
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>水压试验压力</span>
-              <input type="text" class="textInput" pInputText placeholder="" disabled>
+              <span>&nbsp;瓶体原始重量</span>
+              <input type="text" [(ngModel)]="cylinderInfo.weight" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>公称工作压力</span>
-              <input type="text" class="textInput" pInputText placeholder="" disabled>
-            </div>
-          </div>
-        </div>
-        <div class="ui-g-12">
-          <div class="ui-g-6 ui-g-nopad">
-            <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>上次检测单位</span>
-              <p-dropdown [options]="lastTestUnit" editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
-            </div>
-          </div>
-          <div class="ui-g-6 ui-g-nopad">
-            <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>检验编号&#12288;&#12288;</span>
-              <input type="text" class="textInput" pInputText placeholder="">
+              <span>&nbsp;设计壁厚&#12288;&#12288;</span>
+              <input type="text" [(ngModel)]="cylinderInfo.designWallThickness" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
         </div>
         <div class="ui-g-12">
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>上次检测日期</span>
-              <p-calendar  [locale]="cn" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+              <span>&nbsp;水压试验压力</span>
+              <input type="text" [(ngModel)]="cylinderInfo.waterPressureTest" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>
-                <b style="color:red;">*</b>下次检测日期</span>
-              <p-calendar  [locale]="cn" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+              <span>&nbsp;公称工作压力</span>
+              <input type="text" [(ngModel)]="cylinderInfo.nominalWorkingPressure" class="textInput" pInputText placeholder="" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>&nbsp;上次检测单位</span>
+              <p-dropdown [options]="lastTestUnit" [(ngModel)]="cylinderInfo.inspectionOrganizationName" editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}" ></p-dropdown>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>&nbsp;检验编号&#12288;&#12288;</span>
+              <input type="text" class="textInput" [(ngModel)]="cylinderInfo.inspectionNumber" pInputText placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>&nbsp;上次检测日期</span>
+              <p-calendar  [locale]="cn" #lastTestDate
+              (onSelect)="selectedLastTestDate($event)"
+              [maxDate]="nextTestDate.value"
+              [showButtonBar]="true" readonlyInput="true" placeholder="2017-10-1"  dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="inputgroup">
+              <span>&nbsp;下次检测日期</span>
+              <p-calendar  [locale]="cn" #nextTestDate
+              (onSelect)="selectedNexTestDate($event)"
+              [showButtonBar]="true" placeholder="2018-10-01" [minDate]="lastTestDate.value" readonlyInput="true"  dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
 
@@ -179,34 +196,44 @@
           <b>附件</b>
         </div>
         <div class="ui-g-8">
-          <p-fileUpload name="myfile[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
+          <p-fileUpload #CylinderImage [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
+          invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
+          invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
+          [showCancelButton]="false" previewWidth="50" [customUpload]="true" ></p-fileUpload>
         </div>
       </div>
       <div class="ui-g-2">
-        <button pButton type="submit" label="Submit"></button>
+        <button pButton type="button" label="保存" (click)="save(CylinderImage.files)"  ></button>
       </div>
     </div>
-    </form>
     <div class="ui-g-3">
       <div class="ui-g-12 _choose">
-        <p-fileUpload mode="basic" name="demo[]" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)" chooseLabel="气瓶基础信息导入"></p-fileUpload>
+        <p-fileUpload name="gasCylinderExcel" url="{{cylinderInfoUrl}}"  [multiple]="false" 
+        invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
+        invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="气瓶基本信息导入" uploadLabel="上传" cancelLabel="取消" maxFileSize="10000000"
+        (onUpload)="result($event)" (onError)="result($event)" >
+      </p-fileUpload>
+    </div>
+      <div class="ui-g-12 ta-c">
+        <span>模板下载</span><a href="javascript:;">XXXX.xls</a>
       </div>
       <div class="ui-g-12">
-        <h3>注意事项：</h3>
-        <p>如需批量导入，请按模板格式填写后导入。</p>
-        <p>特别提醒：如已绑定标签，请于“信息网络上传”中导入。</p>
-        <p>（请于勿二次导入）</p>
+        <h3 style="color:red">注意事项：</h3>
+        <p >如需批量导入，请按模板格式填写后导入。</p>
+        <h4>特别提醒：如已绑定标签，请于“信息网络上传”中导入。</h4>
+        <p style="color:red">（请于勿二次导入）</p>
         <h3>---------备注：</h3>
-        <p>相关单位可人工填写也可下拉选择。</p>
+        <h4>相关单位可人工填写也可下拉选择。</h4>
         <h3>---------备注：</h3>
-        <p>规格型号确定后，容积原始重量等自动确定。</p>
+        <h4>规格型号确定后，容积原始重量等自动确定。</h4>
         <h3>---------备注：</h3>
-        <p>字段“使用登记代码”由后台自动生成。</p>
-        <p>格式为：333905000003。 其中333为温州代码，905位企业代码。
-        </p>
+        <h4>字段“使用登记代码”由后台自动生成。</h4>
+        <h4>格式为：333905000003。 其中333为温州代码，905位企业代码。
+        </h4>
       </div>
 
     </div>
   </div>
 </div>
- -->
+<p-growl [value]="msgs"></p-growl>
+

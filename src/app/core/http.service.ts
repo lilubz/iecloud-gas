@@ -8,6 +8,7 @@ import { UserStateService } from './userState.service';
 @Injectable()
 export class HttpService {
   private formHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
+  private formDataHeaders = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8' });
 
   constructor(private http: Http, private router: Router, private userStateService: UserStateService) { }
   // 重封装get请求
@@ -18,10 +19,11 @@ export class HttpService {
       .catch(error => this.handleError(error));
   }
 
+
   // 重封装post请求
-  JSONPostRequest(url, data) {
+  JSONPostRequest(url, data, options?: RequestOptionsArgs) {
     return this.http
-      .post(url, JSON.stringify(data))
+      .post(url, JSON.stringify(data), options)
       .toPromise()
       .then(res => this.checkLogin(res.json()))
       .catch(error => this.handleError(error));
@@ -31,6 +33,15 @@ export class HttpService {
   formPostRequest(url, data) {
     return this.http
       .post(url, this.transformRequest(data), { headers: this.formHeaders })
+      .toPromise()
+      .then(res => this.checkLogin(res.json()))
+      .catch(error => this.handleError(error));
+  }
+
+  // 重封装post请求，不修改content-type请求头
+  formDataPostRequest(url, data, options?: RequestOptionsArgs) {
+    return this.http
+      .post(url, data)
       .toPromise()
       .then(res => this.checkLogin(res.json()))
       .catch(error => this.handleError(error));

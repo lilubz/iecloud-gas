@@ -1,0 +1,64 @@
+<div class="cylinder-verification">
+  <div class="ui-g" style="padding:5px 15px">
+    <div class="ui-g-12 box-shadow">
+      <div class="ui-g-12  ">
+        <span>所在区：</span>
+        <p-dropdown [options]="Area" [(ngModel)]="searchParams.regionId" optionLabel="name" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
+      </div>
+      {{searchParams.regionId}}
+      <div class="ui-g-12">
+        <p-dataTable [value]="cylinderInfo" emptyMessage="暂未查询到数据" [lazy]="true"  [paginator]="true"  [rows]="30" 
+          scrollable="true" scrollHeight="510px" [totalRecords]="100"  [rowsPerPageOptions]="[10,20,30,4] " (onLazyLoad)="change($event)">
+  
+          <p-column field="area0" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="area1" header="所在区"></p-column>
+          <p-column field="area2" header="登记企业"></p-column>
+          <p-column field="area3" header="登记数量"></p-column>
+          <p-column field="" header="操作">
+            <ng-template let-col let-cylinder="rowData" pTemplate="body">
+              <a href="javascript:0;" style="color:blue" (click)="searchInformation(cylinder)">查看详情</a>
+            </ng-template>
+          </p-column>
+          <!-- <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              暂未查询到数据
+            </div>
+          </ng-template> -->
+        </p-dataTable>
+      </div>
+      <p-dialog   header="详情查看" emptyMessage="暂未查询到数据" [draggable]="false" [visible]="display" modal="modal" width="900" minWidth="900" height="700" [responsive]="true">
+        <p-dataTable [value]="cylinderInfoList" [paginator]="true" datakey="area0" [rows]="30" [headerCheckboxToggleAllPages]="false"
+          scrollable="true" scrollHeight="470px" [rowsPerPageOptions]="[10,20,30,50]">
+          <p-column [style]="{'width':'100px'}" field="area0" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'150px'}" field="area1" header="气瓶出厂编号"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area2" header="企业自有编号"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area3" header="产权性质"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area4" header="产权单位"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area5" header="生产单位"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area1" header="进站日期"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area2" header="制造日期"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area3" header="报废日期"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area4" header="设备品种"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area5" header="充装介质"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area1" header="型号规格"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area2" header="上次检测单位"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area3" header="检测编号"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area4" header="上次检测日期"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area5" header="下次检测日期"></p-column>
+          <p-column [style]="{'width':'150px'}" field="area5" header="附件"></p-column>
+        </p-dataTable>
+        <p-footer>
+          <button type="button" pButton icon="fa-check" (click)="display=false" label="确定"></button>
+        </p-footer>
+      </p-dialog>
+    </div>
+  </div>
+</div>

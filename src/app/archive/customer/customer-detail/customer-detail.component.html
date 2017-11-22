@@ -2,7 +2,7 @@
   <h2>查不到此信息</h2>
 </div>
 <div *ngIf="loading===0">
-  <div class="cylinder-detail" >
+  <div class="cylinder-detail " >
     <div class="ui-g-12">
       <div class="ui-g-12 padding-none">
         <div class="ui-g-6 padding-none">
@@ -59,11 +59,11 @@
       <div class="ui-g-12 padding-none">
         <div class="photo-container">
           <div class="ui-g-12">证件(附件)</div>
-          <img ng-src="detailLists.certificateAppendixUrl" class="photo-view">
+          <img src="{{detailLists.certificateAppendixUrl}}" class="photo-view">
         </div>
         <div class="photo-container">
           <div class="ui-g-12">合同(附件)</div>
-          <img ng-src="detailLists.contractAppendixUrl" class="photo-view">
+          <img src="{{detailLists.contractAppendixUrl}}" class="photo-view">
 
         </div>
       </div>

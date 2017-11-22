@@ -22,6 +22,7 @@ export class DistrictsComponent implements OnInit {
       for (const item of this.districts) {
         if (item.code === province || item.name === province) {
           this._province = item;
+          this.select();
           break;
         }
       }
@@ -34,6 +35,7 @@ export class DistrictsComponent implements OnInit {
       for (const item of this._province.childs) {
         if (item.code === city || item.name === city) {
           this._city = item;
+          this.select();
           break;
         }
       }
@@ -46,6 +48,7 @@ export class DistrictsComponent implements OnInit {
       for (const item of this._city.childs) {
         if (item.code === county || item.name === county) {
           this._county = item;
+          this.select();
           break;
         }
       }

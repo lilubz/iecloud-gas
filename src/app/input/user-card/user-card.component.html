@@ -1,29 +1,29 @@
-<!-- <div class="ui-g-12">
+<div class="ui-g-12">
   <div class="ui-g-8">
     <h3>用户身份认证卡</h3>
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-9">
-        <button pButton type="button" (click)="bindCardVisible=true" icon="fa-link" label="绑定" class="bind"></button>
+        <button pButton type="button" (click)="showBindCardDialog()" icon="fa-link" label="绑定" class="bind"></button>
         <button pButton type="button" (click)="applyCardVisible=true" icon="fa-plus" label="认证卡申请" class="ui-button-secondary"></button>
       </div>
-      <div class="ui-g-3">
+      <!-- <div class="ui-g-3">
         <button pButton type="button" label="查看绑定记录"></button>
-      </div>
+      </div> -->
     </div>
     <div class="ui-g-12 ui-g-nopad">
-      <p-dataTable [value]="customerCards" [loading]="loading" emptyMessage="未查询到数据" [paginator]="true" [rows]="10" scrollable="true"
-        [totalRecords]="20" [rowsPerPageOptions]="[5,10,20]">
-        <p-column header="序号" [style]="{'width':'50px'}">
+      <p-dataTable [value]="customerCards" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true" [lazy]="true" (onLazyLoad)="onPageChange($event)"
+        [totalRecords]="total" [rowsPerPageOptions]="[5,10,20]">
+        <p-column header="序号" [style]="{'width':'100px'}">
           <ng-template pTemplate="body" let-index="rowIndex">
             {{index + 1}}
           </ng-template>
         </p-column>
-        <p-column field="cardNo" header="用户身份认证卡编号" [style]="{'width':'30%'}"></p-column>
-        <p-column field="region" header="所在行政区"></p-column>
-        <p-column field="enterprise" header="供气企业"></p-column>
-        <p-column field="customerCardState" header="用户身份认证卡状态">
+        <p-column field="userIdentityCardNumber" header="用户身份认证卡编号"></p-column>
+        <p-column field="regionName" header="所在行政区"></p-column>
+        <p-column field="enterpriseName" header="供气企业"></p-column>
+        <p-column field="certNumStatus" header="用户身份认证卡状态">
           <ng-template let-col let-customerCard="rowData" pTemplate="body">
-            <a href="javascript:0;" (click)="bindCardVisible=true;bindCustomerToCard.customerCardNumber=customerCard.cardNo">{{customerCard[col.field]}}</a>
+            <a href="javascript:0;" (click)="showBindCardDialog(customerCard)">{{customerCard[col.field]}}</a>
           </ng-template>
         </p-column>
       </p-dataTable>
@@ -48,17 +48,17 @@
       <span class="error">*</span>
     </div>
     <div class="ui-g-8">
-      <input type="text" [(ngModel)]="applyCard.applyNumber" pInputText placeholder="申请数量">
+      <p-spinner size="20" [(ngModel)]="applyCardParams.amount" [min]="1" [max]="1000000" placeholder="申请数量"></p-spinner>
     </div>
     <div class="ui-g-4">
       申请说明
     </div>
     <div class="ui-g-8">
-      <input type="text" [(ngModel)]="applyCard.applyExplain" pInputText placeholder="申请说明">
+      <input type="text" [(ngModel)]="applyCardParams.detail" pInputText placeholder="申请说明">
     </div>
   </div>
   <p-footer>
-    <button type="button" pButton icon="fa-check" (click)="applyCardVisible=false" label="申请"></button>
+    <button type="button" pButton icon="fa-check" (click)="applyCard()" label="申请"></button>
     <button type="button" pButton icon="fa-close" (click)="applyCardVisible=false" label="取消" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
@@ -69,66 +69,76 @@
   <div class="ui-g-12">
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-4">
-        <p-dropdown appendTo="body" [options]="customerIDTypes" [autoWidth]="false" [(ngModel)]="bindCustomerToCard.customerIDType"
-          [style]="{'width':'150px'}"></p-dropdown>
+        <p-dropdown appendTo="body" [options]="customerIDTypes" [autoWidth]="false" [(ngModel)]="selectedCustomerIDType" [style]="{'width':'150px'}"></p-dropdown>
       </div>
       <div class="ui-g-8">
-        <p-autoComplete [(ngModel)]="bindCustomerToCard.customerID" [suggestions]="customerSuggestions" (completeMethod)="searchCustomer($event)"
-          (onSelect)="selectSuggestedCustomer($event)" [size]="20" [minLength]="1" [maxlength]="20" [placeholder]="bindCustomerToCard.customerIDType">
+        <p-autoComplete [(ngModel)]="bindCustomerToCard.userNumber" [suggestions]="customerSuggestions" (completeMethod)="searchCustomer($event)"
+          (onSelect)="selectSuggestedCustomer($event)" [delay]="500" [size]="20" [minLength]="1" [maxlength]="20" [placeholder]="selectedCustomerIDType">
           <ng-template let-customer pTemplate="item">
-            <div style="width:400px;">{{ customer.IDName }} -- {{ customer.residentialAddress }} -- {{ customer.cardNo }}</div>
+            <div style="width:400px;">{{ customer.userNumber }} -- {{ customer.deliveryAddress }} -- {{ customer.certificateId }}</div>
           </ng-template>
         </p-autoComplete>
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-2"> 用户名称 </div>
+      <div class="ui-g-2 disabled"> 用户名称 </div>
       <div class="ui-g-4">
-        <input type="text" [(ngModel)]="selectedCustomer.IDName" pInputText placeholder="用户名称" [disabled]="true">
+        <input type="text" [(ngModel)]="selectedCustomer.userName" pInputText placeholder="用户名称" [disabled]="true">
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-2"> 证件名称 </div>
+      <div class="ui-g-2 disabled"> 证件名称 </div>
       <div class="ui-g-4">
-        <input type="text" [(ngModel)]="selectedCustomer.IDType" pInputText placeholder="证件名称" [disabled]="true">
+        <input type="text" [(ngModel)]="selectedCustomer.certificateName" pInputText placeholder="证件名称" [disabled]="true">
       </div>
-      <div class="ui-g-2"> 证件编号 </div>
+      <div class="ui-g-2 disabled"> 证件编号 </div>
       <div class="ui-g-4">
-        <input type="text" [(ngModel)]="selectedCustomer.IDNumber" pInputText placeholder="证件编号" [disabled]="true">
+        <input type="text" [(ngModel)]="selectedCustomer.certificateId" pInputText placeholder="证件编号" [disabled]="true">
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-2"> 居住地址 </div>
+      <div class="ui-g-2 disabled"> 居住地址 </div>
       <div class="ui-g-4">
-        <input type="text" [(ngModel)]="selectedCustomer.residentialAddress" pInputText placeholder="居住地址" [disabled]="true">
+        <input type="text" [(ngModel)]="selectedCustomer.deliveryAddress" pInputText placeholder="居住地址" [disabled]="true">
       </div>
-      <div class="ui-g-2"> 用户状态 </div>
+      <div class="ui-g-2 disabled"> 用户状态 </div>
       <div class="ui-g-4">
-        <input type="text" [(ngModel)]="selectedCustomer.state" pInputText placeholder="用户状态" [disabled]="true">
+        <input type="text" [(ngModel)]="selectedCustomer.userStatus" pInputText placeholder="用户状态" [disabled]="true">
       </div>
     </div>
     <hr>
     <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-3"> 当前身份认证卡编号 </div>
+      <div class="ui-g-4"> 当前身份认证卡编号
+        <span class="error">*</span>
+      </div>
       <div class="ui-g-5">
-        <input type="text" [(ngModel)]="bindCustomerToCard.customerCardNumber" pInputText placeholder="当前身份认证卡编号" maxlength="30">
+        <p-autoComplete [(ngModel)]="bindCustomerToCard.userIdentityCardNumber" [suggestions]="customerCardSuggestions" (completeMethod)="searchCustomerCard($event)"
+          (onSelect)="selectSuggestedCustomerCard($event)" [delay]="500" [size]="20" [minLength]="1" [maxlength]="20" placeholder="当前身份认证卡编号">
+          <ng-template let-customerCard pTemplate="item">
+            <div style="width:400px;">{{ customerCard.userIdentityCardNumber }} -- {{ customerCard.regionName }} -- {{ customerCard.enterpriseName
+              }}
+            </div>
+          </ng-template>
+        </p-autoComplete>
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-3"> 供气企业 </div>
+      <div class="ui-g-4 disabled"> 供气企业 </div>
       <div class="ui-g-5">
-        <input type="text" [(ngModel)]="selectedCustomerCard.enterprise" pInputText placeholder="供气企业" [disabled]="true">
+        <input type="text" [(ngModel)]="selectedCustomerCard.enterpriseName" pInputText placeholder="供气企业" [disabled]="true">
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-3"> 供气站点 </div>
+      <div class="ui-g-4 disabled"> 供气站点
+        <span class="error">*</span>
+      </div>
       <div class="ui-g-5">
-        <p-dropdown appendTo="body" [options]="gasSites" [autoWidth]="false" [(ngModel)]="bindCustomerToCard.gasSite" [style]="{'width':'200px'}"></p-dropdown>
+        <!-- <p-dropdown [options]="gasSites" [autoWidth]="false" [(ngModel)]="bindCustomerToCard.gasSite" [style]="{'width':'200px'}" disabled></p-dropdown> -->
       </div>
     </div>
   </div>
   <p-footer>
-    <button type="button" pButton icon="fa-check" (click)="bindCardVisible=false" label="申请"></button>
+    <button type="button" pButton icon="fa-check" (click)="bind()" label="绑定"></button>
     <button type="button" pButton icon="fa-close" (click)="bindCardVisible=false" label="取消" class="ui-button-secondary"></button>
   </p-footer>
-</p-dialog> -->
+</p-dialog>

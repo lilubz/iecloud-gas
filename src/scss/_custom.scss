@@ -1,12 +1,4 @@
-$header-height: 70px;
-$header-left-width: 260px;
-$header-left-bg-color: #333333;
-$menu-width: 80px;
-$logo-width: 60px;
-$logo-height: 60px;
-$footer-height: 60px;
-$html-bg-color: #f5f5f6;
-$theme-color: #0097e8;
+@import "_variable";
 //
 html,
 body {
@@ -55,11 +47,13 @@ body {
   .ui-datatable-data>tr>td {
     text-align: center;
     border-color: #797979;
+    word-wrap: break-word;
   }
 }
 
 input {
   width: 100%;
+  // max-width: 200px;
 }
 
 
@@ -103,7 +97,7 @@ input {
     top: $header-height;
     bottom: $footer-height;
     width: $menu-width;
-    z-index: 9999;
+    z-index: 999;
     .ui-menu {
       width: auto;
       padding: 0;
@@ -181,6 +175,9 @@ input {
     }
     .verification-icon {
       background-image: url(../assets/img/verification.png);
+    }
+    .input-icon {
+      background-image: url(../assets/img/input.png);
     }
   }
 }

@@ -55,6 +55,7 @@ import { DistrictsComponent } from './districts/districts.component';
     PanelModule,
     SpinnerModule,
     RouterModule,
+    SpinnerModule,
     TieredMenuModule,
     _SharedModule
   ],
@@ -78,6 +79,7 @@ import { DistrictsComponent } from './districts/districts.component';
     DialogModule,
     FileUploadModule,
     FormsModule,
+    ReactiveFormsModule,
     FileUploadModule,
     GrowlModule,
     InputTextareaModule,
@@ -87,6 +89,7 @@ import { DistrictsComponent } from './districts/districts.component';
     PanelModule,
     SpinnerModule,
     RouterModule,
+    SpinnerModule,
     TieredMenuModule,
     _SharedModule,
     LayoutComponent,

@@ -2,7 +2,6 @@ const PROXY_CONFIG = [
   // {
   //   context: [
   //     "/wenZhouGas",
-  //     "/dataImport",
   //   ],
   //   target: "http://192.168.1.26:8080",// 费峰
   //   secure: false,
@@ -13,16 +12,7 @@ const PROXY_CONFIG = [
   // {
   //   context: [
   //     "/wenZhouGas",
-  //   ],
-  //   target: "http://192.168.1.8:8080",// 坭娜
-  //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
-  //   }
-  // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
+  //     "/dataImport",
   //   ],
   //   target: "http://192.168.1.96:8080",// 蔡健
   //   secure: false,
@@ -34,12 +24,22 @@ const PROXY_CONFIG = [
     context: [
       "/wenZhouGas",
     ],
-    target: "http://192.168.1.107:28080",// 涛哥
+    target: "http://192.168.1.8:8080",// 妮娜
     secure: false,
     "pathRewrite": {
       "^/wenZhouGas": ""
     }
   },
+  // {
+  //   context: [
+  //     "/wenZhouGas",
+  //   ],
+  //   target: "http://192.168.1.107:28080",// 涛哥
+  //   secure: false,
+  //   "pathRewrite": {
+  //     "^/wenZhouGas": ""
+  //   }
+  // },
   // {
   //   context: [
   //     "/wenZhouGas",
@@ -60,7 +60,7 @@ const PROXY_CONFIG = [
   //   //   "^/wenZhouGas": ""
   //   // }
   // },
-  
+
 ];
 
 module.exports = PROXY_CONFIG;

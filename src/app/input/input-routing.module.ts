@@ -1,3 +1,5 @@
+import { UserInfoResolverService } from './user-info/user-info-resolver.service';
+import { UserInfoService } from './user-info/user-info.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,9 +7,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { CylinderInfoComponent } from './cylinder-info/cylinder-info.component';
 import { CylinderTagComponent } from './cylinder-tag/cylinder-tag.component';
 import { InputComponent } from './input.component';
-import { UploadComponent } from './upload/upload.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { UploadComponent } from './upload/upload.component';
+import { ExportComponent } from './export/export.component';
 const routes: Routes = [
   {
     path: '',
@@ -20,7 +23,8 @@ const routes: Routes = [
     children: [
       {
         path: 'user-info',
-        component: UserInfoComponent
+        component: UserInfoComponent,
+        resolve: { userType: UserInfoResolverService }
       },
       {
         path: 'user-card',
@@ -37,6 +41,10 @@ const routes: Routes = [
       {
         path: 'upload',
         component: UploadComponent
+      },
+      {
+        path: 'export',
+        component: ExportComponent
       },
     ]
   },

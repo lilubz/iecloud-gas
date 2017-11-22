@@ -6,14 +6,14 @@
   background-color: $color02;
 }
 
-@mixin common($text_align:center, $line-height:40px, $height:40px) {
+@mixin common($text_align:center, $line-height:35px, $height:40px) {
   text-align: $text_align;
   line-height: $line-height;
   height: $height;
   float: left;
   border: 1px solid #797979;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .ta-c{

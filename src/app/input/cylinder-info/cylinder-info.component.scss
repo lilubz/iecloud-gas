@@ -8,10 +8,14 @@
     }
     .textInput {
         // width: 40%; 
-        width:calc(100% - 130px);
+        width: calc(100% - 130px);
         max-width: 300px;
     }
-    ._choose{
-        height:70px;border-radius:20px;border:1px solid black;text-align:center
+    ._choose {
+        border-radius: 10px;
+        border: 1px solid black;
+    }
+    .ta-c {
+        text-align: center;
     }
 }

@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 // import { detailList } from './detail';
 import { MessageService } from 'primeng/components/common/messageservice';
-import {CylinderDetailService} from './cylinder-detail.service';
+import { CylinderDetailService } from './cylinder-detail.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
@@ -15,11 +15,11 @@ import 'rxjs/add/operator/map';
 })
 
 export class CylinderDetailComponent implements OnInit {
-    cylinderCode: any;
-    loading: any;
-    // data: any;
+  cylinderCode: any;
+  loading: any;
+  // data: any;
 
-  detailList:  {
+  detailList: {
     gcLabelInfo: any,
     gcSpecification: any,
     inspector: any,

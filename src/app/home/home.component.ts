@@ -1,4 +1,3 @@
-import { CylinderOverviewService } from './../archive/cylinder/cylinder-overview/cylinder-overview.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -6,12 +5,14 @@ import { LoginService } from './../login/login.service';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../core/userState.service';
+import { CylinderOverviewService } from './../archive/cylinder/cylinder-overview/cylinder-overview.service';
+import { CustomerOverviewService } from './../archive/customer/customer-overview/customer-overview.service';
 
 @Component({
   selector: 'gas-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [CylinderOverviewService],
+  providers: [CylinderOverviewService, CustomerOverviewService],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -21,12 +22,15 @@ export class HomeComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private userStateService: UserStateService,
-    private cylinderOverviewService: CylinderOverviewService) { }
+    private cylinderOverviewService: CylinderOverviewService,
+    private customerOverviewService: CustomerOverviewService
+  ) { }
 
   menus: MenuItem[];
   curTime: any;
   DateTime: any;
-  sum: any = 0;
+  sumCylinder: any = 0;
+  sumUser: any = 0;
   countyCylinders: {
     name: string,
     totalCount: number,
@@ -40,6 +44,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getCountiesOverview();
+    this.getCountiesOverviewUser();
     this.menus = [
       {
         label: '首页',
@@ -94,6 +99,7 @@ export class HomeComponent implements OnInit {
   logout() {
     this.loginService.logout();
   }
+
   getCountiesOverview() {
     const user = this.userStateService.getUser();
     if (user.organizationType === 1) {
@@ -102,7 +108,7 @@ export class HomeComponent implements OnInit {
           organizationId: user.organizationId || ''
         }).then(data => {
           if (data.status === 0) {
-            this.sum = this.calculateTotal('totalCount', data.data);
+            this.sumCylinder = this.calculateTotal('totalCount', data.data);
           } else {
             this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
           }
@@ -115,10 +121,44 @@ export class HomeComponent implements OnInit {
           if (data.status === 0) {
             for (let i = 0; i < data.data.length; i++) {
               if (user.regionId === data.data[i].regionId) {
-                this.sum = data.data[i].totalCount || 0;
+                this.sumCylinder = data.data[i].totalCount || 0;
                 break;
               } else {
-                this.sum += data.data[i].totalCount || 0;
+                this.sumCylinder += data.data[i].totalCount || 0;
+              }
+            }
+          } else {
+            this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
+          }
+        });
+    }
+  }
+
+  getCountiesOverviewUser() {
+    const user = this.userStateService.getUser();
+    if (user.organizationType === 1) {
+      this.customerOverviewService
+        .getEnterprisesOverviewByOrganizationId({
+          organizationId: user.organizationId || ''
+        }).then(data => {
+          if (data.status === 0) {
+            this.sumUser = this.calculateTotal('userCount', data.data);
+          } else {
+            this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
+          }
+        });
+    } else {
+      this.customerOverviewService
+        .getCountiesOverview({
+          areaID: user.regionId || ''
+        }).then(data => {
+          if (data.status === 0) {
+            for (let i = 0; i < data.data.length; i++) {
+              if (user.regionId === data.data[i].regionId) {
+                this.sumUser = data.data[i].userCount || 0;
+                break;
+              } else {
+                this.sumUser += data.data[i].userCount || 0;
               }
             }
           } else {

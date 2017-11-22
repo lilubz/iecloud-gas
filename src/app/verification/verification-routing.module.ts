@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VerificationComponent } from './verification.component';
+import { CustomerComponent } from './customer/customer.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CylinderTagComponent } from './cylinder-tag/cylinder-tag.component';
+import { CylinderVerificationComponent } from './cylinder-verification/cylinder-verification.component';
 const routes: Routes = [
   {
     path: '',
@@ -15,18 +17,14 @@ const routes: Routes = [
     path: '',
     component: VerificationComponent,
     children: [
-      // {
-      //   path: 'customer',
-      //   component:
-      // },
-      // {
-      //   path: 'cylinder',
-      //   component:
-      // },
-      // {
-      //   path: 'delivery-man-verification',
-      //   component:
-      // },
+      {
+        path: 'customer',
+        component: CustomerComponent
+      },
+      {
+        path: 'cylinder',
+        component: CylinderVerificationComponent
+      },
       {
         path: 'cylinder-tag',
         component: CylinderTagComponent
@@ -39,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'user-info',
+    redirectTo: 'customer',
     pathMatch: 'full'
   }
 ];

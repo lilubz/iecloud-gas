@@ -11,25 +11,25 @@ export class UserCardService {
 
   constructor(private httpService: HttpService, private userStateService: UserStateService, private router: Router) { }
 
-  applyCard(params: File): Promise<any> {
+  applyCard(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(API.getCylinderCountiesOverview, params);
+      .withCredentialsPostRequest(API.applyCustomterCard, params);
   }
   getUnbindCustomerList(params): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(API.getCylinderCountiesOverview, params);
+      .getRequest(API.listNoBindGcUser, params);
   }
   getUnbindCardList(params): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(API.getCylinderCountiesOverview, params);
+      .getRequest(API.listUserCertNumUndistributed, params);
   }
   getGasSite(params): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(API.getCylinderCountiesOverview, params);
+      .getRequest(API.listSupplyStation, params);
   }
   bindCustomerAndCard(params): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(API.getCylinderCountiesOverview, params);
+      .withCredentialsPostRequest(API.userCardBind, params);
   }
 
 }

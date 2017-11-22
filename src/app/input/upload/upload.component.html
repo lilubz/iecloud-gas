@@ -1,31 +1,30 @@
-<div class="upload">
+
+<div class="upload ui-g-12">
+  <div class="ui-g-12">
   <h2>注意：</h2>
   <p class="detail">此处仅进行以往已绑定关联基本信息的批量上传。
     <br> 新录入数据，请于对应模块中进行操作！</p>
   <ul>
     <li class="input-group">
       <label for="">已关联用户信息上传：</label>
-      <p-fileUpload class="fileUpload" name="gcUserCertInfoExcel" url="{{userUrl}}" maxFileSize="20000000" mode="basic" chooseLabel="请选择要上传的文件"
-        (onUpload)="result($event)" (onError)="result($event)"></p-fileUpload>
-      <a href="./../../assets/excel/user.3_已绑定用户信息上传模板.xlsx" class="download">点击下载此模版</a>
+      <p-fileUpload class="fileUpload" name="myfile[]" url="./upload.php" mode="basic" chooseLabel="请选择要上传的文件"></p-fileUpload>
+      <a href="javascript:void(0);" class="download" download="">模板下载 xxxx.xls</a>
     </li>
     <li class="input-group">
       <label for="">已关联气瓶信息上传：</label>
-      <p-fileUpload class="fileUpload" name="gcLableInfoExcel" url="{{gcUrl}}" mode="basic" chooseLabel="请选择要上传的文件" (onUpload)="result($event)"
-        (onError)="result($event)"></p-fileUpload>
-      <a href="./../../assets/excel/gas.3_已关联气瓶信息上传.xlsx" class="download">点击下载此模版</a>
+      <p-fileUpload class="fileUpload" name="myfile[]" url="./upload.php" mode="basic" chooseLabel="请选择要上传的文件"></p-fileUpload>
+      <a href="javascript:void(0);" class="download" download="">模板下载 xxxx.xls</a>
     </li>
     <li class="input-group">
       <label for="">安全供气卡使用信息：</label>
-      <p-fileUpload class="fileUpload" name="gcUserCertExcel" url="{{cardUrl}}" mode="basic" chooseLabel="请选择要上传的文件" (onUpload)="result($event)"
-        (onError)="result($event)"></p-fileUpload>
-      <a href="./../../assets/excel/user.2_未绑定用户身份认证卡信息模板.xlsx" class="download">点击下载此模版</a>
+      <p-fileUpload class="fileUpload" name="myfile[]" url="./upload.php" mode="basic" chooseLabel="请选择要上传的文件"></p-fileUpload>
+      <a href="javascript:void(0);" class="download" download="">模板下载 xxxx.xls</a>
     </li>
     <li class="input-group">
       <label for="">&#12288;气瓶标签使用信息：</label>
-      <p-fileUpload class="fileUpload" name="gcUserCertExcel" url="{{tagUrl}}" mode="basic" chooseLabel="请选择要上传的文件" (onUpload)="result($event)"
-        (onError)="result($event)"></p-fileUpload>
-      <a href="./../../assets/excel/gas.2_未绑定气瓶标签信息.xlsx" class="download">点击下载此模版</a>
+      <p-fileUpload class="fileUpload" name="myfile[]" url="./upload.php" mode="basic" chooseLabel="请选择要上传的文件"></p-fileUpload>
+      <a href="javascript:void(0);" class="download" download="">模板下载 xxxx.xls</a>
     </li>
   </ul>
+</div>
 </div>

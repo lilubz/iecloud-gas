@@ -25,6 +25,7 @@ export class LoginService {
           return true;
         } else if (data.status === 4) {// 已经登录
           this.messageService.add({ severity: 'warning', summary: '您已登录', detail: '如需登录其它账号请先退出再登录！' });
+          this.userStateService.setUser(data.data || '');
           this.router.navigate(['/archive']);
           return true;
         } else {

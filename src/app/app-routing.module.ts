@@ -39,7 +39,10 @@ const routes: Routes = [
       // },
       {
         path: 'delivery',
-        component: PageNotFoundComponent
+        loadChildren: './delivery/delivery.module#DeliveryModule',
+        data: {
+          title: '配送管理'
+        }
       },
       {
         path: 'supervise',
@@ -55,7 +58,10 @@ const routes: Routes = [
       },
       {
         path: 'system',
-        component: PageNotFoundComponent
+        loadChildren: './system/system.module#SystemModule',
+        data: {
+          title: '系统管理'
+        }
       },
       {
         path: 'input',

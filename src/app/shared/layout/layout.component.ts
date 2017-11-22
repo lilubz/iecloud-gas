@@ -39,7 +39,10 @@ export class LayoutComponent implements OnInit {
       {
         label: '配送监管',
         icon: 'menu-icon distribution-icon',
-        routerLink: ['/delivery']
+        routerLink: ['/delivery'],
+        items: [
+          { label: '首页', routerLink: ['/delivery/dashboard'] },
+        ]
       },
       {
         label: '监管事务',
@@ -59,11 +62,14 @@ export class LayoutComponent implements OnInit {
       {
         label: '系统配置',
         icon: 'menu-icon system-icon',
-        routerLink: ['/system']
+        routerLink: ['/system'],
+        items: [
+          { label: '个人信息', routerLink: ['/system/user'] },
+        ]
       },
       {
         label: '信息录入',
-        icon: 'menu-icon system-icon',
+        icon: 'menu-icon input-icon',
         routerLink: ['/input']
       },
       {
