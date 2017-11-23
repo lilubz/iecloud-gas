@@ -4,6 +4,7 @@
     "name": "iecloud-gas"
   },
   "apps": [{
+    "baseHref": "wenzhou",
     "root": "src",
     "outDir": "dist",
     "assets": [
@@ -22,7 +23,7 @@
       "scss/styles.scss"
     ],
     "scripts": [
-      
+
     ],
     "environmentSource": "environments/environment.ts",
     "environments": {
@@ -52,6 +53,9 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {},
+    "serve": {
+      "proxyConfig": "proxy.conf.js"
+    }
   }
 }

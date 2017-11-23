@@ -124,6 +124,8 @@ export class DashboardComponent implements OnInit {
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取配送员信息失败', detail: data.msg });
       }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '', detail: error });
     });
   }
   getDispatcher(regionId?) {
@@ -138,6 +140,8 @@ export class DashboardComponent implements OnInit {
         this.dispatcherList = [{ label: '--请选择--', value: '' }];
         this.messageService.add({ severity: 'warn', summary: '获取配送员信息失败', detail: data.msg });
       }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '', detail: error });
     });
   }
 
@@ -170,6 +174,8 @@ export class DashboardComponent implements OnInit {
       } else {
         this.messageService.add({ severity: 'warn', summary: '指派失败', detail: data.msg });
       }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '', detail: error });
     });
   }
 
@@ -196,6 +202,8 @@ export class DashboardComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '添加失败', detail: data.msg });
         }
+      }).catch(error => {
+        this.messageService.add({ severity: 'error', summary: '', detail: error });
       });
     }
 
@@ -233,6 +241,8 @@ export class DashboardComponent implements OnInit {
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取街道信息失败', detail: data.msg });
       }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '', detail: error });
     });
   }
 
@@ -247,6 +257,8 @@ export class DashboardComponent implements OnInit {
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取用户信息失败', detail: data.msg });
       }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '', detail: error });
     });
   }
 

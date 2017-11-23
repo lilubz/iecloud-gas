@@ -307,12 +307,12 @@ export class CylinderTagComponent implements OnInit {
   changeSearchOpt(event) {
     const params = {
       pageSize: this.dataList.page.size,
-      pageNumber: this.dataList.page.number,
+      pageNumber: 1, // this.dataList.page.number
     };
     this.dataList.header = event.value.header;
     this.dataList.type = event.value.type;
     this.dataList.page.total = 0;
-    this.dataList.data = [];
+    this.dataList.data = [{ display: false}];
     this.getListData(params);
   }
   pageChange(event) {
@@ -321,6 +321,7 @@ export class CylinderTagComponent implements OnInit {
       pageNumber: event.first / event.rows + 1
     };
     this.dataList.page.size = params.pageSize;
+    this.dataList.page.number = params.pageNumber;
     this.getListData(params);
   }
   getListData(params) {
@@ -329,9 +330,6 @@ export class CylinderTagComponent implements OnInit {
     } else if (this.dataList.type === 'gas') {
       this.getCylinders(params);
     }
-  }
-  test() {
-    console.log(this);
   }
 
   /**
@@ -359,7 +357,7 @@ export class CylinderTagComponent implements OnInit {
       .then(data => {
         if (data.status === 0) {
           this.setMessages('success', '操作成功', data.msg);
-          this.dialog.bind = false;
+          this.cancelBind();
         } else {
           this.setMessages('warn', '响应消息', data.msg);
         }
@@ -372,7 +370,9 @@ export class CylinderTagComponent implements OnInit {
     this.cylinderTagService.getUnboundGcLabelInfo(params)
       .then(data => {
         if (data.status === 0) {
-          this.dataList.data = data.data.list;
+          setTimeout(() => {
+            this.dataList.data = data.data.list;
+          }, 0);
           this.dataList.page.total = data.data.total;
         } else {
           this.dataList.data = [];
@@ -390,7 +390,9 @@ export class CylinderTagComponent implements OnInit {
     this.cylinderTagService.getUnboundCylinderInfo(params)
       .then(data => {
         if (data.status === 0) {
-          this.dataList.data = data.data.list;
+          setTimeout(() => {
+            this.dataList.data = data.data.list;
+          }, 0);
           this.dataList.page.total = data.data.total;
         } else {
           this.dataList.data = [];

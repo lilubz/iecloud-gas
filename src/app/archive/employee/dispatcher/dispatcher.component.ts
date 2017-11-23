@@ -66,9 +66,6 @@ export class DispatcherComponent implements OnInit {
   ngOnInit() {
     this.cylinderSelectOpt();
   }
-  test() {
-    console.log(this);
-  }
   onSearch(page?) {
     let params = {};
     if (typeof page === 'undefined') {

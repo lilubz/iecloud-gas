@@ -1,6 +1,6 @@
+import { API } from './../../core/api';
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ExportService, } from './export.service';
-import { API_TOKEN } from '../../core/api';
 import { error } from 'selenium-webdriver';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Validators, FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
@@ -20,7 +20,6 @@ export class ExportComponent implements OnInit, OnDestroy {
 
   // description: string;
   constructor(private _service: ExportService,
-    @Inject(API_TOKEN) private API,
     private messageService: MessageService,
     private fb: FormBuilder) { }
   exportParams: {
@@ -37,9 +36,9 @@ export class ExportComponent implements OnInit, OnDestroy {
 
   exportUserInfo() {
     this._service.exportuserInfo({}).then(data => {
-      this.exportParams.exportUserInfoUrl = 'http://192.168.1.26:8080' + data.data;
-      window.location.href = this.exportParams.exportUserInfoUrl;
       if (data.status === 0) {
+        this.exportParams.exportUserInfoUrl = API.url + data.data;
+        window.location.href = this.exportParams.exportUserInfoUrl;
         setTimeout(() => {
           this.messageService.add({
             severity: 'success',
@@ -49,7 +48,7 @@ export class ExportComponent implements OnInit, OnDestroy {
         }, 2000);
       } else {
         this.messageService.add({
-          severity: 'failed',
+          severity: 'warn',
           summary: '导出失败！',
           detail: '导出失败！'
         });
@@ -64,9 +63,9 @@ export class ExportComponent implements OnInit, OnDestroy {
   }
   exportCardInfo() {
     this._service.exportcardInfo({}).then(data => {
-      this.exportParams.exportCardInfoUrl = 'http://192.168.1.26:8080' + data.data;
-      window.location.href = this.exportParams.exportCardInfoUrl;
       if (data.status === 0) {
+        this.exportParams.exportCardInfoUrl = API.url + data.data;
+        window.location.href = this.exportParams.exportCardInfoUrl;
         setTimeout(() => {
           this.messageService.add({
             severity: 'success',
@@ -76,7 +75,7 @@ export class ExportComponent implements OnInit, OnDestroy {
         }, 2000);
       } else {
         this.messageService.add({
-          severity: 'failed',
+          severity: 'warn',
           summary: '导出失败！',
           detail: '导出失败！'
         });
@@ -91,9 +90,9 @@ export class ExportComponent implements OnInit, OnDestroy {
   }
   exportCylinderInfo() {
     this._service.exportcylinderInfo({}).then(data => {
-      this.exportParams.exportCylinderInfoUrl = 'http://192.168.1.26:8080' + data.data;
-      window.location.href = this.exportParams.exportCylinderInfoUrl;
       if (data.status === 0) {
+        this.exportParams.exportCylinderInfoUrl = API.url + data.data;
+        window.location.href = this.exportParams.exportCylinderInfoUrl;
         setTimeout(() => {
           this.messageService.add({
             severity: 'success',
@@ -103,7 +102,7 @@ export class ExportComponent implements OnInit, OnDestroy {
         }, 2000);
       } else {
         this.messageService.add({
-          severity: 'failed',
+          severity: 'warn',
           summary: '导出失败！',
           detail: '导出失败！'
         });
@@ -118,9 +117,9 @@ export class ExportComponent implements OnInit, OnDestroy {
   }
   exportCylinderTagInfo() {
     this._service.exportcylinderTagInfo({}).then(data => {
-      this.exportParams.exportCylinderTagInfoUrl = 'http://192.168.1.26:8080' + data.data;
-      window.location.href = this.exportParams.exportCylinderTagInfoUrl;
       if (data.status === 0) {
+        this.exportParams.exportCylinderTagInfoUrl = API.url + data.data;
+        window.location.href = this.exportParams.exportCylinderTagInfoUrl;
         setTimeout(() => {
           this.messageService.add({
             severity: 'success',
@@ -130,7 +129,7 @@ export class ExportComponent implements OnInit, OnDestroy {
         }, 2000);
       } else {
         this.messageService.add({
-          severity: 'failed',
+          severity: 'warn',
           summary: '导出失败！',
           detail: '导出失败！'
         });

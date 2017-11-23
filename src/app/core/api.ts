@@ -113,11 +113,16 @@ export const API = {
   'getUserCertNumApply': URL + 'basicInformation/gcUserInfo/getUserCertNumApply.do',
   'getCheckApply': URL + 'basicInformation/gcUserInfo/checkUserCertCardApply.do',
 
+  // 身份认证卡审核
+  'getGcLabelNumApply': URL + 'basicInformation/gasCylinder/getGcLabelNumApply.do',
+  'sendGcLabelApply': URL + 'basicInformation/gasCylinder/checkGcLabelApply.do',
+
   // 信息批量导入
   'importUser': URL + 'dataImport/gcUser/importGcUserCertInfo.do',
   'importGc': URL + 'dataImport/gasCylinder/importGasLableInfo.do',
   'importCard': URL + 'dataImport/gcUser/importGcUserCertInfoUnbound.do',
   'importTag': URL + 'dataImport/gasCylinder/importGasCylinderUnboundLable.do',
+  'importGcUserInfo': URL + 'dataImport/gcUser/importGcUserInfo.do',
 
   // 登录
   'signIn': URL + 'sysUserPermissions/user/login.do',

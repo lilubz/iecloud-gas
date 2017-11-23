@@ -83,7 +83,7 @@ export class UserCardComponent implements OnInit {
   }
   onExamine(id, isPass: boolean) {
     this.sendCheckApply({
-      applyId: 1,
+      applyId: id,
       isPass: isPass
     });
   }
@@ -98,7 +98,6 @@ export class UserCardComponent implements OnInit {
             };
           });
           this.dropdown.regionOpt.unshift(this.dropdown.default);
-          this.setMessages('success', '操作成功', data.msg);
         } else {
           this.setMessages('warn', '响应消息', data.msg);
         }

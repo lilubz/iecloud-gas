@@ -59,12 +59,12 @@
               [minDate]="timeManufacture.value"
               placeholder="2017-10-1"
               [showButtonBar]="true"
-               dateFormat="yy-mm-dd"  
+               dateFormat="yy-mm-dd"
                showOtherMonths="true"
-                selectOtherMonths="true" 
-                [monthNavigator]="true" 
-                [yearNavigator]="true" 
-                yearRange="1970:2050" 
+                selectOtherMonths="true"
+                [monthNavigator]="true"
+                [yearNavigator]="true"
+                yearRange="1970:2050"
                 readonlyInput="true"
                 [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
@@ -79,7 +79,7 @@
               #timeManufacture
               (onSelect)="selectedTimeManufacture($event)"
               [maxDate]="intoStationDate.value"
-              readonlyInput="true" 
+              readonlyInput="true"
               [showButtonBar]="true"
               placeholder="2017-08-08" dateFormat="yy-mm-dd"  showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"  [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
@@ -208,14 +208,14 @@
     </div>
     <div class="ui-g-3">
       <div class="ui-g-12 _choose">
-        <p-fileUpload name="gasCylinderExcel" url="{{cylinderInfoUrl}}"  [multiple]="false" 
+        <p-fileUpload name="gasCylinderExcel" url="{{cylinderInfoUrl}}"  [multiple]="false"
         invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
         invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="气瓶基本信息导入" uploadLabel="上传" cancelLabel="取消" maxFileSize="10000000"
         (onUpload)="result($event)" (onError)="result($event)" >
       </p-fileUpload>
     </div>
       <div class="ui-g-12 ta-c">
-        <span>模板下载</span><a href="javascript:;">XXXX.xls</a>
+        <span>模板下载</span><a href="../../../assets/excel/gas.1_未关联气瓶信息上传.xlsx">XXXX.xls</a>
       </div>
       <div class="ui-g-12">
         <h3 style="color:red">注意事项：</h3>
@@ -236,4 +236,3 @@
   </div>
 </div>
 <p-growl [value]="msgs"></p-growl>
-

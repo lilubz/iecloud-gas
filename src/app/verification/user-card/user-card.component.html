@@ -31,10 +31,9 @@
           <span>{{rowData.applyTime|date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
-      <!-- <p-column  field="rangeNumberVOList" header="分配号段"></p-column> -->
       <p-column header="分配号段">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <!-- <span>{{JSON.stringify(rowData.rangeNumberVOList)}}</span> -->
+          <span>{{rowData.rangeNumberVOList | rangeNumber}}</span>
         </ng-template>
       </p-column>
       <p-column  field="status" header="审核状态"></p-column>
@@ -46,7 +45,6 @@
       </p-column>
       <p-column [style]="{'width':'100px'}" header="操作">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <!-- <span>{{rowData.checkPerson|json}}</span> -->
           <div *ngIf="!rowData.checkPerson">
             <span class="pass" (click)="onExamine(rowData.applyId,true)">通过&nbsp;</span>
             <span class="reject" (click)="onExamine(rowData.applyId,false)">&nbsp;拒绝</span>

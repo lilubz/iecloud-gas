@@ -1,7 +1,7 @@
 <div class="ui-g tag">
 	<div class="ui-g-9">
 		<div class="ui-g-12">
-			<h2 (click)="test()" class="title">气瓶标签分配</h2>
+			<h2 class="title">气瓶标签分配</h2>
 		</div>
 		<div class="ui-g-12 btns">
 			<button pButton type="button" label="批量绑定" (click)="onBatchBind()"></button>
@@ -19,7 +19,7 @@
 								</div>
 								<div class="ui-g-6">
 									<p-autoComplete [(ngModel)]="bind.list[i][0]" [suggestions]="proposals" (completeMethod)="getProposals($event,[i,0])" field="{{dropdown.numberValue.paramsName}}"
-										[minLength]="1" (onBlur)="onBlur([i,0])" autoHighlight="true" emptyMessage="您的输入可能不正确">
+										[minLength]="1" (onBlur)="onBlur([i,0])" autoHighlight="true" emptyMessage="您的输入不正确">
 										<ng-template let-value pTemplate="item">
 											<span>{{value[dropdown.numberValue.paramsName]}}<br>{{value.enterpriseName}}</span>
 										</ng-template>
@@ -79,7 +79,7 @@
 					scrollHeight="510px" scrollable="true">
 				<p-column [style]="{'width':'100px'}" header="序号">
 					<ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
-						<span>{{index+1}}</span>
+						<span *ngIf="rowData.display !== false">{{index+1}}</span>
 					</ng-template>
 				</p-column>
 				<p-column field="{{item.value}}" header="{{item.label}}" *ngFor="let item of dataList.header"></p-column>

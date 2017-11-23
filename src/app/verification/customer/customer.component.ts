@@ -83,6 +83,9 @@ export class CustomerComponent implements OnInit {
   }
 
   getEnterpriseRegisterDetail() {
+    if (!this.selectedEnterpriseId) {
+      return false;
+    }
     this.customerService.listUserInfoRecentlyRegister({
       enterpriseId: this.selectedEnterpriseId,
       pageNumber: this.recordPageNumber,

@@ -244,7 +244,7 @@
         [showCancelButton]="false" previewWidth="100" [customUpload]="true">
       </p-fileUpload> -->
 
-      <p-fileUpload name="gcUserExcel" url="./wenZhouGas/dataImport/gcUser/importGcUserInfo.do" [multiple]="false" invalidFileSizeMessageSummary="{0}: 文件过大,"
+      <p-fileUpload name="gcUserExcel" [url]="importGcUserInfoUrl" [multiple]="false" invalidFileSizeMessageSummary="{0}: 文件过大,"
         invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型," invalidFileTypeMessageDetail="允许的文件类型是: {0}."
         chooseLabel="用户基本信息导入" uploadLabel="上传" cancelLabel="取消" maxFileSize="10000000" (onUpload)="uploadCustomerFile($event)"
         (onError)="uploadCustomerFile($event)">
@@ -254,7 +254,7 @@
 
     <div class="ui-g-12">
       <span>模板下载：</span>
-      <a href="./../../assets/excel/未绑定用户实名登记导入文件模板.xlsx">未绑定用户实名登记模板.xls</a>
+      <a href="../../../assets/excel/未绑定用户实名登记导入文件模板.xlsx" target="_blank">未绑定用户实名登记模板.xls</a>
     </div>
     <div class="ui-g-12 tips">
       <h3 class="warning">注意事项：</h3>

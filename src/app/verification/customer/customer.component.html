@@ -1,7 +1,7 @@
 <div class="ui-g-12">
   <div class="ui-g-12">
     所在区：
-    <p-dropdown [options]="regions" [(ngModel)]="selectedRegionId" (onChange)="getEnterpriseStatistic()"></p-dropdown>
+    <p-dropdown [options]="regions" [(ngModel)]="selectedRegionId" [style]="{'width':'150px'}" (onChange)="getEnterpriseStatistic()"></p-dropdown>
   </div>
   <div class="ui-g-12">
     <p-dataTable [value]="enterpriseRegisterStatistic" emptyMessage="未查询到数据" [paginator]="true" [rows]="statisticPageSize" [lazy]="true"
@@ -23,9 +23,9 @@
   </div>
 </div>
 
-<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="960" [responsive]="true" [style]="{'border':'none'}">
+<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="960" [responsive]="true" [style]="{'border':'none'}" positionTop="50">
   <div class="ui-g-12">
-    <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [paginator]="true" [rows]="recordPageSize" [lazy]="true"
+    <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [paginator]="true" [rows]="recordPageSize" [lazy]="true" scrollHeight="360px"
       (onLazyLoad)="onRecordPageChange($event)" [scrollable]="true" [totalRecords]="recordTotal" [rowsPerPageOptions]="[5,10,20]">
       <p-column [style]="{'width':'150px'}" field="regionName" header="所在区"></p-column>
       <p-column [style]="{'width':'150px'}" field="userName" header="用户名称"></p-column>
@@ -55,6 +55,6 @@
     </p-dataTable>
   </div>
   <p-footer>
-    <button type="button" pButton icon="fa-check" (click)="detailVisible=false" label="确定"></button>
+    <button type="button" pButton (click)="detailVisible=false" label="确定"></button>
   </p-footer>
 </p-dialog>

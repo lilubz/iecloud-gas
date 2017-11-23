@@ -8,6 +8,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { VerificationComponent } from './verification.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CylinderTagComponent } from './cylinder-tag/cylinder-tag.component';
+import { RangeNumberPipe } from './range-number.pipe';
 import { CylinderVerificationService } from './cylinder-verification/cylinder-verification.service';
 import { CylinderVerificationComponent } from './cylinder-verification/cylinder-verification.component';
 @NgModule({
@@ -18,6 +19,10 @@ import { CylinderVerificationComponent } from './cylinder-verification/cylinder-
   ],
   declarations: [
     VerificationComponent,
+    CustomerComponent,
+    UserCardComponent,
+    CylinderTagComponent,
+    RangeNumberPipe,
     CustomerComponent,
     UserCardComponent,
     CylinderVerificationComponent,

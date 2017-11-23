@@ -1,3 +1,4 @@
+import { API } from './../../core/api';
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -18,6 +19,8 @@ import { Message } from 'primeng/components/common/api';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
+  importGcUserInfoUrl = API.importGcUserInfo;
+
   // 证件类型
   IDTypes: SelectItem[] = [
     { label: '身份证', value: '身份证' },

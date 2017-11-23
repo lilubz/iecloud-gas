@@ -170,7 +170,6 @@ export class CustomerListComponent implements OnInit {
       }
     }, (error) => {
       this.customerList = [];
-      console.log(error);
       this.setMessages('error', '查询失败', '错误消息：' + error);
     });
   }
