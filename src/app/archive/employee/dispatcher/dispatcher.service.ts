@@ -9,11 +9,12 @@ import {
   HttpService
 } from './../../../core/http.service';
 import {
-  API_TOKEN
+  API
 } from './../../../core/api';
 @Injectable()
 export class DispatcherService {
-  constructor(private HttpService: HttpService, @Inject(API_TOKEN) private API) { }
+  API = API;
+  constructor(private HttpService: HttpService ) { }
 
   getDropdownForCorpInfoInRegion(params?: any): Promise<any> {
     return this.HttpService.getRequest(this.API.getDropdownForCorpInfoInRegion, params);

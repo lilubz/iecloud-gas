@@ -1,7 +1,7 @@
-import { Component, OnInit, Injectable, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MessageService } from 'primeng/components/common/messageservice';
-import { API_TOKEN } from './../../core/api';
+import { API } from './../../core/api';
 
 @Component({
   selector: 'gas-upload',
@@ -10,8 +10,8 @@ import { API_TOKEN } from './../../core/api';
 })
 export class UploadComponent implements OnInit {
 
-  constructor(private messageService: MessageService, @Inject(API_TOKEN) private API) { }
-
+  constructor(private messageService: MessageService) { }
+  API = API;
   userUrl = this.API.importUser;
   gcUrl = this.API.importGc;
   cardUrl = this.API.importCard;

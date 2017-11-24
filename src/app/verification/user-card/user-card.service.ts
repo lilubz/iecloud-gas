@@ -2,14 +2,15 @@ import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserStateService } from './../../core/userState.service';
-import { API_TOKEN } from './../../core/api';
+import { API } from './../../core/api';
 import { HttpService } from './../../core/http.service';
 
 @Injectable()
 export class UserInfoService {
+  API = API;
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
 
-  constructor(private httpService: HttpService, @Inject(API_TOKEN) private API,
+  constructor(private httpService: HttpService,
     private userStateService: UserStateService, private router: Router) { }
 
 

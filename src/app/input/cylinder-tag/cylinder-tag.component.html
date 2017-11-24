@@ -4,8 +4,8 @@
 			<h2 class="title">气瓶标签分配</h2>
 		</div>
 		<div class="ui-g-12 btns">
-			<button pButton type="button" label="批量绑定" (click)="onBatchBind()"></button>
-			<p-dialog [visible]="dialog.bind" [showHeader]="false" [closeOnEscape]="false" [width]="700" [contentStyle]="{'padding':'0','overflow':'visible'}" [minWidth]="700">
+			<button pButton type="button" label="批量绑定" (click)="onBatchBind()" icon="fa-link" class="bind"></button>
+			<p-dialog [visible]="dialog.bind" [showHeader]="false" [closeOnEscape]="false" [width]="700" [contentStyle]="{'padding':'0','overflow':'visible'}" [minWidth]="700" [modal]="true">
 				<div class="bind">
 					<h2>批量绑定</h2>
 					<div class="ui-g content">
@@ -49,9 +49,9 @@
 				</div>
 			</p-dialog>
 
-			<button pButton type="button" label="标签申请" (click)="onTagApply()"></button>
+			<button pButton type="button" label="标签申请" (click)="onTagApply()" icon="fa-plus" class="ui-button-secondary"></button>
 			<p-dialog [visible]="dialog.tagApply" [showHeader]="false" [closeOnEscape]="false" 
-					[minWidth]="400" [width]="400" [breakpoint]="400">
+					[minWidth]="400" [width]="400" [breakpoint]="400" [modal]="true">
 				<div class="tagApply">
 					<div class="input-group">
 						<label>申请数量</label>

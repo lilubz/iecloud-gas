@@ -6,11 +6,12 @@ import 'rxjs/add/operator/toPromise';
 import { UserStateService } from './../../core/userState.service';
 
 import { HttpService } from './../../core/http.service';
-import { API_TOKEN } from './../../core/api';
+import { API } from './../../core/api';
 @Injectable()
 export class CylinderTagService {
+  API = API;
   private formHeaders = new Headers({ 'Content-Type': 'application/json; charser=UTF-8' });
-  constructor(private HttpService: HttpService, @Inject(API_TOKEN) private API,
+  constructor(private HttpService: HttpService,
     private http: Http, private router: Router, private userStateService: UserStateService) { }
 
   listTagApplication(params: any): Promise<any> {

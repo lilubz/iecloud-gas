@@ -9,12 +9,6 @@
   }
   .btns{
     padding-bottom:10px;
-    button{
-      margin-right:20px;
-      padding:5px;
-      font-size:16px;
-      font-weight: bold;
-    }
   }
   .bind{
     text-align: center;
@@ -27,7 +21,6 @@
     }
     input{
       width:90%;
-
     }
     .content{
       font-size:14px;
@@ -42,13 +35,13 @@
       }
 
     }
-    button {
-      margin: 0 15px 20px 15px;
-      height: 40px;
-      width: 140px;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+    // button {
+    //   margin: 0 15px 20px 15px;
+    //   height: 40px;
+    //   width: 140px;
+    //   border-radius: 5px;
+    //   font-weight: bold;
+    // }
 
   }
   .data-table{
@@ -80,10 +73,16 @@
       margin:0 15px;
     }
   }
-  .cancel{
-    background-color:#bcbcbc;
-    border-color:#bcbcbc;
+  .bind {
+  border-radius: 10px;
+  height: 42px;
+  font-weight: bold;
+  font-size: 20px;
   }
+  // .cancel{
+  //   background-color:#bcbcbc;
+  //   border-color:#bcbcbc;
+  // }
   .helpBlock{
     color:#f00;
     text-align: left;

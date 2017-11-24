@@ -1,14 +1,15 @@
 import { Injectable, Inject } from '@angular/core';
 import { Headers } from '@angular/http';
-import { API_TOKEN } from './../../../core/api';
+import { API } from './../../../core/api';
 import { HttpService } from './../../../core/http.service';
 
 @Injectable()
 export class CustomerListService {
+  API = API;
 
   private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
 
-  constructor(private httpService: HttpService, @Inject(API_TOKEN) private API) { }
+  constructor(private httpService: HttpService ) { }
 
   getDropdownForUserNature(params: any): Promise<any> {
     return this.httpService
