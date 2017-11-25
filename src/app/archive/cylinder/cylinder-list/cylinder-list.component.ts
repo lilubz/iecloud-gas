@@ -157,7 +157,10 @@ export class CylinderListComponent implements OnInit {
       if (data.status === 0) {
         const all = [{ label: '全部', value: '' }];
         this.searchOpt.company = all.concat(data.data.enterpriseName);
-        this.searchOpt.make = all.concat(data.data.productionUnit);
+        this.searchOpt.make = all.concat(data.data.productionUnit.map((item) => ({
+          label: item.name,
+          value: item.manufactureOrg
+        })));
       } else {
         this.setMessages('error', '查询结果', '响应：' + data.msg);
       }
