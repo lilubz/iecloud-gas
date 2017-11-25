@@ -4,13 +4,14 @@
     "name": "iecloud-gas"
   },
   "apps": [{
-    "baseHref": "wenzhou",
+    "baseHref": "",
     "root": "src",
     "outDir": "dist",
     "assets": [
       "assets",
       "favicon.ico",
-      "update-browser.html"
+      "update-browser.html",
+      "app-download.html"
     ],
     "index": "index.html",
     "main": "main.ts",

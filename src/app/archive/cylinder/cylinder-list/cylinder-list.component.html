@@ -58,7 +58,7 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码">
           <ng-template let-col let-cylinder="rowData" pTemplate="body">
-            <a href="javascript:0;" [routerLink]="['../detail', cylinder.gasLabelNumber]">{{ cylinder.gasLabelNumber }}</a>
+            <a href="javascript:0;" [routerLink]="['../detail', cylinder.gasLabelNumber || '']">{{ cylinder.gasLabelNumber }}</a>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'150px'}" field="regionName" header="所属行政区"></p-column>

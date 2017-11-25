@@ -2,7 +2,8 @@
 
   <h2 class="title">企业一览表</h2>
   <!-- 企业概览 -->
-  <p-dataTable [value]="enterpriseCylinders" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" [loading]="loading" emptyMessage="未查询到数据">
+  <p-dataTable [value]="enterpriseCylinders" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" [loading]="loading"
+    emptyMessage="未查询到数据">
 
     <p-column header="序号" [style]="{'width':'50px'}">
       <ng-template pTemplate="body" let-index="rowIndex">
@@ -11,7 +12,7 @@
     </p-column>
     <p-column field="enterpriseName" header="企业名称" footer="合计" [style]="{'width':'30%'}">
       <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
-        <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCylinder.enterpriseNumber}]" class="area">{{countyCylinder[col.field]}}</a>
+        <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCylinder.enterpriseNumber||''}]" class="area">{{countyCylinder[col.field]}}</a>
       </ng-template>
     </p-column>
     <p-column field="totalCount" header="气瓶数" [footer]="calculateTotal('totalCount', enterpriseCylinders)"></p-column>

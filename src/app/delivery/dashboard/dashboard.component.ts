@@ -123,6 +123,7 @@ export class DashboardComponent implements OnInit {
         this.total = data.data.total;
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取配送员信息失败', detail: data.msg });
+        this.orderList = [];
       }
     }).catch(error => {
       this.messageService.add({ severity: 'error', summary: '', detail: error });

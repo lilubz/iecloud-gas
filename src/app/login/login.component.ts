@@ -29,8 +29,8 @@ export class LoginComponent implements OnDestroy {
 
   signIn() {
     this.loginService.signIn({
-      phone: this.userName,
-      password: this.password
+      username: this.userName.trim(),
+      password: this.password.trim()
     });
   }
 }

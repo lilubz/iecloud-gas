@@ -78,6 +78,7 @@ export class CustomerComponent implements OnInit {
         this.statisticTotal = data.data.total;
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取登记统计信息失败', detail: data.msg });
+        this.enterpriseRegisterStatistic = [];
       }
     });
   }
@@ -96,6 +97,7 @@ export class CustomerComponent implements OnInit {
         this.recordTotal = data.data.total;
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取详情信息失败', detail: data.msg });
+        this.customerRegisterRecords = [];
       }
     });
   }
