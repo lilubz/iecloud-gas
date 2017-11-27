@@ -52,8 +52,9 @@
 </div>
 <div class="ui-g pad">
   <div class="ui-g-12">
-    <p-dataTable [value]="customerList" [lazy]="true" dataKey="userNumber" [paginator]="true" [rows]="pageParams.pageSize" scrollable="true"
-      scrollHeight="510px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.total" (onLazyLoad)="onPageChange($event)">
+    <p-dataTable [value]="customerList" [lazy]="true" dataKey="userNumber" [paginator]="true" [rows]="pageParams.pageSize" 
+    scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.total" 
+    (onLazyLoad)="onPageChange($event)" [(first)]="pageParams.first">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <span>{{index+1}}</span>

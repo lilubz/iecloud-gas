@@ -62,6 +62,7 @@ export class DispatcherComponent implements OnInit {
     list: [],
     pageOpt: [10, 20, 30, 40],
     total: 1,
+    first: 0,
   };
   ngOnInit() {
     this.cylinderSelectOpt();
@@ -75,6 +76,7 @@ export class DispatcherComponent implements OnInit {
       }
       params['pageNumber'] = 1;
       params['pageSize'] = 10;
+      this.dataTable.first = 0;
     } else {
       this.pageParams.pageNumber = page.pageNumber;
       this.pageParams.pageSize = page.pageSize;

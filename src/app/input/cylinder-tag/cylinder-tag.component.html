@@ -5,7 +5,8 @@
 		</div>
 		<div class="ui-g-12 btns">
 			<button pButton type="button" label="批量绑定" (click)="onBatchBind()" icon="fa-link" class="bind"></button>
-			<p-dialog [visible]="dialog.bind" [showHeader]="false" [closeOnEscape]="false" [width]="700" [contentStyle]="{'padding':'0','overflow':'visible'}" [minWidth]="700" [modal]="true">
+			<p-dialog [visible]="dialog.bind" [showHeader]="false" [closeOnEscape]="false" [width]="700" 
+			[contentStyle]="{'padding':'0','overflow':'visible'}" [minWidth]="700" [modal]="true">
 				<div class="bind">
 					<h2>批量绑定</h2>
 					<div class="ui-g content">
@@ -18,8 +19,8 @@
 									<label for="">{{dropdown.numberValue.name}}：</label>
 								</div>
 								<div class="ui-g-6">
-									<p-autoComplete [(ngModel)]="bind.list[i][0]" [suggestions]="proposals" (completeMethod)="getProposals($event,[i,0])" field="{{dropdown.numberValue.paramsName}}"
-										[minLength]="1" (onBlur)="onBlur([i,0])" autoHighlight="true" emptyMessage="您的输入不正确">
+									<p-autoComplete [(ngModel)]="bind.list[i][0]" [suggestions]="proposals" (completeMethod)="getProposals($event,[i,0])" 
+									field="{{dropdown.numberValue.paramsName}}"[minLength]="1" (onBlur)="onBlur([i,0])" autoHighlight="true" emptyMessage="您的输入不正确">
 										<ng-template let-value pTemplate="item">
 											<span>{{value[dropdown.numberValue.paramsName]}}<br>{{value.enterpriseName}}</span>
 										</ng-template>
@@ -76,10 +77,10 @@
 		<div class="ui-g-12 data-table">
 			<p-dataTable [lazy]="true" [value]="dataList.data" [rows]="dataList.page.option[0]" [paginator]="true" 
 					[rowsPerPageOptions]="dataList.page.option" [totalRecords]="dataList.page.total" (onLazyLoad)="pageChange($event)"
-					scrollHeight="510px" scrollable="true">
+					scrollHeight="510px" scrollable="true" [(first)]="dataList.first">
 				<p-column [style]="{'width':'100px'}" header="序号">
 					<ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
-						<span *ngIf="rowData.display !== false">{{index+1}}</span>
+						<span>{{index+1}}</span>
 					</ng-template>
 				</p-column>
 				<p-column field="{{item.value}}" header="{{item.label}}" *ngFor="let item of dataList.header"></p-column>

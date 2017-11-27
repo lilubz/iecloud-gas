@@ -64,10 +64,11 @@ export class CustomerListComponent implements OnInit {
     address?: string;
     userTypeId?: string;
     userNatureId?: string;
-    pageNumber?: Number;
-    pageSize?: Number;
-    pageOption?: Array<Number>;
-    total?: Number;
+    pageNumber?: number;
+    pageSize?: number;
+    pageOption?: Array<number>;
+    total?: number;
+    first?: number;
   } = {
     regionId: '',
     enterpriseNumber: '',
@@ -79,7 +80,8 @@ export class CustomerListComponent implements OnInit {
     pageNumber: 1,
     pageSize: 20,
     pageOption: [10, 20, 30, 40],
-    total: 400
+    total: 400,
+    first: 0,
   };
   config = {
     default: [
@@ -128,6 +130,7 @@ export class CustomerListComponent implements OnInit {
       }
       params['pageNumber'] = 1;
       params['pageSize'] = this.pageParams.pageSize;
+      this.pageParams.first = 0;
     }
     this.getCustomerList(params);
   }
@@ -143,8 +146,8 @@ export class CustomerListComponent implements OnInit {
 
   onPageChange(pageInfo) {
     const page: {
-      pageSize: Number,
-      pageNumber: Number
+      pageSize: number,
+      pageNumber: number
     } = {
         pageSize: pageInfo.rows,
         pageNumber: pageInfo.first / pageInfo.rows + 1
@@ -166,10 +169,14 @@ export class CustomerListComponent implements OnInit {
         this.pageParams.total = data.data.total;
       } else {
         this.customerList = [];
+        this.pageParams.total = 0;
+        this.pageParams.first = 0;
         this.setMessages('warn', '查询结果', '响应：' + data.msg);
       }
     }, (error) => {
       this.customerList = [];
+      this.pageParams.total = 0;
+      this.pageParams.first = 0;
       this.setMessages('error', '查询失败', '错误消息：' + error);
     });
   }
