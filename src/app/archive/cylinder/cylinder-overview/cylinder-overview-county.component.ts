@@ -39,7 +39,7 @@ export class CylinderOverviewCountyComponent implements OnInit {
         if (data.status === 0) {
           this.countyCylinders = data.data;
         } else {
-          this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
+          this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
         }
         this.loading = false;
       }).catch(error => {
