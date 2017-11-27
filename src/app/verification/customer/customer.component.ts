@@ -15,7 +15,7 @@ export class CustomerComponent implements OnInit {
   statisticPageSize = 10;
   statisticPageNumber = 1;
   statisticTotal = 0;
-
+  statisticFirst = 0;
   // 用户登记记录分页参数
   recordPageSize = 10;
   recordPageNumber = 1;
@@ -79,6 +79,7 @@ export class CustomerComponent implements OnInit {
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取登记统计信息失败', detail: data.msg });
         this.enterpriseRegisterStatistic = [];
+        this.statisticTotal = 0;
       }
     });
   }
@@ -96,8 +97,9 @@ export class CustomerComponent implements OnInit {
         this.customerRegisterRecords = data.data.list;
         this.recordTotal = data.data.total;
       } else {
-        this.messageService.add({ severity: 'warn', summary: '获取详情信息失败', detail: data.msg });
         this.customerRegisterRecords = [];
+        this.recordTotal = 0;
+        this.messageService.add({ severity: 'warn', summary: '获取详情信息失败', detail: data.msg });
       }
     });
   }
@@ -106,5 +108,11 @@ export class CustomerComponent implements OnInit {
     this.detailVisible = true;
     this.selectedEnterpriseId = record.enterpriseNumber;
     this.getEnterpriseRegisterDetail();
+  }
+
+  search() {
+    this.statisticFirst = 0;
+    this.statisticPageNumber = 1;
+    this.getEnterpriseStatistic();
   }
 }

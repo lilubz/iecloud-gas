@@ -1,28 +1,17 @@
-# GasCli
+## 温州市瓶装燃气信息化监管平台web开发说明书
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.0.
+### 消息提示
+项目中消息提示使用primeng组件库中的p-growl组件开发。对消息提示框的颜色做以下规范：
+  - success -- 执行成功时展示
+  - warn -- 执行成功，但不符合正常状态时展示
+  - error -- 执行异常时展示
+其它颜色可以根据具体场景使用。
 
-## Development server
+### 分页大小
+使用分页组件时的分页大小选项统一设置为：5，10，20，40
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### 前后端状态统一
+未获取到数据时返回状态码应该是0还是1？
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### 前后端数据验证
+前端应根据接口文档中定义的字段类型在前端做数据校验，对于不符合规则的输入应无法输入或禁止提交。
