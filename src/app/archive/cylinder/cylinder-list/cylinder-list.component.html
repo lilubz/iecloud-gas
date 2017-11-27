@@ -26,19 +26,19 @@
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
             <span> 气瓶编码</span>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.cylinderCode">
+            <input type="text" (keyup.enter)="onSearch()" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.cylinderCode">
           </div>
         </div>
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
             <span> 自有编号</span>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.ownNumber">
+            <input type="text" (keyup.enter)="onSearch()" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.ownNumber">
           </div>
         </div>
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup" style="text-align:right;">
             <span> 出厂编号</span>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.serialNumber">
+            <input type="text" (keyup.enter)="onSearch()" class="textInput" pInputText placeholder="" [(ngModel)]="searchParams.serialNumber">
           </div>
         </div>
       </div>

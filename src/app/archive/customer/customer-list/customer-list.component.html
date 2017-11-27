@@ -21,13 +21,13 @@
       <div class="ui-g-4">
         <div class="inputgroup">
           <span>用户名称：</span>
-          <input type="text" pInputText placeholder="" style="width:calc(100% - 100px);" [(ngModel)]="searchParams.userName">
+          <input type="text" (keyup.enter)="onSearch()" pInputText placeholder="" style="width:calc(100% - 100px);" [(ngModel)]="searchParams.userName">
         </div>
       </div>
       <div class="ui-g-8">
         <div class="inputgroup">
           <span>地&#12288;&#12288;址：</span>
-          <input type="text" pInputText placeholder="" style="width:calc(100% - 150px);" [(ngModel)]="searchParams.address">
+          <input type="text" (keyup.enter)="onSearch()" pInputText placeholder="" style="width:calc(100% - 150px);" [(ngModel)]="searchParams.address">
         </div>
       </div>
     </div>
