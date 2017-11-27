@@ -35,13 +35,13 @@
       }
 
     }
-    // button {
-    //   margin: 0 15px 20px 15px;
-    //   height: 40px;
-    //   width: 140px;
-    //   border-radius: 5px;
-    //   font-weight: bold;
-    // }
+    button {
+      margin: 0 15px 20px 15px;
+      height: 40px;
+      width: 140px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
 
   }
   .data-table{
@@ -73,16 +73,16 @@
       margin:0 15px;
     }
   }
-  .bind {
+  .bindBtn {
   border-radius: 10px;
   height: 42px;
   font-weight: bold;
   font-size: 20px;
   }
-  // .cancel{
-  //   background-color:#bcbcbc;
-  //   border-color:#bcbcbc;
-  // }
+  .cancel{
+    background-color:#bcbcbc;
+    border-color:#bcbcbc;
+  }
   .helpBlock{
     color:#f00;
     text-align: left;
@@ -105,4 +105,8 @@
       color:#FF0000;
     }
   }
+  
+}
+.ui-widget-content{
+  border:10px solid red !important;
 }
