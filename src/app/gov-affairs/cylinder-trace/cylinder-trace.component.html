@@ -1,0 +1,88 @@
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">
+      <h3>气瓶追溯</h3>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="气瓶状态查询" (click)="isHistory=false;"></button>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="气瓶条码查询" (click)="isHistory=true;"></button>
+    </div>
+  </div>
+  <!-- <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">气瓶条码</div>
+    <div class="ui-g-12">
+      <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
+    </div>
+    <div class="ui-g-12">
+      <input type="text" pInputText [(ngModel)]="gasInput" placeholder="请输入气瓶条码">
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="查询" [routerLink]="['./detail',gasInput||'']"></button>
+    </div>
+  </div> -->
+</div>
+<div class="ui-g-12 main">
+  <div class="ui-g-12 container" [style.display]="isHistory?'none':'block'">
+
+    <div class="ui-g-12">
+      气瓶当前状态
+      <p-dropdown [options]="cylinderStatus" [style]="{'width':'200px'}" [(ngModel)]="selectedCylinderStatus"
+       (onChange)="getCylinderByStatus()"></p-dropdown>
+      <!-- <button pButton type="button" label="查询" (click)="getCylinderByStatus()"></button> -->
+    </div>
+    <div class="ui-g-12">
+      <p-dataTable [value]="cylinderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true" [lazy]="true"
+        (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20]">
+        <p-column header="序号" [style]="{'width':'50px'}">
+          <ng-template pTemplate="body" let-index="rowIndex">
+            {{index + 1}}
+          </ng-template>
+        </p-column>
+        <p-column field="gasLabelNumber" header="气瓶条码" [style]="{'width':'150px'}"></p-column>
+        <p-column field="currentLibraryPosition" header="当前库位" [style]="{'width':'150px'}"></p-column>
+        <p-column field="gcStatusTypeName" header="气瓶状态" [style]="{'width':'150px'}"></p-column>
+        <p-column field="specificationId" header="气瓶规格" [style]="{'width':'150px'}"></p-column>
+        <p-column header="操作" [style]="{'width':'100px'}">
+          <ng-template let-cylinder="rowData" pTemplate="body">
+            <a href="javascript:0;" (click)="showHistoryView(cylinder.gasLabelNumber)">查看历史</a>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+
+  <div class="ui-g-12 container" [style.display]="isHistory?'block':'none'">
+    <div class="ui-g-12">
+      气瓶条码
+      <input type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px"> &nbsp;&nbsp; 开始时间
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
+        dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
+      &nbsp;&nbsp; 结束时间
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
+        dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today" readonlyInput="true"></p-calendar>
+      &nbsp;&nbsp;
+
+      <button pButton type="button" label="查询" (click)="searchCylinderHistory()"></button>
+    </div>
+    <div class="ui-g-12">
+      <p-dataTable [value]="cylinderHistoryList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSizeHistory" scrollable="true" [lazy]="true" [(first)]="historyFirst"
+        (onLazyLoad)="onHistoryPageChange($event)" [totalRecords]="totalHistory" [rowsPerPageOptions]="[5,10,20]">
+        <p-column header="序号" [style]="{'width':'50px'}" >
+          <ng-template pTemplate="body" let-index="rowIndex">
+            {{index + 1}}
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" field="createTime" header="时间">
+          <ng-template let-record="rowData" pTemplate="body">
+            {{ record.createTime | date: 'yyyy-MM-dd hh:mm:ss'}}
+          </ng-template>
+        </p-column>
+        <p-column field="currentLibraryPosition" header="库位" [style]="{'width':'150px'}"></p-column>
+        <p-column field="gcStatusTypeName" header="操作" [style]="{'width':'150px'}"></p-column>
+        <p-column field="liabilityName" header="操作人" [style]="{'width':'150px'}"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>
