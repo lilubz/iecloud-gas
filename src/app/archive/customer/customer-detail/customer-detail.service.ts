@@ -5,13 +5,13 @@ import { Headers } from '@angular/http';
 import {
   HttpService
 } from './../../../core/http.service';
-import { API_TOKEN } from './../../../core/api';
+import { API } from './../../../core/api';
 @Injectable()
 export class CustomerDetailService {
-  constructor(private HttpService: HttpService, @Inject(API_TOKEN) private API) { }
+  constructor(private HttpService: HttpService ) { }
 
   querySingle(params: any): Promise<any> {
-    return this.HttpService.getRequest(this.API.queryCustomerDetail, params)
+    return this.HttpService.getRequest(API.queryCustomerDetail, params)
       .catch(this.handleError);
   }
   private handleError(error: any): Promise<any> {

@@ -5,21 +5,21 @@ import { Headers } from '@angular/http';
 import {
   HttpService
 } from './../../core/http.service';
-import { API_TOKEN } from './../../core/api';
+import { API } from './../../core/api';
 @Injectable()
 export class ExportService {
-  constructor(private HttpService: HttpService, @Inject(API_TOKEN) private API) { }
+  constructor(private HttpService: HttpService) { }
 
   exportuserInfo(params: any): Promise<any> {
-    return this.HttpService.getRequest(this.API.exportUserUndistributed, params);
+    return this.HttpService.getRequest(API.exportUserUndistributed, params);
   }
   exportcardInfo(params: any): Promise<any> {
-    return this.HttpService.getRequest(this.API.exportUserCertNumUndistributed, params);
+    return this.HttpService.getRequest(API.exportUserCertNumUndistributed, params);
   }
   exportcylinderInfo(params: any): Promise<any> {
-    return this.HttpService.getRequest(this.API.exportUnboundGcBasicInfo, params);
+    return this.HttpService.getRequest(API.exportUnboundGcBasicInfo, params);
   }
   exportcylinderTagInfo(params: any): Promise<any> {
-    return this.HttpService.getRequest(this.API.exportUnboundGcLabelInfo, params);
+    return this.HttpService.getRequest(API.exportUnboundGcLabelInfo, params);
   }
 }
