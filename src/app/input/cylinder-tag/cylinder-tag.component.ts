@@ -94,6 +94,7 @@ export class CylinderTagComponent implements OnInit {
       size: 10,
       option: [10, 20, 30, 40],
     },
+    first: 0,
   };
   dialog = {
     bind: false,
@@ -312,7 +313,8 @@ export class CylinderTagComponent implements OnInit {
     this.dataList.header = event.value.header;
     this.dataList.type = event.value.type;
     this.dataList.page.total = 0;
-    this.dataList.data = [{ display: false}];
+    this.dataList.data = [];
+    this.dataList.first = 0;
     this.getListData(params);
   }
   pageChange(event) {

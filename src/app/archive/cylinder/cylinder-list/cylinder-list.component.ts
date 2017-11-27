@@ -49,6 +49,7 @@ export class CylinderListComponent implements OnInit {
     pageSize?: number;
     pageOption?: Array<Number>;
     total?: number;
+    first?: number;
   } = {
     enterpriseNumber: '',
     productionUnit: '',
@@ -59,7 +60,8 @@ export class CylinderListComponent implements OnInit {
     pageNumber: 1,
     pageSize: 20,
     pageOption: [10, 20, 30, 40],
-    total: 400
+    total: 400,
+    first: 0,
   };
   searchParams: {
     enterpriseNumber?: string;
@@ -126,6 +128,7 @@ export class CylinderListComponent implements OnInit {
       }
       params['pageNumber'] = 1;
       params['pageSize'] = this.pageParams.pageSize;
+      this.pageParams.first = 0;
     }
     this.getCylinders(params);
   }
@@ -171,16 +174,17 @@ export class CylinderListComponent implements OnInit {
   getCylinders(params?) {
     this.cylinderListService.getCylinders(params).then((data) => {
       if (data.status === 0) {
+        console.log(data.data.total);
         this.cylinders = data.data.list;
-
-        // TODO 返回的数据中没有total=0， 需要跟进。
-        this.pageParams.total = data.data.total !== 0 ? data.data.total : 400;
+        this.pageParams.total = data.data.total;
       } else {
         this.cylinders = [];
+        this.pageParams.total = 0;
         this.setMessages('warn', '查询结果', '响应：' + data.msg);
       }
     }, (error) => {
       this.cylinders = [];
+      this.pageParams.total = 0;
       this.setMessages('error', '查询失败', '错误代码：' + error.status);
     });
   }
