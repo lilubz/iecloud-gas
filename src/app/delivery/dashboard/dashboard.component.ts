@@ -16,7 +16,7 @@ import { Customer } from './../../input/user-info/Customer.model';
 export class DashboardComponent implements OnInit {
   pageNumber = 1;
   pageSize = 10;
-  total = 11;
+  total = 0;
 
   orderSourceList: SelectItem[] = [
     { label: '电话呼入', value: '电话呼入' },
@@ -71,7 +71,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.formInit();
-    this.getDispatcher();
     this.getOrderList();
     this.commonRequestService.getCylinderSpecification().then(data => {
       if (data.status === 0) {
@@ -122,7 +121,7 @@ export class DashboardComponent implements OnInit {
         this.orderList = data.data.list;
         this.total = data.data.total;
       } else {
-        this.messageService.add({ severity: 'warn', summary: '获取配送员信息失败', detail: data.msg });
+        this.messageService.add({ severity: 'warn', summary: '获取订单列表失败', detail: data.msg });
         this.orderList = [];
       }
     }).catch(error => {
@@ -149,7 +148,6 @@ export class DashboardComponent implements OnInit {
   showAddOrderDialog(order?) {
     this.addOrderVisiable = true;
     this.formInit();
-    this.getDispatcher();
   }
 
   showDispatchDialog(order) {
@@ -237,8 +235,8 @@ export class DashboardComponent implements OnInit {
       if (data.status === 0) {
         this.deliveryStreetList = data.data.map(
           element => ({ label: element.regionName, value: element.regionId }));
-        this.selectedDeliveryStreetId = this.deliveryStreetList[0].value;
-        this.getDispatcher();
+        this.selectedDeliveryStreetId = '';
+        this.deliveryStreetList.unshift({ label: '--请选择--', value: '' });
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取街道信息失败', detail: data.msg });
       }

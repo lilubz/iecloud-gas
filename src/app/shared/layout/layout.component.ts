@@ -47,7 +47,10 @@ export class LayoutComponent implements OnInit {
       {
         label: '监管事务',
         icon: 'menu-icon supervise-icon',
-        routerLink: ['/supervise']
+        routerLink: ['/gov-affairs'],
+        items: [
+          { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] }
+        ]
       },
       {
         label: '可视化',
