@@ -15,13 +15,13 @@
     <div class="ui-g-6">
       <div class="input-group">
         <label for="">姓名</label>
-        <input type="text" pInputText (keyup.enter)="onSearch()" style="width:calc(90% - 30px)" [(ngModel)]="searchParams.name" />
+        <input type="text" (keyup.enter)="onSearch()" pInputText style="width:calc(90% - 30px)" [(ngModel)]="searchParams.name" />
       </div>
     </div>
     <div class="ui-g-6">
       <div class="input-group">
         <label for="">工号</label>
-        <input type="text" pInputText (keyup.enter)="onSearch()" style="width:calc(90% - 30px)" [(ngModel)]="searchParams.jobNumber" />
+        <input type="text" (keyup.enter)="onSearch()" pInputText style="width:calc(90% - 30px)" [(ngModel)]="searchParams.jobNumber" />
       </div>
     </div>
   </div>
