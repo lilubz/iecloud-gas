@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'gas-customer',
@@ -18,10 +19,18 @@ export class CustomerComponent implements OnInit {
     { label: '联系电话', value: 'phone' },
   ];
   selectedCity = this.cities[0].value;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-  this.selectedUserID = 'idNumber';
+    this.selectedUserID = 'idNumber';
   }
 
+  onSearch() {
+    this.router.navigate(['/archive/customer/detail',
+      {
+        city: this.selectedCity,
+        type: this.selectedUserID ? this.selectedUserID : '',
+        typeNumber: this.UserText ? this.UserText : ''
+      }]);
+  }
 }

@@ -80,7 +80,6 @@ export class UserCardComponent implements OnInit {
   constructor(private userCardService: UserCardService, private messageService: MessageService) { }
 
   ngOnInit() {
-    this.getUnbindCardList();
   }
 
   onPageChange(event) {
@@ -97,6 +96,8 @@ export class UserCardComponent implements OnInit {
         this.customerCards = data.data.list;
         this.total = data.data.total;
       } else {
+        this.customerCards = [];
+        this.total = 0;
         this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
       }
     });

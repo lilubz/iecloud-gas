@@ -43,6 +43,7 @@ export class CylinderVerificationComponent implements OnInit {
   detailPageSize = 10;
   display: boolean;
   msgs: Message[] = [];
+  first = 0;
   ngOnInit() {
     this.searchParams.regionId = '';
     this.getlistRegionInfo();
@@ -64,8 +65,10 @@ export class CylinderVerificationComponent implements OnInit {
     });
   }
   changearea(event) {
-    this.searchParams.regionId = event.value;
+    this.first = 0;
+    this.searchParams.pageNumber = 1;
     this.onSearch();
+
   }
   // 分页
   change(event) {
@@ -86,14 +89,16 @@ export class CylinderVerificationComponent implements OnInit {
       if (data.status === 0) {
         // console.log(data.data);
         this.cylinderInfo = data.data.list;
-        this.cylinderListTotal = data.total;
+        this.cylinderNumberTotal = data.data.total;
         // this.showMessage('success', '', '')
       } else {
         this.cylinderInfo = [];
+        this.cylinderNumberTotal = 0;
         this.showMessage('warn', '查询失败', data.msg);
       }
     }, error => {
       this.cylinderInfo = [];
+      this.cylinderNumberTotal = 0;
       this.showMessage('error', '服务器错误', error);
     });
 
@@ -104,6 +109,7 @@ export class CylinderVerificationComponent implements OnInit {
     // console.log(cylinder);
     this.selectedEnterpriseId = cylinder.enterpriseNumber;
     this.searchInformation();
+    // this.first = 0;
   }
   pageChange(event) {
     this.searchParams.pageSize = event.rows;
@@ -111,6 +117,9 @@ export class CylinderVerificationComponent implements OnInit {
     this.searchInformation();
   }
   searchInformation() {
+    if (!this.selectedEnterpriseId) {
+      return false;
+    }
     const params = {
       pageNumber: this.detailPageNumber,
       pageSize: this.detailPageSize,
@@ -120,13 +129,15 @@ export class CylinderVerificationComponent implements OnInit {
       if (data.status === 0) {
         // console.log(data.data);
         this.cylinderInfoList = data.data.list;
-        this.cylinderNumberTotal = data.total;
+        this.cylinderListTotal = data.data.total;
       } else {
         this.cylinderInfoList = [];
+        this.cylinderListTotal = 0;
         this.showMessage('warn', '查询失败', data.msg);
       }
     }, error => {
       this.cylinderInfoList = [];
+      this.cylinderListTotal = 0;
       this.showMessage('error', '服务器错误', error);
     });
   }

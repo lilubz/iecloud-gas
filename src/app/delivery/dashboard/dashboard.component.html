@@ -7,7 +7,7 @@
   </div>
   <div class="ui-g-12">
     <p-dataTable [value]="orderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true"
-      [lazy]="true" (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20]">
+      [lazy]="true" (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
       <p-column header="序号" [style]="{'width':'50px'}">
         <ng-template pTemplate="body" let-index="rowIndex">
           {{index + 1}}

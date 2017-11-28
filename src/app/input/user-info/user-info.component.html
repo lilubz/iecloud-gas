@@ -133,10 +133,10 @@
         <div class="ui-g-6">
           <p-dropdown [options]="deliveryRegionList" (onChange)="deliveryCountyChange($event.value)" [(ngModel)]="selectedCountyRegionId"
             [style]="{'width':'100px'}"></p-dropdown>
-          <!-- <div *ngIf="deliveryUrbanDistrictList.length!=0">
+          <ng-template [ngIf]="deliveryUrbanDistrictList.length!=0">
             <p-dropdown [options]="deliveryUrbanDistrictList" (onChange)="deliveryUrbanDistrictChange($event.value)" [(ngModel)]="selectedUrbanDistrict"
               [style]="{'width':'100px'}"></p-dropdown>
-          </div> -->
+          </ng-template>
           <p-dropdown [options]="deliveryStreetList" [(ngModel)]="selectedStreetRegionId" [style]="{'width':'150px'}"></p-dropdown>
         </div>
       </div>

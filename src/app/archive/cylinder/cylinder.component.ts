@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
 
@@ -14,7 +15,7 @@ export class CylinderComponent implements OnInit {
   ];
   selectedCity = this.cities[0].value;
   gasInput: any;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.gasInput = '';
@@ -22,5 +23,9 @@ export class CylinderComponent implements OnInit {
 
     // }
     // this.gasInput = 1;
+  }
+
+  onSearch() {
+    this.router.navigate(['/archive/cylinder/detail', this.gasInput || '']);
   }
 }

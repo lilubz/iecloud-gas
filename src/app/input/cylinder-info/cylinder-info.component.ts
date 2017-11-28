@@ -237,8 +237,8 @@ export class CylinderInfoComponent implements OnInit {
   // onclear(event) {
   //   event.files = [];
   // }
-  save(CylinderImage: File[]) {
-    this.cylinderInfo.cylinderImage = CylinderImage;
+  save(CylinderImage: any) {
+    this.cylinderInfo.cylinderImage = CylinderImage.files;
     // console.log(CylinderImage);
     if (this.checkForm()) {
       const formData = new FormData();
@@ -250,9 +250,8 @@ export class CylinderInfoComponent implements OnInit {
             for (const file of this.cylinderInfo[key]) {
               formData.append(key, file);
             }
-            // if (!formData.has(key)) {
-            //   formData.append(key, new Blob);
-            // }
+          } else if (key === 'waterPressureTest') {
+            formData.append(key, '');
           } else {
             formData.append(key, this.cylinderInfo[key]);
           }
@@ -262,25 +261,29 @@ export class CylinderInfoComponent implements OnInit {
       this._service.addInformation(formData).then((data) => {
         if (data.status === 0) {
           this.showMessage('success', '添加成功', '继续');
-          // this.onclear(event);
-
-          this.cylinderInfo = {};
-          // this.cylinderInfo.cylinderImage = [];
-          // this.cylinderInfo.intoStationDate = '';
+          // this.cylinderInfo = {};
           this.ngOnInit();
-          // this.selectedIntoStationDate(event);
+          this.clearInfo();
+          CylinderImage.clear();
 
         } else {
+          CylinderImage.clear();
           this.showMessage('warn', '提示信息', '添加失败');
 
         }
       }, error => {
+        CylinderImage.clear();
         this.showMessage('error', '服务器错误', error);
       });
 
     } else {
       // this.showMessage('failed', '失败', '输入有误');
     }
+  }
+  clearInfo() {
+    this.cylinderInfo.serialNumber = '';
+    this.cylinderInfo.enterpriseCylinderCode = '';
+    this.cylinderInfo.inspectionNumber = '';
   }
 
   checkForm(): boolean {

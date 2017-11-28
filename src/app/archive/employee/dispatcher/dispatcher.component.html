@@ -15,13 +15,13 @@
     <div class="ui-g-6">
       <div class="input-group">
         <label for="">姓名</label>
-        <input type="text" pInputText style="width:calc(90% - 30px)" [(ngModel)]="searchParams.name" />
+        <input type="text" pInputText (keyup.enter)="onSearch()" style="width:calc(90% - 30px)" [(ngModel)]="searchParams.name" />
       </div>
     </div>
     <div class="ui-g-6">
       <div class="input-group">
         <label for="">工号</label>
-        <input type="text" pInputText style="width:calc(90% - 30px)" [(ngModel)]="searchParams.jobNumber" />
+        <input type="text" pInputText (keyup.enter)="onSearch()" style="width:calc(90% - 30px)" [(ngModel)]="searchParams.jobNumber" />
       </div>
     </div>
   </div>
@@ -29,13 +29,13 @@
     <div class="ui-g-4">
       <div class="input-group">
         <label for="">手机号码</label>
-        <input type="text" class="phone" pInputText style="width:calc(90% - 60px)" [(ngModel)]="searchParams.phone" />
+        <input type="text" class="phone" (keyup.enter)="onSearch()" pInputText style="width:calc(90% - 60px)" [(ngModel)]="searchParams.phone" />
       </div>
     </div>
     <div class="ui-g-4">
       <div class="input-group">
         <label for="">身份证号</label>
-        <input type="text" pInputText style="width:calc(90% - 60px)" [(ngModel)]="searchParams.idNumber" />
+        <input type="text" pInputText (keyup.enter)="onSearch()" style="width:calc(90% - 60px)" [(ngModel)]="searchParams.idNumber" />
       </div>
     </div>
     <div class="ui-g-4 text-center">
@@ -43,8 +43,8 @@
     </div>
   </div>
   <div class="ui-g-12">
-    <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.pageOpt[0]" 
-      scrollable="true" scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.pageOpt" 
+    <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.pageOpt[0]"
+      scrollable="true" scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.pageOpt"
       [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)" [(first)]="dataTable.first">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
@@ -89,4 +89,3 @@
     </p-dataTable>
   </div>
 </div>
-

@@ -42,22 +42,22 @@ export class ExportComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.messageService.add({
             severity: 'success',
-            summary: '导出成功',
+            summary: '提示信息',
             detail: '文件已导出'
           });
         }, 2000);
       } else {
         this.messageService.add({
           severity: 'warn',
-          summary: '导出失败！',
-          detail: '导出失败！'
+          summary: '提示信息',
+          detail: '导出失败'
         });
       }
     }, error => {
       this.messageService.add({
         severity: 'error',
         summary: '服务器错误',
-        detail: ''
+        detail: '响应' + error
       });
     });
   }
@@ -84,7 +84,7 @@ export class ExportComponent implements OnInit, OnDestroy {
       this.messageService.add({
         severity: 'error',
         summary: '服务器错误',
-        detail: ''
+        detail: '响应' + error
       });
     });
   }
@@ -111,7 +111,7 @@ export class ExportComponent implements OnInit, OnDestroy {
       this.messageService.add({
         severity: 'error',
         summary: '服务器错误',
-        detail: ''
+        detail: '响应' + error
       });
     });
   }
@@ -138,7 +138,7 @@ export class ExportComponent implements OnInit, OnDestroy {
       this.messageService.add({
         severity: 'error',
         summary: '服务器错误',
-        detail: ''
+        detail: '响应' + error
       });
     });
   }

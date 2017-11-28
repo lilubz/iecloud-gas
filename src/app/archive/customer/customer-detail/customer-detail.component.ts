@@ -58,6 +58,7 @@ export class CustomerDetailComponent implements OnInit {
   }];
   detailLists: any;
   loading: any;
+  typeList = '';
   // photoList: Array<{
   //   pictureUrl: string;
   // }>;
@@ -98,6 +99,7 @@ export class CustomerDetailComponent implements OnInit {
   queryDetail() {
     this.route.paramMap
       .switchMap((params: ParamMap) => {
+        this.typeList = params.get('type');
         return this.CustomerDetailService.querySingle(
           { 'regionId': params.get('city'), 'type': params.get('type'), 'typeNumber': params.get('typeNumber') });
       }).subscribe((data) => {
@@ -115,17 +117,32 @@ export class CustomerDetailComponent implements OnInit {
             }
           }
         } else {
-          this.messageService.add({
-            severity: 'warn',
-            summary: '查询结果',
-            detail: '请输入正确的气瓶条码'
-          });
+          if (this.typeList === 'idNumber') {
+            this.messageService.add({
+              severity: 'warn',
+              summary: '查询结果',
+              detail: '未查询到证件编码信息'
+            });
+          } else if (this.typeList === 'userCardNumber') {
+            this.messageService.add({
+              severity: 'warn',
+              summary: '查询结果',
+              detail: '未查询到用户卡信息'
+            });
+          } else {
+            this.messageService.add({
+              severity: 'warn',
+              summary: '查询结果',
+              detail: '未查询到联系电话信息'
+            });
+          }
+
         }
       }, error => {
         this.messageService.add({
-          severity: 'warn',
-          summary: '查询结果',
-          detail: '请输入正确的气瓶条码'
+          severity: 'error',
+          summary: '获取信息异常',
+          detail: error
         });
       });
   }
