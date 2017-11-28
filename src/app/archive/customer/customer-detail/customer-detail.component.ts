@@ -127,7 +127,7 @@ export class CustomerDetailComponent implements OnInit {
             this.messageService.add({
               severity: 'warn',
               summary: '查询结果',
-              detail: '未查询到用户编码信息'
+              detail: '未查询到用户卡信息'
             });
           } else {
             this.messageService.add({
@@ -140,9 +140,9 @@ export class CustomerDetailComponent implements OnInit {
         }
       }, error => {
         this.messageService.add({
-          severity: 'warn',
-          summary: '查询结果',
-          detail: '请输入正确的气瓶条码'
+          severity: 'error',
+          summary: '获取信息异常',
+          detail: error
         });
       });
   }
