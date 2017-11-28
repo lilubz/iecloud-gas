@@ -7,9 +7,9 @@ export class CylinderTraceService {
   constructor(private HttpService: HttpService) { }
 
   getCylinderByStatus(params?: any): Promise<any> {
-    return this.HttpService.getRequest(API.getCylinderByStatus, params);
+    return this.HttpService.getRequest(API.listGasStatusChangeNew, params);
   }
   getCylinderHistoryStatus(params?: any): Promise<any> {
-    return this.HttpService.getRequest(API.getCylinderHistoryStatus, params);
+    return this.HttpService.getRequest(API.listGasStatusChange, params);
   }
 }

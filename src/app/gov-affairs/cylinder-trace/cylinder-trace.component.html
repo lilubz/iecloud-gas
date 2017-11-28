@@ -41,9 +41,11 @@
           </ng-template>
         </p-column>
         <p-column field="gasLabelNumber" header="气瓶条码" [style]="{'width':'150px'}"></p-column>
-        <p-column field="currentLibraryPosition" header="当前库位" [style]="{'width':'150px'}"></p-column>
-        <p-column field="gcStatusTypeName" header="气瓶状态" [style]="{'width':'150px'}"></p-column>
         <p-column field="specificationId" header="气瓶规格" [style]="{'width':'150px'}"></p-column>
+        <p-column field="liabilityTypeName" header="责任主体类型" [style]="{'width':'150px'}"></p-column>
+        <p-column field="liabilityName" header="责任主体名称" [style]="{'width':'150px'}"></p-column>
+        <p-column field="liabilityContact" header="责任主体联系方式" [style]="{'width':'150px'}"></p-column>
+        <p-column field="liabilityAddress" header="责任主体地址" [style]="{'width':'150px'}"></p-column>
         <p-column header="操作" [style]="{'width':'100px'}">
           <ng-template let-cylinder="rowData" pTemplate="body">
             <a href="javascript:0;" (click)="showHistoryView(cylinder.gasLabelNumber)">查看历史</a>
@@ -79,9 +81,16 @@
             {{ record.createTime | date: 'yyyy-MM-dd hh:mm:ss'}}
           </ng-template>
         </p-column>
-        <p-column field="currentLibraryPosition" header="库位" [style]="{'width':'150px'}"></p-column>
-        <p-column field="gcStatusTypeName" header="操作" [style]="{'width':'150px'}"></p-column>
-        <p-column field="liabilityName" header="操作人" [style]="{'width':'150px'}"></p-column>
+        <p-column field="gcStatusTypeName" header="状态变迁" [style]="{'width':'150px'}"></p-column>
+        <p-column field="createTime" header="变迁时间" [style]="{'width':'150px'}"></p-column>
+        <p-column field="beforeLiabilityTypeName" header="开始责任主主体类型名称" [style]="{'width':'150px'}"></p-column>
+        <p-column field="beforeLiabilityName" header="开始责任主主体名称" [style]="{'width':'150px'}"></p-column>
+        <p-column field="beforeLiabilityContact" header="开始责任主体联系方式" [style]="{'width':'150px'}"></p-column>
+        <p-column field="beforeLiabilityAdderss" header="开始责任主体联系地址" [style]="{'width':'150px'}"></p-column>
+        <p-column field="afterLiabilityTypeName" header="之后责任主主体类型名称" [style]="{'width':'150px'}"></p-column>
+        <p-column field="afterLiabilityName" header="之后责任主主体名称" [style]="{'width':'150px'}"></p-column>
+        <p-column field="afterLiabilityContact" header="之后责任主体联系方式" [style]="{'width':'150px'}"></p-column>
+        <p-column field="afterLiabilityAdderss" header="之后责任主体联系地址" [style]="{'width':'150px'}"></p-column>
       </p-dataTable>
     </div>
   </div>

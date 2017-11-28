@@ -16,7 +16,7 @@ export const API = {
   'getWenZhouRegionList': URL + 'basicInformation/region/listAllRegionInfo.do', // 获取温州市行政区列表
   'getCylinderTypes': URL + 'basicInformation/commonInfo/listGcType.do', // 获取所有气瓶类型
   'getCylinderSpecification': URL + 'basicInformation/commonInfo/listGcSpecification.do', // 获取所有气瓶类型
-  'listGasStatus': URL + 'basicInformation/gasCylinder/listGasStatus.do', // 获取气瓶状态列表
+  'listLiabilitySubjectType': URL + 'basicInformation/gasCylinder/listLiabilitySubjectType.do', // 获取气瓶责任主体类型列表
 
   // 气瓶档案
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',
@@ -126,8 +126,8 @@ export const API = {
   'importGcUserInfo': URL + 'dataImport/gcUser/importGcUserInfo.do',
 
   // 监管事务
-  'getCylinderByStatus': URL + 'basicInformation/gasCylinder/listGasStatusChangeNew.do', // 根据气瓶状态获取气瓶列表
-  'getCylinderHistoryStatus': URL + 'basicInformation/gasCylinder/listGasStatusChange.do', // 根据气瓶编码获取气瓶历史状态列表
+  'listGasStatusChange': URL + 'basicInformation/gasCylinder/listGasStatusChange.do', // 根据气瓶条码获取气瓶某段时间流转历史
+  'listGasStatusChangeNew': URL + 'basicInformation/gasCylinder/listGasStatusChangeNew.do', // 获取某责任主体类型下的气瓶列表
 
 
   // 登录
