@@ -20,14 +20,22 @@ export class CylinderTraceComponent implements OnInit {
   cylinderList: Array<{
     gasLabelNumber: string,
     specificationId: string,
-    currentLibraryPosition: string,
-    gcStatusTypeName: string
+    liabilityTypeName: string,
+    liabilityName: string,
+    liabilityContact: string,
+    liabilityAddress: string
   }> = [];
   cylinderHistoryList: Array<{
-    createTime: string, // 时间
-    CurrentLibraryPosition: string, // 库位
-    GcStatusTypeName: string, // 操作（气瓶状态）
-    liabilityName: string // 操作人
+    createTime: string,
+    gcStatusTypeName: string,
+    beforeLiabilityTypeName: string,
+    beforeLiabilityName: string,
+    beforeLiabilityContact: string,
+    beforeLiabilityAdderss: string,
+    afterLiabilityTypeName: string,
+    afterLiabilityName: string,
+    afterLiabilityContact: string,
+    afterLiabilityAdderss: string
   }> = [];
 
   pageSize = 10;
@@ -44,7 +52,8 @@ export class CylinderTraceComponent implements OnInit {
   endTime: Date = new Date();
   cylinderNumber = '';
   isHistoryViewInit = true;
-  historyFirst = 0;l
+  historyFirst = 0;
+  first = 0;
 
   constructor(
     private commonRequestService: CommonRequestService,
@@ -54,10 +63,11 @@ export class CylinderTraceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.commonRequestService.getCylinderStatus().then(data => {
+    this.commonRequestService.getLiabilitySubjectType().then(data => {
       if (data.status === 0) {
-        this.cylinderStatus = data.data.map(item => ({ label: item.name, value: item.statusTypeId })).slice(0, 6);
-        this.cylinderStatus.unshift({ label: '全部', value: '' });
+        this.cylinderStatus = data.data.map(item => ({ label: item.liabilityName, value: item.liabilityTypeId }))
+          .slice(0, 6);
+        this.cylinderStatus.unshift({ label: '--请选择--', value: '' });
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取气瓶状态列表失败', detail: data.msg });
       }
@@ -65,10 +75,16 @@ export class CylinderTraceComponent implements OnInit {
   }
 
   getCylinderByStatus() {
+    if (this.selectedCylinderStatus === '') {
+      this.cylinderList = [];
+      this.total = 0;
+      this.historyFirst = 0;
+      return;
+    }
     this.cylinderTraceService.getCylinderByStatus({
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
-      statusTypeId: this.selectedCylinderStatus
+      liabilityTypeId: this.selectedCylinderStatus
     }).then(data => {
       if (data.status === 0) {
         this.cylinderList = data.data.list;
@@ -143,5 +159,11 @@ export class CylinderTraceComponent implements OnInit {
     this.totalHistory = 0;
     this.historyFirst = 0;
     this.getCylinderHistoryStatus();
+  }
+  searchCylinderList() {
+    this.pageNumber = 1;
+    this.total = 0;
+    this.first = 0;
+    this.getCylinderByStatus();
   }
 }

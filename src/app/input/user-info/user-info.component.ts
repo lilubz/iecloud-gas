@@ -193,7 +193,7 @@ export class UserInfoComponent implements OnInit {
       summary: title,
       detail: msg
     });
-    setTimeout(() => this.msgs = [], 2000);
+    setTimeout(() => this.msgs.shift(), 2000);
   }
 
   uploadCustomerFile(event) {

@@ -13,7 +13,11 @@
         <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCustomer.enterpriseNumber||''}]" class="area">{{countyCustomer[col.field]}}</a>
       </ng-template>
     </p-column>
-    <p-column field="userCountByEnterprise" header="用户数" [footer]="calculateTotal('userCountByEnterprise', enterpriseCustomers)"></p-column>
+    <p-column field="userCountByEnterprise" header="用户数" [footer]="calculateTotal('userCountByEnterprise', enterpriseCustomers)">
+      <ng-template let-countyCustomer="rowData" pTemplate="body">
+        {{ countyCustomer.userCountByEnterprise || 0 }}
+      </ng-template>
+    </p-column>
 
     <ng-template pTemplate="emptymessage">
       未查询到数据

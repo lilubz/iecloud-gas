@@ -15,10 +15,26 @@
         <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCylinder.enterpriseNumber||''}]" class="area">{{countyCylinder[col.field]}}</a>
       </ng-template>
     </p-column>
-    <p-column field="totalCount" header="气瓶数" [footer]="calculateTotal('totalCount', enterpriseCylinders)"></p-column>
-    <p-column field="normalCount" header="正常" [footer]="calculateTotal('normalCount', enterpriseCylinders)"></p-column>
-    <p-column field="expireCount" header="过期" [footer]="calculateTotal('expireCount', enterpriseCylinders)"></p-column>
-    <p-column field="scrapCount" header="报废" [footer]="calculateTotal('scrapCount', enterpriseCylinders)"></p-column>
+    <p-column field="totalCount" header="气瓶数" [footer]="calculateTotal('totalCount', enterpriseCylinders)">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.totalCount || 0 }}
+      </ng-template>
+    </p-column>
+    <p-column field="normalCount" header="正常" [footer]="calculateTotal('normalCount', enterpriseCylinders)">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.normalCount || 0 }}
+      </ng-template>
+    </p-column>
+    <p-column field="expireCount" header="过期" [footer]="calculateTotal('expireCount', enterpriseCylinders)">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.expireCount || 0 }}
+      </ng-template>
+    </p-column>
+    <p-column field="scrapCount" header="报废" [footer]="calculateTotal('scrapCount', enterpriseCylinders)">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.scrapCount || 0 }}
+      </ng-template>
+    </p-column>
   </p-dataTable>
 
 </div>

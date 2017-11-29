@@ -101,15 +101,15 @@ export class CommonRequestService {
     return this.httpService.getRequest(API.getCylinderSpecification, null);
   }
 
-  getCylinderStatus(): Promise<{
+  getLiabilitySubjectType(): Promise<{
     status: number,
     msg: string,
     data: Array<{
-      statusTypeId: number,
-      name: string
+      liabilityTypeId: number,
+      liabilityName: string
     }>,
   }> {
-    return this.httpService.getRequest(API.listGasStatus, null);
+    return this.httpService.getRequest(API.listLiabilitySubjectType, null);
   }
 
 }
