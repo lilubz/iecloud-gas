@@ -52,8 +52,8 @@
 </div>
 <div class="ui-g pad">
   <div class="ui-g-12">
-    <p-dataTable [value]="customerList" [lazy]="true" dataKey="userNumber" [paginator]="true" [rows]="pageParams.pageSize" 
-    scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.total" 
+    <p-dataTable [value]="customerList" [lazy]="true" dataKey="userNumber" [paginator]="true" [rows]="pageParams.pageSize"
+    scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.total"
     (onLazyLoad)="onPageChange($event)" [(first)]="pageParams.first">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
@@ -62,7 +62,7 @@
       </p-column>
       <p-column [style]="{'width':'150px'}" field="userIdentityCardNumber" header="用户卡号">
         <ng-template let-col let-user="rowData" pTemplate="body">
-          <a href="javascript:0;" [routerLink]="['../detail', {city:'330300',type:'userCardNumber',typeNumber:user.userIdentityCardNumber||''}]">{{ user.userIdentityCardNumber }}</a>
+          <a href="javascript:void(0);" [routerLink]="['../detail', {city:'330300',type:'userCardNumber',typeNumber:user.userIdentityCardNumber||''}]">{{ user.userIdentityCardNumber }}</a>
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'150px'}" field="userName" header="燃气用户"></p-column>

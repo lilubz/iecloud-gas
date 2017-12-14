@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8" />
-  <title>UpdateBrowser</title>
+  <title>配送先锋app</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
@@ -46,22 +46,17 @@
     }
 
     .update-browser {
-      width: 484px;
-      height: 613px;
-      background-clip: border-box;
-      background-image: url(./assets/img/browser_wrapper.png);
-      background-repeat: no-repeat;
-      clear: both;
-      position: absolute;
-      top: 49%;
-      left: 50%;
-      margin-top: -306.5px;
-      margin-left: -242px;
-      background-clip: border-box;
-      background-position-x: left;
-      background-position-y: top;
-      background-origin: padding-box;
-      background-color: transparent;
+      width: 480px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 8px grey;
+    }
+
+    @media screen and (max-width:600px) {
+      .update-browser {
+        width: 90%;
+      }
     }
 
     .update-browser h1 {
@@ -87,6 +82,7 @@
     .update-browser img {
       width: 200px;
       margin: 0 auto;
+      display: block;
     }
 
   </style>
@@ -98,7 +94,7 @@
   <div class="main">
     <div class="update-browser">
       <h1>配送先锋app</h1>
-      <a href="http://59.110.233.230/wenZhouGas/wenZhouDispatcher.apk">点此下载</a>
+      <a href="http://60.190.114.126/wenZhouGas/wenZhouDispatcher.apk">点此下载</a>
       <img src="./assets/img/app-qr-code.png" alt="扫码下载app">
     </div>
     <div class="copyright">

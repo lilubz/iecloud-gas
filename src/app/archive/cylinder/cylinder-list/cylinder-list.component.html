@@ -49,8 +49,8 @@
   </div>
   <div class="ui-g padding">
     <div class="ui-g-12">
-      <p-dataTable [value]="cylinders" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageParams.pageSize" 
-      scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.total" 
+      <p-dataTable [value]="cylinders" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageParams.pageSize"
+      scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pageParams.pageOption" [totalRecords]="pageParams.total"
       (onLazyLoad)="onPageChange($event)" [(first)]="pageParams.first">
         <p-column [style]="{'width':'100px'}" header="序号">
           <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
@@ -59,7 +59,7 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码">
           <ng-template let-col let-cylinder="rowData" pTemplate="body">
-            <a href="javascript:0;" [routerLink]="['../detail', cylinder.gasLabelNumber || '']">{{ cylinder.gasLabelNumber }}</a>
+            <a href="javascript:void(0);" [routerLink]="['../detail', cylinder.gasLabelNumber || '']">{{ cylinder.gasLabelNumber }}</a>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'150px'}" field="regionName" header="所属行政区"></p-column>

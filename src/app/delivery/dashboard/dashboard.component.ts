@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   cylinderSpecificationList: SelectItem[] = []; // 气瓶规格
   dispatcherList: SelectItem[] = []; // 配送员列表
   deliveryRegionList: SelectItem[] = []; // 可选择的配送区域列表
+  deliveryUrbanDistrictList: SelectItem[] = []; // 选中市辖区时的区县列表
   deliveryStreetList: SelectItem[] = []; // 可选择的配送街道列表
 
   newOrder: Order = new Order(); // 新增订单
@@ -35,6 +36,7 @@ export class DashboardComponent implements OnInit {
   customerSuggestions: Array<SuggestedCustomer> = [];
   selectedCustomer: SuggestedCustomer = new SuggestedCustomer(); // 选择用户
   selectedDeliveryAreaId = ''; // 选择的配送地址区域id
+  selectedUrbanDistrict = ''; // 选中市辖区时的区县regionId
   selectedDeliveryStreetId = ''; // 选择的配送地址区域id
   // deliveryDetailAddress = ''; // 配送详细地址
   addOrderVisiable = false;
@@ -229,14 +231,28 @@ export class DashboardComponent implements OnInit {
   }
 
   deliveryCountyChange(regionId) {
+    if (regionId.toString() !== '330301') {
+      this.deliveryUrbanDistrictList = [];
+      this.selectedUrbanDistrict = '';
+    } else {
+      this.deliveryStreetList = [{ label: '--请选择--', value: '' }];
+      this.selectedDeliveryStreetId = '';
+    }
     this.commonRequestService.getWenZhouRegionList({
       regionId
     }).then(data => {
       if (data.status === 0) {
-        this.deliveryStreetList = data.data.map(
-          element => ({ label: element.regionName, value: element.regionId }));
-        this.selectedDeliveryStreetId = '';
-        this.deliveryStreetList.unshift({ label: '--请选择--', value: '' });
+        if (regionId.toString() === '330301') {
+          this.deliveryUrbanDistrictList = data.data.map(
+            element => ({ label: element.regionName, value: element.regionId }));
+          this.deliveryUrbanDistrictList.unshift({ label: '--请选择--', value: '' });
+          this.selectedUrbanDistrict = '';
+        } else {
+          this.deliveryStreetList = data.data.map(
+            element => ({ label: element.regionName, value: element.regionId }));
+          this.deliveryStreetList.unshift({ label: '--请选择--', value: '' });
+          this.selectedDeliveryStreetId = this.deliveryStreetList[0].value;
+        }
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取街道信息失败', detail: data.msg });
       }
@@ -273,5 +289,26 @@ export class DashboardComponent implements OnInit {
     //     this.selectedDeliveryAreaId = event.regionId;
     //   }
     // });
+  }
+
+  deliveryUrbanDistrictChange(urbanRegionId) {
+    if (urbanRegionId === '') {
+      this.deliveryStreetList = [{ label: '--请选择--', value: '' }];
+      this.selectedDeliveryStreetId = '';
+      return;
+    }
+
+    this.commonRequestService.getWenZhouRegionList({
+      regionId: urbanRegionId
+    }).then(data => {
+      if (data.status === 0) {
+        this.deliveryStreetList = data.data.map(
+          element => ({ label: element.regionName, value: element.regionId }));
+        this.deliveryStreetList.unshift({ label: '--请选择--', value: '' });
+        this.selectedDeliveryStreetId = this.deliveryStreetList[0].value;
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: '获取街道信息失败' });
+      }
+    });
   }
 }

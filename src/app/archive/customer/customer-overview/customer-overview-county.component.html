@@ -11,7 +11,7 @@
     </p-column>
     <p-column field="regionName" header="区域" [style]="{'width':'50%'}">
       <ng-template let-col let-countyCustomer="rowData" pTemplate="body">
-        <a href="javascript:0;" [routerLink]="['../enterprise', countyCustomer.regionId||'']" class="area">{{countyCustomer[col.field]}}</a>
+        <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCustomer.regionId||'']" class="area">{{countyCustomer[col.field]}}</a>
       </ng-template>
     </p-column>
     <p-column field="userCount" header="用户数">

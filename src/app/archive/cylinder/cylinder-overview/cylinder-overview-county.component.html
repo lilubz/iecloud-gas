@@ -13,7 +13,7 @@
     </p-column>
     <p-column field="regionName" header="区域" [style]="{'width':'30%'}">
       <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
-        <a href="javascript:0;" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
+        <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
       </ng-template>
     </p-column>
     <p-column field="totalCount" header="气瓶数">

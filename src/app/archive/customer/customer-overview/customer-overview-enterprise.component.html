@@ -10,7 +10,7 @@
     </p-column>
     <p-column field="enterpriseName" header="企业名称" footer="合计" [style]="{'width':'50%'}">
       <ng-template let-col let-countyCustomer="rowData" pTemplate="body">
-        <a href="javascript:;" [routerLink]="['../../../list', {enterpriseID:countyCustomer.enterpriseNumber||''}]" class="area">{{countyCustomer[col.field]}}</a>
+        <a href="javascript:void(0);" [routerLink]="['../../../list', {enterpriseID:countyCustomer.enterpriseNumber||''}]" class="area">{{countyCustomer[col.field]}}</a>
       </ng-template>
     </p-column>
     <p-column field="userCountByEnterprise" header="用户数" [footer]="calculateTotal('userCountByEnterprise', enterpriseCustomers)">

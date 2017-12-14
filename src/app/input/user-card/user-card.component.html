@@ -23,7 +23,7 @@
         <p-column field="enterpriseName" header="供气企业"></p-column>
         <p-column field="certNumStatus" header="用户身份认证卡状态">
           <ng-template let-col let-customerCard="rowData" pTemplate="body">
-            <a href="javascript:0;" (click)="showBindCardDialog(customerCard)">{{customerCard[col.field]}}</a>
+            <a href="javascript:void(0);" (click)="showBindCardDialog(customerCard)">{{customerCard[col.field]}}</a>
           </ng-template>
         </p-column>
       </p-dataTable>

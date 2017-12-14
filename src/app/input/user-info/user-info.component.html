@@ -246,8 +246,7 @@
 
       <p-fileUpload name="gcUserExcel" [url]="importGcUserInfoUrl" [multiple]="false" invalidFileSizeMessageSummary="{0}: 文件过大,"
         invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型," invalidFileTypeMessageDetail="允许的文件类型是: {0}."
-        chooseLabel="用户基本信息导入" uploadLabel="上传" cancelLabel="取消" maxFileSize="10000000" (onUpload)="uploadCustomerFile($event)"
-        (onError)="uploadCustomerFile($event)">
+        chooseLabel="用户基本信息导入" uploadLabel="上传" cancelLabel="取消" maxFileSize="10000000" (onUpload)="uploadCustomerFile($event)">
       </p-fileUpload>
       <!-- <button pButton type="button" label="批量上传"></button> -->
     </div>
