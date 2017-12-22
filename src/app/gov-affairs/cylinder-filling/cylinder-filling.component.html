@@ -1,0 +1,43 @@
+<div class="ui-g-12 main">
+  <div class="ui-g-12">
+    <label for="">充装工姓名</label>
+    <input type="text" [(ngModel)]="inflator" pInputText placeholder="充装工姓名" style="width:180px"> &nbsp;&nbsp;
+    <label for="">气瓶条码</label>
+    <input type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px"> &nbsp;&nbsp;
+    <label for="">气站名称</label>
+    <input type="text" [(ngModel)]="stationName" pInputText placeholder="气站名称" style="width:180px"> &nbsp;&nbsp;
+    <label for=""> 开始时间</label>
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
+      [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
+    &nbsp;&nbsp;
+    <label for="">结束时间</label>
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
+      [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today"
+      readonlyInput="true"></p-calendar>
+    &nbsp;&nbsp;
+    <button pButton type="button" label="查询" (click)="search()"></button>
+  </div>
+  <div class="ui-g-12">
+    <p-dataTable [value]="cylinderFillingHistoryList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true"
+      [lazy]="true" [(first)]="pageFirst" (onLazyLoad)="onFillingHistoryPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
+      <p-column header="序号" [style]="{'width':'50px'}">
+        <ng-template pTemplate="body" let-index="rowIndex">
+          {{index + 1}}
+        </ng-template>
+      </p-column>
+      <p-column field="gasLabelNumber" header="气瓶条码" [style]="{'width':'150px'}"></p-column>
+      <p-column field="inflatableStationName" header="充装站名称" [style]="{'width':'150px'}"></p-column>
+      <p-column field="fillingStart" header="充装开始时间" [style]="{'width':'150px'}">
+        <ng-template let-record="rowData" pTemplate="body">
+          {{ record.fillingStart | date: 'yyyy-MM-dd hh:mm:ss'}}
+        </ng-template>
+      </p-column>
+      <p-column field="fillingEnd" header="充装结束时间" [style]="{'width':'150px'}">
+        <ng-template let-record="rowData" pTemplate="body">
+          {{ record.fillingEnd | date: 'yyyy-MM-dd hh:mm:ss'}}
+        </ng-template>
+      </p-column>
+      <p-column field="fillingStaff" header="充装人员" [style]="{'width':'150px'}"></p-column>
+    </p-dataTable>
+  </div>
+</div>

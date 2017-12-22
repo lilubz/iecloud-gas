@@ -5,6 +5,8 @@ import { CylinderTraceComponent } from './cylinder-trace/cylinder-trace.componen
 import { GovAffairsRoutingModule } from './gov-affairs-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CylinderTraceService } from './cylinder-trace/cylinder-trace.service';
+import { CylinderFillingComponent } from './cylinder-filling/cylinder-filling.component';
+import { CylinderFillingService } from './cylinder-filling/cylinder-filling.service';
 
 @NgModule({
   imports: [
@@ -14,10 +16,12 @@ import { CylinderTraceService } from './cylinder-trace/cylinder-trace.service';
   ],
   declarations: [
     GovAffairsComponent,
-    CylinderTraceComponent
+    CylinderTraceComponent,
+    CylinderFillingComponent
   ],
   providers: [
-    CylinderTraceService
+    CylinderTraceService,
+    CylinderFillingService
   ]
 })
 export class GovAffairsModule { }

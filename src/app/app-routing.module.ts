@@ -39,10 +39,11 @@ const routes: Routes = [
       // },
       {
         path: 'delivery',
-        loadChildren: './delivery/delivery.module#DeliveryModule',
-        data: {
-          title: '配送管理'
-        }
+        // loadChildren: './delivery/delivery.module#DeliveryModule',
+        // data: {
+        //   title: '配送管理'
+        // }
+        component: PageNotFoundComponent
       },
       {
         path: 'gov-affairs',
@@ -86,10 +87,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'archive'
-  // }
+  {
+    path: '**',
+    redirectTo: 'archive'
+  }
 ];
 
 @NgModule({

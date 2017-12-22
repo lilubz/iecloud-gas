@@ -87,6 +87,9 @@ export class CylinderTraceComponent implements OnInit {
       liabilityTypeId: this.selectedCylinderStatus
     }).then(data => {
       if (data.status === 0) {
+        if (data.data.list.length === 0) {
+          this.messageService.add({ severity: 'warn', summary: '获取气瓶列表为空', detail: '' });
+        }
         this.cylinderList = data.data.list;
         this.total = data.data.total;
       } else {
@@ -117,6 +120,9 @@ export class CylinderTraceComponent implements OnInit {
       endTime: this.endTime ? this.formate.dateFormat(this.endTime, 'yyyy-MM-dd') : ''
     }).then(data => {
       if (data.status === 0) {
+        if (data.data.list.length === 0) {
+          this.messageService.add({ severity: 'warn', summary: '获取气瓶状态历史为空', detail: '' });
+        }
         this.cylinderHistoryList = data.data.list;
         this.totalHistory = data.data.total;
       } else {

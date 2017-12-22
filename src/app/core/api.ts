@@ -131,6 +131,8 @@ export const API = {
   // 获取某责任主体类型下的气瓶列表
   'listGasInfoSearchByLiabilitySubjectId': URL +
     'basicInformation/gasCylinder/listGasInfoSearchByLiabilitySubjectId.do',
+  // 气瓶充装记录
+  'listFillingInfo': URL + '/corpBusiness/applyManagement/listFillingInfo.do',
 
 
   // 登录

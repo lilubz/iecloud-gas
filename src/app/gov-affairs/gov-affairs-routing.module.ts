@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { CylinderTraceComponent } from './cylinder-trace/cylinder-trace.component';
+import { CylinderFillingComponent } from './cylinder-filling/cylinder-filling.component';
 const routes: Routes = [
   {
     path: '',
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'cylinder-trace',
     component: CylinderTraceComponent
+  },
+  {
+    path: 'cylinder-filling',
+    component: CylinderFillingComponent
   },
   {
     path: '**',
