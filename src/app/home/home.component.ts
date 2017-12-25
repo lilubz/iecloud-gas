@@ -30,7 +30,10 @@ export class HomeComponent implements OnInit {
   curTime: any;
   DateTime: any;
   sumCylinder: any = 0;
-  sumUser: any = 0;
+  normalCylinder = 0;
+  expireCylinder = 0;
+  scrapCylinder = 0;
+  sumUser = 0;
   countyCylinders: {
     name: string,
     totalCount: number,
@@ -127,7 +130,10 @@ export class HomeComponent implements OnInit {
           organizationId: user.organizationId || ''
         }).then(data => {
           if (data.status === 0) {
-            this.sumCylinder = this.calculateTotal('totalCount', data.data);
+            this.normalCylinder = data.data[0].normalCount || 0;
+            this.expireCylinder = data.data[0].expireCount || 0;
+            this.scrapCylinder = data.data[0].scrapCount || 0;
+            this.sumCylinder += data.data[0].totalCount || 0;
           } else {
             this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
           }
@@ -138,14 +144,10 @@ export class HomeComponent implements OnInit {
           areaID: user.regionId || ''
         }).then(data => {
           if (data.status === 0) {
-            for (let i = 0; i < data.data.length; i++) {
-              if (user.regionId === data.data[i].regionId) {
-                this.sumCylinder = data.data[i].totalCount || 0;
-                break;
-              } else {
-                this.sumCylinder += data.data[i].totalCount || 0;
-              }
-            }
+            this.sumCylinder = this.calculateTotal('totalCount', data.data);
+            this.normalCylinder = this.calculateTotal('normalCount', data.data);
+            this.expireCylinder = this.calculateTotal('expireCount', data.data);
+            this.scrapCylinder = this.calculateTotal('scrapCount', data.data);
           } else {
             this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
           }
@@ -161,7 +163,7 @@ export class HomeComponent implements OnInit {
           organizationId: user.organizationId || ''
         }).then(data => {
           if (data.status === 0) {
-            this.sumUser = this.calculateTotal('userCount', data.data);
+            this.sumUser = data.data[0].userCountByEnterprise || 0;
           } else {
             this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
           }
@@ -172,14 +174,7 @@ export class HomeComponent implements OnInit {
           areaID: user.regionId || ''
         }).then(data => {
           if (data.status === 0) {
-            for (let i = 0; i < data.data.length; i++) {
-              if (user.regionId === data.data[i].regionId) {
-                this.sumUser = data.data[i].userCount || 0;
-                break;
-              } else {
-                this.sumUser += data.data[i].userCount || 0;
-              }
-            }
+            this.sumUser = this.calculateTotal('userCount', data.data);
           } else {
             this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
           }
