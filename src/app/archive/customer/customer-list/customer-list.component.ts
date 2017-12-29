@@ -26,6 +26,7 @@ export class CustomerListComponent implements OnInit {
     index?: number;
     barCode?: string;
     borough?: string;
+    dispatcherName?: string;
     company?: string;
     cylinderType?: string;
     fillingMedium?: string;

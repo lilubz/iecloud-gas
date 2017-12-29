@@ -140,7 +140,7 @@
           <p-dropdown [options]="deliveryStreetList" [(ngModel)]="selectedStreetRegionId" [style]="{'width':'150px'}"></p-dropdown>
         </div>
       </div>
-      <div class="ui-g-10 ui-xl-6 ui-g-offset-2">
+      <div class="ui-g-10 ui-xl-6">
         <input [(ngModel)]="customer.deliveryAddress" type="text" pInputText placeholder="详细地址" maxlength="50" required>
       </div>
     </div>
@@ -165,6 +165,16 @@
         </div>
         <div class="ui-g-9 ui-g-nopad">
           <input type="text" [(ngModel)]="customer.phone" pattern="[0-9]{7,11}" placeholder="联系电话" pInputText maxlength="11" required>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-6">
+        <div class="ui-g-3 ui-g-nopad">
+          <span>配送工</span>
+        </div>
+        <div class="ui-g-9 ui-xl-6 ui-g-nopad">
+          <p-dropdown [options]="dispatcherList" [(ngModel)]="customer.dispatcherNumber" [style]="{'width':'150px'}" filter="true"></p-dropdown>
         </div>
       </div>
     </div>

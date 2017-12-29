@@ -2,7 +2,7 @@
   <h2>查不到此信息</h2>
 </div>
 <div *ngIf="loading===0">
-  <div class="cylinder-detail " >
+  <div class="cylinder-detail ">
     <div class="ui-g-12">
       <div class="ui-g-12 padding-none">
         <div class="ui-g-6 padding-none">
@@ -44,9 +44,13 @@
         <span class="span_gasright bg_colorR">联系电话</span>
         <span class="span_textright">{{detailLists.phone}}</span>
       </div>
-      <div class="ui-g-12 padding-none">
-        <span class="span_gasaddress bg_colorR">派送地址</span>
-        <span class="span_textaddress">{{detailLists.deliveryAddress}}</span>
+      <div class="ui-g-6 padding-none">
+        <span class="span_gasleft bg_colorR">派送地址</span>
+        <span class="span_textleft">{{detailLists.deliveryAddress}}</span>
+      </div>
+      <div class="ui-g-6 padding-none">
+        <span class="span_gasright bg_colorR">配送工</span>
+        <span class="span_textright">{{ detailLists.dispatcherName }}</span>
       </div>
       <div class="ui-g-6 padding-none">
         <span class="span_gasleft bg_colorR">登记时间</span>
@@ -96,22 +100,22 @@
     </div>
 
   </div>
-  <div >
-  <div class="ui-g-12">
-    <span>{{detailList.length?detailList.length:0}}</span>个查询结果：
-  </div>
-  <div class="ui-g-12 result-container">
-    <div *ngIf="!detailList.length">无查询结果</div>
-    <div *ngIf="detailList.length">
-    <div class="ui-g-8 padding-none"  (click)="ondetail(i)" *ngFor="let DetailList of detailList,let i=index">
-      <div class="ui-g-1 user-result">{{i+1}}</div>
-      <div class="ui-g-3 user-result">{{DetailList.certificateId?DetailList.certificateId:'无'}}</div>
-      <div class="ui-g-2 user-result">{{DetailList.userName?DetailList.userName:'无'}}</div>
-      <div class="ui-g-2 user-result">{{DetailList.deliveryAddress?DetailList.deliveryAddress:'无'}}</div>
-      <div class="ui-g-2 user-result">{{DetailList.userNumber?DetailList.userNumber:'无'}}</div>
-      <div class="ui-g-2 user-result">{{DetailList.phone?DetailList.phone:'无'}}</div>
+  <div>
+    <div class="ui-g-12">
+      <span>{{detailList.length?detailList.length:0}}</span>个查询结果：
+    </div>
+    <div class="ui-g-12 result-container">
+      <div *ngIf="!detailList.length">无查询结果</div>
+      <div *ngIf="detailList.length">
+        <div class="ui-g-8 padding-none" (click)="ondetail(i)" *ngFor="let DetailList of detailList,let i=index">
+          <div class="ui-g-1 user-result">{{i+1}}</div>
+          <div class="ui-g-3 user-result">{{DetailList.certificateId?DetailList.certificateId:'无'}}</div>
+          <div class="ui-g-2 user-result">{{DetailList.userName?DetailList.userName:'无'}}</div>
+          <div class="ui-g-2 user-result">{{DetailList.deliveryAddress?DetailList.deliveryAddress:'无'}}</div>
+          <div class="ui-g-2 user-result">{{DetailList.userNumber?DetailList.userNumber:'无'}}</div>
+          <div class="ui-g-2 user-result">{{DetailList.phone?DetailList.phone:'无'}}</div>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-</div>
 </div>

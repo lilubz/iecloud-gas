@@ -112,4 +112,14 @@ export class CommonRequestService {
     return this.httpService.getRequest(API.listLiabilitySubjectType, null);
   }
 
+  /**
+   * 获取该企业下的所有配送工信息
+   * 2017-12-29 09:57:41
+   * @author hzb
+   * @param params
+   * @returns
+   */
+  getDispatchers(): Promise<any> {
+    return this.httpService.getRequest(API.getDispatchers, {});
+  }
 }

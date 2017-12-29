@@ -17,6 +17,7 @@ export const API = {
   'getCylinderTypes': URL + 'basicInformation/commonInfo/listGcType.do', // 获取所有气瓶类型
   'getCylinderSpecification': URL + 'basicInformation/commonInfo/listGcSpecification.do', // 获取所有气瓶类型
   'listLiabilitySubjectType': URL + 'basicInformation/gasCylinder/listLiabilitySubjectType.do', // 获取气瓶责任主体类型列表
+  'getDispatchers': URL + '/basicInformation/corpInfo/getDispatchers.do', // 获取当前企业下的所有配送工
 
   // 气瓶档案
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',

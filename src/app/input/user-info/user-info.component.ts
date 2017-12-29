@@ -1,3 +1,4 @@
+import { DashboardService } from './../../delivery/dashboard/dashboard.service';
 import { API } from './../../core/api';
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
@@ -42,6 +43,7 @@ export class UserInfoComponent implements OnInit {
   // 提示消息
   msgs: Message[] = [];
 
+  dispatcherList: SelectItem[] = [{ label: '--请选择--', value: '' }];
   certificateAddress = ''; // 证件地址
   certificateDetailAddress = ''; // 证件详细地址
   deliveryRegionList: SelectItem[] = []; // 配送地址列表
@@ -57,7 +59,7 @@ export class UserInfoComponent implements OnInit {
     private format: Format,
     private userInfoService: UserInfoService,
     private route: ActivatedRoute,
-    private commonRequestService: CommonRequestService
+    private commonRequestService: CommonRequestService,
   ) {
     this.user = this.userStateService.getUser();
     console.dir(this.user);
@@ -82,6 +84,8 @@ export class UserInfoComponent implements OnInit {
         this.deliveryCountyChange(regionId);
       }
     });
+
+    this.getDispatcher();
   }
 
   formInit() {
@@ -255,6 +259,20 @@ export class UserInfoComponent implements OnInit {
       } else {
         this.showMessage('warn', '', '获取街道信息失败');
       }
+    });
+  }
+
+  getDispatcher(regionId?) {
+    this.commonRequestService.getDispatchers().then(data => {
+      if (data.status === 0) {
+        this.dispatcherList = data.data.map(item => ({ label: item.dispatcherName, value: item.dispatcherNumber }));
+        this.dispatcherList.unshift({ label: '--请选择--', value: '' });
+      } else {
+        this.dispatcherList = [{ label: '--请选择--', value: '' }];
+        this.showMessage('warn', '获取配送员信息失败', data.msg);
+      }
+    }).catch(error => {
+      this.showMessage('error', '', error);
     });
   }
 }
