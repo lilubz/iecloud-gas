@@ -24,6 +24,7 @@ import {
   SpinnerModule,
   TieredMenuModule,
   SharedModule as _SharedModule,
+  ConfirmDialogModule,
 } from 'primeng/primeng';
 
 import { LoadingComponent } from './loading/loading.component';
@@ -77,6 +78,7 @@ import { DistrictsComponent } from './districts/districts.component';
     DataTableModule,
     DropdownModule,
     DialogModule,
+    ConfirmDialogModule,
     FileUploadModule,
     FormsModule,
     ReactiveFormsModule,

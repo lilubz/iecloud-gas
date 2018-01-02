@@ -7,6 +7,8 @@ import { CustomerModule } from './customer/customer.module';
 import { CylinderModule } from './cylinder/cylinder.module';
 import { EmployeeModule } from './employee/employee.module';
 import { ArchiveComponent } from './archive.component';
+import { EnterpriseModule } from './enterprise/enterprise.module';
+
 
 @NgModule({
   imports: [
@@ -14,13 +16,13 @@ import { ArchiveComponent } from './archive.component';
     CylinderModule,
     CustomerModule,
     EmployeeModule,
+    EnterpriseModule,
     ArchiveRoutingModule,
   ],
   declarations: [
     ArchiveComponent,
   ],
   providers: [
-
   ]
 })
 export class ArchiveModule { }

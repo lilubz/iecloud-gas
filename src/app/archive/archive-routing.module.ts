@@ -18,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'enterprise',
-    component: PageNotFoundComponent
+    redirectTo: 'enterprise/detail',
+    pathMatch: 'full'
   },
   {
     path: 'car',

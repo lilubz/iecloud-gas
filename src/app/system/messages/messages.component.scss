@@ -1,0 +1,19 @@
+.message {
+    .bottom {
+        margin-bottom: 2em;
+    }
+}
+
+.title {
+    color: #1a5e93;
+    text-align: center;
+}
+
+.annouce {
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #c0c0c0;
+    .padding-lr{
+      padding:0 0.5em ;
+    }
+}

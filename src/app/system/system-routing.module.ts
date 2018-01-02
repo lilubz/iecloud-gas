@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SystemComponent } from './system.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'user',
         component: UserComponent
+      },
+      {
+        path: 'message',
+        component: MessagesComponent
       }
     ]
   },

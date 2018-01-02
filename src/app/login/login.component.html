@@ -1,8 +1,24 @@
 <div class="login">
+  <div class="messgae">
+    <div class="messgae-container">
+      <h2 class="head">通知</h2>
+      <div class="ui-g">
+        
+          <div class="ui-g-12 ms-box" *ngFor="let item of messageList1">
+            <a (click)="download(item)"><div class="ui-g-8 content-h" [title]="item.title">
+              {{item.title}}
+            </div>
+          </a>
+            <div class="ui-g-4 content-h" [title]="item.createTime | date:'yyyy-MM-dd'">
+              {{item.createTime | date:'yyyy-MM-dd'}}
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
   <div id="login-wrapper">
     <div id="login-container">
       <span class="title">智慧燃气安全监督大数据平台</span>
-
       <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-g-nopad">
           <label for="" class="ui-g-4">用户名:</label>
@@ -28,10 +44,11 @@
         <div class="ui-g-12">
           <button (click)="signIn()" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
             <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-person"></span>
-            <span class="ui-button-text ui-c" >登录</span>
+            <span class="ui-button-text ui-c">登录</span>
           </button>
         </div>
       </div>
     </div>
   </div>
+
 </div>

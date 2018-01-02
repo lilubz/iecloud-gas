@@ -234,6 +234,21 @@ export class CylinderInfoComponent implements OnInit {
   selectedNexTestDate(event) {
     this.cylinderInfo.nextTestDate = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
   }
+  clearIntoStationDate(event) {
+    this.cylinderInfo.intoStationDate = '';
+  }
+  clearTimeManufacture(event) {
+    this.cylinderInfo.timeManufacture = '';
+  }
+  clearExpectedScrapTime(event) {
+    this.cylinderInfo.expectedScrapTime = '';
+  }
+  clearLastTestDate(event) {
+    this.cylinderInfo.lastTestDate = '';
+  }
+  clearNexTestDate(event) {
+    this.cylinderInfo.nextTestDate = '';
+  }
   // onclear(event) {
   //   event.files = [];
   // }

@@ -45,7 +45,12 @@ export const API = {
   'listGcInfoRecentlyRegister': URL + 'basicInformation/gasCylinder/listGcInfoRecentlyRegister.do',
   // 系统管理
   'queryLog': URL + '',
-
+  // 通知公告
+  'add': URL + 'announcements/add.do',
+  'query': URL + 'announcements/get.do',
+  'delete': URL + 'announcements/delete.do',
+  // 企业档案查询
+  'listCorp': URL + 'basicInformation/corpInfo/listCorp.do',
   // 气瓶信息概览
   'getCylinderCountiesOverview': URL + 'basicInformation/gasCylinder/getGcCountInfoGroupByRegion.do',
   'getCylinderEnterpriseOverviewByAreaId': URL + 'basicInformation/gasCylinder/getGcCountGroupByCorp.do',
