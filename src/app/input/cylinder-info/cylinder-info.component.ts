@@ -231,7 +231,7 @@ export class CylinderInfoComponent implements OnInit {
   selectedLastTestDate(event) {
     this.cylinderInfo.lastTestDate = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
   }
-  selectedNexTestDate(event) {
+  selectedNextTestDate(event) {
     this.cylinderInfo.nextTestDate = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
   }
   clearIntoStationDate(event) {
@@ -246,7 +246,7 @@ export class CylinderInfoComponent implements OnInit {
   clearLastTestDate(event) {
     this.cylinderInfo.lastTestDate = '';
   }
-  clearNexTestDate(event) {
+  clearNextTestDate(event) {
     this.cylinderInfo.nextTestDate = '';
   }
   // onclear(event) {
