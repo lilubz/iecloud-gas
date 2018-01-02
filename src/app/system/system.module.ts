@@ -5,6 +5,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SystemComponent } from './system.component';
 import { UserComponent } from './user/user.component';
+import { MessagesComponent } from './messages/messages.component';
+import { MessagesService } from './messages/messages.service';
+import { ConfirmationService } from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -14,10 +17,13 @@ import { UserComponent } from './user/user.component';
   ],
   declarations: [
     SystemComponent,
-    UserComponent
+    UserComponent,
+    MessagesComponent
   ],
   providers: [
-    UserService
+    UserService,
+    MessagesService,
+    ConfirmationService
   ]
 })
 export class SystemModule { }

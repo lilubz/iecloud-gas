@@ -62,4 +62,9 @@ export class LoginService {
         this.router.navigate(['/login']);
       });
   }
+
+  query(params: any): Promise<any> {
+    return this.httpService.getRequest(this.API.query, params);
+  }
+  
 }

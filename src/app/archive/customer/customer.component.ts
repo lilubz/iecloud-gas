@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'gas-customer',
   templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
   cities: SelectItem[] = [

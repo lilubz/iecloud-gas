@@ -99,6 +99,7 @@ export class HomeComponent implements OnInit {
         routerLink: ['/system'],
         items: [
           { label: '个人信息', routerLink: ['/system/user'] },
+          { label: '通知公告', routerLink: ['/system/message'] },
         ]
       },
       {
