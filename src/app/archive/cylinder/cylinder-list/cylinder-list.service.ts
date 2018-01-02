@@ -12,26 +12,12 @@ export class CylinderListService {
 
   getCylinderSearchOpt(params: any): Promise<any> {
     return this.httpService
-      .withCredentialsPostRequest(this.API.cylinderSelectOpt, params)
-      .catch(this.handleError);
+      .withCredentialsPostRequest(this.API.cylinderSelectOpt, params);
   }
 
   getCylinders(params: any): any {
     return this.httpService
-      .withCredentialsPostRequest(this.API.getCylinders, params)
-      .catch(this.handleError);
+      .withCredentialsPostRequest(this.API.getCylinders, params);
   }
 
-  // private handleError(error: any): Promise<any> {
-  //   const promise = new Promise(function (resolve, reject) {
-  //     resolve(error);
-  //   });
-
-  //   return promise;
-  // }
-
-  private handleError(error: any): Promise<any> {
-    // console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
 }

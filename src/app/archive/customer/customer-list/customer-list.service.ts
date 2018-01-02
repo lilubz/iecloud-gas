@@ -13,36 +13,26 @@ export class CustomerListService {
 
   getDropdownForUserNature(params: any): Promise<any> {
     return this.httpService
-      .getRequest(this.API.getDropdownForUserNature, params)
-      .catch(this.handleError);
+      .getRequest(this.API.getDropdownForUserNature, params);
   }
 
   getDropdownForUserType(params: any): Promise<any> {
     return this.httpService
-      .getRequest(this.API.getDropdownForUserType, params)
-      .catch(this.handleError);
+      .getRequest(this.API.getDropdownForUserType, params);
   }
 
   getDropdownForRegionSysUser(params: any): Promise<any> {
     return this.httpService
-      .getRequest(this.API.getDropdownForRegionSysUser, params)
-      .catch(this.handleError);
+      .getRequest(this.API.getDropdownForRegionSysUser, params);
   }
 
   getDropdownForCorpInfoInRegion(params: any): Promise<any> {
     return this.httpService
-      .getRequest(this.API.getDropdownForCorpInfoInRegion, params)
-      .catch(this.handleError);
+      .getRequest(this.API.getDropdownForCorpInfoInRegion, params);
   }
 
   getCustomerList(params: any): Promise<any> {
     return this.httpService
-      .getRequest(this.API.getCustomerList, params)
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+      .getRequest(this.API.getCustomerList, params);
   }
 }

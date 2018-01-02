@@ -1,17 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  ActivatedRoute
-} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
-import {
-  CylinderListService
-} from './cylinder-list.service';
-import {
-  MessageService
-} from 'primeng/components/common/messageservice';
+import { CylinderListService } from './cylinder-list.service';
+import { MessageService } from 'primeng/components/common/messageservice';
 @Component({
   selector: 'gas-cylinder-list',
   templateUrl: './cylinder-list.component.html',
@@ -21,178 +13,143 @@ import {
 
 export class CylinderListComponent implements OnInit {
   constructor(private routerInfo: ActivatedRoute, private cylinderListService: CylinderListService,
-    private messageService: MessageService) { }
-  cylinders: Array<{
-    cylinderCode?: string;
-    borough?: string;
-    enterpriseName?: string;
-    specification?: string;
-    fillingMedium?: string;
-    serviceCondition?: string;
-    productionDate?: string;
-    endCheckdate?: string;
-    nextCheckdate?: string;
-    ownNumber?: string;
-    EserialNumber?: string;
-    registrationTime?: string;
-    productionUnit?: string;
-    serialNumber?: string;
-  }>;
-  pageParams: {
-    enterpriseNumber?: string;
-    productionUnit?: string;
-    state?: string;
-    cylinderCode?: string;
-    serialNumber?: string;
-    ownNumber?: string;
-    pageNumber?: number;
-    pageSize?: number;
-    pageOption?: Array<Number>;
-    total?: number;
-    first?: number;
-  } = {
+    private messageService: MessageService , private fb: FormBuilder) { }
+  dropdown = {
+    company: [
+      {
+        label: '全部 ',
+        value: ''
+      }
+    ],
+    make: [
+      {
+        label: '全部 ',
+        value: ''
+      }
+    ],
+    status: [
+      {
+        label: '全部 ',
+        value: ''
+      },
+      {
+        label: '正常 ',
+        value: 0
+      },
+      {
+        label: '过期 ',
+        value: 1
+      },
+    ],
+    default: [
+      {
+        label: '全部',
+        value: ''
+      }
+    ],
+  };
+  dataTable = {
+    list: [],
+    option: [5, 10, 20, 40],
+    total: 0,
+    first: 0
+  };
+  formModel: any = this.fb.group({
+    enterpriseNumber: '',
+    productionUnit: '',
+    state: '',
+    cylinderCode: '',
+    serialNumber: '',
+    ownNumber: ''
+  });
+  pageParams = {
     enterpriseNumber: '',
     productionUnit: '',
     state: '',
     cylinderCode: '',
     serialNumber: '',
     ownNumber: '',
-    pageNumber: 1,
-    pageSize: 20,
-    pageOption: [10, 20, 30, 40],
-    total: 400,
-    first: 0,
-  };
-  searchParams: {
-    enterpriseNumber?: string;
-    productionUnit?: string;
-    state?: string;
-    cylinderCode?: string;
-    serialNumber?: string;
-    ownNumber?: string;
-  } = {
-    enterpriseNumber: '',
-    productionUnit: '',
-    state: '',
-    cylinderCode: '',
-    serialNumber: '',
-    ownNumber: '',
-  };
-
-  searchOpt = {
-    company: [{
-      label: '全部 ',
-      value: ''
-    }],
-    make: [{
-      label: '全部 ',
-      value: ''
-    }],
-    status: [{
-      label: '全部 ',
-      value: ''
-    },
-    {
-      label: '正常 ',
-      value: 0
-    },
-    {
-      label: '过期 ',
-      value: 1
-    },
-    ]
+    pageSize: this.dataTable.option[1],
+    pageNumber: 1
   };
 
   onSearch(page?) {
-    const paramsKey = [
-      'enterpriseNumber',
-      'productionUnit',
-      'state',
-      'cylinderCode',
-      'serialNumber',
-      'ownNumber',
-    ];
-    const params = {};
-
-    // 有参数表示翻页，使用上次的查询参数，没有参数是新的查询，使用双向绑定的参数。
-    if (page) {
-      for (let i = 0; i < paramsKey.length; i++) {
-        params[paramsKey[i]] = this.pageParams[paramsKey[i]];
+    let params = {};
+    if (this.formModel.valid) { // 通过了验证
+      params = Object.assign({ pageNumber: 1, pageSize: this.pageParams.pageSize }, this.formModel.value);
+      this.dataTable.first = 0;
+      Object.assign(this.pageParams, params);
+      this.getCylinders(params);
+    } else { // 没有通过验证
+      for (const key in this.formModel.controls) {
+        if (this.formModel.controls[key].errors) {
+          const msg = this.formModel.controls[key].errors.msg;
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: msg });
+          return;
+        }
       }
-      params['pageNumber'] = page.pageNumber;
-      params['pageSize'] = page.pageSize;
-    } else {
-      for (let i = 0; i < paramsKey.length; i++) {
-        params[paramsKey[i]] = this.searchParams[paramsKey[i]];
-        this.pageParams[paramsKey[i]] = this.searchParams[paramsKey[i]];
-      }
-      params['pageNumber'] = 1;
-      params['pageSize'] = this.pageParams.pageSize;
-      this.pageParams.first = 0;
     }
-    this.getCylinders(params);
   }
 
-  onPageChange(pageInfo) {
-    const page: {
-      pageSize: Number,
-      pageNumber: Number
-    } = {
-        pageSize: pageInfo.rows,
-        pageNumber: pageInfo.first / pageInfo.rows + 1
-      };
-    this.onSearch(page);
+  onPageChange(event) {
+    const page = {
+      pageSize: event.rows,
+      pageNumber: event.first / event.rows + 1
+    };
+    this.pageParams.pageSize = page.pageSize;
+    this.getCylinders(Object.assign({}, this.pageParams, page));
   }
 
   ngOnInit() {
     this.getCylinderSearchOpt();
     const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
-    if (enterpriseID !== undefined) {
-      this.searchParams.enterpriseNumber = enterpriseID;
+    if (typeof enterpriseID !== 'undefined') {
+      this.formModel.patchValue({
+        enterpriseNumber: enterpriseID
+      });
       this.onSearch();
     }
   }
 
   getCylinderSearchOpt() {
-    this.cylinderListService.getCylinderSearchOpt({
-
-    }).then(data => {
+    this.cylinderListService.getCylinderSearchOpt({}).then(data => {
       if (data.status === 0) {
-        const all = [{ label: '全部', value: '' }];
-        this.searchOpt.company = all.concat(data.data.enterpriseName);
-        this.searchOpt.make = all.concat(data.data.productionUnit.map((item) => ({
+        this.dropdown.company = this.dropdown.default.concat(data.data.enterpriseName);
+        this.dropdown.make = this.dropdown.default.concat(data.data.productionUnit.map((item) => ({
           label: item.name,
           value: item.manufactureOrg
         })));
       } else {
-        this.setMessages('error', '查询结果', '响应：' + data.msg);
+        this.dropdown.company = this.dropdown.default;
+        this.dropdown.make = this.dropdown.default;
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
     }, error => {
-      this.setMessages('error', '查询失败', '错误代码：' + error.status);
+      this.dropdown.company = this.dropdown.default;
+      this.dropdown.make = this.dropdown.default;
+      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
+      throw error;
     });
   }
+
   getCylinders(params?) {
-    this.cylinderListService.getCylinders(params).then((data) => {
-      if (data.status === 0) {
-        console.log(data.data.total);
-        this.cylinders = data.data.list;
-        this.pageParams.total = data.data.total;
-      } else {
-        this.cylinders = [];
-        this.pageParams.total = 0;
-        this.setMessages('warn', '查询结果', '响应：' + data.msg);
-      }
-    }, (error) => {
-      this.cylinders = [];
-      this.pageParams.total = 0;
-      this.setMessages('error', '查询失败', '错误代码：' + error.status);
-    });
-  }
-  setMessages(type, title, msg) {
-    this.messageService.add({
-      severity: type,
-      summary: title,
-      detail: msg,
-    });
+    this.cylinderListService.getCylinders(params)
+      .then(data => {
+        if (data.status === 0) {
+          this.dataTable.list = data.data.list;
+          this.dataTable.total = data.data.total;
+        } else {
+          this.dataTable.list = [];
+          this.dataTable.total = 0;
+          this.dataTable.first = 0;
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        }
+      }).catch(error => {
+        this.dataTable.list = [];
+        this.dataTable.total = 0;
+        this.dataTable.first = 0;
+        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
+        throw error;
+      });
   }
 }

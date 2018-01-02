@@ -2,10 +2,13 @@
   div[class^="ui"] {
     padding: 0;
   }
-  div.padding {
+  .padding {
     padding: 5px 15px;
   }
-  .inputgroup {
+  .padding-bottom{
+    margin-bottom:10px;
+  }
+  .form-group {
     padding: 3px;
     >span {
       color: rgb(102, 102, 102);

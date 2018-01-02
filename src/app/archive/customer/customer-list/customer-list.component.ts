@@ -1,17 +1,11 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  ActivatedRoute
-} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
-import {
-  CustomerListService
-} from './customer-list.service';
-import {
-  MessageService
-} from 'primeng/components/common/messageservice';
+
+import { CustomerListService } from './customer-list.service';
+import { MessageService } from 'primeng/components/common/messageservice';
+
 @Component({
   selector: 'gas-customer-list',
   templateUrl: 'customer-list.component.html',
@@ -21,42 +15,76 @@ import {
 
 export class CustomerListComponent implements OnInit {
   constructor(private routerInfo: ActivatedRoute, private customerListService: CustomerListService,
-      private messageService: MessageService) { }
-  customerList: Array<{
-    index?: number;
-    barCode?: string;
-    borough?: string;
-    dispatcherName?: string;
-    company?: string;
-    cylinderType?: string;
-    fillingMedium?: string;
-    status?: string;
-    makeDate?: string;
-    finalDate?: string;
-    nextDate?: string;
-    factoryNumber?: string;
-    ownNumber?: string;
-    electronicCode?: string;
-    registerDate?: string;
-    makeUnits?: string;
-  }>;
-  searchParams: {
-    regionId?: string;
-    enterpriseNumber?: string;
-    haveContract?: boolean;
-    userName?: string;
-    address?: string;
-    userTypeId?: string;
-    userNatureId?: string;
+    private messageService: MessageService, private fb: FormBuilder) { }
+  dropdown = {
+    userNature: [
+      {
+        label: '全部',
+        value: ''
+      }
+    ],
+    userType: [
+      {
+        label: '全部',
+        value: ''
+      }
+    ],
+    region: [
+      {
+        label: '全部',
+        value: ''
+      }
+    ],
+    corp: [
+      {
+        label: '全部',
+        value: ''
+      }
+    ],
+    default: [
+      {
+        label: '全部',
+        value: ''
+      }
+    ],
+  };
+  dataTable: {
+    list: Array<{
+      index?: number;
+      barCode?: string;
+      borough?: string;
+      dispatcherName?: string;
+      company?: string;
+      cylinderType?: string;
+      fillingMedium?: string;
+      status?: string;
+      makeDate?: string;
+      finalDate?: string;
+      nextDate?: string;
+      factoryNumber?: string;
+      ownNumber?: string;
+      electronicCode?: string;
+      registerDate?: string;
+      makeUnits?: string;
+    }>,
+    option: Array<number>,
+    total: number,
+    first: number
   } = {
+    list: [],
+    option: [5, 10, 20, 40],
+    total: 0,
+    first: 0
+  };
+  formModel: any = this.fb.group({
     regionId: '',
     enterpriseNumber: '',
     haveContract: false,
     userName: '',
     address: '',
     userTypeId: '',
-    userNatureId: '',
-  };
+    userNatureId: ''
+  });
   pageParams: {
     regionId?: string;
     enterpriseNumber?: string;
@@ -65,11 +93,8 @@ export class CustomerListComponent implements OnInit {
     address?: string;
     userTypeId?: string;
     userNatureId?: string;
-    pageNumber?: number;
-    pageSize?: number;
-    pageOption?: Array<number>;
-    total?: number;
-    first?: number;
+    pageSize: number,
+    pageNumber: number
   } = {
     regionId: '',
     enterpriseNumber: '',
@@ -78,26 +103,8 @@ export class CustomerListComponent implements OnInit {
     address: '',
     userTypeId: '',
     userNatureId: '',
-    pageNumber: 1,
-    pageSize: 20,
-    pageOption: [10, 20, 30, 40],
-    total: 400,
-    first: 0,
-  };
-  config = {
-    default: [
-      {
-        label: '全部',
-        value: ''
-      }
-    ]
-  };
-
-  dropdownOpt = {
-    company: this.config.default,
-    region: this.config.default,
-    userNature: this.config.default,
-    userType: this.config.default,
+    pageSize: this.dataTable.option[1],
+    pageNumber: 1
   };
 
   ngOnInit() {
@@ -107,139 +114,141 @@ export class CustomerListComponent implements OnInit {
     this.getDropdownForCorpInfoInRegion({
       regionId: ''
     });
-    const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
-    if (typeof enterpriseID !== 'undefined') {
-      this.searchParams.enterpriseNumber = enterpriseID;
+    const enterpriseNumber = this.routerInfo.snapshot.params['enterpriseID'];
+    if (typeof enterpriseNumber !== 'undefined') {
+      this.formModel.patchValue({
+        enterpriseNumber: enterpriseNumber
+      });
+      this.formModel.enterpriseNumber = enterpriseNumber;
       this.onSearch();
     }
   }
 
-  onSearch(page?) {
-    const params = {};
-    if (page) {
-      // tslint:disable-next-line:forin
-      for (const key in this.searchParams) {
-        params[key] = this.pageParams[key];
+  onSearch() {
+    let params = {};
+    if (this.formModel.valid) { // 通过了验证
+      params = Object.assign({ pageNumber: 1, pageSize: this.pageParams.pageSize }, this.formModel.value);
+      this.dataTable.first = 0;
+      Object.assign(this.pageParams, params);
+      this.getCustomerList(params);
+    } else { // 没有通过验证
+      for (const key in this.formModel.controls) {
+        if (this.formModel.controls[key].errors) {
+          const msg = this.formModel.controls[key].errors.msg;
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: msg });
+          return;
+        }
       }
-      params['pageNumber'] = page.pageNumber;
-      params['pageSize'] = page.pageSize;
-    } else {
-      // tslint:disable-next-line:forin
-      for (const key in this.searchParams) {
-        params[key] = this.searchParams[key];
-        this.pageParams[key] = this.searchParams[key];
-      }
-      params['pageNumber'] = 1;
-      params['pageSize'] = this.pageParams.pageSize;
-      this.pageParams.first = 0;
     }
-    this.getCustomerList(params);
   }
 
   onChangeAreaID(event) {
-    const params = {
-      regionId: event.value
+    this.dropdown.corp = this.dropdown.default;
+    this.formModel.patchValue({
+      enterpriseNumber: ''
+    });
+    this.getDropdownForCorpInfoInRegion({ regionId : event.value });
+  }
+
+  onPageChange(event) {
+    const page = {
+      pageSize: event.rows,
+      pageNumber: event.first / event.rows + 1
     };
-    this.dropdownOpt.company = this.config.default;
-    this.searchParams.enterpriseNumber = '';
-    this.getDropdownForCorpInfoInRegion(params);
+    this.pageParams.pageSize = page.pageSize;
+    this.getCustomerList(Object.assign({}, this.pageParams, page));
   }
 
-  onPageChange(pageInfo) {
-    const page: {
-      pageSize: number,
-      pageNumber: number
-    } = {
-        pageSize: pageInfo.rows,
-        pageNumber: pageInfo.first / pageInfo.rows + 1
-      };
-    this.onSearch(page);
-  }
-
-  setMessages(type, title, msg) {
-    this.messageService.add({
-      severity: type,
-      summary: title,
-      detail: msg,
-    });
-  }
   getCustomerList(params?) {
-    this.customerListService.getCustomerList(params).then((data) => {
-      if (data.status === 0) {
-        this.customerList = data.data.list;
-        this.pageParams.total = data.data.total;
-      } else {
-        this.customerList = [];
-        this.pageParams.total = 0;
-        this.pageParams.first = 0;
-        this.setMessages('warn', '查询结果', '响应：' + data.msg);
-      }
-    }, (error) => {
-      this.customerList = [];
-      this.pageParams.total = 0;
-      this.pageParams.first = 0;
-      this.setMessages('error', '查询失败', '错误消息：' + error);
-    });
+    this.customerListService.getCustomerList(params)
+      .then(data => {
+        if (data.status === 0) {
+          this.dataTable.list = data.data.list;
+          this.dataTable.total = data.data.total;
+        } else {
+          this.dataTable.list = [];
+          this.dataTable.total = 0;
+          this.dataTable.first = 0;
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        }
+      }).catch(error => {
+        this.dataTable.list = [];
+        this.dataTable.total = 0;
+        this.dataTable.first = 0;
+        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
+        throw error;
+      });
   }
+
   getDropdownForCorpInfoInRegion(params?) {
     this.customerListService.getDropdownForCorpInfoInRegion(params).then(data => {
       if (data.status === 0) {
-        this.dropdownOpt.company = data.data.list;
-        const list = data.data.map((item) => {
-          return {
-            label: item.enterpriseName,
-            value: item.enterpriseNumber,
-          };
-        });
-        this.dropdownOpt.company = this.config.default.concat(list);
+        this.dropdown.corp = this.dropdown.default.concat(data.data.map((item) => ({
+          label: item.enterpriseName,
+          value: item.enterpriseNumber,
+        })));
       } else {
-
+        this.dropdown.corp = this.dropdown.default;
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
+    }).catch(error => {
+      this.dropdown.corp = this.dropdown.default;
+      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
+      throw error;
     });
   }
+
   getDropdownForUserNature() {
     this.customerListService.getDropdownForUserNature({}).then(data => {
       if (data.status === 0) {
-        const list = data.data.map((item) => {
-          return {
-            label: item.name,
-            value: item.value,
-          };
-        });
-        this.dropdownOpt.userNature = this.config.default.concat(list);
+        this.dropdown.userNature = this.dropdown.default.concat(data.data.map((item) => ({
+          label: item.name,
+          value: item.value,
+        })));
       } else {
-
+        this.dropdown.userNature = this.dropdown.default;
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
+    }).catch(error => {
+      this.dropdown.userNature = this.dropdown.default;
+      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
+      throw error;
     });
   }
+
   getDropdownForUserType() {
     this.customerListService.getDropdownForUserType({}).then(data => {
       if (data.status === 0) {
-        const list = data.data.map((item) => {
-          return {
-            value: item.userTypeId,
-            label: item.name
-          };
-        });
-        this.dropdownOpt.userType = this.config.default.concat(list);
+        this.dropdown.userType = this.dropdown.default.concat(data.data.map((item) => ({
+          value: item.userTypeId,
+          label: item.name
+        })));
       } else {
-
+        this.dropdown.userType = this.dropdown.default;
+        this.messageService.add({severity: 'warn', summary: '响应消息', detail: data.msg});
       }
+    }).catch(error => {
+      this.dropdown.userType = this.dropdown.default;
+      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
+      throw error;
     });
   }
+
   getDropdownForRegionSysUser() {
     this.customerListService.getDropdownForRegionSysUser({}).then(data => {
       if (data.status === 0) {
-        const list = data.data.map((item) => {
-          return {
-            label: item.regionName,
-            value: item.regionId
-          };
-        });
-        this.dropdownOpt.region = this.config.default.concat(list);
+        this.dropdown.region = this.dropdown.default.concat(data.data.map((item) => ({
+          label: item.regionName,
+          value: item.regionId
+        })));
       } else {
-
+        this.dropdown.region = this.dropdown.default;
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
+    }).catch(error => {
+      this.dropdown.region = this.dropdown.default;
+      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
+      throw error;
     });
   }
 }

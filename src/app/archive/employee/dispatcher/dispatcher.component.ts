@@ -1,10 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { FormBuilder, AbstractControl, Validators, FormGroup} from '@angular/forms';
 
 import { DispatcherService } from './dispatcher.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { validator } from '../../../core/validator';
 
 @Component({
   selector: 'gas-dispatcher',
@@ -14,40 +13,54 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 
 export class DispatcherComponent implements OnInit {
-  constructor(private dispatcherService: DispatcherService, private messageService: MessageService) { }
+  constructor(private dispatcherService: DispatcherService, private messageService: MessageService,
+    private fb: FormBuilder) { }
   dropdown = {
-    companyOpt: [{
-      label: '全部',
-      value: ''
-    }
+    companyOpt: [
+      {
+        label: '全部',
+        value: ''
+      }
     ],
-    stateOpt: [{
-      label: '全部',
-      value: ''
-    },
-    {
-      label: '正常',
-      value: '正常'
-    },
-    {
-      label: '黑名单',
-      value: '黑名单'
-    },
-    {
-      label: '暂停',
-      value: '暂停'
-    },
+    stateOpt: [
+      {
+        label: '全部',
+        value: ''
+      },
+      {
+        label: '正常',
+        value: '正常'
+      },
+      {
+        label: '黑名单',
+        value: '黑名单'
+      },
+      {
+        label: '暂停',
+        value: '暂停'
+      },
     ],
+    default: [
+      {
+        label: '全部',
+        value: ''
+      }
+    ]
   };
-  searchParams = {
+  dataTable = {
+    list: [],
+    option: [5, 10, 20, 40],
+    total: 0,
+    first: 0,
+  };
+  formModel: any = this.fb.group({
     enterpriseId: '',
     status: '',
     name: '',
     jobNumber: '',
-    phone: '',
-    idNumber: ''
-  };
-
+    phone: ['', validator.phone],
+    idNumber: ['', validator.idNumber]
+  });
   pageParams = {
     enterpriseId: '',
     status: '',
@@ -55,63 +68,55 @@ export class DispatcherComponent implements OnInit {
     jobNumber: '',
     phone: '',
     idNumber: '',
-    pageSize: 10,
+    pageSize: this.dataTable.option[1],
     pageNumber: 1
   };
-  dataTable = {
-    list: [],
-    pageOpt: [10, 20, 30, 40],
-    total: 1,
-    first: 0,
-  };
+
   ngOnInit() {
     this.cylinderSelectOpt();
   }
-  onSearch(page?) {
+
+  onSearch() {
     let params = {};
-    if (typeof page === 'undefined') {
-      // tslint:disable-next-line:forin
-      for (const key in this.searchParams) {
-        params[key] = this.searchParams[key];
-      }
-      params['pageNumber'] = 1;
-      params['pageSize'] = 10;
+    if (this.formModel.valid) { // 通过了验证
+      params = Object.assign({ pageNumber: 1, pageSize: this.pageParams.pageSize }, this.formModel.value);
       this.dataTable.first = 0;
-    } else {
-      this.pageParams.pageNumber = page.pageNumber;
-      this.pageParams.pageSize = page.pageSize;
-      params = this.pageParams;
+      Object.assign(this.pageParams, params);
+      this.getDispatcherInfo(params);
+    } else { // 没有通过验证
+      for (const key in this.formModel.controls) {
+        if (this.formModel.controls[key].errors) {
+          const msg = this.formModel.controls[key].errors.msg;
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: msg });
+          return;
+        }
+      }
     }
-    this.getDispatcherInfo(params);
   }
 
   onPageChange(event) {
-    const page: {
-      pageSize: Number,
-      pageNumber: Number
-    } = {
+    const page = {
         pageSize: event.rows,
         pageNumber: event.first / event.rows + 1
       };
-    this.onSearch(page);
+    this.getDispatcherInfo(Object.assign({}, this.pageParams, page));
   }
+
   getDispatcherInfo(params?) {
     this.dispatcherService.getDispatcherInfo(params)
       .then(data => {
         if (data.status === 0) {
           this.dataTable.list = data.data.list;
           this.dataTable.total = data.data.total;
-          // tslint:disable-next-line:forin
-          for (const key in this.searchParams) {
-            this.pageParams[key] = this.searchParams[key];
-          }
         } else {
           this.dataTable.list = [];
           this.dataTable.total = 0;
-          this.setMessages('warn', '响应消息', data.msg);
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       }).catch(error => {
-        this.setMessages('error', '出错了', '错误代码：' + error.status);
+        this.dataTable.list = [];
+        this.dataTable.total = 0;
+        this.messageService.add({severity: 'error', summary: '出错了', detail: '错误代码：' + error.status});
         throw error;
       });
   }
@@ -120,35 +125,18 @@ export class DispatcherComponent implements OnInit {
     this.dispatcherService.getDropdownForCorpInfoInRegion(params)
       .then(data => {
         if (data.status === 0) {
-          this.dropdown.companyOpt = data.data.map((item) => {
-            return {
-              label: item.enterpriseName,
-              value: item.enterpriseNumber
-            };
-          });
-          this.dropdown.companyOpt.unshift({
-            label: '全部',
-            value: '',
-          });
+          this.dropdown.companyOpt = this.dropdown.default.concat(data.data.map((item) => ({
+            label: item.enterpriseName,
+            value: item.enterpriseNumber
+          })));
         } else {
-          this.dropdown.companyOpt = [];
-          this.dropdown.companyOpt.unshift({
-            label: '全部',
-            value: '',
-          });
-          this.setMessages('warn', '响应消息', data.msg);
+          this.dropdown.companyOpt = this.dropdown.default;
+          this.messageService.add({severity: 'warn', summary: '响应消息', detail: data.msg});
         }
       }).catch(error => {
-        this.setMessages('error', '出错了', '错误代码：' + error.status);
+        this.dropdown.companyOpt = this.dropdown.default;
+        this.messageService.add({severity: 'error', summary: '出错了', detail: '错误代码：' + error.status});
         throw error;
       });
-  }
-
-  setMessages(type, title, msg) {
-    this.messageService.add({
-      severity: type,
-      summary: title,
-      detail: msg,
-    });
   }
 }

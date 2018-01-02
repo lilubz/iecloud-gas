@@ -1,28 +1,41 @@
-div[class^="ui"] {
-  padding: 0;
-}
-
-div.pad {
-  padding: 5px 15px;
-}
-
-.inputgroup {
-  padding: 3px;
-  >span {
-    color: rgb(102, 102, 102);
+div.customer-list{
+    div[class^="ui"] {
+    padding: 0;
   }
-}
 
-.searchBtn {
-  margin-top: 10px;
-  margin-left: 15px;
-  height: 65px;
-  width: 90px;
-  font-size: 1.3em;
-  font-weight: bold;
-  border-radius: 5px;
-}
+  .padding {
+    padding: 5px 15px;
+  }
 
-a {
-  color: #3399ff;
+  a {
+    color: #3399ff;
+  }
+
+  form{
+    .form-group {
+      padding: 3px;
+      >span {
+        color: rgb(102, 102, 102);
+      }
+    }
+    .form-group.address{
+      >input{
+        width:calc(100% - 150px);
+      }
+    }
+    .form-group.user-name{
+      >input{
+        width:calc(100% - 100px);
+      }
+    }
+    .searchBtn {
+      margin-top: 10px;
+      margin-left: 15px;
+      height: 65px;
+      width: 90px;
+      font-size: 1.3em;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+  }
 }
