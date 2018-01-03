@@ -197,8 +197,8 @@
         </div>
         <div class="ui-g-9 ui-g-nopad">
           <p-calendar #contractBeginDate [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
-            [showButtonBar]="true" (onSelect)="selectConstractBeginDate($event)" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false"
-            [maxDate]="contractEndDate.value" readonlyInput="true"></p-calendar>
+            [showButtonBar]="true" (onSelect)="selectConstractBeginDate($event)" (onClearClick)="clearBeginDate($event)"
+            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="contractEndDate.value" readonlyInput="true"></p-calendar>
         </div>
       </div>
       <div class="ui-g-6">
@@ -207,8 +207,8 @@
         </div>
         <div class="ui-g-9 ui-g-nopad">
           <p-calendar #contractEndDate [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
-            [showButtonBar]="true" (onSelect)="selectConstractEndDate($event)" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false"
-            [minDate]="contractBeginDate.value" readonlyInput="true"></p-calendar>
+            [showButtonBar]="true" (onSelect)="selectConstractEndDate($event)" (onClearClick)="clearEndDate($event)" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [minDate]="contractBeginDate.value" readonlyInput="true"></p-calendar>
         </div>
       </div>
     </div>

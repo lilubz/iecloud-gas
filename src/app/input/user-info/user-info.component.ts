@@ -191,6 +191,14 @@ export class UserInfoComponent implements OnInit {
     this.customer.contractDeadline = this.format.dateFormat(event, 'yyyy-MM-dd') + ' 00:00:00';
   }
 
+  clearBeginDate(event) {
+    this.customer.contractEffectiveDate = '';
+  }
+
+  clearEndDate(event) {
+    this.customer.contractDeadline = '';
+  }
+
   showMessage(type, title, msg) {
     this.msgs.push({
       severity: type,
