@@ -39,18 +39,18 @@ const routes: Routes = [
       // },
       {
         path: 'delivery',
-        // loadChildren: './delivery/delivery.module#DeliveryModule',
-        // data: {
-        //   title: '配送管理'
-        // }
-        component: PageNotFoundComponent
+        loadChildren: './delivery/delivery.module#DeliveryModule',
+        data: {
+          title: '配送监管'
+        }
       },
       {
         path: 'gov-affairs',
-        loadChildren: './gov-affairs/gov-affairs.module#GovAffairsModule',
-        data: {
-          title: '监管事务'
-        }
+        // loadChildren: './gov-affairs/gov-affairs.module#GovAffairsModule',
+        // data: {
+        //   title: '监管事务'
+        // }
+        component: PageNotFoundComponent
       },
       {
         path: 'visualization',

@@ -5,6 +5,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeliveryComponent } from './delivery.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CylinderTraceComponent } from './cylinder-trace/cylinder-trace.component';
+import { CylinderFillingComponent } from './cylinder-filling/cylinder-filling.component';
+import { CylinderTraceService } from './cylinder-trace/cylinder-trace.service';
+import { CylinderFillingService } from './cylinder-filling/cylinder-filling.service';
 
 @NgModule({
   imports: [
@@ -14,10 +18,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   declarations: [
     DeliveryComponent,
-    DashboardComponent
+    DashboardComponent,
+    CylinderTraceComponent,
+    CylinderFillingComponent
   ],
   providers: [
-    DashboardService
+    DashboardService,
+    CylinderTraceService,
+    CylinderFillingService
   ]
 })
 export class DeliveryModule { }

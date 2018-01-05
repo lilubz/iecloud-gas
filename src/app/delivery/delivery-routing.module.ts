@@ -4,25 +4,25 @@ import { CommonModule } from '@angular/common';
 
 import { DeliveryComponent } from './delivery.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CylinderTraceComponent } from './cylinder-trace/cylinder-trace.component';
+import { CylinderFillingComponent } from './cylinder-filling/cylinder-filling.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'cylinder-trace',
     pathMatch: 'full'
   },
   {
-    path: '',
-    component: DeliveryComponent,
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      }
-    ]
+    path: 'cylinder-trace',
+    component: CylinderTraceComponent
+  },
+  {
+    path: 'cylinder-filling',
+    component: CylinderFillingComponent
   },
   {
     path: '**',
-    redirectTo: 'dashboard',
+    redirectTo: 'cylinder-trace',
     pathMatch: 'full'
   }
 ];

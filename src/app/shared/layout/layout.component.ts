@@ -40,18 +40,19 @@ export class LayoutComponent implements OnInit {
         label: '配送监管',
         icon: 'menu-icon distribution-icon',
         routerLink: ['/delivery'],
-        // items: [
-        //   { label: '首页', routerLink: ['/delivery/dashboard'] },
-        // ]
+        items: [
+          { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
+          { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
+        ]
       },
       {
         label: '监管事务',
         icon: 'menu-icon supervise-icon',
         routerLink: ['/gov-affairs'],
-        items: [
-          { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
-          { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
-        ]
+        // items: [
+        //   { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
+        //   { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
+        // ]
       },
       {
         label: '可视化',

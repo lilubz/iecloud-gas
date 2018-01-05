@@ -159,6 +159,7 @@ export class CylinderTraceComponent implements OnInit {
     this.pageNumberHistory = 1;
     this.getCylinderHistoryStatus();
   }
+
   searchCylinderHistory() {
     // this.cylinderHistoryList = [];
     this.pageNumberHistory = 1;
@@ -166,6 +167,7 @@ export class CylinderTraceComponent implements OnInit {
     this.historyFirst = 0;
     this.getCylinderHistoryStatus();
   }
+
   searchCylinderList() {
     this.pageNumber = 1;
     this.total = 0;
