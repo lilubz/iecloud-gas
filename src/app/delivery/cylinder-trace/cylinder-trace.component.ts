@@ -5,7 +5,6 @@ import { CylinderTraceService } from './cylinder-trace.service';
 import { CommonRequestService } from './../../core/common-request.service';
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { setTimeout } from 'timers';
 
 @Component({
   selector: 'gas-cylinder-trace',

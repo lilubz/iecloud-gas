@@ -29,12 +29,12 @@
       <p-column field="inflatableStationName" header="充装站名称" [style]="{'width':'150px'}"></p-column>
       <p-column field="fillingStart" header="充装开始时间" [style]="{'width':'150px'}">
         <ng-template let-record="rowData" pTemplate="body">
-          {{ record.fillingStart | date: 'yyyy-MM-dd hh:mm:ss'}}
+          {{ record.fillingStart | date: 'yyyy-MM-dd HH:mm:ss'}}
         </ng-template>
       </p-column>
       <p-column field="fillingEnd" header="充装结束时间" [style]="{'width':'150px'}">
         <ng-template let-record="rowData" pTemplate="body">
-          {{ record.fillingEnd | date: 'yyyy-MM-dd hh:mm:ss'}}
+          {{ record.fillingEnd | date: 'yyyy-MM-dd HH:mm:ss'}}
         </ng-template>
       </p-column>
       <p-column field="fillingStaff" header="充装人员" [style]="{'width':'150px'}"></p-column>
