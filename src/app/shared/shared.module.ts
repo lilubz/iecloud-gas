@@ -25,6 +25,8 @@ import {
   TieredMenuModule,
   SharedModule as _SharedModule,
   ConfirmDialogModule,
+  ToggleButtonModule,
+  RadioButtonModule,
 } from 'primeng/primeng';
 
 import { LoadingComponent } from './loading/loading.component';
@@ -58,6 +60,8 @@ import { DistrictsComponent } from './districts/districts.component';
     RouterModule,
     SpinnerModule,
     TieredMenuModule,
+    ToggleButtonModule,
+    RadioButtonModule,
     _SharedModule
   ],
   declarations: [
@@ -93,6 +97,8 @@ import { DistrictsComponent } from './districts/districts.component';
     RouterModule,
     SpinnerModule,
     TieredMenuModule,
+    ToggleButtonModule,
+    RadioButtonModule,
     _SharedModule,
     LayoutComponent,
     LoadingComponent,

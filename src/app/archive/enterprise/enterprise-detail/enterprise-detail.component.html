@@ -1,20 +1,10 @@
 <div class="enterprise-detail">
-  <!-- <h2 class="title">
-    发布通知公告
-  </h2> -->
   <div class="ui-g padding">
     <div class="ui-g-10">
       <div class="ui-g-12">
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
-            <!-- <span>
-                  <b style="color:red;">*</b>气瓶出厂编号</span> -->
             <span>辖区</span>
-            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'calc(100% - 60px','max-width':'300px'}"></p-dropdown>
-          </div>
-        </div>
-        <div class="ui-g-4 ui-g-nopad">
-          <div class="inputgroup">
             <span>企业名称</span>
             <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText placeholder="">
           </div>

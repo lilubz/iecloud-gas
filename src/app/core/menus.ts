@@ -54,6 +54,7 @@ export const MENUS: MenuItem[] = [
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
       { label: '通知公告', routerLink: ['/system/message'] },
+      { label: '企业管理', routerLink: ['/system/enterprise-management'] },
     ]
   },
   {

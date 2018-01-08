@@ -16,8 +16,9 @@ export class CylinderOverviewCountyComponent implements OnInit {
     normalCount: number,
     expireCount: number,
     scrapCount: number,
+    codeAbnormalCount: number,
     regionId: string,
-    parentRegionId: string
+    parentRegionId: string,
   }[] = [];
 
 

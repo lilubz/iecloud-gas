@@ -8,15 +8,15 @@ export class MessagesService {
   constructor(private HttpService: HttpService) { }
 
   query(params: any): Promise<any> {
-    return this.HttpService.getRequest(API.query, params);
+    return this.HttpService.getRequest(API.queryAnnouncement, params);
   }
   add(params: any): Promise<any> {
     return this.HttpService
-      .formDataPostRequest(API.add, params);
+      .formDataPostRequest(API.addAnnouncement, params);
   }
   delete(params: any): Promise<any> {
     return this.HttpService
-      .getRequest(API.delete, params);
+      .getRequest(API.deleteAnnouncement, params);
   }
 
 }

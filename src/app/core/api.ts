@@ -46,9 +46,15 @@ export const API = {
   // 系统管理
   'queryLog': URL + '',
   // 通知公告
-  'add': URL + 'announcements/add.do',
-  'query': URL + 'announcements/get.do',
-  'delete': URL + 'announcements/delete.do',
+  'addAnnouncement': URL + 'announcements/add.do',
+  'queryAnnouncement': URL + 'announcements/get.do',
+  'deleteAnnouncement': URL + 'announcements/delete.do',
+  // 企业管理
+  'getlistCorpUser': URL + 'basicInformation/corpInfo/listCorpUser.do',
+  'changefreeze': URL + 'sysUserPermissions/user/freeze.do',
+  'addSystemCorpUser': URL + 'basicInformation/corpInfo/addSystemCorpUser.do',
+  'addCorpInfo': URL + 'basicInformation/corpInfo/addCorpInfo.do',
+
   // 企业档案查询
   'listCorp': URL + 'basicInformation/corpInfo/listCorp.do',
   // 气瓶信息概览

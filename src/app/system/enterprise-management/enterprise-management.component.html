@@ -1,0 +1,17 @@
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">
+      <button pButton type="button" label="企业账号信息概览" [routerLink]="['./account-detail']"></button>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="&#12288;企业创建&#12288;" [routerLink]="['./enterprise-found']"></button>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="企业管理账号开通" [routerLink]="['./account-open']"></button>
+    </div>
+  </div>
+
+</div>
+<div class="ui-g-12 main">
+  <router-outlet></router-outlet>
+</div>

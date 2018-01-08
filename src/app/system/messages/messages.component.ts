@@ -64,7 +64,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
             this.showMessage('warn', '提示信息', data.msg);
           }
         }).catch(error => {
-          this.showMessage('error', '提示信息', '服务器错误');
+          this.showMessage('error', '服务器错误', '错误码:' + error.status);
         });
         // this.msgs = [{ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' }];
       },
@@ -102,7 +102,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
         }
       }).catch(error => {
         MessageFiles.clear();
-        this.showMessage('error', '提示信息', '服务器错误');
+        this.showMessage('error', '服务器错误', '错误码:' + error.status);
       });
     }
   }
@@ -120,7 +120,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     }).catch(error => {
       this.messageList = [];
       this.total = 0;
-      this.showMessage('error', '提示信息', '服务器错误');
+      this.showMessage('error', '服务器错误', '错误码:' + error.status);
     });
   }
   download(Data) {

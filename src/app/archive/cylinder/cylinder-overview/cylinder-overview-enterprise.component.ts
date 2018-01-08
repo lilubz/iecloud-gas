@@ -20,6 +20,7 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
     normalCount: number;
     expireCount: number;
     scrapCount: number;
+    codeAbnormalCount: number;
     enterpriseNumber: string;
   }> = [];
 

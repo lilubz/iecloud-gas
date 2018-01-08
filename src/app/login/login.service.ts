@@ -64,7 +64,6 @@ export class LoginService {
   }
 
   query(params: any): Promise<any> {
-    return this.httpService.getRequest(this.API.query, params);
+    return this.httpService.getRequest(this.API.queryAnnouncement, params);
   }
-  
 }

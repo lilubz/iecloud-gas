@@ -35,6 +35,11 @@
         {{ countyCylinder.scrapCount || 0 }}
       </ng-template>
     </p-column>
+    <p-column field="codeAbnormalCount" header="标签异常" [footer]="calculateTotal('codeAbnormalCount', enterpriseCylinders)">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.codeAbnormalCount || 0 }}
+        </ng-template>
+      </p-column>
   </p-dataTable>
 
 </div>

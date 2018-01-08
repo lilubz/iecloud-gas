@@ -61,7 +61,9 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
     this.getAreaList();
     this.getEnterPrise();
   }
-
+  /**
+   * 获取区域
+  */
   getAreaList() {
     this.commonRequestService.getRegions().then(data => {
       if (data.status === 0) {
@@ -77,7 +79,9 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
       }
     });
   }
-
+  /**
+     * 查询
+    */
   getEnterPrise(pages?) {
     const params = {
       regionId: this.searchParams.regionId || '',
@@ -123,7 +127,9 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
     this.getEnterPrise(page);
   }
 
-
+  /**
+     * 时间转换
+    */
   selectedStartTime(event) {
     this.searchParams.startTime = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
   }

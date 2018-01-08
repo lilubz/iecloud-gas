@@ -1,0 +1,163 @@
+<div class="ui-g enterprise-found">
+  <div class="ui-g-8">
+    <h2 class="title">
+      企业创建
+    </h2>
+  </div>
+  <div class="ui-g-10 container">
+    <div class="ui-g-6 ">
+      <div class="inputgroup">
+        <span>企业名称
+          <b style="color:red;">*</b>
+        </span>
+        <input type="text" class="textInput" [(ngModel)]="addForm.enterpriseName" maxlength="20" pInputText placeholder="">
+      </div>
+    </div>
+    <div class="ui-g-6 ">
+      <div class="inputgroup">
+        <span>企业编号
+          <b style="color:red;">*</b>
+        </span>
+        <input type="text" class="textInput" [(ngModel)]="addForm.enterpriseNumber" maxlength="20" pInputText placeholder="">
+      </div>
+    </div>
+    <div class="ui-g-6 ">
+      <div class="inputgroup">
+        <span>负责人&#12288;
+          <b style="color:red;">*</b>
+        </span>
+        <input type="text" class="textInput" [(ngModel)]="addForm.legalRepresentative" maxlength="20" pInputText placeholder="">
+      </div>
+    </div>
+    <div class="ui-g-6 ">
+      <div class="inputgroup">
+        <span>服务电话 </span>
+        <input type="text" class="textInput" [(ngModel)]="addForm.serviceLine" maxlength="20" pInputText placeholder="">
+      </div>
+    </div>
+    <div class="ui-g-8 ">
+      <div class="inputgroup">
+        <span>经营类别
+          <b style="color:red;">*</b>
+        </span>
+        <p-dropdown [options]="category" [(ngModel)]="addForm.businessCategory" [style]="{'width':'calc(100% - 60px)','max-width':'300px'}"></p-dropdown>
+      </div>
+    </div>
+    <div class="ui-g-10">
+      <hr class="bottom">
+    </div>
+
+    <div class="ui-g-6 ">
+      <div class="inputgroup">
+        <span>&#12288;辖区&#12288;
+          <b style="color:red;">*</b>
+        </span>
+        <p-dropdown [options]="regionDropdown" [(ngModel)]="addForm.regionId" [style]="{'width':'calc(100% - 100px)','max-width':'300px'}"></p-dropdown>
+      </div>
+    </div>
+    <div class="ui-g-6 ">
+      <div class="inputgroup">
+        <span>&#12288;地址&#12288;
+          <b style="color:red;">*</b>
+        </span>
+        <input type="text" class="textInput" [(ngModel)]="addForm.address" maxlength="20" pInputText placeholder="">
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <span>经营区域
+        <b style="color:red;">*</b>
+      </span>
+      <p-dropdown [options]="deliveryRegionList" (onChange)="deliveryCountyChange($event.value)" [(ngModel)]="selectedCountyRegionId"
+        [style]="{'width':'100px'}"></p-dropdown>
+      <ng-template [ngIf]="deliveryUrbanDistrictList.length!=0">
+        <p-dropdown [options]="deliveryUrbanDistrictList" (onChange)="deliveryUrbanDistrictChange($event.value)" [(ngModel)]="selectedUrbanDistrict"
+          [style]="{'width':'100px'}"></p-dropdown>
+      </ng-template>
+      <p-dropdown [options]="deliveryStreetList" [(ngModel)]="selectedStreetRegionId" [style]="{'width':'150px'}"></p-dropdown>
+      <button pButton type="button" label="添加" (click)="selectArea()"></button>
+    </div>
+    <div class="ui-g-10">
+      <p-dataTable [value]="selectedAreaList" [lazy]="false" dataKey="title" [paginator]="false" scrollable="false" scrollHeight="510px">
+        <p-column [style]="{'width':'100px'}" header="序号">
+          <ng-template let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" field="areaName" header="已添加区域"></p-column>
+
+        <p-column [style]="{'width':'150px'}" header="操作">
+          <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
+            <button pButton type="button" label="删除" (click)="delete(index)"></button>
+          </ng-template>
+        </p-column>
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未添加区域
+          </div>
+        </ng-template>
+      </p-dataTable>
+    </div>
+    <div class="ui-g-10">
+      <hr class="bottom">
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-6 ">
+        <div class="inputgroup">
+          <span>许可证号
+            <b style="color:red;">*</b>
+          </span>
+          <input type="text" class="textInput" [(ngModel)]="addForm.dangerousLicense" maxlength="20" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-6 ">
+        <div class="inputgroup">
+          <span>发证机关
+            <b style="color:red;">*</b>
+          </span>
+          <input type="text" class="textInput" [(ngModel)]="addForm.issuingUnit" maxlength="20" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-6 ">
+        <div class="inputgroup">
+          <span>发证日期
+            <b style="color:red;">*</b>
+          </span>
+          <p-calendar [locale]="cn" [(ngModel)]="addForm.releaseTime" [showButtonBar]="true" placeholder="" readonlyInput="true" dateFormat="yy-mm-dd"
+            showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
+            [style]="{'width':'calc(100% - 100px)','max-width':'200px','display':'inline-block'}"></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>&#12288;有效期
+            <b style="color:red;">*</b>
+          </span>
+          <p-calendar [locale]="cn" #startDate [(ngModel)]="addForm.effectiveTimeStart" [showButtonBar]="true" placeholder="" readonlyInput="true"
+            dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
+            yearRange="1970:2050" [style]="{'width':'100%','max-width':'200px','display':'inline-block'}"></p-calendar>
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>至&#12288;</span>
+          <p-calendar [locale]="cn" #endDate [(ngModel)]="addForm.effectiveTimeEnd" [showButtonBar]="true" placeholder="" readonlyInput="true"
+            dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
+            yearRange="1970:2050" [style]="{'width':'80%','max-width':'200px','display':'inline-block'}"></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-12 ">
+        <div class="ui-g-3">
+          <button pButton type="button" label="确认创建"  (click)="AddEnterprise()"></button>
+        </div>
+        <div class="ui-g-3">
+          <button pButton type="reset" label="&#12288;重置&#12288;" (click)="clearAddForm()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
