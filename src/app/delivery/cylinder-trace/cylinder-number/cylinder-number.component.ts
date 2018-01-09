@@ -19,11 +19,11 @@ export class CylinderNumberComponent implements OnInit {
     beforeLiabilityTypeName: string,
     beforeLiabilityName: string,
     beforeLiabilityContact: string,
-    beforeLiabilityAdderss: string,
+    beforeLiabilityAddress: string,
     afterLiabilityTypeName: string,
     afterLiabilityName: string,
     afterLiabilityContact: string,
-    afterLiabilityAdderss: string
+    afterLiabilityAddress: string
   }> = [];
 
   pageSizeHistory = 10;

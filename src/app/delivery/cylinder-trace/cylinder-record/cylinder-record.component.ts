@@ -16,13 +16,16 @@ export class CylinderRecordComponent implements OnInit {
   cylinderStatus: SelectItem[] = [];
   deliveryStations: SelectItem[] = [];
   cylinderList: Array<{
-    gasLabelNumber: string,
-    specificationId: string,
-    liabilityTypeName: string,
-    liabilityName: string,
-    liabilityContact: string,
-    liabilityAddress: string,
-    changeType: string
+    createTime: string,
+    gcStatusTypeName: string,
+    beforeLiabilityTypeName: string,
+    beforeLiabilityName: string,
+    beforeLiabilityContact: string,
+    beforeLiabilityAddress: string,
+    afterLiabilityTypeName: string,
+    afterLiabilityName: string,
+    afterLiabilityContact: string,
+    afterLiabilityAddress: string
   }> = [];
   dispatcher = '';
   selectedDeliveryStation = '';
