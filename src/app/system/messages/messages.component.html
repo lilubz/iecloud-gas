@@ -31,7 +31,7 @@
     <p-column [style]="{'width':'150px'}" field="title" header="标题"></p-column>
     <p-column [style]="{'width':'150px'}" header="文件查看" >
         <ng-template pTemplate="body" let-Data="rowData">
-          <a href="javascript:;" style="color:blue" (click)="download(Data)">查看文件</a>
+          <a href="javascript:;" style="color:blue;text-decoration: none;" (click)="download(Data)">查看文件</a>
           </ng-template>
     </p-column>
     <p-column [style]="{'width':'150px'}"  header="发布时间">

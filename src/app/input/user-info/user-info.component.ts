@@ -98,7 +98,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   save(IDImageUpload: any, OtherImageUpload: any) {
-    // console.log(IDImageFiles);
+    console.log(IDImageUpload);
     this.customer.gcCorpUserName = this.customer.userName; // 企业用户名称等于输入的用户名
     this.customer.identity = IDImageUpload.files;
     this.customer.others = OtherImageUpload.files;

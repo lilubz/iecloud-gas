@@ -9,7 +9,16 @@ export class CylinderTraceService {
   getCylinderByStatus(params?: any): Promise<any> {
     return this.HttpService.getRequest(API.listGasInfoSearchByLiabilitySubjectId, params);
   }
+
   getCylinderHistoryStatus(params?: any): Promise<any> {
     return this.HttpService.getRequest(API.listGasStatusChangeByTime, params);
+  }
+
+  getCylinderHistoryByDispatcher(params?: any): Promise<any> {
+    return this.HttpService.getRequest(API.getDispachterDistributions, params);
+  }
+
+  listGasReceiveAndDispatch(params?: any): Promise<any> {
+    return this.HttpService.getRequest(API.listGasReceiveAndDispatch, params);
   }
 }

@@ -46,11 +46,10 @@ const routes: Routes = [
       },
       {
         path: 'gov-affairs',
-        // loadChildren: './gov-affairs/gov-affairs.module#GovAffairsModule',
-        // data: {
-        //   title: '监管事务'
-        // }
-        component: PageNotFoundComponent
+        loadChildren: './gov-affairs/gov-affairs.module#GovAffairsModule',
+        data: {
+          title: '监管事务'
+        }
       },
       {
         path: 'visualization',

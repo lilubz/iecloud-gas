@@ -1,0 +1,42 @@
+<div class="ui-g-12">
+  责任主体
+  <p-dropdown [options]="cylinderStatus" [style]="{'width':'150px'}" [ngModel]="selectedCylinderStatus" (onChange)="selectStatus($event)"></p-dropdown>&nbsp;&nbsp; 开始时间
+  <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
+    dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
+  &nbsp;&nbsp; 结束时间
+  <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
+    dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today" readonlyInput="true"></p-calendar>
+  &nbsp;&nbsp;
+  <ng-container *ngIf="selectedCylinderStatus == 2">
+    配送站：
+    <p-dropdown [options]="deliveryStations" [style]="{'width':'240px'}" [(ngModel)]="selectedDeliveryStation" filter="true"></p-dropdown>
+  </ng-container>
+  <ng-container *ngIf="selectedCylinderStatus == 3">
+    送气工编号：
+    <input type="text" [(ngModel)]="dispatcher" pInputText placeholder="请输入送气工编号" maxlength="20" style="width:180px">
+  </ng-container>
+  &nbsp;&nbsp;
+  <button pButton type="button" label="查询" (click)="searchCylinderList()"></button>
+  <!-- <button pButton type="button" label="查询" (click)="getCylinderByStatus()"></button> -->
+</div>
+<div class="ui-g-12">
+  <p-dataTable [value]="cylinderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true" [lazy]="true"
+    [(first)]="first" (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
+    <p-column header="序号" [style]="{'width':'50px'}">
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column>
+    <p-column field="gasLabelNumber" header="气瓶条码" [style]="{'width':'150px'}">
+      <ng-template let-cylinder="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-history',{gasLabelNumber:cylinder.gasLabelNumber}]" title="查看历史">{{ cylinder.gasLabelNumber }}</a>
+      </ng-template>
+    </p-column>
+    <p-column field="specificationId" header="气瓶规格" [style]="{'width':'150px'}"></p-column>
+    <p-column field="liabilityTypeName" header="责任主体类型" [style]="{'width':'150px'}"></p-column>
+    <p-column field="liabilityName" header="责任主体名称" [style]="{'width':'150px'}"></p-column>
+    <p-column field="liabilityContact" header="责任主体联系方式" [style]="{'width':'150px'}"></p-column>
+    <p-column field="liabilityAddress" header="责任主体地址" [style]="{'width':'150px'}"></p-column>
+    <p-column field="changeType" header="操作" [style]="{'width':'150px'}"></p-column>
+  </p-dataTable>
+</div>

@@ -7,12 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 // import { CylinderTraceService } from './cylinder-trace/cylinder-trace.service';
 // import { CylinderFillingComponent } from './cylinder-filling/cylinder-filling.component';
 // import { CylinderFillingService } from './cylinder-filling/cylinder-filling.service';
+import { CollaborativeModule } from './collaborative/collaborative.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    GovAffairsRoutingModule
+    CollaborativeModule,
+    GovAffairsRoutingModule,
   ],
   declarations: [
     GovAffairsComponent,

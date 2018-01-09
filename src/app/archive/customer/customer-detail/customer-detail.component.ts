@@ -61,9 +61,17 @@ export class CustomerDetailComponent implements OnInit {
   detailLists: any;
   loading: any;
   typeList = '';
-  // photoList: Array<{
-  //   pictureUrl: string;
-  // }>;
+
+  cylinderVisible = false;
+  dataTablelist: any[] = [];
+  pageNumber = 1;
+  pageSize = 10;
+  pageOption = [5, 10, 20, 30, 40];
+  total = 3;
+  first = 0;
+  pageData = {};
+  firstStatus = false;
+
   constructor(
     private route: ActivatedRoute,
     private CustomerDetailService: CustomerDetailService,
@@ -71,6 +79,11 @@ export class CustomerDetailComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
+  ngOnInit() {
+    this.queryDetail();
+    this.initDetailList();
+    this.loading = '';
+  }
   initDetailList() {
     this.detailList = [
       {
@@ -99,6 +112,9 @@ export class CustomerDetailComponent implements OnInit {
     ];
     this.detailLists = {};
   }
+  /**
+  * 查询用户详情信息
+  */
   queryDetail() {
     this.route.paramMap
       .switchMap((params: ParamMap) => {
@@ -149,14 +165,73 @@ export class CustomerDetailComponent implements OnInit {
         });
       });
   }
-  ondetail(aa) {
-    this.detailLists = this.detailList[aa];
+  /**
+   * 查询结果点击切换详情的，用于特殊情况出现多条数据暂未看到
+   */
+  ondetail(data) {
+    this.detailLists = this.detailList[data];
+  }
+  /**
+   * 弹出框
+   */
+  showDialog(id) {
+    this.cylinderVisible = true;
+    this.searchUserCy();
   }
 
-  ngOnInit() {
-    this.queryDetail();
-    this.initDetailList();
-    this.loading = '';
+  onPageChange(event) {
+    const page: {
+      pageSize: number,
+      pageNumber: number
+    } = {
+        pageSize: event.rows,
+        pageNumber: event.first / event.rows + 1
+      };
+    this.pageData = page;
+    this.searchUserCy(this.pageData);
+    // console.log(event);
   }
 
+  /**
+  * 查询用户在用气瓶详情
+  */
+  searchUserCy(page?) {
+    const params = {
+      userNumber: this.detailLists.userNumber || '',
+      pageNumber: 1,
+      pageSize: 10,
+    };
+    if (page) {
+      params['pageNumber'] = page.pageNumber;
+      params['pageSize'] = page.pageNumber;
+    } else {
+      this.first = 0;
+    }
+    // 第一次 page查询时调接口
+    if (!this.firstStatus) {
+      this.firstStatus = true;
+    } else {
+      this.CustomerDetailService.listUserHasGc(params).then(data => {
+        if (data.status === 0) {
+          this.dataTablelist = data.data.list;
+          this.total = data.data.size;
+        } else {
+          this.dataTablelist = [];
+          this.total = 0;
+          this.messageService.add({
+            severity: 'warn',
+            summary: '提示信息',
+            detail: data.msg
+          });
+        }
+
+      }).catch(error => {
+        this.dataTablelist = [];
+        this.total = 0;
+        this.messageService.add({
+          severity: 'error', summary: '服务器错误，错误码：', detail: error.status
+        });
+      });
+    }
+  }
 }

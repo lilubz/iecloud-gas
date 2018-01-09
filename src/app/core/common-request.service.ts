@@ -122,4 +122,15 @@ export class CommonRequestService {
   getDispatchers(): Promise<any> {
     return this.httpService.getRequest(API.getDispatchers, {});
   }
+
+  /**
+   * 获取配送站列表
+   * 2018-01-08 20:50:42
+   * @author hzb
+   * @param params
+   * @returns
+   */
+  listCorpSupplyStation(): Promise<any> {
+    return this.httpService.getRequest(API.listCorpSupplyStationVO, {});
+  }
 }

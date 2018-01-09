@@ -17,6 +17,17 @@ const routes: Routes = [
   //   path: 'cylinder-filling',
   //   component: CylinderFillingComponent
   // },
+  {
+    path: 'collaborative',
+    redirectTo: 'collaborative/my-affairs',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'collaborative/my-affairs',
+    pathMatch: 'full'
+    // component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({

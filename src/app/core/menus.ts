@@ -32,10 +32,11 @@ export const MENUS: MenuItem[] = [
     label: '监管事务',
     icon: 'menu-icon supervise-icon',
     routerLink: ['/gov-affairs'],
-    // items: [
-    //   { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
-    //   { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
-    // ]
+    items: [
+      // { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
+      // { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
+      { label: '协同管理', routerLink: ['/gov-affairs/collaborative'] },
+    ]
   },
   {
     label: '可视化',

@@ -19,6 +19,13 @@ export class HttpService {
       .catch(error => this.handleError(error));
   }
 
+  // 重封装delete请求
+  delete(url, data) {
+    return this.http.delete(url + '?' + this.transformRequest(data))
+      .toPromise()
+      .then(res => this.httpStatusFilter(res))
+      .catch(error => this.handleError(error));
+  }
 
   // 重封装post请求
   JSONPostRequest(url, data, options?: RequestOptionsArgs) {

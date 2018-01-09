@@ -23,6 +23,9 @@ import {
   PanelModule,
   SpinnerModule,
   TieredMenuModule,
+  PickListModule,
+  TreeModule,
+  TreeNode,
   SharedModule as _SharedModule,
   ConfirmDialogModule,
   ToggleButtonModule,
@@ -62,6 +65,10 @@ import { DistrictsComponent } from './districts/districts.component';
     TieredMenuModule,
     ToggleButtonModule,
     RadioButtonModule,
+    RadioButtonModule,
+    PickListModule,
+    TreeModule,
+    ConfirmDialogModule,
     _SharedModule
   ],
   declarations: [
@@ -99,11 +106,15 @@ import { DistrictsComponent } from './districts/districts.component';
     TieredMenuModule,
     ToggleButtonModule,
     RadioButtonModule,
+    PickListModule,
+    TreeModule,
     _SharedModule,
     LayoutComponent,
     LoadingComponent,
     PageNotFoundComponent,
-    DistrictsComponent
+    DistrictsComponent,
+    ConfirmDialogModule,
+    RadioButtonModule,
   ]
 })
 export class SharedModule { }

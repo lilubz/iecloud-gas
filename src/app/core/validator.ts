@@ -22,5 +22,17 @@ export const validator = {
       return error;
     }
     return null;
+  },
+
+  required(type?) {
+    return (control: AbstractControl) => {
+      const error = { msg: '' };
+      const value = control.value;
+      if (value === '') {
+        error.msg = `${type}是必填项，不能输入空值！`;
+        return error;
+      }
+      return null;
+    };
   }
 };

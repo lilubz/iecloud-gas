@@ -1,0 +1,47 @@
+
+.collaborative-detail {
+  font-size:14px;
+  padding:55px 10px 0 10px;
+  [class^='ui-g']{
+    padding:0;
+  }
+  .title{
+    background:#1a5687;
+    font-weight: bold;
+  }
+  .content{
+    border:1px solid #797979;
+    line-height: 30px;
+    text-align: center;
+    color:white;
+    overflow: hidden;
+    white-space:nowrap;
+  }
+  .content:last-child{
+    color:black;
+  }
+  h2{
+    margin:0;
+  }
+  .dashed-border{
+    margin-top:10px;
+    border:1px dashed #666;
+    padding:10px;
+    border-radius:10px;
+  }
+  .tree-node{
+    height:260px;
+    overflow: auto;
+    margin-bottom:10px;
+  }
+  .dialog-footer{
+    margin:20px auto;
+    >button{
+      margin:0 50px;
+      font-size:20px;
+    }
+  }
+  .form-group{
+    margin-bottom:10px;
+  }
+}

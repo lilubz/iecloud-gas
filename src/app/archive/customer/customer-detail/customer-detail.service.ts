@@ -7,10 +7,9 @@ export class CustomerDetailService {
   constructor(private HttpService: HttpService) { }
 
   querySingle(params: any): Promise<any> {
-    return this.HttpService.getRequest(API.queryCustomerDetail, params)
-      .catch(this.handleError);
+    return this.HttpService.getRequest(API.queryCustomerDetail, params);
   }
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+  listUserHasGc(params: any): Promise<any> {
+    return this.HttpService.getRequest(API.listUserHasGc, params);
   }
 }

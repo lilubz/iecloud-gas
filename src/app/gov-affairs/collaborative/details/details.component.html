@@ -1,0 +1,168 @@
+<div class="collaborative-detail">
+  <div class="ui-g-12">
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title">操作</span>
+      <span class="ui-g-6 content">
+        <button pButton type="button" label="返回" class="ui-button-info" (click)="history.go(-1)"></button>
+        <button pButton type="button" label="撤销" class="ui-button-danger" (click)="onDestroy()"></button>
+      </span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title">事件编号</span>
+      <span class="ui-g-6 content" title="{{details.transactionBasicNumber}}">{{details.transactionBasicNumber}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title">巡查时间</span>
+      <span class="ui-g-6 content">{{details.transactionPatrolTime | date:'yyyy-MM-dd'}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title">描述</span>
+      <span class="ui-g-6 content" title="{{details.description}}">{{details.description}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title">地点</span>
+      <span class="ui-g-6 content" title="{{details.transactionAddress}}">{{details.transactionAddress}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title">事务处理对象</span>
+      <span class="ui-g-6 content" title="{{details.transactionHandleName}}">{{details.transactionHandleName}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title">发起时间</span>
+      <span class="ui-g-6 content">{{details.createTime | date:"yyyy-MM-dd"}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title">发起部门</span>
+      <span class="ui-g-6 content" title="{{details.transactionOrganizationName}}">{{details.transactionOrganizationName}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title">发起人</span>
+      <span class="ui-g-6 content" title="{{details.transactionUserName}}">{{details.transactionUserName}}</span>
+    </div>
+    <div class="ui-g-12">
+      <span class="ui-g-6 content title" style="width:calc( 100% * 0.333333 * 0.4 )">附件</span>
+      <span class="ui-g-6 content" style="width:86.6666666%"title="{{details.url}}" *ngIf="details.url!='/wenZhouGas/null'">
+        <a href="javascript:void(0);" (click)="window.location.href=details.url">{{details.url}}</a>
+      </span>
+      <span class="ui-g-6 content" style="width:86.6666666%" title="{{details.url}}" *ngIf="details.url=='/wenZhouGas/null'">
+         没有附件
+      </span>
+    </div>
+    <div class="ui-g-12">
+      <span class="ui-g-6 content title" style="width:calc( 100% * 0.333333 * 0.4 )">事务类别</span>
+      <span class="ui-g-6 content" style="width:86.6666666%">
+        <span *ngFor="let item of details.transactionTypeList">{{this._service.getAffairName(item) }}&nbsp;</span>
+      </span>
+    </div>
+  </div>
+  <div class="ui-g-12 dashed-border">
+    <div class="ui-g-12">
+      <h2 (click)="onTest()">协同状况</h2>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-3">
+        <span class="ui-g-4 content title">处理情况</span>
+        <span class="ui-g-8 content" title="{{details.boolIsHandle}}">{{details.boolIsHandle?'处理完成':'正在处理'}}</span>
+      </div>
+      <div class="ui-g-3">
+        <span class="ui-g-4 content title">紧急程度</span>
+        <span class="ui-g-8 content" title="{{details.emergencyDegree}}">{{_service.getAffairLevel(details.emergencyDegree)}}</span>
+      </div>
+    </div>
+    <div class="ui-g-12 dashed-border tree-node">
+      <p-tree [value]="tree" layout="horizontal" selectionMode="single" (onNodeSelect)="onNodeSelect($event);"
+      icon="fa-folder"></p-tree>
+    </div>
+    <div class="ui-g-12 bottom" *ngIf="relateNumber==1||relateNumber==0">
+      <div class="ui-g-12">
+        <div class="ui-g-3">
+          <span class="ui-g-4 content title">部门</span>
+          <span class="ui-g-8 content" title="{{selectNode.info.eventHandleOrganizationName}}">{{selectNode.info.eventHandleOrganizationName}}</span>
+        </div>
+        <div class="ui-g-3">
+          <span class="ui-g-4 content title">处理时间</span>
+          <span class="ui-g-8 content">{{selectNode.info.endTime|date:'yyyy-MM-dd'}}</span>
+        </div>
+        <div class="ui-g-3">
+          <span class="ui-g-4 content title">处理人</span>
+          <span class="ui-g-8 content">{{selectNode.info.eventHandleName?selectNode.info.eventHandleName:'-'}}</span>
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-6">
+          <span class="ui-g-2 content title">说明</span>
+          <span class="ui-g-10 content">{{selectNode.info.description?selectNode.info.description:'-'}}</span>
+        </div>
+        <div class="ui-g-3">
+          <span class="ui-g-4 content title">附件</span>
+          <span class="ui-g-8 content">
+            <span *ngIf="selectNode.info.url!=='/wenZhouGas/null'">
+              <a href="javascript:void(0);" (click)="window.location.href=selectNode.info.url">点击预览</a>
+            </span>
+            <span *ngIf="selectNode.info.url==='/wenZhouGas/null'">
+              没有附件
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <form class="ui-g-12 bottom" [hidden]="relateNumber!==2">
+      <div class="ui-g-10">
+        <div class="ui-g-12">
+          <div class="ui-g-4 form-group">
+            <label for="" class="ui-g-4">操作：</label>
+            <div class="ui-g-4">
+              <p-radioButton name="role" value=0 label="处理" [(ngModel)]="formModel.boolIsReject"></p-radioButton>
+            </div>
+            <div class="ui-g-4">
+              <p-radioButton name="role" value=1 label="回退" [(ngModel)]="formModel.boolIsReject"></p-radioButton>
+            </div>
+          </div>
+          <div class="ui-g-4 ui-g-offset-1" [hidden]="formModel.boolIsReject!==0">
+            <input type="file" #file name="file">
+          </div>
+          <div class="ui-g-2 form-group" [hidden]="formModel.boolIsReject!==0">
+            <div class="ui-g-12 checkbox">
+              <label>
+                <p-checkbox (onChange)="onChangeHasHelp()" [(ngModel)]="formModel.needHelp" name="needHelp" label="部门批转" [binary]="true"></p-checkbox>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-8 form-group ">
+            <label for="inputEmail3" class="ui-g-3 control-label">
+              <span class="warn">*</span>说明：</label>
+            <div class="ui-g-9">
+              <input type="text" pInputText [(ngModel)]="formModel.explain" name="address" />
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12"></div>
+      </div>
+      <div class="ui-g-2">
+        <button pButton type="button" label="提交协同" class="ui-button-info" (click)="onSubmit(file)"></button>
+      </div>
+    </form>
+  </div>
+
+  <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="600" [contentStyle]="{'padding':'0','overflow':'visible'}"
+    [height]="460" [modal]="true" [style]="{'border':'none','padding':'10px'}">
+    <p-pickList [source]="source" [target]="target" sourceHeader="协同部门" targetHeader="已选择" [responsive]="true"
+      filterBy="organizationName" dragdrop="true" sourceFilterPlaceholder="查找协同部门" targetFilterPlaceholder="查找已选择的部门"
+      [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" [showSourceControls]="false" [showTargetControls]="false">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <div style="font-size:14px;float:left;margin:15px 5px 0 0">{{item.organizationName}}</div>
+        </div>
+      </ng-template>
+    </p-pickList>
+    <div class="ui-g-12 dialog-footer text-center">
+      <button pButton type="button" class="ui-button-primery" label="确认" icon="fa-check" (click)="onPickListOk()"></button>
+      <button pButton type="button" class="ui-button-secondary" label="取消" icon="fa-close" 
+        (click)="target=[];visible=false;formModel.needHelp=false;"></button>
+    </div>
+  </p-dialog>
+  <p-confirmDialog header="请确认！" icon="fa fa-question-circle" width="425">
+  </p-confirmDialog>
+</div>

@@ -95,7 +95,7 @@
       </div>
       <div class="ui-g-4 padding-none">
         <span class="span_detail bg_color01">在用气瓶数</span>
-        <span class="span_detail01">{{detailLists.gcCount}}</span>
+        <span class="span_detail01" ><a (click)="showDialog()" class="detail-href">{{detailLists.gcCount}}</a></span>
       </div>
     </div>
 
@@ -119,3 +119,59 @@
     </div>
   </div>
 </div>
+
+<p-dialog [visible]="cylinderVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
+  [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
+  <h3 class="title">用户在用气瓶详情</h3>
+  <div class="ui-g-12 ">
+    <p-dataTable [value]="dataTablelist" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageSize" 
+    scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pageOption" [totalRecords]="total" 
+    (onLazyLoad)="onPageChange($event)" [(first)]="first">
+      <p-column [style]="{'width':'100px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码">
+        <ng-template let-col let-cylinder="rowData" pTemplate="body">
+         {{ cylinder.gasLabelNumber }}
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
+      <p-column [style]="{'width':'150px'}" field="enterpriseName" header="经营企业"></p-column>
+      <p-column [style]="{'width':'100px'}" field="type" header="气瓶规格"></p-column>
+      <p-column [style]="{'width':'100px'}" field="fillingMedium" header="充装介质"></p-column>
+      <p-column [style]="{'width':'80px'}" field="serviceCondition" header="状态"></p-column>
+      <p-column [style]="{'width':'100px'}" header="制造年月">
+        <ng-template let-first="rowData" pTemplate="body">
+          <span>{{first.productionDate|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" header="末检日期">
+        <ng-template let-end="rowData" pTemplate="body">
+          <span>{{end.endCheckDate|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" header="下检日期">
+        <ng-template let-next="rowData" pTemplate="body">
+          <span>{{next.nextCheckDate|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" field="serialNumber" header="出厂编号"></p-column>
+      <p-column [style]="{'width':'100px'}" field="enterpriseCylinderCode" header="自有编号"></p-column>
+      <p-column [style]="{'width':'100px'}" field="electronNumber" header="电子编号（预留）"></p-column>
+      <p-column [style]="{'width':'100px'}" field="area13" header="登记时间"></p-column>
+      <p-column [style]="{'width':'100px'}" field="productionUnit" header="制造单位"></p-column>
+
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+    </p-dataTable>
+  </div>
+  <p-footer>
+    
+    <button type="button" pButton icon="fa-close" (click)="cylinderVisible=false" label="关闭" ></button>
+  </p-footer>
+</p-dialog>

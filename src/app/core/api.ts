@@ -18,6 +18,7 @@ export const API = {
   'getCylinderSpecification': URL + 'basicInformation/commonInfo/listGcSpecification.do', // 获取所有气瓶类型
   'listLiabilitySubjectType': URL + 'basicInformation/gasCylinder/listLiabilitySubjectType.do', // 获取气瓶责任主体类型列表
   'getDispatchers': URL + '/basicInformation/corpInfo/getDispatchers.do', // 获取当前企业下的所有配送工
+  'listCorpSupplyStationVO': URL + '/corpBusiness/applyManagement/listCorpSupplyStationVO.do', // 获取配送站列表
 
   // 气瓶档案
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',
@@ -66,6 +67,7 @@ export const API = {
   'getCustomerCountiesOverview': URL + 'basicInformation/gcUserInfo/getUserCountGroupByRegion.do',
   'getCustomerEnterpriseOverviewByAreaId': URL + 'basicInformation/gcUserInfo/getUserCountByRegionAndCorp.do',
   'getCustomerEnterpriseOverviewByOrganizationId': URL + 'basicInformation/gcUserInfo/getUserCountByOrganization.do',
+  'listUserHasGc': URL + 'basicInformation/gasCylinder/listUserHasGc.do',
 
   // 气瓶综合查询
   'cylinderSelectOpt': URL + 'basicInformation/gasCylinder/getDropInfo.do',
@@ -145,6 +147,22 @@ export const API = {
     'basicInformation/gasCylinder/listGasInfoSearchByLiabilitySubjectId.do',
   // 气瓶充装记录
   'listFillingInfo': URL + '/corpBusiness/applyManagement/listFillingInfo.do',
+  'getDispachterDistributions': URL + '/corpBusiness/applyManagement/getDispachterDistributions.do',
+  'listGasReceiveAndDispatch': URL + '/basicInformation/gasCylinder/listGasReceiveAndDispatch.do',
+
+  // 协同管理
+  'listCorpInflatableStationInfo': URL + '/corpBusiness/collaborative/listCorpInflatableStationInfo.do', // 2.模糊搜索充装站信息
+  'listCorpSupplyStation': URL + '/corpBusiness/collaborative/listCorpSupplyStation.do', // 3,模糊搜索供应站信息
+  'listGcCarrier': URL + '/corpBusiness/collaborative/listGcCarrier.do', // 4.精确搜索押送工信息
+  'listDispatcher': URL + '/corpBusiness/collaborative/listDispatcher.do', // 5.精确搜索送气工信息
+  'listEventOrganizationId': URL + '/corpBusiness/collaborative/listEventOrganizationId.do', // 11，获取协同部门列表
+  'insertTransactionBasic': URL + '/corpBusiness/collaborative/insertTransactionBasic.do', // 6, 执法事务录入
+  'deleteTransaction': URL + '/corpBusiness/collaborative/deleteTransaction.do', // 8，撤销执法事务
+  'cooperativeOperation': URL + '/corpBusiness/collaborative/cooperativeOperation.do', // 9 & 10,协同操作->【事务处理】
+  'listTransactionInfo': URL + '/corpBusiness/collaborative/listTransactionInfo.do', // 12,查询事务列表。
+  'listTransactionDetailInfo': URL + '/corpBusiness/collaborative/listTransactionDetailInfo.do', // 13,查询事务祥情
+  'listTransactionChildren': URL + '/corpBusiness/collaborative/listTransactionChildren.do', // 14,获取某个事务下面所有节点的信息
+  'listEventDetailInfo': URL + '/corpBusiness/collaborative/listEventDetailInfo.do', // 15,根据节点ID查询事务信息。
 
 
   // 登录

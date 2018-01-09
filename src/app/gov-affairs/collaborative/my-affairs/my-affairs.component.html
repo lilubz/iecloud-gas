@@ -1,0 +1,131 @@
+<div class="ui-g affairs-list">
+  <div class="ui-g-12">
+    <h2>按综合条件查询:</h2>
+  </div>
+  <form (submit)="onSearch()">
+    <div class="ui-g">
+      <div class="ui-g-6">
+        <div class="form-group">
+          <label for="">发起时间：</label>
+          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value"
+            readonlyInput="true" [style]="{'width':'calc(50% - 65px)'}" name="startTime">
+          </p-calendar>
+          <span>到</span>
+          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value"
+            readonlyInput="true" [style]="{'width':'calc(50% - 65px)'}" name="endTime">
+          </p-calendar>
+        </div>
+      </div>
+      <div class="ui-g-4">
+        <div class="form-group">
+          <label for="" class="ui-g-3">角色：</label>
+          <div class="ui-g-3">
+            <p-radioButton name="role" value="0" label="发起" [(ngModel)]="formModel.role"></p-radioButton>
+          </div>
+          <div class="ui-g-3">
+            <p-radioButton name="role" value="1" label="参于" [(ngModel)]="formModel.role"></p-radioButton>
+          </div>
+          <div class="ui-g-3">
+            <p-radioButton name="role" value="3" label="全部" [(ngModel)]="formModel.role"></p-radioButton>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-5">
+        <div class="ui-g-6">
+          <div class="form-group">
+            <label for="">所属区域：</label>
+            <p-dropdown [options]="dropdown.area" [(ngModel)]="formModel.area" [style]="{'width':'calc(90% - 70px)'}" name="area"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="form-group">
+            <label for="">事务类别：</label>
+            <p-dropdown [options]="dropdown.affairType" [(ngModel)]="formModel.affairType" [style]="{'width':'calc(90% - 70px)'}" name="affairType"></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <div class="ui-g-5">
+        <div class="ui-g-6">
+          <div class="form-group">
+            <label for="">事务来源：</label>
+            <p-dropdown [options]="dropdown.source" [(ngModel)]="formModel.source" [style]="{'width':'calc(90% - 70px)'}" name="source"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="form-group">
+            <label for="">事务状态：</label>
+            <p-dropdown [options]="dropdown.status" [(ngModel)]="formModel.status" [style]="{'width':'calc(90% - 70px)'}" name="status"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-4">
+        <div class="form-group">
+          <label for="" class="ui-g-5">搜索区域：</label>
+          <div class="ui-g-3">
+            <p-radioButton name="searchType" value="1" label="地点" [(ngModel)]="formModel.searchType"></p-radioButton>
+          </div>
+          <div class="ui-g-4">
+            <p-radioButton name="searchType" value="2" label="发起人" [(ngModel)]="formModel.searchType"></p-radioButton>
+          </div>
+        </div>
+      </div>
+      <div class="ui-g-5">
+        <div class="form-group">
+          <div class="ui-g-6">
+            <input type="text" pInputText/>
+          </div>
+          <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:30px"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="ui-g-12">
+    <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+      scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+      [(first)]="dataTable.first">
+      <p-column [style]="{'width':'100px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" header="事件编号">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <a [routerLink]="['../details']" [queryParams]="{'id':rowData.transactionBasicNumber}">{{rowData.transactionBasicNumber}}</a>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'120px'}" header="事务类别">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span *ngFor="let item of rowData.transactionType">{{this._service.getAffairName(item)}}&nbsp;</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'120px'}" field="description" header="交办内容"></p-column>
+      <p-column [style]="{'width':'120px'}" header="处理情况">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.boolIsHandle?'已经完结':'正在办理'}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" header="发起时间">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.createTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" header="最后处理时间">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.updateTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+
+    </p-dataTable>
+  </div>
+</div>

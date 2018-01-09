@@ -5,6 +5,11 @@
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
             <span>辖区</span>
+            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'calc(100% - 60px','max-width':'300px'}"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup">
             <span>企业名称</span>
             <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText placeholder="">
           </div>
