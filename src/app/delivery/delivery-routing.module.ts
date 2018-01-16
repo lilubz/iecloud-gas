@@ -24,10 +24,10 @@ const routes: Routes = [
         path: '',
         redirectTo: 'state',
       },
-      {
-        path: 'state',
-        component: CylinderStateComponent
-      },
+      // {
+      //   path: 'state',
+      //   component: CylinderStateComponent
+      // },
       {
         path: 'cylinder-number',
         component: CylinderNumberComponent

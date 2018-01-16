@@ -30,22 +30,22 @@ const routes: Routes = [
         path: 'user-card',
         component: UserCardComponent
       },
-      {
-        path: 'cylinder-info',
-        component: CylinderInfoComponent
-      },
-      {
-        path: 'cylinder-tag',
-        component: CylinderTagComponent
-      },
-      {
-        path: 'upload',
-        component: UploadComponent
-      },
-      {
-        path: 'export',
-        component: ExportComponent
-      },
+      // {
+      //   path: 'cylinder-info',
+      //   component: CylinderInfoComponent
+      // },
+      // {
+      //   path: 'cylinder-tag',
+      //   component: CylinderTagComponent
+      // },
+      // {
+      //   path: 'upload',
+      //   component: UploadComponent
+      // },
+      // {
+      //   path: 'export',
+      //   component: ExportComponent
+      // },
     ]
   },
   {
