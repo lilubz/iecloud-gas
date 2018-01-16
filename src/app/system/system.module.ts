@@ -11,6 +11,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { UserService } from './user/user.service';
 import { MessagesService } from './messages/messages.service';
 import { ConfirmationService } from 'primeng/primeng';
+import { BottleLibraryComponent } from './bottle-library/bottle-library.component';
+import { BottleLibraryService } from './bottle-library/bottle-library.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,12 +24,14 @@ import { ConfirmationService } from 'primeng/primeng';
     SystemComponent,
     UserComponent,
     MessagesComponent,
+    BottleLibraryComponent
 
   ],
   providers: [
     UserService,
     MessagesService,
     ConfirmationService,
+    BottleLibraryService
 
   ]
 })

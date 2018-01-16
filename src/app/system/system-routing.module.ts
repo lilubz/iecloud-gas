@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SystemComponent } from './system.component';
 import { UserComponent } from './user/user.component';
 import { MessagesComponent } from './messages/messages.component';
+import { BottleLibraryComponent } from './bottle-library/bottle-library.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
         path: 'enterprise-management',
         redirectTo: 'enterprise-management/detail',
         pathMatch: 'full'
+      },
+      {
+        path: 'bottle-library',
+        component: BottleLibraryComponent
       },
     ]
   },

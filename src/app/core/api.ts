@@ -113,6 +113,13 @@ export const API = {
    * 系统管理
    */
   'updatePassword': URL + 'sysUserPermissions/user/modificationPassword.do', // 修改密码
+  // 瓶库管理
+  'addCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/addCorpSupplyStation.do',
+  'getCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/listCorpSupplyStation.do',
+  'deleteCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/deleteCorpSupplyStation.do',
+  'createAccount': URL + 'basicInformation/corpSupplyStation/createAccount.do',
+  'freezeAccount': URL + 'basicInformation/corpSupplyStation/freezeAccount.do',
+  'updateCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/updateCorpSupplyStation.do',
   // 气瓶标签分配
   'listTagApplication': URL + 'basicInformation/gasCylinder/listTagApplication.do',
   'getUnboundGcLabelInfo': URL + 'basicInformation/gasCylinder/listUnboundGcLabelInfo.do',

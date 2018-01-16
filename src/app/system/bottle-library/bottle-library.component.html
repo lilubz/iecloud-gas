@@ -1,0 +1,303 @@
+<div class="bottle-library">
+  <h2 class="title">
+    瓶库信息管理
+  </h2>
+  <div class="ui-g">
+    <div class="ui-g-8">
+      <div class="ui-g-12">
+        <div class="ui-g-6 ui-g-nopad">
+          <div class="inputgroup">
+            <span>瓶库名称</span>
+            <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText placeholder="">
+          </div>
+        </div>
+        <div class="ui-g-6 ui-g-nopad">
+          <div class="inputgroup">
+            <span>所属企业</span>
+            <p-dropdown [options]="enterpriseDrop" appendTo="body" [(ngModel)]="searchParams.enterpriseName"  [style]="{'width':'calc(100% - 100px','max-width':'300px'}"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-4">
+      <button pButton type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
+      <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
+    </div>
+
+    <div class="ui-g-12">
+      <p-dataTable [value]="bottleLibraryList" [lazy]="true" dataKey="enterpriseName" [paginator]="true" [rows]="pages.pageSize"
+        scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
+        [(first)]="pages.first">
+        <p-column [style]="{'width':'100px'}" header="编号">
+          <ng-template let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" field="regionName" header="所属区域"></p-column>
+        <p-column [style]="{'width':'150px'}" field="enterpriseName" header="所属企业"></p-column>
+        <p-column [style]="{'width':'150px'}" field="supplyStationName" header="站点名称"></p-column>
+        <p-column [style]="{'width':'150px'}" field="principal" header="负责人"></p-column>
+        <p-column [style]="{'width':'150px'}" field="contactPerson" header="联系人"></p-column>
+        <p-column [style]="{'width':'150px'}" field="supplyStationContact" header="联系方式"></p-column>
+        <p-column [style]="{'width':'150px'}" field="supplyStationAddress" header="站点地址"></p-column>
+        <p-column [style]="{'width':'150px'}" field="supplyLicenseNum" header="许可证编号"></p-column>
+
+        <p-column [style]="{'width':'150px'}" field="issuingUnit" header="核发单位"></p-column>
+        <p-column [style]="{'width':'150px'}" field="businessCategory" header="经营类别"></p-column>
+        <p-column [style]="{'width':'150px'}" field="businessArea" header="经营区域"></p-column>
+        <p-column [style]="{'width':'150px'}"  header="发证日期">
+            <ng-template let-rowdata="rowData" pTemplate="body">
+                <span>{{rowdata.releaseTime | date:'yyyy/MM/dd'}}</span>
+              </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" header="有效期">
+          <ng-template let-rowdata="rowData" pTemplate="body">
+            <span>{{rowdata.effectiveTimeStart | date:'yyyy/MM/dd'}}-{{rowdata.effectiveTimeEnd | date:'yyyy/MM/dd'}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'200px'}" header="操作">
+          <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
+            <p-toggleButton onLabel="冻结账号" offLabel="启用账号" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
+            <button pButton type="button" label="分配账号" *ngIf="!data.userId" (click)="createAccount(data)"></button>
+            <button pButton type="button" label="编辑" class="" (click)="showEditDialog(data)"></button>
+          </ng-template>
+        </p-column>
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+      </p-dataTable>
+    </div>
+  </div>
+
+  <p-dialog [visible]="editBottleVisible"  [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
+    [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
+    <h3 class="dialogtitle">编辑瓶库信息</h3>
+    <div class="ui-g-12 " style="height:400px">
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>所属区域
+            <b style="color:red;">*</b>
+          </span>
+          <p-dropdown [options]="areaDrop" [(ngModel)]="editForm.regionId" appendTo="body" [style]="{'width':'calc(100% - 100px','max-width':'300px'}"></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>归属企业
+            <b style="color:red;">*</b>
+          </span>
+          <p-dropdown [options]="enterpriseDrop" [(ngModel)]="editForm.enterpriseNumber" appendTo="body" [style]="{'width':'calc(100% - 100px','max-width':'300px'}"></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>站点名称
+            <b style="color:red;">*</b>
+          </span>
+          <input type="text" [(ngModel)]="editForm.supplyStationName" class="textInput" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>负责人&#12288;
+            <b style="color:red;">*</b>
+          </span>
+          <input type="text" [(ngModel)]="editForm.principal" class="textInput" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>联系人&#12288;&#8194;</span>
+          <input type="text" [(ngModel)]="editForm.contactPerson" class="textInput" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>联系方式&#8194;</span>
+          <input type="text" [(ngModel)]="editForm.supplyStationContact" class="textInput" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>站点地址&#8194;</span>
+          <input type="text" [(ngModel)]="editForm.supplyStationAddress"  class="textInput" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>许可证编号
+            <b style="color:red;">*</b>
+          </span>
+          <input type="text" [(ngModel)]="editForm.supplyLicenseNum" style="width: calc(100% - 130px);max-width: 300px;" pInputText placeholder=" ">
+        </div>
+      </div>
+      <div class="ui-g-6 ">
+        <div class="inputgroup ">
+          <span>核发单位
+            <b style="color:red;">*</b>
+          </span>
+          <input type="text" [(ngModel)]="editForm.issuingUnit" class="textInput " pInputText placeholder=" ">
+        </div>
+      </div>
+      <div class="ui-g-6 ">
+        <div class="inputgroup">
+          <span>发证日期
+            <b style="color:red;">*</b>
+          </span>
+          <p-calendar [locale]="cn" [(ngModel)]="editForm.releaseTime" appendTo="body" [showButtonBar]="true" placeholder="" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true"
+            selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'calc(100% - 100px)','max-width':'200px','display':'inline-block'}"></p-calendar>
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>有效期&#12288;
+            <b style="color:red;">*</b>
+          </span>
+          <p-calendar [locale]="cn" #startDate [(ngModel)]="editForm.effectiveTimeStart" appendTo="body" #startDate [showButtonBar]="true" placeholder="" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true"
+          selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'200px','display':'inline-block'}"></p-calendar>
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>至&#12288;&#12288;&#12288;<b style="color:red;">*</b></span>
+          <p-calendar [locale]="cn" #endDate [(ngModel)]="editForm.effectiveTimeEnd" appendTo="body" #endDate [showButtonBar]="true" placeholder="" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true"
+           selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'80%','max-width':'200px','display':'inline-block'}"></p-calendar>
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>经营类别&#8194;
+          </span>
+          <input type="text" [(ngModel)]="editForm.businessCategory" class="textInput" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="inputgroup">
+          <span>经营区域&#8194;</span>
+          <input type="text" [(ngModel)]="editForm.businessArea" class="textInput" pInputText placeholder="">
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <button type="button " pButton icon="fa-pencil " label="确认编辑" (click)="editCorpSupplyStation()"></button>
+      <button type="button " pButton icon="fa-close " (click)="editBottleVisible=false " label="关闭 "></button>
+    </p-footer>
+  </p-dialog>
+  <p-dialog [visible]="addBottleVisible"  [responsive]="true " [showHeader]="false " [modal]="true " [closable]="false
+            " [width]="800 " [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
+    <h3 class="dialogtitle">新增瓶库信息</h3>
+    <div class="ui-g-12 " style="height:400px">
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>所属区域
+              <b style="color:red;">*</b>
+            </span>
+            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" appendTo="body" [style]="{'width':'calc(100% - 100px','max-width':'300px'}"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>归属企业
+              <b style="color:red;">*</b>
+            </span>
+            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="addForm.enterpriseNumber" appendTo="body"  [style]="{'width':'calc(100% - 100px','max-width':'300px'}"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>站点名称
+              <b style="color:red;">*</b>
+            </span>
+            <input type="text" [(ngModel)]="addForm.supplyStationName" class="textInput" pInputText placeholder="">
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>负责人&#12288;
+              <b style="color:red;">*</b>
+            </span>
+            <input type="text" [(ngModel)]="addForm.principal" class="textInput" pInputText placeholder="">
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>联系人&#12288;&#8194;</span>
+            <input type="text" [(ngModel)]="addForm.contactPerson" class="textInput" pInputText placeholder="">
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>联系方式&#8194;</span>
+            <input type="text" [(ngModel)]="addForm.supplyStationContact" class="textInput" pInputText placeholder="">
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>站点地址&#8194;</span>
+            <input type="text" [(ngModel)]="addForm.supplyStationAddress" class="textInput" pInputText placeholder="">
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>许可证编号
+              <b style="color:red;">*</b>
+            </span>
+            <input type="text" [(ngModel)]="addForm.supplyLicenseNum" style="width: calc(100% - 130px);max-width: 300px;" pInputText placeholder=" ">
+          </div>
+        </div>
+        <div class="ui-g-6 ">
+          <div class="inputgroup ">
+            <span>核发单位
+              <b style="color:red;">*</b>
+            </span>
+            <input type="text" [(ngModel)]="addForm.issuingUnit" class="textInput " pInputText placeholder=" ">
+          </div>
+        </div>
+        <div class="ui-g-6 ">
+          <div class="inputgroup">
+            <span>发证日期
+              <b style="color:red;">*</b>
+            </span>
+            <p-calendar [locale]="cn" #date [(ngModel)]="addForm.releaseTime" appendTo="body" [showButtonBar]="true" placeholder="请输入发证日期" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true"
+              selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'calc(100% - 100px)','max-width':'200px','display':'inline-block'}"></p-calendar>
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>有效期&#12288;
+              <b style="color:red;">*</b>
+            </span>
+            <p-calendar [locale]="cn" #startDates  [(ngModel)]="addForm.effectiveTimeStart" appendTo="body" #startDate [showButtonBar]="true" placeholder="请输入有效起始时间" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true"
+            [maxDate]="endDates.value?endDates.value:today" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'200px','display':'inline-block'}"></p-calendar>
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>至&#12288;&#12288;&#12288;<b style="color:red;">*</b></span>
+            <p-calendar [locale]="cn" #endDates [(ngModel)]="addForm.effectiveTimeEnd" appendTo="body" #endDate [showButtonBar]="true" placeholder="请输入有效结束时间" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true"
+            [minDate]="startDates.value" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'80%','max-width':'200px','display':'inline-block'}"></p-calendar>
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>经营类别&#8194;
+            </span>
+            <input type="text" [(ngModel)]="addForm.businessCategory" class="textInput" pInputText placeholder="">
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="inputgroup">
+            <span>经营区域&#8194;
+            </span>
+            <input type="text" [(ngModel)]="addForm.businessArea" class="textInput" pInputText placeholder="">
+          </div>
+        </div>
+    </div>
+    <p-footer>
+      <button type="button" pButton icon="fa-plus " label="确认新增" (click)="AddCorpSupplyStation()"></button>
+      <button type="button" pButton icon="fa-close " (click)="addBottleVisible=false " label="关闭 "></button>
+    </p-footer>
+  </p-dialog>
+</div>

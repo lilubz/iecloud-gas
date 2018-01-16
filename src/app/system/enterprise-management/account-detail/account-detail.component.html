@@ -42,12 +42,12 @@
       <p-column [style]="{'width':'150px'}" field="userName" header="管理员"></p-column>
       <p-column [style]="{'width':'150px'}" header="账号状态">
         <ng-template let-rowdata="rowData" pTemplate="body">
-          <span>{{rowdata.isfreezed ? '停用' : '启用'}}</span>
+          <span>{{rowdata.isfreezed ? '冻结' : '启用'}}</span>
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'150px'}" header="操作">
         <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
-          <p-toggleButton onLabel="启用" offLabel="停用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
+          <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
         </ng-template>
       </p-column>
       <ng-template pTemplate="emptymessage">

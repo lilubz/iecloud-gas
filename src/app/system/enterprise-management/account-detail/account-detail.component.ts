@@ -118,8 +118,13 @@ export class AccountDetailComponent implements OnInit, OnDestroy {
   changeStatus(status) {
     this._service.changeFreeze({ userid: status.userId }).then(data => {
       if (data.status === 0) {
-        this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
-        this.searchAccount(this.changeStatusPage);
+        if (!status.isfreezed) {
+          this.messageService.add({ severity: 'success', summary: '提示信息', detail: '冻结账号成功' });
+          this.searchAccount(this.changeStatusPage);
+        } else {
+          this.messageService.add({ severity: 'success', summary: '提示信息', detail: '启用账号成功' });
+          this.searchAccount(this.changeStatusPage);
+        }
       } else {
         this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
       }
