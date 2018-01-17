@@ -22,24 +22,6 @@ export class DispatcherComponent implements OnInit {
         value: ''
       }
     ],
-    stateOpt: [
-      {
-        label: '全部',
-        value: ''
-      },
-      {
-        label: '正常',
-        value: '正常'
-      },
-      {
-        label: '黑名单',
-        value: '黑名单'
-      },
-      {
-        label: '暂停',
-        value: '暂停'
-      },
-    ],
     default: [
       {
         label: '全部',
@@ -55,7 +37,6 @@ export class DispatcherComponent implements OnInit {
   };
   formModel: any = this.fb.group({
     enterpriseId: '',
-    status: '',
     name: '',
     jobNumber: '',
     phone: ['', validator.phone],
@@ -63,7 +44,6 @@ export class DispatcherComponent implements OnInit {
   });
   pageParams = {
     enterpriseId: '',
-    status: '',
     name: '',
     jobNumber: '',
     phone: '',
