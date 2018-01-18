@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { CollaborativeComponent } from './collaborative.component';
 import { MyAffairsComponent } from './my-affairs/my-affairs.component';
+import { AddAffairsComponent } from './add-affairs/add-affairs.component';
 import { AllAffairsComponent } from './all-affairs/all-affairs.component';
 import { DetailsComponent } from './details/details.component';
 
@@ -34,6 +35,13 @@ const routes: Routes = [
         },
       },
       {
+        path: 'add-affairs',
+        component: AddAffairsComponent,
+        data: {
+          title: '添加事务'
+        },
+      },
+      {
         path: 'details',
         component: DetailsComponent,
         data: {
@@ -44,7 +52,7 @@ const routes: Routes = [
         path: '**',
         redirectTo: 'collaborative/my-affairs',
         data: {
-          title: '所有事务'
+          title: '我的事务'
         },
       }
     ],

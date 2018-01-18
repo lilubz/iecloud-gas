@@ -2,7 +2,7 @@
   <div class="ui-g-12">
     <h2>按综合条件查询:</h2>
   </div>
-  <form (submit)="onSearch()">
+  <form class="ui-g-12" (submit)="onSearch()">
     <div class="ui-g">
       <div class="ui-g-6">
         <div class="form-group">
@@ -38,13 +38,13 @@
         <div class="ui-g-6">
           <div class="form-group">
             <label for="">所属区域：</label>
-            <p-dropdown [options]="dropdown.area" [(ngModel)]="formModel.area" [style]="{'width':'calc(90% - 70px)'}" name="area"></p-dropdown>
+            <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.region" [style]="{'width':'calc(90% - 70px)'}" name="region"></p-dropdown>
           </div>
         </div>
         <div class="ui-g-6">
           <div class="form-group">
             <label for="">事务类别：</label>
-            <p-dropdown [options]="dropdown.affairType" [(ngModel)]="formModel.affairType" [style]="{'width':'calc(90% - 70px)'}" name="affairType"></p-dropdown>
+            <p-dropdown [options]="dropdown.affairsType" [(ngModel)]="formModel.affairType" [style]="{'width':'calc(90% - 70px)'}" name="affairType"></p-dropdown>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
         <div class="ui-g-6">
           <div class="form-group">
             <label for="">事务来源：</label>
-            <p-dropdown [options]="dropdown.source" [(ngModel)]="formModel.source" [style]="{'width':'calc(90% - 70px)'}" name="source"></p-dropdown>
+            <p-dropdown [options]="dropdown.origin" [(ngModel)]="formModel.origin" [style]="{'width':'calc(90% - 70px)'}" name="source"></p-dropdown>
           </div>
         </div>
         <div class="ui-g-6">
@@ -78,7 +78,7 @@
       <div class="ui-g-5">
         <div class="form-group">
           <div class="ui-g-6">
-            <input type="text" pInputText/>
+            <input type="text" pInputText [(ngModel)]="formModel.searchValue" name="searchValue"/>
           </div>
           <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:30px"></button>
         </div>
@@ -99,15 +99,11 @@
           <a [routerLink]="['../details']" [queryParams]="{'id':rowData.transactionBasicNumber}">{{rowData.transactionBasicNumber}}</a>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'120px'}" header="事务类别">
-        <ng-template let-rowData="rowData" pTemplate="body">
-          <span *ngFor="let item of rowData.transactionType">{{this._service.getAffairName(item)}}&nbsp;</span>
-        </ng-template>
-      </p-column>
+      <p-column [style]="{'width':'120px'}" header="事务类别" field="transactionType"></p-column>
       <p-column [style]="{'width':'120px'}" field="description" header="交办内容"></p-column>
       <p-column [style]="{'width':'120px'}" header="处理情况">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <span>{{rowData.boolIsHandle?'已经完结':'正在办理'}}</span>
+          <span>{{rowData.boolIsHandle?'正在办理':'已经完结'}}</span>
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'100px'}" header="发起时间">

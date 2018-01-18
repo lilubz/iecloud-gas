@@ -1,9 +1,24 @@
 
 .collaborative-detail {
-  font-size:14px;
-  padding:55px 10px 0 10px;
+  padding:10px 10px 0 10px;
   [class^='ui-g']{
     padding:0;
+  }
+  .warn{
+    color:#f00;
+  }
+  form{
+    .has-multiSelect{
+      height:44px;
+    }
+  }
+  a{
+    color:#3399ff !important;
+  }
+  form,
+  .node-handle,
+  .node-reply{
+    padding:10px 0px !important;
   }
   .title{
     background:#1a5687;
@@ -11,17 +26,20 @@
   }
   .content{
     border:1px solid #797979;
-    line-height: 30px;
+    line-height: 35px;
+    height:40px;
     text-align: center;
     color:white;
-    overflow: hidden;
-    white-space:nowrap;
+    word-break:break-all;
+    box-sizing: border-box;
+    overflow: auto;
   }
   .content:last-child{
     color:black;
   }
   h2{
-    margin:0;
+    margin:5px 0;
+    font-size:18px;
   }
   .dashed-border{
     margin-top:10px;

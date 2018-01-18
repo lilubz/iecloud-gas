@@ -162,15 +162,19 @@ export const API = {
   'listCorpSupplyStation': URL + '/corpBusiness/collaborative/listCorpSupplyStation.do', // 3,模糊搜索供应站信息
   'listGcCarrier': URL + '/corpBusiness/collaborative/listGcCarrier.do', // 4.精确搜索押送工信息
   'listDispatcher': URL + '/corpBusiness/collaborative/listDispatcher.do', // 5.精确搜索送气工信息
-  'listEventOrganizationId': URL + '/corpBusiness/collaborative/listEventOrganizationId.do', // 11，获取协同部门列表
   'insertTransactionBasic': URL + '/corpBusiness/collaborative/insertTransactionBasic.do', // 6, 执法事务录入
   'deleteTransaction': URL + '/corpBusiness/collaborative/deleteTransaction.do', // 8，撤销执法事务
   'cooperativeOperation': URL + '/corpBusiness/collaborative/cooperativeOperation.do', // 9 & 10,协同操作->【事务处理】
+  'listEventOrganizationId': URL + '/corpBusiness/collaborative/listEventOrganizationId.do', // 11，获取协同部门列表
   'listTransactionInfo': URL + '/corpBusiness/collaborative/listTransactionInfo.do', // 12,查询事务列表。
   'listTransactionDetailInfo': URL + '/corpBusiness/collaborative/listTransactionDetailInfo.do', // 13,查询事务祥情
   'listTransactionChildren': URL + '/corpBusiness/collaborative/listTransactionChildren.do', // 14,获取某个事务下面所有节点的信息
   'listEventDetailInfo': URL + '/corpBusiness/collaborative/listEventDetailInfo.do', // 15,根据节点ID查询事务信息。
-
+  'listCollaborativeInfo': URL + '/corpBusiness/collaborative/listCollaborativeInfo.do', // 16.获取协同企业列表
+  'listTransactionTypeInfo': URL + '/corpBusiness/collaborative/listTransactionTypeInfo.do', // 17.获取事务类别树。
+  'listTransactionSourceInfo': URL + '/corpBusiness/collaborative/listTransactionSourceInfo.do', // 18.获取事务来源列表。
+    // 19.获取事务所在部门下拉框数据。
+  'listTransactionDepartmentInfo': URL + '/corpBusiness/collaborative/listTransactionDepartmentInfo.do',
 
   // 登录
   'signIn': URL + 'sysUserPermissions/user/login.do',

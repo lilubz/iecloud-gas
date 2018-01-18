@@ -6,10 +6,10 @@ import { CollaborativeComponent } from './collaborative.component';
 import { CollaborativeRoutingModule } from './collaborative-routing.module';
 import { MyAffairsComponent } from './my-affairs/my-affairs.component';
 import { AllAffairsComponent } from './all-affairs/all-affairs.component';
-import { ListComponent } from './component/list/list.component';
 import { DetailsComponent } from './details/details.component';
 
 import { CollaborativeService } from './collaborative.service';
+import { AddAffairsComponent } from './add-affairs/add-affairs.component';
 
 @NgModule({
   imports: [
@@ -21,8 +21,8 @@ import { CollaborativeService } from './collaborative.service';
     CollaborativeComponent,
     MyAffairsComponent,
     AllAffairsComponent,
-    ListComponent,
-    DetailsComponent
+    DetailsComponent,
+    AddAffairsComponent
   ],
   providers: [
     CollaborativeService

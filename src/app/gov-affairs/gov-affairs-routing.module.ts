@@ -23,6 +23,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'collaborative',
+    redirectTo: 'collaborative/my-affairs',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: 'collaborative/my-affairs',
     pathMatch: 'full'

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailsService } from './details.service';
+
+import { zh_CN, DATE_LOCALIZATION } from './../../../core/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ConfirmationService } from 'primeng/primeng';
 import { CollaborativeService } from '../collaborative.service';
 import { API } from '../../../../app/core/api';
+import * as moment from 'moment';
 @Component({
   selector: 'gas-collaborative-details',
   templateUrl: './details.component.html',
@@ -12,22 +14,19 @@ import { API } from '../../../../app/core/api';
   providers: [ ConfirmationService]
 })
 export class DetailsComponent implements OnInit {
-  window = window;
+  window = window; // 文件下载时使用了
   API = API;
-  history = history;
-  config = this._service.getConfig();
-  relateNumber = -1;
+  history = history;  // 返回按纽使用了，功能返回上一个页面。
+  currentDate: Date = new Date();
   id = '';
-  visible = false;
-  selectNode = {
-    id: '',
-    info: {}
-  };
+
   formModel = {
-    boolIsReject: 0,
+    boolIsReject: false,
     needHelp: false,
     explain: '',
-    helpList: []
+    shiftList: [],
+    file: null,
+    boolIsApproved: false
   };
   details: {
     transactionBasicNumber?: string,
@@ -42,12 +41,19 @@ export class DetailsComponent implements OnInit {
     transactionTypeList?: any,
     boolIsHandle?: string,
     emergencyDegree?: string,
+    boolIsRelate?: false,
   } = {};
-  source = [];
-  target = [];
-  tree = [];
-  selectedNode: any;
+  treeNode = {
+    data: null,
+    selectObj: null,
+    selectId: null,
+    selectInfo: null,
+    needHandle: null,
+    replyInfo: []
+  };
+  multiSelectOptions = [];
   constructor(
+    @Inject(DATE_LOCALIZATION) public zh,
     public _service: CollaborativeService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -59,17 +65,13 @@ export class DetailsComponent implements OnInit {
     if (this.routerInfo.queryParams['value'].id) {
       this.id = this.routerInfo.queryParams['value'].id;
       this.getTreeNode();
-      this.getDetails({transactionBasicNumber: this.id});
+      this.getDetails({ transactionBasicNumber: this.id });
+      this.getMultiSelectDepartment();
     } else {
       throw new Error('查询参数不能为空');
     }
-    console.dir(this.router);
   }
-  onTest() {
-    console.log(this);
-  }
-  onBack() {
-  }
+
   onDestroy() {
     this.confirmationService.confirm({
       message: '您确认要撤销本次的事务么?',
@@ -80,60 +82,64 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
-  onSubmit(file) {
-    let arr = [];
-    this.target.forEach((item) => {
-      arr.push(item.organizationId);
-    });
-    if (this.formModel.explain !== '') {
-      if (!this.formModel.boolIsReject) {
-        const formData: any = new FormData();
-        formData.append('transactionBasicId', this.selectNode.id);
-        formData.append('description', this.formModel.explain);
-        formData.append('boolIsApproved', this.formModel.needHelp);
-        formData.append('boolIsReject', this.formModel.boolIsReject ? true : false);
-        formData.append('organizationList', arr);
-        formData.append('cylinderImage', file.files[0]);
-        this.sendHandle(formData);
-      } else {
-        this.formModel.needHelp = false;
-        const formData: any = new FormData();
-        this.formModel.boolIsReject = 1;
-        this.target = [];
-        file.value = '';
-        arr = [];
-        formData.append('transactionBasicId', this.selectNode.id);
-        formData.append('description', this.formModel.explain);
-        formData.append('boolIsApproved', this.formModel.needHelp);
-        formData.append('boolIsReject', this.formModel.boolIsReject ? true : false);
-        formData.append('organizationList', arr);
-        formData.append('cylinderImage', '');
-        this.sendHandle(formData);
+  checkForm(): boolean {
+    if (this.formModel.explain === '') {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写说明信息' });
+      return false;
+    }
+    // 检测是否填入了时间。
+    const hasTime = this.formModel.shiftList.every(item => item.time ? true : false);
+    if (!hasTime) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写批转的截止时间' });
+      return false;
+    }
+    return true;
+  }
+  handleTypeChange(file) {
+    setTimeout(() => {
+      if (this.formModel.boolIsReject) { // 回退
+        this.formModel.shiftList = [];
+        file.value = null;
+        this.formModel.file = null;
       }
-    } else {
-      this.messageService.add({ severity: 'warn', summary: '说明信息不能为空'});
-    }
-    // this
-  }
-  onPickListOk() {
-    this.visible = false;
-    if (this.target.length === 0) {
-      this.formModel.needHelp = false;
-    }
-  }
-  onChangeHasHelp() {
-    if (this.formModel.needHelp) {
-      this.visible = true;
-      this.getSourceList();
-    } else {
-      this.target = [];
-    }
-  }
-  onNodeSelect(event) {
-    this.selectNode.id = event.node.data;
-    this.getSelectNodeInfo({
-      transactionBasicId: event.node.data
     });
+  }
+  onSubmit(file) {
+    if (this.checkForm()) {
+      const formData: any = new FormData();
+      formData.append('transactionBasicId', this.treeNode.needHandle.eventId);
+      formData.append('description', this.formModel.explain);
+      formData.append('boolIsApproved', this.formModel.shiftList.length > 0 ? true : false);
+      formData.append('boolIsReject', this.formModel.boolIsReject);
+      if (this.formModel.boolIsReject) {  // 回退
+        formData.append('collaborativeOrganizationInfoTOS', '');
+        formData.append('cylinderImage', '');
+      } else { // 处理
+        const list = [];
+        this.formModel.shiftList.forEach(item => {
+          list.push({
+            organizationId: item.organizationId,
+            expirationDate: moment(item.time).format('YYYY-MM-DD HH:mm:ss')
+          });
+        });
+        formData.append('collaborativeOrganizationInfoTOS', JSON.stringify(list));
+        formData.append('cylinderImage', file.files[0] ? file.files[0] : '');
+      }
+      this.sendHandle(formData);
+    }
+  }
+
+  getAffairLevel(number): string {
+    switch (number) {
+      case 1:
+        return '1级（一般）';
+      case 2:
+        return '2级（重要）';
+      case 3:
+        return '3级（紧急）';
+      default:
+        break;
+    }
   }
 
   // 点击展开节点
@@ -145,7 +151,8 @@ export class DetailsComponent implements OnInit {
     })
       .then(data => {
         if (data.status === 0) {
-          this.tree = [this.transformToTreeNode(data.data, true)];
+          this.treeNode.data = [this.transformToTreeNode(data.data, true)];
+          this.getAllNodeDetailsInfo();
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
@@ -154,45 +161,36 @@ export class DetailsComponent implements OnInit {
         throw error;
       });
   }
-  getSelectNodeInfo(params?) {
-    this._service.listEventDetailInfo(params)
+  getAllNodeDetailsInfo(params?) {
+    this._service.listEventDetailInfo({
+      transactionBasicId: this.treeNode.data[0].data
+    })
       .then(data => {
         if (data.status === 0) {
-          this.selectNode.info = data.data;
-          this.selectNode.info['url'] = this.API.url + this.selectNode.info['url'];
-          this.relateNumber = data.data.relateNumber;
+          data.data.forEach(item => {
+            if (item.relateNumber === 2) { // 需要处理
+              item.url = item.url ? this.API.url + item.url : '';
+              this.treeNode.needHandle = item;
+            } else {
+              item.url = item.url ? this.API.url + item.url : '';
+              this.treeNode.replyInfo.push(item);
+            }
+          });
         } else {
-          this.selectNode.info = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       }).catch(error => {
-        this.selectNode.info = {};
         this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
         throw error;
       });
   }
-  getSourceList() {
-    this._service.listEventOrganizationId({})
-      .then(data => {
-        if (data.status === 0) {
-          this.source = data.data;
-        } else {
-          this.source = [];
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
-        }
-      }).catch(error => {
-        this.source = [];
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
-      });
-  }
+
   getDetails(params?) {
     this._service.listTransactionDetailInfo(params)
       .then(data => {
         if (data.status === 0) {
           this.details = data.data;
-          this.details['transactionTypeList'] = this.details.transactionTypeList.split(',');
-          this.details['url'] = this.API.url + this.details['url'];
+          this.details['url'] = this.details['url'] ? this.API.url + this.details['url'] : '';
         } else {
           this.details = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
@@ -207,14 +205,14 @@ export class DetailsComponent implements OnInit {
     this._service.cooperativeOperation(params)
       .then(data => {
         if (data.status === 0) {
-          this.messageService.add({severity: 'success', summary: '操作成功', detail: data.msg});
-          this.router.navigate(['/gov-affairs/collaborative/details'], { queryParams: { id: this.id } });
+          this.messageService.add({severity: 'success', summary: '操作成功', detail: data.msg + '2秒后重新加载'});
+          setTimeout(() => {
+            history.go(0);
+          }, 2000);
         } else {
-          // this.details = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       }).catch(error => {
-        // this.details = {};
         this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
         throw error;
       });
@@ -226,11 +224,27 @@ export class DetailsComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: '操作成功', detail: data.msg });
           this.history.go(-1);
         } else {
-          // this.details = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       }).catch(error => {
-        // this.details = {};
+        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
+        throw error;
+      });
+  }
+  getMultiSelectDepartment() {
+    this._service.listEventOrganizationId({})
+      .then(data => {
+        if (data.status === 0) {
+          this.multiSelectOptions = data.data.map(item => {
+            item.time = null;
+            return item;
+          });
+        } else {
+          this.multiSelectOptions = [];
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        }
+      }).catch(error => {
+        this.multiSelectOptions = [];
         this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
         throw error;
       });

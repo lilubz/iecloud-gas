@@ -23,14 +23,14 @@
       <div class="ui-g-10">
         <div class="ui-g-6">
           <div class="form-group">
-            <label for="">所属区域：</label>
-            <p-dropdown [options]="dropdown.area" [(ngModel)]="formModel.area" [style]="{'width':'calc(90% - 70px)'}" name="area"></p-dropdown>
+            <label for="">事务所在部门：</label>
+            <p-dropdown [options]="dropdown.department" [(ngModel)]="formModel.department" [style]="{'width':'calc(90% - 120px)'}" name="department"></p-dropdown>
           </div>
         </div>
         <div class="ui-g-6">
           <div class="form-group">
             <label for="">事务类别：</label>
-            <p-dropdown [options]="dropdown.affairType" [(ngModel)]="formModel.affairType" [style]="{'width':'calc(90% - 70px)'}" name="affairType"></p-dropdown>
+            <p-dropdown [options]="dropdown.affairsType" [(ngModel)]="formModel.affairType" [style]="{'width':'calc(90% - 70px)'}" name="affairsType"></p-dropdown>
           </div>
         </div>
       </div>

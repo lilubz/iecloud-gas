@@ -1,0 +1,66 @@
+.add-affairs{
+  h1{
+    background: #006699;
+    color:white;
+    margin:0;
+    padding:10px;
+    font-size:18px;
+  }
+  div.group {
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .form-group{
+    margin:10px 0;
+  }
+  form{
+    font-size:16px;
+    h3{
+      margin-top:10px;
+    }
+    padding:0 20px;
+    [class*='ui-g']{
+      padding:0;
+    }
+    .padding-left{
+    padding-left:15px;
+    }
+    .optional{
+      label{
+        line-height: 29px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis; 
+      }
+    }
+    .warn{
+      color:#f00;
+    }
+    .border-right{
+      border-right:1px dashed #666; 
+    }
+    input{
+      width:auto;
+    }
+    .affair-type{
+      .checkbox-container{
+      max-height:76px;
+      overflow: auto;
+      }
+      padding-left:20px;
+      >label{
+        margin-bottom:10px;
+        margin-left:-20px;
+      }
+    }
+
+    .dialog-footer{
+      margin:20px auto;
+      >button{
+        margin:0 50px;
+        font-size:20px;
+      }
+    }
+  }
+}
