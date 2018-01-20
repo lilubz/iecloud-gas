@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { SelectItem } from 'primeng/primeng';
+import { SelectItem, TableBody } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from '../../../core/date-localization';
 import { CommonRequestService } from '../../../core/common-request.service';
@@ -13,8 +13,43 @@ import { CylinderTraceService } from '../cylinder-trace.service';
 })
 export class CylinderRecordComponent implements OnInit {
   zh = zh_CN;
-  cylinderStatus: SelectItem[] = [];
-  deliveryStations: SelectItem[] = [];
+  cylinderStatus: SelectItem[] = [
+    { label: '储配站', value: 1 },
+    { label: '瓶库', value: 2 },
+    { label: '送气工', value: 3 },
+  ];
+  selectedCylinderStatus = this.cylinderStatus[0].value;
+
+  distributionStationSearchTypes: SelectItem[] = [
+    { label: '全部', value: '' },
+    { label: '重瓶出库', value: '重出' },
+    { label: '空瓶入库', value: '空入' },
+  ];
+  cylinderStorageSearchTypes: SelectItem[] = [
+    { label: '全部', value: '' },
+    { label: '重瓶入库', value: '重入' },
+    { label: '重瓶出库', value: '重出' },
+    { label: '空瓶入库', value: '空入' },
+    { label: '空瓶出库', value: '空出' },
+  ];
+  dispatcherSearchTypes: SelectItem[] = [
+    { label: '全部', value: '' },
+    { label: '提取重瓶', value: '重入' },
+    { label: '配送重瓶', value: '重出' },
+    { label: '空瓶回收', value: '空入' },
+    { label: '空瓶发出', value: '空出' },
+  ];
+  selectedDistributionStationType = this.distributionStationSearchTypes[0].value; // 选中的储配站的查询类型
+  selectedCylinderStorageType = this.cylinderStorageSearchTypes[0].value; // 选中的瓶库的查询类型
+  selectedDispatcherType = this.dispatcherSearchTypes[0].value; // 选中的配送工的查询类型
+
+  distributionStationList: SelectItem[] = [];
+  cylinderStorageList: SelectItem[] = [];
+  // dispatcherList: SelectItem[] = [];
+  selectedDistributionStation = ''; // 选中的储配站
+  selectedCylinderStorage = ''; // 选中的瓶库
+  selectedDispatcher = ''; // 选中的配送工
+
   cylinderList: Array<{
     createTime: string,
     gcStatusTypeName: string,
@@ -27,17 +62,14 @@ export class CylinderRecordComponent implements OnInit {
     afterLiabilityContact: string,
     afterLiabilityAddress: string
   }> = [];
-  dispatcher = '';
-  selectedDeliveryStation = '';
 
   pageSize = 10;
   pageNumber = 1;
   total = 0;
-  selectedCylinderStatus: string | number = '';
   first = 0;
-
+  firstFlag = true;
   today = new Date();
-  beginTime: Date = new Date((new Date().getTime() - 24 * 60 * 60 * 1000));
+  beginTime: Date = new Date((new Date().getTime() - 7 * 24 * 60 * 60 * 1000));
   endTime: Date = new Date();
 
   constructor(
@@ -49,92 +81,113 @@ export class CylinderRecordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.commonRequestService.getLiabilitySubjectType().then(data => {
-      if (data.status === 0) {
-        this.cylinderStatus = data.data.map(item => ({ label: item.liabilityName, value: item.liabilityTypeId }))
-          .filter(item => {
-            if (item.label === '送气工' || item.label === '配送站') {
-              return true;
-            }
-          });
-        // this.cylinderStatus.unshift({ label: '--请选择--', value: '' });
-        this.selectedCylinderStatus = this.cylinderStatus[0].value;
-      } else {
-        this.messageService.add({ severity: 'warn', summary: '获取气瓶状态列表失败', detail: data.msg });
-      }
-    });
 
     this.commonRequestService.listCorpSupplyStation().then(data => {
       if (data.status === 0) {
         if (data.data.length > 0) {
-          this.deliveryStations = data.data.map(
+          this.cylinderStorageList = data.data.map(
             item => ({ label: item.supplyStationName, value: item.supplyStationNumber })
           );
-          this.selectedDeliveryStation = this.deliveryStations[0].value;
+          this.selectedCylinderStorage = this.cylinderStorageList[0].value;
         }
       } else {
-        this.messageService.add({ severity: 'warn', summary: '获取配送站失败', detail: data.msg });
+        this.messageService.add({ severity: 'warn', summary: '获取瓶库失败', detail: data.msg });
+      }
+    });
+
+    this.commonRequestService.listCorpInflatableStation().then(data => {
+      if (data.status === 0) {
+        if (data.data.length > 0) {
+          this.distributionStationList = data.data.map(
+            item => ({ label: item.inflatableName, value: item.inflatableStationNumber })
+          );
+          this.selectedDistributionStation = this.distributionStationList[0].value;
+        }
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '获取储配站失败', detail: data.msg });
       }
     });
   }
 
   onPageChange(event) {
-    console.log(event);
     this.pageNumber = event.first / event.rows + 1;
     this.pageSize = event.rows;
 
-    if (this.selectedCylinderStatus === 2) {
-      this.getCylinderByStation();
-    } else if (this.selectedCylinderStatus === 3) {
-      this.getCylinderByDispatcher();
-    } else {
-      this.cylinderList = [];
-    }
+    this.listGcSendOrReceive();
   }
 
-  searchCylinderList() {
-    this.pageNumber = 1;
+  selectStatus(event) {
+    // if (this.selectedCylinderStatus !== event.value) {
+    //   this.selectedCylinderStatus = event.value;
+    //   this.total = 0;
+    //   this.first = 0;
+    //   this.pageNumber = 1;
+    //   this.cylinderList = [];
+    // }
+  }
+
+  search() {
+    if (this.pageNumber === 1) {
+      this.listGcSendOrReceive();
+    }
     this.total = 0;
     this.first = 0;
-    this.cylinderList = [];
-    if (this.selectedCylinderStatus === 2) {
-      this.getCylinderByStation();
-    } else if (this.selectedCylinderStatus === 3) {
-      this.getCylinderByDispatcher();
-    }
+    this.pageNumber = 1;
   }
 
-  getCylinderByStation() {
-    this.cylinderTraceService.listGasReceiveAndDispatch({
-      supplyStationNumber: this.selectedDeliveryStation,
-      beginTime: moment(this.beginTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.endTime).format('YYYY-MM-DD') + ' 23:59:59',
-      pageSize: this.pageSize,
-      pageNumber: this.pageNumber,
-    }).then(data => {
-      if (data.status === 0) {
-        this.cylinderList = data.data.list;
-        this.total = data.data.total;
-      } else {
-        this.cylinderList = [];
-        this.messageService.add({ severity: 'warn', summary: '获取信息失败！', detail: data.msg });
-      }
-    });
-  }
-
-  getCylinderByDispatcher() {
-    if (!this.dispatcher) {
-      this.messageService.add({ severity: 'warn', summary: '请输入送气工编号', detail: '' });
+  listGcSendOrReceive() {
+    if (this.firstFlag) {
+      this.firstFlag = false;
       this.cylinderList = [];
-      return false;
+      return;
     }
 
-    this.cylinderTraceService.getCylinderHistoryByDispatcher({
-      dispatcherNumber: this.dispatcher,
-      beginTime: moment(this.beginTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.endTime).format('YYYY-MM-DD') + ' 23:59:59',
-      pageSize: this.pageSize,
+    let liabilitySubjectId;
+    let searchType;
+
+    switch (this.selectedCylinderStatus) {
+      case 1:
+        if (!this.selectedDistributionStation) {
+          this.messageService.add({ severity: 'warn', summary: '请选择储配站！', detail: '' });
+          return;
+        }
+        liabilitySubjectId = this.selectedDistributionStation;
+        searchType = this.selectedDistributionStationType;
+        break;
+      case 2:
+        if (!this.selectedCylinderStorage) {
+          this.messageService.add({ severity: 'warn', summary: '请选择瓶库！', detail: '' });
+          return;
+        }
+        liabilitySubjectId = this.selectedCylinderStorage;
+        searchType = this.selectedCylinderStorageType;
+        break;
+      case 3:
+        if (!this.selectedDispatcher) {
+          this.messageService.add({ severity: 'warn', summary: '请输入配送人员编号！', detail: '' });
+          return;
+        }
+        liabilitySubjectId = this.selectedDispatcher;
+        searchType = this.selectedDispatcherType;
+        break;
+
+      default:
+        break;
+    }
+
+    if (this.beginTime > this.endTime) {
+      this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
+      return;
+    }
+
+    this.cylinderTraceService.listGcSendOrReceive({
+      liabilitySubjectType: this.selectedCylinderStatus,
+      liabilitySubjectId,
+      searchType,
+      beginTime: this.beginTime,
+      endTime: this.endTime,
       pageNumber: this.pageNumber,
+      pageSize: this.pageSize,
     }).then(data => {
       if (data.status === 0) {
         if (data.data.list.length > 0) {
@@ -149,17 +202,5 @@ export class CylinderRecordComponent implements OnInit {
         this.messageService.add({ severity: 'warn', summary: '获取信息失败！', detail: data.msg });
       }
     });
-  }
-
-  selectStatus(event) {
-    console.log(event);
-    console.log(this.selectedCylinderStatus);
-    if (this.selectedCylinderStatus !== event.value) {
-      this.selectedCylinderStatus = event.value;
-      this.cylinderList = [];
-      this.total = 0;
-      this.first = 0;
-      this.pageNumber = 1;
-    }
   }
 }

@@ -1,31 +1,46 @@
 <div class="ui-g-12">
   责任主体
-  <p-dropdown [options]="cylinderStatus" [style]="{'width':'150px'}" [ngModel]="selectedCylinderStatus" (onChange)="selectStatus($event)"></p-dropdown>&nbsp;&nbsp; 开始时间
+  <p-dropdown [options]="cylinderStatus" [style]="{'width':'150px'}" [(ngModel)]="selectedCylinderStatus" (onChange)="selectStatus($event)"></p-dropdown>&nbsp;&nbsp;
+
+  <ng-container *ngIf="selectedCylinderStatus === 1">
+    储配站：
+    <p-dropdown [options]="distributionStationList" [style]="{'width':'240px'}" [(ngModel)]="selectedDistributionStation" filter="true"></p-dropdown>&nbsp;&nbsp; 类型：
+    <p-dropdown [options]="distributionStationSearchTypes" [style]="{'width':'150px'}" [(ngModel)]="selectedDistributionStationType"></p-dropdown>
+  </ng-container>
+
+  <ng-container *ngIf="selectedCylinderStatus === 2">
+    瓶库：
+    <p-dropdown [options]="cylinderStorageList" [style]="{'width':'240px'}" [(ngModel)]="selectedCylinderStorage" filter="true"></p-dropdown>
+    &nbsp;&nbsp; 类型：
+    <p-dropdown [options]="cylinderStorageSearchTypes" [style]="{'width':'150px'}" [(ngModel)]="selectedCylinderStorageType"></p-dropdown>
+  </ng-container>
+
+  <ng-container *ngIf="selectedCylinderStatus === 3">
+    送气工编号：
+    <input type="text" [(ngModel)]="selectedDispatcher" pInputText placeholder="请输入送气工编号" maxlength="20" style="width:180px"> &nbsp;&nbsp; 类型：
+    <p-dropdown [options]="dispatcherSearchTypes" [style]="{'width':'150px'}" [(ngModel)]="selectedDispatcherType"></p-dropdown>
+  </ng-container>
+
+
+  &nbsp;&nbsp; 开始时间
   <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
-    dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
+    dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true"></p-calendar>
   &nbsp;&nbsp; 结束时间
   <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
-    dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today" readonlyInput="true"></p-calendar>
+    dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true"></p-calendar>
   &nbsp;&nbsp;
-  <ng-container *ngIf="selectedCylinderStatus == 2">
-    配送站：
-    <p-dropdown [options]="deliveryStations" [style]="{'width':'240px'}" [(ngModel)]="selectedDeliveryStation" filter="true"></p-dropdown>
-  </ng-container>
-  <ng-container *ngIf="selectedCylinderStatus == 3">
-    送气工编号：
-    <input type="text" [(ngModel)]="dispatcher" pInputText placeholder="请输入送气工编号" maxlength="20" style="width:180px">
-  </ng-container>
-  &nbsp;&nbsp;
-  <button pButton type="button" label="查询" (click)="searchCylinderList()"></button>
+  <button pButton type="button" label="查询" (click)="search()"></button>
   <!-- <button pButton type="button" label="查询" (click)="getCylinderByStatus()"></button> -->
 </div>
+
+
 <div class="ui-g-12">
 
-  <p-dataTable [value]="cylinderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true"
-    [lazy]="true" [(first)]="first" (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
+  <p-dataTable [value]="cylinderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true" [lazy]="true"
+    [(first)]="first" (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
     <p-headerColumnGroup>
       <p-row>
-        <p-column header="序号" rowspan="2"></p-column>
+        <!-- <p-column header="序号" rowspan="2"></p-column> -->
         <p-column header="时间" rowspan="2"></p-column>
         <p-column header="状态变迁" rowspan="2"></p-column>
         <p-column header="开始责任主体" colspan="4"></p-column>
@@ -44,11 +59,11 @@
     </p-headerColumnGroup>
 
 
-    <p-column>
+    <!-- <p-column>
       <ng-template pTemplate="body" let-index="rowIndex">
         {{index + 1}}
       </ng-template>
-    </p-column>
+    </p-column> -->
     <p-column field="createTime">
       <ng-template let-record="rowData" pTemplate="body">
         {{ record.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}

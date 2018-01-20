@@ -6,10 +6,10 @@ import { CommonModule } from '@angular/common';
 import { DeliveryComponent } from './delivery.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CylinderTraceComponent } from './cylinder-trace/cylinder-trace.component';
-import { CylinderFillingComponent } from './cylinder-filling/cylinder-filling.component';
 import { CylinderStateComponent } from './cylinder-trace/cylinder-state/cylinder-state.component';
 import { CylinderNumberComponent } from './cylinder-trace/cylinder-number/cylinder-number.component';
 import { CylinderRecordComponent } from './cylinder-trace/cylinder-record/cylinder-record.component';
+import { CylinderFillingComponent } from './cylinder-trace/cylinder-filling/cylinder-filling.component';
 const routes: Routes = [
   {
     path: '',
@@ -22,15 +22,19 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'state',
+        redirectTo: 'cylinder-filling',
       },
       // {
       //   path: 'state',
       //   component: CylinderStateComponent
       // },
+      // {
+      //   path: 'cylinder-number',
+      //   component: CylinderNumberComponent
+      // },
       {
-        path: 'cylinder-number',
-        component: CylinderNumberComponent
+        path: 'cylinder-filling',
+        component: CylinderFillingComponent
       },
       {
         path: 'cylinder-record',
@@ -41,10 +45,6 @@ const routes: Routes = [
         component: CylinderHistoryComponent
       }
     ]
-  },
-  {
-    path: 'cylinder-filling',
-    component: CylinderFillingComponent
   },
   {
     path: '**',

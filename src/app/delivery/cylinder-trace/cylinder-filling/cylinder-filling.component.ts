@@ -1,9 +1,9 @@
 import { MessageService } from 'primeng/components/common/messageservice';
-import { CylinderFillingService } from './cylinder-filling.service';
-import { zh_CN } from './../../core/date-localization';
+import { zh_CN } from './../../../core/date-localization';
 import { CylinderFilling } from './CylinderFillingHistory.model';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { CylinderTraceService } from '../cylinder-trace.service';
 
 @Component({
   selector: 'gas-cylinder-filling',
@@ -27,7 +27,7 @@ export class CylinderFillingComponent implements OnInit {
   today = moment().toDate();
 
   constructor(
-    private cylinderFillingService: CylinderFillingService,
+    private cylinderTraceService: CylinderTraceService,
     private messageService: MessageService
   ) { }
 
@@ -42,7 +42,7 @@ export class CylinderFillingComponent implements OnInit {
   }
 
   listFillingInfo() {
-    this.cylinderFillingService.listFillingInfo({
+    this.cylinderTraceService.listFillingInfo({
       name: this.inflator,
       cylinderNumber: this.cylinderNumber,
       stationName: this.stationName,

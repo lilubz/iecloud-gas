@@ -21,4 +21,12 @@ export class CylinderTraceService {
   listGasReceiveAndDispatch(params?: any): Promise<any> {
     return this.HttpService.getRequest(API.listGasReceiveAndDispatch, params);
   }
+
+  listFillingInfo(params?: any): Promise<any> {
+    return this.HttpService.getRequest(API.listFillingInfo, params);
+  }
+
+  listGcSendOrReceive(params?: any): Promise<any> {
+    return this.HttpService.getRequest(API.listGcSendOrReceive, params);
+  }
 }

@@ -12,12 +12,13 @@
 </div>
 
 <div class="ui-g-12">
-  <p-dataTable [value]="cylinderHistoryList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSizeHistory" scrollable="true"
-    [lazy]="true" [(first)]="historyFirst" (onLazyLoad)="onHistoryPageChange($event)" [totalRecords]="totalHistory" [rowsPerPageOptions]="[5,10,20,40]">
+  <p-dataTable [value]="cylinderHistoryList" sortField="createTime" [sortOrder]="-1" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSizeHistory" scrollable="true"
+    [(first)]="historyFirst" [totalRecords]="totalHistory" [rowsPerPageOptions]="[1,5,10,20,40]">
     <p-headerColumnGroup>
       <p-row>
-        <p-column header="序号" rowspan="2"></p-column>
+        <!-- <p-column header="序号" rowspan="2"></p-column> -->
         <p-column header="时间" rowspan="2"></p-column>
+        <p-column header="充装或配送" rowspan="2"></p-column>
         <p-column header="状态变迁" rowspan="2"></p-column>
         <p-column header="开始责任主体" colspan="4"></p-column>
         <p-column header="之后责任主体" colspan="4"></p-column>
@@ -34,14 +35,19 @@
       </p-row>
     </p-headerColumnGroup>
 
-    <p-column>
+    <!-- <p-column>
       <ng-template pTemplate="body" let-index="rowIndex">
         {{index + 1}}
       </ng-template>
-    </p-column>
+    </p-column> -->
     <p-column field="createTime">
       <ng-template let-record="rowData" pTemplate="body">
         {{ record.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}
+      </ng-template>
+    </p-column>
+    <p-column field="boolIsDispatch">
+      <ng-template let-record="rowData" pTemplate="body">
+        {{ record.boolIsDispatch?'配送':'充装'}}
       </ng-template>
     </p-column>
     <p-column field="gcStatusTypeName"></p-column>
@@ -56,7 +62,7 @@
   </p-dataTable>
 </div>
 
-<div class="ui-g-12">
+<!-- <div class="ui-g-12">
   <p-dataTable [value]="cylinderFillingHistoryList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true"
     [lazy]="true" [(first)]="pageFirst" (onLazyLoad)="onFillingHistoryPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
     <p-column header="序号" [style]="{'width':'50px'}">
@@ -78,4 +84,4 @@
     </p-column>
     <p-column field="fillingStaff" header="充装人员" [style]="{'width':'150px'}"></p-column>
   </p-dataTable>
-</div>
+</div> -->

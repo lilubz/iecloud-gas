@@ -124,7 +124,7 @@ export class CommonRequestService {
   }
 
   /**
-   * 获取配送站列表
+   * 获取瓶库列表
    * 2018-01-08 20:50:42
    * @author hzb
    * @param params
@@ -132,5 +132,16 @@ export class CommonRequestService {
    */
   listCorpSupplyStation(): Promise<any> {
     return this.httpService.getRequest(API.listCorpSupplyStationVO, {});
+  }
+
+  /**
+   * 获取储配站列表
+   * 2018-01-19 16:44:25
+   * @author hzb
+   * @param params
+   * @returns
+   */
+  listCorpInflatableStation(): Promise<any> {
+    return this.httpService.getRequest(API.listCorpInflatableStation, {});
   }
 }
