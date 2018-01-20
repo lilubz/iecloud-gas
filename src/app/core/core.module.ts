@@ -1,3 +1,4 @@
+import { UtilService } from './util.service';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
@@ -24,6 +25,7 @@ import { UserStateService } from './userState.service';
     LoginService,
     MessageService,
     UserStateService,
+    UtilService,
     {
       provide: DATE_LOCALIZATION,
       useValue: zh_CN

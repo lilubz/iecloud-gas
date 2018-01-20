@@ -1,0 +1,34 @@
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <span>主体类型选择</span>
+    <a href="javascript:void(0);" [routerLink]="['enterprise']" routerLinkActive="active">
+      <span>
+        <i class="fa fa-fw"></i>&nbsp;
+        企业
+      </span>
+    </a>
+    <a href="javascript:void(0);" [routerLink]="['storage-distribution']" routerLinkActive="active">
+      <span>
+        <i class="fa fa-fw"></i>&nbsp; 储配站
+      </span>
+    </a>
+    <a href="javascript:void(0);" [routerLink]="['cylinder-storage']" routerLinkActive="active">
+      <span>
+        <i class="fa fa-fw"></i>&nbsp; 瓶库
+      </span>
+    </a>
+    <a href="javascript:void(0);" [routerLink]="['dispatcher']" routerLinkActive="active">
+      <span>
+        <i class="fa fa-fw"></i>&nbsp; 送气工
+      </span>
+    </a>
+    <a href="javascript:void(0);" [routerLink]="['customer']" routerLinkActive="active">
+      <span>
+        <i class="fa fa-fw"></i>&nbsp; 用户
+      </span>
+    </a>
+  </div>
+</div>
+<div class="ui-g-12 main">
+  <router-outlet></router-outlet>
+</div>

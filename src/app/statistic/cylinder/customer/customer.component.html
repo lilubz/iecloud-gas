@@ -1,0 +1,28 @@
+<div class="ui-g-12 content">
+  <h3>用户气瓶统计</h3>
+  <p-dataTable [value]="customerStatistics" [styleClass]="'ui-lg-10 ui-xl-8'" [loading]="loading" emptyMessage="未查询到数据">
+
+    <!-- <p-column header="序号" [style]="{'width':'50px'}">
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column> -->
+    <p-column field="regionName" header="区域" [style]="{'width':'20%'}">
+      <!-- <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
+      </ng-template> -->
+    </p-column>
+    <p-column field="totalCount" header="气瓶数">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.gcCount || 0 }}
+      </ng-template>
+    </p-column>
+
+    <p-footerColumnGroup>
+      <p-row>
+        <p-column footer="合计"></p-column>
+        <p-column [footer]="calculateTotal('gcCount', customerStatistics)"></p-column>
+      </p-row>
+    </p-footerColumnGroup>
+  </p-dataTable>
+</div>

@@ -1,0 +1,31 @@
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <span>统计查询-企业</span>
+
+  </div>
+</div>
+<div class="ui-g-12 main">
+  <div class="ui-g-12 content">
+    <h3>企业信息统计</h3>
+    <span>区域选择</span>
+    <p-dropdown [options]="cities" [(ngModel)]="selectedCities" (onChange)="getBusinessId()" [style]="{'width':'102px'}"></p-dropdown>
+
+    <p-dataTable [value]="datas" [loading]="loading" [styleClass]="'ui-lg-10 ui-xl-8'" emptyMessage="未查询到数据">
+      <p-column field="enterpriseName" header="企业名称"></p-column>
+      <p-column field="inflatableCount" header="储配站数量"></p-column>
+      <p-column field="dispatcherCount" header="送气工数量"></p-column>
+      <p-column field="customerCount" header="用户数量"></p-column>
+
+      <p-footerColumnGroup>
+        <p-row>
+          <p-column footer="合计"></p-column>
+          <p-column [footer]="calculateTotal('inflatableCount', datas)"></p-column>
+          <p-column [footer]="calculateTotal('dispatcherCount', datas)"></p-column>
+          <p-column [footer]="calculateTotal('customerCount', datas)"></p-column>
+        </p-row>
+      </p-footerColumnGroup>
+
+    </p-dataTable>
+  </div>
+
+</div>

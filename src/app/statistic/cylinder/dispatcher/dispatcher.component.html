@@ -1,0 +1,27 @@
+<div class="ui-g-12 content">
+  <h3>送气工气瓶统计</h3>
+  <p-dataTable [value]="dispatcherCylinderList" [styleClass]="'ui-lg-10 ui-xl-8'" [loading]="loading" emptyMessage="未查询到数据">
+    <p-column field="regionName" header="区域" [style]="{'width':'20%'}"></p-column>
+    <p-column field="gcCount" header="气瓶数">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.gcCount || 0 }}
+      </ng-template>
+    </p-column>
+
+    <p-footerColumnGroup>
+      <p-row>
+        <p-column footer="合计"></p-column>
+        <p-column [footer]="calculateTotal('gcCount', dispatcherCylinderList)"></p-column>
+      </p-row>
+    </p-footerColumnGroup>
+  </p-dataTable>
+
+  <!-- 流通统计 -->
+  <!-- <h3>送气工配送量波动情况</h3>
+  区域选择：
+  <p-dropdown [options]="regionList" [(ngModel)]="circulationStatisticRegionId" [style]="{'width':'150px'}"></p-dropdown>
+  时间：
+  <p-dropdown [options]="deliveryDateRange" [(ngModel)]="selectedDateRange" [style]="{'width':'100px'}"></p-dropdown>
+
+  <button pButton type="button" label="查询" (click)="getDeliveryStatistic()"></button> -->
+</div>

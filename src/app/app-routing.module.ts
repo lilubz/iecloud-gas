@@ -57,7 +57,10 @@ const routes: Routes = [
       },
       {
         path: 'statistic',
-        component: PageNotFoundComponent
+        loadChildren: './statistic/statistic.module#StatisticModule',
+        data: {
+          title: '统计查询'
+        }
       },
       {
         path: 'system',

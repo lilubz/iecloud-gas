@@ -46,7 +46,12 @@ export const MENUS: MenuItem[] = [
   {
     label: '统计查询',
     icon: 'menu-icon statistic-icon',
-    routerLink: ['/statistic']
+    routerLink: ['/statistic'],
+    items: [
+      { label: '气瓶', routerLink: ['/statistic/cylinder'] },
+      { label: '企业', routerLink: ['/statistic/enterprise'] },
+      { label: '执法', routerLink: ['/statistic/affair'] },
+    ]
   },
   {
     label: '系统配置',
