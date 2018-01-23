@@ -86,12 +86,17 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'enterprise',
+    loadChildren: './enterprise/enterprise.module#EnterpriseModule',
+    canLoad: [AuthGuard]
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: '**',
-    redirectTo: 'archive'
+    redirectTo: 'login'
   }
 ];
 

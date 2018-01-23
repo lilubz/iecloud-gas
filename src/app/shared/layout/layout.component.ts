@@ -6,7 +6,7 @@ import { GovernmentMenus, EnterpriseMenus } from './../../core/menus';
 
 import { LoginService } from './../../login/login.service';
 import { UserStateService } from './../../core/userState.service';
-import { UserType } from '../../core/UserType';
+import { RoleType } from '../../core/RoleType';
 @Component({
   selector: 'gas-layout',
   templateUrl: './layout.component.html'
@@ -19,9 +19,9 @@ export class LayoutComponent implements OnInit {
     private userStateService: UserStateService) { }
 
   ngOnInit() {
-    if (this.userStateService.getUserRoleType() === UserType.Government) {
+    if (this.userStateService.getUserRoleType() === RoleType.Government) {
       this.menus = GovernmentMenus;
-    } else if (this.userStateService.getUserRoleType() === UserType.Enterprise) {
+    } else if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
       this.menus = EnterpriseMenus;
     }
   }

@@ -1,3 +1,3 @@
-export enum UserType {
+export enum RoleType {
   Government, Enterprise
 }
