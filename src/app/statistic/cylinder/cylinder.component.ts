@@ -1,3 +1,4 @@
+import { RoleType } from './../../core/RoleType';
 import { Component, OnInit } from '@angular/core';
 import { StatisticCylinderService } from './statistic-cylinder.service';
 
@@ -8,6 +9,10 @@ import { StatisticCylinderService } from './statistic-cylinder.service';
   providers: [StatisticCylinderService]
 })
 export class CylinderComponent implements OnInit {
+
+  permissionRoles: RoleType[] = [
+    RoleType.Government
+  ];
 
   constructor() { }
 

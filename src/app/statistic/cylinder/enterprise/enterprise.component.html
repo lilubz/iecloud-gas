@@ -1,14 +1,14 @@
 <div class="ui-g-12 content">
   <h3>企业气瓶统计</h3>
-  <p-dataTable [value]="countyCylinders" [styleClass]="'ui-lg-10 ui-xl-8'" [loading]="loading"
-    emptyMessage="未查询到数据">
+  <p-dataTable [value]="countyCylinders" [styleClass]="'ui-lg-10 ui-xl-8'" [loading]="loading" emptyMessage="未查询到数据">
 
     <p-column header="序号" [style]="{'width':'50px'}">
       <ng-template pTemplate="body" let-index="rowIndex">
         {{index + 1}}
       </ng-template>
     </p-column>
-    <p-column field="regionName" header="区域" [style]="{'width':'30%'}"></p-column>
+    <p-column *ngIf="isEnterprise" field="enterpriseName" header="企业" [style]="{'width':'30%'}"></p-column>
+    <p-column *ngIf="isGovernment" field="regionName" header="区域" [style]="{'width':'30%'}"></p-column>
     <p-column field="totalCount" header="气瓶数">
       <ng-template let-countyCylinder="rowData" pTemplate="body">
         {{ countyCylinder.totalCount || 0 }}

@@ -1,7 +1,10 @@
+import { SelectItem } from 'primeng/primeng';
 import { Component, OnInit } from '@angular/core';
 import { StatisticCylinderService } from '../statistic-cylinder.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UtilService } from '../../../core/util.service';
+import { RoleType } from '../../../core/RoleType';
+import { CommonRequestService } from '../../../core/common-request.service';
 
 @Component({
   selector: 'gas-customer',
@@ -9,17 +12,40 @@ import { UtilService } from '../../../core/util.service';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
+  permissionRoles: RoleType[] = [
+    RoleType.Government
+  ];
   loading = false;
   customerStatistics = [];
+  customerStatisticsFilter = [];
+  regionList: SelectItem[] = [];
+  selectedRegion;
 
   calculateTotal = this.utilService.calculateTotal;
   constructor(
     private statisticCylinderService: StatisticCylinderService,
     private messageService: MessageService,
+    private commonRequestService: CommonRequestService,
     private utilService: UtilService
   ) { }
 
   ngOnInit() {
+
+    this.commonRequestService.getRegions().then(data => {
+      if (data.status === 0) {
+        this.regionList = data.data.map(item => ({ label: item.regionName, value: item.regionId }));
+        // if (this.regionList.length > 1) {
+        //   this.regionList.unshift(
+        //     { label: this.userStateService.getUser().regionName, value: this.userStateService.getUser().regionId });
+        //   this.regionList.unshift(
+        //     { label: '温州市', value: '' });
+        // }
+        this.regionList.unshift({ label: '全部', value: '' });
+        this.selectedRegion = this.regionList[0].value;
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '获取区域列表失败', detail: data.msg });
+      }
+    });
     this.loading = true;
     this.getCustomerCylinder();
   }
@@ -28,10 +54,25 @@ export class CustomerComponent implements OnInit {
     this.statisticCylinderService.getCustomerCylinderCount().then(data => {
       if (data.status === 0) {
         this.customerStatistics = data.data;
+        this.customerStatisticsFilter = data.data;
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取用户气瓶统计失败', detail: data.msg });
       }
       this.loading = false;
+    });
+  }
+
+  selectStatisticRegion(regionId) {
+    if (regionId === '') {
+      this.customerStatisticsFilter = this.customerStatistics;
+      return;
+    }
+
+    this.customerStatisticsFilter = this.customerStatistics.filter(item => {
+      if (item.regionId === regionId) {
+        return true;
+      }
+      return false;
     });
   }
 

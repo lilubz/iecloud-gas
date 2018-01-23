@@ -6,6 +6,8 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from '../../../core/date-localization';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
+import { RoleType } from './../../../core/RoleType';
+import { UserStateService } from './../../../core/userState.service';
 
 @Component({
   selector: 'gas-cylinder-record',
@@ -15,16 +17,12 @@ import { CylinderTraceService } from '../cylinder-trace.service';
 })
 export class CylinderRecordComponent implements OnInit {
   zh = zh_CN;
-  cylinderStatus: SelectItem[] = [
-    { label: '储配站', value: 1 },
-    { label: '瓶库', value: 2 },
-    { label: '送气工', value: 3 },
-  ];
+  cylinderStatus: SelectItem[];
   dispatcherSearchFields: SelectItem[] = [
     { label: '送气工编号', value: 1 },
     { label: '送气工名称', value: 2 },
   ];
-  selectedCylinderStatus = this.cylinderStatus[0].value;
+  selectedCylinderStatus;
   selectedDispatcherSearchField = this.dispatcherSearchFields[0].value;
 
   dispatcherSuggestions = [];
@@ -85,12 +83,26 @@ export class CylinderRecordComponent implements OnInit {
     private commonRequestService: CommonRequestService,
     private cylinderTraceService: CylinderTraceService,
     private messageService: MessageService,
-    private dispatcherService: DispatcherService
+    private dispatcherService: DispatcherService,
+    private userStateService: UserStateService,
   ) {
 
   }
 
   ngOnInit() {
+    if (this.userStateService.getUserRoleType() === RoleType.Government) {
+      this.cylinderStatus = [
+        { label: '储配站', value: 1 },
+        { label: '瓶库', value: 2 },
+        { label: '送气工', value: 3 },
+      ];
+    } else if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
+      this.cylinderStatus = [
+        { label: '储配站', value: 1 },
+        { label: '送气工', value: 3 },
+      ];
+    }
+    this.selectedCylinderStatus = this.cylinderStatus[0].value;
 
     this.commonRequestService.listCorpSupplyStation().then(data => {
       if (data.status === 0) {

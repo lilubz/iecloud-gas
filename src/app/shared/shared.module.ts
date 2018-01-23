@@ -37,6 +37,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { LayoutComponent } from './layout/layout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DistrictsComponent } from './districts/districts.component';
+import { PermissionRoleDirective } from './permission-role.directive';
 
 @NgModule({
   imports: [
@@ -77,7 +78,8 @@ import { DistrictsComponent } from './districts/districts.component';
     LayoutComponent,
     LoadingComponent,
     PageNotFoundComponent,
-    DistrictsComponent
+    DistrictsComponent,
+    PermissionRoleDirective
   ],
 
   exports: [
@@ -112,12 +114,14 @@ import { DistrictsComponent } from './districts/districts.component';
     PickListModule,
     TreeModule,
     _SharedModule,
+    ConfirmDialogModule,
+    RadioButtonModule,
+
     LayoutComponent,
     LoadingComponent,
     PageNotFoundComponent,
     DistrictsComponent,
-    ConfirmDialogModule,
-    RadioButtonModule,
+    PermissionRoleDirective
   ]
 })
 export class SharedModule { }

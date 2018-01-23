@@ -8,7 +8,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../core/userState.service';
 import { CylinderOverviewService } from './../archive/cylinder/cylinder-overview/cylinder-overview.service';
 import { CustomerOverviewService } from './../archive/customer/customer-overview/customer-overview.service';
-import { UserType } from '../core/UserType';
+import { RoleType } from '../core/RoleType';
 
 @Component({
   selector: 'gas-home',
@@ -51,9 +51,9 @@ export class HomeComponent implements OnInit {
     this.getCountiesOverview();
     this.getCountiesOverviewUser();
 
-    if (this.userStateService.getUserRoleType() === UserType.Government) {
+    if (this.userStateService.getUserRoleType() === RoleType.Government) {
       this.menus = GovernmentMenus;
-    } else if (this.userStateService.getUserRoleType() === UserType.Enterprise) {
+    } else if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
       this.menus = EnterpriseMenus;
     }
 

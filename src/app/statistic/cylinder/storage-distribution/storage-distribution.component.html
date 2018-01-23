@@ -1,9 +1,9 @@
 <div class="ui-g-12 content">
   <h3>储配站气瓶统计</h3>
-
-  区域选择：
-  <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
-
+  <ng-template [gasPermissionRole]="permissionRoles">
+    区域选择：
+    <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
+  </ng-template>
   <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8'"
     [loading]="cylinderLoading" emptyMessage="未查询到数据">
 
@@ -12,7 +12,7 @@
         {{index + 1}}
       </ng-template>
     </p-column> -->
-    <p-column field="stationName" header="区域">
+    <p-column field="stationName" header="站点名称">
       <!-- <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
         <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
       </ng-template> -->
@@ -47,9 +47,11 @@
 
   <!-- 流通统计 -->
   <h3>流通信息统计</h3>
-
-  区域选择：
-  <p-dropdown [options]="regionList" [(ngModel)]="selectedCirculationRegion" (onChange)="selectCirculationRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
+  <ng-template [gasPermissionRole]="permissionRoles">
+    区域选择：
+    <p-dropdown [options]="regionList" [(ngModel)]="selectedCirculationRegion" (onChange)="selectCirculationRegion($event.value)"
+      [style]="{'width':'150px'}"></p-dropdown>
+  </ng-template>
   &nbsp;&nbsp; 时间范围：
   <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
     dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
@@ -69,11 +71,11 @@
     </p-column> -->
     <p-column field="stationName" header="储配站" [style]="{'width':'20%'}">
     </p-column>
-    <p-column field="fullBottleReceiveCount" header="重瓶入库">
+    <!-- <p-column field="fullBottleReceiveCount" header="重瓶入库">
       <ng-template let-countyCylinder="rowData" pTemplate="body">
         {{ countyCylinder.fullBottleReceiveCount || 0 }}
       </ng-template>
-    </p-column>
+    </p-column> -->
     <p-column field="fullBottleSendCount" header="重瓶出库">
       <ng-template let-countyCylinder="rowData" pTemplate="body">
         {{ countyCylinder.fullBottleSendCount || 0 }}
@@ -84,11 +86,11 @@
         {{ countyCylinder.emptyBottleReceiveCount || 0 }}
       </ng-template>
     </p-column>
-    <p-column field="emptyBottleSendCount" header="空瓶出库">
+    <!-- <p-column field="emptyBottleSendCount" header="空瓶出库">
       <ng-template let-countyCylinder="rowData" pTemplate="body">
         {{ countyCylinder.emptyBottleSendCount || 0 }}
       </ng-template>
-    </p-column>
+    </p-column> -->
 
   </p-dataTable>
 </div>
