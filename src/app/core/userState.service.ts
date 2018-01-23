@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
 import { User } from './../model/User.model';
+import { UserType } from './UserType';
 @Injectable()
 export class UserStateService {
   private user: User;
@@ -17,7 +18,7 @@ export class UserStateService {
       this.user = null;
     }
   }
-  getUser(): User {
+  getUser(): User | null {
     if (!this.user) {
       const user = sessionStorage.getItem('user');
       if (user !== 'undefined' && user !== 'null' && user !== '') {
@@ -27,5 +28,16 @@ export class UserStateService {
       }
     }
     return this.user || null;
+  }
+
+  getUserRoleType(): UserType | null {
+    if (this.getUser()) {
+      if (this.getUser().roleType === 1) {
+        return UserType.Government;
+      } else if (this.getUser().roleType === 2) {
+        return UserType.Enterprise;
+      }
+    }
+    return null;
   }
 }

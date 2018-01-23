@@ -1,3 +1,4 @@
+import { DispatcherService } from './../../../archive/employee/dispatcher/dispatcher.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { SelectItem, TableBody } from 'primeng/primeng';
@@ -9,7 +10,8 @@ import { CylinderTraceService } from '../cylinder-trace.service';
 @Component({
   selector: 'gas-cylinder-record',
   templateUrl: './cylinder-record.component.html',
-  styleUrls: ['./cylinder-record.component.css']
+  styleUrls: ['./cylinder-record.component.css'],
+  providers: [DispatcherService]
 })
 export class CylinderRecordComponent implements OnInit {
   zh = zh_CN;
@@ -18,7 +20,14 @@ export class CylinderRecordComponent implements OnInit {
     { label: '瓶库', value: 2 },
     { label: '送气工', value: 3 },
   ];
+  dispatcherSearchFields: SelectItem[] = [
+    { label: '送气工编号', value: 1 },
+    { label: '送气工名称', value: 2 },
+  ];
   selectedCylinderStatus = this.cylinderStatus[0].value;
+  selectedDispatcherSearchField = this.dispatcherSearchFields[0].value;
+
+  dispatcherSuggestions = [];
 
   distributionStationSearchTypes: SelectItem[] = [
     { label: '全部', value: '' },
@@ -48,7 +57,7 @@ export class CylinderRecordComponent implements OnInit {
   // dispatcherList: SelectItem[] = [];
   selectedDistributionStation = ''; // 选中的储配站
   selectedCylinderStorage = ''; // 选中的瓶库
-  selectedDispatcher = ''; // 选中的配送工
+  selectedDispatcher; // 选中的配送工
 
   cylinderList: Array<{
     createTime: string,
@@ -75,7 +84,8 @@ export class CylinderRecordComponent implements OnInit {
   constructor(
     private commonRequestService: CommonRequestService,
     private cylinderTraceService: CylinderTraceService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private dispatcherService: DispatcherService
   ) {
 
   }
@@ -116,14 +126,33 @@ export class CylinderRecordComponent implements OnInit {
     this.listGcSendOrReceive();
   }
 
-  selectStatus(event) {
-    // if (this.selectedCylinderStatus !== event.value) {
-    //   this.selectedCylinderStatus = event.value;
-    //   this.total = 0;
-    //   this.first = 0;
-    //   this.pageNumber = 1;
-    //   this.cylinderList = [];
-    // }
+  searchDispatcher(query) {
+    this.dispatcherService.getDispatcherInfo({
+      enterpriseId: '',
+      name: this.selectedDispatcherSearchField === 2 ? query : '',
+      jobNumber: this.selectedDispatcherSearchField === 1 ? query : '',
+      phone: '',
+      idNumber: '',
+      pageSize: 999999,
+      pageNumber: 1
+    }).then(data => {
+      if (data.status === 0) {
+        this.dispatcherSuggestions = data.data.list;
+      } else {
+        this.dispatcherSuggestions = [];
+        this.messageService.add({ severity: 'warn', summary: '获取配送工信息失败', detail: data.msg });
+      }
+    });
+  }
+
+  selectDispatcherSearchField(event) {
+    this.selectedDispatcher = null;
+  }
+
+  blurSelectDispatcher() {
+    if (!this.selectedDispatcher || !this.selectedDispatcher.dispatcherNumber) {
+      this.selectedDispatcher = null;
+    }
   }
 
   search() {
@@ -164,10 +193,10 @@ export class CylinderRecordComponent implements OnInit {
         break;
       case 3:
         if (!this.selectedDispatcher) {
-          this.messageService.add({ severity: 'warn', summary: '请输入配送人员编号！', detail: '' });
+          this.messageService.add({ severity: 'warn', summary: '请输入配送人员信息！', detail: '' });
           return;
         }
-        liabilitySubjectId = this.selectedDispatcher;
+        liabilitySubjectId = this.selectedDispatcher.dispatcherNumber;
         searchType = this.selectedDispatcherType;
         break;
 

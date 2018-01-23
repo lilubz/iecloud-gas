@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { MENUS } from './../core/menus';
+import { GovernmentMenus, EnterpriseMenus } from './../core/menus';
 import { LoginService } from './../login/login.service';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../core/userState.service';
 import { CylinderOverviewService } from './../archive/cylinder/cylinder-overview/cylinder-overview.service';
 import { CustomerOverviewService } from './../archive/customer/customer-overview/customer-overview.service';
+import { UserType } from '../core/UserType';
 
 @Component({
   selector: 'gas-home',
@@ -49,7 +50,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getCountiesOverview();
     this.getCountiesOverviewUser();
-    this.menus = MENUS;
+
+    if (this.userStateService.getUserRoleType() === UserType.Government) {
+      this.menus = GovernmentMenus;
+    } else if (this.userStateService.getUserRoleType() === UserType.Enterprise) {
+      this.menus = EnterpriseMenus;
+    }
+
     setInterval(() => {
       this.curTime = new Date().toLocaleTimeString();
       this.DateTime = new Date().toLocaleDateString();

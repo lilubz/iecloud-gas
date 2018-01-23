@@ -1,6 +1,6 @@
 import { MenuItem } from 'primeng/primeng';
 
-export const MENUS: MenuItem[] = [
+export const GovernmentMenus: MenuItem[] = [
   {
     label: '首页',
     icon: 'menu-icon home-icon',
@@ -65,13 +65,41 @@ export const MENUS: MenuItem[] = [
     ]
   },
   {
-    label: '信息录入',
-    icon: 'menu-icon input-icon',
-    routerLink: ['/input']
-  },
-  {
     label: '审核管理',
     icon: 'menu-icon verification-icon',
     routerLink: ['/verification']
+  }
+];
+
+export const EnterpriseMenus: MenuItem[] = [
+  {
+    label: '首页',
+    icon: 'menu-icon home-icon',
+    routerLink: ['/home']
+  },
+  {
+    label: '基础档案',
+    icon: 'menu-icon archive-icon',
+    routerLink: ['/archive'],
+    items: [
+      { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
+      { label: '用户档案', routerLink: ['/archive/customer'] },
+      { label: '车辆信息', routerLink: ['/archive/car'] },
+      { label: '从业人员信息', routerLink: ['/archive/employee'] },
+      { label: '视频图像', routerLink: ['/archive/media'] },
+    ]
+  },
+  {
+    label: '系统配置',
+    icon: 'menu-icon system-icon',
+    routerLink: ['/system'],
+    items: [
+      { label: '个人信息', routerLink: ['/system/user'] },
+    ]
+  },
+  {
+    label: '信息录入',
+    icon: 'menu-icon input-icon',
+    routerLink: ['/input']
   }
 ];

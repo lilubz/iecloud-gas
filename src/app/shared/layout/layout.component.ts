@@ -2,10 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { MENUS } from './../../core/menus';
+import { GovernmentMenus, EnterpriseMenus } from './../../core/menus';
 
 import { LoginService } from './../../login/login.service';
 import { UserStateService } from './../../core/userState.service';
+import { UserType } from '../../core/UserType';
 @Component({
   selector: 'gas-layout',
   templateUrl: './layout.component.html'
@@ -18,7 +19,11 @@ export class LayoutComponent implements OnInit {
     private userStateService: UserStateService) { }
 
   ngOnInit() {
-    this.menus = MENUS;
+    if (this.userStateService.getUserRoleType() === UserType.Government) {
+      this.menus = GovernmentMenus;
+    } else if (this.userStateService.getUserRoleType() === UserType.Enterprise) {
+      this.menus = EnterpriseMenus;
+    }
   }
 
   logout() {

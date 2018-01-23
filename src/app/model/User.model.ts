@@ -13,4 +13,5 @@ export class User {
   roleName?: string; // 用户角色名
   userId?: string; // 用户id
   username?: string; // 用户名
+  roleType?: number; // 用户角色类型
 }

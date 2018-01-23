@@ -1,6 +1,6 @@
 <div class="ui-g-12">
   责任主体
-  <p-dropdown [options]="cylinderStatus" [style]="{'width':'150px'}" [(ngModel)]="selectedCylinderStatus" (onChange)="selectStatus($event)"></p-dropdown>&nbsp;&nbsp;
+  <p-dropdown [options]="cylinderStatus" [style]="{'width':'150px'}" [(ngModel)]="selectedCylinderStatus"></p-dropdown>&nbsp;&nbsp;
 
   <ng-container *ngIf="selectedCylinderStatus === 1">
     储配站：
@@ -16,8 +16,16 @@
   </ng-container>
 
   <ng-container *ngIf="selectedCylinderStatus === 3">
-    送气工编号：
-    <input type="text" [(ngModel)]="selectedDispatcher" pInputText placeholder="请输入送气工编号" maxlength="20" style="width:180px"> &nbsp;&nbsp; 类型：
+    <p-dropdown #dispatcherSearchField [options]="dispatcherSearchFields" [style]="{'width':'150px'}" [(ngModel)]="selectedDispatcherSearchField"
+      (onChange)="selectDispatcherSearchField($event)"></p-dropdown>
+    <p-autoComplete [(ngModel)]="selectedDispatcher" [field]="selectedDispatcherSearchField===1?'jobNumber':'name'" [suggestions]="dispatcherSuggestions"
+      (onBlur)="blurSelectDispatcher()" (completeMethod)="searchDispatcher($event.query)" [delay]="500" [size]="20" [minLength]="selectedDispatcherSearchField===1?6:2"
+      [maxlength]="20" [placeholder]="'请输入'+dispatcherSearchField.label">
+      <ng-template let-dispatcher pTemplate="item">
+        <div style="width:400px;">{{ dispatcher.name }} -- {{ dispatcher.jobNumber }} -- {{ dispatcher.subsidiaryEnterprises }}</div>
+      </ng-template>
+    </p-autoComplete>
+    &nbsp;&nbsp; 类型：
     <p-dropdown [options]="dispatcherSearchTypes" [style]="{'width':'150px'}" [(ngModel)]="selectedDispatcherType"></p-dropdown>
   </ng-container>
 
