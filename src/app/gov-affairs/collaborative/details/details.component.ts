@@ -176,6 +176,29 @@ export class DetailsComponent implements OnInit {
               this.treeNode.replyInfo.push(item);
             }
           });
+          // 填充需处理事务下面的信息
+          const target = this.treeNode.needHandle;
+
+          if (target && target.lastEventId) {
+            const parentNode = (() => {
+              for (let i = 0; i < this.treeNode.replyInfo.length; i++) {
+                const current = this.treeNode.replyInfo[i];
+                if (target.lastEventId === current.eventId) {
+                  return current;
+                }
+              }
+              return null;
+            })();
+            if (parentNode) {
+              target['parentEndTime'] = parentNode.endTime; // 结束时间
+              target['parentDescription'] = parentNode.description; // 描述
+              target['parentEventHandleName'] = parentNode.eventHandleName; // 事件处理人名称
+              target['parentEventHandleOrganizationName'] = parentNode.eventHandleOrganizationName;
+              target['parentUrl'] = parentNode.url;
+            }
+          } else {
+
+          }
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }

@@ -11,6 +11,8 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UploadComponent } from './upload/upload.component';
 import { ExportComponent } from './export/export.component';
+import { TransportCarComponent } from './transport-car/transport-car.component';
+import { DeliveryCarComponent } from './delivery-car/delivery-car.component';
 const routes: Routes = [
   {
     path: '',
@@ -29,6 +31,14 @@ const routes: Routes = [
       {
         path: 'user-card',
         component: UserCardComponent
+      },
+      {
+        path: 'delivery-car',
+        component: DeliveryCarComponent
+      },
+      {
+        path: 'transport-car',
+        component: TransportCarComponent
       },
       // {
       //   path: 'cylinder-info',

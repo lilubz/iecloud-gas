@@ -30,8 +30,8 @@ export class CollaborativeService {
     return this.HttpService.formPostRequest(API.listTransactionChildren, params);
   }
 
-  listTransactionInfo(params?: any): Promise<any> {
-    return this.HttpService.formPostRequest(API.listTransactionInfo, params);
+  listMyTransaction(params?: any): Promise<any> {
+    return this.HttpService.getRequest(API.listMyTransaction, params);
   }
 
   cooperativeOperation(params?: any): Promise<any> {
@@ -63,5 +63,8 @@ export class CollaborativeService {
   }
   listTransactionDepartmentInfo(params) {
     return this.HttpService.getRequest(API.listTransactionDepartmentInfo, params);
+  }
+  listTransactionInfo(params) {
+    return this.HttpService.getRequest(API.listTransactionInfo, params);
   }
 }

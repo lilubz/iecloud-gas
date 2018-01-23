@@ -70,6 +70,13 @@ const routes: Routes = [
         }
       },
       {
+        path: 'enterprise-supervise',
+        loadChildren: './enterprise-supervise/enterprise-supervise.module#EnterpriseSuperviseModule',
+        data: {
+          title: '企业监管'
+        }
+      },
+      {
         path: 'input',
         loadChildren: './input/input.module#InputModule',
         data: {

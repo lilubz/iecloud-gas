@@ -49,24 +49,22 @@ export class MyAffairsComponent implements OnInit {
   formModel = {
     startTime: moment().subtract(365, 'days')['_d'],
     endTime: moment()['_d'],
-    role: '3',
     region: '',
+    role: '3',
     affairType: '',
     origin: '',
     status: 1,
-    searchType: 1,
-    searchValue: ''
+    place: '',
   };
   pageParams = {
     startTime: moment().subtract(365, 'days')['_d'],
     endTime: moment()['_d'],
-    role: '3',
     region: '',
+    role: '3',
     affairType: '',
     origin: '',
     status: 1,
-    searchType: 1,
-    searchValue: ''
+    place: '',
   };
 
   ngOnInit() {
@@ -79,13 +77,12 @@ export class MyAffairsComponent implements OnInit {
     this.getDataTableList({
       startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
       endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
-      role: this.formModel.role,
       transactionRegionId: this.formModel.region,
+      role: this.formModel.role,
       transactionType: this.formModel.affairType,
       transactionSource: this.formModel.origin,
       boolIsHandle: this.formModel.status,
-      searchType: this.formModel.searchType,
-      keyword: this.formModel.searchValue,
+      addressKeyWord: this.formModel.place,
       pageNumber: 1,
       pageSize: this.dataTable.pageSize,
     });
@@ -103,13 +100,12 @@ export class MyAffairsComponent implements OnInit {
       this.getDataTableList({
         startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
         endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
-        role: this.pageParams.role,
         transactionRegionId: this.pageParams.region,
+        role: this.pageParams.role,
         transactionType: this.pageParams.affairType,
         transactionSource: this.pageParams.origin,
         boolIsHandle: this.pageParams.status,
-        searchType: this.pageParams.searchType,
-        keyword: this.pageParams.searchValue,
+        addressKeyWord: this.pageParams.place,
         pageNumber: page.pageNumber,
         pageSize: page.pageSize,
       });
@@ -183,7 +179,7 @@ export class MyAffairsComponent implements OnInit {
       });
   }
   getDataTableList(params?) {
-    this._service.listTransactionInfo(params)
+    this._service.listMyTransaction(params)
       .then(data => {
         if (data.status === 0) {
           this.dataTable.list = data.data.list;

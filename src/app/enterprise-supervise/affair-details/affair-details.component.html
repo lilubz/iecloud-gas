@@ -1,0 +1,137 @@
+<div class="ui-g main">
+  <div class="affair-details">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <span class="ui-g-6 content title">操作</span>
+        <span class="ui-g-6 content">
+          <button pButton type="button" label="返回" class="ui-button-info" (click)="history.go(-1)"></button>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title">事件编号</span>
+        <span class="ui-g-6 content" title="{{details.transactionBasicNumber}}">{{details.transactionBasicNumber}}</span>
+      </div>
+      <div class="ui-g-4">
+        <span class="ui-g-6 content title">巡查时间</span>
+        <span class="ui-g-6 content">{{details.transactionPatrolTime | date:'yyyy-MM-dd'}}</span>
+      </div>
+      <div class="ui-g-4">
+        <span class="ui-g-6 content title">描述</span>
+        <span class="ui-g-6 content" title="{{details.description}}">{{details.description}}</span>
+      </div>
+      <div class="ui-g-4">
+        <span class="ui-g-6 content title">地点</span>
+        <span class="ui-g-6 content" title="{{details.transactionAddress}}">{{details.transactionAddress}}</span>
+      </div>
+      <div class="ui-g-4">
+        <span class="ui-g-6 content title">事务处理对象</span>
+        <span class="ui-g-6 content" title="{{details.transactionHandleName}}">{{details.transactionHandleName}}</span>
+      </div>
+      <div class="ui-g-4">
+        <span class="ui-g-6 content title">发起时间</span>
+        <span class="ui-g-6 content">{{details.createTime | date:"yyyy-MM-dd"}}</span>
+      </div>
+      <div class="ui-g-4">
+        <span class="ui-g-6 content title">发起部门</span>
+        <span class="ui-g-6 content" title="{{details.transactionOrganizationName}}">{{details.transactionOrganizationName}}</span>
+      </div>
+      <div class="ui-g-4">
+        <span class="ui-g-6 content title">发起人</span>
+        <span class="ui-g-6 content" title="{{details.transactionUserName}}">{{details.transactionUserName}}</span>
+      </div>
+      <div class="ui-g-12">
+        <span class="ui-g-2 content title">附件</span>
+        <span class="ui-g-10 content" title="{{details.url}}" *ngIf="details.url!==''">
+          <a href="javascript:void(0);" (click)="window.location.href=details.url">点击预览</a>
+        </span>
+        <span class="ui-g-10 content" *ngIf="details.url===''">
+          没有附件
+        </span>
+      </div>
+      <div class="ui-g-12">
+        <span class="ui-g-2 content title">事务类别</span>
+        <span class="ui-g-10 content" title="{{details.transactionTypeList}}">
+          <span>{{details.transactionTypeList}}</span>
+        </span>
+      </div>
+    </div>
+    <div class="ui-g-12 dashed-border">
+      <div class="ui-g-12">
+        <h2>协同状况</h2>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-3">
+          <span class="ui-g-4 content title">处理情况</span>
+          <span class="ui-g-8 content" title="{{details.boolIsHandle}}">{{details.boolIsHandle?'正在处理':'处理完成'}}</span>
+        </div>
+        <div class="ui-g-3">
+          <span class="ui-g-4 content title">紧急程度</span>
+          <span class="ui-g-8 content" title="{{details.emergencyDegree}}">{{getAffairLevel(details.emergencyDegree)}}</span>
+        </div>
+      </div>
+      <div class="ui-g-12 node-handle">
+        <div class="ui-g-12">
+          <h2>需处理事务</h2>
+        </div>
+        <div class="ui-g-10">
+          <div class="ui-g-4">
+            <span class="ui-g-6 content title">来源部门</span>
+            <span class="ui-g-6 content">{{todo?.transactionOrganizationName}}</span>
+          </div>
+          <div class="ui-g-4">
+            <span class="ui-g-6 content title">处理时间</span>
+            <span class="ui-g-6 content">{{todo?.endTime | date:"yyyy-MM-dd"}}</span>
+          </div>
+          <div class="ui-g-4">
+            <span class="ui-g-6 content title">截止时间</span>
+            <span class="ui-g-6 content">{{todo?.expirationDate | date:"yyyy-MM-dd"}}</span>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-8">
+              <span class="ui-g-3 content title">说明</span>
+              <span class="ui-g-9 content">
+                {{todo?.description}}
+              </span>
+            </div>
+            <div class="ui-g-4">
+              <span class="ui-g-6 content title">附件</span>
+              <span class="ui-g-6 content">
+                <span *ngIf="!todo?.url">没有附件</span>
+                <a href="javascript:void(0);" *ngIf="todo?.url" (click)="window.location.href=todo?.url">点击预览</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="ui-g-12 dashed-border" [hidden]="!todo.boolIsHandle">
+        <div class="ui-g-12">
+          <h2>事务回复</h2>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-8 form-group ui-g-offset-1">
+            <label for="inputEmail3" class="ui-g-2 ui-offset-1 control-label">
+              <span class="warn">*</span>回复：</label>
+            <div class="ui-g-9">
+              <input type="text" pInputText [(ngModel)]="formModel.explain" name="address" />
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-8 form-group ui-g-offset-1">
+            <label for="inputEmail3" class="ui-g-2 ui-offset-1 control-label">
+              &nbsp;附件：
+            </label>
+            <div class="ui-g-9">
+              <input type="file" #file name="file">
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6 ui-g-offset-1">
+            <button pButton type="button" label="提交协同" class="ui-button-info" (click)="onSubmit(file)"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

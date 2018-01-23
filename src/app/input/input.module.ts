@@ -17,6 +17,8 @@ import { CylinderInfoComponent } from './cylinder-info/cylinder-info.component';
 import { CylinderTagComponent } from './cylinder-tag/cylinder-tag.component';
 import { UploadComponent } from './upload/upload.component';
 import { ExportComponent } from './export/export.component';
+import { TransportCarComponent } from './transport-car/transport-car.component';
+import { DeliveryCarComponent } from './delivery-car/delivery-car.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -30,7 +32,9 @@ import { ExportComponent } from './export/export.component';
     CylinderInfoComponent,
     CylinderTagComponent,
     UploadComponent,
-    ExportComponent
+    ExportComponent,
+    TransportCarComponent,
+    DeliveryCarComponent
   ],
   providers: [
     UserInfoService,

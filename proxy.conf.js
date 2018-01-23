@@ -1,25 +1,36 @@
 const PROXY_CONFIG = [
-  {
-    context: [
-      "/wenZhouGas",
-      "/dataImport",
-    ],
-    target: "http://192.168.1.26:8080",// 费峰
-    secure: false,
-    "pathRewrite": {
-      "^/wenZhouGas": ""
-    }
-  },
   // {
   //   context: [
   //     "/wenZhouGas",
+  //     "/dataImport",
   //   ],
-  //   target: "http://192.168.1.8:8080", // 妮娜
+  //   target: "http://192.168.1.26:8080",// 费峰
   //   secure: false,
   //   "pathRewrite": {
   //     "^/wenZhouGas": ""
   //   }
   // },
+  // {
+  //   context: [
+  //     "/wenZhouGas",
+  //     "/dataImport",
+  //   ],
+  //   target: "http://192.168.1.135:8080",// 铁军台式
+  //   secure: false,
+  //   "pathRewrite": {
+  //     "^/wenZhouGas": ""
+  //   }
+  // },
+  {
+    context: [
+      "/wenZhouGas",
+    ],
+    target: "http://192.168.1.8:8080", // 妮娜
+    secure: false,
+    "pathRewrite": {
+      "^/wenZhouGas": ""
+    }
+  },
   // {
   //   context: [
   //     "/wenZhouGas",

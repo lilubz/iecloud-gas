@@ -57,14 +57,8 @@ export class AllAffairsComponent implements OnInit {
     this.getDataTableList({
       startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
       endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
-      transactionOrganizationId: this.pageParams.department,
-      transactionRegionId: '',
-      role: '',
       transactionType: this.formModel.affairType,
-      transactionSource: '',
-      boolIsHandle: '',
-      searchType: '',
-      keyword: '',
+      transactionOrganizationId: this.formModel.department,
       pageNumber: 1,
       pageSize: this.dataTable.pageSize,
     });
@@ -79,17 +73,12 @@ export class AllAffairsComponent implements OnInit {
         pageSize: event.rows,
         pageNumber: event.first / event.rows + 1
       };
+      this.dataTable.pageSize = page.pageSize;
       this.getDataTableList({
         startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
         endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
-        role: '',
-        transactionOrganizationId: this.pageParams.department,
-        transactionRegionId: '',
         transactionType: this.pageParams.affairType,
-        transactionSource: '',
-        boolIsHandle: '',
-        searchType: '',
-        keyword: '',
+        transactionOrganizationId: this.pageParams.department,
         pageNumber: page.pageNumber,
         pageSize: page.pageSize,
       });

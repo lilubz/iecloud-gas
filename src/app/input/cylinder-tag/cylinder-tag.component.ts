@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MessageService } from 'primeng/components/common/messageservice';
-import { CylinderTagService } from './cylinder-tag.servise';
+import { CylinderTagService } from './cylinder-tag.service';
 @Component({
   selector: 'gas-cylinder-tag',
   templateUrl: './cylinder-tag.component.html',

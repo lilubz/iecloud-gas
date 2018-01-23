@@ -18,19 +18,10 @@
           </p-calendar>
         </div>
       </div>
-      <div class="ui-g-4">
-        <div class="form-group">
-          <label for="" class="ui-g-3">角色：</label>
-          <div class="ui-g-3">
-            <p-radioButton name="role" value="0" label="发起" [(ngModel)]="formModel.role"></p-radioButton>
-          </div>
-          <div class="ui-g-3">
-            <p-radioButton name="role" value="1" label="参于" [(ngModel)]="formModel.role"></p-radioButton>
-          </div>
-          <div class="ui-g-3">
-            <p-radioButton name="role" value="3" label="全部" [(ngModel)]="formModel.role"></p-radioButton>
-          </div>
-        </div>
+      <div class="ui-g-6" style="line-height: 39px;">
+          <p-radioButton [style]="{'margin-left':'15px'}" name="role" value="1" label="我发起的事务" [(ngModel)]="formModel.role"></p-radioButton>
+          <p-radioButton [style]="{'margin-left':'15px'}" name="role" value="2" label="我参与的事务" [(ngModel)]="formModel.role"></p-radioButton>
+          <p-radioButton [style]="{'margin-left':'15px'}" name="role" value="3" label="全部" [(ngModel)]="formModel.role"></p-radioButton>
       </div>
     </div>
     <div class="ui-g">
@@ -64,22 +55,10 @@
       </div>
     </div>
     <div class="ui-g">
-      <div class="ui-g-4">
+      <div class="ui-g-6">
         <div class="form-group">
-          <label for="" class="ui-g-5">搜索区域：</label>
-          <div class="ui-g-3">
-            <p-radioButton name="searchType" value="1" label="地点" [(ngModel)]="formModel.searchType"></p-radioButton>
-          </div>
-          <div class="ui-g-4">
-            <p-radioButton name="searchType" value="2" label="发起人" [(ngModel)]="formModel.searchType"></p-radioButton>
-          </div>
-        </div>
-      </div>
-      <div class="ui-g-5">
-        <div class="form-group">
-          <div class="ui-g-6">
-            <input type="text" pInputText [(ngModel)]="formModel.searchValue" name="searchValue"/>
-          </div>
+          <label for="">地点：</label>
+          <input class="input-place" type="text" pInputText [(ngModel)]="formModel.place" name="place"/>
           <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:30px"></button>
         </div>
       </div>

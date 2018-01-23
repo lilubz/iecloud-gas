@@ -178,6 +178,10 @@
   version "0.0.45"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-0.0.45.tgz#830df863b9677c42d7220cfaf28741c06789f1e0"
 
+"@types/echarts@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@types/echarts/-/echarts-0.0.9.tgz#7930c1d3d096868d6acaa41255b25b120a5fa00e"
+
 "@types/jasmine@*":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.6.0.tgz#997b41a27752b4850af2683bc4a8d8222c25bd02"
@@ -1551,6 +1555,12 @@ ecc-jsbn@~0.1.1:
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
   dependencies:
     jsbn "~0.1.0"
+
+echarts@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-4.0.2.tgz#c405e9e479af982383c8ae2b5946e52d058c6220"
+  dependencies:
+    zrender "4.0.1"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -4166,9 +4176,9 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-primeng@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/primeng/-/primeng-4.2.2.tgz#b76116c24505ddcad7f52a4bba76b584d8e7c527"
+primeng@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-4.3.0.tgz#687ecd1e1a158cf0e8742efc7da9b9338cd470c3"
 
 process-nextick-args@~1.0.6:
   version "1.0.7"
@@ -5800,3 +5810,7 @@ yn@^2.0.0:
 zone.js@^0.8.14:
   version "0.8.18"
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.18.tgz#8cecb3977fcd1b3090562ff4570e2847e752b48d"
+
+zrender@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-4.0.1.tgz#961e77abc5042eaa624b5230f8d673bf648298e9"

@@ -58,7 +58,7 @@
       <p-column [style]="{'width':'120px'}" field="description" header="交办内容"></p-column>
       <p-column [style]="{'width':'120px'}" header="处理情况">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <span>{{rowData.boolIsHandle?'已经完结':'正在办理'}}</span>
+          <span>{{rowData.boolIsHandle?'正在办理':'已经完结'}}</span>
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'100px'}" header="发起时间">

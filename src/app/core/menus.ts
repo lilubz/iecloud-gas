@@ -116,6 +116,15 @@ export const EnterpriseMenus: MenuItem[] = [
     ]
   },
   {
+    label: '企业监管',
+    icon: 'menu-icon statistic-icon',
+    routerLink: ['/enterprise-supervise'],
+    items: [
+      // { label: '报表管理', routerLink: ['/enterprise-supervise/affair-details'] },
+      { label: '事务处理', routerLink: ['/enterprise-supervise/affair-list'] }
+    ]
+  },
+  {
     label: '信息录入',
     icon: 'menu-icon input-icon',
     routerLink: ['/input']

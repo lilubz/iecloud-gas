@@ -74,27 +74,41 @@
 
     <div class="node-handle" [hidden]="!treeNode.needHandle">
       <div class="ui-g-12">
-        <h2>需处理节点</h2>
+        <h2>需处理事务</h2>
       </div>
       <div class="ui-g-10">
         <div class="ui-g-4">
           <span class="ui-g-6 content title">来源部门</span>
-          <span class="ui-g-6 content">{{treeNode.needHandle?.transactionOrganizationName}}</span>
+          <span class="ui-g-6 content">{{treeNode.needHandle?.parentEventHandleOrganizationName}}</span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title">处理时间</span>
-          <span class="ui-g-6 content">{{treeNode.needHandle?.endTime | date:"yyyy-MM-dd"}}</span>
+          <span class="ui-g-6 content">{{treeNode.needHandle?.parentEndTime | date:"yyyy-MM-dd"}}</span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title">截止时间</span>
           <span class="ui-g-6 content">{{treeNode.needHandle?.expirationDate | date:"yyyy-MM-dd"}}</span>
         </div>
         <div class="ui-g-12">
-          <span class="ui-g-2 content title">说明</span>
-          <span class="ui-g-10 content">
-            没有附件<span></span>
-            <a href="javascript:void(0);">{{treeNode.needHandle?.url}}</a>
-          </span>
+          <div class="ui-g-4">
+            <span class="ui-g-6 content title">说明</span>
+            <span class="ui-g-6 content">
+              {{treeNode.needHandle?.parentDescription}}
+            </span>
+          </div>
+          <div class="ui-g-4">
+            <span class="ui-g-6 content title">处理人</span>
+            <span class="ui-g-6 content">
+              {{treeNode.needHandle?.parentEventHandleName}}
+            </span>
+          </div>
+          <div class="ui-g-4">
+            <span class="ui-g-6 content title">附件</span>
+            <span class="ui-g-6 content">
+              <span *ngIf="!treeNode.needHandle?.parentUrl">没有附件</span>
+              <a href="javascript:void(0);" *ngIf="treeNode.needHandle?.parentUrl" (click)="window.location.href=treeNode.needHandle?.parentUrl">点击预览</a>
+            </span>
+          </div>
         </div>
       </div>
       <form class="ui-g-12">
