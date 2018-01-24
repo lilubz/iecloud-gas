@@ -4,10 +4,10 @@ import { CommonRequestService } from './../../../core/common-request.service';
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { StorageDistributionStatistic } from './StorageDistributionStatistic.model';
-import { zh_CN } from '../../../core/date-localization';
+import { zh_CN } from '../../../common/date-localization';
 import { StorageDistributionCirculation } from './StorageDistributionCirculation.model';
 import * as moment from 'moment';
-import { RoleType } from '../../../core/RoleType';
+import { RoleType } from '../../../common/RoleType';
 @Component({
   selector: 'gas-storage-distribution',
   templateUrl: './storage-distribution.component.html',

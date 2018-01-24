@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { MessageService } from 'primeng/components/common/messageservice';
-import { zh_CN, DATE_LOCALIZATION } from './../../core/date-localization';
+import { zh_CN } from './../../common/date-localization';
 import { AffairListService } from './affair-list.service';
 import * as moment from 'moment';
 
@@ -13,11 +13,10 @@ import * as moment from 'moment';
   providers: [AffairListService]
 })
 export class AffairListComponent implements OnInit {
-
+  zh = zh_CN;
   constructor(
     private messageService: MessageService,
     public _service: AffairListService,
-    @Inject(DATE_LOCALIZATION) public zh,
   ) { }
   dropdown = {
     status: [

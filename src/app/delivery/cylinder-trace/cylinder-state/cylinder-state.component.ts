@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/primeng';
-import { zh_CN } from '../../../core/date-localization';
+import { zh_CN } from '../../../common/date-localization';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
 import { MessageService } from 'primeng/components/common/messageservice';

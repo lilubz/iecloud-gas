@@ -3,7 +3,7 @@ import { FormBuilder, AbstractControl, Validators, FormGroup} from '@angular/for
 
 import { DispatcherService } from './dispatcher.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { validator } from '../../../core/validator';
+import { validator } from '../../../common/validator';
 
 @Component({
   selector: 'gas-dispatcher',

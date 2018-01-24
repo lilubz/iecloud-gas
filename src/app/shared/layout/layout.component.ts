@@ -2,11 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { GovernmentMenus, EnterpriseMenus } from './../../core/menus';
+import { GovernmentMenus, EnterpriseMenus } from './../../common/menus';
 
 import { LoginService } from './../../login/login.service';
 import { UserStateService } from './../../core/userState.service';
-import { RoleType } from './../../core/RoleType';
+import { RoleType } from './../../common/RoleType';
 @Component({
   selector: 'gas-layout',
   templateUrl: './layout.component.html'

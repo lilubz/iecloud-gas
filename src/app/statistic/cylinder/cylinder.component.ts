@@ -1,4 +1,4 @@
-import { RoleType } from './../../core/RoleType';
+import { RoleType } from './../../common/RoleType';
 import { Component, OnInit } from '@angular/core';
 import { StatisticCylinderService } from './statistic-cylinder.service';
 

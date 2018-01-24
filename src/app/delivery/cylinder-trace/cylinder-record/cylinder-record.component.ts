@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { SelectItem, TableBody } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { zh_CN } from '../../../core/date-localization';
+import { zh_CN } from '../../../common/date-localization';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
-import { RoleType } from './../../../core/RoleType';
+import { RoleType } from './../../../common/RoleType';
 import { UserStateService } from './../../../core/userState.service';
 
 @Component({

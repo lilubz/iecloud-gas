@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
-import { zh_CN } from '../../../core/date-localization';
+import { zh_CN } from '../../../common/date-localization';
 import { CylinderFilling } from '../cylinder-filling/CylinderFillingHistory.model';
 
 @Component({

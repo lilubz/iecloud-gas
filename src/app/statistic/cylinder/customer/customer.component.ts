@@ -2,8 +2,8 @@ import { SelectItem } from 'primeng/primeng';
 import { Component, OnInit } from '@angular/core';
 import { StatisticCylinderService } from '../statistic-cylinder.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { UtilService } from '../../../core/util.service';
-import { RoleType } from '../../../core/RoleType';
+import { Util } from '../../../core/util';
+import { RoleType } from '../../../common/RoleType';
 import { CommonRequestService } from '../../../core/common-request.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class CustomerComponent implements OnInit {
     private statisticCylinderService: StatisticCylinderService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
-    private utilService: UtilService
+    private utilService: Util
   ) { }
 
   ngOnInit() {

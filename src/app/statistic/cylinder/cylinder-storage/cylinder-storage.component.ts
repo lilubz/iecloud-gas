@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { zh_CN } from '../../../core/date-localization';
+import { zh_CN } from '../../../common/date-localization';
 import { SelectItem } from 'primeng/primeng';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { StatisticCylinderService } from '../statistic-cylinder.service';

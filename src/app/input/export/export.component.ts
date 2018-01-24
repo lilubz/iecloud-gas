@@ -1,4 +1,4 @@
-import { API } from './../../core/api';
+import { API } from './../../common/api';
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ExportService, } from './export.service';
 import { error } from 'selenium-webdriver';

@@ -1,5 +1,4 @@
-import { Format } from './../../core/format.service';
-import { zh_CN } from './../../core/date-localization';
+import { zh_CN } from './../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CylinderTraceService } from './cylinder-trace.service';
 import { CommonRequestService } from './../../core/common-request.service';

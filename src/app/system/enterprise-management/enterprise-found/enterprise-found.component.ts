@@ -3,11 +3,9 @@ import { EnterpriseFoundService, } from './enterprise-found.service';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { Format } from '../../../core/format.service';
-import { DATE_LOCALIZATION } from '../../../core/date-localization';
+import { zh_CN } from '../../../common/date-localization';
 import { AddForm } from './addForm.model';
-
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'gas-enterprise-found',
@@ -15,6 +13,7 @@ import { AddForm } from './addForm.model';
   styleUrls: ['./enterprise-found.component.scss']
 })
 export class EnterpriseFoundComponent implements OnInit, OnDestroy {
+  cn = zh_CN;
   category: SelectItem[] = [
     {
       label: '请选择',
@@ -68,8 +67,6 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
     private zone: NgZone,
-    private format: Format,
-    @Inject(DATE_LOCALIZATION) public cn,
   ) { }
 
   ngOnInit() {
@@ -221,7 +218,7 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
             if (!this.addForm[key]) {
 
             } else {
-              const data = this.format.dateFormat(this.addForm[key], 'yyyy-MM-dd hh:mm:ss');
+              const data = moment(this.addForm[key]).format('YYYY-MM-DD HH:mm:ss');
               formData.append(key, data);
             }
           } else {

@@ -1,19 +1,20 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { zh_CN, DATE_LOCALIZATION } from './../../../core/date-localization';
+import { zh_CN } from './../../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ConfirmationService } from 'primeng/primeng';
 import { CollaborativeService } from '../collaborative.service';
-import { API } from '../../../../app/core/api';
+import { API } from '../../../../app/common/api';
 import * as moment from 'moment';
 @Component({
   selector: 'gas-collaborative-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
-  providers: [ ConfirmationService]
+  providers: [ConfirmationService]
 })
 export class DetailsComponent implements OnInit {
+  zh = zh_CN;
   window = window; // 文件下载时使用了
   API = API;
   history = history;  // 返回按纽使用了，功能返回上一个页面。
@@ -53,7 +54,6 @@ export class DetailsComponent implements OnInit {
   };
   multiSelectOptions = [];
   constructor(
-    @Inject(DATE_LOCALIZATION) public zh,
     public _service: CollaborativeService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -228,7 +228,7 @@ export class DetailsComponent implements OnInit {
     this._service.cooperativeOperation(params)
       .then(data => {
         if (data.status === 0) {
-          this.messageService.add({severity: 'success', summary: '操作成功', detail: data.msg + '2秒后重新加载'});
+          this.messageService.add({ severity: 'success', summary: '操作成功', detail: data.msg + '2秒后重新加载' });
           setTimeout(() => {
             history.go(0);
           }, 2000);

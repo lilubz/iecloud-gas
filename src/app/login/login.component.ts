@@ -7,7 +7,7 @@ import { LoginService } from './login.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../core/userState.service';
 import { clearInterval } from 'timers';
-import { API } from '../core/api';
+import { API } from '../common/api';
 @Component({
   selector: 'gas-login',
   templateUrl: './login.component.html',

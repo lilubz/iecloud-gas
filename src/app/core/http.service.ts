@@ -10,7 +10,12 @@ export class HttpService {
   private formHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
   private formDataHeaders = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8' });
 
-  constructor(private http: Http, private router: Router, private userStateService: UserStateService) { }
+  constructor(
+    private http: Http,
+    private router: Router,
+    private userStateService: UserStateService
+  ) { }
+
   // 重封装get请求
   getRequest(url, data) {
     return this.http.get(url + '?' + this.transformRequest(data))

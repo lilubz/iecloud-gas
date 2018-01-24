@@ -1,7 +1,3 @@
-import { InjectionToken } from '@angular/core';
-
-export let DATE_LOCALIZATION: any = new InjectionToken<any>('date.localization');
-
 export const zh_CN: any = {
   firstDayOfWeek: 0,
   dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],

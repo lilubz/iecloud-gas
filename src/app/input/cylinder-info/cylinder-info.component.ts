@@ -3,14 +3,13 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { CylinderInfoService, } from './cylinder-info.service';
 import { UserStateService } from './../../core/userState.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { Format } from '../../core/format.service';
 
 import { SelectItem } from 'primeng/primeng';
-import { zh_CN, DATE_LOCALIZATION } from './../../core/date-localization';
+import { zh_CN } from './../../common/date-localization';
 import { strictEqual } from 'assert';
 import { Message } from 'primeng/components/common/api';
-import { API_TOKEN } from '../../core/api';
-
+import { API } from '../../common/api';
+import * as moment from 'moment';
 
 @Component({
   selector: 'gas-cylinder-info',
@@ -18,11 +17,9 @@ import { API_TOKEN } from '../../core/api';
   styleUrls: ['./cylinder-info.component.scss'],
 })
 export class CylinderInfoComponent implements OnInit {
+  cn = zh_CN;
 
-  constructor(private _service: CylinderInfoService, @Inject(DATE_LOCALIZATION) public cn,
-    private userStateService: UserStateService, private format: Format, @Inject(API_TOKEN) private API, ) { }
-
-  cylinderInfoUrl = this.API.importGasCylinderInfoUnbound;
+  cylinderInfoUrl = API.importGasCylinderInfoUnbound;
   property: SelectItem[] = [
     { label: '自有', value: '1' },
     { label: '非自有', value: '2' },
@@ -82,6 +79,11 @@ export class CylinderInfoComponent implements OnInit {
       cylinderImage: [],
       innerDiameter: '1',
     };
+
+  constructor(
+    private _service: CylinderInfoService,
+    private userStateService: UserStateService,
+  ) { }
 
   ngOnInit() {
     this.cylinderInfo.productNature = '1';
@@ -220,19 +222,19 @@ export class CylinderInfoComponent implements OnInit {
     });
   }
   selectedIntoStationDate(event) {
-    this.cylinderInfo.intoStationDate = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
+    this.cylinderInfo.intoStationDate = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   selectedTimeManufacture(event) {
-    this.cylinderInfo.timeManufacture = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
+    this.cylinderInfo.timeManufacture = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   selectedExpectedScrapTime(event) {
-    this.cylinderInfo.expectedScrapTime = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
+    this.cylinderInfo.expectedScrapTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   selectedLastTestDate(event) {
-    this.cylinderInfo.lastTestDate = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
+    this.cylinderInfo.lastTestDate = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   selectedNextTestDate(event) {
-    this.cylinderInfo.nextTestDate = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
+    this.cylinderInfo.nextTestDate = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   clearIntoStationDate(event) {
     this.cylinderInfo.intoStationDate = '';

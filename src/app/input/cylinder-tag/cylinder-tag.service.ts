@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import { UserStateService } from './../../core/userState.service';
 
 import { HttpService } from './../../core/http.service';
-import { API } from './../../core/api';
+import { API } from './../../common/api';
 @Injectable()
 export class CylinderTagService {
   API = API;

@@ -1,5 +1,5 @@
 import { DashboardService } from './../../delivery/dashboard/dashboard.service';
-import { API } from './../../core/api';
+import { API } from './../../common/api';
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -7,19 +7,21 @@ import { ActivatedRoute } from '@angular/router';
 import { UserInfoService } from './user-info.service';
 import { CommonRequestService } from './../../core/common-request.service';
 import { Customer } from './Customer.model';
-import { zh_CN, DATE_LOCALIZATION } from './../../core/date-localization';
+import { zh_CN } from './../../common/date-localization';
 import { User } from './../../model/User.model';
 import { UserStateService } from './../../core/userState.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { Format } from './../../core/format.service';
 import { Message } from 'primeng/components/common/api';
+import * as moment from 'moment';
+
 @Component({
   selector: 'gas-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
+  zh = zh_CN;
   importGcUserInfoUrl = API.importGcUserInfo;
 
   // 证件类型
@@ -54,9 +56,7 @@ export class UserInfoComponent implements OnInit {
   selectedStreetRegionId = ''; // 选中的区县regionId
 
   constructor(
-    @Inject(DATE_LOCALIZATION) public zh,
     private userStateService: UserStateService,
-    private format: Format,
     private userInfoService: UserInfoService,
     private route: ActivatedRoute,
     private commonRequestService: CommonRequestService,
@@ -184,11 +184,11 @@ export class UserInfoComponent implements OnInit {
   }
 
   selectConstractBeginDate(event) {
-    this.customer.contractEffectiveDate = this.format.dateFormat(event, 'yyyy-MM-dd') + ' 00:00:00';
+    this.customer.contractEffectiveDate = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
 
   selectConstractEndDate(event) {
-    this.customer.contractDeadline = this.format.dateFormat(event, 'yyyy-MM-dd') + ' 00:00:00';
+    this.customer.contractDeadline = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
 
   clearBeginDate(event) {

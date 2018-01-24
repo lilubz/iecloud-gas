@@ -3,16 +3,17 @@ import { EnterpriseDetailService, } from './enterprise-detail.service';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { UserStateService } from '../../../core/userState.service';
 import { SelectItem } from 'primeng/primeng';
-import { DATE_LOCALIZATION } from '../../../core/date-localization';
-import { Format } from '../../../core/format.service';
+import { zh_CN } from '../../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
+import * as moment from 'moment';
+
 @Component({
   selector: 'gas-enterprise',
   templateUrl: './enterprise-detail.component.html',
   styleUrls: ['./enterprise-detail.component.scss']
 })
 export class EnterpriseDetailComponent implements OnInit, OnDestroy {
-
+  cn = zh_CN;
   enterpriseDrop: SelectItem[] = [
     {
       label: '全部',
@@ -51,9 +52,7 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
 
   constructor(private _service: EnterpriseDetailService,
     private commonRequestService: CommonRequestService,
-    @Inject(DATE_LOCALIZATION) public cn,
     private userStateService: UserStateService,
-    private format: Format,
     private messageService: MessageService,
   ) { }
 
@@ -131,10 +130,10 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
      * 时间转换
     */
   selectedStartTime(event) {
-    this.searchParams.startTime = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
+    this.searchParams.startTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   selectedEndTime(event) {
-    this.searchParams.endTime = this.format.dateFormat(event, 'yyyy-MM-dd hh:mm:ss');
+    this.searchParams.endTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   clearStartTime(event) {
     this.searchParams.startTime = '';

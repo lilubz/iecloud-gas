@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Headers } from '@angular/http';
 
 import { UserStateService } from './../../core/userState.service';
-import { API } from './../../core/api';
+import { API } from './../../common/api';
 import { HttpService } from './../../core/http.service';
 
 @Injectable()

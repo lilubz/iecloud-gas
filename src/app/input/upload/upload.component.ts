@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MessageService } from 'primeng/components/common/messageservice';
-import { API } from './../../core/api';
+import { API } from './../../common/api';
 
 @Component({
   selector: 'gas-upload',

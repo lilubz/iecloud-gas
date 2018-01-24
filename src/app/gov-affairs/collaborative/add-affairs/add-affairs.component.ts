@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { MessageService } from 'primeng/components/common/messageservice';
-import { zh_CN, DATE_LOCALIZATION } from './../../../core/date-localization';
+import { zh_CN } from './../../../common/date-localization';
 import { CollaborativeService } from './../collaborative.service';
 
 import * as moment from 'moment';
@@ -14,6 +14,7 @@ import * as moment from 'moment';
   styleUrls: ['./add-affairs.component.scss']
 })
 export class AddAffairsComponent implements OnInit {
+  zh = zh_CN;
   currentDate: Date = new Date();
   dropdown = {
     region: [],
@@ -81,7 +82,6 @@ export class AddAffairsComponent implements OnInit {
   };
 
   constructor(
-    @Inject(DATE_LOCALIZATION) public zh,
     private _service: CollaborativeService,
     private messageService: MessageService
   ) { }

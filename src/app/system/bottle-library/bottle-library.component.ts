@@ -3,11 +3,10 @@ import { BottleLibraryService, } from './bottle-library.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CommonRequestService } from '../../core/common-request.service';
 import { SelectItem } from 'primeng/components/common/api';
-import { DATE_LOCALIZATION } from '../../core/date-localization';
-import { Format } from '../../core/format.service';
+import { zh_CN } from '../../common/date-localization';
 import { AddBottle } from './addBottle.model';
 import { EditBottle } from './editBottle.model';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'gas-bottle-library',
@@ -15,6 +14,7 @@ import { EditBottle } from './editBottle.model';
   styleUrls: ['./bottle-library.component.scss']
 })
 export class BottleLibraryComponent implements OnInit, OnDestroy {
+  cn = zh_CN;
   bottleLibraryList: any[] = [];
   pages: {
     pageNumber?: number;
@@ -67,8 +67,6 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     private _service: BottleLibraryService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
-    @Inject(DATE_LOCALIZATION) public cn,
-    private format: Format,
   ) { }
 
   ngOnInit() {
@@ -178,7 +176,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
         if (key) {
           if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
             if (this.addForm[key]) {
-              const datas = this.format.dateFormat(this.addForm[key], 'yyyy-MM-dd hh:mm:ss');
+              const datas = moment(this.addForm[key]).format('YYYY-MM-DD HH:mm:ss');
               formData.append(key, datas);
             } else {
               return false;
@@ -215,7 +213,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
         if (key) {
           if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
             if (this.editForm[key]) {
-              const datas = this.format.dateFormat(this.editForm[key], 'yyyy-MM-dd hh:mm:ss');
+              const datas = moment(this.editForm[key]).format('YYYY-MM-DD HH:mm:ss');
               formData.append(key, datas);
             }
           } else {
@@ -273,7 +271,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     } else {
       this._service.createAccount({ supplyStationNumber: status.supplyStationNumber }).then(data => {
         if (data.status === 0) {
-          this.messageService.add({ severity: 'success', summary: '提示信息', detail: '启用账号成功'});
+          this.messageService.add({ severity: 'success', summary: '提示信息', detail: '启用账号成功' });
           this.onSearch(this.changeStatusPage);
         } else {
           this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });

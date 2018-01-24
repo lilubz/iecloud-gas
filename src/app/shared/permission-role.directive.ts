@@ -1,6 +1,6 @@
 import { UserStateService } from './../core/userState.service';
 import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
-import { RoleType } from '../core/RoleType';
+import { RoleType } from '../common/RoleType';
 
 /**
  * 根据用户权限和输入的权限列表判断是否展示展示界面

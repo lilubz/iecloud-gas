@@ -5,7 +5,7 @@ import { Headers } from '@angular/http';
 import {
   HttpService
 } from './../../core/http.service';
-import { API } from './../../core/api';
+import { API } from './../../common/api';
 @Injectable()
 export class CylinderVerificationService {
   constructor(private HttpService: HttpService) { }

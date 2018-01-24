@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CylinderOverviewService } from '../../../archive/cylinder/cylinder-overview/cylinder-overview.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from '../../../core/userState.service';
-import { RoleType } from './../../../core/RoleType';
+import { RoleType } from './../../../common/RoleType';
 
 @Component({
   selector: 'gas-enterprise',

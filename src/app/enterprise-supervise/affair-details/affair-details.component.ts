@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { zh_CN, DATE_LOCALIZATION } from './../../core/date-localization';
+import { zh_CN } from './../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { AffairDetailsService } from './affair-details.service';
-import { API } from '../../../app/core/api';
+import { API } from '../../../app/common/api';
 import * as moment from 'moment';
 
 @Component({
@@ -14,6 +14,7 @@ import * as moment from 'moment';
   providers: [AffairDetailsService]
 })
 export class AffairDetailsComponent implements OnInit {
+  zh = zh_CN;
   window = window; // 文件下载时使用了
   API = API;
   history = history;  // 返回按纽使用了，功能返回上一个页面。
@@ -52,7 +53,6 @@ export class AffairDetailsComponent implements OnInit {
     lastEventId?: string, // 上一个事件id
   } = {};
   constructor(
-    @Inject(DATE_LOCALIZATION) public zh,
     public _service: AffairDetailsService,
     private messageService: MessageService,
     private routerInfo: ActivatedRoute,

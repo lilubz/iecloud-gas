@@ -10,7 +10,7 @@ import {
 } from './../../../core/http.service';
 import {
   API
-} from './../../../core/api';
+} from './../../../common/api';
 @Injectable()
 export class DispatcherService {
   API = API;

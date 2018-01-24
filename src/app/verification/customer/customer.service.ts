@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { UserStateService } from './../../core/userState.service';
 import { HttpService } from './../../core/http.service';
-import { API } from './../../core/api';
+import { API } from './../../common/api';
 import { Injectable } from '@angular/core';
 
 @Injectable()

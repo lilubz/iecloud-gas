@@ -1,7 +1,7 @@
 import { SystemLogService } from './system-log.service';
 import { Component, OnInit, Inject } from '@angular/core';
 
-import { DATE_LOCALIZATION } from './../../core/date-localization';
+import { zh_CN } from './../../common/date-localization';
 import { SelectItem } from 'primeng/components/common/selectitem';
 
 @Component({
@@ -12,6 +12,7 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 })
 
 export class SystemLogComponent implements OnInit {
+  zh_CN = zh_CN;
   pageSize = 20;
   pageNumber = 1;
   totalRecords = 0;
@@ -37,8 +38,9 @@ export class SystemLogComponent implements OnInit {
     userName: string
   }] = null;
 
-  constructor( @Inject(DATE_LOCALIZATION) private zh_CN, private systemLogService: SystemLogService) {
-  }
+  constructor(
+    private systemLogService: SystemLogService
+  ) { }
 
   ngOnInit() {
     this.logs = [{

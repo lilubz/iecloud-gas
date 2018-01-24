@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { zh_CN } from './../../../core/date-localization';
+import { zh_CN } from './../../../common/date-localization';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
 

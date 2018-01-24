@@ -4,9 +4,9 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { CommonRequestService } from './../../../core/common-request.service';
 import { SelectItem } from 'primeng/primeng';
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { UtilService } from '../../../core/util.service';
+import { Util } from '../../../core/util';
 import * as echarts from 'echarts';
-import { RoleType } from '../../../core/RoleType';
+import { RoleType } from '../../../common/RoleType';
 
 @Component({
   selector: 'gas-dispatcher',
@@ -37,7 +37,7 @@ export class DispatcherComponent implements OnInit, AfterViewInit {
     private statisticCylinderService: StatisticCylinderService,
     private messageService: MessageService,
     private userStateService: UserStateService,
-    private utilService: UtilService,
+    private utilService: Util,
   ) { }
 
   ngOnInit() {

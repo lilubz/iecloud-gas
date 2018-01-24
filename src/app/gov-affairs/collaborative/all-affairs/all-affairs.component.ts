@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { MessageService } from 'primeng/components/common/messageservice';
-import { zh_CN, DATE_LOCALIZATION } from './../../../core/date-localization';
+import { zh_CN } from './../../../common/date-localization';
 import * as moment from 'moment';
 import { CollaborativeService } from '../collaborative.service';
 
@@ -12,11 +12,8 @@ import { CollaborativeService } from '../collaborative.service';
   styleUrls: ['./all-affairs.component.scss'],
 })
 export class AllAffairsComponent implements OnInit {
-  constructor(
-    private messageService: MessageService,
-    private _service: CollaborativeService,
-    @Inject(DATE_LOCALIZATION) public zh,
-  ) { }
+zh = zh_CN;
+
   dropdown = {
     default: [
       {
@@ -47,6 +44,11 @@ export class AllAffairsComponent implements OnInit {
     department: '',
     affairType: '',
   };
+
+  constructor(
+    private messageService: MessageService,
+    private _service: CollaborativeService,
+  ) { }
 
   ngOnInit() {
     this.getDropdownDepartment();

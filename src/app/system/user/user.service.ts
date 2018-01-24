@@ -1,4 +1,4 @@
-import { API } from './../../core/api';
+import { API } from './../../common/api';
 import { HttpService } from './../../core/http.service';
 import { Injectable } from '@angular/core';
 

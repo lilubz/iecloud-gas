@@ -3,7 +3,7 @@ import { MessagesService, } from './messages.service';
 import { ConfirmationService } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Message } from 'primeng/components/common/api';
-import { API } from '../../core/api';
+import { API } from '../../common/api';
 
 
 @Component({

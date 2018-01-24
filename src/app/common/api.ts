@@ -211,10 +211,3 @@ export const API = {
   'signUp': URL + 'sysUserPermissions/login.do',
   'logout': URL + 'sysUserPermissions/user/logout.do',
 };
-
-export let API_TOKEN = new InjectionToken<any>('API');
-
-export let APIProvide: any = {
-  provide: API_TOKEN,
-  useValue: API
-};

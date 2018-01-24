@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { MessageService } from 'primeng/components/common/messageservice';
-import { zh_CN, DATE_LOCALIZATION } from './../../../core/date-localization';
+import { zh_CN } from './../../../common/date-localization';
 import * as moment from 'moment';
 import { CollaborativeService } from '../collaborative.service';
 
@@ -12,11 +12,11 @@ import { CollaborativeService } from '../collaborative.service';
   styleUrls: ['./my-affairs.component.scss'],
 })
 export class MyAffairsComponent implements OnInit {
+  zh = zh_CN;
   dispatcherService: any;
   constructor(
     private messageService: MessageService,
     public _service: CollaborativeService,
-    @Inject(DATE_LOCALIZATION) public zh,
   ) { }
   dropdown = {
     default: [
