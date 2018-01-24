@@ -14,8 +14,6 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 
 export class CustomerListComponent implements OnInit {
-  constructor(private routerInfo: ActivatedRoute, private customerListService: CustomerListService,
-    private messageService: MessageService, private fb: FormBuilder) { }
   dropdown = {
     userNature: [
       {
@@ -71,11 +69,11 @@ export class CustomerListComponent implements OnInit {
     total: number,
     first: number
   } = {
-    list: [],
-    option: [5, 10, 20, 40],
-    total: 0,
-    first: 0
-  };
+      list: [],
+      option: [5, 10, 20, 40],
+      total: 0,
+      first: 0
+    };
   formModel: any = this.fb.group({
     regionId: '',
     enterpriseNumber: '',
@@ -96,16 +94,23 @@ export class CustomerListComponent implements OnInit {
     pageSize: number,
     pageNumber: number
   } = {
-    regionId: '',
-    enterpriseNumber: '',
-    haveContract: false,
-    userName: '',
-    address: '',
-    userTypeId: '',
-    userNatureId: '',
-    pageSize: this.dataTable.option[1],
-    pageNumber: 1
-  };
+      regionId: '',
+      enterpriseNumber: '',
+      haveContract: false,
+      userName: '',
+      address: '',
+      userTypeId: '',
+      userNatureId: '',
+      pageSize: this.dataTable.option[1],
+      pageNumber: 1
+    };
+
+  constructor(
+    private routerInfo: ActivatedRoute,
+    private customerListService: CustomerListService,
+    private messageService: MessageService,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.getDropdownForUserNature();
@@ -120,8 +125,8 @@ export class CustomerListComponent implements OnInit {
         enterpriseNumber: enterpriseNumber
       });
       this.formModel.enterpriseNumber = enterpriseNumber;
-      this.onSearch();
     }
+    this.onSearch();
   }
 
   onSearch() {
@@ -147,16 +152,19 @@ export class CustomerListComponent implements OnInit {
     this.formModel.patchValue({
       enterpriseNumber: ''
     });
-    this.getDropdownForCorpInfoInRegion({ regionId : event.value });
+    this.getDropdownForCorpInfoInRegion({ regionId: event.value });
   }
 
-  onPageChange(event) {
-    const page = {
-      pageSize: event.rows,
-      pageNumber: event.first / event.rows + 1
+  onPageChange($event) {
+    this.dataTable.list = [];
+    this.onPageChange = (event) => {
+      const page = {
+        pageSize: event.rows,
+        pageNumber: event.first / event.rows + 1
+      };
+      this.pageParams.pageSize = page.pageSize;
+      this.getCustomerList(Object.assign({}, this.pageParams, page));
     };
-    this.pageParams.pageSize = page.pageSize;
-    this.getCustomerList(Object.assign({}, this.pageParams, page));
   }
 
   getCustomerList(params?) {
@@ -225,7 +233,7 @@ export class CustomerListComponent implements OnInit {
         })));
       } else {
         this.dropdown.userType = this.dropdown.default;
-        this.messageService.add({severity: 'warn', summary: '响应消息', detail: data.msg});
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
     }).catch(error => {
       this.dropdown.userType = this.dropdown.default;
