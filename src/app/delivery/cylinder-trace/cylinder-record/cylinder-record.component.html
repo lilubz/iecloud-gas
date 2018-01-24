@@ -49,6 +49,7 @@
     <p-headerColumnGroup>
       <p-row>
         <!-- <p-column header="序号" rowspan="2"></p-column> -->
+        <p-column header="气瓶条码" rowspan="2"></p-column>
         <p-column header="时间" rowspan="2"></p-column>
         <p-column header="状态变迁" rowspan="2"></p-column>
         <p-column header="开始责任主体" colspan="4"></p-column>
@@ -72,6 +73,7 @@
         {{index + 1}}
       </ng-template>
     </p-column> -->
+    <p-column field="gasLabelNumber"></p-column>
     <p-column field="createTime">
       <ng-template let-record="rowData" pTemplate="body">
         {{ record.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}
