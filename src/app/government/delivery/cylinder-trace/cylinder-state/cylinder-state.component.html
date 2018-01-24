@@ -1,0 +1,25 @@
+<div class="ui-g-12">
+  气瓶当前状态
+  <p-dropdown [options]="cylinderStatus" [style]="{'width':'150px'}" [(ngModel)]="selectedCylinderStatus" (onChange)="searchCylinderList()"></p-dropdown>
+  <!-- <button pButton type="button" label="查询" (click)="getCylinderByStatus()"></button> -->
+</div>
+<div class="ui-g-12">
+  <p-dataTable [value]="cylinderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true" [lazy]="true"
+    [(first)]="first" (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
+    <p-column header="序号" [style]="{'width':'50px'}">
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column>
+    <p-column field="gasLabelNumber" header="气瓶条码" [style]="{'width':'150px'}">
+      <ng-template let-cylinder="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-number',{gasLabelNumber:cylinder.gasLabelNumber}]" title="查看历史">{{ cylinder.gasLabelNumber }}</a>
+      </ng-template>
+    </p-column>
+    <p-column field="specificationId" header="气瓶规格" [style]="{'width':'150px'}"></p-column>
+    <p-column field="liabilityTypeName" header="责任主体类型" [style]="{'width':'150px'}"></p-column>
+    <p-column field="liabilityName" header="责任主体名称" [style]="{'width':'150px'}"></p-column>
+    <p-column field="liabilityContact" header="责任主体联系方式" [style]="{'width':'150px'}"></p-column>
+    <p-column field="liabilityAddress" header="责任主体地址" [style]="{'width':'150px'}"></p-column>
+  </p-dataTable>
+</div>

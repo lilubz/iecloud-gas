@@ -8,18 +8,12 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { ManagementComponent } from './system/management/management.component';
-import { SystemLogComponent } from './system/system-log/system-log.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SystemLogComponent,
-    ManagementComponent,
-    HomeComponent,
   ],
   imports: [
     AppRoutingModule,

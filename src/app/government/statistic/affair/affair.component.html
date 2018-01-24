@@ -1,0 +1,38 @@
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <span>执法事务统计</span>
+
+  </div>
+</div>
+<div class="ui-g-12 main">
+  <div class="ui-g-12 content">
+    <h3>协同事务统计</h3>
+    区域选择：
+    <p-dropdown [options]="regionList" [(ngModel)]="selectedRegionId" [style]="{'width':'150px'}"></p-dropdown>
+    时间：
+    <p-dropdown [options]="deliveryDateRange" [(ngModel)]="selectedDateRange" [style]="{'width':'100px'}"></p-dropdown>
+
+    <button pButton type="button" label="查询" (click)="getAffairStatistic()"></button>
+
+    <p-dataTable [value]="affairStatistics" [styleClass]="'ui-lg-10 ui-xl-8'" [loading]="loading" emptyMessage="未查询到数据">
+
+      <p-column field="name" header="区域" [style]="{'width':'20%'}"></p-column>
+      <p-column field="totalCount" header="一级事务">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.emergencyDegreeFirst || 0 }}
+        </ng-template>
+      </p-column>
+      <p-column field="totalCount" header="二级事务">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.emergencyDegreeSecond || 0 }}
+        </ng-template>
+      </p-column>
+      <p-column field="totalCount" header="三级事务">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.emergencyDegreeThird || 0 }}
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>
+
+</div>

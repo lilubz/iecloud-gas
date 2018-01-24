@@ -3,94 +3,23 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './core/auth-guard.service';
-import { HomeComponent } from './home/home.component';
-import { LayoutComponent } from './shared/layout/layout.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
+    path: 'government',
+    loadChildren: './government/government.module#GovernmentModule',
+    canLoad: [AuthGuard]
   },
   {
-    path: '',
-    component: LayoutComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'archive',
-        loadChildren: './archive/archive.module#ArchiveModule',
-        data: {
-          title: '基础档案'
-        }
-      },
-      // {
-      //   path: 'system',
-      //   loadChildren: './system/system.module#SystemModule',
-      //   data: {
-      //     title: '系统配置'
-      //   }
-      // },
-      {
-        path: 'delivery',
-        loadChildren: './delivery/delivery.module#DeliveryModule',
-        data: {
-          title: '配送监管'
-        }
-      },
-      {
-        path: 'gov-affairs',
-        loadChildren: './gov-affairs/gov-affairs.module#GovAffairsModule',
-        data: {
-          title: '监管事务'
-        }
-      },
-      {
-        path: 'visualization',
-        component: PageNotFoundComponent
-      },
-      {
-        path: 'statistic',
-        loadChildren: './statistic/statistic.module#StatisticModule',
-        data: {
-          title: '统计查询'
-        }
-      },
-      {
-        path: 'system',
-        loadChildren: './system/system.module#SystemModule',
-        data: {
-          title: '系统管理'
-        }
-      },
-      {
-        path: 'enterprise-supervise',
-        loadChildren: './enterprise-supervise/enterprise-supervise.module#EnterpriseSuperviseModule',
-        data: {
-          title: '企业监管'
-        }
-      },
-      {
-        path: 'input',
-        loadChildren: './input/input.module#InputModule',
-        data: {
-          title: '信息录入'
-        }
-      },
-      {
-        path: 'verification',
-        loadChildren: './verification/verification.module#VerificationModule',
-        data: {
-          title: '审核管理'
-        }
-      }
-    ]
+    path: 'enterprise',
+    loadChildren: './enterprise/enterprise.module#EnterpriseModule',
+    canLoad: [AuthGuard]
   },
   {
     path: 'login',
@@ -98,19 +27,13 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'archive'
+    redirectTo: 'login'
   }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ],
-  providers: [
-
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+  providers: []
 })
 export class AppRoutingModule { }

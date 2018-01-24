@@ -36,7 +36,6 @@ import {
 } from 'primeng/primeng';
 
 import { LoadingComponent } from './loading/loading.component';
-import { LayoutComponent } from './layout/layout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DistrictsComponent } from './districts/districts.component';
 import { PermissionRoleDirective } from './permission-role.directive';
@@ -79,7 +78,6 @@ import { PermissionRoleDirective } from './permission-role.directive';
     _SharedModule
   ],
   declarations: [
-    LayoutComponent,
     LoadingComponent,
     PageNotFoundComponent,
     DistrictsComponent,
@@ -123,7 +121,6 @@ import { PermissionRoleDirective } from './permission-role.directive';
     ConfirmDialogModule,
     RadioButtonModule,
 
-    LayoutComponent,
     LoadingComponent,
     PageNotFoundComponent,
     DistrictsComponent,

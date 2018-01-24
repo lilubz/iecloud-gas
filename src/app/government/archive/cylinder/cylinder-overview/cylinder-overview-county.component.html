@@ -1,0 +1,58 @@
+<div class="ui-g-12 overview">
+
+  <h2 class="title">区域情况总体概览</h2>
+
+  <!-- 区域概览 -->
+  <p-dataTable [value]="countyCylinders" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" [loading]="loading"
+    emptyMessage="未查询到数据">
+
+    <p-column header="序号" [style]="{'width':'50px'}">
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column>
+    <p-column field="regionName" header="区域" [style]="{'width':'30%'}">
+      <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
+      </ng-template>
+    </p-column>
+    <p-column field="totalCount" header="气瓶数">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.totalCount || 0 }}
+      </ng-template>
+    </p-column>
+    <p-column field="normalCount" header="正常">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.normalCount || 0 }}
+      </ng-template>
+    </p-column>
+    <p-column field="expireCount" header="过期">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.expireCount || 0 }}
+      </ng-template>
+    </p-column>
+    <p-column field="scrapCount" header="报废">
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.scrapCount || 0 }}
+      </ng-template>
+    </p-column>
+    <p-column field="scrapCount" header="标签异常">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.codeAbnormalCount || 0 }}
+        </ng-template>
+      </p-column>
+
+    <p-footerColumnGroup>
+      <p-row>
+        <p-column footer=""></p-column>
+        <p-column footer="合计"></p-column>
+        <p-column [footer]="calculateTotal('totalCount', countyCylinders)"></p-column>
+        <p-column [footer]="calculateTotal('normalCount', countyCylinders)"></p-column>
+        <p-column [footer]="calculateTotal('expireCount', countyCylinders)"></p-column>
+        <p-column [footer]="calculateTotal('scrapCount', countyCylinders)"></p-column>
+        <p-column [footer]="calculateTotal('codeAbnormalCount', countyCylinders)"></p-column>
+      </p-row>
+    </p-footerColumnGroup>
+  </p-dataTable>
+
+</div>

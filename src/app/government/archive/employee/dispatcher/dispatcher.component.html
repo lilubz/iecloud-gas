@@ -1,0 +1,87 @@
+<div class="ui-g dispatcher">
+  <form [formGroup]="formModel" (submit)="onSearch()">
+    <div class="ui-g-2">
+      <div class="form-group">
+        <label for="">企业</label>
+        <p-dropdown [options]="dropdown.companyOpt" formControlName="enterpriseId" [style]="{'width':'calc(90% - 30px)'}"></p-dropdown>
+      </div>
+    </div>
+    <div class="ui-g-3">
+      <div class="ui-g-6">
+        <div class="form-group name">
+          <label for="">姓名</label>
+          <input type="text" pInputText formControlName="name" />
+        </div>
+      </div>
+      <div class="ui-g-6">
+        <div class="form-group job-number">
+          <label for="">工号</label>
+          <input type="text" pInputText formControlName="jobNumber" />
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-5">
+      <div class="ui-g-4">
+        <div class="form-group phone">
+          <label for="">手机号码</label>
+          <input type="text" pInputText formControlName="phone" />
+        </div>
+      </div>
+      <div class="ui-g-4">
+        <div class="form-group id-number">
+          <label for="">身份证号</label>
+          <input type="text" pInputText formControlName="idNumber" />
+        </div>
+      </div>
+      <div class="ui-g-4 text-center">
+        <button pButton type="submit" label="搜索" icon="fa-search"></button>
+      </div>
+    </div>
+  </form>
+  <div class="ui-g-12">
+    <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+      scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+      [(first)]="dataTable.first">
+      <p-column [style]="{'width':'100px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" field="name" header="姓名"></p-column>
+      <p-column [style]="{'width':'120px'}" field="jobNumber" header="工号"></p-column>
+      <p-column [style]="{'width':'100px'}" field="licensePlateNumber" header="车牌号"></p-column>
+      <p-column [style]="{'width':'150px'}" field="subsidiaryEnterprises" header="所属企业"></p-column>
+      <p-column [style]="{'width':'150px'}" field="supplyStation" header="所属供应站"></p-column>
+      <p-column [style]="{'width':'50px'}" field="sex" header="性别"></p-column>
+      <p-column [style]="{'width':'120px'}" field="birthday" header="出生年月"></p-column>
+      <p-column [style]="{'width':'180px'}" field="idNumber" header="身份证号"></p-column>
+      <p-column [style]="{'width':'120px'}" field="phone" header="电话号码"></p-column>
+      <p-column [style]="{'width':'100px'}" field="" header="头像"></p-column>
+      <p-column [style]="{'width':'100px'}" field="" header="二维码"></p-column>
+      <p-column [style]="{'width':'70px'}" field="status" header="状态"></p-column>
+      <p-column [style]="{'width':'100px'}" field="dangerousGoodsTransportLicenseNumber" header="危险品运输许可证编号"></p-column>
+      <p-column [style]="{'width':'100px'}" header="到期时间">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.expirationTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" header="创建时间">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.creationTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" header="修改时间">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.modificationTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+
+    </p-dataTable>
+  </div>
+</div>

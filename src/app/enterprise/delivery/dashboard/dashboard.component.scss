@@ -1,0 +1,22 @@
+@import "./../../../../scss/_variable";
+h2 {
+  color: #3399ff;
+  margin: 0;
+}
+
+a {
+  color: #3399ff;
+}
+
+.container {
+  margin-top: $header-height;
+  background-color: white;
+}
+
+.warning {
+  color: red;
+}
+
+.auto-fill {
+  background: #f2f2f2;
+}

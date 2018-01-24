@@ -1,0 +1,78 @@
+<div class="enterprise-detail">
+  <div class="ui-g padding">
+    <div class="ui-g-10">
+      <div class="ui-g-12">
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup">
+            <span>辖区</span>
+            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'calc(100% - 60px','max-width':'300px'}"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup">
+            <span>企业名称</span>
+            <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText placeholder="">
+          </div>
+        </div>
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup">
+            <span>负责人</span>
+            <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="">
+          </div>
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-8 ui-g-nopad">
+          <div class="inputgroup">
+            <span>发证日期</span>
+            <p-calendar [locale]="cn" #start (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)" placeholder="2017-10-1"
+              [showButtonBar]="true" [maxDate]="end.value" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
+              [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'120px','display':'inline-block'}"></p-calendar>
+            &#12288;至&#12288;
+            <p-calendar [locale]="cn" #end (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="start.value"
+              placeholder="2017-12-29" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
+              [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'120px','display':'inline-block'}"></p-calendar>
+          </div>
+        </div>
+        <div class="ui-g-4 ui-g-nopad">
+          <div class="inputgroup">
+            <span>服务电话</span>
+            <input type="text" class="textInput" [(ngModel)]="searchParams.phone" maxlength="20" pInputText placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-2">
+      <button pButton type="button" label="查询" class="searchBtn" (click)="getEnterPrise()"></button>
+    </div>
+  </div>
+  <div class="ui-g-12">
+    <p-dataTable [value]="enterpriseList" [lazy]="true" dataKey="title" [paginator]="true" [rows]="pages.pageSize" scrollable="true"
+      scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
+      [(first)]="pages.first">
+      <p-column [style]="{'width':'100px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" field="regionName" header="辖区"></p-column>
+      <p-column [style]="{'width':'150px'}" field="businessArea" header="经营区域"></p-column>
+      <p-column [style]="{'width':'150px'}" field="enterpriseName" header="企业名称"></p-column>
+      <p-column [style]="{'width':'150px'}" field="legalRepresentative" header="负责人"></p-column>
+      <p-column [style]="{'width':'150px'}" field="address" header="地址"></p-column>
+      <p-column [style]="{'width':'150px'}" field="dangerousLicense" header="许可证号"></p-column>
+      <p-column [style]="{'width':'150px'}" header="发证日期">
+        <ng-template let-dates="rowData" pTemplate="body">
+          <span>{{dates.releaseTime | date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" field="issuingUnit" header="发证机关"></p-column>
+      <p-column [style]="{'width':'150px'}" field="serviceLine" header="服务电话"></p-column>
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+    </p-dataTable>
+  </div>
+</div>

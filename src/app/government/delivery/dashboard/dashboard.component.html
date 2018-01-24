@@ -1,0 +1,169 @@
+<div class="ui-g-9 container">
+  <div class="ui-g-12">
+    <h2 class="pull-left">
+      <i class="fa fa-list-alt fa-fw" aria-hidden="true"></i>订单管理
+    </h2>
+    <button pButton type="button" label="新增订单" class="pull-right" (click)="showAddOrderDialog()"></button>
+  </div>
+  <div class="ui-g-12">
+    <p-dataTable [value]="orderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true" [lazy]="true"
+      (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
+      <p-column header="序号" [style]="{'width':'50px'}">
+        <ng-template pTemplate="body" let-index="rowIndex">
+          {{index + 1}}
+        </ng-template>
+      </p-column>
+      <p-column field="name" header="乡镇/街道" [style]="{'width':'150px'}"></p-column>
+      <p-column field="linkAddress" header="详细地址" [style]="{'width':'150px'}"></p-column>
+      <p-column field="linkMan" header="联系人" [style]="{'width':'150px'}"></p-column>
+      <p-column field="linkPhone" header="联系电话" [style]="{'width':'150px'}"></p-column>
+      <p-column header="操作" [style]="{'width':'100px'}">
+        <ng-template let-order="rowData" pTemplate="body">
+          <a href="javascript:void(0);" (click)="showDispatchDialog(order)">派送</a>
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>
+</div>
+
+<p-dialog [visible]="dispatchVisiable" header="配送员分配" [closable]="false" [modal]="true" [width]="480" [responsive]="true"
+  [contentStyle]="{'overflow':'visible'}" [style]="{'border':'none'}">
+  <div class="ui-g-12">
+    <div class="ui-g-12">
+      <p-dropdown [options]="dispatcherList" [(ngModel)]="dispatchOrderForm.dispatcherNumber" [style]="{'width':'150px'}"></p-dropdown>
+    </div>
+    <div class="ui-g-4">
+    </div>
+    <div class="ui-g-8">
+      <button type="button" pButton icon="fa-check" (click)="dispatchOrder()" label="确定"></button>
+      <button type="button" pButton icon="fa-close" (click)="dispatchVisiable=false" label="取消" class="ui-button-secondary"></button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog [visible]="addOrderVisiable" header="新增订单" [closable]="false" [modal]="true" [width]="640" [responsive]="true"
+  [contentStyle]="{'overflow':'visible'}" [style]="{'border':'none'}">
+  <div class="ui-g-12 ui-g-nopad">
+    <div class="ui-g-2">
+      联系电话
+      <span class="warning">*</span>
+    </div>
+    <div class="ui-g-10">
+      <div class="ui-g-6 ui-g-nopad">
+        <p-autoComplete [suggestions]="customerSuggestions" [(ngModel)]="selectedCustomer" (completeMethod)="searchCustomer($event)"
+          field="phone" (onSelect)="selectSuggestedCustomer($event)" [delay]="500" [size]="20" [minLength]="1" [maxlength]="20"
+          placeholder="请输入联系电话">
+          <ng-template let-customer pTemplate="item">
+            <div style="width:400px;">{{ customer?.phone }} -- {{ customer?.principal }} -- {{ customer?.address }}</div>
+          </ng-template>
+        </p-autoComplete>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-g-nopad auto-fill">
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-2">
+        联系人
+        <span class="warning">*</span>
+      </div>
+      <div class="ui-g-10">
+        <div class="ui-g-6 ui-g-nopad">
+          <input type="text" [(ngModel)]="newOrder.linkMan" pInputText placeholder="联系人" maxlength="20">
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-2">
+        用户卡编号
+      </div>
+      <div class="ui-g-10">
+        <div class="ui-g-6 ui-g-nopad">
+          <input type="text" [(ngModel)]="newOrder.userIdentityCardNumber" pInputText placeholder="用户卡编号" maxlength="20">
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-g-nopad">
+      <div class="ui-g-2">
+        居住地址
+        <span class="warning">*</span>
+      </div>
+      <div class="ui-g-10">
+        <div class="ui-g-3 ui-xl-2">
+          <input type="text" pInputText placeholder="浙江省" disabled style="width:100p;">
+        </div>
+        <div class="ui-g-3 ui-xl-2">
+          <input type="text" pInputText placeholder="温州市" disabled>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="deliveryRegionList" (onChange)="deliveryCountyChange($event.value)" [(ngModel)]="selectedDeliveryAreaId"
+            [style]="{'width':'100px'}"></p-dropdown>
+        </div>
+        <div class="ui-g-3" *ngIf="deliveryUrbanDistrictList.length!=0">
+          <p-dropdown [options]="deliveryUrbanDistrictList" (onChange)="deliveryUrbanDistrictChange($event.value)" [(ngModel)]="selectedUrbanDistrict"
+            [style]="{'width':'100px'}"></p-dropdown>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="deliveryStreetList" (onChange)="getDispatcher()" [(ngModel)]="selectedDeliveryStreetId" [style]="{'width':'110px'}"></p-dropdown>
+        </div>
+        <div class="ui-g-6" style="margin-left:20px;">
+          <input type="text" [(ngModel)]="newOrder.linkAddress" pInputText placeholder="详细地址">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-g-nopad">
+    <div class="ui-g-2">
+      规格数量
+      <span class="warning">*</span>
+    </div>
+    <div class="ui-g-10">
+      <div class="ui-g-12 ui-g-nopad" *ngFor="let item of newOrder.orderContent">
+        <div class="ui-g-4 ui-g-nopad">
+          <p-dropdown [options]="cylinderSpecificationList" [(ngModel)]="item.specificationId" [style]="{'width':'150px'}"></p-dropdown>
+        </div>
+        <div class="ui-g-1 ui-g-nopad" style="text-align: center;line-height: 30px;">
+          X
+        </div>
+        <div class="ui-g-4 ui-g-nopad">
+          <p-spinner size="5" [(ngModel)]="item.num" [min]="1" [max]="10000" placeholder="数量"></p-spinner>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-g-nopad">
+    <div class="ui-g-2">
+      来源方式
+      <span class="warning">*</span>
+    </div>
+    <div class="ui-g-10">
+      <div class="ui-g-6 ui-g-nopad">
+        <p-dropdown [options]="orderSourceList" [(ngModel)]="newOrder.source" [style]="{'width':'150px'}"></p-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-g-nopad">
+    <div class="ui-g-2">
+      配送员
+    </div>
+    <div class="ui-g-10">
+      <div class="ui-g-6 ui-g-nopad">
+        <p-dropdown [options]="dispatcherList" [(ngModel)]="newOrder.dispatcherNumber" [style]="{'width':'150px'}"></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g-7">
+      <button type="button" pButton (click)="formInit()" label="重置" class="ui-button-warning"></button>
+    </div>
+    <div class="ui-g-5">
+      <button type="button" pButton icon="fa-check" (click)="save()" label="确定"></button>
+      <button type="button" pButton icon="fa-close" (click)="addOrderVisiable=false" label="取消" class="ui-button-secondary"></button>
+    </div>
+  </div>
+</p-dialog>

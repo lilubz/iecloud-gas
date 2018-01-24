@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">
+      <button pButton type="button" label="用户信息概览" [routerLink]="['./overview/county']"></button>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="综合查询" [routerLink]="['./list']"></button>
+    </div>
+  </div>
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">用户信息快捷查询</div>
+    <div class="ui-g-12"> 区域：
+      <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
+    </div>
+    <div class="ui-g-12">
+      <p-dropdown [options]="UserID" [(ngModel)]="selectedUserID"></p-dropdown>
+    </div>
+    <div class="ui-g-12">
+      <input type="text" pInputText [(ngModel)]="UserText" (keyup.enter)="onSearch()">
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="查询" [routerLink]="['./detail',{city:selectedCity,type:selectedUserID ? selectedUserID: '',typeNumber:UserText ? UserText:'' }]"></button>
+    </div>
+  </div>
+</div>
+<div class="ui-g-12 main">
+  <router-outlet></router-outlet>
+</div>
