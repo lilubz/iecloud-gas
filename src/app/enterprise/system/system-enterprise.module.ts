@@ -8,6 +8,7 @@ import { UserComponent } from './user/user.component';
 
 import { UserService } from './user/user.service';
 import { ConfirmationService } from 'primeng/primeng';
+import { BottleLibraryComponent } from './bottle-library/bottle-library.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +18,7 @@ import { ConfirmationService } from 'primeng/primeng';
   declarations: [
     SystemComponent,
     UserComponent,
+    BottleLibraryComponent
   ],
   providers: [
     UserService,

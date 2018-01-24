@@ -113,6 +113,7 @@ export const EnterpriseMenus: MenuItem[] = [
     routerLink: ['/enterprise/system'],
     items: [
       { label: '个人信息', routerLink: ['/enterprise/system/user'] },
+      { label: '瓶库管理', routerLink: ['/enterprise/system/bottle-library'] },
     ]
   },
   {

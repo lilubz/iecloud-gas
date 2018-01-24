@@ -12,7 +12,8 @@ import { RoleType } from '../../../common/RoleType';
 @Component({
   selector: 'gas-bottle-library',
   templateUrl: './bottle-library.component.html',
-  styleUrls: ['./bottle-library.component.scss']
+  styleUrls: ['./bottle-library.component.scss'],
+  providers: [BottleLibraryService]
 })
 export class BottleLibraryComponent implements OnInit, OnDestroy {
   cn = zh_CN;

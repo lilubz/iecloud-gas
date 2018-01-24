@@ -99,6 +99,7 @@ export class CylinderRecordComponent implements OnInit {
     } else if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
       this.cylinderStatus = [
         { label: '储配站', value: 1 },
+        { label: '瓶库', value: 2 },
         { label: '送气工', value: 3 },
       ];
     }
