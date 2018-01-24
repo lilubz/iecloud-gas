@@ -7,6 +7,7 @@ import { DATE_LOCALIZATION } from '../../core/date-localization';
 import { Format } from '../../core/format.service';
 import { AddBottle } from './addBottle.model';
 import { EditBottle } from './editBottle.model';
+import { RoleType } from '../../core/RoleType';
 
 
 @Component({
@@ -15,6 +16,9 @@ import { EditBottle } from './editBottle.model';
   styleUrls: ['./bottle-library.component.scss']
 })
 export class BottleLibraryComponent implements OnInit, OnDestroy {
+  permissionRoles: RoleType[] = [
+    RoleType.Government
+  ];
   bottleLibraryList: any[] = [];
   pages: {
     pageNumber?: number;
@@ -273,7 +277,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     } else {
       this._service.createAccount({ supplyStationNumber: status.supplyStationNumber }).then(data => {
         if (data.status === 0) {
-          this.messageService.add({ severity: 'success', summary: '提示信息', detail: '启用账号成功'});
+          this.messageService.add({ severity: 'success', summary: '提示信息', detail: '启用账号成功' });
           this.onSearch(this.changeStatusPage);
         } else {
           this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
