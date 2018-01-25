@@ -89,15 +89,15 @@ export const EnterpriseMenus: MenuItem[] = [
       { label: '视频图像', routerLink: ['/enterprise/archive/media'] },
     ]
   },
-  // {
-  //   label: '配送监管',
-  //   icon: 'menu-icon distribution-icon',
-  //   routerLink: ['/delivery'],
-  //   items: [
-  //     { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
-  //     // { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
-  //   ]
-  // },
+  {
+    label: '配送监管',
+    icon: 'menu-icon distribution-icon',
+    routerLink: ['/enterprise/delivery'],
+    items: [
+      { label: '气瓶全过程监管追溯查询', routerLink: ['/enterprise/delivery/cylinder-trace'] },
+      // { label: '充装记录', routerLink: ['/enterprise/delivery/cylinder-filling'] }
+    ]
+  },
   {
     label: '统计查询',
     icon: 'menu-icon statistic-icon',

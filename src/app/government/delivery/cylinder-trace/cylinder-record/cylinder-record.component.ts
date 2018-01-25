@@ -152,7 +152,7 @@ export class CylinderRecordComponent implements OnInit {
         this.dispatcherSuggestions = data.data.list;
       } else {
         this.dispatcherSuggestions = [];
-        this.messageService.add({ severity: 'warn', summary: '获取配送工信息失败', detail: data.msg });
+        // this.messageService.add({ severity: 'warn', summary: '获取配送工信息失败', detail: data.msg });
       }
     });
   }

@@ -71,6 +71,16 @@ export class CustomerDetailComponent implements OnInit {
   first = 0;
   pageData = {};
   firstStatus = false;
+  certificateAppendixImages: {
+    source: string,
+    thumbnail: string,
+    title: string,
+  }[] = [];
+  contractAppendixImages: {
+    source: string,
+    thumbnail: string,
+    title: string,
+  }[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -170,6 +180,10 @@ export class CustomerDetailComponent implements OnInit {
    */
   ondetail(data) {
     this.detailLists = this.detailList[data];
+    this.certificateAppendixImages = this.detailLists.certificateAppendixUrl ? this.detailLists.certificateAppendixUrl
+      .split(',').map(item => ({ source: item, thumbnail: item, title: '' })) : '';
+    this.contractAppendixImages = this.detailLists.contractAppendixUrl ? this.detailLists.contractAppendixUrl.split(',')
+      .map(item => ({ source: item, thumbnail: item, title: '' })) : '';
   }
   /**
    * 弹出框

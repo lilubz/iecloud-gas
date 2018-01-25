@@ -29,6 +29,7 @@ import {
   PickListModule,
   TreeModule,
   TreeNode,
+  OverlayPanelModule,
   SharedModule as _SharedModule,
   ConfirmDialogModule,
   ToggleButtonModule,
@@ -74,6 +75,7 @@ import { PermissionRoleDirective } from './permission-role.directive';
     RadioButtonModule,
     PickListModule,
     TreeModule,
+    OverlayPanelModule,
     ConfirmDialogModule,
     _SharedModule
   ],
@@ -117,6 +119,7 @@ import { PermissionRoleDirective } from './permission-role.directive';
     RadioButtonModule,
     PickListModule,
     TreeModule,
+    OverlayPanelModule,
     _SharedModule,
     ConfirmDialogModule,
     RadioButtonModule,

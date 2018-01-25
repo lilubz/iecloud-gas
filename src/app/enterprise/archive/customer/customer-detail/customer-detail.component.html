@@ -63,12 +63,19 @@
       <div class="ui-g-12 padding-none">
         <div class="photo-container">
           <div class="ui-g-12">证件(附件)</div>
-          <img src="{{detailLists.certificateAppendixUrl}}" class="photo-view">
+          <ng-container *ngFor="let image of certificateAppendixImages">
+            <a href="{{image.source}}" target="_blank" title="新标签页打开">
+              <img src="{{image.source}}" class="photo-view">
+            </a>
+          </ng-container>
         </div>
         <div class="photo-container">
           <div class="ui-g-12">合同(附件)</div>
-          <img src="{{detailLists.contractAppendixUrl}}" class="photo-view">
-
+          <ng-container *ngFor="let image of contractAppendixImages">
+            <a href="{{image.source}}" target="_blank" title="新标签页打开">
+              <img src="{{image.source}}" class="photo-view">
+            </a>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -95,7 +102,9 @@
       </div>
       <div class="ui-g-4 padding-none">
         <span class="span_detail bg_color01">在用气瓶数</span>
-        <span class="span_detail01" ><a (click)="showDialog()" class="detail-href">{{detailLists.gcCount}}</a></span>
+        <span class="span_detail01">
+          <a (click)="showDialog()" class="detail-href">{{detailLists.gcCount}}</a>
+        </span>
       </div>
     </div>
 
@@ -124,9 +133,8 @@
   [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
   <h3 class="title">用户在用气瓶详情</h3>
   <div class="ui-g-12 ">
-    <p-dataTable [value]="dataTablelist" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageSize" 
-    scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pageOption" [totalRecords]="total" 
-    (onLazyLoad)="onPageChange($event)" [(first)]="first">
+    <p-dataTable [value]="dataTablelist" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageSize" scrollable="true"
+      scrollHeight="510px" [rowsPerPageOptions]="pageOption" [totalRecords]="total" (onLazyLoad)="onPageChange($event)" [(first)]="first">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <span>{{index+1}}</span>
@@ -134,7 +142,7 @@
       </p-column>
       <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码">
         <ng-template let-col let-cylinder="rowData" pTemplate="body">
-         {{ cylinder.gasLabelNumber }}
+          {{ cylinder.gasLabelNumber }}
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
@@ -171,7 +179,7 @@
     </p-dataTable>
   </div>
   <p-footer>
-    
-    <button type="button" pButton icon="fa-close" (click)="cylinderVisible=false" label="关闭" ></button>
+
+    <button type="button" pButton icon="fa-close" (click)="cylinderVisible=false" label="关闭"></button>
   </p-footer>
 </p-dialog>

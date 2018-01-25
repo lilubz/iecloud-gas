@@ -31,13 +31,13 @@ const routes: Routes = [
           title: '基础档案'
         }
       },
-      // {
-      //   path: 'delivery',
-      //   loadChildren: './delivery/delivery.module#DeliveryModule',
-      //   data: {
-      //     title: '配送监管'
-      //   }
-      // },
+      {
+        path: 'delivery',
+        loadChildren: './delivery/delivery-enterprise.module#DeliveryModule',
+        data: {
+          title: '配送监管'
+        }
+      },
       {
         path: 'statistic',
         loadChildren: './statistic/statistic-enterprise.module#StatisticModule',
