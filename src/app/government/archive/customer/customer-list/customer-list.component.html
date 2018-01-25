@@ -79,7 +79,7 @@
         <p-column [style]="{'width':'200px'}" field="certificateId" header="证件编号"></p-column>
         <p-column [style]="{'width':'80px'}" field="principal" header="负责人"></p-column>
         <p-column [style]="{'width':'150px'}" field="phone" header="联系电话"></p-column>
-        <p-column [style]="{'width':'50px'}" field="gcCount" header="在用气瓶数"></p-column>
+        <!-- <p-column [style]="{'width':'50px'}" field="gcCount" header="在用气瓶数"></p-column> -->
         <p-column [style]="{'width':'150px'}" field="contractNo" header="合同编号"></p-column>
         <p-column [style]="{'width':'150px'}" header="合同有效期">
           <ng-template let-rowData="rowData" pTemplate="body">
@@ -87,13 +87,13 @@
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'150px'}" field="contractAppendixUrl" header="合同附件"></p-column>
-  
+
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
             未查询到数据
           </div>
         </ng-template>
-  
+
       </p-dataTable>
     </div>
   </div>
