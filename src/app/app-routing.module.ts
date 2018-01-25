@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './core/auth-guard.service';
 import { LoginComponent } from './login/login.component';
+import { PermissionGuard } from './core/permission-guard.service';
 
 const routes: Routes = [
   {
@@ -14,12 +15,12 @@ const routes: Routes = [
   {
     path: 'government',
     loadChildren: './government/government.module#GovernmentModule',
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard, PermissionGuard]
   },
   {
     path: 'enterprise',
     loadChildren: './enterprise/enterprise.module#EnterpriseModule',
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard, PermissionGuard]
   },
   {
     path: 'login',

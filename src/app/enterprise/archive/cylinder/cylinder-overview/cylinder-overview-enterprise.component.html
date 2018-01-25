@@ -12,7 +12,7 @@
     </p-column>
     <p-column field="enterpriseName" header="企业名称" footer="合计" [style]="{'width':'30%'}">
       <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
-        <a href="javascript:void(0);" [routerLink]="['../../../list', {enterpriseID:countyCylinder.enterpriseNumber||''}]" class="area">{{countyCylinder[col.field]}}</a>
+        <a href="javascript:void(0);" [routerLink]="['../list', {enterpriseID:countyCylinder.enterpriseNumber||''}]" class="area">{{countyCylinder[col.field]}}</a>
       </ng-template>
     </p-column>
     <p-column field="totalCount" header="气瓶数" [footer]="calculateTotal('totalCount', enterpriseCylinders)">

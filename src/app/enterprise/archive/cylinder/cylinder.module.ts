@@ -7,7 +7,6 @@ import { CylinderComponent } from './cylinder.component';
 import { CylinderListComponent } from './cylinder-list/cylinder-list.component';
 import { CylinderDetailComponent } from './cylinder-detail/cylinder-detail.component';
 import { CylinderOverviewEnterpriseComponent } from './cylinder-overview/cylinder-overview-enterprise.component';
-import { CylinderOverviewCountyComponent } from './cylinder-overview/cylinder-overview-county.component';
 
 import { CylinderOverviewService } from './cylinder-overview/cylinder-overview.service';
 @NgModule({
@@ -19,8 +18,7 @@ import { CylinderOverviewService } from './cylinder-overview/cylinder-overview.s
     CylinderComponent,
     CylinderDetailComponent,
     CylinderListComponent,
-    CylinderOverviewEnterpriseComponent,
-    CylinderOverviewCountyComponent
+    CylinderOverviewEnterpriseComponent
   ],
   providers: [
     CylinderOverviewService

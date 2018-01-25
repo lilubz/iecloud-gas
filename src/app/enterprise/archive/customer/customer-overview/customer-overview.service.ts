@@ -12,15 +12,6 @@ export class CustomerOverviewService {
 
   constructor(private httpService: HttpService, private userStateService: UserStateService, private router: Router) { }
 
-  canActivate() {
-    if (this.userStateService.getUser().organizationType === 1) {
-      this.router.navigate(['/enterprise/archive/customer/overview/enterprise',
-        this.userStateService.getUser().organizationId]);
-      return false;
-    }
-    return true;
-  }
-
   getCountiesOverview(params: any): Promise<any> {
     return this.httpService
       .getRequest(API.getCustomerCountiesOverview, params);

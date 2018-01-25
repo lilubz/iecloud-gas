@@ -6,7 +6,6 @@ import { CustomerComponent } from './customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerOverviewEnterpriseComponent } from './customer-overview/customer-overview-enterprise.component';
-import { CustomerOverviewCountyComponent } from './customer-overview/customer-overview-county.component';
 const routes: Routes = [
   {
     path: 'customer',
@@ -36,19 +35,6 @@ const routes: Routes = [
       },
       {
         path: 'overview',
-        redirectTo: 'overview/county',
-        pathMatch: 'full'
-      },
-      {
-        path: 'overview/county',
-        component: CustomerOverviewCountyComponent,
-        canActivate: [CustomerOverviewService],
-        data: {
-          title: '区域概览'
-        },
-      },
-      {
-        path: 'overview/enterprise/:id',
         component: CustomerOverviewEnterpriseComponent,
         data: {
           title: '企业概览'

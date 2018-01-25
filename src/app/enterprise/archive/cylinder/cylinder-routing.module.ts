@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CylinderListComponent } from './cylinder-list/cylinder-list.component';
 import { CylinderDetailComponent } from './cylinder-detail/cylinder-detail.component';
 import { CylinderOverviewEnterpriseComponent } from './cylinder-overview/cylinder-overview-enterprise.component';
-import { CylinderOverviewCountyComponent } from './cylinder-overview/cylinder-overview-county.component';
 import { CylinderOverviewService } from './cylinder-overview/cylinder-overview.service';
 console.log('cylinder');
 const routes: Routes = [
@@ -37,19 +36,6 @@ const routes: Routes = [
       },
       {
         path: 'overview',
-        redirectTo: 'overview/county',
-        pathMatch: 'full'
-      },
-      {
-        path: 'overview/county',
-        component: CylinderOverviewCountyComponent,
-        canActivate: [CylinderOverviewService],
-        data: {
-          title: '区域概览'
-        },
-      },
-      {
-        path: 'overview/enterprise/:id',
         component: CylinderOverviewEnterpriseComponent,
         data: {
           title: '企业概览'

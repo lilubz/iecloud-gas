@@ -9,7 +9,6 @@ import { CustomerOverviewService } from './customer-overview/customer-overview.s
 import { CustomerComponent } from './customer.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerOverviewEnterpriseComponent } from './customer-overview/customer-overview-enterprise.component';
-import { CustomerOverviewCountyComponent } from './customer-overview/customer-overview-county.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +20,6 @@ import { CustomerOverviewCountyComponent } from './customer-overview/customer-ov
     CustomerListComponent,
     CustomerDetailComponent,
     CustomerOverviewEnterpriseComponent,
-    CustomerOverviewCountyComponent
   ],
   providers: [
     CustomerOverviewService

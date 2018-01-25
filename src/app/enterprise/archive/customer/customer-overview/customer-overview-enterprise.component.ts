@@ -21,23 +21,16 @@ export class CustomerOverviewEnterpriseComponent implements OnInit {
     private messageService: MessageService, private userStateService: UserStateService) { }
 
   ngOnInit() {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        if (this.userStateService.getUser().organizationType === 1) {
-          return this.customerOverviewService
-            .getEnterprisesOverviewByOrganizationId({ organizationId: params.get('id') });
-        } else {
-          return this.customerOverviewService
-            .getEnterprisesOverviewByReginId({ regionId: params.get('id') });
-        }
-      }).subscribe(data => {
-        if (data.status === 0) {
-          this.enterpriseCustomers = data.data;
-        } else {
-          this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
-        }
-        this.loading = false;
-      });
+    this.customerOverviewService.getEnterprisesOverviewByOrganizationId({
+      organizationId: this.userStateService.getUser().organizationId
+    }).then(data => {
+      if (data.status === 0) {
+        this.enterpriseCustomers = data.data;
+      } else {
+        this.messageService.add({ severity: 'error', summary: '获取信息失败', detail: data.msg });
+      }
+      this.loading = false;
+    });
   }
 
   // TODO:这里可能会有性能问题，因为首次加载会执行20次（4次调用*5列），再次点击会执行10次

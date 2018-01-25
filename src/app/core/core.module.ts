@@ -9,6 +9,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './userState.service';
 import { Util } from './util';
 import { Logger } from './logger';
+import { PermissionGuard } from './permission-guard.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { Logger } from './logger';
   ],
   providers: [
     AuthGuard,
+    PermissionGuard,
     CommonRequestService,
     HttpService,
     LoginService,

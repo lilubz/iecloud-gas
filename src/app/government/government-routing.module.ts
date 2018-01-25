@@ -20,7 +20,6 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     canActivate: [AuthGuard],
-    canLoad: [AuthGuard],
     children: [
       {
         path: 'archive',

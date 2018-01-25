@@ -29,17 +29,10 @@ export class CylinderOverviewEnterpriseComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        // 企业管理员的organizationType为1，企业管理员和政府管理员获取企业数据时的接口不同。因为企业只需要获取自己企业的信息，而政府需要获取该区域下所有的企业信息，但这两个接口返回的数据结构是相同的。
-        if (this.userStateService.getUser().organizationType === 1) {
-          return this.cylinderOverviewService
-            .getCylinderEnterpriseOverviewByOrganizationId({ organizationId: params.get('id') });
-        } else {
-          return this.cylinderOverviewService
-            .getCylinderEnterpriseOverviewByAreaId({ regionId: params.get('id') });
-        }
-      }).subscribe(data => {
+    this.cylinderOverviewService
+      .getCylinderEnterpriseOverviewByOrganizationId({
+        organizationId: this.userStateService.getUser().organizationId
+      }).then(data => {
         if (data.status === 0) {
           this.enterpriseCylinders = data.data;
         } else {

@@ -23,11 +23,7 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.userStateService.getUserRoleType() === RoleType.Government) {
-      this.menus = GovernmentMenus;
-    } else if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
-      this.menus = EnterpriseMenus;
-    }
+    this.menus = EnterpriseMenus;
   }
 
   logout() {
