@@ -27,7 +27,7 @@
   <h3>送气工配送量波动情况</h3>
   <ng-template [gasPermissionRole]="permissionRoles">
     区域选择：
-    <p-dropdown [options]="regionList" [(ngModel)]="circulationStatisticRegionId" [style]="{'width':'150px'}"></p-dropdown>
+    <p-dropdown [options]="regionList" [(ngModel)]="selectedRegion" [style]="{'width':'150px'}"></p-dropdown>
   </ng-template>
   时间：
   <p-dropdown [options]="deliveryDateRange" [(ngModel)]="selectedDateRange" [style]="{'width':'100px'}"></p-dropdown>

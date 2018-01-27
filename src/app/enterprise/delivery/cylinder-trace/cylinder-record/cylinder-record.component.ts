@@ -8,6 +8,9 @@ import { CommonRequestService } from '../../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
 import { RoleType } from './../../../../common/RoleType';
 import { UserStateService } from './../../../../core/userState.service';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'gas-cylinder-record',
@@ -80,6 +83,7 @@ export class CylinderRecordComponent implements OnInit {
   endTime: Date = new Date();
 
   constructor(
+    private route: ActivatedRoute,
     private commonRequestService: CommonRequestService,
     private cylinderTraceService: CylinderTraceService,
     private messageService: MessageService,
@@ -90,20 +94,18 @@ export class CylinderRecordComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.userStateService.getUserRoleType() === RoleType.Government) {
-      this.cylinderStatus = [
-        { label: '储配站', value: 1 },
-        { label: '瓶库', value: 2 },
-        { label: '送气工', value: 3 },
-      ];
-    } else if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
-      this.cylinderStatus = [
-        { label: '储配站', value: 1 },
-        { label: '瓶库', value: 2 },
-        { label: '送气工', value: 3 },
-      ];
-    }
-    this.selectedCylinderStatus = this.cylinderStatus[0].value;
+    // this.cylinderStatus = [
+    //   { label: '储配站', value: 1 },
+    //   { label: '瓶库', value: 2 },
+    //   { label: '送气工', value: 3 },
+    // ];
+
+    this.route.paramMap.switchMap((params) => {
+      return Promise.resolve(params.get('type'));
+    }).subscribe((type) => {
+      this.init();
+      this.selectedCylinderStatus = parseInt(type, 10);
+    });
 
     this.commonRequestService.listCorpSupplyStation().then(data => {
       if (data.status === 0) {
@@ -130,6 +132,13 @@ export class CylinderRecordComponent implements OnInit {
         this.messageService.add({ severity: 'warn', summary: '获取储配站失败', detail: data.msg });
       }
     });
+  }
+
+  init() {
+    this.cylinderList = [];
+    this.total = 0;
+    this.beginTime = new Date((new Date().getTime() - 7 * 24 * 60 * 60 * 1000));
+    this.endTime = new Date();
   }
 
   onPageChange(event) {

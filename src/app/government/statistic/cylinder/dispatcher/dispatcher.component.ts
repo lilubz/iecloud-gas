@@ -75,8 +75,8 @@ export class DispatcherComponent implements OnInit, AfterViewInit {
       if (data.status === 0) {
         this.render(this.getXAxis(data.data.length), data.data.map(item => item.dispatcherCount));
       } else {
-        this.messageService.add({ severity: 'warn', summary: '获取配送量失败', detail: data.msg });
-        this.render([], []);
+        // this.messageService.add({ severity: 'warn', summary: '获取配送量失败', detail: data.msg });
+        this.render([''], [0]);
       }
     });
   }
