@@ -32,10 +32,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'media',
-    component: PageNotFoundComponent
-  },
-  {
     path: '**',
     redirectTo: 'cylinder/overview',
     pathMatch: 'full'

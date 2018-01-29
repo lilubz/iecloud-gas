@@ -41,7 +41,10 @@ export const GovernmentMenus: MenuItem[] = [
   {
     label: '可视化',
     icon: 'menu-icon visualization-icon',
-    routerLink: ['/government/visualization']
+    routerLink: ['/government/visualization'],
+    items: [
+      { label: '视频图像', routerLink: ['/government/visualization/video-monitor'] },
+    ]
   },
   {
     label: '统计查询',

@@ -1,0 +1,709 @@
+<html>
+<title>中国电信全球眼</title>
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="css/ext-all.css" rel="stylesheet" type="text/css" />
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<LINK href="css/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="./js/ext-base.js"></script>
+<script type="text/javascript" src="./js/ext-all.js"></script>
+<SCRIPT type="text/javascript" src="./js/SpryTabbedPanels.js" ></SCRIPT>
+<script type="text/javascript" src="./js/recordSearch.js"></script>
+<!--<script type="text/javascript" src="./js/DateTimeCalendar.js"></script>-->
+<script type="text/javascript" src="./js/calendar/WdatePicker.js"></script>
+<script type="text/javascript" src="./js/plugin.js"></script>
+
+
+<body onload="init();" onunload="Quit();">
+	
+<!--------------------视频控制块--------------------->
+
+<!--------------------录像检索块--------------------->
+
+<!----------------------------------------->
+<div id="header"><div class="text1">首次使用请先安装插件<a href="./WebOcx.exe">下载</a></div></div>
+<div id="contain">
+<div id="mainbg">
+
+<DIV class=TabbedPanels id=TabbedPanels1>
+<UL class=TabbedPanelsTabGroup>
+  <LI class=TabbedPanelsTab tabIndex=0 onclick="WebOcx.PlayType(0, 0);">视频监控</LI> 
+  <LI class=TabbedPanelsTab tabIndex=0 onclick="WebOcx.PlayType(0, 1);">录像下载</LI>
+  <LI style="width:500px; float:right; display: block;">
+ 	<form name="form1">
+    <table style="width:500px; " border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  	<td width="45" align="right">登录IP:</td>
+    <td width="81"><input type="text" name="loginIp" value="122.224.82.77" style="width:80px; border:1px solid #7F9DB9" /></td><!--60.191.109.204/hktest2@zjxc.zj.ge/1234--><!--172.16.1.2/yyl@zj.ge/yyl@zj.ge-->
+    <td width="36" align="right">端口:</td>
+    <td width="51"><input name="loginPort" type="text" value="6666" style="width:50px; border:1px solid #7F9DB9" /></td>
+    <td width="45" align="right">用户名:</td>
+    <td width="81"><input type="text" name="userName" value="mdf@zj.ge" style="width:80px; border:1px solid #7F9DB9" /></td>
+    <td width="36" align="right">密码:</td>
+    <td width="51"><input name="userPassword" type="password" value="123456" style="width:50px; border:1px solid #7F9DB9" /></td>
+    <td width="63"><img src="images/login.gif" name="login1" onclick="Login();"/></td>
+  </tr>
+</table></form>
+  </LI> 
+  
+</UL>
+<DIV class=TabbedPanelsContentGroup>
+<DIV class=TabbedPanelsContent><div id="links">
+   
+    <div class="text"><div id="righttop0"> <div id="control_header">&nbsp;&nbsp;&nbsp;&nbsp;视频控制</div><form name="form2"><div id="control2"><table width="184" height="115" border="0" cellpadding="0" cellspacing="0">
+            
+         <tr><td>   
+            
+
+</td></tr>
+            <tr>
+              <td width="39" height="35">&nbsp;</td>
+              <td width="49" align="center"><img src="images/y_up.gif" alt="上" name="Image1" width="27" height="32" border="0" id="Image1" onMouseDown="TurnUp();" onMouseUp="StopTurn();" /></td>
+              <td width="42" align="left"><img src="images/big.gif" alt="拉近" width="32" height="22" border="0" id="Image6" onMouseDown="LenNear();" onMouseUp="StopTurn();"/></td>
+              <td width="54" align="center"><img src="images/auto2.gif" width="35" height="19" border="0" alt="自动对焦" onClick=""/></td>
+            </tr>
+            <tr>
+              <td height="40" align="right"><img src="images/y_left.gif" alt="左" name="Image3" width="32" height="27" border="0" id="Image3" onMouseDown="TurnLeft();" onMouseUp="StopTurn();"/></td>
+              <td width="49" align="center"><img src="images/y_middle2.gif" alt="断开视频" name="Image5" width="27" height="27" border="0" id="Image5" onClick="Stop();"/></td>
+              <td align="left"><img src="images/y_right.gif" alt="右" name="Image2" width="32" height="27" border="0" id="Image2" onMouseDown="TurnRight();" onMouseUp="StopTurn();"/></td>
+              <td width="54" align="center"><img src="images/focusout2.gif" width="35" height="19" border="0" alt="视频调亮" onClick="Brighten();"/></td>
+            </tr>
+            <tr>
+              <td height="36">&nbsp;</td>
+              <td width="49" align="center"><img src="images/y_down.gif" alt="下" name="Image4" width="27" height="32" border="0" id="Image4" onMouseDown="TurnDown();" onMouseUp="StopTurn();"/></td>
+              <td align="left"><img src="images/small.gif" alt="拉远" width="32" height="22" border="0" id="Image7" onMouseDown="LenFar();" onMouseUp="StopTurn();"/></td>
+              <td width="54" align="center"><img src="images/focus2.gif" width="35" height="19" border="0" alt="视频调暗" onClick="Darken();"/></td>
+            </tr>
+         
+          </table>
+          
+        </div></form><div id="control2">
+		  <table width="175" height="30" border="0" cellpadding="0" cellspacing="0">
+            
+            <tr>
+              <td width="47"><img src="images/one_screen.gif" width="35" height="19" border="0" alt="单屏" name="num" onClick="changeScreen(1);"/></td>
+              <td width="49"><img src="images/four_screen.gif" width="35" height="19" border="0" alt="四屏" onClick="changeScreen(4);"/></td>
+              <td width="47"><img src="images/six_screen.gif" width="35" height="19" border="0" alt="六屏" onClick="changeScreen(6);"/></td>
+              <td width="35"><img src="images/nine_screen.gif" width="35" height="19" border="0" alt="九屏" onClick="changeScreen(9);"/></td>
+            </tr>
+          </table>
+		</div></div>
+		
+		<div id="righttop1" style="display:none"><div id="search_header">&nbsp;&nbsp;&nbsp;&nbsp;录像检索条件:</div>
+  <div class="x-form-bd" id="control2">
+		<table width="98%"  border="0" cellpadding="0"cellspacing="0" style="margin-top:5px">
+					<tr class="x-form-item">
+						<td  width="33%" height="30">摄&nbsp;像&nbsp;头：</td>
+						<td align="left" width="67%" ><input id="fdNameSelect" type="text"
+							style="width: 120px" disabled /><br><font color="blue">(从列表中选相应设备)</font>						</td>
+					</tr>
+					<tr class="x-form-item">
+					  <td  height="28">录像种类：</td>
+					  <td align="left" ><select class="x-combo-list"
+							name="recordType" id="recordType" style="width: 120px">
+                            <option value="0">前端录像</option> 
+                            <option value="1">中心录像</option>                                              
+                      </select></td>
+				    
+			        <tr class="x-form-item">
+			          <td  height="28">查询日期：</td>
+			          <td align="left" >
+					  <!--<input type="text" class="Wdate" id="BeginTime_1" style="width:120px" title="开始时间"  onfocus="calendar(event);"/>-->
+					  <input id="BeginTime_1" style="width:120px" title="查询日期" class="Wdate" type="text" onfocus="WdatePicker()">
+					  </td>
+		            <tr class="x-form-item" style="display:none">
+		              <td  height="28">结束时间：</td>
+		              <td align="left" >
+					  <!--<input type="text" class="Wdate" id="EndTime_1" style="width:120px"
+							title="截至时间"  onfocus="calendar(event);"/>-->
+						<input id="EndTime_1" style="width:120px" title="截至时间" class="Wdate" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">	
+							</td>
+	              <tr class="x-form-item">
+	                <td  height="28"><input type="button"
+							class="bbut" onclick="QueryRecord();" value="&nbsp;查询&nbsp;" /></td>
+                  <td  height="28">
+                    <input type="button" class="bbut" onclick="DownloadRecord()"
+							value="&nbsp;下载&nbsp;" /></td>
+                  </tr>    
+				<tr class="x-form-item">
+					<td height="28">当前通道：</td><td id="curPuID" height="28"></td>
+				</tr>
+				<tr class="x-form-item">
+					<td height="28">当前状态：</td><td id="curPuState" height="28"></td>
+				</tr>
+				<tr class="x-form-item">
+					<td  height="28">
+						<input id="btnPlayback" type="button" class="bbut" onclick="PlayRecord()" value="&nbsp;回放&nbsp;"/>
+					</td>
+					<td  height="28">
+						<input id="btnStopPlayback" type="button" class="bbut" onclick="WebOcx.StopPlayRecord(hwnd);document.getElementById('curPuState').innerHTML = '';" value="&nbsp;停止&nbsp;"/>
+					</td>
+				</tr>
+				<tr class="x-form-item">
+					<td  height="28">
+						<input id="btnPause" type="button" class="" onclick="WebOcx.PausePlayRecord(hwnd-0);" value="&nbsp;暂停&nbsp;"/>
+					</td>
+					<td  height="28">
+						<input id="btnResume" type="button" class="" onclick="WebOcx.ResumePlayRecord(hwnd-0);" value="&nbsp;恢复&nbsp;"/>
+					</td>
+					<td  height="28">
+						<input id="btnFast" type="button" class="" onclick="WebOcx.PlayRecordFast(hwnd-0);" value="&nbsp;快放&nbsp;"/>
+					</td>
+					<td  height="28">
+						<input id="btnSlow" type="button" class="" onclick="WebOcx.PlayRecordSlow(hwnd-0);" value="&nbsp;慢放&nbsp;"/>
+					</td>
+				</tr>
+                </table>
+			  </div></div>
+
+        <div id="rightbottom"> 
+        <div id="list_header"></div>
+        <div id="tree-div"></div>
+</div>
+        </div>
+</div><div id="main0">
+ <div id="plugin-container" class="text3">
+<!--<OBJECT id="WebOcx" name="WebOcx" classid="clsid:A3F076BD-A96C-4565-A326-0B6A2A3E8E9A" width="100%" height="100%">-->
+<!--</OBJECT>-->
+</div>
+</div>
+
+<div id="main1">
+ <div class="text">
+  </div>
+</div>
+
+<div id="main2" style="display:none">
+<div class="x-form-bd" id="container">
+  <div class="x-form-bd" id="south_div">
+		<div id="videoSearch_Div">
+		<div id="searchgrid" style="border: 0px solid #b5b8c8; height: 130px;"></div>
+		</div>
+		</div>
+</div>
+</div>
+
+</DIV>
+
+
+<DIV class=TabbedPanelsContent style="display:none"></div>
+
+</DIV>
+</DIV>
+<SCRIPT type=text/javascript>
+<!--
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+//-->
+</SCRIPT>
+</div>
+</div>
+<div id="footer"></div>
+<div>
+
+</div>
+
+<script language="javascript">
+
+	var hwnd;
+	var hwnd1;
+	var tempNode;
+	var FDListString11;
+	var tmpStr_array;
+	var sCameraID="";
+	var sChannelID="";
+	var b_HasLogin=false;
+	var tree,rootNode;
+	var sDstFilePath="C:\\myrecord\\";
+	var WebOcx;
+	var sPlaybackCameraID = "";
+	var sPlaybackChannelID = "";
+	//Ext.get('fdNameSelect').dom.value = "海康NVR8632n-海康IPC";
+	
+//初始化OCx控件
+function init()
+{
+	//hwnd = VOcx.Initial(12, 12, 552, 418, 0);	
+	InitPlugin();
+	WebOcx = document.getElementById('WebOcx');	//兼容其他浏览器
+	hwnd = WebOcx.InitPanel(12, 12, 552, 418, 0);	
+	WebOcx.SetWindowsNumber(1);
+	lResult = WebOcx.Initial(0);
+	WebOcx.PlayType(0, 0);
+}
+//创建数组
+function IniArray(size)
+{
+	for(var i = 0; i < size; i++)
+	{
+		this[i] = "";
+  	}
+	this.length=size;
+	return this;
+}
+
+//登陆方法
+function Login()
+{
+	//WebOcx.DynOnsize(12, 12, 552 / 2, 418 / 2);
+	//return;
+	var	lResult = 1;
+	var userName = document.form1.userName.value;
+	var userPassword = document.form1.userPassword.value;
+	var loginIp = document.form1.loginIp.value;
+	var loginPort = document.form1.loginPort.value;
+		
+	if(userName==null || userName==""){
+		alert("帐号不能为空，请重新填写！");
+		return false;
+	}
+	if(userPassword==null || userPassword==""){
+		alert("密码不能为空，请重新填写！");
+		return false;
+	}
+
+	//lResult = WebOcx.Login(loginIp,loginPort-0,"",userName,userPassword);
+	lResult = WebOcx.Login("192.168.73.248",6666,"","admin@test.zj.ge","1234");
+	if(lResult != 0){
+		alert("登陆失败!");
+	}else{
+		//alert("登录成功！");
+		WebOcx.GetDeviceList();
+		//WebOcx.PlayVideo2(hwnd, '123123000165432227', '1', 11);
+	}
+}
+
+//退出平台
+function Quit()
+{
+	WebOcx.StopVideo(hwnd);
+	WebOcx.StopPlayRecord(hwnd);
+  
+	WebOcx.Logout();
+	WebOcx.Free();
+	//VOcx.Free();
+}
+
+//开始视频
+function Start()
+{
+	WebOcx.PlayVideo(hwnd,sCameraID,sChannelID);	
+}
+//停止视频
+function Stop()
+{
+	WebOcx.StopVideo(hwnd);
+	//WebOcx.GetUserMPList();
+}
+
+//查询预设位
+function QueryPreset()
+{
+	WebOcx.QueryPreset(hwnd);
+}
+</script>
+
+
+<script>
+function GetGroupList(lType)
+{
+	WebOcx.GetGroupList(lType);
+}
+function GetGroupMPList(lType, lGrpId)
+{
+	WebOcx.GetGroupMPList(lType, lGrpId);
+}
+//解析字符串
+function parseXml(cString) {
+	// 然后开始获取 fdInfo.xml 需要的的第一个节点的属性值
+	if(tree == "" || typeof(tree) == 'undefined'){
+	tree = new Ext.tree.TreePanel('tree-div', {
+		animate : true,
+		line : true,
+		selMode : true,
+		rootVisible : true,
+		loader : false
+	});
+
+	rootNode = new Ext.tree.TreeNode( {
+		text : '设备列表',
+		draggable : false,
+		id : '0'
+	});
+	
+	
+	tree.on("click", function(node) {
+		if (node != null) {
+			if (node.isLeaf()) {
+				var TwoID = node.attributes.id;
+				sCameraID = TwoID.substring(0,18);
+				sChannelID = TwoID.substring(18,20);
+				Ext.get('fdNameSelect').dom.value = node.attributes.text;
+			}
+		}
+	});
+	
+		tree.on("dblclick", function(node) {
+				if (node != null) {
+					if (node.isLeaf()) {
+					var TwoID = node.attributes.id;
+				      sCameraID = TwoID.substring(0,18);
+				      sChannelID = TwoID.substring(18,20);				
+                 
+
+		  		    WebOcx.StopVideo(hwnd);
+					WebOcx.StopPlayRecord(hwnd);	//避免回放和监视码流混合
+					//PanelHandle = WndContainerOcx.GetPanelHandle();// 获得空闲窗口句柄
+					re = WebOcx.PlayVideo(hwnd,sCameraID,sChannelID);
+	
+	         } else {
+						if(node.attributes.cls != "folder")
+						{
+							tempNode = node;
+							IniFDID=node.attributes.id;
+							var ChannelList = WebOcx.GetChannelList(node.attributes.id);
+							node.expand(true);	
+			  		}
+			  			
+			  		else {
+			  	    node.collapseChildNodes();
+			      }			
+		   }
+    }
+	}		);
+}
+  var tmpStr_array =cString.split("$");
+  
+	for (var i = 1;i < tmpStr_array.length; i++) 
+		{
+	  
+	 var tmpStr_array2=tmpStr_array[i].split("|");
+	 var fdId = tmpStr_array2[0];
+	 var fdName = tmpStr_array2[1];
+	 var Status = tmpStr_array2[3];
+	 var flag = false;
+		
+		if(Status == 0)
+		{
+			flag = true;
+		}else{
+			flag = false;
+		}
+		var childNode = new Ext.tree.TreeNode( {
+			id : fdId,
+			text : fdName,
+			icon : 'images/list-items.gif',
+			disabled: flag,
+			leaf : false
+			//cls : 'folder'
+		});
+		rootNode.appendChild(childNode);
+	}
+
+	tree.setRootNode(rootNode);
+	tree.render();
+	rootNode.expand();
+}
+
+function addChild(node,ChannelListString)
+	{
+			var chStr_array =ChannelListString.split("$");
+			var childLength =chStr_array.length;
+			  if (childLength > 0) {
+	     for (var j = 1;j < childLength; j++) {
+			  
+	    var chStr_array2=chStr_array[j].split("|");
+	    var channelId = chStr_array2[0];
+	    var channelName = chStr_array2[3];
+							var childNode = new Ext.tree.TreeNode( {
+								id : channelId,
+								text : channelName,
+								disabled : false,
+								icon : 'images/onlineMp.gif',
+								leaf : true,
+								cls : 'file'
+							});
+							node.appendChild(childNode);
+							node.expand(true);
+							node.attributes.cls="folder";						
+					}
+				}			
+}
+
+//云台上转
+function TurnUp()
+{
+	WebOcx.PTZControlEx(hwnd,1,5);
+}
+//云台下转
+function TurnDown()
+{ 
+    WebOcx.PTZControlEx(hwnd,2,5);
+}		
+//云台的左转
+function TurnLeft()
+{
+   WebOcx.PTZControlEx(hwnd,3,5);
+}
+//云台的右转
+function TurnRight()
+{   
+    WebOcx.PTZControlEx(hwnd,4,5);
+}
+
+//变亮
+function Brighten()
+{
+    WebOcx.PTZControlEx(hwnd,5,5);
+}
+//变暗
+function Darken()
+{
+    WebOcx.PTZControlEx(hwnd,6,5);
+}
+//停止转动
+function StopTurn()
+{
+    WebOcx.PTZControlEx(hwnd,0,5);
+}
+//拉远镜头
+function LenFar()
+{
+    WebOcx.PTZControlEx(hwnd,8,5);
+}
+//拉近镜头
+function LenNear()
+{
+    WebOcx.PTZControlEx(hwnd,7,5);
+}
+//改变窗口数目
+function changeScreen(lWndNumber)
+{	 
+	  WebOcx.SetWindowsNumber(lWndNumber);	 
+}
+
+	function cacthPicture(){
+		var sFullID = WebOcx.GetCameraIDEx(hwnd);
+		var picfullpath;
+		var picPath = "c:\\SURFINGEYE\\PIC\\"; //本地抓图路径
+		if (sFullID == "" || sFullID == "undefined") {
+	        alertMsg.error('获取监控点失败！');
+		} else {
+			if(sFullID.length == 20){
+				picfullpath = picPath + sFullID + "_" + getCurrentTime() +".jpg";
+			}else{
+				var sMpID = sFullID.substring(7,25) + sFullID.substring(33,35);
+				var fileName = sMpID + "_" + getCurrentTime() +".jpg";
+				picfullpath = picPath + fileName;
+			}
+		    //alert(picfullpath);
+			setTimeout(function(){
+				rs = WebOcx.CaptureImage(hwnd,picfullpath);
+				alert(rs);
+				if (rs == 0) {
+					alert('抓图成功！');
+				} else {
+					alert('抓图失败');
+				}}, 500);
+		}
+
+	}
+	//开始录像
+	function startRec(){
+		var recPath = "c:\\SURFINGEYE\\RECORD\\"; //本地抓图路径
+		var sFullID = WebOcx.GetCameraIDEx(hwnd);
+		var recfullpath;
+		if (sFullID == "" || sFullID == "undefined") {
+	        alertMsg.error('获取监控点失败！');
+	        return;
+		}
+		if(sFullID.length == 20){
+			recfullpath = recPath + sFullID + "_" + getCurrentTime();
+		}else{
+			var sMpID = sFullID.substring(7,25) + sFullID.substring(33,35);
+			var sCameraID = sFullID.substring(7,25);
+			var sChannelID = sFullID.substring(33,35);
+			var fileName = sMpID + "_" + getCurrentTime();
+			recfullpath = recPath + fileName;
+		}
+		rs = WebOcx.StartRecordEx(hwnd, recfullpath);
+		if (rs != 0) {
+			alert('开始录像失败！');
+		}else{
+			alert('开始录像！');
+		}
+	}
+	//结束录像
+	function  stopRec() {
+		rs = WebOcx.StopRecordEx(hwnd);
+	    if (rs == 0) {
+			alert('停止录像成功！');
+		} else {
+			alert('停止录像失败！');
+		}
+
+	}
+	function getCurrentTime(){
+		var date = new Date(); 
+		var yy = date.getFullYear(); 
+		var MM = date.getMonth() + 1; 
+		if(MM<10) MM = "0" + MM;
+			var dd=date.getDate(); 
+		if(dd<10) dd = "0" + dd;
+			var hh=date.getHours(); 
+		if(hh<10) hh = "0" + hh;
+			var mm=date.getMinutes(); 
+		if(mm<10) mm = "0" + mm;
+			var ss=date.getSeconds(); 
+		if(ss<10) ss = "0" + ss;
+			var sss=date.getMilliseconds();  
+		return (yy + MM + dd + hh + mm + ss + sss); 
+	}
+	
+	
+	//IE和FF共用的事件响应函数
+	function onNotifyChannelMessage(sChannels){
+		var ChannelListString = sChannels;	
+		addChild(tempNode,ChannelListString);
+	}
+
+	function onNotifyGroupListMessage(sGroupList)
+	{
+		//GetGroupMPList(1, 41);
+	}
+
+	function onNotifyUserMessage(lMsgID)
+	{
+		//if (lMsgID == -2147155966)
+		//{
+		//	GetGroupList(1);
+		//}
+	}
+
+	function OnChangeFocus(hWnd, sWindData){
+	//sWindData: m_strCurrentPuID + "|" + m_strCurrentCameraID + "|" + m_strCurrentChannelID + "|" + strIsPlaying
+		hwnd = hWnd;
+		
+		if(sWindData == '') {
+			return;
+		}
+		var windDataArray = sWindData.split('|');
+		document.getElementById('curPuID').innerHTML = windDataArray[0];
+		if(windDataArray[3] == '0') {
+			document.getElementById('curPuState').innerHTML = '';
+		} else if(windDataArray[3] == '1'){
+			document.getElementById('curPuState').innerHTML = '回放';
+		}
+		sPlaybackCameraID = windDataArray[1];
+		sPlaybackChannelID = windDataArray[2];	
+		if(windDataArray[0] == '') {	//未绑定通道
+			document.getElementById("btnPlayback").disabled = true;
+		} else {
+			document.getElementById('btnPlayback').disabled = false;
+		}
+	}
+	
+	function onChangePlayWindowStatus(hWnd,lStatus,lType){
+		WebOcx.ChangePlayWindowStatus(hWnd,lStatus);
+	}
+
+	function onStopVideo(hWnd){
+		WebOcx.StopVideo(hWnd);
+		WebOcx.StopPlayRecord(hWnd);
+		document.getElementById('curPuState').innerHTML = '';
+	}
+
+	function onStopAllMonitor(){
+		WebOcx.StopAllMonitor();
+	}
+
+	function onCaptureImage(hWnd){
+		hwnd = hWnd;
+		cacthPicture();
+	}
+
+	function onStartLocalRecord(hWnd){
+		hwnd = hWnd;
+		startRec();
+	}
+
+	function onStopLocalRecord(hWnd){
+		hwnd = hWnd;
+		stopRec();
+	}
+
+	function onHandlePtzControl(hWnd, lPTZCommand, sPuID, sChannelID){
+		WebOcx.PTZControlEx(hwnd,lPTZCommand,5); 
+	}
+</script>
+
+
+<script language="javascript" for="WebOcx" event="NotifyRecordMessage(sCameraID, sList);">
+	
+    getRecordList(sList); 录像改在时间轴内显示
+    
+</script>
+
+<script language="javascript" for="WebOcx" event="NotifyDeviceListMessage(sDeviceList);">
+	//alert("NotifyDeviceListMessage(),sDeviceList="+sDeviceList);
+	//FDListString = sDeviceList;
+	parseXml(sDeviceList);
+</script>
+
+<script language="javascript" for="WebOcx" event="NotifyChannelMessage(sChannels);">
+	onNotifyChannelMessage(sChannels);
+</script>
+
+<script language="javascript" for="WebOcx" event="NotifyGroupListMessage(lType, sGroupList);">
+	onNotifyGroupListMessage(lType, sGroupList);
+</script>
+
+<script language="javascript" for="WebOcx" event="OnChangeFocus(hWnd, sWindData);">
+	OnChangeFocus(hWnd, sWindData);
+</script>
+
+<script language="javascript" for="WebOcx" event="OnMessage(hWnd, sCameraID, lMsgID, sMessage);">
+	//alert('hWnd: ' + hWnd + '; sCameraID: ' + sCameraID + '; lMsgID: ' + lMsgID + '; sMessage: ' + sMessage);
+	onNotifyUserMessage(lMsgID);
+</script>
+
+<script language="javascript" for="WebOcx" event="NotifyUserMPListMessage(sMPListInfo);">
+	alert(sMPListInfo);
+</script>
+
+<!----窗口状态设置事件---->
+<script language="javascript" for="WebOcx" event="ChangePlayWindowStatus(hWnd,lStatus,lType);">
+//	alert("ChangePlayWindowStatus,lType="+lType);
+	onChangePlayWindowStatus(hWnd,lStatus,lType);
+</script>
+
+<!----窗口关闭视频事件---->
+<script language="javascript" for="WebOcx" event="StopVideo(hWnd);">
+	 onStopVideo(hWnd);
+</script>
+<!----关闭全部视频事件---->
+<script language="javascript" for="WebOcx" event="StopAllMonitor();">
+	 onStopAllMonitor();
+</script>
+
+<!--本地截图事件-->
+<script language="javascript" for="WebOcx" event="CaptureImage(hWnd);">
+	onCaptureImage(hWnd);
+</script>
+<!--开始本地录像事件-->
+<script language="javascript" for="WebOcx" event="StartLocalRecord(hWnd);">
+	onStartLocalRecord(hWnd);
+</script>
+<!--停止本地录像事件-->
+<script language="javascript" for="WebOcx" event="StopLocalRecord(hWnd);">
+	onStopLocalRecord(hWnd);
+</script>
+
+<script language="javascript" for="WebOcx" event="SetRecordRange(hWnd, lRange);">  
+</script>
+
+<script language="javascript" for="WebOcx" event="OnPTZControl(hWnd, lPTZCommand, sPuID, sChannelID);">
+  	onHandlePtzControl(hWnd, lPTZCommand, sPuID, sChannelID);
+</script>
+</body>
+</html>

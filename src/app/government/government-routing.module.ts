@@ -44,7 +44,10 @@ const routes: Routes = [
       },
       {
         path: 'visualization',
-        component: PageNotFoundComponent
+        loadChildren: './visualization/visualization.module#VisualizationModule',
+        data: {
+          title: '可视化'
+        }
       },
       {
         path: 'statistic',
