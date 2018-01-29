@@ -1,3 +1,4 @@
+import { UserStateService } from './../../../core/userState.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-monitoring.component.scss']
 })
 export class VideoMonitoringComponent implements OnInit {
-
-  constructor() { }
+  isAdmin: boolean;
+  constructor(
+    private userStateService: UserStateService
+  ) { }
 
   ngOnInit() {
+    this.isAdmin = (this.userStateService.getUser().roleId).toString() === '4' ? true : false;
   }
 
 }
