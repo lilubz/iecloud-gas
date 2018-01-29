@@ -24,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'car',
-    component: PageNotFoundComponent
+    redirectTo: 'car/search',
+    pathMatch: 'full'
   },
   {
     path: 'employee',

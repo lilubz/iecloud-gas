@@ -180,9 +180,27 @@ export const API = {
   'listTransactionChildren': URL + 'corpBusiness/collaborative/listTransactionChildren.do', // 14,获取某个事务下面所有节点的信息
   'listEventDetailInfo': URL + 'corpBusiness/collaborative/listEventDetailInfo.do', // 15,根据节点ID查询事务信息。
 
+
+  // 报表管理
+  'listCommitDetail': URL + 'corpBusiness/reportManagementController/listCommitDetail.do', // 历史记录
   // 企业协同
   'listCorpTransactionInfo': URL + 'corpBusiness/collaborative/listCorpTransactionInfo.do', // 21.获取与本企业有关的事务列表
   'listCorpEventInfo': URL + 'corpBusiness/collaborative/listCorpEventInfo.do', // 22.获取需处理节点的信息
+
+  // 报表管理
+  'listReportInfo': URL + 'corpBusiness/reportManagementController/listReportInfo.do', // 1,获取需提交报表列表
+  'addReportInfo': URL + 'corpBusiness/reportManagementController/addReportInfo.do', // 2，新增报表
+  'listReportCommitInfo': URL + 'corpBusiness/reportManagementController/listReportCommitInfo.do', // 3.获取报表提交情况列表
+  'reportCommit': URL + 'corpBusiness/reportManagementController/reportCommit.do', // 4.报表提交
+  'reportStatistics': URL + 'corpBusiness/reportManagementController/reportStatistics.do', // 5.获取报表统计列表
+  'reportCommitDetail': URL + 'corpBusiness/reportManagementController/reportCommitDetail.do', // 6.查询某次报表提交祥情列表。
+
+  // 车辆管理
+  'getCarType': URL + 'basicInformation/corpCarInfo/getCarType.do', // 获取车辆类型
+  'getCarNumberList': URL + 'basicInformation/corpCarInfo/getCarNumberList.do', // 获取登陆用户能够查看的车牌列表，模糊查询车牌号
+  'getCarList': URL + 'basicInformation/corpCarInfo/getCarList.do', // 根据条件查询车辆信息
+  'listCorpInfoInRegion': URL + 'basicInformation/corpInfo/listCorpInfoInRegion.do',
+
 
   // 统计查询
   // 获取某区域下属于【储配站】的气瓶的统计信息

@@ -1,0 +1,49 @@
+<div class="statistics">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h2>
+        报表统计
+      </h2>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+        scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+        [(first)]="dataTable.first">
+        <p-column [style]="{'width':'100px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'120px'}" header="报表名称" field="reportName"></p-column>
+        <p-column [style]="{'width':'120px'}" header="已提交" field="commitCount">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.commitCount?rowData.commitCount:0}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'120px'}" header="未提交">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.unCommitCount?rowData.unCommitCount:0}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" header="本次截止时间">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.expectSubmissionTime|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" header="操作">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['../details']" [queryParams]="{'id':rowData.corpReportManagementId}">详情查看</a>
+          </ng-template>
+        </p-column>
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+      
+      </p-dataTable>
+    </div>
+  </div>
+</div>

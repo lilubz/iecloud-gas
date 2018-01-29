@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <span>报表管理</span>
+    <a href="javascript:void(0);" [routerLink]="['submit']" routerLinkActive="active">
+      <span>
+        报表提交
+      </span>
+    </a>
+    <a href="javascript:void(0);" [routerLink]="['history']" routerLinkActive="active">
+      <span>
+        历史记录
+      </span>
+    </a>
+  </div>
+</div>
+<div class="ui-g-12 main">
+  <router-outlet></router-outlet>
+</div>

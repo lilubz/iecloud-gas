@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'cylinder-trace',
+    redirectTo: 'collaborative/my-affairs',
     pathMatch: 'full'
   },
   // {
@@ -23,16 +23,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'collaborative',
-    redirectTo: 'collaborative/my-affairs',
+    path: 'report',
+    redirectTo: 'report/manage',
     pathMatch: 'full'
   },
-  {
-    path: '**',
-    redirectTo: 'collaborative/my-affairs',
-    pathMatch: 'full'
-    // component: PageNotFoundComponent
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: 'collaborative/my-affairs',
+  //   pathMatch: 'full'
+  //   // component: PageNotFoundComponent
+  // }
 ];
 
 @NgModule({

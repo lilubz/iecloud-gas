@@ -8,14 +8,14 @@ import { PageNotFoundComponent } from '../shared/page-not-found/page-not-found.c
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'archive',
     pathMatch: 'full'
   },
-  {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'home',
+  //   component: HomeComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: '',
     component: LayoutComponent,
@@ -28,13 +28,6 @@ const routes: Routes = [
           title: '基础档案'
         }
       },
-      // {
-      //   path: 'system',
-      //   loadChildren: './system/system.module#SystemModule',
-      //   data: {
-      //     title: '系统配置'
-      //   }
-      // },
       {
         path: 'delivery',
         loadChildren: './delivery/delivery.module#DeliveryModule',

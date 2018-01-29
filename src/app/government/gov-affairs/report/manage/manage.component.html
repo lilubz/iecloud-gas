@@ -1,0 +1,111 @@
+<div class="manage">
+  <div class="ui-g">
+    <div class="ui-g-6">
+      <h1>
+        报表管理
+      </h1>
+    </div>
+    <div class="ui-g-6 text-right">
+      <button (click)="visible = true" pButton type="button" icon="fa fa-fw fa-plus" label="新增"></button>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+        [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+        [(first)]="dataTable.first">
+        <p-column [style]="{'width':'50px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'120px'}" header="报表名称" field="reportName"></p-column>
+        <p-column [style]="{'width':'80px'}" header="模板下载">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" (click)="window.location.href=rowData.attachmentUrl">点击查看</a>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'60px'}" header="提交间隔">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.reportCommitIntervalTime}}天</span>
+          </ng-template>
+        </p-column>
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+    
+      </p-dataTable>
+    </div>
+  </div>
+  <div class="ui-g">
+    <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="800" [contentStyle]="{'padding':'0','overflow':'visible'}"
+      [minWidth]="800" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+      <form class="dialog" (submit)="onSubmit(file);">
+        <div class="ui-g ui-g-nopad">
+          <div class="ui-g-12 ui-g-nopad">
+            <h1 class="text-center">新增报表</h1>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-6">
+            <div class="form-group ui-g-12">
+              <label for="inputEmail3" class="ui-g-4 control-label text-right">
+                <span class="warn">*</span>报表名称：</label>
+              <div class="ui-g-8">
+                <input type="text" pInputText [(ngModel)]="formModel.name" name="name" />
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-6">
+            <div class="form-group ui-g-12">
+              <label for="inputEmail3" class="ui-g-4 control-label text-right">
+                <span class="warn">*</span>附件：</label>
+              <div class="ui-g-8">
+                <input type="file" #file id="file" name="file">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-6 form-group">
+            <label for="inputEmail3" class="ui-g-4 control-label text-right">
+              <span class="warn">*</span>提交间隔：</label>
+            <div class="ui-g-8">
+              <input class="interval" type="number" pInputText [(ngModel)]="formModel.interval" name="interval" min="1" step="1"/>
+              <span>天</span>
+            </div>
+          </div>
+          <div class="ui-g-6 form-group">
+            <label for="inputEmail3" class="ui-g-4 control-label text-right">
+              <span class="warn">*</span>使用对象：</label>
+            <div class="ui-g-8">
+              <p-radioButton name="target" value="1" label="执法部门" [(ngModel)]="formModel.target" inputId="opt1"></p-radioButton>
+              <p-radioButton name="target" value="2" label="企业" [(ngModel)]="formModel.target" inputId="opt2"></p-radioButton>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-6">
+            <div class="ui-g-12 form-group">
+              <label for="inputEmail3" class="ui-g-4 control-label text-right">
+                <span class="warn">*</span>首次提交：</label>
+              <div class="ui-g-8">
+                <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" [yearNavigator]="true" 
+                  yearRange="1970:2050" dateFormat="yy-mm-dd"[locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false"
+                  placeholder="初始提交时间" [minDate]="currentDate" [showButtonBar]="true" [style]="{'width':'100%'}"></p-calendar>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 text-center">
+            <button pButton type="submit" class="ui-button-primery" label="确认" icon="fa-check"></button>
+            <button (click)="onCancel();" pButton type="button" class="ui-button-secondary" label="取消" icon="fa-close"></button>
+          </div>
+        </div>
+      </form>
+    </p-dialog>
+  </div>
+</div>

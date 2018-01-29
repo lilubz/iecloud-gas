@@ -7,11 +7,11 @@ import { SubmitComponent } from './submit/submit.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'report/submit',
+    redirectTo: 'submit',
     pathMatch: 'full'
   },
   {
-    path: 'report',
+    path: '',
     component: ReportComponent,
     data: {
       title: '报表管理'

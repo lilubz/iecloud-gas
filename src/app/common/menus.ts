@@ -1,11 +1,11 @@
 import { MenuItem } from 'primeng/primeng';
 
 export const GovernmentMenus: MenuItem[] = [
-  {
-    label: '首页',
-    icon: 'menu-icon home-icon',
-    routerLink: ['/government/home']
-  },
+  // {
+  //   label: '首页',
+  //   icon: 'menu-icon home-icon',
+  //   routerLink: ['/government/home']
+  // },
   {
     label: '基础档案',
     icon: 'menu-icon archive-icon',
@@ -15,8 +15,7 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '用户档案', routerLink: ['/government/archive/customer'] },
       { label: '企业档案', routerLink: ['/government/archive/enterprise'] },
       { label: '车辆信息', routerLink: ['/government/archive/car'] },
-      { label: '从业人员信息', routerLink: ['/government/archive/employee'] },
-      { label: '视频图像', routerLink: ['/government/archive/media'] },
+      { label: '送气工信息', routerLink: ['/government/archive/employee'] },
     ]
   },
   {
@@ -35,6 +34,7 @@ export const GovernmentMenus: MenuItem[] = [
     items: [
       // { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
       // { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
+      { label: '报表管理', routerLink: ['/government/gov-affairs/report'] },
       { label: '协同管理', routerLink: ['/government/gov-affairs/collaborative'] },
     ]
   },
@@ -72,11 +72,11 @@ export const GovernmentMenus: MenuItem[] = [
 ];
 
 export const EnterpriseMenus: MenuItem[] = [
-  {
-    label: '首页',
-    icon: 'menu-icon home-icon',
-    routerLink: ['/enterprise/home']
-  },
+  // {
+  //   label: '首页',
+  //   icon: 'menu-icon home-icon',
+  //   routerLink: ['/enterprise/home']
+  // },
   {
     label: '基础档案',
     icon: 'menu-icon archive-icon',
@@ -85,8 +85,7 @@ export const EnterpriseMenus: MenuItem[] = [
       { label: '气瓶档案', routerLink: ['/enterprise/archive/cylinder'] },
       { label: '用户档案', routerLink: ['/enterprise/archive/customer'] },
       { label: '车辆信息', routerLink: ['/enterprise/archive/car'] },
-      { label: '从业人员信息', routerLink: ['/enterprise/archive/employee'] },
-      { label: '视频图像', routerLink: ['/enterprise/archive/media'] },
+      { label: '送气工信息', routerLink: ['/enterprise/archive/employee'] },
     ]
   },
   {
@@ -121,7 +120,7 @@ export const EnterpriseMenus: MenuItem[] = [
     icon: 'menu-icon statistic-icon',
     routerLink: ['/enterprise/enterprise-supervise'],
     items: [
-      // { label: '报表管理', routerLink: ['/enterprise-supervise/affair-details'] },
+      { label: '报表管理', routerLink: ['/enterprise/enterprise-supervise/report'] },
       { label: '事务处理', routerLink: ['/enterprise/enterprise-supervise/affair-list'] }
     ]
   },

@@ -8,11 +8,13 @@ import { SharedModule } from '../../shared/shared.module';
 // import { CylinderFillingComponent } from './cylinder-filling/cylinder-filling.component';
 // import { CylinderFillingService } from './cylinder-filling/cylinder-filling.service';
 import { CollaborativeModule } from './collaborative/collaborative.module';
+import { ReportModule } from './report/report.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
+    ReportModule,
     CollaborativeModule,
     GovAffairsRoutingModule,
   ],

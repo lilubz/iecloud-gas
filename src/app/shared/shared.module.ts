@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
-
 import {
   AutoCompleteModule,
   ButtonModule,
@@ -23,6 +22,7 @@ import {
   MenuModule,
   MultiSelectModule,
   PanelModule,
+  PaginatorModule,
   LightboxModule,
   SpinnerModule,
   TieredMenuModule,
@@ -65,6 +65,7 @@ import { PermissionRoleDirective } from './permission-role.directive';
     MenuModule,
     MultiSelectModule,
     PanelModule,
+    PaginatorModule,
     LightboxModule,
     SpinnerModule,
     RouterModule,
@@ -110,6 +111,7 @@ import { PermissionRoleDirective } from './permission-role.directive';
     MenuModule,
     MultiSelectModule,
     PanelModule,
+    PaginatorModule,
     LightboxModule,
     SpinnerModule,
     RouterModule,

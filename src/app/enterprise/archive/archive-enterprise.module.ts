@@ -8,11 +8,13 @@ import { CylinderModule } from './cylinder/cylinder.module';
 import { EmployeeModule } from './employee/employee.module';
 import { ArchiveComponent } from './archive.component';
 import { EnterpriseModule } from './enterprise/enterprise.module';
+import { CarModule } from './car/car.module';
 
 
 @NgModule({
   imports: [
     SharedModule,
+    CarModule,
     CylinderModule,
     CustomerModule,
     EmployeeModule,

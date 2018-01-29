@@ -25,17 +25,13 @@ const routes: Routes = [
       },
       {
         path: 'report',
-        redirectTo: 'report/submit',
-        pathMatch: 'full'
+        loadChildren: './report/report.module#ReportModule',
+        data: {
+          title: '报表管理'
+        }
       },
     ]
   },
-  // {
-  //   path: 'report',
-  //   redirectTo: 'report/submit',
-  //   pathMatch: 'full'
-  // },
-
   {
     path: '**',
     redirectTo: 'affair-list',
