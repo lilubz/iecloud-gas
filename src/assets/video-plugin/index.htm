@@ -32,18 +32,17 @@
       <DIV class=TabbedPanels id=TabbedPanels1>
         <UL class=TabbedPanelsTabGroup>
           <LI class=TabbedPanelsTab tabIndex=0 onclick="WebOcx.PlayType(0, 0);">视频监控</LI>
-          <LI class=TabbedPanelsTab tabIndex=0 onclick="WebOcx.PlayType(0, 1);">录像下载</LI>
+          <!-- <LI class=TabbedPanelsTab tabIndex=0></LI> -->
+          <!-- <LI class=TabbedPanelsTab tabIndex=0 onclick="WebOcx.PlayType(0, 1);">录像下载</LI> -->
           <LI style="width:500px; float:right; display: block;">
             <form name="form1">
               <table style="width:500px; " border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="45" align="right">登录IP:</td>
                   <td width="81">
-                    <input type="text" name="loginIp" value="122.228.231.168" style="width:80px; border:1px solid #7F9DB9"
-                    />
+                    <input type="text" name="loginIp" value="122.228.231.168" style="width:80px; border:1px solid #7F9DB9" />
                   </td>
-                  <!-- 60.191.109.204/hktest2@zjxc.zj.ge/1234
-    172.16.1.2/yyl@zj.ge/yyl@zj.ge -->
+                  <!-- 60.191.109.204/hktest2@zjxc.zj.ge/1234 172.16.1.2/yyl@zj.ge/yyl@zj.ge -->
                   <td width="36" align="right">端口:</td>
                   <td width="51">
                     <input name="loginPort" type="text" value="6666" style="width:50px; border:1px solid #7F9DB9" />
@@ -85,12 +84,12 @@
                         <tr>
                           <td width="39" height="35">&nbsp;</td>
                           <td width="49" align="center">
-                            <img src="images/y_up.gif" alt="上" name="Image1" width="27" height="32" border="0" id="Image1"
-                              onMouseDown="TurnUp();" onMouseUp="StopTurn();" />
+                            <img src="images/y_up.gif" alt="上" name="Image1" width="27" height="32" border="0" id="Image1" onMouseDown="TurnUp();" onMouseUp="StopTurn();"
+                            />
                           </td>
                           <td width="42" align="left">
-                            <img src="images/big.gif" alt="拉近" width="32" height="22" border="0" id="Image6" onMouseDown="LenNear();"
-                              onMouseUp="StopTurn();" />
+                            <img src="images/big.gif" alt="拉近" width="32" height="22" border="0" id="Image6" onMouseDown="LenNear();" onMouseUp="StopTurn();"
+                            />
                           </td>
                           <td width="54" align="center">
                             <img src="images/auto2.gif" width="35" height="19" border="0" alt="自动对焦" onClick="" />
@@ -98,31 +97,30 @@
                         </tr>
                         <tr>
                           <td height="40" align="right">
-                            <img src="images/y_left.gif" alt="左" name="Image3" width="32" height="27" border="0" id="Image3"
-                              onMouseDown="TurnLeft();" onMouseUp="StopTurn();" />
+                            <img src="images/y_left.gif" alt="左" name="Image3" width="32" height="27" border="0" id="Image3" onMouseDown="TurnLeft();"
+                              onMouseUp="StopTurn();" />
                           </td>
                           <td width="49" align="center">
-                            <img src="images/y_middle2.gif" alt="断开视频" name="Image5" width="27" height="27" border="0" id="Image5"
-                              onClick="Stop();" />
+                            <img src="images/y_middle2.gif" alt="断开视频" name="Image5" width="27" height="27" border="0" id="Image5" onClick="Stop();"
+                            />
                           </td>
                           <td align="left">
-                            <img src="images/y_right.gif" alt="右" name="Image2" width="32" height="27" border="0" id="Image2"
-                              onMouseDown="TurnRight();" onMouseUp="StopTurn();" />
+                            <img src="images/y_right.gif" alt="右" name="Image2" width="32" height="27" border="0" id="Image2" onMouseDown="TurnRight();"
+                              onMouseUp="StopTurn();" />
                           </td>
                           <td width="54" align="center">
-                            <img src="images/focusout2.gif" width="35" height="19" border="0" alt="视频调亮" onClick="Brighten();"
-                            />
+                            <img src="images/focusout2.gif" width="35" height="19" border="0" alt="视频调亮" onClick="Brighten();" />
                           </td>
                         </tr>
                         <tr>
                           <td height="36">&nbsp;</td>
                           <td width="49" align="center">
-                            <img src="images/y_down.gif" alt="下" name="Image4" width="27" height="32" border="0" id="Image4"
-                              onMouseDown="TurnDown();" onMouseUp="StopTurn();" />
+                            <img src="images/y_down.gif" alt="下" name="Image4" width="27" height="32" border="0" id="Image4" onMouseDown="TurnDown();"
+                              onMouseUp="StopTurn();" />
                           </td>
                           <td align="left">
-                            <img src="images/small.gif" alt="拉远" width="32" height="22" border="0" id="Image7" onMouseDown="LenFar();"
-                              onMouseUp="StopTurn();" />
+                            <img src="images/small.gif" alt="拉远" width="32" height="22" border="0" id="Image7" onMouseDown="LenFar();" onMouseUp="StopTurn();"
+                            />
                           </td>
                           <td width="54" align="center">
                             <img src="images/focus2.gif" width="35" height="19" border="0" alt="视频调暗" onClick="Darken();" />
@@ -138,20 +136,16 @@
 
                       <tr>
                         <td width="47">
-                          <img src="images/one_screen.gif" width="35" height="19" border="0" alt="单屏" name="num" onClick="changeScreen(1);"
-                          />
+                          <img src="images/one_screen.gif" width="35" height="19" border="0" alt="单屏" name="num" onClick="changeScreen(1);" />
                         </td>
                         <td width="49">
-                          <img src="images/four_screen.gif" width="35" height="19" border="0" alt="四屏" onClick="changeScreen(4);"
-                          />
+                          <img src="images/four_screen.gif" width="35" height="19" border="0" alt="四屏" onClick="changeScreen(4);" />
                         </td>
                         <td width="47">
-                          <img src="images/six_screen.gif" width="35" height="19" border="0" alt="六屏" onClick="changeScreen(6);"
-                          />
+                          <img src="images/six_screen.gif" width="35" height="19" border="0" alt="六屏" onClick="changeScreen(6);" />
                         </td>
                         <td width="35">
-                          <img src="images/nine_screen.gif" width="35" height="19" border="0" alt="九屏" onClick="changeScreen(9);"
-                          />
+                          <img src="images/nine_screen.gif" width="35" height="19" border="0" alt="九屏" onClick="changeScreen(9);" />
                         </td>
                       </tr>
                     </table>
@@ -272,9 +266,10 @@
         </DIV>
       </DIV>
       <SCRIPT type=text/javascript>
-        <!--
+
         var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
-        //-->
+
+
       </SCRIPT>
     </div>
   </div>
@@ -371,6 +366,7 @@
     function QueryPreset() {
       WebOcx.QueryPreset(hwnd);
     }
+
   </script>
 
 
@@ -688,74 +684,91 @@
     function onHandlePtzControl(hWnd, lPTZCommand, sPuID, sChannelID) {
       WebOcx.PTZControlEx(hwnd, lPTZCommand, 5);
     }
+
   </script>
 
 
   <script language="javascript" for="WebOcx" event="NotifyRecordMessage(sCameraID, sList);">
     getRecordList(sList);
-    录像改在时间轴内显示
+    // 录像改在时间轴内显示
+
   </script>
 
   <script language="javascript" for="WebOcx" event="NotifyDeviceListMessage(sDeviceList);">
     //alert("NotifyDeviceListMessage(),sDeviceList="+sDeviceList);
     //FDListString = sDeviceList;
     parseXml(sDeviceList);
+
   </script>
 
   <script language="javascript" for="WebOcx" event="NotifyChannelMessage(sChannels);">
     onNotifyChannelMessage(sChannels);
+
   </script>
 
   <script language="javascript" for="WebOcx" event="NotifyGroupListMessage(lType, sGroupList);">
     onNotifyGroupListMessage(lType, sGroupList);
+
   </script>
 
   <script language="javascript" for="WebOcx" event="OnChangeFocus(hWnd, sWindData);">
     OnChangeFocus(hWnd, sWindData);
+
   </script>
 
   <script language="javascript" for="WebOcx" event="OnMessage(hWnd, sCameraID, lMsgID, sMessage);">
     //alert('hWnd: ' + hWnd + '; sCameraID: ' + sCameraID + '; lMsgID: ' + lMsgID + '; sMessage: ' + sMessage);
     onNotifyUserMessage(lMsgID);
+
   </script>
 
   <script language="javascript" for="WebOcx" event="NotifyUserMPListMessage(sMPListInfo);">
     alert(sMPListInfo);
+
   </script>
 
   <!----窗口状态设置事件---->
   <script language="javascript" for="WebOcx" event="ChangePlayWindowStatus(hWnd,lStatus,lType);">
     //	alert("ChangePlayWindowStatus,lType="+lType);
     onChangePlayWindowStatus(hWnd, lStatus, lType);
+
   </script>
 
   <!----窗口关闭视频事件---->
   <script language="javascript" for="WebOcx" event="StopVideo(hWnd);">
     onStopVideo(hWnd);
+
   </script>
   <!----关闭全部视频事件---->
   <script language="javascript" for="WebOcx" event="StopAllMonitor();">
     onStopAllMonitor();
+
   </script>
 
   <!--本地截图事件-->
   <script language="javascript" for="WebOcx" event="CaptureImage(hWnd);">
     onCaptureImage(hWnd);
+
   </script>
   <!--开始本地录像事件-->
   <script language="javascript" for="WebOcx" event="StartLocalRecord(hWnd);">
     onStartLocalRecord(hWnd);
+
   </script>
   <!--停止本地录像事件-->
   <script language="javascript" for="WebOcx" event="StopLocalRecord(hWnd);">
     onStopLocalRecord(hWnd);
+
   </script>
 
   <script language="javascript" for="WebOcx" event="SetRecordRange(hWnd, lRange);">
+
+
   </script>
 
   <script language="javascript" for="WebOcx" event="OnPTZControl(hWnd, lPTZCommand, sPuID, sChannelID);">
     onHandlePtzControl(hWnd, lPTZCommand, sPuID, sChannelID);
+
   </script>
 </body>
 
