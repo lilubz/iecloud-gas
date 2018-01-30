@@ -73,7 +73,11 @@
         {{index + 1}}
       </ng-template>
     </p-column> -->
-    <p-column field="gasLabelNumber"></p-column>
+    <p-column field="gasLabelNumber">
+      <ng-template let-rowData="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber}">{{rowData.gasLabelNumber}}</a>
+      </ng-template>
+    </p-column>
     <p-column field="createTime">
       <ng-template let-record="rowData" pTemplate="body">
         {{ record.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}

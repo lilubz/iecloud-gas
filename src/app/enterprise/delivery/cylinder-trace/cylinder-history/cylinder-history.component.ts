@@ -13,6 +13,7 @@ import { CylinderFilling } from '../cylinder-filling/CylinderFillingHistory.mode
   styleUrls: ['./cylinder-history.component.css']
 })
 export class CylinderHistoryComponent implements OnInit {
+  loading = false;
   zh = zh_CN;
   cylinderHistoryList: Array<{
     createTime?: Date,
@@ -49,6 +50,11 @@ export class CylinderHistoryComponent implements OnInit {
 
   ngOnInit() {
     this.cylinderNumber = this.route.snapshot.params['gasLabelNumber'] || '';
+    if (this.route.queryParams['value'].cylinderNumber) {
+      this.loading = true;
+      this.cylinderNumber = this.route.queryParams['value'].cylinderNumber;
+      this.getCylinderHistoryStatus();
+    }
   }
 
   getCylinderHistoryStatus() {
@@ -71,6 +77,7 @@ export class CylinderHistoryComponent implements OnInit {
       endTime: this.endTime
     }).then(data => {
       if (data.status === 0) {
+        this.loading = false;
         if (data.data.length === 0) {
           this.messageService.add({ severity: 'warn', summary: '获取气瓶状态历史为空', detail: '' });
         }

@@ -61,6 +61,12 @@
             <a href="javascript:void(0);" [routerLink]="['../detail', cylinder.gasLabelNumber || '']">{{ cylinder.gasLabelNumber }}</a>
           </ng-template>
         </p-column>
+        <p-column [style]="{'width':'120px'}" header="操作">
+          <ng-template let-col let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-history']"
+             [queryParams]="{cylinderNumber:rowData.gasLabelNumber}">查看流转记录</a>
+          </ng-template>
+        </p-column>
         <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
         <p-column [style]="{'width':'150px'}" field="enterpriseName" header="经营企业"></p-column>
         <p-column [style]="{'width':'100px'}" field="type" header="气瓶规格"></p-column>

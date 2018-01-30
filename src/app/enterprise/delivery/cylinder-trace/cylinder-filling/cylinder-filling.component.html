@@ -23,7 +23,11 @@
         {{index + 1}}
       </ng-template>
     </p-column> -->
-    <p-column field="gasLabelNumber" header="气瓶条码" [style]="{'width':'150px'}"></p-column>
+    <p-column header="气瓶条码" [style]="{'width':'150px'}">
+      <ng-template let-rowData="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber}">{{rowData.gasLabelNumber}}</a>
+      </ng-template>
+    </p-column>
     <p-column field="inflatableStationName" header="充装站名称" [style]="{'width':'150px'}"></p-column>
     <p-column field="fillingStart" header="充装开始时间" [style]="{'width':'150px'}">
       <ng-template let-record="rowData" pTemplate="body">

@@ -12,7 +12,7 @@
 </div>
 
 <div class="ui-g-12">
-  <p-dataTable [value]="cylinderHistoryList" sortField="createTime" [sortOrder]="-1" emptyMessage="未查询到数据" [paginator]="true"
+  <p-dataTable [value]="cylinderHistoryList" sortField="createTime" [sortOrder]="-1" emptyMessage="未查询到数据" [paginator]="true" [loading]="loading"
     [rows]="pageSizeHistory" scrollable="true" [(first)]="historyFirst" [totalRecords]="totalHistory" [rowsPerPageOptions]="[1,5,10,20,40]">
     <p-headerColumnGroup>
       <p-row>

@@ -1,7 +1,7 @@
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
     <div class="ui-g-12">
-      <h3>气瓶追溯</h3>
+      <h3>充装记录</h3>
     </div>
     <!-- <div class="ui-g-12">
       <button pButton type="button" label="气瓶状态查询" [routerLink]="['state']"></button>
@@ -13,13 +13,10 @@
     <div class="ui-g-12">
       <button pButton type="button" label="气瓶充装记录" [routerLink]="['cylinder-filling']"></button>
     </div>
-    <div class="ui-g-12">
-      <button pButton type="button" label="气瓶变迁历史" [routerLink]="['cylinder-history']"></button>
-    </div>
   </div>
   <div class="ui-g ui-g-nopad group">
     <div class="ui-g-12">
-      <h3>配送记录</h3>
+      <h3>流转记录</h3>
     </div>
     <!-- <div class="ui-g-12">
       <button pButton type="button" label="气瓶状态查询" [routerLink]="['state']"></button>
@@ -28,6 +25,9 @@
       <button pButton type="button" label="气瓶条码查询" [routerLink]="['cylinder-number']"></button>
     </div> -->
 
+    <div class="ui-g-12">
+      <button pButton type="button" label="按条码查询" [routerLink]="['cylinder-history']"></button>
+    </div>
     <div class="ui-g-12">
       <button pButton type="button" label="按储配站查询" [routerLink]="['cylinder-record',{type:1}]"></button>
     </div>
