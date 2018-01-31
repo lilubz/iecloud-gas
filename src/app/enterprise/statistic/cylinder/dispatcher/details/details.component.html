@@ -1,0 +1,60 @@
+<div class="flow">
+  <div class="ui-g" style="margin-top:70px;">
+    <div class="ui-g-6">
+      <button pButton type="button" label="返回" style="margin-left:10px" [routerLink]="['../dispatcher']"></button>
+    </div>
+  </div>
+  <div class="ui-g">
+    <form class="ui-g-12" (submit)="onSubmit();">
+      <div class="ui-g-3 form-group">
+        <label for="">时间类型</label>
+        <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType"
+          [style]="{'width':'calc(100% - 110px)'}"></p-dropdown>
+      </div>
+      <div class="ui-g-6 ui-g-nopad" *ngIf="formModel.timeType===null">
+        <div class="ui-g-6 form-group">
+          <label for="">开始时间</label>
+          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true" [style]="{'width':'calc(100% - 85px)'}"
+            name="startTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-6 form-group">
+          <label for="">结束时间</label>
+          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true" [style]="{'width':'calc(100% - 85px)'}"
+            name="endTime">
+          </p-calendar>
+        </div>
+      </div>
+      <div class="ui-g-2 form-group">
+        <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:10px"></button>
+      </div>
+    </form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" (onPageChange)="onPageChange($event)"
+          [(first)]="dataTable.first" [loading]="loading">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="送气工编号" field="stationNumber" [filter]="true" filterPlaceholder="搜索"></p-column>
+          <p-column [style]="{'width':'120px'}" header="送气工名称" field="stationName" [filter]="true" filterPlaceholder="搜索"></p-column>
+          <p-column [style]="{'width':'120px'}" header="收重瓶数量" field="fullBottleReceiveCount"></p-column>
+          <p-column [style]="{'width':'120px'}" header="发放重瓶数量" field="fullBottleSendCount"></p-column>
+          <p-column [style]="{'width':'120px'}" header="回收空瓶数量" field="emptyBottleReceiveCount"></p-column>
+          <p-column [style]="{'width':'120px'}" header="发放空瓶数量" field="emptyBottleSendCount"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>

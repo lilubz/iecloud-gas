@@ -9,8 +9,11 @@ import { AffairComponent } from './affair/affair.component';
 import { EnterpriseComponent as CylinderEnterpriseComponent } from './cylinder/enterprise/enterprise.component';
 import { CylinderStorageComponent } from './cylinder/cylinder-storage/cylinder-storage.component';
 import { StorageDistributionComponent } from './cylinder/storage-distribution/storage-distribution.component';
-import { DispatcherComponent } from './cylinder/dispatcher/dispatcher.component';
 import { CustomerComponent } from './cylinder/customer/customer.component';
+import { PossessComponent } from './cylinder/possess/possess.component';
+import { FlowComponent } from './cylinder/flow/flow.component';
+import { DispatcherComponent } from '../../enterprise/statistic/cylinder/dispatcher/dispatcher.component';
+import { DetailsComponent } from '../../enterprise/statistic/cylinder/dispatcher/details/details.component';
 const routes: Routes = [
   {
     path: '',
@@ -43,12 +46,24 @@ const routes: Routes = [
             component: StorageDistributionComponent
           },
           {
+            path: 'dispatcher-details',
+            component: DetailsComponent
+          },
+          {
             path: 'dispatcher',
             component: DispatcherComponent
           },
           {
             path: 'customer',
             component: CustomerComponent
+          },
+          {
+            path: 'possess',
+            component: PossessComponent
+          },
+          {
+            path: 'flow',
+            component: FlowComponent
           },
         ]
       },

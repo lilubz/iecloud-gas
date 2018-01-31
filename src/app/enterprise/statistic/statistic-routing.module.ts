@@ -11,6 +11,9 @@ import { CylinderStorageComponent } from './cylinder/cylinder-storage/cylinder-s
 import { StorageDistributionComponent } from './cylinder/storage-distribution/storage-distribution.component';
 import { DispatcherComponent } from './cylinder/dispatcher/dispatcher.component';
 import { CustomerComponent } from './cylinder/customer/customer.component';
+import { PossessComponent } from './cylinder/possess/possess.component';
+import { FlowComponent } from './cylinder/flow/flow.component';
+import { DetailsComponent } from './cylinder/dispatcher/details/details.component';
 const routes: Routes = [
   {
     path: '',
@@ -49,6 +52,18 @@ const routes: Routes = [
           {
             path: 'customer',
             component: CustomerComponent
+          },
+          {
+            path: 'possess',
+            component: PossessComponent
+          },
+          {
+            path: 'flow',
+            component: FlowComponent
+          },
+          {
+            path: 'dispatcher-details',
+            component: DetailsComponent
           },
         ]
       },

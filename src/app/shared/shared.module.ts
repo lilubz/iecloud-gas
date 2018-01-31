@@ -40,6 +40,8 @@ import { LoadingComponent } from './loading/loading.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DistrictsComponent } from './districts/districts.component';
 import { PermissionRoleDirective } from './permission-role.directive';
+import { DispatcherComponent } from '../enterprise/statistic/cylinder/dispatcher/dispatcher.component';
+import { DetailsComponent } from '../enterprise/statistic/cylinder/dispatcher/details/details.component';
 import { DateFormat } from './dateFormat.pipe';
 
 @NgModule({
@@ -82,6 +84,8 @@ import { DateFormat } from './dateFormat.pipe';
     _SharedModule
   ],
   declarations: [
+    DispatcherComponent,
+    DetailsComponent,
     LoadingComponent,
     PageNotFoundComponent,
     DistrictsComponent,
@@ -128,6 +132,8 @@ import { DateFormat } from './dateFormat.pipe';
     ConfirmDialogModule,
     RadioButtonModule,
 
+    DispatcherComponent,
+    DetailsComponent,
     LoadingComponent,
     PageNotFoundComponent,
     DistrictsComponent,

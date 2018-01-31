@@ -1,0 +1,94 @@
+<div class="possess">
+  <div class="ui-g">
+    <form class="ui-g-12" (submit)="onSubmit();">
+      <div class="ui-g-4 form-group">
+        <label for="">责任主体类型</label>
+        <p-dropdown [options]="dropdown.dutyType" [(ngModel)]="formModel.dutyType" name="dutyType" [style]="{'width':'calc(100% - 110px)'}"></p-dropdown>
+      </div>
+      <div class="ui-g-2 form-group">
+        <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:10px"></button>
+      </div>
+    </form>
+    <div class="ui-g">
+      <div class="ui-g-12" *ngIf="formModel.dutyType === 1">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="储配站名称" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="当前持有气瓶数" field="transactionType"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+        </p-dataTable>
+      </div>
+
+      <div class="ui-g-12" *ngIf="formModel.dutyType === 2">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="瓶库名称" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="当前持有气瓶数" field="transactionType"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+        </p-dataTable>
+      </div>
+
+      <div class="ui-g-12" *ngIf="formModel.dutyType === 3">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="用户姓名" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="当前持有气瓶数" field="transactionType"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+        </p-dataTable>
+      </div>
+
+      <div class="ui-g-12" *ngIf="formModel.dutyType === 4">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="送气工姓名" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="当前持有气瓶数" field="transactionType"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>

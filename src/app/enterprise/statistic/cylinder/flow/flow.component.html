@@ -1,0 +1,121 @@
+<div class="flow">
+  <div class="ui-g">
+    <form class="ui-g-12" (submit)="onSubmit();">
+      <div class="ui-g-4 form-group">
+        <label for="">责任主体类型</label>
+          <p-dropdown [options]="dropdown.dutyType" [(ngModel)]="formModel.dutyType" name="dutyType" [style]="{'width':'calc(100% - 110px)'}"></p-dropdown>
+      </div>
+      <div class="ui-g-4 form-group">
+        <label for="">时间类型</label>
+        <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType" [style]="{'width':'calc(100% - 110px)'}"></p-dropdown>
+      </div>
+      <div class="ui-g-2 form-group">
+        <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:10px"></button>
+      </div>
+      <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
+        <div class="ui-g-6 form-group">
+          <label for="">开始时间</label>
+          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true" [style]="{'width':'calc(100% - 85px)'}"
+            name="startTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-6 form-group">
+          <label for="">结束时间</label>
+          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true" [style]="{'width':'calc(100% - 85px)'}"
+            name="endTime">
+          </p-calendar>
+        </div>
+      </div>
+    </form>
+    <div class="ui-g">
+      <div class="ui-g-12" *ngIf="formModel.dutyType === 1">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="储配站名称" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="重瓶出库" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="空瓶入库" field="transactionType"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+      
+        </p-dataTable>
+      </div>
+
+      <div class="ui-g-12" *ngIf="formModel.dutyType === 2">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="瓶库名称" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="重瓶出库" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="空瓶入库" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="空瓶出库" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="重瓶入库" field="transactionType"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+      
+        </p-dataTable>
+      </div>
+
+      <div class="ui-g-12" *ngIf="formModel.dutyType === 3">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="用户名称" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="重瓶出库" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="空瓶入库" field="transactionType"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+      
+        </p-dataTable>
+      </div>
+
+      <div class="ui-g-12" *ngIf="formModel.dutyType === 4">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="企业名称" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="重瓶出库" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="空瓶入库" field="transactionType"></p-column>
+          <p-column [style]="{'width':'120px'}" header="订单数量" field="transactionType"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+      
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>
