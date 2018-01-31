@@ -104,6 +104,7 @@ export class DispatcherComponent implements OnInit, AfterViewInit {
         '第二周',
         '第三周',
         '第四周',
+        '第五周',
       ];
       return weeks.slice(0, length);
     }

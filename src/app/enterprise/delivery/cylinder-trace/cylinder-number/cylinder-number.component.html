@@ -41,7 +41,7 @@
     </p-column>
     <p-column field="createTime">
       <ng-template let-record="rowData" pTemplate="body">
-        {{ record.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}
+        {{ record.createTime | DateFormat}}
       </ng-template>
     </p-column>
     <p-column field="gcStatusTypeName"></p-column>

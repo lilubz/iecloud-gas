@@ -40,6 +40,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DistrictsComponent } from './districts/districts.component';
 import { PermissionRoleDirective } from './permission-role.directive';
+import { DateFormat } from './dateFormat.pipe';
 
 @NgModule({
   imports: [
@@ -84,7 +85,8 @@ import { PermissionRoleDirective } from './permission-role.directive';
     LoadingComponent,
     PageNotFoundComponent,
     DistrictsComponent,
-    PermissionRoleDirective
+    PermissionRoleDirective,
+    DateFormat
   ],
 
   exports: [
@@ -129,7 +131,8 @@ import { PermissionRoleDirective } from './permission-role.directive';
     LoadingComponent,
     PageNotFoundComponent,
     DistrictsComponent,
-    PermissionRoleDirective
+    PermissionRoleDirective,
+    DateFormat
   ]
 })
 export class SharedModule { }
