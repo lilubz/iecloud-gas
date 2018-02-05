@@ -5,23 +5,21 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../../../../common/date-localization';
 import { StatisticCylinderService } from './../../statistic-cylinder.service';
 import * as moment from 'moment';
+
 @Component({
   selector: 'gas-dispatcher-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css'],
+  templateUrl: './dispatcher-details.component.html',
+  styleUrls: ['./dispatcher-details.component.css'],
   providers: [StatisticCylinderService]
 })
-export class DetailsComponent implements OnInit {
+export class DispatcherDetailsComponent implements OnInit {
+
   loading = false;
   id: any;
   zh = zh_CN;
   currentDate: Date = new Date();
   dropdown: any = {
     timeType: [
-      {
-        label: '自定义时间',
-        value: null
-      },
       {
         label: '最近一天',
         value: {
@@ -64,6 +62,10 @@ export class DetailsComponent implements OnInit {
           unit: 'years'
         }
       },
+      {
+        label: '自定义时间',
+        value: null
+      }
     ],
     dutyType: [
       {
@@ -91,20 +93,20 @@ export class DetailsComponent implements OnInit {
   };
   formModel = {
     dutyType: 1,
-    timeType: null,
-    startTime: moment().subtract(1, 'months')['_d'],
-    endTime: moment()['_d']
+    timeType: this.dropdown.timeType[2].value,
+    startTime: moment().subtract(this.dropdown.timeType[2].value.count, this.dropdown.timeType[2].value.unit)['_d'],
+    endTime: moment()['_d'],
   };
   pageParams = {
     dutyType: 1,
-    timeType: null,
-    startTime: moment().subtract(1, 'months')['_d'],
-    endTime: moment()['_d']
+    timeType: this.dropdown.timeType[2].value,
+    startTime: moment().subtract(this.dropdown.timeType[2].value.count, this.dropdown.timeType[2].value.unit)['_d'],
+    endTime: moment()['_d'],
   };
   constructor(
     private routerInfo: ActivatedRoute,
     private _service: StatisticCylinderService,
-    private messageService: MessageService,
+    public messageService: MessageService,
   ) { }
   ngOnInit() {
     if (this.routerInfo.queryParams['value'].id) {
@@ -130,6 +132,7 @@ export class DetailsComponent implements OnInit {
       endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
       enterpriseNumber: this.id,
     });
+    Object.assign(this.pageParams, this.formModel);
   }
   onPageChange($event) {
     this.dataTable.list = [];
@@ -145,7 +148,6 @@ export class DetailsComponent implements OnInit {
     };
   }
   getDataTableList(params?) {
-    console.log(params);
     this._service.dispactherSendAndReceiveCount(params)
       .then(data => {
         this.loading = false;

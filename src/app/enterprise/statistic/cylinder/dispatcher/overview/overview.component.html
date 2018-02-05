@@ -1,0 +1,73 @@
+<div class="ui-g-12 content">
+  <h3>送气工气瓶统计</h3>
+  <form class="ui-g-12" (submit)="onSubmit();">
+    <div class="ui-g-4 form-group" *ngIf="currentRoleType===roleType.Government">
+      <label for="">区域选择</label>
+      <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}" [(ngModel)]="formModel.regionId"
+        name="regionId"></p-dropdown>
+    </div>
+    <div class="ui-g-4 form-group">
+      <label for="">时间类型</label>
+      <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType"
+        [style]="{'width':'calc(100% - 110px)'}"></p-dropdown>
+    </div>
+    <div class="ui-g-4 form-group">
+      <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:10px"></button>
+    </div>
+    <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
+      <div class="ui-g-6 form-group">
+        <label for="">开始时间</label>
+        <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
+          [style]="{'width':'calc(100% - 85px)'}" name="startTime">
+        </p-calendar>
+      </div>
+      <div class="ui-g-6 form-group">
+        <label for="">结束时间</label>
+        <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
+          [style]="{'width':'calc(100% - 85px)'}" name="endTime">
+        </p-calendar>
+      </div>
+    </div>
+  </form>
+  <div class="ui-g-12">
+    <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" scrollable="true" [loading]="loading" scrollHeight="510px"
+      [rowsPerPageOptions]="dataTable.option" (onPageChange)="onPageChange($event)" [(first)]="dataTable.first">
+      <p-column [style]="{'width':'100px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" header="企业名称">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <a [routerLink]="['../dispatcher-details']" [queryParams]="{'id':rowData.stationNumber}">{{rowData.stationName}}</a>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'120px'}" header="接收重瓶" field="fullBottleReceiveCount"></p-column>
+      <p-column [style]="{'width':'120px'}" header="发放重瓶" field="fullBottleSendCount"></p-column>
+      <p-column [style]="{'width':'120px'}" header="接收空瓶" field="emptyBottleReceiveCount"></p-column>
+      <p-column [style]="{'width':'120px'}" header="发出空瓶" field="emptyBottleSendCount"></p-column>
+
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+
+    </p-dataTable>
+  </div>
+
+  <!-- 流通统计 -->
+  <h3>送气工配送量波动情况</h3>
+  <ng-template [gasPermissionRole]="permissionRoles">
+    区域选择：
+    <p-dropdown [options]="regionList" [(ngModel)]="selectedRegion" [style]="{'width':'150px'}"></p-dropdown>
+  </ng-template>
+  时间：
+  <p-dropdown [options]="deliveryDateRange" [(ngModel)]="selectedDateRange" [style]="{'width':'100px'}"></p-dropdown>
+
+  <button pButton type="button" label="查询" (click)="getDeliveryStatistic()"></button>
+
+  <div #dispatcherChart id="dispatcherChart" style="width: 600px;height:400px;"></div>
+</div>

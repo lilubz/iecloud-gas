@@ -12,8 +12,6 @@ import { StorageDistributionComponent } from './cylinder/storage-distribution/st
 import { CustomerComponent } from './cylinder/customer/customer.component';
 import { PossessComponent } from './cylinder/possess/possess.component';
 import { FlowComponent } from './cylinder/flow/flow.component';
-import { DispatcherComponent } from '../../enterprise/statistic/cylinder/dispatcher/dispatcher.component';
-import { DetailsComponent } from '../../enterprise/statistic/cylinder/dispatcher/details/details.component';
 const routes: Routes = [
   {
     path: '',
@@ -46,14 +44,6 @@ const routes: Routes = [
             component: StorageDistributionComponent
           },
           {
-            path: 'dispatcher-details',
-            component: DetailsComponent
-          },
-          {
-            path: 'dispatcher',
-            component: DispatcherComponent
-          },
-          {
             path: 'customer',
             component: CustomerComponent
           },
@@ -64,6 +54,10 @@ const routes: Routes = [
           {
             path: 'flow',
             component: FlowComponent
+          },
+          {
+            path: 'dispatcher',
+            loadChildren: './cylinder/dispatcher/dispatcher.module#DispatcherModule',
           },
         ]
       },

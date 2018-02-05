@@ -11,6 +11,7 @@ import { CylinderTraceService } from '../cylinder-trace.service';
   styleUrls: ['./cylinder-filling.component.scss']
 })
 export class CylinderFillingComponent implements OnInit {
+  JSON = JSON;
   zh = zh_CN;
   pageSize = 10;
   pageNumber = 1;

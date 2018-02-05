@@ -19,6 +19,7 @@ import 'rxjs/add/operator/map';
   providers: [DispatcherService]
 })
 export class CylinderRecordComponent implements OnInit {
+  loading: Boolean = false;
   zh = zh_CN;
   cylinderStatus: SelectItem[];
   dispatcherSearchFields: SelectItem[] = [
@@ -105,6 +106,30 @@ export class CylinderRecordComponent implements OnInit {
     }).subscribe((type) => {
       this.init();
       this.selectedCylinderStatus = parseInt(type, 10);
+
+      // 跳转查询
+      const queryParams = this.route.queryParams['value'];
+      if (JSON.stringify(queryParams) !== '{}') { // 查询参数不为空
+        this.loading = true;
+        switch (this.selectedCylinderStatus) {
+          case 1:
+            this.selectedDistributionStation = queryParams.id;
+            this.beginTime = new Date(parseInt(queryParams.beginTime, 10));
+            this.endTime = new Date(parseInt(queryParams.endTime, 10));
+            this.search();
+            break;
+          case 2:
+            break;
+          case 3:
+            this.selectedDispatcherSearchField = 1;
+            this.selectedDispatcherType = queryParams.type;
+            this.beginTime = new Date(parseInt(queryParams.beginTime, 10));
+            this.endTime = new Date(parseInt(queryParams.endTime, 10));
+            this.searchDispatcher(queryParams.stationNumber, true);
+            break;
+        }
+      }
+
     });
 
     this.commonRequestService.listCorpSupplyStation().then(data => {
@@ -148,7 +173,7 @@ export class CylinderRecordComponent implements OnInit {
     this.listGcSendOrReceive();
   }
 
-  searchDispatcher(query) {
+  searchDispatcher(query, autoSearch = false) {
     this.dispatcherService.getDispatcherInfo({
       enterpriseId: '',
       name: this.selectedDispatcherSearchField === 2 ? query : '',
@@ -160,6 +185,10 @@ export class CylinderRecordComponent implements OnInit {
     }).then(data => {
       if (data.status === 0) {
         this.dispatcherSuggestions = data.data.list;
+        if (autoSearch && this.dispatcherSuggestions.length === 1) {
+          this.selectedDispatcher = data.data.list[0];
+          this.search();
+        }
       } else {
         this.dispatcherSuggestions = [];
         // this.messageService.add({ severity: 'warn', summary: '获取配送工信息失败', detail: data.msg });
@@ -241,6 +270,7 @@ export class CylinderRecordComponent implements OnInit {
       pageSize: this.pageSize,
     }).then(data => {
       if (data.status === 0) {
+        this.loading = false;
         if (data.data.list.length > 0) {
           this.cylinderList = data.data.list;
           this.total = data.data.total;

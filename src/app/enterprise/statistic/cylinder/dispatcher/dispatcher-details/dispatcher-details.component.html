@@ -1,0 +1,98 @@
+<div class="flow">
+  <div class="ui-g" style="margin-top:70px;">
+    <div class="ui-g-6">
+      <button pButton type="button" label="返回" style="margin-left:10px" [routerLink]="['../dispatcher']"></button>
+    </div>
+  </div>
+  <div class="ui-g">
+    <form class="ui-g-12" (submit)="onSubmit();">
+      <div class="ui-g-3 form-group">
+        <label for="">时间类型</label>
+        <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType"
+          [style]="{'width':'calc(100% - 110px)'}"></p-dropdown>
+      </div>
+      <div class="ui-g-6 ui-g-nopad" *ngIf="formModel.timeType===null">
+        <div class="ui-g-6 form-group">
+          <label for="">开始时间</label>
+          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
+            [style]="{'width':'calc(100% - 85px)'}" name="startTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-6 form-group">
+          <label for="">结束时间</label>
+          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
+            [style]="{'width':'calc(100% - 85px)'}" name="endTime">
+          </p-calendar>
+        </div>
+      </div>
+      <div class="ui-g-2 form-group">
+        <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:10px"></button>
+      </div>
+    </form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+          scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" (onPageChange)="onPageChange($event)" [(first)]="dataTable.first"
+          [loading]="loading">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="送气工编号" field="stationNumber" [filter]="true" filterPlaceholder="搜索"></p-column>
+          <p-column [style]="{'width':'120px'}" header="送气工名称" field="stationName" [filter]="true" filterPlaceholder="搜索"></p-column>
+
+          <!-- 如果rowData.status ===0 表示当前的送气工在黑名单中，无法跳转到下一路由 -->
+          <p-column [style]="{'width':'120px'}" header="收重瓶数量">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <a *ngIf="rowData.fullBottleReceiveCount!==0 && rowData.status === 0" href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record',{type:3}]"
+                [queryParams]="{stationNumber:rowData.stationNumber,type:'重入',beginTime:formModel.startTime.getTime(),endTime:formModel.endTime.getTime()}">
+                {{rowData.fullBottleReceiveCount}}</a>
+              <a *ngIf="rowData.fullBottleReceiveCount!==0 && rowData.status === 3" href="javascript:vodi(0);" (click)="messageService.add({ severity: 'warn', summary: '', detail: '黑名单的送气工，无法查看流转信息'});">
+                {{rowData.fullBottleReceiveCount}}</a>
+              <span *ngIf="rowData.fullBottleReceiveCount===0">{{rowData.fullBottleReceiveCount}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="发放重瓶数量">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <a *ngIf="rowData.fullBottleSendCount!==0 && rowData.status === 0" href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record',{type:3}]"
+                [queryParams]="{stationNumber:rowData.stationNumber,type:'重出',beginTime:formModel.startTime.getTime(),endTime:formModel.endTime.getTime()}">
+                {{rowData.fullBottleSendCount}}</a>
+              <a *ngIf="rowData.fullBottleSendCount!==0 && rowData.status === 3" href="javascript:vodi(0);" (click)="messageService.add({ severity: 'warn', summary: '', detail: '黑名单的送气工，无法查看流转信息'});">
+                {{rowData.fullBottleSendCount}}</a>
+              <span *ngIf="rowData.fullBottleSendCount===0">{{rowData.fullBottleSendCount}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="回收空瓶数量">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <a *ngIf="rowData.emptyBottleReceiveCount!==0 && rowData.status === 0" href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record',{type:3}]"
+                [queryParams]="{stationNumber:rowData.stationNumber,type:'空入',beginTime:formModel.startTime.getTime(),endTime:formModel.endTime.getTime()}">
+                {{rowData.emptyBottleReceiveCount}}</a>
+              <a *ngIf="rowData.emptyBottleReceiveCount!==0 && rowData.status === 3" href="javascript:vodi(0);" (click)="messageService.add({ severity: 'warn', summary: '', detail: '黑名单的送气工，无法查看流转信息'});">
+                {{rowData.emptyBottleReceiveCount}}</a>
+              <span *ngIf="rowData.emptyBottleReceiveCount===0">{{rowData.emptyBottleReceiveCount}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="发放空瓶数量" field="emptyBottleSendCount">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <a *ngIf="rowData.emptyBottleSendCount!==0 && rowData.status === 0" href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record',{type:3}]"
+                [queryParams]="{stationNumber:rowData.stationNumber,type:'空出',beginTime:formModel.startTime.getTime(),endTime:formModel.endTime.getTime()}">
+                {{rowData.emptyBottleSendCount}}</a>
+              <a *ngIf="rowData.emptyBottleSendCount!==0 && rowData.status === 3" href="javascript:vodi(0);" (click)="messageService.add({ severity: 'warn', summary: '', detail: '黑名单的送气工，无法查看流转信息'});">
+                {{rowData.emptyBottleSendCount}}</a>
+              <span *ngIf="rowData.emptyBottleSendCount===0">{{rowData.emptyBottleSendCount}}</span>
+            </ng-template>
+          </p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>

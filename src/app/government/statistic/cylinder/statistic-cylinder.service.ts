@@ -93,4 +93,16 @@ export class StatisticCylinderService {
   getDeliveryStatistic(params: { regionId: string, range: string }): Promise<any> {
     return this.httpService.getRequest(API.dispatcherStatisyical, params);
   }
+  /**
+   * 送气工收发重瓶，空瓶数量
+   */
+  dispactherSendAndReceiveCount(params): Promise<any> {
+    return this.httpService.getRequest(API.dispactherSendAndReceiveCount, params);
+  }
+  /**
+   * 查看某个企业下送气工收发重瓶空瓶的情况
+   */
+  corpDispactherSendAndReceiveList(params): Promise<any> {
+    return this.httpService.getRequest(API.corpDispactherSendAndReceiveList, params);
+  }
 }
