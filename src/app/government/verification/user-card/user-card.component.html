@@ -15,8 +15,8 @@
   </div>
   <div class="ui-g-12">
     <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.pageOpt[1]"
-      scrollHeight="510px" [rowsPerPageOptions]="dataTable.pageOpt" [totalRecords]="dataTable.total" 
-      (onLazyLoad)="onPageChange($event)" [lazy]="true" scrollable="true">
+      scrollHeight="510px" [rowsPerPageOptions]="dataTable.pageOpt" [totalRecords]="dataTable.total"
+      (onLazyLoad)="onPageChange($event)" [lazy]="true" [scrollable]="false">
       <p-column [style]="{'width':'80px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <span>{{index+1}}</span>
@@ -53,13 +53,13 @@
           </div>
         </ng-template>
       </p-column>
-    
+
       <ng-template pTemplate="emptymessage">
         <div class="text-left">
           未查询到数据
         </div>
       </ng-template>
-    
+
     </p-dataTable>
   </div>
 </div>

@@ -21,7 +21,7 @@
 
 </div>
 <div class="ui-g-12 message">
-  <p-dataTable [value]="messageList" [lazy]="false" dataKey="title" [paginator]="true" [rows]="pageSize" scrollable="true"
+  <p-dataTable [value]="messageList" [lazy]="false" dataKey="title" [paginator]="true" [rows]="pageSize" [scrollable]="false"
     scrollHeight="510px" [rowsPerPageOptions]="pageOption" [totalRecords]="total" (onLazyLoad)="onPageChange($event)" [(first)]="first">
     <p-column [style]="{'width':'100px'}" header="序号">
       <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
@@ -61,4 +61,3 @@
     </p-footer>
 </p-confirmDialog>
 <p-growl [value]="msgs"></p-growl>
-

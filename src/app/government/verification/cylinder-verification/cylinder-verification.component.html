@@ -8,7 +8,7 @@
       <!-- {{searchParams.regionId}} -->
       <div class="ui-g-12">
         <p-dataTable [value]="cylinderInfo" emptyMessage="暂未查询到数据" [lazy]="true" [paginator]="true" [rows]="searchParams.pageSize" [(first)]="first"
-          scrollable="true" scrollHeight="510px" [totalRecords]="cylinderNumberTotal" [rowsPerPageOptions]="[1,10,20,30,40] "
+          [scrollable]="false" scrollHeight="510px" [totalRecords]="cylinderNumberTotal" [rowsPerPageOptions]="[1,10,20,30,40] "
           (onLazyLoad)="change($event)">
 
           <p-column header="序号">
@@ -29,7 +29,7 @@
       <p-dialog header="详情查看"  [draggable]="false" [(visible)]="display" modal="modal" width="900" minWidth="900"
         height="700" [responsive]="true">
         <p-dataTable [value]="cylinderInfoList" [paginator]="true" [rows]="detailPageSize" [headerCheckboxToggleAllPages]="false"
-          scrollable="true" scrollHeight="470px" [rowsPerPageOptions]="[10,20,30,40]" [totalRecords]="cylinderListTotal" (onLazyLoad)="pageChange($event)"
+          [scrollable]="false" scrollHeight="470px" [rowsPerPageOptions]="[10,20,30,40]" [totalRecords]="cylinderListTotal" (onLazyLoad)="pageChange($event)"
           [lazy]="true" >
           <p-column [style]="{'width':'100px'}"  header="序号">
             <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">

@@ -28,7 +28,7 @@
     <button pButton type="button" label="查询" class="searchBtn" (click)="searchAccount()"></button>
   </div>
   <div class="ui-g-12">
-    <p-dataTable [value]="accountList" [lazy]="true" dataKey="enterprise" [paginator]="true" [rows]="pages.pageSize" scrollable="true"
+    <p-dataTable [value]="accountList" [lazy]="true" dataKey="enterprise" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
       scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
       [(first)]="pages.first">
       <p-column [style]="{'width':'100px'}" header="编号">

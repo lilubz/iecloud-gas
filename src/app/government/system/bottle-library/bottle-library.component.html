@@ -30,7 +30,7 @@
 
     <div class="ui-g-12">
       <p-dataTable [value]="bottleLibraryList" [lazy]="true" dataKey="enterpriseName" [paginator]="true" [rows]="pages.pageSize"
-        scrollable="true" scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
+        [scrollable]="false" scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
         [(first)]="pages.first">
         <p-column [style]="{'width':'100px'}" header="编号">
           <ng-template let-index="rowIndex" pTemplate="body">

@@ -32,7 +32,7 @@
     </div>
   </form>
   <div class="ui-g-12">
-    <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" scrollable="true" [loading]="loading" scrollHeight="510px"
+    <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [scrollable]="false" [loading]="loading" scrollHeight="510px"
       [rowsPerPageOptions]="dataTable.option" (onPageChange)="onPageChange($event)" [(first)]="dataTable.first">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">

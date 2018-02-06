@@ -11,7 +11,7 @@
   </div>
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+      <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
         [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
         [(first)]="dataTable.first">
         <p-column [style]="{'width':'50px'}" header="序号">
@@ -35,7 +35,7 @@
             未查询到数据
           </div>
         </ng-template>
-    
+
       </p-dataTable>
     </div>
   </div>
@@ -92,7 +92,7 @@
               <label for="inputEmail3" class="ui-g-4 control-label text-right">
                 <span class="warn">*</span>首次提交：</label>
               <div class="ui-g-8">
-                <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" [yearNavigator]="true" 
+                <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" [yearNavigator]="true"
                   yearRange="1970:2050" dateFormat="yy-mm-dd"[locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false"
                   placeholder="初始提交时间" [minDate]="currentDate" [showButtonBar]="true" [style]="{'width':'100%'}"></p-calendar>
               </div>

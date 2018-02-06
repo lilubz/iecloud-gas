@@ -1,5 +1,6 @@
 .enterprise-detail {
-    margin: 15px 0px 0 15px;
+    // margin: 15px 0px 0 15px;
+    background: #fff;
     .title {
         color: #2399e5;
         text-align: center;
@@ -11,13 +12,14 @@
         }
     }
     .textInput {
-        // width: 40%; 
-        width: calc(100% - 70px);
+        // width: 40%;
+        width: calc(100% - 80px);
         max-width: 300px;
     }
     .padding {
-        border: 1px solid #c0c0c0;
-        border-radius: 10px;
+        // border: 1px solid #c0c0c0;
+        border-radius: 4px;
+        background:#fff;
         box-shadow: 0 0 3px #c0c0c0;
     }
     .searchBtn {
@@ -27,6 +29,6 @@
         width: 90px;
         font-size: 1.3em;
         font-weight: bold;
-        border-radius: 5px;
+        border-radius: 4px;
     }
 }

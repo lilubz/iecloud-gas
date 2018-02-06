@@ -1,9 +1,21 @@
+// header
 $header-height: 70px;
-$header-left-width: 260px;
-$header-left-bg-color: #333333;
-$menu-width: 80px;
-$logo-width: 60px;
-$logo-height: 60px;
-$footer-height: 60px;
-$html-bg-color: #f5f5f6;
-$theme-color: #0097e8;
+$header-bg-color:#3186Dc;
+
+// Breadcrumb
+$breadcrumb-height: 0px;
+$breadcrumb-text-color:#337ab7;
+$breadcrumb-font-size:18px;
+
+// menu
+$menu-width: 70px;
+$menu-bg-color:#3d464d;
+$menu-active-color:#31383e;
+$menu-font-size:14px;
+
+// sidebar
+$sidebar-width:280px;
+
+// other
+$html-bg-color: #F0F0F0;
+$theme-color: #3186DC;

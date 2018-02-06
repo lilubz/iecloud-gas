@@ -1,9 +1,15 @@
 <div class="ui-g layout">
-  <div class="ui-g-nopad header-left" [routerLink]="['/government/archive']">
-    <img src="./assets/img/supervise-logo.png" class="logo" alt="">
-    <span class="title-top">温州市瓶装燃气</span>
-    <span class="title-bottom">信息化监管平台</span>
+  <div class="ui-g-nopad header">
+    <img src="./assets/img/gov-logo.png" class="logo" alt="">
+    <span>温州市瓶装燃气信息化监管平台</span>
+    <div class="shortcut">
+      <img src="./assets/img/personal-info.png" class="shortcut-left" alt="">
+      <img src="./assets/img/logout.png" class="shortcut-right" alt="退出" title="退出" (click)="logout()">
+    </div>
   </div>
+  <!-- <div class="breadcrumb">
+    <h2>面包屑</h2>
+  </div> -->
   <div class="ui-g-nopad menu">
     <p-tieredMenu [model]="menus"></p-tieredMenu>
   </div>
@@ -11,8 +17,4 @@
     <router-outlet></router-outlet>
   </div>
 
-  <div class="ui-g-nopad footer">
-    <img src="./assets/img/personal-info.png" class="shortcut" alt="">
-    <img src="./assets/img/logout.png" class="shortcut" alt="" (click)="logout()">
-  </div>
 </div>

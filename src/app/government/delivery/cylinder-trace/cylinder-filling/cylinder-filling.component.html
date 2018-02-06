@@ -16,7 +16,7 @@
   <button pButton type="button" label="查询" (click)="search()"></button>
 </div>
 <div class="ui-g-12">
-  <p-dataTable [value]="cylinderFillingHistoryList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true"
+  <p-dataTable [value]="cylinderFillingHistoryList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" [scrollable]="false"
     [lazy]="true" [(first)]="pageFirst" (onLazyLoad)="onFillingHistoryPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
     <!-- <p-column header="序号" [style]="{'width':'50px'}">
       <ng-template pTemplate="body" let-index="rowIndex">
@@ -30,7 +30,7 @@
     </p-column>
     <p-column field="inflatableStationName" header="充装站名称" [style]="{'width':'150px'}">
       <ng-template let-rowData="rowData" pTemplate="body">
-        <a href="javascript:void(0);" [routerLink]="['../cylinder-record',{type:1}]" 
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-record',{type:1}]"
         [queryParams]="{id:rowData.inflatableStationNumber,beginTime:beginTime.getTime(),endTime:endTime.getTime()}">{{rowData.inflatableStationName}}</a>
       </ng-template>
     </p-column>

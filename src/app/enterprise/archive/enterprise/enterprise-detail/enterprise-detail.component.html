@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="ui-g-12">
-    <p-dataTable [value]="enterpriseList" [lazy]="true" dataKey="title" [paginator]="true" [rows]="pages.pageSize" scrollable="true"
+    <p-dataTable [value]="enterpriseList" [lazy]="true" dataKey="title" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
       scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
       [(first)]="pages.first">
       <p-column [style]="{'width':'100px'}" header="序号">

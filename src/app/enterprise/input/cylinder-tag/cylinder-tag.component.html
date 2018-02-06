@@ -5,7 +5,7 @@
 		</div>
 		<div class="ui-g-12 btns">
 			<button pButton type="button" label="批量绑定" (click)="onBatchBind()" icon="fa-link" class="bindBtn"></button>
-			<p-dialog [visible]="dialog.bind" [showHeader]="false" [closeOnEscape]="false" [width]="700" 
+			<p-dialog [visible]="dialog.bind" [showHeader]="false" [closeOnEscape]="false" [width]="700"
 			[contentStyle]="{'padding':'0','overflow':'visible'}" [minWidth]="700" [modal]="true" [style]="{'border':'none'}">
 				<div class="bind">
 					<h2>批量绑定</h2>
@@ -19,7 +19,7 @@
 									<label for="">{{dropdown.numberValue.name}}：</label>
 								</div>
 								<div class="ui-g-6">
-									<p-autoComplete [(ngModel)]="bind.list[i][0]" [suggestions]="proposals" (completeMethod)="getProposals($event,[i,0])" 
+									<p-autoComplete [(ngModel)]="bind.list[i][0]" [suggestions]="proposals" (completeMethod)="getProposals($event,[i,0])"
 									field="{{dropdown.numberValue.paramsName}}"[minLength]="1" (onBlur)="onBlur([i,0])" autoHighlight="true" emptyMessage="您的输入不正确">
 										<ng-template let-value pTemplate="item">
 											<span>{{value[dropdown.numberValue.paramsName]}}<br>{{value.enterpriseName}}</span>
@@ -51,7 +51,7 @@
 			</p-dialog>
 
 			<button pButton type="button" label="标签申请" (click)="onTagApply()" icon="fa-plus" class="ui-button-secondary"></button>
-			<p-dialog [visible]="dialog.tagApply" [showHeader]="false" [closeOnEscape]="false" 
+			<p-dialog [visible]="dialog.tagApply" [showHeader]="false" [closeOnEscape]="false"
 					[minWidth]="400" [width]="400" [breakpoint]="400" [modal]="true">
 				<div class="tagApply">
 					<div class="input-group">
@@ -70,14 +70,14 @@
 		<div class="ui-g-12 ">
 			<div class="inputgroup">
 				<label for="">查看：</label>
-				<p-dropdown [options]="dropdown.displayType" [(ngModel)]="dropdown.displayValue" 
+				<p-dropdown [options]="dropdown.displayType" [(ngModel)]="dropdown.displayValue"
 						(onChange)="changeSearchOpt($event)"></p-dropdown>
 			</div>
 		</div>
 		<div class="ui-g-12 data-table">
-			<p-dataTable [lazy]="true" [value]="dataList.data" [rows]="dataList.page.option[0]" [paginator]="true" 
+			<p-dataTable [lazy]="true" [value]="dataList.data" [rows]="dataList.page.option[0]" [paginator]="true"
 					[rowsPerPageOptions]="dataList.page.option" [totalRecords]="dataList.page.total" (onLazyLoad)="pageChange($event)"
-					scrollHeight="510px" scrollable="true" [(first)]="dataList.first">
+					scrollHeight="510px" [scrollable]="false" [(first)]="dataList.first">
 				<p-column [style]="{'width':'100px'}" header="序号">
 					<ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
 						<span>{{index+1}}</span>

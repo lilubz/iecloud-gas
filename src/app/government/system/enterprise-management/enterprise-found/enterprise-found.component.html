@@ -77,7 +77,7 @@
       <button pButton type="button" label="添加" (click)="selectArea()"></button>
     </div>
     <div class="ui-g-10">
-      <p-dataTable [value]="selectedAreaList" [lazy]="false" dataKey="title" [paginator]="false" scrollable="false" scrollHeight="510px">
+      <p-dataTable [value]="selectedAreaList" [lazy]="false" dataKey="title" [paginator]="false" [scrollable]="false" scrollHeight="510px">
         <p-column [style]="{'width':'100px'}" header="序号">
           <ng-template let-index="rowIndex" pTemplate="body">
             <span>{{index+1}}</span>

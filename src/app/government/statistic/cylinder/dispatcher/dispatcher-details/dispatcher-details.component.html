@@ -1,7 +1,7 @@
 <div class="flow">
   <div class="ui-g" style="margin-top:70px;">
     <div class="ui-g-6">
-      <button pButton type="button" label="返回" style="margin-left:10px" [routerLink]="['../dispatcher']"></button>
+      <button pButton type="button" label="返回" style="margin-left:10px" [routerLink]="['../dispatcher']" routerLinkActive="link-active"></button>
     </div>
   </div>
   <div class="ui-g">
@@ -33,7 +33,7 @@
     </form>
     <div class="ui-g">
       <div class="ui-g-12">
-        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" scrollable="true"
+        <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
           scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" (onPageChange)="onPageChange($event)" [(first)]="dataTable.first"
           [loading]="loading">
           <p-column [style]="{'width':'100px'}" header="序号">
@@ -50,7 +50,7 @@
               <a *ngIf="rowData.fullBottleReceiveCount!==0 && rowData.status === 0" href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-record',{type:3}]"
                 [queryParams]="{stationNumber:rowData.stationNumber,type:'重入',beginTime:formModel.startTime.getTime(),endTime:formModel.endTime.getTime()}">
                 {{rowData.fullBottleReceiveCount}}</a>
-                <a *ngIf="rowData.fullBottleReceiveCount!==0 && rowData.status === 3" 
+                <a *ngIf="rowData.fullBottleReceiveCount!==0 && rowData.status === 3"
                 href="javascript:vodi(0);" (click)="messageService.add({ severity: 'warn', summary: '', detail: '黑名单的送气工，无法查看流转信息'});">
                   {{rowData.fullBottleReceiveCount}}</a>
               <span *ngIf="rowData.fullBottleReceiveCount===0">{{rowData.fullBottleReceiveCount}}</span>

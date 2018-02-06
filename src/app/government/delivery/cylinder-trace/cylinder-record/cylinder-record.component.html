@@ -44,7 +44,7 @@
 
 <div class="ui-g-12">
 
-  <p-dataTable [value]="cylinderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" scrollable="true" [lazy]="true"
+  <p-dataTable [value]="cylinderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" [scrollable]="false" [lazy]="true"
     [(first)]="first" (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]" [loading]="loading">
     <p-headerColumnGroup>
       <p-row>

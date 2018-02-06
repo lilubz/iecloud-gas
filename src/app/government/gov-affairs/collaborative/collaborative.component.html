@@ -2,19 +2,19 @@
   <div class="sidebar">
     <div class="ui-g ui-g-nopad group">
       <div class="ui-g-12">
-        <button pButton type="button" label="执法事务录入" [routerLink]="['./add-affairs']"></button>
+        <button pButton type="button" label="执法事务录入" [routerLink]="['./add-affairs']" routerLinkActive="link-active"></button>
       </div>
     </div>
     <div class="ui-g ui-g-nopad group">
       <div class="ui-g-12">
-        <button pButton type="button" label="我的事务" [routerLink]="['./my-affairs']"></button>
+        <button pButton type="button" label="我的事务" [routerLink]="['./my-affairs']" routerLinkActive="link-active"></button>
       </div>
       <div class="ui-g-12">
-        <button pButton type="button" label="事务列表一览" [routerLink]="['./all-affairs']"></button>
+        <button pButton type="button" label="事务列表一览" [routerLink]="['./all-affairs']" routerLinkActive="link-active"></button>
       </div>
     </div>
   </div>
-  
+
   <div class="ui-g-12 main">
     <router-outlet></router-outlet>
   </div>
