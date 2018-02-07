@@ -1,4 +1,4 @@
-<div class="ui-g-12 overview">
+<div class="ui-g-12 overview card">
 
   <h2 class="title">区域情况总体概览</h2>
 
@@ -13,7 +13,7 @@
     </p-column>
     <p-column field="regionName" header="区域" [style]="{'width':'30%'}">
       <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
-        <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
+        <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="router-link">{{countyCylinder[col.field]}}</a>
       </ng-template>
     </p-column>
     <p-column field="totalCount" header="气瓶数">
@@ -37,10 +37,10 @@
       </ng-template>
     </p-column>
     <p-column field="scrapCount" header="标签异常">
-        <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.codeAbnormalCount || 0 }}
-        </ng-template>
-      </p-column>
+      <ng-template let-countyCylinder="rowData" pTemplate="body">
+        {{ countyCylinder.codeAbnormalCount || 0 }}
+      </ng-template>
+    </p-column>
 
     <p-footerColumnGroup>
       <p-row>

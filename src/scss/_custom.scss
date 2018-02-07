@@ -210,33 +210,44 @@ input {
   /*右侧内容区*/
   .main {
     position: absolute; // overflow: auto;
-    right: 0 !important; // min-width: 700px !important;
-    width: calc( 100% - 370px) !important;
-    height: calc(100vh - 120px) !important;
+    right: 20px !important;
     left: $menu-width + $sidebar-width;
-    top: $header-height + $breadcrumb-height;
-    margin: 20px 0;
-    overflow: auto;
+    top: $header-height + $breadcrumb-height + 20px;
+    bottom: 20px; // overflow: auto;
     .overview {
-      background: #fff;
-      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
       .title {
         color: $theme-color;
         text-align: center;
         margin-top: 40px 0;
-      }
-      a.area {
-        color: #3399ff;
-      }
+      } // a.area {
+      //   color: #3399ff;
+      // }
     }
-    .container {
-      min-width: 650px;
+    .card {
+      max-height: 100%;
+      width: 100%; // min-width: 650px;
+      background: #fff;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+      overflow: auto;
     }
   }
 }
 
 a {
   color: #3399ff;
+}
+
+a.router-link {
+  color: #3399ff;
+}
+
+a.router-link-active {
+  color: #3399ff;
+}
+
+.search-group {
+  // margin: 5px 10px;
+  // float: left;
 }
 
 /* 菜单栏图标 */
