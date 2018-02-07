@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
-  cities: SelectItem[] = [
-    { label: '温州市', value: '330300' }
-  ];
+  // cities: SelectItem[] = [
+  //   { label: '温州市', value: '330300' }
+  // ];
   UserText: string;
   selectedUserID: string;
   UserID: SelectItem[] = [
@@ -18,7 +18,7 @@ export class CustomerComponent implements OnInit {
     { label: '用户卡号', value: 'userCardNumber' },
     { label: '联系电话', value: 'phone' },
   ];
-  selectedCity = this.cities[0].value;
+  // selectedCity = this.cities[0].value;
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class CustomerComponent implements OnInit {
   onSearch() {
     this.router.navigate(['/archive/customer/detail',
       {
-        city: this.selectedCity,
+        // city: this.selectedCity,
         type: this.selectedUserID ? this.selectedUserID : '',
         typeNumber: this.UserText ? this.UserText : ''
       }]);

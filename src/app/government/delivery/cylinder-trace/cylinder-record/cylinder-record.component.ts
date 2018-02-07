@@ -279,6 +279,7 @@ export class CylinderRecordComponent implements OnInit {
           this.total = 0;
         }
       } else {
+        this.loading = false;
         this.cylinderList = [];
         this.messageService.add({ severity: 'warn', summary: '获取信息失败！', detail: data.msg });
       }

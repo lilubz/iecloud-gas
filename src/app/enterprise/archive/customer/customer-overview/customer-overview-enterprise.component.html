@@ -1,4 +1,4 @@
-<div class="ui-g-12 overview">
+<div class="ui-g-12 overview card">
   <h2 class="title">企业一览表</h2>
   <!-- 企业概览 -->
   <p-dataTable [value]="enterpriseCustomers" [styleClass]="'ui-lg-8 ui-xl-6 ui-xl-offset-3 ui-lg-offset-2'">
@@ -10,7 +10,7 @@
     </p-column>
     <p-column field="enterpriseName" header="企业名称" footer="合计" [style]="{'width':'50%'}">
       <ng-template let-col let-countyCustomer="rowData" pTemplate="body">
-        <a href="javascript:void(0);" [routerLink]="['../list', {enterpriseID:countyCustomer.enterpriseNumber||''}]" class="area">{{countyCustomer[col.field]}}</a>
+        <a href="javascript:void(0);" [routerLink]="['../list', {enterpriseID:countyCustomer.enterpriseNumber||''}]" class="router-link">{{countyCustomer[col.field]}}</a>
       </ng-template>
     </p-column>
     <p-column field="userCountByEnterprise" header="用户数" [footer]="calculateTotal('userCountByEnterprise', enterpriseCustomers)">

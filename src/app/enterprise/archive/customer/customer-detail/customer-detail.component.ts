@@ -130,7 +130,7 @@ export class CustomerDetailComponent implements OnInit {
       .switchMap((params: ParamMap) => {
         this.typeList = params.get('type');
         return this.CustomerDetailService.querySingle(
-          { 'regionId': params.get('city'), 'type': params.get('type'), 'typeNumber': params.get('typeNumber') });
+          { 'type': params.get('type'), 'typeNumber': params.get('typeNumber') });
       }).subscribe((data) => {
         this.loading = data.status;
         if (data.status === 0) {

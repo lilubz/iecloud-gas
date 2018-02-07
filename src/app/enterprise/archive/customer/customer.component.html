@@ -1,7 +1,7 @@
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
     <div class="ui-g-12">
-      <button pButton type="button" label="用户信息概览" [routerLink]="['./overview/county']" routerLinkActive="link-active"></button>
+      <button pButton type="button" label="用户信息概览" [routerLink]="['./overview']" routerLinkActive="link-active"></button>
     </div>
     <div class="ui-g-12">
       <button pButton type="button" label="综合查询" [routerLink]="['./list']" routerLinkActive="link-active"></button>
@@ -9,9 +9,9 @@
   </div>
   <div class="ui-g ui-g-nopad group">
     <div class="ui-g-12">用户信息快捷查询</div>
-    <div class="ui-g-12"> 区域：
+    <!-- <div class="ui-g-12"> 区域：
       <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
-    </div>
+    </div> -->
     <div class="ui-g-12">
       <p-dropdown [options]="UserID" [(ngModel)]="selectedUserID"></p-dropdown>
     </div>
@@ -23,6 +23,6 @@
     </div>
   </div>
 </div>
-<div class="ui-g-12 main">
+<div class="main">
   <router-outlet></router-outlet>
 </div>

@@ -92,7 +92,8 @@ input {
       .shortcut-left {
         height: 46px;
         width: 46px;
-        padding-right: 46px;
+        margin-right: 46px;
+        cursor: pointer;
       }
       .shortcut-right {
         height: 46px;

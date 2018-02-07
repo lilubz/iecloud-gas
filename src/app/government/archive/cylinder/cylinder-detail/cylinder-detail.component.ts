@@ -57,10 +57,14 @@ export class CylinderDetailComponent implements OnInit {
   photoList: Array<{
     pictureUrl: string;
   }>;
-  constructor(private CylinderDetailService: CylinderDetailService,
+
+  constructor(
+    private CylinderDetailService: CylinderDetailService,
     private route: ActivatedRoute,
-    private router: Router, private messageService: MessageService) {
-  }
+    private router: Router,
+    private messageService: MessageService
+  ) { }
+
   initDetail() {
     this.detailList = {
       gcLabelInfo: {},

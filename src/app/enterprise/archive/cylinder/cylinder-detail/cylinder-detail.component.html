@@ -1,8 +1,8 @@
-<div class="ta-c" *ngIf="loading!=0">
+<div class="ta-c card" *ngIf="loading!=0">
     <h2>查不到此信息</h2>
   </div>
 
-<div class="cylinder-detail" *ngIf="loading===0"> 
+<div class="cylinder-detail card" *ngIf="loading===0">
   <div class="ui-g-12" >
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">所属行政区域</span>
@@ -138,13 +138,13 @@
     <div class="ui-g-7 ui-g-nopad">
         <span class="span_gasleft bg_colorR">上次检测单位名称	</span>
         <span class="span_textleft">{{detailList.inspector}}</span>
-  
+
       </div>
       <div class="ui-g-5 ui-g-nopad">
         <span class="span_gasright bg_colorR"></span>
         <span class="span_textright"></span>
       </div>
-    
+
     <div class=" bg_colorR photo-head">照片</div>
     <div class="photo-content">
       <!-- <img src="" alt="png" class="photo-view">  -->

@@ -11,15 +11,14 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 })
 
 export class CylinderComponent implements OnInit {
-  cities: SelectItem[] = [
-    { label: '温州市', value: '温州市' }
-  ];
-  selectedCity = this.cities[0].value;
+  // cities: SelectItem[] = [
+  //   { label: '温州市', value: '温州市' }
+  // ];
+  // selectedCity = this.cities[0].value;
   gasInput: any;
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log('sd');
     this.gasInput = '';
     // getid(){
 
