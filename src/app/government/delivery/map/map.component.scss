@@ -1,0 +1,34 @@
+@import '../../../../scss/_variable';
+@import url('http://60.190.114.126/arcgis_js_v323_api/arcgis_js_api/library/3.23/3.23/esri/css/esri.css');
+// @import url('http://localhost:8080/arcgis_js_v323_api/arcgis_js_api/library/3.23/3.23/esri/css/esri.css');
+// @import url('http://localhost:8080/arcgis_js_api/library/4.5/esri/css/main.css');
+.main {
+  left: 390px;
+  .map {
+    height: 100%;
+  }
+}
+
+.sidebar {
+  width: 280px;
+  z-index: 1;
+  .group {
+    h3 {
+      margin: 10px 0;
+    }
+  }
+  .no-left-pad {
+    padding-left: 0;
+  }
+}
+
+#yingxiang_lyr {
+  top: 100px;
+  right: 20px;
+  position: absolute;
+  z-index: 99;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  opacity: 0.75;
+}

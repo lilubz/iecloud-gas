@@ -330,3 +330,24 @@ a.router-link-active {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+#BasemapToggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 50;
+}
+
+div.esriBasemapGalleryNode {
+  margin: 5px 10px 0 10px;
+  width: auto;
+}
+
+img.esriBasemapGalleryThumbnail {
+  width: 60px;
+  height: 60px;
+}
+
+div.esriBasemapGalleryLabelContainer {
+  display: none;
+}

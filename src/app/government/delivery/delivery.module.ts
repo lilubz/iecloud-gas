@@ -14,6 +14,7 @@ import { CylinderHistoryComponent } from './cylinder-trace/cylinder-history/cyli
 import { CylinderTraceService } from './cylinder-trace/cylinder-trace.service';
 import { DashboardService } from './dashboard/dashboard.service';
 import { CylinderFillingComponent } from './cylinder-trace/cylinder-filling/cylinder-filling.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { CylinderFillingComponent } from './cylinder-trace/cylinder-filling/cyli
     CylinderNumberComponent,
     CylinderRecordComponent,
     CylinderHistoryComponent,
-    CylinderFillingComponent
+    CylinderFillingComponent,
+    MapComponent
   ],
   providers: [
     DashboardService,

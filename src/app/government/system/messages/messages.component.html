@@ -1,63 +1,67 @@
-<h2 class="title">
-  发布通知公告
-</h2>
-<div class="ui-g-12 annouce">
-  <div class="ui-g-12 padding-lr">
-    <div class="">
-      <h3 class="first">通知标题</h3>
-      <textarea rows="5" cols="50" [(ngModel)]="List.title" pInputTextarea autoResize="autoResize"></textarea>
-    </div>
-  </div>
-  <div class="ui-g-5 padding-lr">
-    <h3 class="first">公告文件</h3>
-    <p-fileUpload #MessageFile [auto]="false" name="" mode="advanced" [multiple]="false" accept=".doc,.docx,.pdf"
-      invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
-      invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
-      [showCancelButton]="false" previewWidth="50" [customUpload]="true"></p-fileUpload>
-    <div class="ui-g-6">
-      <button type="button" pButton label="发布" (click)="addConfirm(MessageFile)" icon="fa-plus"></button>
-    </div>
-  </div>
-
-</div>
-<div class="ui-g-12 message">
-  <p-dataTable [value]="messageList" [lazy]="false" dataKey="title" [paginator]="true" [rows]="pageSize" [scrollable]="false"
-    scrollHeight="510px" [rowsPerPageOptions]="pageOption" [totalRecords]="total" (onLazyLoad)="onPageChange($event)" [(first)]="first">
-    <p-column [style]="{'width':'100px'}" header="序号">
-      <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
-        <span>{{index+1}}</span>
-      </ng-template>
-    </p-column>
-    <p-column [style]="{'width':'150px'}" field="title" header="标题"></p-column>
-    <p-column [style]="{'width':'150px'}" header="文件查看" >
-        <ng-template pTemplate="body" let-Data="rowData">
-          <a href="javascript:;" style="color:blue;text-decoration: none;" (click)="download(Data)">查看文件</a>
-          </ng-template>
-    </p-column>
-    <p-column [style]="{'width':'150px'}"  header="发布时间">
-        <ng-template pTemplate="body" let-Data="rowData">
-            <span>{{Data.createTime | date:'yyyy年MM月dd日'}}</span>
-            </ng-template>
-    </p-column>
-    <p-column [style]="{'width':'150px'}" header="操作">
-      <ng-template pTemplate="body" let-deData="rowData">
-        <button type="button" pButton label="删除" (click)="deleteConfirm(deData)" icon="fa-trash"></button>
-      </ng-template>
-    </p-column>
-
-
-    <ng-template pTemplate="emptymessage">
-      <div class="text-left">
-        未查询到数据
+<div class="main">
+  <div class="ui-g-12 card">
+    <h2 class="title">
+      发布通知公告
+    </h2>
+    <div class="ui-g-12 annouce">
+      <div class="ui-g-12 padding-lr">
+        <div class="">
+          <h3 class="first">通知标题</h3>
+          <textarea rows="5" cols="50" [(ngModel)]="List.title" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
       </div>
-    </ng-template>
+      <div class="ui-g-5 padding-lr">
+        <h3 class="first">公告文件</h3>
+        <p-fileUpload #MessageFile [auto]="false" name="" mode="advanced" [multiple]="false" accept=".doc,.docx,.pdf" invalidFileSizeMessageSummary="{0}: 文件过大,"
+          invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型," invalidFileTypeMessageDetail="允许的文件类型是: {0}."
+          chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false" [showCancelButton]="false" previewWidth="50"
+          [customUpload]="true"></p-fileUpload>
+        <div class="ui-g-6">
+          <button type="button" pButton label="发布" (click)="addConfirm(MessageFile)" icon="fa-plus"></button>
+        </div>
+      </div>
 
-  </p-dataTable>
-</div>
-<p-confirmDialog #cd>
-    <p-footer>
+    </div>
+    <div class="ui-g-12 message">
+      <p-dataTable [value]="messageList" [lazy]="false" dataKey="title" [paginator]="true" [rows]="pageSize" [scrollable]="false"
+        scrollHeight="510px" [rowsPerPageOptions]="pageOption" [totalRecords]="total" (onLazyLoad)="onPageChange($event)" [(first)]="first">
+        <p-column [style]="{'width':'100px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" field="title" header="标题"></p-column>
+        <p-column [style]="{'width':'150px'}" header="文件查看">
+          <ng-template pTemplate="body" let-Data="rowData">
+            <a href="javascript:;" style="color:blue;text-decoration: none;" (click)="download(Data)">查看文件</a>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" header="发布时间">
+          <ng-template pTemplate="body" let-Data="rowData">
+            <span>{{Data.createTime | date:'yyyy年MM月dd日'}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" header="操作">
+          <ng-template pTemplate="body" let-deData="rowData">
+            <button type="button" pButton label="删除" (click)="deleteConfirm(deData)" icon="fa-trash"></button>
+          </ng-template>
+        </p-column>
+
+
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+
+      </p-dataTable>
+    </div>
+    <p-confirmDialog #cd>
+      <p-footer>
         <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
         <button type="button" pButton icon="fa-check" label="确认" (click)="cd.accept()"></button>
-    </p-footer>
-</p-confirmDialog>
-<p-growl [value]="msgs"></p-growl>
+      </p-footer>
+    </p-confirmDialog>
+    <p-growl [value]="msgs"></p-growl>
+  </div>
+</div>

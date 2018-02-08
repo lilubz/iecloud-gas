@@ -15,3 +15,17 @@
 
 ### 前后端数据验证
 前端应根据接口文档中定义的字段类型在前端做数据校验，对于不符合规则的输入应无法输入或禁止提交。
+
+### arcgis配置说明
+1. 到官网下载 `arcgis_js_api` ,下载时需要登录。
+2. 按照官网说明将解压后文件夹放到服务器根目录，我放到了tomcat服务器的webapps文件夹下面。
+3. 将 `arcgis_js_api/library/4.5/dojo/dojo.js` 和 `arcgis_js_api/library/4.5/init.js` 文件中的 `[HOSTNAME_AND_PATH_TO_JSAPI]` 替换为实际访问的路径地址。我设置的是 `http://localhost:8080/arcgis_js_api/library/4.5/` .
+
+    ***注意**：这时候的完整路径为 `http://localhost:8080/arcgis_js_api/library/4.5/dojo`*
+4. 在前端代码中引用文件，如：
+  ```ts
+    this.esriLoader.load({
+      // the specific version of the API that is to be used
+      url: 'http://localhost:8080/arcgis_js_api/library/4.5/init.js'
+    })
+  ```

@@ -1,0 +1,9 @@
+<p-dropdown #dispatcherSearchField [options]="dispatcherSearchFields" [style]="dropdownStyle" [(ngModel)]="selectedDispatcherSearchField"
+  (onChange)="selectDispatcherSearchField($event)"></p-dropdown>
+<p-autoComplete [(ngModel)]="selectedDispatcher" [style]="autoCompleteStyle" [field]="selectedDispatcherSearchField===1?'jobNumber':'name'" [suggestions]="dispatcherSuggestions"
+  (onBlur)="blurSelectDispatcher()" (completeMethod)="search($event.query)" [delay]="500" [size]="20" [minLength]="selectedDispatcherSearchField===1?5:2"
+  [maxlength]="20" [placeholder]="'请输入送气工'+dispatcherSearchField.label">
+  <ng-template let-dispatcher pTemplate="item">
+    <div style="width:400px;">{{ dispatcher.name }} -- {{ dispatcher.jobNumber }} -- {{ dispatcher.subsidiaryEnterprises }}</div>
+  </ng-template>
+</p-autoComplete>

@@ -40,6 +40,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DistrictsComponent } from './districts/districts.component';
 import { PermissionRoleDirective } from './permission-role.directive';
+import { DispatcherAutocompleteComponent } from './dispatcher-autocomplete/dispatcher-autocomplete.component';
 import { DateFormat } from './dateFormat.pipe';
 
 @NgModule({
@@ -86,6 +87,7 @@ import { DateFormat } from './dateFormat.pipe';
     PageNotFoundComponent,
     DistrictsComponent,
     PermissionRoleDirective,
+    DispatcherAutocompleteComponent,
     DateFormat
   ],
 
@@ -132,6 +134,7 @@ import { DateFormat } from './dateFormat.pipe';
     PageNotFoundComponent,
     DistrictsComponent,
     PermissionRoleDirective,
+    DispatcherAutocompleteComponent,
     DateFormat
   ]
 })

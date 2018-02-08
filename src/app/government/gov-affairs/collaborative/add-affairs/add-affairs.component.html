@@ -35,7 +35,7 @@
           </p-autoComplete>
         </div>
       </div>
-      
+
       <div class="form-group ui-g-12" *ngIf="formModel.objType===2">
         <label for="inputEmail3" class="ui-g-2 control-label">
           <span class="warn">*</span>供应站：</label>
@@ -181,7 +181,7 @@
             协同企业：
           </label>
           <div class="ui-g-9">
-            <p-multiSelect [options]="multiSelect.company" [(ngModel)]="formModel.helpCompany" name="company" 
+            <p-multiSelect [options]="multiSelect.company" [(ngModel)]="formModel.helpCompany" name="company"
             optionLabel="enterpriseName" [style]="{'width':'100%'}" defaultLabel="点击选择协同企业" maxSelectedLabels="1"
              selectedItemsLabel="已经选择了{0}个协同企业" [showToggleAll]="false"></p-multiSelect>
           </div>
@@ -195,7 +195,7 @@
                 [stepMinute]="10" placeholder="请输入截止时间" [minDate]="currentDate"[showButtonBar]="true"></p-calendar>
             </div>
           </div>
-          
+
         </div>
         <div class="form-group ui-g-12">
           <label for="inputEmail3" class="ui-g-2 control-label">

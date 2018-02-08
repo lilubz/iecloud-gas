@@ -24,6 +24,7 @@ export const GovernmentMenus: MenuItem[] = [
     routerLink: ['/government/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/government/delivery/cylinder-trace'] },
+      { label: '一张图展示', routerLink: ['/government/delivery/map'] },
       // { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
     ]
   },

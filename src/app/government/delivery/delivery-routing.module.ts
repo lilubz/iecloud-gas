@@ -10,6 +10,7 @@ import { CylinderStateComponent } from './cylinder-trace/cylinder-state/cylinder
 import { CylinderNumberComponent } from './cylinder-trace/cylinder-number/cylinder-number.component';
 import { CylinderRecordComponent } from './cylinder-trace/cylinder-record/cylinder-record.component';
 import { CylinderFillingComponent } from './cylinder-trace/cylinder-filling/cylinder-filling.component';
+import { MapComponent } from './map/map.component';
 const routes: Routes = [
   {
     path: '',
@@ -45,6 +46,10 @@ const routes: Routes = [
         component: CylinderHistoryComponent
       }
     ]
+  },
+  {
+    path: 'map',
+    component: MapComponent
   },
   {
     path: '**',

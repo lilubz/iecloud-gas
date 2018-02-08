@@ -148,4 +148,16 @@ export class CommonRequestService {
   listCorpInflatableStation(): Promise<any> {
     return this.httpService.getRequest(API.listCorpInflatableStation, {});
   }
+
+  /**
+   * 查询送气工信息
+   * 2018-02-02 17:44:44
+   * @author hzb
+   * @param {*} [params]
+   * @returns {Promise<any>}
+   * @memberof CommonRequestService
+   */
+  getDispatcherInfo(params?: any): Promise<any> {
+    return this.httpService.getRequest(API.getDispatcherInfo, params);
+  }
 }

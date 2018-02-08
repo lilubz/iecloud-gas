@@ -1,4 +1,4 @@
-<div class="collaborative-detail">
+<div class="collaborative-detail ui-g-12 card">
   <div class="ui-g-12">
     <div class="ui-g-4">
       <span class="ui-g-6 content title">操作</span>
@@ -129,7 +129,7 @@
             <div class="ui-g-3 form-group" [hidden]="formModel.boolIsReject">
               <div class="ui-g-12">
                 <p-multiSelect [options]="multiSelectOptions" [(ngModel)]="formModel.shiftList" name="shiftList"
-                 optionLabel="organizationName" [style]="{'width':'100%'}" defaultLabel="点击选择协同部门" maxSelectedLabels="1" 
+                 optionLabel="organizationName" [style]="{'width':'100%'}" defaultLabel="点击选择协同部门" maxSelectedLabels="1"
                  selectedItemsLabel="已经选择了{0}个协同部门" [showToggleAll]="false"></p-multiSelect>
               </div>
             </div>
