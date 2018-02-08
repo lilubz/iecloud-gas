@@ -1,10 +1,13 @@
-<div class="ui-g-12 content">
+<div class="ui-g-12 content card">
   <h3>储配站气瓶统计</h3>
-  <ng-template [gasPermissionRole]="permissionRoles">
-    区域选择：
-    <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
-  </ng-template>
-  <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8'"
+
+  <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
+    <ng-template [gasPermissionRole]="permissionRoles">
+      区域选择：
+      <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
+    </ng-template>
+  </div>
+  <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
     [loading]="cylinderLoading" emptyMessage="未查询到数据">
 
     <!-- <p-column header="序号" [style]="{'width':'50px'}">
@@ -47,22 +50,24 @@
 
   <!-- 流通统计 -->
   <h3>流通信息统计</h3>
-  <ng-template [gasPermissionRole]="permissionRoles">
-    区域选择：
-    <p-dropdown [options]="regionList" [(ngModel)]="selectedCirculationRegion" (onChange)="selectCirculationRegion($event.value)"
-      [style]="{'width':'150px'}"></p-dropdown>
-  </ng-template>
-  &nbsp;&nbsp; 时间范围：
-  <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
-    dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
-  --
-  <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
-    dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
+  <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
+    <ng-template [gasPermissionRole]="permissionRoles">
+      区域选择：
+      <p-dropdown [options]="regionList" [(ngModel)]="selectedCirculationRegion" (onChange)="selectCirculationRegion($event.value)"
+        [style]="{'width':'150px'}"></p-dropdown>
+    </ng-template>
+    &nbsp;&nbsp; 时间范围：
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
+      dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
+    --
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
+      dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
 
-  <button pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()"></button>
+    <button pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()"></button>
+  </div>
 
   <p-dataTable [value]="storageDistributionCirculationFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]"
-    [styleClass]="'ui-lg-10 ui-xl-8'" [loading]="circulationLoading" emptyMessage="未查询到数据">
+    [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" [loading]="circulationLoading" emptyMessage="未查询到数据">
 
     <!-- <p-column header="序号" [style]="{'width':'50px'}">
       <ng-template pTemplate="body" let-index="rowIndex">

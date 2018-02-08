@@ -8,7 +8,7 @@ import { HttpService } from './../../../core/http.service';
 
 @Injectable()
 export class DashboardService {
-  private headers = new Headers({ 'Content-Type': 'application/json; charser=UTF-8' });
+  // private headers = new Headers({ 'Content-Type': 'application/json; charser=UTF-8' });
 
   constructor(private httpService: HttpService, private userStateService: UserStateService, private router: Router) { }
 

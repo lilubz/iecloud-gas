@@ -8,7 +8,7 @@ import { HttpService } from './../../../../core/http.service';
 @Injectable()
 export class CylinderOverviewService implements CanActivate {
 
-  private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
+
 
   constructor(private httpService: HttpService, private userStateService: UserStateService, private router: Router) { }
 

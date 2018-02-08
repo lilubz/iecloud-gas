@@ -8,7 +8,7 @@ import { HttpService } from './../../../core/http.service';
 
 @Injectable()
 export class StatisticCylinderService {
-  private headers = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8' });
+  // private headers = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8' });
 
   constructor(
     private httpService: HttpService,

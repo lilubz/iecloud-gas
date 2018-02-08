@@ -5,19 +5,19 @@
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
             <span>辖区</span>
-            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'calc(100% - 60px','max-width':'300px'}"></p-dropdown>
+            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
           </div>
         </div>
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
             <span>企业名称</span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText placeholder="">
+            <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText placeholder="" style="width:180px">
           </div>
         </div>
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
             <span>负责人</span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="">
+            <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="" style="width:180px">
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
             <span>发证日期</span>
             <p-calendar [locale]="cn" #start (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)" placeholder="2017-10-1"
               [showButtonBar]="true" [maxDate]="end.value" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
-              [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'120px','display':'inline-block'}"></p-calendar>
+              [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'','display':'inline-block'}"></p-calendar>
             &#12288;至&#12288;
             <p-calendar [locale]="cn" #end (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="start.value"
               placeholder="2017-12-29" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
@@ -37,7 +37,7 @@
         <div class="ui-g-4 ui-g-nopad">
           <div class="inputgroup">
             <span>服务电话</span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.phone" maxlength="20" pInputText placeholder="">
+            <input type="text" class="textInput" [(ngModel)]="searchParams.phone" maxlength="20" pInputText placeholder="" style="width:180px">
           </div>
         </div>
       </div>

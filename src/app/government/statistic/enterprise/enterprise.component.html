@@ -1,11 +1,12 @@
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
-    <span>统计查询-企业</span>
-
+      <div class="ui-g-12">
+          <button pButton type="button" label="统计查询-企业" [routerLink]="['../enterprise']" routerLinkActive="link-active"></button>
+      </div>
   </div>
 </div>
 <div class="main">
-  <div class="ui-g-12 content">
+  <div class="ui-g-12 content card">
     <h3>企业信息统计</h3>
     <span *gasPermissionRole="permissionRoles">区域选择</span>
     <p-dropdown *gasPermissionRole="permissionRoles" [options]="cities" [(ngModel)]="selectedCities" (onChange)="getBusinessId()" [style]="{'width':'102px'}"></p-dropdown>

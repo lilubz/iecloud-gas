@@ -1,6 +1,6 @@
 .bottle-library {
   .title {
-    color: #1a5e93;
+    color: #3186dc;
     text-align: center;
   }
   .inputgroup {
@@ -20,8 +20,10 @@
     height: 50px;
     width: 80px;
     font-size: 1em;
-    font-weight: bold;
-    border-radius: 5px;
+    // font-weight: bold;
+    border-radius: 4px;
+    background: #3186dc;
+    border: 1px solid #3186dc;
   }
   .dialogtitle {
     background: #3399ff;

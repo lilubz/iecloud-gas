@@ -1,11 +1,13 @@
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
-    <span>执法事务统计</span>
+    <div class="ui-g-12">
+      <button pButton type="button" label="执法事务统计" [routerLink]="['../affair']" routerLinkActive="link-active"></button>
+    </div>
 
   </div>
 </div>
 <div class="main">
-  <div class="ui-g-12 content">
+  <div class="ui-g-12 content card">
     <h3>协同事务统计</h3>
     区域选择：
     <p-dropdown [options]="regionList" [(ngModel)]="selectedRegionId" [style]="{'width':'150px'}"></p-dropdown>

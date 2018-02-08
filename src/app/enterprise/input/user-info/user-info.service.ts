@@ -8,7 +8,7 @@ import { HttpService } from './../../../core/http.service';
 import { Customer } from './Customer.model';
 @Injectable()
 export class UserInfoService {
-  private headers = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8' });
+  // private headers = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8' });
 
   constructor(private httpService: HttpService, private userStateService: UserStateService, private router: Router) { }
 

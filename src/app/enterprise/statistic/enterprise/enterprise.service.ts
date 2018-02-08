@@ -7,7 +7,7 @@ import { UserStateService } from '../../../core/userState.service';
 @Injectable()
 export class CylinderOverviewService {
 
-  private headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
+
 
   constructor(private httpService: HttpService, private userStateService: UserStateService, private router: Router) { }
 
