@@ -6,12 +6,16 @@
   left: 390px;
   .map {
     height: 100%;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
   }
 }
 
 .sidebar {
   width: 280px;
   z-index: 1;
+  // .sidebar-container{
+  //   overflow: auto;
+  // }
   .group {
     h3 {
       margin: 10px 0;

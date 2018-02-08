@@ -8,6 +8,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SelectItem } from 'primeng/primeng';
 import { zh_CN } from './../../../common/date-localization';
 import * as moment from 'moment';
+import { CommonRequestService } from '../../../core/common-request.service';
 
 @Component({
   selector: 'gas-map',
@@ -37,23 +38,39 @@ export class MapComponent implements OnInit, OnDestroy {
     }
   ];
   selectedDateRange = this.dateRange[0].value;
+  selectedDateRangeCar = this.dateRange[0].value;
   selectedMarkers: string[] = [];
   stationVisible = true;
   selectedDispatcher;
   selectedDispatcherNumber;
+  cars; // 直销车列表
+  selectedCar;
 
   today = new Date();
-  beginTime: Date = new Date((new Date().getTime() - 30 * 24 * 60 * 60 * 1000));
+  beginTime: Date = new Date((new Date().getTime() - 5 * 24 * 60 * 60 * 1000));
   endTime: Date = new Date();
+  beginTimeCar: Date = new Date((new Date().getTime() - 5 * 24 * 60 * 60 * 1000));
+  endTimeCar: Date = new Date();
 
   constructor(
     private mapService: MapService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private commonRequestService: CommonRequestService,
   ) { }
 
   ngOnInit() {
-
     this.loadMap();
+    // this.commonRequestService.listMobileCorpSupplyStationInfo({
+    //   stationType: '3'
+    // }).then(data => {
+    //   if (data.status === 0) {
+    //     this.cars = data.data.map(item => ({ label: item.supplyStationName, value: item }));
+    //     // this.cars.unshift({ label: '请选择直销车', value: '' });
+    //   } else {
+    //     // this.cars = [{ label: '请选择直销车', value: '' }];
+    //     this.cars = [];
+    //   }
+    // });
   }
 
   ngOnDestroy() {
@@ -130,9 +147,9 @@ export class MapComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
       return;
     }
-    const dateRange = this.getSelectedTime();
+    const dateRange = this.getSelectedTime(this.selectedDateRange, this.beginTime, this.endTime);
 
-    this.mapService.getThePathByDispatcherNumber({
+    this.mapService.getThePathByAccountId({
       beginTime: dateRange.beginTime,
       endTime: dateRange.endTime,
       accountId: this.selectedDispatcherNumber,
@@ -157,28 +174,73 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 获取用户选择的开始时间和结束时间
-   * 2018-02-05 11:50:12
+   * 查询配送车轨迹
+   * 2018-02-08 11:48:31
    * @author hzb
+   * @returns
+   * @memberof MapComponent
+   */
+  searchTrackCar() {
+    if (!this.selectedCar) {
+      this.messageService.add({ severity: 'warn', summary: '请选择直销车', detail: '' });
+      return;
+    } else if (this.selectedDateRangeCar === 4 && (this.beginTimeCar > this.endTimeCar)) {
+      this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
+      return;
+    }
+    const dateRange = this.getSelectedTime(this.selectedDateRangeCar, this.beginTimeCar, this.endTimeCar);
+
+    this.mapService.getThePathByAccountId({
+      beginTime: dateRange.beginTime,
+      endTime: dateRange.endTime,
+      accountId: this.selectedCar.supplyStationNumber,
+      accountTypeId: '3'
+    }).then(data => {
+      if (data.status === 0) {
+        this.mapService.showSellingCarPathAndPoint(
+          data.data.map(item => {
+            return Object.assign({}, item, {
+              supplyStationName: this.selectedCar.supplyStationName,
+              supplyStationAddress: this.selectedCar.supplyStationAddress,
+              supplyLicenseNum: this.selectedCar.supplyLicenseNum,
+              principal: this.selectedCar.principal,
+              carNumber: this.selectedCar.carNumber,
+              time: moment(item.createTime).format('YYYY-MM-DD HH:mm')
+            });
+          })
+        );
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+      }
+    });
+  }
+
+  /**
+   * 获取用户选择的开始时间和结束时间
+   * 2018-02-08 14:17:48
+   * @author hzb
+   * @param {number} dateRange
+   * @param {Date} selectedBeginTime
+   * @param {Date} selectedEndTime
    * @returns {{ beginTime: Date, endTime: Date }}
    * @memberof MapComponent
    */
-  getSelectedTime(): { beginTime: Date, endTime: Date } {
+  getSelectedTime(dateRange: number, selectedBeginTime: Date, selectedEndTime: Date): { beginTime: Date, endTime: Date } {
     let beginTime;
     let endTime;
-    if (this.selectedDateRange === 1) {
+    if (dateRange === 1) {
       beginTime = moment(moment(new Date()).format('YYYY-MM-DD') + ' 00:00:00');
       endTime = moment(new Date());
-    } else if (this.selectedDateRange === 2) {
+    } else if (dateRange === 2) {
       const yesterday = new Date((new Date().getTime() - 24 * 60 * 60 * 1000));
       beginTime = moment(moment(yesterday).format('YYYY-MM-DD') + ' 00:00:00');
       endTime = moment(moment(yesterday).format('YYYY-MM-DD') + ' 23:59:59');
-    } else if (this.selectedDateRange === 3) {
+    } else if (dateRange === 3) {
       beginTime = moment(moment(new Date((new Date().getTime() - 2 * 24 * 60 * 60 * 1000))).format('YYYY-MM-DD') + ' 00:00:00');
       endTime = moment(new Date());
-    } else if (this.selectedDateRange === 4) {
-      beginTime = moment(moment(this.beginTime).format('YYYY-MM-DD HH:mm:ss'));
-      endTime = moment(this.endTime);
+    } else if (dateRange === 4) {
+      beginTime = moment(moment(selectedBeginTime).format('YYYY-MM-DD HH:mm:ss'));
+      endTime = moment(selectedEndTime);
     }
     return { beginTime, endTime };
   }

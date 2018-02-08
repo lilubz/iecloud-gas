@@ -160,4 +160,16 @@ export class CommonRequestService {
   getDispatcherInfo(params?: any): Promise<any> {
     return this.httpService.getRequest(API.getDispatcherInfo, params);
   }
+
+  /**
+   * 获取所有的移动或固定瓶库
+   * 2018-02-08 11:27:04
+   * @author hzb
+   * @param {{ stationType: string }} params stationType:3--移动瓶库；1--固定瓶库
+   * @returns
+   * @memberof CommonRequestService
+   */
+  listMobileCorpSupplyStationInfo(params: { stationType: string }) {
+    return this.httpService.getRequest(API.listMobileCorpSupplyStationInfoVO, params);
+  }
 }

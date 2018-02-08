@@ -6,8 +6,8 @@ body {
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 100%;
-  min-height: 576px; // min-width: 1024px;
+  height: 100%; // min-height: 576px;
+  // min-width: 1024px;
   // min-width: 1024px;
   background: $html-bg-color; // overflow: auto;
   font-family: "Microsoft YaHei", "Arial", "黑体", "宋体", "Roboto", "Trebuchet MS", "Arial", "Helvetica", sans-serif;
@@ -117,10 +117,17 @@ input {
     position: fixed;
     left: $menu-width;
     top: $header-height + $breadcrumb-height;
+    bottom: 0;
     width: 240px;
     border-radius: 4px;
     margin: 20px;
     font-size: 18px;
+    .sidebar-container {
+      max-height: 100%;
+      width: 100%; // background: #fff;
+      // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+      overflow: auto;
+    }
     .ui-widget-header .ui-button,
     .ui-widget-content .ui-button,
     .ui-widget.ui-button,
@@ -350,4 +357,28 @@ img.esriBasemapGalleryThumbnail {
 
 div.esriBasemapGalleryLabelContainer {
   display: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 6px;
+  background: #888888;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: transparent;
 }

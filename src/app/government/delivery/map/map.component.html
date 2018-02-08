@@ -1,7 +1,9 @@
 <div class="sidebar">
+  <!-- <div class="sidebar-container"> -->
   <div class="ui-g-12 group">
     <h3>
-      <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>站点信息
+      <!-- <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i> -->
+      站点信息
     </h3>
     <div class="ui-g-12 ui-g-nopad">
       <!-- <i class="fa fa-fw" aria-hidden="true"></i> -->
@@ -15,35 +17,64 @@
 
   <div class="ui-g-12 group">
     <h3>
-      <i class="fa fa-user fa-fw" aria-hidden="true"></i>送气工配送轨迹
+      <!-- <i class="fa fa-user fa-fw" aria-hidden="true"></i> -->
+      送气工配送轨迹
     </h3>
     <gas-dispatcher-autocomplete (dispatcherChange)="dispatcherChange($event)" [dropdownStyle]="{'width':'200px','margin':'10px 10px 10px 0'}"
       [autoCompleteStyle]="{'width':'200px','margin':'10px 10px 10px 0'}"></gas-dispatcher-autocomplete>
     <br>
     <!-- 时间选择： -->
-    <p-dropdown #dispatcherSearchField [options]="dateRange" [style]="{'width':'200px','margin':'10px 10px 10px 0'}" [(ngModel)]="selectedDateRange"></p-dropdown>
+    <p-dropdown appendTo="body" [options]="dateRange" [style]="{'width':'200px','margin':'10px 10px 10px 0'}" [(ngModel)]="selectedDateRange"></p-dropdown>
     <br>
 
     <ng-container *ngIf="selectedDateRange === 4">
       <div class="ui-g-12 no-left-pad">
         开始时间：
-        <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
-          dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}" [maxDate]="today"
-          readonlyInput="true"></p-calendar>
+        <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+          [(ngModel)]="beginTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}"
+          [maxDate]="today" readonlyInput="true"></p-calendar>
       </div>
       <div class="ui-g-12 no-left-pad">
         结束时间：
-        <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
-          dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}" [maxDate]="today"
-          readonlyInput="true"></p-calendar>
+        <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+          [(ngModel)]="endTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}"
+          [maxDate]="today" readonlyInput="true"></p-calendar>
       </div>
     </ng-container>
     <div class="ui-g-12">
-      <button pButton type="button" label="查询" (click)="searchTrack()"></button>
+      <button pButton type="button" label="查询" (click)="searchTrack('0')"></button>
     </div>
-
   </div>
+
+  <!-- <div class="ui-g-12 group">
+      <h3>
+        直销车
+      </h3>
+      <p-dropdown appendTo="body" [options]="cars" [style]="{'width':'200px','margin':'10px 10px 10px 0'}" [(ngModel)]="selectedCar" placeholder="请选择直销车" [filter]="true"></p-dropdown>
+      <br>
+      <p-dropdown appendTo="body" [options]="dateRange" [style]="{'width':'200px','margin':'10px 10px 10px 0'}" [(ngModel)]="selectedDateRangeCar"></p-dropdown>
+      <br>
+
+      <ng-container *ngIf="selectedDateRangeCar === 4">
+        <div class="ui-g-12 no-left-pad">
+          开始时间：
+          <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTimeCar"
+            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}" [maxDate]="today"
+            readonlyInput="true"></p-calendar>
+        </div>
+        <div class="ui-g-12 no-left-pad">
+          结束时间：
+          <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTimeCar"
+            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}" [maxDate]="today"
+            readonlyInput="true"></p-calendar>
+        </div>
+      </ng-container>
+      <div class="ui-g-12">
+        <button pButton type="button" label="查询" (click)="searchTrackCar('3')"></button>
+      </div>
+    </div> -->
 </div>
+<!-- </div> -->
 <div class="main">
   <div class="map card" id="esri-map" #map>
     <div id="BasemapToggle"></div>

@@ -22,6 +22,7 @@ export const API = {
   'listCorpInflatableStation': URL + 'basicInformation/corpInflatableStation/listCorpInflatableStation.do', // 获取储配站列表
   'listLocationInfo': URL + 'basicInformation/corpCarInfo/listCorpLocationInfo.do', // 获取站点位置信息
   'getThePathByAccountId': URL + 'corpBusiness/dispatchOrder/getThePathByAccountId.do', // 获取送气工轨迹
+  'listMobileCorpSupplyStationInfoVO': URL + 'basicInformation/corpSupplyStation/listMobileCorpSupplyStationInfoVO.do', // 获取移动或固定瓶库
 
   // 气瓶档案
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',
