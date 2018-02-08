@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CommonRequestService } from '../../../../core/common-request.service';
@@ -45,14 +45,18 @@ export class CylinderHistoryComponent implements OnInit {
     private commonRequestService: CommonRequestService,
     private cylinderTraceService: CylinderTraceService,
     private messageService: MessageService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.cylinderNumber = this.route.snapshot.params['gasLabelNumber'] || '';
-    if (this.route.queryParams['value'].cylinderNumber) {
+    const queryParams = this.route.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
       this.loading = true;
-      this.cylinderNumber = this.route.queryParams['value'].cylinderNumber;
+      this.cylinderNumber = queryParams.cylinderNumber;
+      this.beginTime = queryParams.beginTime ? new Date(parseInt(queryParams.beginTime, 10)) : this.beginTime;
+      this.endTime = queryParams.endTime ? new Date(parseInt(queryParams.endTime, 10)) : this.endTime;
       this.getCylinderHistoryStatus();
     }
   }
@@ -94,7 +98,38 @@ export class CylinderHistoryComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '获取气瓶状态历史失败', detail: error });
     });
   }
-
+  link(rowData, status) {
+    const typeId = rowData[status + 'LiabilityTypeId'];
+    const queryParams = {
+      beginTime: this.beginTime.getTime(),
+      endTime: this.endTime.getTime(),
+      hash: Math.random(),
+      liabilityNumber: '',
+      liabilitySubjectType: typeId
+    };
+    switch (typeId) {
+      case 1:
+        queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
+        this.router.navigate(['../cylinder-record', { type: 1 }], { relativeTo: this.route, queryParams });
+        break;
+      case 2:
+        queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
+        this.router.navigate(['../cylinder-record', { type: 2 }], { relativeTo: this.route, queryParams });
+        break;
+      case 3:
+        queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
+        queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
+        this.router.navigate(['../cylinder-record', { type: 3 }], { relativeTo: this.route, queryParams });
+        break;
+      case 4:
+        queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
+        queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
+        this.router.navigate(['../cylinder-record', { type: 4 }], { relativeTo: this.route, queryParams });
+        break;
+      default:
+        break;
+    }
+  }
   searchCylinderHistory() {
     // this.cylinderHistoryList = [];
     this.pageNumberHistory = 1;

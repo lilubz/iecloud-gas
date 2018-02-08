@@ -29,6 +29,16 @@
     <p-dropdown [options]="dispatcherSearchTypes" [style]="{'width':'150px'}" [(ngModel)]="selectedDispatcherType"></p-dropdown>
   </ng-container>
 
+  <ng-container *ngIf="selectedCylinderStatus === 4">
+    <p-dropdown [options]="userSearchFields" [style]="{'width':'150px'}" [(ngModel)]="selectedUserSearchField" (onChange)="selectUserSearchField($event)"></p-dropdown>
+    <p-autoComplete [(ngModel)]="selectedUser" [field]="selectedUserSearchField.field" [suggestions]="userSuggestions" (onBlur)="blurSelectUser()"
+      (completeMethod)="searchUser($event.query)" [delay]="500" [size]="20" [minLength]="selectedUserSearchField.minLength" [maxlength]="20"
+      [placeholder]="selectedUserSearchField.placeholder">
+      <ng-template let-user pTemplate="item">
+        <div style="width:400px;">{{ user.userName }} -- {{ user.phone }} -- {{ user.certificateId }}</div>
+      </ng-template>
+    </p-autoComplete>
+  </ng-container>
 
   &nbsp;&nbsp; 开始时间
   <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
@@ -75,7 +85,8 @@
     </p-column> -->
     <p-column field="gasLabelNumber">
       <ng-template let-rowData="rowData" pTemplate="body">
-        <a href="javascript:void(0);" [routerLink]="['../cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber}">{{rowData.gasLabelNumber}}</a>
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber,beginTime:beginTime.getTime(),endTime:endTime.getTime()}"
+          title="点击查看流转记录">{{rowData.gasLabelNumber}}</a>
       </ng-template>
     </p-column>
     <p-column field="createTime">
@@ -85,11 +96,21 @@
     </p-column>
     <p-column field="gcStatusTypeName"></p-column>
     <p-column field="beforeLiabilityTypeName"></p-column>
-    <p-column field="beforeLiabilityName"></p-column>
+    <p-column field="beforeLiabilityName">
+      <ng-template let-rowData="rowData" pTemplate="body">
+        <a *ngIf="rowData.beforeLiabilityTypeId<5" href="javascript:void(0);" (click)="link(rowData, 'before');" title="{{'点击查看' + rowData.beforeLiabilityName + '的流转记录'}}">{{rowData.beforeLiabilityName}}</a>
+        <span *ngIf="rowData.beforeLiabilityTypeId===5">{{rowData.beforeLiabilityName}}</span>
+      </ng-template>
+    </p-column>
     <p-column field="beforeLiabilityContact"></p-column>
     <p-column field="beforeLiabilityAddress"></p-column>
     <p-column field="afterLiabilityTypeName"></p-column>
-    <p-column field="afterLiabilityName"></p-column>
+    <p-column field="afterLiabilityName">
+      <ng-template let-rowData="rowData" pTemplate="body">
+        <a *ngIf="rowData.afterLiabilityTypeId<5" href="javascript:void(0);" (click)="link(rowData, 'after');" title="{{'点击查看' + rowData.afterLiabilityName + '的流转记录'}}">{{rowData.afterLiabilityName}}</a>
+        <span *ngIf="rowData.afterLiabilityTypeId===5">{{rowData.afterLiabilityName}}</span>
+      </ng-template>
+    </p-column>
     <p-column field="afterLiabilityContact"></p-column>
     <p-column field="afterLiabilityAddress"></p-column>
   </p-dataTable>

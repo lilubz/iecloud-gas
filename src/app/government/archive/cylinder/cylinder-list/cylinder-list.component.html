@@ -48,12 +48,13 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码">
           <ng-template let-col let-cylinder="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['../detail', cylinder.gasLabelNumber || '']">{{ cylinder.gasLabelNumber }}</a>
+            <a href="javascript:void(0);" [routerLink]="['../detail', cylinder.gasLabelNumber || '']" title="点击查看气瓶详情">{{ cylinder.gasLabelNumber }}</a>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'120px'}" header="操作">
           <ng-template let-col let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber}">查看流转记录</a>
+            <a href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber}"
+              title="点击查看流转记录">查看流转记录</a>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>

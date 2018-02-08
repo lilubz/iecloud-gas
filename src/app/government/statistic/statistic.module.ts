@@ -14,10 +14,7 @@ import { EnterpriseComponent as CylinderEnterpriseComponent } from './cylinder/e
 import { CylinderStorageComponent } from './cylinder/cylinder-storage/cylinder-storage.component';
 import { StorageDistributionComponent } from './cylinder/storage-distribution/storage-distribution.component';
 import { CustomerComponent } from './cylinder/customer/customer.component';
-import { PossessComponent } from './cylinder/possess/possess.component';
-import { FlowComponent } from './cylinder/flow/flow.component';
-// import { DispatcherComponent } from '../../enterprise/statistic/cylinder/dispatcher/dispatcher.component';
-// import { DetailsComponent } from '../../enterprise/statistic/cylinder/dispatcher/details/details.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -33,8 +30,6 @@ import { FlowComponent } from './cylinder/flow/flow.component';
     CylinderStorageComponent,
     StorageDistributionComponent,
     CustomerComponent,
-    PossessComponent,
-    FlowComponent,
   ],
   providers: [
 

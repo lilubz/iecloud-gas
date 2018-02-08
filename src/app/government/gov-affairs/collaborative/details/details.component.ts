@@ -196,8 +196,14 @@ export class DetailsComponent implements OnInit {
               target['parentEventHandleOrganizationName'] = parentNode.eventHandleOrganizationName;
               target['parentUrl'] = parentNode.url;
             }
-          } else {
-
+          } else if (target && !target.lastEventId) { // 没有lastEventId 那么此节点的父节点是根节点
+            setTimeout(() => {
+              target['parentEndTime'] = ''; // 结束时间
+              target['parentDescription'] = this.details.description ? this.details.description : ''; // 描述
+              target['parentEventHandleName'] = this.details.transactionUserName ? this.details.transactionUserName : ''; // 事件处理人名称
+              target['parentEventHandleOrganizationName'] = this.details.transactionOrganizationName ? this.details.transactionOrganizationName : '';
+              target['parentUrl'] = this.details.url ? this.details.url : '';
+            }, 3000);
           }
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });

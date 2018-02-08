@@ -8,7 +8,7 @@ import { CommonRequestService } from '../../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
 import { RoleType } from './../../../../common/RoleType';
 import { UserStateService } from './../../../../core/userState.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
@@ -20,16 +20,45 @@ import 'rxjs/add/operator/map';
 })
 export class CylinderRecordComponent implements OnInit {
   loading: Boolean = false;
+  Math = Math;
   zh = zh_CN;
   cylinderStatus: SelectItem[];
   dispatcherSearchFields: SelectItem[] = [
     { label: '送气工编号', value: 1 },
     { label: '送气工名称', value: 2 },
   ];
+  userSearchFields: SelectItem[] = [
+    {
+      label: '用户姓名', value: {
+        name: 'name',
+        field: 'userName',
+        minLength: 2, // 2
+        placeholder: '请输入用户姓名'
+      }
+    },
+    {
+      label: '身份证号', value: {
+        name: 'idNumber',
+        field: 'certificateId',
+        minLength: 8, // 8
+        placeholder: '请输入身份证号'
+      }
+    },
+    {
+      label: '手机号码', value: {
+        name: 'phone',
+        field: 'phone',
+        minLength: 5, // 5
+        placeholder: '请输入手机号码'
+      }
+    },
+  ];
   selectedCylinderStatus;
   selectedDispatcherSearchField = this.dispatcherSearchFields[0].value;
+  selectedUserSearchField = this.userSearchFields[0].value;
 
   dispatcherSuggestions = [];
+  userSuggestions = [];
 
   distributionStationSearchTypes: SelectItem[] = [
     { label: '全部', value: '' },
@@ -60,6 +89,7 @@ export class CylinderRecordComponent implements OnInit {
   selectedDistributionStation = ''; // 选中的储配站
   selectedCylinderStorage = ''; // 选中的瓶库
   selectedDispatcher; // 选中的配送工
+  selectedUser; // 选中的用户
 
   cylinderList: Array<{
     createTime: string,
@@ -84,7 +114,8 @@ export class CylinderRecordComponent implements OnInit {
   endTime: Date = new Date();
 
   constructor(
-    private route: ActivatedRoute,
+    private routerInfo: ActivatedRoute,
+    private router: Router,
     private commonRequestService: CommonRequestService,
     private cylinderTraceService: CylinderTraceService,
     private messageService: MessageService,
@@ -101,35 +132,50 @@ export class CylinderRecordComponent implements OnInit {
     //   { label: '送气工', value: 3 },
     // ];
 
-    this.route.paramMap.switchMap((params) => {
+    this.routerInfo.paramMap.switchMap((params) => {
       return Promise.resolve(params.get('type'));
     }).subscribe((type) => {
       this.init();
       this.selectedCylinderStatus = parseInt(type, 10);
+    });
 
+    this.routerInfo.queryParams.subscribe((queryParams) => {
       // 跳转查询
-      const queryParams = this.route.queryParams['value'];
       if (JSON.stringify(queryParams) !== '{}') { // 查询参数不为空
+        console.log(queryParams);
+        this.selectedCylinderStatus = parseInt(queryParams.liabilitySubjectType, 10);
         this.loading = true;
+        this.beginTime = queryParams.beginTime ? new Date(parseInt(queryParams.beginTime, 10)) : this.beginTime;
+        this.endTime = queryParams.endTime ? new Date(parseInt(queryParams.endTime, 10)) : this.endTime;
         switch (this.selectedCylinderStatus) {
           case 1:
-            this.selectedDistributionStation = queryParams.id;
-            this.beginTime = new Date(parseInt(queryParams.beginTime, 10));
-            this.endTime = new Date(parseInt(queryParams.endTime, 10));
+            this.selectedDistributionStation = queryParams.liabilityNumber;
             this.search();
             break;
           case 2:
+            this.selectedCylinderStorage = queryParams.liabilityNumber;
+            this.search();
             break;
           case 3:
-            this.selectedDispatcherSearchField = 1;
-            this.selectedDispatcherType = queryParams.type;
-            this.beginTime = new Date(parseInt(queryParams.beginTime, 10));
-            this.endTime = new Date(parseInt(queryParams.endTime, 10));
-            this.searchDispatcher(queryParams.stationNumber, true);
+            this.selectedDispatcherType = queryParams.type ? queryParams.type : this.selectedDispatcherType;
+            this.selectedDispatcherSearchField = this.dispatcherSearchFields[1].value; // 搜索类型下拉框为送气工姓名
+            this.selectedDispatcher = {
+              name: queryParams.liabilityName,
+              dispatcherNumber: queryParams.liabilityNumber,
+            };
+            this.search();
             break;
+          case 4:
+            this.selectedUserSearchField = this.userSearchFields[0].value; // 搜索类型下拉框为用户姓名
+            this.selectedUser = {
+              userName: queryParams.liabilityName,
+              userNumber: queryParams.liabilityNumber,
+            };
+            this.search();
         }
       }
-      });
+    });
+
     this.commonRequestService.listCorpSupplyStation().then(data => {
       if (data.status === 0) {
         if (data.data.length > 0) {
@@ -149,9 +195,7 @@ export class CylinderRecordComponent implements OnInit {
           this.distributionStationList = data.data.map(
             item => ({ label: item.inflatableName, value: item.inflatableStationNumber })
           );
-          if (!this.selectedDistributionStation) {
-            this.selectedDistributionStation = this.distributionStationList[0].value;
-          }
+          this.selectedDistributionStation = this.distributionStationList[0].value;
         }
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取储配站失败', detail: data.msg });
@@ -162,8 +206,42 @@ export class CylinderRecordComponent implements OnInit {
   init() {
     this.cylinderList = [];
     this.total = 0;
-    this.beginTime = new Date((new Date().getTime() - 7 * 24 * 60 * 60 * 1000));
-    this.endTime = new Date();
+    // this.beginTime = new Date((new Date().getTime() - 7 * 24 * 60 * 60 * 1000));
+    // this.endTime = new Date();
+  }
+
+  link(rowData, status) {
+    const typeId = rowData[status + 'LiabilityTypeId'];
+    const queryParams = {
+      beginTime: this.beginTime.getTime(),
+      endTime: this.endTime.getTime(),
+      hash: Math.random(),
+      liabilityNumber: '',
+      liabilitySubjectType: typeId
+    };
+    this.init();
+    switch (typeId) {
+      case 1:
+        queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
+        this.router.navigate(['../cylinder-record', { type: 1 }], { relativeTo: this.routerInfo, queryParams });
+        break;
+      case 2:
+        queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
+        this.router.navigate(['../cylinder-record', { type: 2 }], { relativeTo: this.routerInfo, queryParams });
+        break;
+      case 3:
+        queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
+        queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
+        this.router.navigate(['../cylinder-record', { type: 3 }], { relativeTo: this.routerInfo, queryParams });
+        break;
+      case 4:
+        queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
+        queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
+        this.router.navigate(['../cylinder-record', { type: 4 }], { relativeTo: this.routerInfo, queryParams });
+        break;
+      default:
+        break;
+    }
   }
 
   onPageChange(event) {
@@ -195,9 +273,25 @@ export class CylinderRecordComponent implements OnInit {
       }
     });
   }
+  searchUser(query) {
+    this.cylinderTraceService.getUserInfoImprecise({
+      searchType: this.selectedUserSearchField.name,
+      searchString: query
+    }).then(data => {
+      if (data.status === 0) {
+        this.userSuggestions = data.data;
+      } else {
+        this.userSuggestions = [];
+        // this.messageService.add({ severity: 'warn', summary: '获取配送工信息失败', detail: data.msg });
+      }
+    });
+  }
 
   selectDispatcherSearchField(event) {
     this.selectedDispatcher = null;
+  }
+  selectUserSearchField(event) {
+    this.selectedUser = null;
   }
 
   blurSelectDispatcher() {
@@ -205,7 +299,16 @@ export class CylinderRecordComponent implements OnInit {
       this.selectedDispatcher = null;
     }
   }
-
+  blurSelectUser() {
+    if (typeof this.selectedUser === 'string') {
+      if (this.userSuggestions.length === 1
+        && this.userSuggestions[0][this.selectedUserSearchField.field] === this.selectedUser) {
+        this.selectedUser = this.userSuggestions[0];
+      } else {
+        this.selectedUser = null;
+      }
+    }
+  }
   search() {
     if (this.pageNumber === 1) {
       this.listGcSendOrReceive();
@@ -251,6 +354,14 @@ export class CylinderRecordComponent implements OnInit {
         searchType = this.selectedDispatcherType;
         break;
 
+      case 4:
+        if (!this.selectedUser) {
+          this.messageService.add({ severity: 'warn', summary: '请输入用户信息！', detail: '' });
+          return;
+        }
+        liabilitySubjectId = this.selectedUser.userNumber;
+        searchType = '';
+        break;
       default:
         break;
     }
@@ -269,8 +380,8 @@ export class CylinderRecordComponent implements OnInit {
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
     }).then(data => {
+      this.loading = false;
       if (data.status === 0) {
-        this.loading = false;
         if (data.data.list.length > 0) {
           this.cylinderList = data.data.list;
           this.total = data.data.total;

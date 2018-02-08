@@ -11,7 +11,7 @@
     </div> -->
 
     <div class="ui-g-12">
-      <button pButton type="button" label="气瓶充装记录" [routerLink]="['cylinder-filling']"></button>
+      <button pButton type="button" label="气瓶充装记录" [routerLink]="['cylinder-filling']" routerLinkActive="link-active"></button>
     </div>
   </div>
   <div class="ui-g ui-g-nopad group">
@@ -26,7 +26,7 @@
     </div> -->
 
     <div class="ui-g-12">
-      <button pButton type="button" label="按条码查询" [routerLink]="['cylinder-history']"></button>
+      <button pButton type="button" label="按条码查询" [routerLink]="['cylinder-history']" routerLinkActive="link-active"></button>
     </div>
     <div class="ui-g-12">
       <button pButton type="button" label="按储配站查询" [routerLink]="['cylinder-record',{type:1}]"></button>
@@ -36,6 +36,9 @@
     </div>
     <div class="ui-g-12">
       <button pButton type="button" label="按送气工查询" [routerLink]="['cylinder-record',{type:3}]"></button>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="按用户查询" [routerLink]="['cylinder-record',{type:4}]"></button>
     </div>
   </div>
   <!-- <div class="ui-g ui-g-nopad group">

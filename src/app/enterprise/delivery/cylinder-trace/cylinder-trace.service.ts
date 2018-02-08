@@ -29,4 +29,7 @@ export class CylinderTraceService {
   listGcSendOrReceive(params?: any): Promise<any> {
     return this.HttpService.getRequest(API.listGcSendOrReceive, params);
   }
+  getUserInfoImprecise(params?: any): Promise<any> {
+    return this.HttpService.getRequest(API.getUserInfoImprecise, params);
+  }
 }

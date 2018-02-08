@@ -63,12 +63,19 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" field="userIdentityCardNumber" header="用户卡号">
           <ng-template let-col let-user="rowData" pTemplate="body">
-            <a href="javascript:0;" [routerLink]="['../detail', {city:'330300',type:'userCardNumber',typeNumber:user.userIdentityCardNumber||''}]">
+            <a href="javascript:0;" [routerLink]="['../detail', {city:'330300',type:'userCardNumber',typeNumber:user.userIdentityCardNumber||''}]"
+            title="点击查看用户祥情">
               {{ user.userIdentityCardNumber }}
             </a>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户"></p-column>
+        <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record',{type:4}]"
+            [queryParams]="{liabilityName:rowData.userName,liabilityNumber:rowData.userNumber,liabilitySubjectType:4}"
+            title="{{'点击查询流转记录' }}">{{rowData.userName}}</a>
+          </ng-template>
+        </p-column>
         <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
         <p-column [style]="{'width':'180px'}" field="address" header="地址"></p-column>
         <p-column [style]="{'width':'150px'}" field="dispatcherName" header="配送工"></p-column>

@@ -105,6 +105,7 @@ export class DispatcherDetailsComponent implements OnInit {
   };
   constructor(
     private routerInfo: ActivatedRoute,
+    private router: Router,
     private _service: StatisticCylinderService,
     public messageService: MessageService,
   ) { }
@@ -133,6 +134,26 @@ export class DispatcherDetailsComponent implements OnInit {
       enterpriseNumber: this.id,
     });
     Object.assign(this.pageParams, this.formModel);
+  }
+  link(rowData, type) {
+
+    if (rowData.status === 0) { // 状态正常
+      const queryParams = {
+        liabilitySubjectType: 3,
+        beginTime: this.formModel.startTime.getTime(),
+        endTime: this.formModel.endTime.getTime(),
+        liabilityName: rowData.stationName,
+        liabilityNumber: rowData.stationId,
+        type,
+      };
+      this.router.navigate(
+        ['/enterprise/delivery/cylinder-trace/cylinder-record', { type: 3 }],
+        { relativeTo: this.routerInfo, queryParams }
+      );
+      return false;
+    } else if (rowData.status === 3) { // 在黑名单中
+      this.messageService.add({ severity: 'warn', summary: '', detail: '黑名单的送气工，无法查看流转信息' });
+    }
   }
   onPageChange($event) {
     this.dataTable.list = [];

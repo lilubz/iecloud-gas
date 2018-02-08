@@ -47,7 +47,12 @@
           <span>{{index+1}}</span>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'100px'}" field="name" header="姓名"></p-column>
+      <p-column [style]="{'width':'100px'}" field="name" header="姓名">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <a href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-record',{type:3}]" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+            title="点击查询流转记录">{{rowData.name}}</a>
+        </ng-template>
+      </p-column>
       <p-column [style]="{'width':'120px'}" field="jobNumber" header="工号"></p-column>
       <p-column [style]="{'width':'100px'}" field="licensePlateNumber" header="车牌号"></p-column>
       <p-column [style]="{'width':'150px'}" field="subsidiaryEnterprises" header="所属企业"></p-column>

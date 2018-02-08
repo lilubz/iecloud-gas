@@ -91,13 +91,16 @@ export class CylinderListComponent implements OnInit {
     }
   }
 
-  onPageChange(event) {
-    const page = {
-      pageSize: event.rows,
-      pageNumber: event.first / event.rows + 1
+  onPageChange($event) {
+    this.dataTable.list = [];
+    this.onPageChange = (event) => {
+      const page = {
+        pageSize: event.rows,
+        pageNumber: event.first / event.rows + 1
+      };
+      this.pageParams.pageSize = page.pageSize;
+      this.getCylinders(Object.assign({}, this.pageParams, page));
     };
-    this.pageParams.pageSize = page.pageSize;
-    this.getCylinders(Object.assign({}, this.pageParams, page));
   }
 
   ngOnInit() {
