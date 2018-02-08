@@ -349,7 +349,6 @@ Ext.Template = function(html){
     
 };
 Ext.Template.prototype = {
-    
     applyTemplate : function(values){
         if(this.compiled){
             return this.compiled(values);
@@ -362,8 +361,6 @@ Ext.Template.prototype = {
                     return tpl.call(format.substr(5), values[name], values);
                 }else{
                     if(args){
-                        
-                        
                         
                         var re = /^\s*['"](.*)["']\s*$/;
                         args = args.split(',');
@@ -382,7 +379,6 @@ Ext.Template.prototype = {
         };
         return this.html.replace(this.re, fn);
     },
-    
     
     set : function(html, compile){
         this.html = html;

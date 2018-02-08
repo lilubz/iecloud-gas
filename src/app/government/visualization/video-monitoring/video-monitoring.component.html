@@ -4,13 +4,15 @@
     </div>
   </div>
 </div> -->
-<div class="ui-g-12 ui-g-nopad video-container">
-  <ng-container *ngIf="isAdmin">
-    <iframe src="./assets/video-plugin/index.htm" frameborder="0">
-      您的浏览器不支持iframe
-    </iframe>
-  </ng-container>
-  <ng-container *ngIf="!isAdmin">
+<div class="main">
+  <div class="video-container card">
+    <ng-container *ngIf="isAdmin">
+      <iframe src="./assets/video-plugin/index.htm" frameborder="0">
+        您的浏览器不支持iframe
+      </iframe>
+    </ng-container>
+    <ng-container *ngIf="!isAdmin">
       <gas-page-not-found></gas-page-not-found>
-  </ng-container>
+    </ng-container>
+  </div>
 </div>
