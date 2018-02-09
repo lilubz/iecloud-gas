@@ -188,7 +188,7 @@
 
           <div class="form-group ui-g-12" *ngFor="let item of formModel.helpCompany;let i = index;">
             <label class="ui-g-6 control-label" title="{{item.enterpriseName}}">
-              <span class="warn">*</span>{{item.enterpriseName}}：</label>
+              {{item.enterpriseName}}：</label>
             <div class="ui-g-5">
               <p-calendar [(ngModel)]="item.time" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
                 [locale]="zh" [showIcon]="false" name="{{'helpCompanyTime'+ i}}" showTime="true" hourFormat="24" [showOtherMonths]="false"
