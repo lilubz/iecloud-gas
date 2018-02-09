@@ -105,4 +105,10 @@ export class StatisticCylinderService {
   corpDispactherSendAndReceiveList(params): Promise<any> {
     return this.httpService.getRequest(API.corpDispactherSendAndReceiveList, params);
   }
+  /**
+   * 查询储配站拥有的气瓶详细列表
+   */
+  listGasCylinderBySupplyStationNumber(params): Promise<any> {
+    return this.httpService.getRequest(API.listGasCylinderBySupplyStationNumber, params);
+  }
 }

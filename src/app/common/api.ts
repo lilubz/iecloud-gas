@@ -221,6 +221,7 @@ export const API = {
   'corpDispactherSendAndReceiveList': URL + 'statisticalQuery/gasCylinders/corpDispactherSendAndReceiveList.do',
   'dispactherSendAndReceiveCount': URL + 'statisticalQuery/gasCylinders/dispactherSendAndReceiveCount.do',
   'getUserInfoImprecise': URL + 'basicInformation/gcUserInfo/getUserInfoImprecise.do',
+  'listGasCylinderBySupplyStationNumber': URL + 'basicInformation/gasCylinder/listGasCylinderBySupplyStationNumber.do',
 
 
   'listCollaborativeInfo': URL + 'corpBusiness/collaborative/listCollaborativeInfo.do', // 16.获取协同企业列表

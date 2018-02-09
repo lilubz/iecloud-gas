@@ -13,6 +13,7 @@ import { RoleType } from '../../../../common/RoleType';
   styleUrls: ['./cylinder-storage.component.css']
 })
 export class CylinderStorageComponent implements OnInit {
+  storageVisible = false;
   zh = zh_CN;
   permissionRoles: RoleType[] = [
     RoleType.Government
@@ -30,6 +31,24 @@ export class CylinderStorageComponent implements OnInit {
   cylinderStorageCirculations = [];
   cylinderStorageCirculationFilters = [];
 
+  dialogDataTable = {
+    list: [],
+    options: [5],
+    total: 0,
+    first: 0,
+    params: '',
+    pageSize: 5,
+    pageNumber: 1
+  };
+  onOpenDialog(event) {
+    this.dialogDataTable.params = event;
+    this.dialogDataTable.pageNumber = 1;
+    this.listGasCylinderBySupplyStationNumber({
+      pageNumber: this.dialogDataTable.pageNumber,
+      pageSize: this.dialogDataTable.pageSize,
+      supplyStationNumber: this.dialogDataTable.params
+    });
+  }
   constructor(
     private commonRequestService: CommonRequestService,
     private statisticCylinderService: StatisticCylinderService,
@@ -53,6 +72,19 @@ export class CylinderStorageComponent implements OnInit {
 
     this.circulationLoading = true;
     this.searchCylinderStorageCirculations();
+  }
+
+  onPageChange($event) {
+    this.dialogDataTable.list = [];
+    this.onPageChange = event => {
+      this.dialogDataTable.pageSize = event.rows;
+      this.dialogDataTable.pageNumber = event.first / event.rows + 1;
+      this.listGasCylinderBySupplyStationNumber({
+        pageNumber: this.dialogDataTable.pageNumber,
+        pageSize: this.dialogDataTable.pageSize,
+        supplyStationNumber: this.dialogDataTable.params
+      });
+    };
   }
 
   selectStatisticRegion(regionId) {
@@ -116,6 +148,19 @@ export class CylinderStorageComponent implements OnInit {
       this.circulationLoading = false;
     }).catch(error => {
       this.circulationLoading = false;
+    });
+  }
+  listGasCylinderBySupplyStationNumber(params?) {
+    this.statisticCylinderService.listGasCylinderBySupplyStationNumber(params).then(data => {
+      if (data.status === 0) {
+        this.storageVisible = true;
+        this.dialogDataTable.list = data.data.list;
+        this.dialogDataTable.total = data.data.total;
+      } else {
+        this.dialogDataTable.list = [];
+        this.dialogDataTable.total = 0;
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+      }
     });
   }
 }
