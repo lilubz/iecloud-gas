@@ -74,7 +74,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         value: 1
       },
       {
-        label: '瓶库',
+        label: '供应站',
         value: 2
       }, {
         label: '用户',

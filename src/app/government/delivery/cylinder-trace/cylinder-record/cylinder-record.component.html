@@ -9,7 +9,7 @@
   </ng-container>
 
   <ng-container *ngIf="selectedCylinderStatus === 2">
-    瓶库：
+    供应站：
     <p-dropdown [options]="cylinderStorageList" [style]="{'width':'240px'}" [(ngModel)]="selectedCylinderStorage" filter="true"></p-dropdown>
     &nbsp;&nbsp; 类型：
     <p-dropdown [options]="cylinderStorageSearchTypes" [style]="{'width':'150px'}" [(ngModel)]="selectedCylinderStorageType"></p-dropdown>

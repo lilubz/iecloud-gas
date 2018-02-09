@@ -18,11 +18,11 @@ export const API = {
   'getCylinderSpecification': URL + 'basicInformation/commonInfo/listGcSpecification.do', // 获取所有气瓶类型
   'listLiabilitySubjectType': URL + 'basicInformation/gasCylinder/listLiabilitySubjectType.do', // 获取气瓶责任主体类型列表
   'getDispatchers': URL + 'basicInformation/corpInfo/getDispatchers.do', // 获取当前企业下的所有配送工
-  'listCorpSupplyStationVO': URL + 'corpBusiness/applyManagement/listCorpSupplyStationVO.do', // 获取瓶库列表
+  'listCorpSupplyStationVO': URL + 'corpBusiness/applyManagement/listCorpSupplyStationVO.do', // 获取供应站列表
   'listCorpInflatableStation': URL + 'basicInformation/corpInflatableStation/listCorpInflatableStation.do', // 获取储配站列表
   'listLocationInfo': URL + 'basicInformation/corpCarInfo/listCorpLocationInfo.do', // 获取站点位置信息
   'getThePathByAccountId': URL + 'corpBusiness/dispatchOrder/getThePathByAccountId.do', // 获取送气工轨迹
-  'listMobileCorpSupplyStationInfoVO': URL + 'basicInformation/corpSupplyStation/listMobileCorpSupplyStationInfoVO.do', // 获取移动或固定瓶库
+  'listMobileCorpSupplyStationInfoVO': URL + 'basicInformation/corpSupplyStation/listMobileCorpSupplyStationInfoVO.do', // 获取移动或固定供应站
 
   // 气瓶档案
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',
@@ -119,13 +119,13 @@ export const API = {
   'getCustomerByPhone': URL + 'corpBusiness/order/listCustomer.do', // 获取客户列表
   'addOrder': URL + 'corpBusiness/order/userOrder.do', // 新增订单
   'getProcessingOrder': URL + 'corpBusiness/order/listProcessingOrder.do', // 新增订单
-  'listGcSendOrReceive': URL + 'basicInformation/gasCylinder/listGcSendOrReceive.do', // 储配站、瓶库、送气工，收发记录查询
+  'listGcSendOrReceive': URL + 'basicInformation/gasCylinder/listGcSendOrReceive.do', // 储配站、供应站、送气工，收发记录查询
 
   /**
    * 系统管理
    */
   'updatePassword': URL + 'sysUserPermissions/user/modificationPassword.do', // 修改密码
-  // 瓶库管理
+  // 供应站管理
   'addCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/addCorpSupplyStation.do',
   'getCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/listCorpSupplyStation.do',
   'deleteCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/deleteCorpSupplyStation.do',

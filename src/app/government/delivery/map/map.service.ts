@@ -30,7 +30,7 @@ export class MapService {
   map;
   shiliangLayer; // 矢量图层
   yingxiangLayer; // 影像图层
-  supplyStationLayer; // 瓶库图层
+  supplyStationLayer; // 供应站图层
   distributionStationLayer; // 储配站图层
   dispatcherPathLayer; // 送气工轨迹图层
   dispatcherPathPointLayer; // 送气工轨迹点图层
@@ -38,7 +38,7 @@ export class MapService {
   sellingCarPathPointLayer; // 送气工轨迹点图层
   basemapGallery; // 图层切换按钮
 
-  supplyStationSymbol; // 供应站/瓶库 符号
+  supplyStationSymbol; // 供应站/供应站 符号
   distributionStationSymbol; // 储配站符号
   dispatcherPathPointSymbol; // 送气工位置标记符号
   dispatcherPathSymbol;  // 送气工路径线条符号
@@ -482,7 +482,7 @@ export class MapService {
   }
 
   /**
-   * 显示/隐藏 供应站（瓶库）
+   * 显示/隐藏 供应站（供应站）
    * 2018-02-01 10:43:06
    * @author hzb
    * @param {boolean} visible
@@ -573,7 +573,7 @@ export class MapService {
   }
 
   /**
-   * 获取储配站和瓶库的坐标信息
+   * 获取储配站和供应站的坐标信息
    * 2018-02-01 20:52:02
    * @author hzb
    * @param {{ searchType: string }} params

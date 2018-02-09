@@ -80,14 +80,14 @@ export class CylinderRecordComponent implements OnInit {
     { label: '空瓶发出', value: '空出' },
   ];
   selectedDistributionStationType = this.distributionStationSearchTypes[0].value; // 选中的储配站的查询类型
-  selectedCylinderStorageType = this.cylinderStorageSearchTypes[0].value; // 选中的瓶库的查询类型
+  selectedCylinderStorageType = this.cylinderStorageSearchTypes[0].value; // 选中的供应站的查询类型
   selectedDispatcherType = this.dispatcherSearchTypes[0].value; // 选中的配送工的查询类型
 
   distributionStationList: SelectItem[] = [];
   cylinderStorageList: SelectItem[] = [];
   // dispatcherList: SelectItem[] = [];
   selectedDistributionStation = ''; // 选中的储配站
-  selectedCylinderStorage = ''; // 选中的瓶库
+  selectedCylinderStorage = ''; // 选中的供应站
   selectedDispatcher; // 选中的配送工
   selectedUser; // 选中的用户
 
@@ -128,7 +128,7 @@ export class CylinderRecordComponent implements OnInit {
   ngOnInit() {
     // this.cylinderStatus = [
     //   { label: '储配站', value: 1 },
-    //   { label: '瓶库', value: 2 },
+    //   { label: '供应站', value: 2 },
     //   { label: '送气工', value: 3 },
     // ];
 
@@ -185,7 +185,7 @@ export class CylinderRecordComponent implements OnInit {
           this.selectedCylinderStorage = this.cylinderStorageList[0].value;
         }
       } else {
-        this.messageService.add({ severity: 'warn', summary: '获取瓶库失败', detail: data.msg });
+        this.messageService.add({ severity: 'warn', summary: '获取供应站失败', detail: data.msg });
       }
     });
 
@@ -339,7 +339,7 @@ export class CylinderRecordComponent implements OnInit {
         break;
       case 2:
         if (!this.selectedCylinderStorage) {
-          this.messageService.add({ severity: 'warn', summary: '请选择瓶库！', detail: '' });
+          this.messageService.add({ severity: 'warn', summary: '请选择供应站！', detail: '' });
           return;
         }
         liabilitySubjectId = this.selectedCylinderStorage;

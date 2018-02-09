@@ -48,7 +48,7 @@ export const GovernmentMenus: MenuItem[] = [
     ]
   },
   {
-    label: '统计查询',
+    label: '统计分析',
     icon: 'menu-icon statistic-icon',
     routerLink: ['/government/statistic'],
     items: [
@@ -65,7 +65,7 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '个人信息', routerLink: ['/government/system/user'] },
       { label: '通知公告', routerLink: ['/government/system/message'] },
       { label: '企业管理', routerLink: ['/government/system/enterprise-management'] },
-      { label: '瓶库管理', routerLink: ['/government/system/bottle-library'] },
+      { label: '供应站管理', routerLink: ['/government/system/bottle-library'] },
     ]
   },
   {
@@ -102,7 +102,7 @@ export const EnterpriseMenus: MenuItem[] = [
     ]
   },
   {
-    label: '统计查询',
+    label: '统计分析',
     icon: 'menu-icon statistic-icon',
     routerLink: ['/enterprise/statistic'],
     items: [
@@ -116,7 +116,7 @@ export const EnterpriseMenus: MenuItem[] = [
     routerLink: ['/enterprise/system'],
     items: [
       { label: '个人信息', routerLink: ['/enterprise/system/user'] },
-      { label: '瓶库管理', routerLink: ['/enterprise/system/bottle-library'] },
+      { label: '供应站管理', routerLink: ['/enterprise/system/bottle-library'] },
     ]
   },
   {

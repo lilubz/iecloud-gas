@@ -1,5 +1,5 @@
 <div class="ui-g-12 content card">
-  <h3>瓶库气瓶统计</h3>
+  <h3>供应站气瓶统计</h3>
   <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
       区域选择：
       <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
@@ -22,7 +22,7 @@
         <span *ngIf="countyCylinder.gcCount<=0">
            {{ countyCylinder.gcCount || 0 }}
         </span>
-        <a href="javascript:void(0);" *ngIf="countyCylinder.gcCount>0" 
+        <a href="javascript:void(0);" *ngIf="countyCylinder.gcCount>0"
           (click)="onOpenDialog(countyCylinder.stationNumber)">
           {{ countyCylinder.gcCount || 0 }}
         </a>
@@ -54,7 +54,7 @@
           {{index + 1}}
         </ng-template>
       </p-column> -->
-    <p-column field="stationName" header="瓶库" [style]="{'width':'20%'}">
+    <p-column field="stationName" header="供应站" [style]="{'width':'20%'}">
     </p-column>
     <p-column field="fullBottleReceiveCount" header="重瓶入库">
       <ng-template let-countyCylinder="rowData" pTemplate="body">
@@ -120,7 +120,7 @@
         <p-column [style]="{'width':'100px'}" field="electronNumber" header="电子编号（预留）"></p-column>
         <p-column [style]="{'width':'100px'}" field="area13" header="登记时间"></p-column>
         <p-column [style]="{'width':'100px'}" field="productionUnit" header="制造单位"></p-column>
-        
+
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
             未查询到数据

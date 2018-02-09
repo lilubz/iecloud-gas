@@ -104,7 +104,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 显隐瓶库
+   * 显隐供应站
    * 2018-02-05 11:52:06
    * @author hzb
    * @param {boolean} visible

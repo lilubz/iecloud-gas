@@ -128,7 +128,7 @@ export class CommonRequestService {
   }
 
   /**
-   * 获取瓶库列表
+   * 获取供应站列表
    * 2018-01-08 20:50:42
    * @author hzb
    * @param params
@@ -162,7 +162,7 @@ export class CommonRequestService {
   }
 
   /**
-   * 获取所有的移动或固定瓶库
+   * 获取所有的移动或固定供应站
    * 2018-02-09 17:25:50
    * @author hzb
    * @returns

@@ -29,7 +29,7 @@ export class StatisticCylinderService {
   }
 
   /**
-   * 获取瓶库气瓶统计
+   * 获取供应站气瓶统计
    * 2018-01-18 12:04:04
    * @author hzb
    * @param params
@@ -75,7 +75,7 @@ export class StatisticCylinderService {
   }
 
   /**
-   * 获取瓶库气瓶流通统计
+   * 获取供应站气瓶流通统计
    * 2018-01-18 17:37:04
    * @author hzb
    * @param params

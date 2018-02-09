@@ -1,14 +1,14 @@
 <div class="main">
   <div class="bottle-library ui-g-12 card">
     <h2 class="title">
-      瓶库信息管理
+      供应站信息管理
     </h2>
     <div class="ui-g">
       <div class="ui-g-8">
         <div class="ui-g-12">
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>瓶库名称</span>
+              <span>供应站名称</span>
               <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText placeholder="">
             </div>
           </div>
@@ -81,7 +81,7 @@
 
     <p-dialog [visible]="editBottleVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
       [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
-      <h3 class="dialogtitle">编辑瓶库信息</h3>
+      <h3 class="dialogtitle">编辑供应站信息</h3>
       <div class="ui-g-12 " style="height:400px">
         <div class="ui-g-6">
           <div class="inputgroup">
@@ -201,7 +201,7 @@
     </p-dialog>
     <p-dialog [visible]="addBottleVisible" [responsive]="true " [showHeader]="false " [modal]="true " [closable]="false
             " [width]="800 " [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
-      <h3 class="dialogtitle">新增瓶库信息</h3>
+      <h3 class="dialogtitle">新增供应站信息</h3>
       <div class="ui-g-12 " style="height:400px">
         <div class="ui-g-6">
           <div class="inputgroup">
