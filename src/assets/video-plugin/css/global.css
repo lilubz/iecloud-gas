@@ -96,7 +96,7 @@ img {
   float: left;
   margin: 0px;
   padding: 0px;
-  width: 200px;
+  width: 205px;
   text-align: left;
   background-color: #fff;
   margin-top: -80px;
@@ -154,7 +154,6 @@ body {
 
 a:link {
   color: #00F;
-  text-decoration: none;
 }
 
 a:visited {
@@ -199,6 +198,7 @@ ul {
   border-bottom-style: solid;
   border-bottom-color: #79a7e2;
   font-weight: bold;
+  margin-bottom: 8px;
 }
 
 #list_header {
@@ -231,7 +231,7 @@ ul {
 }
 
 #tree-div {
-  height: 485px;
+  height: 412px;
   background-color: #fff;
   overflow: scroll;
   width: 198px;
