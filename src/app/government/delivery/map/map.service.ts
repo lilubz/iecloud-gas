@@ -70,6 +70,7 @@ export class MapService {
         'esri/map',
         'esri/geometry/Extent',
         'esri/geometry/Circle',
+        'esri/geometry/ScreenPoint',
         'esri/symbols/SimpleFillSymbol',
         'esri/symbols/SimpleMarkerSymbol',
         'esri/symbols/SimpleLineSymbol',
@@ -89,6 +90,7 @@ export class MapService {
         Map,
         Extent,
         Circle,
+        ScreenPoint,
         SimpleFillSymbol,
         SimpleMarkerSymbol,
         SimpleLineSymbol,
@@ -190,6 +192,41 @@ export class MapService {
         this.sellingCarPathPointLayer = new GraphicsLayer({ id: 'sellingCarPathPointLayer', visible: true });
 
         this.wenzhouSpatialReference = new SpatialReference({ 'wkt': this.wenzhouSpatialReferenceStr });
+        // this.map.disablePan();
+        // this.map.enableMapNavigation();
+
+        /**
+         * 暂时解决在ie11下无法拖动的问题
+         */
+        let mapCenterBefore;
+        let mapCenterAfter;
+        let mousePositionBefore;
+        let mousePositionAfter;
+        this.map.on('mouse-drag-start', (e) => {
+          mapCenterBefore = this.map.toMap(new ScreenPoint(this.map.width / 2.0, this.map.height / 2.0));
+          mousePositionBefore = e.mapPoint;
+        });
+        this.map.on('mouse-drag', (e) => {
+          mousePositionAfter = e.mapPoint;
+          mapCenterAfter = new Point(
+            mapCenterBefore.x - mousePositionAfter.x + mousePositionBefore.x,
+            mapCenterBefore.y - mousePositionAfter.y + mousePositionBefore.y,
+            this.wenzhouSpatialReference
+          );
+          this.map.centerAt(mapCenterAfter);
+        });
+        this.map.on('mouse-drag-end', (e) => {
+
+        });
+        // this.map.on('pan-start', (e) => {
+        //   console.log('pan-start');
+        // });
+        // this.map.on('pan', (e) => {
+        //   console.log('pan');
+        // });
+        // this.map.on('pan-end', (e) => {
+        //   console.log('pan-end');
+        // });
         return;
       });
     });

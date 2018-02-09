@@ -60,9 +60,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadMap();
-    // this.commonRequestService.listMobileCorpSupplyStationInfo({
-    //   stationType: '3'
-    // }).then(data => {
+    // this.commonRequestService.listMobileCorpSupplyStationInfo().then(data => {
     //   if (data.status === 0) {
     //     this.cars = data.data.map(item => ({ label: item.supplyStationName, value: item }));
     //     // this.cars.unshift({ label: '请选择直销车', value: '' });
