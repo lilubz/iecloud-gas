@@ -187,7 +187,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     };
   }
   getDataTableList(params?) {
-    this.statisticCylinderService.corpDispactherSendAndReceiveList(params)
+    this.statisticCylinderService.corpDispatcherSendAndReceiveList(params)
       .then(data => {
         this.loading = false;
         if (data.status === 0) {
@@ -236,6 +236,8 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       ];
       return months.slice(0, length);
     } else if (this.selectedDateRange === 'month') {
+      const month = moment().month() + 1;
+      const weekRange = this.utilService.getWeekRangeOfMonth();
       const weeks = [
         '第一周',
         '第二周',
@@ -243,6 +245,9 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         '第四周',
         '第五周',
       ];
+      for (let i = 0; i < weekRange.length; i++) {
+        weeks[i] = weeks[i] + `（${month}.${weekRange[i][0]} - ${month}.${weekRange[i][1]}）`;
+      }
       return weeks.slice(0, length);
     }
   }

@@ -168,7 +168,7 @@ export class DispatcherDetailsComponent implements OnInit {
     }
   }
   getDataTableList(params?) {
-    this._service.dispactherSendAndReceiveCount(params)
+    this._service.dispatcherSendAndReceiveCount(params)
       .then(data => {
         this.loading = false;
         if (data.status === 0) {

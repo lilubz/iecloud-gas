@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 
 /**
  * 工具类--提供常用方法
@@ -26,5 +27,37 @@ export class Util {
       sum += element[prop];
     }
     return sum;
+  }
+
+  /**
+   * 获取月初至今日的每周的时间范围
+   * 周的范围是周一至周日；
+   * eg: 2018-02-11 返回：[[1, 4],[5, 11]]
+   * eg: 2018-02-12 返回：[[1, 4],[5, 11],[12, 12]]
+   * 2018-02-11 17:13:50
+   * @author hzb
+   * @returns {number[][]}
+   * @memberof Util
+   */
+  getWeekRangeOfMonth(): number[][] {
+    const dayOfWeek = moment().day() === 0 ? 7 : moment().day(); // 今天本周第几天
+    const dayOfMonth = moment().date(); // 今天是本月第几天
+    const weekRangeOfMonth = [];
+    let endDay = dayOfMonth;
+    let beginDay = dayOfMonth - dayOfWeek > 0 ? dayOfMonth - dayOfWeek + 1 : 1;
+
+    while (1) {
+      if (beginDay > 0) {
+        weekRangeOfMonth.unshift([beginDay, endDay]);
+        endDay = beginDay - 1;
+        beginDay = endDay - 6;
+      } else if (endDay > 0) {
+        weekRangeOfMonth.unshift([1, endDay]);
+        break;
+      } else {
+        break;
+      }
+    }
+    return weekRangeOfMonth;
   }
 }

@@ -96,14 +96,14 @@ export class StatisticCylinderService {
   /**
    * 送气工收发重瓶，空瓶数量
    */
-  dispactherSendAndReceiveCount(params): Promise<any> {
-    return this.httpService.getRequest(API.dispactherSendAndReceiveCount, params);
+  dispatcherSendAndReceiveCount(params): Promise<any> {
+    return this.httpService.getRequest(API.dispatcherSendAndReceiveCount, params);
   }
   /**
    * 查看某个企业下送气工收发重瓶空瓶的情况
    */
-  corpDispactherSendAndReceiveList(params): Promise<any> {
-    return this.httpService.getRequest(API.corpDispactherSendAndReceiveList, params);
+  corpDispatcherSendAndReceiveList(params): Promise<any> {
+    return this.httpService.getRequest(API.corpDispatcherSendAndReceiveList, params);
   }
   /**
    * 查询储配站拥有的气瓶详细列表

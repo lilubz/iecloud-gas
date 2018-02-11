@@ -1,4 +1,4 @@
-<div class="ui-g-12 content card">
+<div class="ui-g-12">
   <h3>送气工气瓶统计</h3>
   <form class="ui-g-12" (submit)="onSubmit();">
     <div class="ui-g-4 form-group" *ngIf="currentRoleType===roleType.Government">
@@ -32,7 +32,7 @@
     </div>
   </form>
   <div class="ui-g-12">
-    <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [scrollable]="false" [loading]="loading" scrollHeight="510px"
+    <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [scrollable]="false" [loading]="loading" scrollHeight="510px"
       [rowsPerPageOptions]="dataTable.option" (onPageChange)="onPageChange($event)" [(first)]="dataTable.first">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">

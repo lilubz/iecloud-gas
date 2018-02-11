@@ -218,8 +218,8 @@ export const API = {
   'gcUserHas': URL + 'statisticalQuery/gasCylinders/gcUserHas.do',
   'countTransaction': URL + 'corpBusiness/collaborative/countTransaction.do',
   'BusinessInformation': URL + 'statisticalQuery/corp/statistical.do',
-  'corpDispactherSendAndReceiveList': URL + 'statisticalQuery/gasCylinders/corpDispactherSendAndReceiveList.do',
-  'dispactherSendAndReceiveCount': URL + 'statisticalQuery/gasCylinders/dispactherSendAndReceiveCount.do',
+  'corpDispatcherSendAndReceiveList': URL + 'statisticalQuery/gasCylinders/corpDispatcherSendAndReceiveList.do',
+  'dispatcherSendAndReceiveCount': URL + 'statisticalQuery/gasCylinders/dispatcherSendAndReceiveCount.do',
   'getUserInfoImprecise': URL + 'basicInformation/gcUserInfo/getUserInfoImprecise.do',
   'listGasCylinderBySupplyStationNumber': URL + 'basicInformation/gasCylinder/listGasCylinderBySupplyStationNumber.do',
 

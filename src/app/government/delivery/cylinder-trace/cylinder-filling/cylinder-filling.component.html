@@ -1,5 +1,5 @@
 <div class="ui-g-12">
-  <label for="">充装工姓名</label>
+  <!-- <label for="">充装工姓名</label>
   <input type="text" [(ngModel)]="inflator" pInputText placeholder="充装工姓名" style="width:180px"> &nbsp;&nbsp;
   <label for="">气瓶条码</label>
   <input type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px"> &nbsp;&nbsp;
@@ -13,7 +13,7 @@
   <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
     [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today" readonlyInput="true"></p-calendar>
   &nbsp;&nbsp;
-  <button pButton type="button" label="查询" (click)="search()"></button>
+  <button pButton type="button" label="查询" (click)="search()"></button> -->
 </div>
 <div class="ui-g-12">
   <p-dataTable [value]="cylinderFillingHistoryList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" [scrollable]="false"
