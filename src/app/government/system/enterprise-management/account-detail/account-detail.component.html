@@ -1,32 +1,38 @@
 <div class="ui-g-12 account-detail card">
-    <h2 class="title">
-        企业账号信息概览
-      </h2>
-  <div class="ui-g-10">
-    <div class="ui-g-12">
-      <div class="ui-g-4 ui-g-nopad">
-        <div class="inputgroup">
-          <span>所在区域</span>
-          <p-dropdown [options]="areaDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px','max-width':'300px'}"></p-dropdown>
-        </div>
-      </div>
-      <div class="ui-g-4 ui-g-nopad">
-        <div class="inputgroup">
-          <span>许可证号</span>
-          <input type="text" class="textInput" [(ngModel)]="searchParams.licese" maxlength="20" pInputText placeholder="">
-        </div>
-      </div>
-      <div class="ui-g-4 ui-g-nopad">
-        <div class="inputgroup">
-          <span>企业名称</span>
-          <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText placeholder="">
-        </div>
-      </div>
+  <h2 class="title">
+    企业账号信息概览
+  </h2>
+  <!-- 查询项 -->
+  <!-- <div class="ui-g-10"> -->
+  <!-- <div class="ui-g-10"> -->
+  <!-- 所在区域 -->
+  <div class="ui-g">
+    <div class="ui-g-12 ui-lg-4 ui-md-12 ui-xl-3">
+      <!-- <div class="inputgroup"> -->
+      <span class="inputgroup">所在区域</span>
+      <p-dropdown [options]="areaDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
+      <!-- </div> -->
+    </div>
+    <!-- 许可证号 -->
+    <div class="ui-g-12 ui-lg-4 ui-md-12 ui-xl-3">
+      <!-- <div class="inputgroup"> -->
+      <span class="inputgroup">许可证号</span>
+      <input type="text" class="textInput" [(ngModel)]="searchParams.licese" maxlength="20" pInputText>
+      <!-- </div> -->
+    </div>
+    <!-- 企业名称 -->
+    <div class="ui-g-12 ui-lg-4 ui-md-12 ui-xl-3">
+      <!-- <div class="inputgroup"> -->
+      <span class="inputgroup">企业名称</span>
+      <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText>
+      <!-- </div> -->
+    </div>
+    <!-- 查询按钮 -->
+    <div class="ui-g-12 ui-lg-4 ui-md-12 ui-xl-3">
+      <button pButton type="button" label="查询" class="searchBtn" (click)="searchAccount()"></button>
     </div>
   </div>
-  <div class="ui-g-2">
-    <button pButton type="button" label="查询" class="searchBtn" (click)="searchAccount()"></button>
-  </div>
+
   <div class="ui-g-12">
     <p-dataTable [value]="accountList" [lazy]="true" dataKey="enterprise" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
       scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"

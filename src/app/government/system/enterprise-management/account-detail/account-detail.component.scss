@@ -5,25 +5,26 @@
 
 .account-detail {
     .inputgroup {
-        padding: 3px;
-        >span {
-            color: rgb(102, 102, 102);
-        }
+        width: 90px;
+        display: inline-block;
+        color: rgb(102, 102, 102);
     }
     .textInput {
-        // width: 40%; 
-        width: calc(100% - 70px);
-        max-width: 300px;
+        width: 180px;
     }
-    
+    .ui-g{
+        padding-left: 9px;
+        .ui-lg-3{
+            padding-top: 9px;
+        }
+    }
     .searchBtn {
-        margin-top: 10px;
-        margin-left: 15px;
-        height: 45px;
+        height: 35px;
+        padding: 0px;
         width: 96px;
-        font-size: 1.3em;
+        font-size: 1em;
         // font-weight: bold;
-        border: 1px solid #3186dc;
+        border: 0px solid #3186dc;
         background: #3186dc;
         border-radius: 4px;
     }

@@ -2,17 +2,23 @@
   .title {
     color: #1a5e93;
     text-align: center;
-}
-.inputgroup {
-    padding: 3px;
-    
-}
-span {
-  color: rgb(102, 102, 102);
-}
-.textInput {
-    // width: 40%; 
-    width: calc(100% - 70px);
-    max-width: 300px;
-}
+    }
+    .inputgroup {
+        padding: 3px;
+        
+    }
+    span {
+        color: rgb(102, 102, 102);
+    }
+    .textInput {
+        width: 300px;
+    }
+    .save{
+        display: flex;
+        button{
+            margin: auto;
+            margin-top: 9px;
+            margin-left: 9px;
+        }
+    }
 }

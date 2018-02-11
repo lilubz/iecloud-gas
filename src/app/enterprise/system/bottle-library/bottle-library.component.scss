@@ -13,6 +13,7 @@
         // width: 40%; 
         width: calc(100% - 100px);
         max-width: 300px;
+        min-width: 180px;
     }
     .searchBtn {
         margin-top: 10px;

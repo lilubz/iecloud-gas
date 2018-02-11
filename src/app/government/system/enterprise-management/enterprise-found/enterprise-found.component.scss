@@ -7,20 +7,29 @@
         border: 1px solid #c0c0c0;
         border-radius: 10px;
         box-shadow: 0 0 3px #c0c0c0;
+        min-width: 450px;
     }
     .bottom{
       border: 1px dashed black;
     }
     .inputgroup {
         padding: 3px;
-        
     }
     span {
       color: rgb(102, 102, 102);
-  }
+    }
+    .add{
+        padding: 0px;
+        width:100px;
+    }
     .textInput {
         // width: 40%; 
-        width: calc(100% - 100px);
-        max-width: 300px;
+        width: 180px;
+    }
+    .save{
+        display: flex;
+        button{
+            margin: auto;
+        }
     }
 }
