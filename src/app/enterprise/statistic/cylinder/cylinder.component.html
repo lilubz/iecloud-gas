@@ -1,34 +1,28 @@
+<!-- 左侧二级菜单内容-->
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
-    <span>主体类型选择</span>
-    <a href="javascript:void(0);" [routerLink]="['enterprise']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-fw"></i>&nbsp;
-        企业
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['storage-distribution']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-fw"></i>&nbsp; 储配站
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['cylinder-storage']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-fw"></i>&nbsp; 供应站
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['dispatcher']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-fw"></i>&nbsp; 送气工
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['customer']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-fw"></i>&nbsp; 用户
-      </span>
-    </a>
+    <div class="ui-g-12">
+        <h3>主体类型选择</h3>
+    </div>
+    <div class="ui-g-12">
+        <button pButton type="button" label="企业"  [routerLink]="['enterprise']" routerLinkActive="link-active"></button>
+    </div>
+    <div class="ui-g-12">
+        <button pButton type="button" label="储配站" [routerLink]="['storage-distribution']" routerLinkActive="link-active"></button>
+    </div>
+    <div class="ui-g-12">
+        <button pButton type="button" label="瓶库" [routerLink]="['cylinder-storage']" routerLinkActive="link-active"></button>
+    </div>
+    <div class="ui-g-12">
+        <button pButton type="button" label="送气工" [routerLink]="['dispatcher']" routerLinkActive="link-active"></button>
+    </div>
+    <div class="ui-g-12">
+        <button pButton type="button" label="用户"  [routerLink]="['customer']" routerLinkActive="link-active"></button>
+    </div>
   </div>
 </div>
-<div class="main">
+
+<!-- 右侧内容 -->
+<div class="main card">
   <router-outlet></router-outlet>
 </div>

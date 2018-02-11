@@ -4,15 +4,16 @@
     padding:0;
   }
   header{
-    width:520px;
+    // width:520px;
     height: 65px;
-    position:absolute;
-    top:80px;
-    left:50%;
-    transform: translateX(-50%);
-    border-radius:15px 15px 0 0;
-    border:1px solid transparent;
-    background: #9cf;
+    // position:absolute;
+    // top:80px;
+    // left:50%;
+    // transform: translateX(-50%);
+    font-size: 14px;
+    // border-radius:15px 15px 0 0;
+    // border:1px solid transparent;
+    // background: #9cf;
     h1{
       text-align: center;
       margin:0;
@@ -20,22 +21,22 @@
     }
   }
   form{
-    width:520px;
+    // width:520px;
     height:440px;
-    position:absolute;
-    top:145px;
-    left:50%;
-    transform: translateX(-50%);
-    border:1px solid rgb(121,121,121);
+    // position:absolute;
+    // top:145px;
+    // left:50%;
+    // transform: translateX(-50%);
+    // border:1px solid rgb(121,121,121);
     border-top:none;
-    border-radius:0 0 15px 15px;
+    // border-radius:0 0 15px 15px;
     // overflow: hidden;
-    background: rgb(242,242,242);
+    // background: rgb(242,242,242);
     ul{
       margin:0 25px;
       padding:20px 0;
       list-style: none;
-      border-bottom:1px solid #666;
+      // border-bottom:1px solid #666;
       li{
         padding:10px 0;
       }

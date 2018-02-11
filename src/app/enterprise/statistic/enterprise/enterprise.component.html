@@ -1,16 +1,17 @@
 <div class="sidebar">
-  <div class="ui-g ui-g-nopad group">
-    <span>统计查询-企业</span>
-
+    <div class="ui-g ui-g-nopad group">
+        <div class="ui-g-12">
+            <button pButton type="button" label="统计查询-企业" [routerLink]="['../enterprise']" routerLinkActive="link-active"></button>
+        </div>
+    </div>
   </div>
-</div>
 <div class="main">
-  <div class="ui-g-12 content">
+  <div class="ui-g-12 content card">
     <h3>企业信息统计</h3>
     <span *gasPermissionRole="permissionRoles">区域选择</span>
     <p-dropdown *gasPermissionRole="permissionRoles" [options]="cities" [(ngModel)]="selectedCities" (onChange)="getBusinessId()" [style]="{'width':'102px'}"></p-dropdown>
 
-    <p-dataTable [value]="datas" [loading]="loading" [styleClass]="'ui-lg-10 ui-xl-8'" emptyMessage="未查询到数据">
+    <p-dataTable [value]="datas" [loading]="loading" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" emptyMessage="未查询到数据">
       <p-column field="enterpriseName" header="企业名称"></p-column>
       <p-column field="inflatableCount" header="储配站数量"></p-column>
       <p-column field="dispatcherCount" header="送气工数量"></p-column>

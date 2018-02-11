@@ -1,49 +1,22 @@
+ <!-- 左侧二级菜单 -->
 <div class="sidebar">
-  <div class="ui-g ui-g-nopad group">
-    <span>用户</span>
-    <a href="javascript:void(0);" [routerLink]="['user-info']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-pencil-square-o fa-fw"></i>&nbsp;  用户实名登记
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['user-card']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-id-card-o fa-fw"></i>&nbsp; 用户身份认证卡
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['transport-car']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-truck fa-fw"></i>&nbsp; 运输车/直销车
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['delivery-car']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-car fa-fw"></i>&nbsp; 配送车
-      </span>
-    </a>
-    <!-- <span>气瓶</span>
-    <a href="javascript:void(0);" [routerLink]="['cylinder-info']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-file-text-o fa-fw"></i>&nbsp; 气瓶基本信息
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['cylinder-tag']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-bookmark-o fa-fw"></i>&nbsp; 气瓶标签分配</span>
-    </a>
-    <span>批量操作</span>
-    <a href="javascript:void(0);" [routerLink]="['upload']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-cloud-upload fa-fw"></i>&nbsp; 信息批量导入
-      </span>
-    </a>
-    <a href="javascript:void(0);" [routerLink]="['export']" routerLinkActive="active">
-      <span>
-        <i class="fa fa-cloud-download fa-fw"></i>&nbsp; 信息批量导出
-      </span>
-    </a> -->
-  </div>
+    <div class="ui-g ui-g-nopad group">
+        <div class="ui-g-12">
+            <button pButton type="button" label="用户实名登记" [routerLink]="['user-info']" routerLinkActive="link-active"></button>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="用户身份认证卡" [routerLink]="['user-card']" routerLinkActive="link-active"></button>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="运输车/直销车" [routerLink]="['transport-car']" routerLinkActive="link-active"></button>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="配送车" [routerLink]="['delivery-car']" routerLinkActive="link-active"></button>
+        </div>
+    </div>
 </div>
+
+<!-- 右侧内容区 -->
 <div class="main">
-  <router-outlet></router-outlet>
+     <router-outlet></router-outlet>
 </div>
