@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { VisualizationComponent } from './visualization.component';
 import { VideoMonitoringComponent } from './video-monitoring/video-monitoring.component';
+import { SingleSoliderComponent } from './single-solider/single-solider.component';
 const routes: Routes = [
   {
     path: '',
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'video-monitor',
         component: VideoMonitoringComponent
+      },
+      {
+        path: 'single-solider',
+        component: SingleSoliderComponent
       },
     ]
   },

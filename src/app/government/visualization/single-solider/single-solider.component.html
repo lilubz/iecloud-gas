@@ -1,0 +1,64 @@
+<div class="main">
+  <div class="ui-g-12 card">
+
+    <div class="ui-g-12 center">
+      <a type="button" href="dbzf://" pButton label="打开单兵执法软件"></a>
+    </div>
+    <!-- <div class="ui-g-6 center">
+      <a href="">单兵执法软件下载</a>
+    </div> -->
+    <div class="ui-g-offset-6 ui-g-6 center">
+      <a href="javascript:void(0);" (click)="downloadContainerVisible=true">无法打开单兵执法软件？</a>
+    </div>
+
+    <div class="ui-g-12 dowload-container" *ngIf="downloadContainerVisible">
+      如果您点击
+      <span class="mark">打开单兵执法软件</span> 按钮无法打开软件，请尝试以下操作：
+
+      <div class="step">
+        <span class="index">1. </span>请确保您已经下载安装该软件，如果没有，请
+        <a href="" style="color: red;">点此下载</a> 并安装。
+      </div>
+
+      <div class="step">
+        <span class="index">2. </span>如果您已经安装该软件，但仍无法打开，请按顺序执行以下操作：
+
+        <div class="step">
+          <span class="index">2.1 </span>请在以下输入框中输入您的软件安装路径：
+          <div class="ui-g-12">
+            <input type="text" pInputText [(ngModel)]="path" placeholder="请输入软件路径(如：C:\Program Files\ZBK-KD1000_Client\DSSClient.exe)"
+            />
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="index">2.2 </span>新建本地文本文件，将以下代码复制到该文件，保存文件，然后将后缀名改为
+          <span class="mark">reg</span>
+          <pre>
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\dbzf]
+@="URL:dbzf Protocol handler"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\dbzf\shell]
+
+[HKEY_CLASSES_ROOT\dbzf\shell\open]
+
+[HKEY_CLASSES_ROOT\dbzf\shell\open\command]
+@="{{ transformPath(path) }}"
+          </pre>
+        </div>
+
+        <div class="step">
+          <span class="index">2.3 </span>双击执行该<span class="mark">reg</span>文件。
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="index">3. </span> 如果此时您仍然无法打开软件请及时与我们联系。
+      </div>
+
+    </div>
+  </div>
+</div>

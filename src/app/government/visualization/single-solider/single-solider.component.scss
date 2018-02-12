@@ -1,0 +1,36 @@
+.main {
+  left: 90px;
+}
+
+pre {
+  // display: block;
+  background: #161a1b; // width: 400px;
+  color: white;
+  padding-top: 15px;
+  padding-left: 15px;
+  line-height: 1.4em;
+}
+
+.center {
+  text-align: center;
+}
+
+.dowload-container {
+  border: 1px solid black;
+  border-radius: 8px;
+  line-height: 2em;
+}
+
+span.mark {
+  display: inline-block;
+  background: lightblue;
+  border-radius: 4px;
+}
+
+.step {
+  padding-left: 2em;
+  padding-right: 2em;
+  .index {
+    font-weight: bold;
+  }
+}

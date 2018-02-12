@@ -5,6 +5,7 @@ import { SharedModule } from './../../shared/shared.module';
 import { VisualizationComponent } from './visualization.component';
 import { VideoMonitoringComponent } from './video-monitoring/video-monitoring.component';
 import { VisualizationRoutingModule } from './visualization-routing.module';
+import { SingleSoliderComponent } from './single-solider/single-solider.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -13,7 +14,8 @@ import { VisualizationRoutingModule } from './visualization-routing.module';
   ],
   declarations: [
     VisualizationComponent,
-    VideoMonitoringComponent
+    VideoMonitoringComponent,
+    SingleSoliderComponent
   ],
   providers: [
 

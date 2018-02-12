@@ -45,6 +45,7 @@ export const GovernmentMenus: MenuItem[] = [
     routerLink: ['/government/visualization'],
     items: [
       { label: '视频图像', routerLink: ['/government/visualization/video-monitor'] },
+      { label: '单兵执法', routerLink: ['/government/visualization/single-solider'] },
     ]
   },
   {
