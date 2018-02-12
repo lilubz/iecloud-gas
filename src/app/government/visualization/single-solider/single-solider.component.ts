@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class SingleSoliderComponent implements OnInit {
   downloadContainerVisible = false;
+  path = '';
   constructor() { }
 
   ngOnInit() {
