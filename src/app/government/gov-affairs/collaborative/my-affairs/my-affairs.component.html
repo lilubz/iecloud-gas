@@ -1,66 +1,64 @@
-<div class="ui-g-12 card affairs-list">
+<div class="ui-g-12  card affairs-list">
   <div class="ui-g-12">
     <h3>按综合条件查询</h3>
   </div>
   <form class="ui-g-12" (submit)="onSearch()">
-    <div class="ui-g">
-      <div class="ui-g-6">
-        <div class="form-group">
+    <div class="ui-g-12 ui-lg-6">
+      <div class="form-group">
           <label for="">发起时间：</label>
-          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
-            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value"
-            readonlyInput="true" [style]="{'width':'calc(50% - 65px)'}" name="startTime">
+          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
+            [style]="{'width':'180px'}" name="startTime">
           </p-calendar>
           <span>到</span>
-          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
-            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value"
-            readonlyInput="true" [style]="{'width':'calc(50% - 65px)'}" name="endTime">
+          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
+            [style]="{'width':'180px'}" name="endTime">
           </p-calendar>
         </div>
-      </div>
-      <div class="ui-g-6" style="line-height: 39px;">
-          <p-radioButton [style]="{'margin-left':'15px'}" name="role" value="1" label="我发起的事务" [(ngModel)]="formModel.role"></p-radioButton>
-          <p-radioButton [style]="{'margin-left':'15px'}" name="role" value="2" label="我参与的事务" [(ngModel)]="formModel.role"></p-radioButton>
-          <p-radioButton [style]="{'margin-left':'15px'}" name="role" value="3" label="全部" [(ngModel)]="formModel.role"></p-radioButton>
+    </div>
+
+    <div class="ui-g-12 ui-lg-6 " style="line-height: 39px;">
+      <div class="form-group ui-g">
+        <p-radioButton class="ui-g-12 ui-lg-4" name="role" value="1" label="我发起的事务" [(ngModel)]="formModel.role"></p-radioButton>
+        <p-radioButton class="ui-g-12 ui-lg-4" name="role" value="2" label="我参与的事务" [(ngModel)]="formModel.role"></p-radioButton>
+        <p-radioButton class="ui-g-12 ui-lg-4" name="role" value="3" label="全部" [(ngModel)]="formModel.role"></p-radioButton>
       </div>
     </div>
-    <div class="ui-g">
-      <div class="ui-g-5">
-        <div class="ui-g-6">
-          <div class="form-group">
-            <label for="">所属区域：</label>
-            <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.region" [style]="{'width':'calc(90% - 70px)'}" name="region"></p-dropdown>
-          </div>
-        </div>
-        <div class="ui-g-6">
-          <div class="form-group">
-            <label for="">事务类别：</label>
-            <p-dropdown [options]="dropdown.affairsType" [(ngModel)]="formModel.affairType" [style]="{'width':'calc(90% - 70px)'}" name="affairType"></p-dropdown>
-          </div>
-        </div>
-      </div>
-      <div class="ui-g-5">
-        <div class="ui-g-6">
-          <div class="form-group">
-            <label for="">事务来源：</label>
-            <p-dropdown [options]="dropdown.origin" [(ngModel)]="formModel.origin" [style]="{'width':'calc(90% - 70px)'}" name="source"></p-dropdown>
-          </div>
-        </div>
-        <div class="ui-g-6">
-          <div class="form-group">
-            <label for="">事务状态：</label>
-            <p-dropdown [options]="dropdown.status" [(ngModel)]="formModel.status" [style]="{'width':'calc(90% - 70px)'}" name="status"></p-dropdown>
-          </div>
-        </div>
+
+    <div class="ui-g-12 ui-lg-6 ">
+      <div class="form-group">
+        <label for="">所属区域：</label>
+        <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.region" [style]="{'width':'180px'}" name="region"></p-dropdown>
       </div>
     </div>
-    <div class="ui-g">
-      <div class="ui-g-6">
-        <div class="form-group">
-          <label for="">地点：</label>
-          <input class="input-place" type="text" pInputText [(ngModel)]="formModel.place" name="place"/>
-          <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:30px"></button>
-        </div>
+
+    <div class="ui-g-12 ui-lg-6">
+      <div class="form-group">
+        <label for="">事务类别：</label>
+        <p-dropdown [options]="dropdown.affairsType" [(ngModel)]="formModel.affairType" [style]="{'width':'180px'}" name="affairType"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-lg-6">
+      <div class="form-group">
+        <label for="">事务来源：</label>
+        <p-dropdown [options]="dropdown.origin" [(ngModel)]="formModel.origin" [style]="{'width':'180px'}" name="source"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-lg-6">
+      <div class="form-group">
+        <label for="">事务状态：</label>
+        <p-dropdown [options]="dropdown.status" [(ngModel)]="formModel.status" [style]="{'width':'180px'}" name="status"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-lg-6 ">
+      <div class="form-group">
+        <label for="">地&#12288;&#12288;点：</label>
+        <input class="input-place" type="text" pInputText [(ngModel)]="formModel.place" style="width:180px" name="place" />
+        <button pButton type="submit" label="搜索" style="margin-left:30px"></button>
       </div>
     </div>
   </form>
@@ -68,7 +66,7 @@
     <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
       scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
       [(first)]="dataTable.first">
-      <p-column [style]="{'width':'100px'}" header="序号">
+      <p-column [style]="{'width':'80px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <span>{{index+1}}</span>
         </ng-template>

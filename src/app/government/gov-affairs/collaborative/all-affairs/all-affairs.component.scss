@@ -4,6 +4,10 @@
   //   padding:0;
   // }
   // padding-top:35px;
+  .label{
+    // display: block;
+    width: 130px;
+  }
   h2{
     background: #007ccc;
     color:white;
@@ -13,7 +17,7 @@
     color:#3399ff;
   }
   form{
-    width:100%;
+    // width:100%;
     .form-group{
       margin:5px 0;
     }

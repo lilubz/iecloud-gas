@@ -4,7 +4,7 @@ div.customer-list{
   }
 
   .padding {
-    padding: 5px 15px;
+    padding: 10px 15px;
   }
 
   a {
@@ -13,7 +13,7 @@ div.customer-list{
 
   form{
     .form-group {
-      padding: 3px;
+      padding: 10px;
       >span {
         color: rgb(102, 102, 102);
       }
@@ -31,10 +31,10 @@ div.customer-list{
     .searchBtn {
       margin-top: 10px;
       margin-left: 15px;
-      height: 65px;
-      width: 90px;
+      height: 45px;
+      width: 96px;
       font-size: 1.3em;
-      font-weight: bold;
+      // font-weight: bold;
       border-radius: 5px;
     }
   }

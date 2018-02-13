@@ -1,48 +1,53 @@
 <div class="ui-g-12 dispatcher card">
-  <form [formGroup]="formModel" (submit)="onSearch()">
-    <div class="ui-g-2">
-      <div class="form-group">
-        <label for="">企业</label>
-        <p-dropdown [options]="dropdown.companyOpt" formControlName="enterpriseId" [style]="{'width':'calc(90% - 30px)'}"></p-dropdown>
+  <form class="ui-g-12" [formGroup]="formModel" (submit)="onSearch()">
+    <div class="ui-g">
+
+      <div class="ui-g-12 ui-lg-6">
+        <div class="form-group">
+          <label for="" style="width:80px;display:inline-block">企业</label>
+          <p-dropdown [options]="dropdown.companyOpt" formControlName="enterpriseId" [style]="{'width':'280px'}"></p-dropdown>
+        </div>
       </div>
-    </div>
-    <div class="ui-g-3">
-      <div class="ui-g-6">
+     
+      <div class="ui-g-12 ui-lg-6">
         <div class="form-group name">
-          <label for="">姓名</label>
-          <input type="text" pInputText formControlName="name" />
-        </div>
+            <label for="" style="width:80px;display:inline-block">姓名</label>
+            <input type="text" pInputText formControlName="name" style="width:280px" />
+          </div>
       </div>
-      <div class="ui-g-6">
+
+      <div class="ui-g-12 ui-lg-6">
         <div class="form-group job-number">
-          <label for="">工号</label>
-          <input type="text" pInputText formControlName="jobNumber" />
+          <label for="" style="width:80px;display:inline-block">工号</label>
+          <input type="text" pInputText formControlName="jobNumber" style="width:280px" />
         </div>
       </div>
-    </div>
-    <div class="ui-g-5">
-      <div class="ui-g-4">
+
+      <div class="ui-g-12 ui-lg-6">
         <div class="form-group phone">
-          <label for="">手机号码</label>
-          <input type="text" pInputText formControlName="phone" />
+            <label for="" style="width:80px;display:inline-block">手机号码</label>
+            <input type="text" pInputText formControlName="phone" style="width:280px" />
         </div>
       </div>
-      <div class="ui-g-4">
+
+      <div class="ui-g-12 ui-lg-6">
         <div class="form-group id-number">
-          <label for="">身份证号</label>
-          <input type="text" pInputText formControlName="idNumber" />
+            <label for="" style="width:80px;display:inline-block">身份证号</label>
+            <input type="text" pInputText formControlName="idNumber" style="width:280px" />
         </div>
       </div>
-      <div class="ui-g-4 text-center">
-        <button pButton type="submit" label="搜索" icon="fa-search"></button>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="搜索"></button>
       </div>
+
     </div>
   </form>
   <div class="ui-g-12">
     <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
       scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
       [(first)]="dataTable.first">
-      <p-column [style]="{'width':'100px'}" header="序号">
+      <p-column [style]="{'width':'80px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <span>{{index+1}}</span>
         </ng-template>

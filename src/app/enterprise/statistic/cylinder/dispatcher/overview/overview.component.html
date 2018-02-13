@@ -2,31 +2,31 @@
   <h3>送气工气瓶统计</h3>
   <form class="ui-g-12" (submit)="onSubmit();">
     <div class="ui-g-4 form-group" *ngIf="currentRoleType===roleType.Government">
-      <label for="">区域选择</label>
+        <label style="width:80px;display:inline-block">区域选择</label>
       <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}" [(ngModel)]="formModel.regionId"
         name="regionId"></p-dropdown>
     </div>
     <div class="ui-g-4 form-group">
-      <label for="">时间类型</label>
+        <label style="width:80px;display:inline-block">时间类型</label>
       <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType"
-        [style]="{'width':'calc(100% - 110px)'}"></p-dropdown>
+        [style]="{'width':'180px'}"></p-dropdown>
     </div>
-    <div class="ui-g-4 form-group">
-      <button pButton type="submit" label="搜索" icon="fa-search" style="margin-left:10px"></button>
+    <div class="ui-g-4 ui-g-12 form-group">
+      <button pButton type="submit" label="搜索"></button>
     </div>
     <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
       <div class="ui-g-6 form-group">
-        <label for="">开始时间</label>
+          <label style="width:80px;display:inline-block">开始时间</label>
         <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
           [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
-          [style]="{'width':'calc(100% - 85px)'}" name="startTime">
+          [style]="{'width':'180px'}" name="startTime">
         </p-calendar>
       </div>
       <div class="ui-g-6 form-group">
-        <label for="">结束时间</label>
+          <label style="width:80px;display:inline-block">结束时间</label>
         <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
           [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
-          [style]="{'width':'calc(100% - 85px)'}" name="endTime">
+          [style]="{'width':'180px'}" name="endTime">
         </p-calendar>
       </div>
     </div>

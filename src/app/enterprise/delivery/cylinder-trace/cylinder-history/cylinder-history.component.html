@@ -1,14 +1,25 @@
 <div class="ui-g-12">
-  气瓶条码
-  <input type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px"> &nbsp;&nbsp; 开始时间
-  <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
-    dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
-  &nbsp;&nbsp; 结束时间
-  <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
-    dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today" readonlyInput="true"></p-calendar>
-  &nbsp;&nbsp;
+  <div class="ui-g-12 ui-lg-4">
+    <label style="width:80px;display:inline-block">气瓶条码</label>
+    <input type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px"> 
+  </div>
 
-  <button pButton type="button" label="查询" (click)="searchCylinderHistory()"></button>
+  <div class="ui-g-12 ui-lg-4">
+      <label style="width:80px;display:inline-block">开始时间</label>
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
+      dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true" [style]="{'width':'180px'}"></p-calendar>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+      <label style="width:80px;display:inline-block">结束时间</label>
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
+      dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today" readonlyInput="true" [style]="{'width':'180px'}"></p-calendar>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <button pButton type="button" label="查询" (click)="searchCylinderHistory()"></button>
+  </div>
+
 </div>
 
 <div class="ui-g-12">

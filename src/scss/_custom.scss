@@ -238,11 +238,12 @@ input {
       // }
     }
     .card {
+      min-height: 100%;
       max-height: 100%;
       width: 100%; // min-width: 650px;
       background: #fff;
       box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-      overflow: auto;
+      overflow: scroll;
       padding: 1.5em;
     }
     // .ui-state-default{
@@ -263,10 +264,10 @@ a.router-link-active {
   color: #3399ff;
 }
 
-.search-group {
-  // margin: 5px 10px;
-  // float: left;
-}
+// .search-group {
+//   margin: 5px 10px;
+//   float: left;
+// }
 
 /* 菜单栏图标 */
 

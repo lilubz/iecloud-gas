@@ -3,29 +3,29 @@
     padding: 0;
   }
   .padding {
-    padding: 5px 15px;
+    padding: 15px 15px;
   }
   .padding-bottom{
     margin-bottom:10px;
   }
   .form-group {
-    padding: 3px;
+    padding: 10px;
     >span {
       color: rgb(102, 102, 102);
     }
   }
   .searchBtn {
-    margin-top: 10px;
-    margin-left: 15px;
+    // margin-top: 10px;
+    // margin-left: 15px;
     height: 45px;
     width: 96px;
-    font-size: 1.3em;
+    font-size: 1em;
     // font-weight: bold;
     border-radius: 4px;
   }
   .textInput {
-    width: 55%;
-    max-width: 180px;
+    // width: 55%;
+    width: 280px;
   }
   a {
     color: #3399ff;

@@ -6,7 +6,7 @@
       </h1>
     </div>
     <div class="ui-g-6 text-right">
-      <button (click)="visible = true" pButton type="button" icon="fa fa-fw fa-plus" label="新增"></button>
+      <button (click)="visible = true" pButton type="button" label="新增"></button>
     </div>
   </div>
   <div class="ui-g">
@@ -14,7 +14,7 @@
       <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
         [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
         [(first)]="dataTable.first">
-        <p-column [style]="{'width':'50px'}" header="序号">
+        <p-column [style]="{'width':'80px'}" header="序号">
           <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
             <span>{{index+1}}</span>
           </ng-template>

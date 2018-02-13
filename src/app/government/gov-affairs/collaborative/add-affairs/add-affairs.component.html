@@ -2,23 +2,23 @@
   <form>
     <h1>执法事务录入</h1>
     <div class="ui-g">
-      <div class="ui-g-8 form-group">
-        <div class="title ui-g-3">
-          <label for="">
+      <div class="ui-g-8 ui-g form-group">
+        <div class="title ui-g-12 ui-lg-3" >
+          <label for="" style="width:130px;display:inline-block"> 
             <span class="warn">*</span>事务处理对象：
           </label>
         </div>
-        <div class="ui-g-9">
-          <div class="ui-g-3">
+        <div class="ui-g-9 ui-g">
+          <div class="ui-g-12 ui-xl-3 ui-lg-6">
             <p-radioButton name="objType" [value]=1 label="储配站" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
           </div>
-          <div class="ui-g-3">
+          <div class="ui-g-12 ui-xl-3 ui-lg-6">
             <p-radioButton name="objType" [value]=2 label="供应站" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
           </div>
-          <div class="ui-g-3">
+          <div class="ui-g-12 ui-xl-3 ui-lg-6">
             <p-radioButton name="objType" [value]=3 label="送气工" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
           </div>
-          <div class="ui-g-3">
+          <div class="ui-g-12 ui-xl-3 ui-lg-6">
             <p-radioButton name="objType" [value]=4 label="押送工" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
           </div>
         </div>
@@ -26,7 +26,7 @@
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12" *ngIf="formModel.objType===1">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>储配站：</label>
         <div class="ui-g-10">
           <p-autoComplete [(ngModel)]="formModel.objValue" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="1"
@@ -37,7 +37,7 @@
       </div>
 
       <div class="form-group ui-g-12" *ngIf="formModel.objType===2">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>供应站：</label>
         <div class="ui-g-10">
           <p-autoComplete [(ngModel)]="formModel.objValue" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="1"
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="form-group ui-g-12" *ngIf="formModel.objType===3">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>送气工：</label>
         <div class="ui-g-10">
           <p-autoComplete [(ngModel)]="formModel.objValue" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="2"
@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="form-group ui-g-12" *ngIf="formModel.objType===4">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>押送工：</label>
         <div class="ui-g-10">
           <p-autoComplete [(ngModel)]="formModel.objValue" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="2"
@@ -83,7 +83,7 @@
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>发现时间：</label>
         <div class="ui-g-10">
           <p-calendar [(ngModel)]="formModel.time" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
@@ -94,7 +94,7 @@
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>事务来源：</label>
         <div class="ui-g-10">
           <p-dropdown [options]="dropdown.origin" [(ngModel)]="formModel.originId" name="origin" [style]="{'width':'170px'}"></p-dropdown>
@@ -103,7 +103,7 @@
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>所在区域：</label>
         <div class="ui-g-10">
           <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.regionId" name="region" [style]="{'width':'170px'}"></p-dropdown>
@@ -112,7 +112,7 @@
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>事务地点：</label>
         <div class="ui-g-10">
           <input type="text" pInputText [(ngModel)]="formModel.address" name="address" />
@@ -121,7 +121,7 @@
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12 affair-type">
-        <label for="inputEmail3" class="ui-g-12 control-label">
+        <label for="inputEmail3" class="ui-g-12 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>事务类别：
         </label>
         <div class="checkbox-container ui-g-12">
@@ -135,7 +135,7 @@
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>描述：</label>
         <div class="ui-g-10">
           <input type="text" pInputText [(ngModel)]="formModel.describe" name="describe" />
@@ -144,7 +144,7 @@
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12">
-        <label for="inputEmail3" class="ui-g-2 control-label">
+        <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           &nbsp;&nbsp;附件：</label>
         <div class="ui-g-10">
           <input type="file" #file name="file">
@@ -157,7 +157,7 @@
       <div class="ui-g-12 group padding-left">
         <h3>业务协同（可选）</h3>
         <div class="form-group ui-g-6 affair-type">
-          <label for="inputEmail3" class="ui-g-3 control-label">
+          <label for="inputEmail3" class="ui-g-3 control-label" style="width:130px;display:inline-block">
             协同部门：
           </label>
           <div class="ui-g-9">
@@ -177,7 +177,7 @@
           </div>
         </div>
         <div class="form-group ui-g-6 affair-type">
-          <label for="inputEmail3" class="ui-g-3 control-label">
+          <label for="inputEmail3" class="ui-g-3 control-label" style="width:130px;display:inline-block">
             协同企业：
           </label>
           <div class="ui-g-9">
@@ -198,7 +198,7 @@
 
         </div>
         <div class="form-group ui-g-12">
-          <label for="inputEmail3" class="ui-g-2 control-label">
+          <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
             紧急程度：</label>
           <div class="ui-g-10">
             <p-dropdown [options]="dropdown.level" [(ngModel)]="formModel.level" name="level" [style]="{'width':'170px'}"></p-dropdown>
@@ -208,8 +208,8 @@
     </div>
 
     <div class="ui-g-12 dialog-footer text-center">
-      <button pButton type="submit" class="ui-button-primery" label="确认" icon="fa-check" (click)="onSubmit(file)"></button>
-      <button pButton type="button" class="ui-button-secondary" label="重置" icon="fa-close" (click)="onReset(file)"></button>
+      <button pButton type="submit" class="ui-button-primery" label="确认" (click)="onSubmit(file)"></button>
+      <button pButton type="button" class="ui-button-secondary" label="重置" (click)="onReset(file)"></button>
     </div>
 
   </form>

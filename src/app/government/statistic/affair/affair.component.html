@@ -9,6 +9,7 @@
 <div class="main">
   <div class="ui-g-12 content card">
     <h3>协同事务统计</h3>
+    <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
     区域选择：
     <p-dropdown [options]="regionList" [(ngModel)]="selectedRegionId" [style]="{'width':'150px'}"></p-dropdown>
     时间：
@@ -16,7 +17,9 @@
 
     <button pButton type="button" label="查询" (click)="getAffairStatistic()"></button>
 
-    <p-dataTable [value]="affairStatistics" [styleClass]="'ui-lg-10 ui-xl-8'" [loading]="loading" emptyMessage="未查询到数据">
+    </div>
+
+    <p-dataTable [value]="affairStatistics" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" [loading]="loading" emptyMessage="未查询到数据">
 
       <p-column field="name" header="区域" [style]="{'width':'20%'}"></p-column>
       <p-column field="totalCount" header="一级事务">

@@ -1,4 +1,5 @@
 <div class="ui-g-12 content card">
+	<div class="ui-g-12 ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
 	<span class="title">提交时间：</span>
 	<p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
 	 dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"  name="startDate"></p-calendar>
@@ -7,8 +8,9 @@
 	 dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" name="endDate"></p-calendar>
 
 	<button pButton type="button" label="查询" (click)="searchCylinderStorageCirculations()"></button>
-
-	<p-dataTable [value]="datas" [lazy]="true" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="' ui-g-12 ui-lg-10 ui-xl-8'"
+	</div>
+	
+	<p-dataTable [value]="datas" [lazy]="true" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="' ui-g-12 ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
 			 emptyMessage="未查询到数据" [(first)]="firstIndex" [totalRecords]="total" (onLazyLoad)="onPageChange($event)">
 		<p-column [style]="{'width':'100px'}" header="序号">
 			<ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">

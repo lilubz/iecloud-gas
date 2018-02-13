@@ -1,57 +1,59 @@
 <div class="ui-g-12 cylinderList card">
   <form class="ui-g padding" [formGroup]="formModel" (submit)="onSearch();">
-    <div class="ui-g-10">
-      <div class="ui-g padding-bottom">
-        <div class="ui-g-5">
+
+        <div class="ui-g-12 ui-lg-6 ">
           <div class="form-group">
-            <span> 经营企业</span>
-            <p-dropdown [options]="dropdown.company" formControlName="enterpriseNumber" [style]="{'width':'calc(100% - 100px','max-width':'300px'}"></p-dropdown>
+              <label style="width:80px;display:inline-block">经营企业</label>
+            <p-dropdown [options]="dropdown.company" formControlName="enterpriseNumber" [style]="{'width':'280px'}"></p-dropdown>
           </div>
         </div>
-        <div class="ui-g-4">
+        <div class="ui-g-12 ui-lg-6 ">
           <div class="form-group">
-            <span> 制造单位</span>
-            <p-dropdown [options]="dropdown.make" formControlName="productionUnit" [style]="{'width':'calc(100% - 100px','max-width':'300px'}"></p-dropdown>
+              <label style="width:80px;display:inline-block">制造单位</label>
+            <p-dropdown [options]="dropdown.make" formControlName="productionUnit" [style]="{'width':'280px'}"></p-dropdown>
           </div>
         </div>
-        <div class="ui-g-3">
-          <div class="form-group text-right">
-            <span>状态</span>
-            <p-dropdown [options]="dropdown.status" formControlName="state" [style]="{'width':'calc(100% - 40px)','max-width':'110px','text-align':'left'}"></p-dropdown>
-          </div>
-        </div>
-      </div>
-      <div class="ui-g ">
-        <div class="ui-g-4">
+        <div class="ui-g-12 ui-lg-6 ">
           <div class="form-group">
-            <span> 气瓶编码</span>
-            <input type="text" class="textInput" formControlName="cylinderCode" pInputText>
+              <label style="width:80px;display:inline-block">状态</label>
+            <p-dropdown [options]="dropdown.status" formControlName="state" [style]="{'width':'280px'}"></p-dropdown>
           </div>
         </div>
-        <div class="ui-g-4">
+        <div class="ui-g-12 ui-lg-6 ">
           <div class="form-group">
-            <span> 自有编号</span>
-            <input type="text" class="textInput" formControlName="ownNumber" pInputText>
+              <label style="width:80px;display:inline-block">气瓶编码</label>
+            <input type="text" class="textInput" formControlName="cylinderCode" pInputText style="width:280px">
           </div>
         </div>
-        <div class="ui-g-4">
-          <div class="form-group text-right">
-            <span> 出厂编号</span>
-            <input type="text" class="textInput" formControlName="serialNumber" pInputText>
+        <div class="ui-g-12 ui-lg-6 ">
+          <div class="form-group">
+              <label style="width:80px;display:inline-block">自有编号</label>
+            <input type="text" class="textInput" formControlName="ownNumber" pInputText style="width:280px">
           </div>
         </div>
-      </div>
-    </div>
-    <div class="ui-g-2">
+        <div class="ui-g-12 ui-lg-6">
+          <div class="form-group">
+              <label style="width:80px;display:inline-block">出厂编号</label>
+            <input type="text" class="textInput" formControlName="serialNumber" pInputText style="width:280px">
+          </div>
+        </div>
+
+
+    <div class="ui-g-12">
       <button pButton type="submit" label="查询" class="searchBtn"></button>
     </div>
   </form>
+
+
+
+
+
   <div class="ui-g padding">
     <div class="ui-g-12">
       <p-dataTable [value]="dataTable.list" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="dataTable.option[1]"
       [scrollable]="false" scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total"
       (onLazyLoad)="onPageChange($event)" [(first)]="dataTable.first">
-        <p-column [style]="{'width':'100px'}" header="序号">
+        <p-column [style]="{'width':'80px'}" header="序号">
           <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
             <span>{{index+1}}</span>
           </ng-template>
