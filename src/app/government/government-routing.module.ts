@@ -32,7 +32,7 @@ const routes: Routes = [
         path: 'delivery',
         loadChildren: './delivery/delivery.module#DeliveryModule',
         data: {
-          title: '配送监管'
+          title: '监管查询'
         }
       },
       {

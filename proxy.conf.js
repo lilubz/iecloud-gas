@@ -37,9 +37,9 @@ const PROXY_CONFIG = [
   //   ],
   //   target: "http://192.168.1.141:8080", // 本地测试环境
   //   secure: false,
-  //   // "pathRewrite": {
-  //   //   "^/wenZhouGas": ""
-  //   // }
+  //   "pathRewrite": {
+  //     "^/wenZhouGas": ""
+  //   }
   // },
   // {
   //   context: [

@@ -26,8 +26,8 @@
   </div>
 </div>
 
-<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="960" [responsive]="true" [style]="{'border':'none'}"
-  positionTop="50">
+<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="720"  [height]="540" [responsive]="true" [style]="{'border':'none','overflow':'auto'}"
+  positionTop="90">
   <div class="ui-g-12">
     <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [paginator]="true" [rows]="recordPageSize" [lazy]="true"
       scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)" [scrollable]="false" [totalRecords]="recordTotal" [rowsPerPageOptions]="[5,10,20,40]">

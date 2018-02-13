@@ -19,12 +19,12 @@ export const GovernmentMenus: MenuItem[] = [
     ]
   },
   {
-    label: '配送监管',
+    label: '监管查询',
     icon: 'menu-icon distribution-icon',
     routerLink: ['/government/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/government/delivery/cylinder-trace'] },
-      { label: '一张图展示', routerLink: ['/government/delivery/map'] },
+      { label: '地图轨迹', routerLink: ['/government/delivery/map'] },
       // { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
     ]
   },
@@ -40,11 +40,11 @@ export const GovernmentMenus: MenuItem[] = [
     ]
   },
   {
-    label: '可视化',
+    label: '视频查看',
     icon: 'menu-icon visualization-icon',
     routerLink: ['/government/visualization'],
     items: [
-      { label: '视频图像', routerLink: ['/government/visualization/video-monitor'] },
+      { label: '视频监控', routerLink: ['/government/visualization/video-monitor'] },
       { label: '单兵执法', routerLink: ['/government/visualization/single-solider'] },
     ]
   },
@@ -94,7 +94,7 @@ export const EnterpriseMenus: MenuItem[] = [
     ]
   },
   {
-    label: '配送监管',
+    label: '监管查询',
     icon: 'menu-icon distribution-icon',
     routerLink: ['/enterprise/delivery'],
     items: [
