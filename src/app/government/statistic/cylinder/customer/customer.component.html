@@ -2,10 +2,10 @@
   <div style="min-width:450px;">
     <h3>用户气瓶统计</h3>
     <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-      <ng-template [gasPermissionRole]="permissionRoles">
-        区域选择：
-        <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
-      </ng-template>
+
+      区域选择：
+      <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
+
     </div>
     <p-dataTable [value]="customerStatisticsFilter" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
       [loading]="loading" emptyMessage="未查询到数据">

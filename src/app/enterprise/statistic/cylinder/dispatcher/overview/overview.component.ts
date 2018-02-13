@@ -6,7 +6,6 @@ import { SelectItem } from 'primeng/primeng';
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Util } from '../../../../../core/util';
 import * as echarts from 'echarts';
-import { RoleType } from '../../../../../common/RoleType';
 import { zh_CN } from './../../../../../common/date-localization';
 import * as moment from 'moment';
 @Component({
@@ -16,8 +15,6 @@ import * as moment from 'moment';
   providers: [StatisticCylinderService]
 })
 export class OverviewComponent implements OnInit, AfterViewInit {
-  roleType = RoleType;
-  currentRoleType;
   zh = zh_CN;
   dropdown: any = {
     timeType: [
@@ -105,9 +102,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     pageSize: 10
   };
   @ViewChild('dispatcherChart') dispatcherChart: ElementRef;
-  permissionRoles: RoleType[] = [
-    RoleType.Government
-  ];
 
   dispatcherCylinderList = [];
   dispatcherCylinderListFilter = [];
@@ -152,7 +146,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {
 
     this.loading = true;
     this.getDispatcherCylinder();
-    this.currentRoleType = this.userStateService.getUserRoleType();
   }
   onDropdownTimeTypeChange() {
     if (this.formModel.timeType) {
@@ -167,7 +160,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     this.getDataTableList({
       startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
       endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
-      regionId: this.currentRoleType === RoleType.Government ? this.formModel.regionId : '',
+      regionId: '',
     });
     Object.assign(this.pageParams, this.formModel);
     this.dataTable.first = 0;

@@ -238,13 +238,13 @@ input {
       // }
     }
     .card {
-      min-height: 100%;
       max-height: 100%;
       width: 100%; // min-width: 650px;
       background: #fff;
       box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-      overflow: scroll;
+      overflow: auto;
       padding: 1.5em;
+      box-sizing: border-box;
     }
     // .ui-state-default{
     //   margin: 5px;

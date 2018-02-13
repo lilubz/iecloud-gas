@@ -171,7 +171,8 @@ export class AddAffairsComponent implements OnInit {
       this.formModel.helpCompany.concat(this.formModel.helpDepartment).forEach(item => {
         helpList.push({
           organizationId: item.organizationId,
-          expirationDate: moment(item.time).format('YYYY-MM-DD HH:mm:ss')
+          expirationDate: moment(item.time).format('YYYY-MM-DD HH:mm:ss'),
+          userId: item.userId,
         });
       });
 
@@ -187,6 +188,7 @@ export class AddAffairsComponent implements OnInit {
       formData.set('cylinderImage', file.files[0]);
       formData.set('collaborativeOrganizationInfoTOS', JSON.stringify(helpList));
       formData.set('emergencyDegree', this.formModel.level);
+      formData.set('transactionSource', this.formModel.originId);
       this.sendFormModel(formData);
     }
   }
@@ -241,7 +243,7 @@ export class AddAffairsComponent implements OnInit {
       });
   }
   getMultiSelectDepartment() {
-    this._service.listEventOrganizationId({})
+    this._service.listChildUserId({})
       .then(data => {
         if (data.status === 0) {
           this.multiSelect.department = data.data.map(item => {

@@ -75,7 +75,7 @@ export class AffairDetailsComponent implements OnInit {
       formData.set('description', this.formModel.explain);
       formData.set('boolIsApproved', false);
       formData.set('boolIsReject', false);
-      formData.set('organizationList', null);
+      formData.set('collaborativeOrganizationInfoTOS', null);
       formData.set('cylinderImage', file.files[0] ? file.files[0] : '');
       this.sendForm(formData);
     } else {

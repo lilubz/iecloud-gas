@@ -8,8 +8,7 @@
           {{index + 1}}
         </ng-template>
       </p-column>
-      <p-column *ngIf="isEnterprise" field="enterpriseName" header="企业" [style]="{'width':'30%'}"></p-column>
-      <p-column *ngIf="isGovernment" field="regionName" header="区域" [style]="{'width':'30%'}"></p-column>
+      <p-column field="regionName" header="区域" [style]="{'width':'30%'}"></p-column>
       <p-column field="totalCount" header="气瓶数">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
           {{ countyCylinder.totalCount || 0 }}

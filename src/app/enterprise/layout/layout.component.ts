@@ -6,7 +6,6 @@ import { GovernmentMenus, EnterpriseMenus } from './../../common/menus';
 
 import { LoginService } from './../../login/login.service';
 import { UserStateService } from './../../core/userState.service';
-import { RoleType } from './../../common/RoleType';
 @Component({
   selector: 'gas-layout',
   templateUrl: './layout.component.html'

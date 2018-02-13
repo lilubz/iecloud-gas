@@ -6,7 +6,6 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from '../../../../common/date-localization';
 import { CommonRequestService } from '../../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
-import { RoleType } from './../../../../common/RoleType';
 import { UserStateService } from './../../../../core/userState.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';

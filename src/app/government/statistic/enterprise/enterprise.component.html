@@ -9,8 +9,8 @@
   <div class="ui-g-12 content card">
     <div style="min-width:500px">
       <h3>企业信息统计</h3>
-      <span *gasPermissionRole="permissionRoles">区域选择</span>
-      <p-dropdown *gasPermissionRole="permissionRoles" [options]="cities" [(ngModel)]="selectedCities" (onChange)="getBusinessId()"
+      <span>区域选择</span>
+      <p-dropdown [options]="cities" [(ngModel)]="selectedCities" (onChange)="getBusinessId()"
         [style]="{'width':'102px'}"></p-dropdown>
 
       <p-dataTable [value]="datas" [loading]="loading" [styleClass]="'ui-lg-10 ui-xl-8'" emptyMessage="未查询到数据">

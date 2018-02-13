@@ -8,7 +8,6 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot
 } from '@angular/router';
-import { RoleType } from '../common/RoleType';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {

@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { User } from './../model/User.model';
 import { RoleType } from '../common/RoleType';
+import { OrganizationType } from '../common/OrganizationType';
 
 /**
  * 用户信息服务
@@ -68,6 +69,29 @@ export class UserStateService {
 
         case 2:
           return RoleType.Enterprise;
+
+        default:
+          return null;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * 获取用户组织类型
+   * 2018-02-12 20:01:24
+   * @author hzb
+   * @returns {(OrganizationType | null)}
+   * @memberof UserStateService
+   */
+  getUserOrganizationType(): OrganizationType | null {
+    if (this.getUser()) {
+      switch (this.getUser().organizationType) {
+        case 4:
+          return OrganizationType.Government;
+
+        case 1:
+          return OrganizationType.Enterprise;
 
         default:
           return null;

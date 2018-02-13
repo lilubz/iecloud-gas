@@ -6,7 +6,7 @@ import { API } from './../common/api';
 import { HttpService } from './../core/http.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../core/userState.service';
-import { RoleType } from '../common/RoleType';
+import { OrganizationType } from '../common/OrganizationType';
 
 @Injectable()
 export class LoginService {
@@ -26,18 +26,18 @@ export class LoginService {
       .then(data => {
         if (data.status === 0) {// 登录成功
           this.userStateService.setUser(data.data || '');
-          if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
+          if (this.userStateService.getUserOrganizationType() === OrganizationType.Enterprise) {
             this.router.navigate(['/enterprise']);
-          } else if (this.userStateService.getUserRoleType() === RoleType.Government) {
+          } else if (this.userStateService.getUserOrganizationType() === OrganizationType.Government) {
             this.router.navigate(['/government']);
           }
           return true;
         } else if (data.status === 4) {// 已经登录
           this.messageService.add({ severity: 'warning', summary: '您已登录', detail: '如需登录其它账号请先退出再登录！' });
           this.userStateService.setUser(data.data || '');
-          if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
+          if (this.userStateService.getUserOrganizationType() === OrganizationType.Enterprise) {
             this.router.navigate(['/enterprise']);
-          } else if (this.userStateService.getUserRoleType() === RoleType.Government) {
+          } else if (this.userStateService.getUserOrganizationType() === OrganizationType.Government) {
             this.router.navigate(['/government']);
           }
           return true;

@@ -7,17 +7,12 @@ import { StorageDistributionStatistic } from './StorageDistributionStatistic.mod
 import { zh_CN } from '../../../../common/date-localization';
 import { StorageDistributionCirculation } from './StorageDistributionCirculation.model';
 import * as moment from 'moment';
-import { RoleType } from '../../../../common/RoleType';
 @Component({
   selector: 'gas-storage-distribution',
   templateUrl: './storage-distribution.component.html',
   styleUrls: ['./storage-distribution.component.scss']
 })
 export class StorageDistributionComponent implements OnInit {
-  permissionRoles: RoleType[] = [
-    RoleType.Government
-  ];
-
   zh = zh_CN;
   cylinderLoading = false;
   circulationLoading = false;

@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { StatisticCylinderService } from '../statistic-cylinder.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Util } from '../../../../core/util';
-import { RoleType } from '../../../../common/RoleType';
 import { CommonRequestService } from '../../../../core/common-request.service';
 
 @Component({
@@ -12,9 +11,6 @@ import { CommonRequestService } from '../../../../core/common-request.service';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  permissionRoles: RoleType[] = [
-    RoleType.Government
-  ];
   loading = false;
   customerStatistics = [];
   customerStatisticsFilter = [];

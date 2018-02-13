@@ -162,13 +162,13 @@
           </label>
           <div class="ui-g-9">
             <p-multiSelect [options]="multiSelect.department" [(ngModel)]="formModel.helpDepartment"name="department"
-             optionLabel="organizationName" [style]="{'width':'100%'}" defaultLabel="点击选择协同部门"
+             optionLabel="userName" [style]="{'width':'100%'}" defaultLabel="点击选择协同部门"
               maxSelectedLabels="1" selectedItemsLabel="已经选择了{0}个协同部门" [showToggleAll]="false"></p-multiSelect>
           </div>
 
           <div class="form-group ui-g-12" *ngFor="let item of formModel.helpDepartment; let i=index">
-            <label class="ui-g-6 control-label" title="{{item.organizationName}}">
-              {{item.organizationName}}：</label>
+            <label class="ui-g-6 control-label" title="{{item.userName}}">
+              {{item.userName}}：</label>
             <div class="ui-g-5">
               <p-calendar [(ngModel)]="item.time" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
                 [locale]="zh" [showIcon]="false" name="{{'helpDepartmentTime'+ i}}" showTime="true" hourFormat="24" [showOtherMonths]="false" [stepMinute]="10"

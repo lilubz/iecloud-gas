@@ -177,7 +177,6 @@ export const API = {
   'insertTransactionBasic': URL + 'corpBusiness/collaborative/insertTransactionBasic.do', // 6, 执法事务录入
   'deleteTransaction': URL + 'corpBusiness/collaborative/deleteTransaction.do', // 8，撤销执法事务
   'cooperativeOperation': URL + 'corpBusiness/collaborative/cooperativeOperation.do', // 9 & 10,协同操作->【事务处理】
-  'listEventOrganizationId': URL + 'corpBusiness/collaborative/listEventOrganizationId.do', // 11，获取协同部门列表
   'listMyTransaction': URL + 'corpBusiness/collaborative/listMyTransaction.do', // 12,查询我的事务列表。
   'listTransactionDetailInfo': URL + 'corpBusiness/collaborative/listTransactionDetailInfo.do', // 13,查询事务祥情
   'listTransactionChildren': URL + 'corpBusiness/collaborative/listTransactionChildren.do', // 14,获取某个事务下面所有节点的信息
@@ -228,7 +227,7 @@ export const API = {
   'listTransactionTypeInfo': URL + 'corpBusiness/collaborative/listTransactionTypeInfo.do', // 17.获取事务类别树。
   'listTransactionSourceInfo': URL + 'corpBusiness/collaborative/listTransactionSourceInfo.do', // 18.获取事务来源列表。
     // 19.获取事务所在部门下拉框数据。
-  'listTransactionDepartmentInfo': URL + 'corpBusiness/collaborative/listTransactionDepartmentInfo.do',
+  'listChildUserId': URL + 'corpBusiness/collaborative/listChildUserId.do',
   'listTransactionInfo': URL + 'corpBusiness/collaborative/listTransactionInfo.do', // 20.事务一览表中的查询。
 
   // 登录

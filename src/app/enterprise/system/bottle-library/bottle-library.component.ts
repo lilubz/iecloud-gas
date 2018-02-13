@@ -7,7 +7,6 @@ import { zh_CN } from '../../../common/date-localization';
 import { AddBottle } from './addBottle.model';
 import { EditBottle } from './editBottle.model';
 import * as moment from 'moment';
-import { RoleType } from '../../../common/RoleType';
 
 @Component({
   selector: 'gas-bottle-library',
@@ -17,9 +16,6 @@ import { RoleType } from '../../../common/RoleType';
 })
 export class BottleLibraryComponent implements OnInit, OnDestroy {
   cn = zh_CN;
-  permissionRoles: RoleType[] = [
-    RoleType.Government
-  ];
   bottleLibraryList: any[] = [];
   pages: {
     pageNumber?: number;

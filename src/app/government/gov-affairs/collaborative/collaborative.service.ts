@@ -6,10 +6,6 @@ import { API } from '../../../common/api';
 export class CollaborativeService {
   constructor(private HttpService: HttpService) { }
 
-  listEventOrganizationId(params?: any): Promise<any> {
-    return this.HttpService.getRequest(API.listEventOrganizationId, params);
-  }
-
   getDropdownForRegionSysUser(params?: any): Promise<any> {
     return this.HttpService.getRequest(API.getDropdownForRegionSysUser, params);
   }
@@ -61,8 +57,8 @@ export class CollaborativeService {
   listTransactionSourceInfo(params) {
     return this.HttpService.getRequest(API.listTransactionSourceInfo, params);
   }
-  listTransactionDepartmentInfo(params) {
-    return this.HttpService.getRequest(API.listTransactionDepartmentInfo, params);
+  listChildUserId(params) {
+    return this.HttpService.getRequest(API.listChildUserId, params);
   }
   listTransactionInfo(params) {
     return this.HttpService.getRequest(API.listTransactionInfo, params);

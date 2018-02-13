@@ -119,7 +119,8 @@ export class DetailsComponent implements OnInit {
         this.formModel.shiftList.forEach(item => {
           list.push({
             organizationId: item.organizationId,
-            expirationDate: moment(item.time).format('YYYY-MM-DD HH:mm:ss')
+            expirationDate: moment(item.time).format('YYYY-MM-DD HH:mm:ss'),
+            userId: item.userId
           });
         });
         formData.append('collaborativeOrganizationInfoTOS', JSON.stringify(list));
@@ -261,7 +262,7 @@ export class DetailsComponent implements OnInit {
       });
   }
   getMultiSelectDepartment() {
-    this._service.listEventOrganizationId({})
+    this._service.listChildUserId({})
       .then(data => {
         if (data.status === 0) {
           this.multiSelectOptions = data.data.map(item => {
@@ -288,7 +289,7 @@ export class DetailsComponent implements OnInit {
         collapsedIcon: 'fa-folder',
         data: data.t.transactionBasicId,
         expandedIcon: 'fa-folder-open',
-        label: isFirst ? data.t.transactionOrganizationName + '(发起)' : data.t.transactionOrganizationName,
+        label: isFirst ? data.t.transactionUserName + '(发起)' : data.t.transactionUserName,
         description: data.t.description,
         address: data.t.address,
         icon: 'fa-folder',

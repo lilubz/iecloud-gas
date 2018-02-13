@@ -60,7 +60,7 @@ zh = zh_CN;
       startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
       endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
       transactionType: this.formModel.affairType,
-      transactionOrganizationId: this.formModel.department,
+      transactionUserId: this.formModel.department,
       pageNumber: 1,
       pageSize: this.dataTable.pageSize,
     });
@@ -80,7 +80,7 @@ zh = zh_CN;
         startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
         endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
         transactionType: this.pageParams.affairType,
-        transactionOrganizationId: this.pageParams.department,
+        transactionUserId: this.pageParams.department,
         pageNumber: page.pageNumber,
         pageSize: page.pageSize,
       });
@@ -102,12 +102,12 @@ zh = zh_CN;
   }
 
   getDropdownDepartment(params?) {
-    this._service.listTransactionDepartmentInfo(params)
+    this._service.listChildUserId(params)
       .then(data => {
         if (data.status === 0) {
           this.dropdown.department = this.dropdown.default.concat(data.data.map((item) => ({
-            label: item.organizationName,
-            value: item.organizationId
+            label: item.userName,
+            value: item.userId
           })));
         } else {
           this.dropdown.department = this.dropdown.default.concat([]);

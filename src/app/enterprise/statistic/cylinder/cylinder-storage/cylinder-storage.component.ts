@@ -5,7 +5,6 @@ import { CommonRequestService } from '../../../../core/common-request.service';
 import { StatisticCylinderService } from '../statistic-cylinder.service';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { RoleType } from '../../../../common/RoleType';
 
 @Component({
   selector: 'gas-cylinder-storage',
@@ -15,9 +14,6 @@ import { RoleType } from '../../../../common/RoleType';
 export class CylinderStorageComponent implements OnInit {
   storageVisible = false;
   zh = zh_CN;
-  permissionRoles: RoleType[] = [
-    RoleType.Government
-  ];
   cylinderLoading = false;
   circulationLoading = false;
 

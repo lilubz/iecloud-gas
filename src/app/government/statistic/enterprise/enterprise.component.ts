@@ -5,7 +5,6 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { CylinderOverviewService } from './enterprise.service';
 import { Params } from '@angular/router';
-import { RoleType } from './../../../common/RoleType';
 @Component({
   selector: 'gas-enterprise',
   templateUrl: './enterprise.component.html',
@@ -20,10 +19,6 @@ export class EnterpriseComponent implements OnInit {
   dispatcherCount: number;
   customerCount: number;
   loading = false;
-
-  permissionRoles: RoleType[] = [
-    RoleType.Government
-  ];
 
   constructor(
     private commonRequestService: CommonRequestService,

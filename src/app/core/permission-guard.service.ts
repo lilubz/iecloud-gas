@@ -7,7 +7,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot
 } from '@angular/router';
-import { RoleType } from '../common/RoleType';
+import { OrganizationType } from '../common/OrganizationType';
 
 /**
  * 角色权限检查
@@ -26,7 +26,7 @@ export class PermissionGuard implements CanActivate {
   ) { }
 
   /**
-   * 检查用户角色是否有权限方位该路由
+   * 检查用户组织是否有权限方位该路由
    * 2018-01-25 14:53:02
    * @author hzb
    * @param {ActivatedRouteSnapshot} [route]
@@ -35,11 +35,11 @@ export class PermissionGuard implements CanActivate {
    * @memberof AuthGuard
    */
   canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): boolean {
-    const roleType = this.userStateService.getUserRoleType();
+    const organizationType = this.userStateService.getUserOrganizationType();
     const path = state.url.split('/')[1];
     if (
-      ('enterprise' === path && roleType === RoleType.Enterprise) ||
-      ('government' === path && roleType === RoleType.Government)
+      ('enterprise' === path && organizationType === OrganizationType.Enterprise) ||
+      ('government' === path && organizationType === OrganizationType.Government)
     ) {
       return true;
     }

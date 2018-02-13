@@ -4,7 +4,6 @@ import { LoginService } from '../../login/login.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from '../../core/userState.service';
 import { MenuItem } from 'primeng/primeng';
-import { RoleType } from '../../common/RoleType';
 import { EnterpriseMenus } from '../../common/menus';
 import { CylinderOverviewService } from '../archive/cylinder/cylinder-overview/cylinder-overview.service';
 import { CustomerOverviewService } from '../archive/customer/customer-overview/customer-overview.service';

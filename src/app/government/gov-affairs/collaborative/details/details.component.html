@@ -129,15 +129,15 @@
             <div class="ui-g-3 form-group" [hidden]="formModel.boolIsReject">
               <div class="ui-g-12">
                 <p-multiSelect [options]="multiSelectOptions" [(ngModel)]="formModel.shiftList" name="shiftList"
-                 optionLabel="organizationName" [style]="{'width':'100%'}" defaultLabel="点击选择协同部门" maxSelectedLabels="1"
+                 optionLabel="userName" [style]="{'width':'100%'}" defaultLabel="点击选择协同部门" maxSelectedLabels="1"
                  selectedItemsLabel="已经选择了{0}个协同部门" [showToggleAll]="false"></p-multiSelect>
               </div>
             </div>
           </div>
           <div class="ui-g-12" [hidden]="formModel.boolIsReject">
             <div class="form-group ui-g-6" *ngFor="let item of formModel.shiftList; let i=index">
-              <label class="ui-g-6 control-label" title="{{item.organizationName}}">
-                {{item.organizationName}}：</label>
+              <label class="ui-g-6 control-label" title="{{item.userName}}">
+                {{item.userName}}：</label>
               <div class="ui-g-5">
                 <p-calendar [(ngModel)]="item.time" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
                   [locale]="zh" [showIcon]="false" name="{{'helpDepartmentTime'+ i}}" showTime="true" hourFormat="24" [showOtherMonths]="false"
