@@ -3,27 +3,30 @@
         color: #3186dc;
         text-align: center;
     }
-    // .container {
-    //     border: 1px solid #c0c0c0;
-    //     border-radius: 10px;
-    //     box-shadow: 0 0 3px #c0c0c0;
-    // }
+    .container {
+        min-width: 450px;
+    }
     .bottom{
       border: 1px dashed black;
     }
-    .inputgroup {
-        padding: 3px;
+    // .inputgroup {
+    //     // padding: 3px;
+    //     width: 90px;
+    // }
+    .searchBtn {
+        height: 45px;
+        padding: 0px;
+        width: 96px;
+        font-size: 1em;
+        border: 0px solid #3186dc;
+        background: #3186dc;
+        border-radius: 4px;
     }
     span {
       color: rgb(102, 102, 102);
     }
-    .add{
-        padding: 0px;
-        width:100px;
-    }
     .textInput {
-        // width: 40%; 
-        width: 180px;
+        width: 210px;
     }
     .save{
         display: flex;

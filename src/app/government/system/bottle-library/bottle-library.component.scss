@@ -13,14 +13,14 @@
     // width: 40%;
     width: calc(100% - 100px);
     max-width: 300px;
+    min-width: 180px;
   }
   .searchBtn {
     margin-top: 10px;
     margin-left: 15px;
-    height: 50px;
-    width: 80px;
+    height: 45px;
+    width: 96px;
     font-size: 1em;
-    // font-weight: bold;
     border-radius: 4px;
     background: #3186dc;
     border: 1px solid #3186dc;

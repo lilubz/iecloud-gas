@@ -11,8 +11,8 @@
       <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType"
         [style]="{'width':'180px'}"></p-dropdown>
     </div>
-    <div class="ui-g-4 ui-g-12 form-group">
-      <button pButton type="submit" label="搜索"></button>
+    <div class="ui-g-4 form-group">
+      <button pButton type="submit" label="搜索" style="margin-left:10px"></button>
     </div>
     <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
       <div class="ui-g-6 form-group">

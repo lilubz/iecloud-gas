@@ -1,52 +1,55 @@
 <div class="main">
   <div class="ui-g-12 card">
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-      </div>
-      <div class="ui-g-4">
-        <h2>
-          个人信息档案
-        </h2>
-      </div>
-      <div class="ui-g-4">
-        <button type="button" pButton  (click)="showUpdatePwdDialog()" label="修改密码"></button>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-6 ui-g-offset-4">
-        <div class="ui-g-12">
-          姓名：{{ user?.username }}
+    <div style="min-width:620px;">
+      <div class="ui-g-12">
+        <div class="ui-g-4">
         </div>
-        <!-- <div class="ui-g-12">
-        工号：
-      </div>
-      <div class="ui-g-12">
-        联系方式：{{ user?.phone }}
-      </div>
-      <div class="ui-g-12">
-        所属企业：{{ user?.organizationName }}
-      </div> -->
-        <div class="ui-g-12">
-          部门：{{ user?.organizationName }}
+        <div class="ui-g-4">
+          <h2>
+            个人信息档案
+          </h2>
         </div>
-        <div class="ui-g-12">
-          最后登录时间：{{ user?.lastLoginTime | date:'yyyy-MM-dd' }}
+        <div class="ui-g-4">
+          <button type="button" pButton (click)="showUpdatePwdDialog()" label="修改密码"></button>
         </div>
-        <!-- <div class="ui-g-12" *ngIf="user==='配送工'">
-        配送工统一编码：{{ user?.userName }}
-      </div> -->
-      </div>
-      <!-- <div class="ui-g-6">
-      <div class="ui-g-12">
-        性别：
       </div>
       <div class="ui-g-12">
-        证件号码：
+        <div class="ui-g-6 ui-g-offset-4">
+          <div class="ui-g-12">
+            姓名：{{ user?.username }}
+          </div>
+
+          <!-- <div class="ui-g-12">
+                    工号：
+                  </div>
+                  <div class="ui-g-12">
+                    联系方式：{{ user?.phone }}
+                  </div>
+                  <div class="ui-g-12">
+                    所属企业：{{ user?.organizationName }}
+                  </div> -->
+          <div class="ui-g-12">
+            部门：{{ user?.organizationName }}
+          </div>
+          <div class="ui-g-12">
+            最后登录时间：{{ user?.lastLoginTime | date:'yyyy-MM-dd' }}
+          </div>
+          <!-- <div class="ui-g-12" *ngIf="user==='配送工'">
+                配送工统一编码：{{ user?.userName }}
+              </div> -->
+        </div>
+        <!-- <div class="ui-g-6">
+                <div class="ui-g-12">
+                  性别：
+                </div>
+                <div class="ui-g-12">
+                  证件号码：
+                </div>
+                <div class="ui-g-12">
+                  工种：
+                </div>
+                  </div> -->
       </div>
-      <div class="ui-g-12">
-        工种：
-      </div>
-    </div> -->
     </div>
   </div>
 </div>
@@ -71,8 +74,8 @@
     <div class="ui-g-4">
     </div>
     <div class="ui-g-8">
-      <button type="button" pButton icon="fa-check" (click)="updatePassword()" label="确定"></button>
-      <button type="button" pButton icon="fa-close" (click)="updatePwdDialogVisiable=false" label="取消" class="ui-button-secondary"></button>
+      <button type="button" pButton (click)="updatePassword()" label="确定"></button>
+      <button type="button" pButton (click)="updatePwdDialogVisiable=false" label="取消" class="ui-button-secondary"></button>
     </div>
   </div>
 </p-dialog>

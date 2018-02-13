@@ -5,6 +5,10 @@
   }
   .form-group {
     padding-bottom:20px !important;
+    label{
+      display: inline-block;
+      width: 80px;
+    }
   }
   .pass,
   .reject{

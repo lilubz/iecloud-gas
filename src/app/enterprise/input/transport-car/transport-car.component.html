@@ -1,61 +1,69 @@
 <div class="transport-car ui-g-12 card">
-  <header>
-    <h1>
-      <i class="fa fa-truck" aria-hidden="true"></i> 运输车/直销车</h1>
-  </header>
-  <form (submit)="onSubmit()">
-    <ul>
-      <li class="ui-g form-group">
-        <div class="ui-g-5 text-right">
-          <span class="warn">*</span><label for="">种类号：</label>
-        </div>
-        <div class="ui-g-4">
-          <p-dropdown [options]="dropdown.type" [(ngModel)]="formModel.type" name="type" [style]="{'width':'158px'}"></p-dropdown>
-        </div>
-      </li>
-      <li class="ui-g form-group">
-        <div class="ui-g-5 text-right">
-          <span class="warn">*</span><label for="">车牌号：</label>
-        </div>
-        <div class="ui-g-4">
-          <input type="text" pInputText [(ngModel)]="formModel.number" name="number" placeholder="浙A 88888">
-        </div>
-      </li>
-      <li class="ui-g form-group">
-        <div class="ui-g-5 text-right">
-          <span class="warn">*</span><label for="">所属危化品运输公司：</label>
-        </div>
-        <div class="ui-g-4">
-          <input type="text" pInputText [(ngModel)]="formModel.company" name="origin">
-        </div>
-      </li>
-      <li class="ui-g form-group">
-        <div class="ui-g-5 text-right">
-          <span class="warn">*</span><label for="">驾驶员：</label>
-        </div>
-        <div class="ui-g-4">
-          <input type="text" pInputText [(ngModel)]="formModel.driver" name="origin">
-        </div>
-      </li>
-      <li class="ui-g form-group">
-        <div class="ui-g-5 text-right">
-          <span class="warn">*</span><label for="">押运员：</label>
-        </div>
-        <div class="ui-g-4">
-          <input type="text" pInputText [(ngModel)]="formModel.escort" name="origin">
-        </div>
-      </li>
-      <li class="ui-g form-group">
-        <div class="ui-g-5 text-right">
-          <span class="warn">*</span><label for="">运输许可证：</label>
-        </div>
-        <div class="ui-g-4">
-          <input type="text" pInputText [(ngModel)]="formModel.licence" name="origin">
-        </div>
-      </li>
-    </ul>
-    <footer class="text-center">
-      <button pButton type="submit" icon="fa-check" label="保存"></button>
-    </footer>
-  </form>
+  <div style="min-width:600px">
+    <header>
+      <h1>
+        <i class="fa fa-truck" aria-hidden="true"></i> 运输车/直销车</h1>
+    </header>
+    <form (submit)="onSubmit()">
+      <ul>
+        <li class="ui-g form-group">
+          <div class="ui-g-5 text-right">
+            <span class="warn">*</span>
+            <label for="">种类号：</label>
+          </div>
+          <div class="ui-g-4">
+            <p-dropdown [options]="dropdown.type" [(ngModel)]="formModel.type" name="type" [style]="{'width':'183px'}"></p-dropdown>
+          </div>
+        </li>
+        <li class="ui-g form-group">
+          <div class="ui-g-5 text-right">
+            <span class="warn">*</span>
+            <label for="">车牌号：</label>
+          </div>
+          <div class="ui-g-4">
+            <input type="text" pInputText [(ngModel)]="formModel.number" name="number" placeholder="浙A 88888">
+          </div>
+        </li>
+        <li class="ui-g form-group">
+          <div class="ui-g-5 text-right">
+            <span class="warn">*</span>
+            <label for="">所属危化品运输公司：</label>
+          </div>
+          <div class="ui-g-4">
+            <input type="text" pInputText [(ngModel)]="formModel.company" name="origin">
+          </div>
+        </li>
+        <li class="ui-g form-group">
+          <div class="ui-g-5 text-right">
+            <span class="warn">*</span>
+            <label for="">驾驶员：</label>
+          </div>
+          <div class="ui-g-4">
+            <input type="text" pInputText [(ngModel)]="formModel.driver" name="origin">
+          </div>
+        </li>
+        <li class="ui-g form-group">
+          <div class="ui-g-5 text-right">
+            <span class="warn">*</span>
+            <label for="">押运员：</label>
+          </div>
+          <div class="ui-g-4">
+            <input type="text" pInputText [(ngModel)]="formModel.escort" name="origin">
+          </div>
+        </li>
+        <li class="ui-g form-group">
+          <div class="ui-g-5 text-right">
+            <span class="warn">*</span>
+            <label for="">运输许可证：</label>
+          </div>
+          <div class="ui-g-4">
+            <input type="text" pInputText [(ngModel)]="formModel.licence" name="origin">
+          </div>
+        </li>
+      </ul>
+      <footer class="text-center">
+        <button pButton type="submit" label="保存"></button>
+      </footer>
+    </form>
+  </div>
 </div>

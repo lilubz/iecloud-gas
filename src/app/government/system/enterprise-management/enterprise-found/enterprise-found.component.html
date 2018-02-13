@@ -5,82 +5,82 @@
     </h2>
   </div>
   <div class="ui-g-12 container">
-    <div class="ui-g-6 ">
-      <div class="inputgroup">
+    <div class="ui-g-12 ui-lg-6">
+      <!-- <div class="inputgroup"> -->
         <span>企业名称
           <b style="color:red;">*</b>
         </span>
         <input type="text" class="textInput" [(ngModel)]="addForm.enterpriseName" maxlength="20" pInputText>
-      </div>
+      <!-- </div> -->
     </div>
-    <div class="ui-g-6 ">
-      <div class="inputgroup">
+    <div class="ui-g-12 ui-md-12 ui-lg-6">
+      <!-- <div class="inputgroup"> -->
         <span>企业编号
           <b style="color:red;">*</b>
         </span>
         <input type="text" class="textInput" [(ngModel)]="addForm.enterpriseNumber" maxlength="20" pInputText>
-      </div>
+      <!-- </div> -->
     </div>
-    <div class="ui-g-6 ">
-      <div class="inputgroup">
+    <div class="ui-g-12 ui-md-12 ui-lg-6">
+      <!-- <div class="inputgroup"> -->
         <span>负责人&#12288;
           <b style="color:red;">*</b>
         </span>
         <input type="text" class="textInput" [(ngModel)]="addForm.legalRepresentative" maxlength="20" pInputText placeholder="">
-      </div>
+      <!-- </div> -->
     </div>
-    <div class="ui-g-6 ">
-      <div class="inputgroup">
+    <div class="ui-g-12 ui-md-12 ui-lg-6">
+      <!-- <div class="inputgroup"> -->
         <span>地&#12288;&#12288;址
           <b style="color:red;">*</b>
         </span>
         <input type="text" class="textInput" [(ngModel)]="addForm.address" maxlength="20" pInputText placeholder="">
-      </div>
+      <!-- </div> -->
     </div>
 
-    <div class="ui-g-6">
-      <div class="inputgroup">
+    <div class="ui-g-12 ui-md-12 ui-lg-6">
+      <!-- <div class="inputgroup"> -->
         <span>经营类别
           <b style="color:red;">*</b>
         </span>
-        <p-dropdown [options]="category" [(ngModel)]="addForm.businessCategory" [style]="{'width':'180px'}"></p-dropdown>
-      </div>
+        <p-dropdown [options]="category" [(ngModel)]="addForm.businessCategory" [style]="{'width':'210px'}"></p-dropdown>
+      <!-- </div> -->
     </div>
-    <div class="ui-g-6">
-      <div class="inputgroup">
+    <div class="ui-g-12 ui-md-12 ui-lg-6">
+      <!-- <div class="inputgroup"> -->
         <span>辖&#12288;&#12288;区
           <b style="color:red;">*</b>
         </span>
-        <p-dropdown [options]="regionDropdown" [(ngModel)]="addForm.regionId" [style]="{'width':'180px'}"></p-dropdown>
-      </div>
+        <p-dropdown [options]="regionDropdown" [(ngModel)]="addForm.regionId" [style]="{'width':'210px'}"></p-dropdown>
+      <!-- </div> -->
     </div>
-    <div class="ui-g-6 ">
-      <div class="inputgroup">
+    <div class="ui-g-12 ui-md-12 ui-lg-6">
+      <!-- <div class="inputgroup"> -->
         <span>服务电话 </span>
         <b style="visibility:hidden">*</b>
         <input type="text" class="textInput" [(ngModel)]="addForm.serviceLine" maxlength="20" pInputText placeholder="">
-      </div>
+      <!-- </div> -->
     </div>
-    <div class="ui-g-8">
+    <div class="ui-g-12 ">
       <div>
         <span>经营区域
           <b style="color:red;">*</b>
         </span>
       </div>
       <p-dropdown [options]="deliveryRegionList" (onChange)="deliveryCountyChange($event.value)" [(ngModel)]="selectedCountyRegionId"
-        [style]="{'width':'180px'}">
+        [style]="{'width':'210px','margin-top':'5px'}">
       </p-dropdown>
       <ng-template [ngIf]="deliveryUrbanDistrictList.length!=0">
         <p-dropdown [options]="deliveryUrbanDistrictList" (onChange)="deliveryUrbanDistrictChange($event.value)" [(ngModel)]="selectedUrbanDistrict"
-          [style]="{'width':'180px'}">
+          [style]="{'width':'210px','margin-top':'5px'}">
         </p-dropdown>
       </ng-template>
-      <p-dropdown [options]="deliveryStreetList" [(ngModel)]="selectedStreetRegionId" [style]="{'width':'180px'}">
+      <p-dropdown [options]="deliveryStreetList" [(ngModel)]="selectedStreetRegionId" [style]="{'width':'210px','margin-top':'5px'}">
       </p-dropdown>
-      <button pButton class="add " type="button" label="添加" (click)="selectArea()">
+      <button class="ui-g-12" pButton type="button" class="searchBtn" label="添加" (click)="selectArea()">
       </button>
     </div>
-    <div class="ui-g-10">
+    <div class="ui-g-12 ">
       <p-dataTable [value]="selectedAreaList" [lazy]="false" dataKey="title" [paginator]="false" [scrollable]="false" scrollHeight="510px">
         <p-column [style]="{'width':'100px'}" header="序号">
           <ng-template let-index="rowIndex" pTemplate="body">
@@ -101,55 +101,52 @@
         </ng-template>
       </p-dataTable>
     </div>
-    <!-- <div class="ui-g-10">
-      <hr class="bottom">
-    </div> -->
     <div class="ui-g-12">
-      <div class="ui-g-6 ">
-        <div class="inputgroup">
+      <div style="padding-left:0px;" class="ui-g-12  ui-md-12 ui-lg-6">
+        <!-- <div class="inputgroup"> -->
           <span>许可证号
             <b style="color:red;">*</b>
           </span>
           <input type="text" class="textInput" [(ngModel)]="addForm.dangerousLicense" maxlength="20" pInputText placeholder="">
-        </div>
+        <!-- </div> -->
       </div>
-      <div class="ui-g-6 ">
-        <div class="inputgroup">
+      <div style="padding-left:0px;" class="ui-g-12  ui-md-12 ui-lg-6">
+        <!-- <div class="inputgroup"> -->
           <span>发证机关
             <b style="color:red;">*</b>
           </span>
           <input type="text" class="textInput" [(ngModel)]="addForm.issuingUnit" maxlength="20" pInputText placeholder="">
-        </div>
+        <!-- </div> -->
       </div>
-      <div class="ui-g-6 ">
-        <div class="inputgroup">
+      <div style="padding-left:0px;" class="ui-g-12  ui-md-12 ui-lg-6">
+        <!-- <div class="inputgroup"> -->
           <span>发证日期
             <b style="color:red;">*</b>
           </span>
           <p-calendar [locale]="cn" [(ngModel)]="addForm.releaseTime" [showButtonBar]="true" placeholder="" readonlyInput="true" dateFormat="yy-mm-dd"
             showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
-            [style]="{'width':'calc(100% - 100px)','min-width':'180px','max-width':'200px','display':'inline-block'}"></p-calendar>
-        </div>
+            [style]="{'width':'calc(100% - 100px)','min-width':'210px','max-width':'200px','display':'inline-block'}"></p-calendar>
+        <!-- </div> -->
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-6">
-        <div class="inputgroup">
-          <span>&#12288;有效期
+      <div class="ui-g-12 ui-md-12 ui-lg-3">
+        <!-- <div class="inputgroup"> -->
+          <span>有效期&#12288;
             <b style="color:red;">*</b>
           </span>
           <p-calendar [locale]="cn" #startDate [(ngModel)]="addForm.effectiveTimeStart" [showButtonBar]="true" placeholder="" readonlyInput="true"
             dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
-            yearRange="1970:2050" [style]="{'min-width':'180px','max-width':'200px','display':'inline-block'}"></p-calendar>
-        </div>
+            yearRange="1970:2050" [style]="{'min-width':'210px','max-width':'200px','display':'inline-block'}"></p-calendar>
+        <!-- </div> -->
       </div>
-      <div class="ui-g-6">
-        <div class="inputgroup">
+      <div class="ui-g-12 ui-md-12 ui-lg-3">
+        <!-- <div class="inputgroup"> -->
           <span>至&#12288;</span>
           <p-calendar [locale]="cn" #endDate [(ngModel)]="addForm.effectiveTimeEnd" [showButtonBar]="true" placeholder="" readonlyInput="true"
             dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
-            yearRange="1970:2050" [style]="{'min-width':'180px','max-width':'200px','display':'inline-block'}"></p-calendar>
-        </div>
+            yearRange="1970:2050" [style]="{'min-width':'210px','max-width':'200px','display':'inline-block'}"></p-calendar>
+        <!-- </div> -->
       </div>
     </div>
     <div class="ui-g-12">

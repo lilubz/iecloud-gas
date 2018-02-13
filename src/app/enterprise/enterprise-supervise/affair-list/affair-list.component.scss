@@ -17,14 +17,16 @@
     .form-group{
       margin:5px 0;
     }
-    .input-place{
-      width:calc(100% - 270px);
-    }
-    .input-person{
-      width:calc(100% - 200px);
-    }
   }
 }
 .main{
   left: 90px;
+}
+.searchBtn {
+  margin-left: 0px!important;
+  padding: 0;
+  height: 45px;
+  width: 96px;
+  font-size: 1em;
+  border-radius: 5px;
 }

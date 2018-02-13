@@ -1,3 +1,12 @@
 a{
   color:#39f;
 }
+.searchBtn {
+  height: 45px;
+  padding: 0px;
+  width: 96px;
+  font-size: 1em;
+  border: 0px solid #3186dc;
+  background: #3186dc;
+  border-radius: 4px;
+}

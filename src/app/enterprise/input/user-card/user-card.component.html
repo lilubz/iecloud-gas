@@ -1,43 +1,45 @@
 <div class="ui-g-12 card">
-  <div class="ui-g-8">
-    <h3>用户身份认证卡</h3>
-    <div class="ui-g-12 ui-g-nopad">
-      <div class="ui-g-9">
-        <button pButton type="button" (click)="showBindCardDialog()" icon="fa-link" label="绑定" class="bind"></button>
-        <button pButton type="button" (click)="applyCardVisible=true" icon="fa-plus" label="认证卡申请" class="ui-button-secondary"></button>
-      </div>
-      <!-- <div class="ui-g-3">
+  <div style="min-width:850px">
+    <div class="ui-g-8">
+      <h3>用户身份认证卡</h3>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-9">
+          <button pButton type="button" (click)="showBindCardDialog()" label="绑定" class="bind"></button>
+          <button pButton type="button" (click)="applyCardVisible=true" label="认证卡申请" class="ui-button-secondary"></button>
+        </div>
+        <!-- <div class="ui-g-3">
         <button pButton type="button" label="查看绑定记录"></button>
       </div> -->
-    </div>
-    <div class="ui-g-12 ui-g-nopad">
-      <p-dataTable [value]="customerCards" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" [scrollable]="false" [lazy]="true"
-        (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
-        <p-column header="序号" [style]="{'width':'100px'}">
-          <ng-template pTemplate="body" let-index="rowIndex">
-            {{index + 1}}
-          </ng-template>
-        </p-column>
-        <p-column field="userIdentityCardNumber" header="用户身份认证卡编号"></p-column>
-        <p-column field="regionName" header="所在行政区"></p-column>
-        <p-column field="enterpriseName" header="供气企业"></p-column>
-        <p-column field="certNumStatus" header="用户身份认证卡状态">
-          <ng-template let-col let-customerCard="rowData" pTemplate="body">
-            <a href="javascript:void(0);" (click)="showBindCardDialog(customerCard)">{{customerCard[col.field]}}</a>
-          </ng-template>
-        </p-column>
-      </p-dataTable>
-    </div>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <p-dataTable [value]="customerCards" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" [scrollable]="false" [lazy]="true"
+          (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
+          <p-column header="序号" [style]="{'width':'100px'}">
+            <ng-template pTemplate="body" let-index="rowIndex">
+              {{index + 1}}
+            </ng-template>
+          </p-column>
+          <p-column field="userIdentityCardNumber" header="用户身份认证卡编号"></p-column>
+          <p-column field="regionName" header="所在行政区"></p-column>
+          <p-column field="enterpriseName" header="供气企业"></p-column>
+          <p-column field="certNumStatus" header="用户身份认证卡状态">
+            <ng-template let-col let-customerCard="rowData" pTemplate="body">
+              <a href="javascript:void(0);" (click)="showBindCardDialog(customerCard)">{{customerCard[col.field]}}</a>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </div>
 
-  </div>
-  <div class="ui-g-4 tips">
-    <h3 class="warning">注意事项：</h3>
-    <p> ①新录入未分配：请先在“
-      <strong>实名用户基本信息</strong>”中填写/导入基础信息，再进行关联； </p>
-    <p> ②如存在已绑定关联历史记录： 在模板中直接填写对应气瓶的标签编号，于“信息网络上传”中一次性导入。 </p>
-    <strong>
-      <i class="warning">（请勿二次导入）</i>
-    </strong>
+    </div>
+    <div class="ui-g-4 tips">
+      <h3 class="warning">注意事项：</h3>
+      <p> ①新录入未分配：请先在“
+        <strong>实名用户基本信息</strong>”中填写/导入基础信息，再进行关联； </p>
+      <p> ②如存在已绑定关联历史记录： 在模板中直接填写对应气瓶的标签编号，于“信息网络上传”中一次性导入。 </p>
+      <strong>
+        <i class="warning">（请勿二次导入）</i>
+      </strong>
+    </div>
   </div>
 </div>
 

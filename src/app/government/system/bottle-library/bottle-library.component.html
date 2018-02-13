@@ -4,25 +4,25 @@
       供应站信息管理
     </h2>
     <div class="ui-g">
-      <div class="ui-g-8">
+      <div class="ui-g-12">
         <div class="ui-g-12">
-          <div class="ui-g-6 ui-g-nopad">
+          <div class="ui-g-12 ui-lg-6 ui-lg-md-12">
             <div class="inputgroup">
               <span>供应站名称</span>
-              <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText placeholder="">
+              <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText>
             </div>
           </div>
           <ng-template [gasPermissionRole]="permissionRoles">
-            <div class="ui-g-6 ui-g-nopad">
+            <div class="ui-g-12 ui-lg-6 ui-lg-md-12">
               <div class="inputgroup">
-                <span>所属企业</span>
-                <p-dropdown [options]="enterpriseDrop" appendTo="body" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'calc(100% - 100px','max-width':'300px'}"></p-dropdown>
+                <span>所&nbsp;属&nbsp;企&nbsp;业</span>
+                <p-dropdown [options]="enterpriseDrop" appendTo="body" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'calc(100% - 100px','max-width':'300px','min-width':'180px'}"></p-dropdown>
               </div>
             </div>
           </ng-template>
         </div>
       </div>
-      <div class="ui-g-4">
+      <div class="ui-g-12">
         <ng-template [gasPermissionRole]="permissionRoles">
           <button pButton type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
         </ng-template>

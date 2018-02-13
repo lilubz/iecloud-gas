@@ -1,91 +1,91 @@
 <div class="ui-g-12 account-opening card">
-
-  <div class="ui-g-8">
-    <h2 class="title">
-      企业管理账号开通
-    </h2>
-  </div>
-  <form [formGroup]="formModel" (submit)="addEnterpriseUser()">
+  <div style="min-width: 450px;">
     <div class="ui-g-8">
-      <div class="ui-g-12 ui-g-offset-3">
-        <div class="inputgroup">
-          <span>姓&#12288;&#12288;名
-            <b style="color:red;">*</b>
-          </span>
-          <input type="text" class="textInput" formControlName="realname" pInputText placeholder="">
+      <h2 class="title">
+        企业管理账号开通
+      </h2>
+    </div>
+    <form [formGroup]="formModel" (submit)="addEnterpriseUser()">
+      <div class="ui-g-8">
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <span>姓&#12288;&#12288;名
+              <b style="color:red;">*</b>
+            </span>
+            <input type="text" class="textInput" formControlName="realname" pInputText placeholder="">
+          </div>
         </div>
-      </div>
-      <div class="ui-g-12 ui-g-offset-3">
-        <div class="inputgroup">
-          <span>登陆名&#12288;
-            <b style="color:red;">*</b>
-          </span>
-          <input type="text" class="textInput" formControlName="username" pInputText placeholder="">
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <span>登陆名&#12288;
+              <b style="color:red;">*</b>
+            </span>
+            <input type="text" class="textInput" formControlName="username" pInputText placeholder="">
+          </div>
         </div>
-      </div>
 
-      <div class="ui-g-12 ui-g-nopad" formGroupName="passwords">
-        <div class="ui-g-12 ui-g-offset-3">
-          <div class="inputgroup">
-            <span>登录密码
-              <b style="color:red;">*</b>
-            </span>
-            <input type="password" class="textInput" formControlName="password" pInputText placeholder="">
+        <div class="ui-g-12 ui-g-nopad" formGroupName="passwords">
+          <div class="ui-g-12 ui-g-offset-3">
+            <div class="inputgroup">
+              <span>登录密码
+                <b style="color:red;">*</b>
+              </span>
+              <input type="password" class="textInput" formControlName="password" pInputText placeholder="">
+            </div>
+          </div>
+          <div class="ui-g-12 ui-g-offset-3">
+            <div class="inputgroup">
+              <span>确认密码
+                <b style="color:red;">*</b>
+              </span>
+              <input type="password" class="textInput" formControlName="passwordConfirm" pInputText placeholder="">
+            </div>
           </div>
         </div>
+        <!-- 证件类型 -->
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
-            <span>确认密码
+            <span>证件类型
               <b style="color:red;">*</b>
             </span>
-            <input type="password" class="textInput" formControlName="passwordConfirm" pInputText placeholder="">
+            <p-dropdown [options]="category" formControlName="certificateName" [style]="{'width':'300px'}"></p-dropdown>
           </div>
         </div>
-      </div>
-      <!-- 证件类型 -->
-      <div class="ui-g-12 ui-g-offset-3">
-        <div class="inputgroup">
-          <span>证件类型
-            <b style="color:red;">*</b>
-          </span>
-          <p-dropdown [options]="category" formControlName="certificateName" [style]="{'width':'300px'}"></p-dropdown>
+        <!-- 证件编号 -->
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <span>证件编号
+              <b style="color:red;">*</b>
+            </span>
+            <input type="text" formControlName="certificateId" class="textInput" pInputText placeholder="">
+          </div>
         </div>
-      </div>
-      <!-- 证件编号 -->
-      <div class="ui-g-12 ui-g-offset-3">
-        <div class="inputgroup">
-          <span>证件编号
-            <b style="color:red;">*</b>
-          </span>
-          <input type="text" formControlName="certificateId" class="textInput" pInputText placeholder="">
+        <!-- 用户归属企业 -->
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <span>归属企业
+              <b style="color:red;">*</b>
+            </span>
+            <p-dropdown [options]="enterpriseDrop" formControlName="enterpriseNumber" [style]="{'width':'300px'}"></p-dropdown>
+          </div>
         </div>
-      </div>
-      <!-- 用户归属企业 -->
-      <div class="ui-g-12 ui-g-offset-3">
-        <div class="inputgroup">
-          <span>归属企业
-            <b style="color:red;">*</b>
-          </span>
-          <p-dropdown [options]="enterpriseDrop" formControlName="enterpriseNumber" [style]="{'width':'300px'}"></p-dropdown>
-        </div>
-      </div>
-      <!-- 账号状态 -->
-      <div class="ui-g-8 ui-g ui-g-offset-3">
+        <!-- 账号状态 -->
+        <div class="ui-g-8 ui-g ui-g-offset-3">
           <div class="inputgroup ui-lg-7 ui-md-12">
             <span>账号状态
               <b style="color:red;">*</b>
             </span>
           </div>
-  
-          <div class="ui-lg-5 ui-md-6">
+
+          <div class=" ui-lg-5 ui-md-6">
             <p-radioButton name="group1" formControlName="isfreezed" value="false" label="启用"></p-radioButton>
           </div>
-          <div class="ui-lg-5 ui-md-6">
+          <div class=" ui-lg-5 ui-md-6">
             <p-radioButton name="group1" formControlName="isfreezed" value="true" label="停用"></p-radioButton>
           </div>
         </div>
-      <!-- 性别 -->
-      <div class="ui-g-8 ui-g ui-g-offset-3">
+        <!-- 性别 -->
+        <div class="ui-g-8 ui-g ui-g-offset-3">
           <div class="inputgroup ui-lg-7 ui-md-12">
             <span>性&#12288;&#12288;别&nbsp;</span>
           </div>
@@ -96,14 +96,15 @@
             <p-radioButton name="group2" formControlName="gender" value="false" label="女"></p-radioButton>
           </div>
         </div>
-      <div class="ui-g-12 ui-g ui-g-offset-3">
-        <div class="save ui-lg-3 ui-sm-12 ui-g-nopad">
-          <button pButton type="submit" label="确认提交"></button>
-        </div>
-        <div class="save ui-lg-3 ui-sm-12 ui-g-nopad">
-          <button pButton type="reset" label="&#12288;重置&#12288;"></button>
+        <div class="ui-g-12 ui-g ui-g-offset-3">
+          <div class="save ui-lg-3 ui-sm-12 ui-g-nopad">
+            <button pButton type="submit" label="确认提交"></button>
+          </div>
+          <div class="save ui-lg-3 ui-sm-12 ui-g-nopad">
+            <button pButton type="reset" label="&#12288;重置&#12288;"></button>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
