@@ -3,12 +3,12 @@
     <h3>送气工气瓶统计</h3>
     <form class="ui-g-12" (submit)="onSubmit();">
       <div class="ui-g-12 ui-lg-6 form-group">
-        <label for="">区域选择</label>
+        <label for="" class="search-label">区域选择</label>
         <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'210px'}" [(ngModel)]="formModel.regionId"
           name="regionId"></p-dropdown>
       </div>
       <div class="ui-g-12 ui-lg-6 form-group">
-        <label for="">时间类型</label>
+        <label for="" class="search-label">时间类型</label>
         <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType"
           [style]="{'width':'210px'}"></p-dropdown>
       </div>
@@ -17,14 +17,14 @@
       </div>
       <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
         <div class="ui-g-6 form-group">
-          <label for="">开始时间</label>
+          <label for="" class="search-label">开始时间</label>
           <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
             [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
             [style]="{'width':'calc(100% - 85px)'}" name="startTime">
           </p-calendar>
         </div>
         <div class="ui-g-6 form-group">
-          <label for="">结束时间</label>
+          <label for="" class="search-label">结束时间</label>
           <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
             [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
             [style]="{'width':'calc(100% - 85px)'}" name="endTime">
@@ -69,7 +69,7 @@
 
     </div>
     <div class="ui-g-12 ui-lg-6">
-      时&#12288;&#12288;间：
+      <label for="" class="search-label text-right">时间：</label>
       <p-dropdown [options]="deliveryDateRange" [(ngModel)]="selectedDateRange" [style]="{'width':'210px'}">
       </p-dropdown>
     </div>
