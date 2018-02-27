@@ -38,12 +38,17 @@ const routes: Routes = [
         component: CylinderFillingComponent
       },
       {
-        path: 'cylinder-record',
+        path: 'cylinder-record/:type',
         component: CylinderRecordComponent
       },
       {
         path: 'cylinder-history',
         component: CylinderHistoryComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'cylinder-history',
+        pathMatch: 'full'
       }
     ]
   },

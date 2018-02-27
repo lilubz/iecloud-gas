@@ -132,16 +132,15 @@ export class CylinderRecordComponent implements OnInit {
     // ];
 
     this.routerInfo.paramMap.switchMap((params) => {
-      return Promise.resolve(params.get('type'));
-    }).subscribe((type) => {
+      return Promise.resolve(params);
+    }).subscribe((params) => {
       this.init();
-      this.selectedCylinderStatus = parseInt(type, 10);
+      this.selectedCylinderStatus = parseInt(params.get('type'), 10);
     });
 
     this.routerInfo.queryParams.subscribe((queryParams) => {
       // 跳转查询
       if (JSON.stringify(queryParams) !== '{}') { // 查询参数不为空
-        console.log(queryParams);
         this.selectedCylinderStatus = parseInt(queryParams.liabilitySubjectType, 10);
         this.loading = true;
         this.beginTime = queryParams.beginTime ? new Date(parseInt(queryParams.beginTime, 10)) : this.beginTime;
@@ -222,21 +221,21 @@ export class CylinderRecordComponent implements OnInit {
     switch (typeId) {
       case 1:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        this.router.navigate(['../cylinder-record', { type: 1 }], { relativeTo: this.routerInfo, queryParams });
+        this.router.navigate(['../1'], { relativeTo: this.routerInfo, queryParams });
         break;
       case 2:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        this.router.navigate(['../cylinder-record', { type: 2 }], { relativeTo: this.routerInfo, queryParams });
+        this.router.navigate(['../2'], { relativeTo: this.routerInfo, queryParams });
         break;
       case 3:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
         queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
-        this.router.navigate(['../cylinder-record', { type: 3 }], { relativeTo: this.routerInfo, queryParams });
+        this.router.navigate(['../3'], { relativeTo: this.routerInfo, queryParams });
         break;
       case 4:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
         queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
-        this.router.navigate(['../cylinder-record', { type: 4 }], { relativeTo: this.routerInfo, queryParams });
+        this.router.navigate(['../4'], { relativeTo: this.routerInfo, queryParams });
         break;
       default:
         break;

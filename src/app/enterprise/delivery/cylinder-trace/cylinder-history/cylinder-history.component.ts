@@ -88,6 +88,7 @@ export class CylinderHistoryComponent implements OnInit {
         this.cylinderHistoryList = data.data;
         this.totalHistory = data.data.length;
       } else {
+        this.loading = false;
         this.cylinderHistoryList = [];
         this.totalHistory = 0;
         this.messageService.add({ severity: 'warn', summary: '获取气瓶状态历史失败', detail: data.msg });
