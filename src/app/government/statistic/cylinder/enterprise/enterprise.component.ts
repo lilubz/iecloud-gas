@@ -13,6 +13,7 @@ import { UserStateService } from '../../../../core/userState.service';
 })
 export class EnterpriseComponent implements OnInit {
   loading = false;
+  times:any;
   countyCylinders: {
     name: string,
     totalCount: number,
@@ -40,6 +41,7 @@ export class EnterpriseComponent implements OnInit {
       .then(data => {
         if (data.status === 0) {
           this.countyCylinders = data.data;
+          this.addcountiesAlloverview()
         } else {
           this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
         }
@@ -50,6 +52,27 @@ export class EnterpriseComponent implements OnInit {
       });
   }
 
+  addcountiesAlloverview() {
+    this.cylinderOverviewService.getCylinderEnterpriseOverviewlistGcNewAddCount({})
+    .then(data =>{
+      if (data.status === 0) {
+        this.times = data.data
+        for (var j = 0; j < this.times.length; j++) {
+          for (var i = 0; i < this.countyCylinders.length; i++) {
+            if(this.countyCylinders[i].regionId == this.times[j].regionId){
+              this.countyCylinders[i] = Object.assign(this.countyCylinders[i],this.times[j])
+            }
+          }
+        }
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
+      }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
+      this.loading = false;
+    });
+    
+  }
   getEnterpriseOverview() {
     this.cylinderOverviewService.getCylinderEnterpriseOverviewByOrganizationId({})
       .then(data => {

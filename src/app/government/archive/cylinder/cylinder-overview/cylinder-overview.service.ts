@@ -24,6 +24,10 @@ export class CylinderOverviewService implements CanActivate {
     return this.httpService
       .getRequest(API.getCylinderCountiesOverview, params);
   }
+  getCylinderEnterpriseOverviewlistGcNewAddCount(params: any): Promise<any> {
+    return this.httpService
+      .getRequest(API.getCylinderEnterpriseOverviewlistGcNewAddCount, params);
+  }
 
   getCylinderEnterpriseOverviewByAreaId(params: any): Promise<any> {
     return this.httpService

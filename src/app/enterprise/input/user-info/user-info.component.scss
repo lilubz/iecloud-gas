@@ -7,10 +7,6 @@
   .tips {
     .warning {
       color: red;
-      text-decoration-line: underline;
-    }
-    strong {
-      text-decoration-line: underline
     }
   }
   hr {
@@ -20,4 +16,12 @@
   .ui-fileupload-choose {
     color: red;
   }
+  .searchBtn {
+      margin-left: 20px;
+      border-radius: 4px;
+      width: 96px;
+      height: 45px;
+      font-size: 1em;
+      background: #3186dc;
+    }
 }

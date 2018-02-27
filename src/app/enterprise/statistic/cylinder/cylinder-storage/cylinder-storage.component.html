@@ -30,14 +30,14 @@
   <h3>流通信息统计</h3>
 
   <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-    &nbsp;&nbsp; 时间范围：
+    <label for="" class="search-label"> 时间范围：</label>
     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
       dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
-    --
+      <label for="" class="search-label" style="text-align: center">至</label>
     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
       dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
 
-    <button pButton type="button" label="查询" (click)="searchCylinderStorageCirculations()"></button>
+    <button pButton type="button" label="查询" class="searchBtn" (click)="searchCylinderStorageCirculations()"></button>
   </div>
 
 
@@ -124,7 +124,7 @@
       </p-dataTable>
     </div>
     <p-footer>
-      <button type="button" pButton icon="fa-close" (click)="storageVisible=false" label="关闭"></button>
+      <button type="button" pButton (click)="storageVisible=false" label="关闭"></button>
     </p-footer>
   </p-dialog>
 

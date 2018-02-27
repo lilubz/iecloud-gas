@@ -2,20 +2,20 @@
   <h3>送气工气瓶统计</h3>
   <form class="ui-g-12" (submit)="onSubmit();">
     <div class="ui-g-4 form-group">
-      <label style="width:80px;display:inline-block">时间类型</label>
+      <label for="" class="search-label">时间类型</label>
       <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType"
         [style]="{'width':'180px'}"></p-dropdown>
     </div>
     <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
       <div class="ui-g-6 form-group">
-        <label style="width:80px;display:inline-block">开始时间</label>
+        <label for="" class="search-label">开始时间</label>
         <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
           [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
           [style]="{'width':'180px'}" name="startTime">
         </p-calendar>
       </div>
       <div class="ui-g-6 form-group">
-        <label style="width:80px;display:inline-block">结束时间</label>
+        <label for="" class="search-label">结束时间</label>
         <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
           [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
           [style]="{'width':'180px'}" name="endTime">
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="ui-g-12 form-group">
-      <button pButton type="submit" label="搜索" style="margin-left:10px"></button>
+      <button pButton type="submit" class="searchBtn" label="搜索"></button>
     </div>
   </form>
   <div class="ui-g-12">
@@ -55,10 +55,10 @@
 
   <!-- 流通统计 -->
   <h3>送气工配送量波动情况</h3>
-  时间：
-  <p-dropdown [options]="deliveryDateRange" [(ngModel)]="selectedDateRange" [style]="{'width':'100px'}"></p-dropdown>
-
-  <button pButton type="button" label="查询" (click)="getDeliveryStatistic()"></button>
-
-  <div #dispatcherChart id="dispatcherChart" style="width: 600px;height:400px;"></div>
+  <div class="ui-g-12">
+    <label for="" class="search-label ui-g-4 ui-lg-4">时间</label>
+    <p-dropdown [options]="deliveryDateRange" class="ui-g-8 ui-lg-3" [(ngModel)]="selectedDateRange" [style]="{'width':'100px'}"></p-dropdown>
+    <button pButton type="button" label="查询" class="searchBtn" (click)="getDeliveryStatistic()"></button>
+  </div>
+  <div #dispatcherChart id="dispatcherChart" class="ui-g-12" style="width: 600px;height:400px;"></div>
 </div>

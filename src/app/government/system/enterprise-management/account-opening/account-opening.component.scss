@@ -16,9 +16,12 @@
     .save{
         display: flex;
         button{
-            margin: auto;
             margin-top: 9px;
-            margin-left: 9px;
+            border-radius: 4px;
+            width: 120px;
+            height: 45px;
+            font-size: 1em;
+            background: #3186dc;
         }
     }
 }

@@ -16,7 +16,7 @@
           <p-fileUpload #MessageFile [auto]="false" name="" mode="advanced" [multiple]="false" accept=".doc,.docx,.pdf" invalidFileSizeMessageSummary="{0}: 文件过大,"
             invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型," invalidFileTypeMessageDetail="允许的文件类型是: {0}."
             chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false" [showCancelButton]="false" previewWidth="50"
-            [customUpload]="true"></p-fileUpload>
+            [customUpload]="true" ></p-fileUpload>
           <div class="ui-g-6">
             <button type="button" class="searchBtn" pButton label="发布" (click)="addConfirm(MessageFile)"></button>
           </div>
