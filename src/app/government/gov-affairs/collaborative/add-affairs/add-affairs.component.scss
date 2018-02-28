@@ -60,6 +60,13 @@
       >button{
         margin:0 50px;
         font-size:20px;
+        border-radius: 4px;
+        width: 96px;
+        height: 45px;
+        font-size: 1em;
+      }
+      .ui-button-primery{
+        background: #3186dc;
       }
     }
   }

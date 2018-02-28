@@ -11,11 +11,11 @@
     <div style="min-width:400px;">
       <h3>协同事务统计</h3>
       <div class="ui-g-12 ui-xl-6">
-        区域选择：
+        <label for="" class="search-label text-right">区域选择：</label>
         <p-dropdown [options]="regionList" [(ngModel)]="selectedRegionId" [style]="{'width':'210px'}"></p-dropdown>
       </div>
       <div class="ui-g-12 ui-xl-6">
-        时&#12288;&#12288;间：
+        <label for="" class="search-label text-right">时间：</label>
         <p-dropdown [options]="deliveryDateRange" [(ngModel)]="selectedDateRange" [style]="{'width':'210px'}"></p-dropdown>
       </div>
       <button class="ui-g-12" class="searchBtn" pButton type="button" label="查询" (click)="getAffairStatistic()"></button>

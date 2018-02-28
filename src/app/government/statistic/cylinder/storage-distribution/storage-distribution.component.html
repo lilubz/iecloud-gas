@@ -2,19 +2,18 @@
   <div style="min-width:500px">
     <h3>储配站气瓶统计</h3>
     <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-
-      区域选择：
-      <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
+      <label for="" class="search-label">区域选择：</label>
+      <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'120px'}"></p-dropdown>
 
     </div>
     <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
       [loading]="cylinderLoading" emptyMessage="未查询到数据">
 
       <!-- <p-column header="序号" [style]="{'width':'50px'}">
-      <ng-template pTemplate="body" let-index="rowIndex">
-        {{index + 1}}
-      </ng-template>
-    </p-column> -->
+        <ng-template pTemplate="body" let-index="rowIndex">
+          {{index + 1}}
+        </ng-template>
+      </p-column> -->
       <p-column field="stationName" header="站点名称">
         <!-- <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
         <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
@@ -29,51 +28,52 @@
       <ng-template let-countyCylinder="rowData" pTemplate="body">
         {{ countyCylinder.normalCount || 0 }}
       </ng-template>
-    </p-column>
-    <p-column field="expireCount" header="过期">
-      <ng-template let-countyCylinder="rowData" pTemplate="body">
-        {{ countyCylinder.expireCount || 0 }}
-      </ng-template>
-    </p-column>
-    <p-column field="scrapCount" header="报废">
-      <ng-template let-countyCylinder="rowData" pTemplate="body">
-        {{ countyCylinder.scrapCount || 0 }}
-      </ng-template>
-    </p-column>
-    <p-column field="scrapCount" header="标签异常">
-      <ng-template let-countyCylinder="rowData" pTemplate="body">
-        {{ countyCylinder.codeAbnormalCount || 0 }}
-      </ng-template>
-    </p-column> -->
+      </p-column>
+      <p-column field="expireCount" header="过期">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.expireCount || 0 }}
+        </ng-template>
+      </p-column>
+      <p-column field="scrapCount" header="报废">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.scrapCount || 0 }}
+        </ng-template>
+      </p-column>
+      <p-column field="scrapCount" header="标签异常">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.codeAbnormalCount || 0 }}
+        </ng-template>
+      </p-column> -->
 
     </p-dataTable>
 
     <!-- 流通统计 -->
-    <h3>流通信息统计</h3>
-    <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-      <div class="ui-g-12 ui-xl-4">
-        <label for="" class="search-label">区域选择：</label>
-        <p-dropdown [options]="regionList" [(ngModel)]="selectedCirculationRegion" (onChange)="selectCirculationRegion($event.value)"
-          [style]="{'width':'216px'}"></p-dropdown>
+    <div class="ui-g">
+      <h3 class="ui-g-12">流通信息统计</h3>
+      <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
+        <div class="ui-g-12 ui-xl-4">
+          <label for="" class="search-label">区域选择</label>
+          <p-dropdown [options]="regionList" [(ngModel)]="selectedCirculationRegion" (onChange)="selectCirculationRegion($event.value)"
+            [style]="{'width':'120px'}"></p-dropdown>
 
-      </div>
-      <div class="ui-g-12 ui-xl-4">
-        <label for="" class="search-label">时间范围：</label>
-        <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
-          dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true">
-        </p-calendar>
-      </div>
-      <div class="ui-g-12 ui-xl-4">
-        <label for="" class="search-label"> 至：</label>
-        <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
-          dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
-      </div>
-      <div class="ui-g-12">
-        <button class="searchBtn" pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()">
-        </button>
+        </div>
+        <div class="ui-g-12 ui-xl-4">
+          <label for="" class="search-label">时间范围</label>
+          <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
+            dateFormat="yy-mm-dd" [locale]="zh" [style]="{'width':'120px'}" readonlyInput="true">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-xl-4">
+          <label for="" class="search-label"> 至</label>
+          <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
+            dateFormat="yy-mm-dd" [locale]="zh" [style]="{'width':'120px'}" readonlyInput="true"></p-calendar>
+        </div>
+        <div class="ui-g-12">
+          <button class="searchBtn" pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()">
+          </button>
+        </div>
       </div>
     </div>
-
     <p-dataTable [value]="storageDistributionCirculationFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]"
       [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" [loading]="circulationLoading" emptyMessage="未查询到数据">
 
@@ -104,7 +104,6 @@
         {{ countyCylinder.emptyBottleSendCount || 0 }}
       </ng-template>
     </p-column> -->
-
     </p-dataTable>
   </div>
 </div>

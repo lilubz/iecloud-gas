@@ -2,13 +2,13 @@
   <div class="ui-g-12">
     <div class="ui-g-12 ui-lg-4 ui-md-12">
       <div class="form-group">
-        <label for="">所在区</label>
+        <label for="" class="search-label">所在区</label>
         <p-dropdown [style]="{'width':'100px'}" [options]="dropdown.regionOpt" [(ngModel)]="searchParams.regionId" (onChange)="onSearch()"></p-dropdown>
       </div>
     </div>
     <div class="ui-g-12 ui-lg-4 ui-md-12">
       <div class="form-group">
-        <label for="">状&#12288;态</label>
+        <label for="" class="search-label">状态</label>
         <p-dropdown [style]="{'width':'100px'}" [options]="dropdown.statusOpt" [(ngModel)]="searchParams.status" (onChange)="onSearch()"></p-dropdown>
       </div>
     </div>

@@ -2,7 +2,7 @@
   <div style="min-width:550px">
     <h3>供应站气瓶统计</h3>
     <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-      区域选择：
+      <label for="" class="search-label">区域选择：</label>
       <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
     </div>
     <p-dataTable [value]="cylinderStorageFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
@@ -38,17 +38,17 @@
         <div class="ui-g-12 ui-xl-4">
           <label for="" class="search-label">区域选择：</label>
           <p-dropdown [options]="regionList" [(ngModel)]="selectedCirculationRegion" (onChange)="selectCirculationRegion($event.value)"
-            [style]="{'width':'210px'}"></p-dropdown>
+            [style]="{'width':'120px'}"></p-dropdown>
         </div>
         <div class="ui-g-12 ui-xl-4">
           <label for="" class="search-label">时间范围：</label>
           <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
-            dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" [style]="{'width':'210px'}"></p-calendar>
+            dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" [style]="{'width':'120px'}"></p-calendar>
         </div>
         <div class="ui-g-12 ui-xl-4">
-          <label for="" class="search-label">至：</label>
+          <label for="" class="search-label text-right">至：</label>
           <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
-            dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" [style]="{'width':'210px'}"></p-calendar>
+            dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" [style]="{'width':'120px'}"></p-calendar>
         </div>
         <div class="ui-g-12 ui-lg-12">
           <button pButton class="searchBtn" type="button" label="查询" (click)="searchCylinderStorageCirculations()">

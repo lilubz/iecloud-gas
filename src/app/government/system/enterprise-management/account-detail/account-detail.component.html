@@ -4,15 +4,15 @@
   </h2>
   <div class="ui-g">
     <div class="ui-g-12 ui-lg-12 ui-xl-4">
-      <span class="inputgroup">所在区域</span>
+      <label for="" class="search-label">所在区域</label>
       <p-dropdown [options]="areaDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
     </div>
     <div class="ui-g-12 ui-lg-12 ui-xl-4">
-      <span class="inputgroup">许可证号</span>
+      <label for="" class="search-label">许可证号</label>
       <input type="text" class="textInput" [(ngModel)]="searchParams.licese" maxlength="20" pInputText>
     </div>
     <div class="ui-g-12 ui-lg-12 ui-xl-4">
-      <span class="inputgroup">企业名称</span>
+      <label for="" class="search-label">企业名称</label>
       <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText>
     </div>
     <div class="ui-g-12">
