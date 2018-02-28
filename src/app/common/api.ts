@@ -73,7 +73,6 @@ export const API = {
   'getCylinderCountiesOverview': URL + 'basicInformation/gasCylinder/getGcCountInfoGroupByRegion.do',
   'getCylinderEnterpriseOverviewByAreaId': URL + 'basicInformation/gasCylinder/getGcCountGroupByCorp.do',
   'getCylinderEnterpriseOverviewByOrganizationId': URL + 'basicInformation/gasCylinder/getGcCountByOrganization.do',
-  'getCylinderEnterpriseOverviewlistGcNewAddCount':URL + 'statisticalQuery/gasCylinders/listGcNewAddCount.do',
 
   // 用户信息概览
   'getCustomerCountiesOverview': URL + 'basicInformation/gcUserInfo/getUserCountGroupByRegion.do',
