@@ -2,27 +2,27 @@
   <div class="affair-list ui-g-12 card" style="left:90px">
     <div style="min-width:900px">
       <form class="ui-g-12" (submit)="onSubmit()">
-        <div class="ui-g-12 ui-lg-4 form-group">
-          <label for="">发起时间</label>
+        <div class="ui-g-12 ui-lg-3 form-group">
+          <label for="" class="search-label">发起时间</label>
           <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
             [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
             [style]="{'width':'180px'}" name="startTime">
           </p-calendar>
         </div>
-        <div class="ui-g-12 ui-lg-4 form-group">
-          <span>到&#12288;&#12288;&#12288;</span>
+        <div class="ui-g-12 ui-lg-3 form-group">
+            <label for="" class="search-label">到</label>
           <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
             [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
             [style]="{'width':'180px'}" name="endTime">
           </p-calendar>
         </div>
-        <div class="ui-g-12 ui-lg-4">
+        <div class="ui-g-12 ui-lg-3">
           <div class="form-group">
-            <label for="">状&#12288;&#12288;态</label>
+            <label for="" class="search-label">状态</label>
             <p-dropdown [options]="dropdown.status" [(ngModel)]="formModel.status" [style]="{'width':'180px'}" name="status"></p-dropdown>
           </div>
         </div>
-        <button class="searchBtn ui-g-12" pButton type="submit" label="搜索" style="margin-left:30px"></button>
+        <button class="searchBtn ui-g-12" pButton type="submit" class="searchBtn" label="搜索" style="margin-bottom:10px;"></button>
       </form>
       <div class="ui-g-12">
         <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"

@@ -34,12 +34,12 @@ export class UserCardComponent implements OnInit {
         value: '待审核'
       },
       {
-        label: '通过',
-        value: '通过'
+        label: '审核完成',
+        value: '审核完成'
       },
       {
-        label: '拒绝',
-        value: '拒绝'
+        label: '驳回',
+        value: '驳回'
       },
     ],
   };

@@ -2,9 +2,9 @@
   <div style="min-width: 550px;">
     <div class="ui-g">
       <div class="ui-g-12 ">
-        <div class="ui-g-12  ">
-          <span>所在区：</span>
-          <p-dropdown [options]="Area" [(ngModel)]="searchParams.regionId" (onChange)="changearea($event)" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
+        <div class="ui-g-12">
+            <label for=""class="search-label">所在区</label>
+          <p-dropdown [options]="Area" [(ngModel)]="searchParams.regionId" (onChange)="changearea($event)" [style]="{'width':'100px'}"></p-dropdown>
         </div>
         <!-- {{searchParams.regionId}} -->
         <div class="ui-g-12">

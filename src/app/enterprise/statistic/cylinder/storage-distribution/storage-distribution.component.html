@@ -40,18 +40,18 @@
     </p-column> -->
 
   </p-dataTable>
-
+  <!-- for="" class="search-label" -->
   <!-- 流通统计 -->
   <h3>流通信息统计</h3>
   <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-  &nbsp;&nbsp; 时间范围：
-  <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
-    dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
-  --
-  <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
-    dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
+    <label for="" class="search-label"> 时间范围：</label>
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
+      dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
+    至
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
+      dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
 
-  <button pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()"></button>
+    <button pButton type="button" label="查询" class="searchBtn" (click)="searchStorageDistributionCirculations()"></button>
 
   </div>
 

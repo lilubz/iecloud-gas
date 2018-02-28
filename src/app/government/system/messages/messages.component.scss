@@ -3,19 +3,20 @@
         margin-bottom: 2em;
     }
 }
-
+.ui-button{
+    border-radius: 4px;
+    background: #3186dc;
+}
 .title {
     color: #3186dc;
     text-align: center;
 }
 .searchBtn {
-    height: 45px;
-    padding: 0px;
-    width: 96px;
-    font-size: 1em;
-    border: 0px solid #3186dc;
-    background: #3186dc;
     border-radius: 4px;
+    width: 96px;
+    height: 45px;
+    font-size: 1em;
+    background: #3186dc;
 }
 .annouce {
     // border: 1px solid #c0c0c0;

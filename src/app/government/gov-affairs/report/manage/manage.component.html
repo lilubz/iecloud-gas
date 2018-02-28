@@ -1,12 +1,12 @@
 <div class="manage ui-g-12 card">
   <div class="ui-g">
     <div class="ui-g-6">
-      <h1>
+      <h3>
         报表管理
-      </h1>
+      </h3>
     </div>
     <div class="ui-g-6 text-right">
-      <button (click)="visible = true" pButton type="button" label="新增"></button>
+      <button (click)="visible = true" pButton type="button" class="searchBtn" label="新增"></button>
     </div>
   </div>
   <div class="ui-g">
@@ -45,7 +45,7 @@
       <form class="dialog" (submit)="onSubmit(file);">
         <div class="ui-g ui-g-nopad">
           <div class="ui-g-12 ui-g-nopad">
-            <h1 class="text-center">新增报表</h1>
+            <h2 class="text-center">新增报表</h2>
           </div>
         </div>
         <div class="ui-g">
@@ -73,7 +73,7 @@
             <label for="inputEmail3" class="ui-g-4 control-label text-right">
               <span class="warn">*</span>提交间隔：</label>
             <div class="ui-g-8">
-              <input class="interval" type="number" pInputText [(ngModel)]="formModel.interval" name="interval" min="1" step="1"/>
+              <input class="interval ui-g-11" type="number" pInputText [(ngModel)]="formModel.interval" name="interval" min="1" step="1"/>
               <span>天</span>
             </div>
           </div>
@@ -101,8 +101,8 @@
         </div>
         <div class="ui-g">
           <div class="ui-g-12 text-center">
-            <button pButton type="submit" class="ui-button-primery" label="确认" icon="fa-check"></button>
-            <button (click)="onCancel();" pButton type="button" class="ui-button-secondary" label="取消" icon="fa-close"></button>
+            <button pButton type="submit" class="ui-button-primery searchBtn" label="确认"></button>
+            <button (click)="onCancel();" pButton type="button" class="ui-button-secondary" label="取消" ></button>
           </div>
         </div>
       </form>

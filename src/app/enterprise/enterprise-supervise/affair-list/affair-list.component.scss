@@ -4,11 +4,6 @@
   [class^='ui-g']{
     padding:0;
   }
-  h2{
-    background: #007ccc;
-    color:white;
-    padding:10px;
-  }
   a{
     color:#3399ff;
   }
@@ -23,10 +18,9 @@
   left: 90px;
 }
 .searchBtn {
-  margin-left: 0px!important;
-  padding: 0;
-  height: 45px;
+  border-radius: 4px;
   width: 96px;
+  height: 45px;
   font-size: 1em;
-  border-radius: 5px;
+  background: #3186dc;
 }

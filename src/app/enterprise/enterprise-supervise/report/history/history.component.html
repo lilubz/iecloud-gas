@@ -2,17 +2,17 @@
 	<div style="min-width:350px">
 		<div class="ui-g-12">
 			<div class="ui-g-12 ui-lg-4">
-				<span class="title">提交时间</span>
+				<label for="" class="search-label">提交时间</label>
 				<p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
 				 dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" name="startDate"></p-calendar>
 			</div>
 			<div class="ui-g-12 ui-lg-4">
-				<span class="title">至&#12288;&#12288;&#12288;</span>
+					<label for="" class="search-label">至</label>
 				<p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
 				 dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" name="endDate"></p-calendar>
 			</div>
 		</div>
-		<button class="searchBtn ui-g-12" pButton type="button" label="查询" (click)="searchCylinderStorageCirculations()"></button>
+		<button class="searchBtn" pButton type="button" label="查询" (click)="searchCylinderStorageCirculations()"></button>
 
 		<p-dataTable class="ui-g-12" [value]="datas" [lazy]="true" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]"
 		 [styleClass]="' ui-g-12 ui-lg-10 ui-xl-8'" emptyMessage="未查询到数据" [(first)]="firstIndex" [totalRecords]="total" (onLazyLoad)="onPageChange($event)">

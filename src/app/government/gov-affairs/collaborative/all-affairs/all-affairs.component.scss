@@ -1,23 +1,19 @@
 .affairs-list{
-  // padding-left:10px;
-  // [class^='ui-g']{
-  //   padding:0;
-  // }
-  // padding-top:35px;
   .label{
-    // display: block;
     width: 130px;
   }
-  h2{
-    background: #007ccc;
-    color:white;
-    padding:10px;
-  }
+
   a{
     color:#3399ff;
   }
+  .searchBtn {
+    border-radius: 4px;
+    width: 96px;
+    height: 45px;
+    font-size: 1em;
+    background: #3186dc;
+}
   form{
-    // width:100%;
     .form-group{
       margin:5px 0;
     }
