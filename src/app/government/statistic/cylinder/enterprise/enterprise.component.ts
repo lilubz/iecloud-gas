@@ -88,15 +88,12 @@ export class EnterpriseComponent implements OnInit {
     }
     const dateRange = this.getSelectedTime(this.selectedDateRange, this.beginTime, this.endTime);
     this.addloading = true;
-    console.log(moment(dateRange.beginTime).format('YYYY-MM-DD'))
-    console.log(moment(dateRange.endTime).format('YYYY-MM-DD'))
     this.getCountiesOverview({
       beginTime: moment(dateRange.beginTime).format('YYYY-MM-DD'),
       endTime: moment(dateRange.endTime).format('YYYY-MM-DD'),
     }).then(data => {
       this.addloading = false;
       this.addcountyCylinders = data;
-      console.log(this.addcountyCylinders)
     });
   }
 
