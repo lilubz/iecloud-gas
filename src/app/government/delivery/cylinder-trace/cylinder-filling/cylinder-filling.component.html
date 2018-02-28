@@ -53,7 +53,7 @@
     </p-column>
     <p-column field="inflatableStationName" header="充装站名称" [style]="{'width':'150px'}">
       <ng-template let-rowData="rowData" pTemplate="body">
-        <a href="javascript:void(0);" [routerLink]="['../cylinder-record',{type:1}]" [queryParams]="{
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-record/1']" [queryParams]="{
           liabilityNumber:rowData.inflatableStationNumber,
           beginTime:beginTime.getTime(),
           endTime:endTime.getTime(),

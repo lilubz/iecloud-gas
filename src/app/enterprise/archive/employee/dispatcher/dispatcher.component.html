@@ -8,7 +8,7 @@
           <p-dropdown [options]="dropdown.companyOpt" formControlName="enterpriseId" [style]="{'width':'280px'}"></p-dropdown>
         </div>
       </div>
-     
+
       <div class="ui-g-12 ui-lg-6">
         <div class="form-group name">
             <label for="" style="width:80px;display:inline-block">姓名</label>
@@ -54,7 +54,7 @@
       </p-column>
       <p-column [style]="{'width':'100px'}" field="name" header="姓名">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record',{type:3}]" 
+          <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record/3']"
           [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
             title="点击查询流转记录">{{rowData.name}}</a>
         </ng-template>

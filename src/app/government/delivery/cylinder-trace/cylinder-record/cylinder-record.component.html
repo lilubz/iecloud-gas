@@ -2,71 +2,75 @@
   <!-- 责任主体
   <p-dropdown [options]="cylinderStatus" [style]="{'width':'150px'}" [(ngModel)]="selectedCylinderStatus"></p-dropdown>&nbsp;&nbsp; -->
   <!-- {{ selectedCylinderStatus | async}} -->
-  <ng-container *ngIf="selectedCylinderStatus === 1">
-      <div class="ui-g-12 ui-xl-3">
-          <label style="width:80px;display:inline-block">储配站</label>
-        <p-dropdown [options]="distributionStationList" [style]="{'width':'260px'}" [(ngModel)]="selectedDistributionStation" filter="true"></p-dropdown>
+  <div class="ui-g">
+    <ng-container *ngIf="selectedCylinderStatus === 1">
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">储配站</label>
+        <p-dropdown [options]="distributionStationList" [style]="{'width':'240px'}" [(ngModel)]="selectedDistributionStation" filter="true"></p-dropdown>
       </div>
 
-      <div class="ui-g-12 ui-xl-3">
-          <label style="width:80px;display:inline-block">类型</label>
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">类型</label>
         <p-dropdown [options]="distributionStationSearchTypes" [style]="{'width':'240px'}" [(ngModel)]="selectedDistributionStationType"></p-dropdown>
       </div>
-  </ng-container>
+    </ng-container>
 
-  <ng-container *ngIf="selectedCylinderStatus === 2">
-      <div class="ui-g-12 ui-xl-3">
-          <label style="width:80px;display:inline-block">供应站</label>
+    <ng-container *ngIf="selectedCylinderStatus === 2">
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">供应站</label>
         <p-dropdown [options]="cylinderStorageList" [style]="{'width':'240px'}" [(ngModel)]="selectedCylinderStorage" filter="true"></p-dropdown>
-        </div>
-      <div class="ui-g-12 ui-xl-3">
-          <label style="width:80px;display:inline-block">类型</label>
+      </div>
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">类型</label>
         <p-dropdown [options]="cylinderStorageSearchTypes" [style]="{'width':'240px'}" [(ngModel)]="selectedCylinderStorageType"></p-dropdown>
       </div>
-  </ng-container>
+    </ng-container>
 
-  <ng-container *ngIf="selectedCylinderStatus === 3">
-      <div class="ui-g-12 ui-xl-4">
-        <p-dropdown #dispatcherSearchField [options]="dispatcherSearchFields" [style]="{'width':'150px'}" [(ngModel)]="selectedDispatcherSearchField"
+    <ng-container *ngIf="selectedCylinderStatus === 3">
+      <div class="ui-g-12 ui-xl-6">
+        <p-dropdown #dispatcherSearchField [options]="dispatcherSearchFields" [style]="{'width':'130px'}" [(ngModel)]="selectedDispatcherSearchField"
           (onChange)="selectDispatcherSearchField($event)"></p-dropdown>
         <p-autoComplete [(ngModel)]="selectedDispatcher" [field]="selectedDispatcherSearchField===1?'jobNumber':'name'" [suggestions]="dispatcherSuggestions"
           (onBlur)="blurSelectDispatcher()" (completeMethod)="searchDispatcher($event.query)" [delay]="500" [size]="20" [minLength]="selectedDispatcherSearchField===1?6:2"
-          [maxlength]="20" [placeholder]="'请输入'+dispatcherSearchField.label" [style]="{'width':'200px'}">
+          [maxlength]="20" [placeholder]="'请输入'+dispatcherSearchField.label" [style]="{'width':'240px'}">
           <ng-template let-dispatcher pTemplate="item">
             <div style="width:400px;">{{ dispatcher.name }} -- {{ dispatcher.jobNumber }} -- {{ dispatcher.subsidiaryEnterprises }}</div>
           </ng-template>
         </p-autoComplete>
       </div>
 
-      <div class="ui-g-12 ui-xl-3">
-          <label style="width:80px;display:inline-block">类型</label>
-        <p-dropdown [options]="dispatcherSearchTypes" [style]="{'width':'150px'}" [(ngModel)]="selectedDispatcherType"></p-dropdown>
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">类型</label>
+        <p-dropdown [options]="dispatcherSearchTypes" [style]="{'width':'240px'}" [(ngModel)]="selectedDispatcherType"></p-dropdown>
       </div>
-  </ng-container>
+    </ng-container>
 
-  <ng-container *ngIf="selectedCylinderStatus === 4">
-      <div class="ui-g-12 ui-xl-4">
-        <p-dropdown [options]="userSearchFields" [style]="{'width':'150px'}" [(ngModel)]="selectedUserSearchField" (onChange)="selectUserSearchField($event)"></p-dropdown>
+    <ng-container *ngIf="selectedCylinderStatus === 4">
+      <div class="ui-g-12 ui-xl-6">
+        <p-dropdown [options]="userSearchFields" [style]="{'width':'130px'}" [(ngModel)]="selectedUserSearchField" (onChange)="selectUserSearchField($event)"></p-dropdown>
         <p-autoComplete [(ngModel)]="selectedUser" [field]="selectedUserSearchField.field" [suggestions]="userSuggestions" (onBlur)="blurSelectUser()"
-          (completeMethod)="searchUser($event.query)" [delay]="500" [size]="20" [minLength]="selectedUserSearchField.minLength" [maxlength]="20"
-          [placeholder]="selectedUserSearchField.placeholder">
+          (completeMethod)="searchUser($event.query)" [delay]="500" [size]="20" [minLength]="selectedUserSearchField.minLength"
+          [maxlength]="20" [placeholder]="selectedUserSearchField.placeholder" [style]="{'width':'240px'}">
           <ng-template let-user pTemplate="item">
             <div style="width:400px;">{{ user.userName }} -- {{ user.phone }} -- {{ user.certificateId }}</div>
           </ng-template>
         </p-autoComplete>
       </div>
-  </ng-container>
-
-  <div class="ui-g-12 ui-xl-3">
-      <label style="width:80px;display:inline-block">开始时间</label>
-      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
-        dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true" [style]="{'width':'240px'}"></p-calendar>
+    </ng-container>
   </div>
 
-  <div class="ui-g-12 ui-xl-3">
-      <label style="width:80px;display:inline-block">结束时间</label>
+  <div class="ui-g">
+    <div class="ui-g-12 ui-xl-6">
+      <label style="width:130px;display:inline-block">开始时间</label>
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
+        dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true" [style]="{'width':'240px'}"></p-calendar>
+    </div>
+
+    <div class="ui-g-12 ui-xl-6">
+      <label style="width:130px;display:inline-block">结束时间</label>
       <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
         dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true" [style]="{'width':'240px'}"></p-calendar>
+    </div>
   </div>
 
   <div class="ui-g-12">

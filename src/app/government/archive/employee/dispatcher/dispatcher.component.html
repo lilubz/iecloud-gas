@@ -16,21 +16,21 @@
         <label class="search-label">工号</label>
         <input class="textInput" type="text" pInputText formControlName="jobNumber" />
       </div>
-      
+
       <div class="ui-g-12 ui-lg-6">
         <label class="search-label">手机号码</label>
         <input class="textInput" type="text" pInputText formControlName="phone" />
       </div>
-      
+
       <div class="ui-g-12 ui-lg-6">
         <label class="search-label">身份证号</label>
         <input class="textInput" type="text" pInputText formControlName="idNumber" />
       </div>
-      
+
       <div class="ui-g-12">
         <button class="searchBtn" pButton type="submit" label="搜索"></button>
       </div>
-      
+
     </div>
   </form>
   <div class="ui-g-12">
@@ -44,7 +44,7 @@
       </p-column>
       <p-column [style]="{'width':'100px'}" field="name" header="姓名">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <a href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-record',{type:3}]" 
+          <a href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-record/3']"
           [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
             title="点击查询流转记录">{{rowData.name}}</a>
         </ng-template>

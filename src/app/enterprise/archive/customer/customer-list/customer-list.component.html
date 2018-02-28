@@ -54,7 +54,7 @@
         </p-column>
         <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户">
           <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record',{type:4}]"
+            <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record/4']"
             [queryParams]="{liabilityName:rowData.userName,liabilityNumber:rowData.userNumber,liabilitySubjectType:4}"
             title="{{'点击查询流转记录' }}">{{rowData.userName}}</a>
           </ng-template>

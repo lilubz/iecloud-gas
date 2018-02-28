@@ -148,6 +148,7 @@ export class CylinderRecordComponent implements OnInit {
         switch (this.selectedCylinderStatus) {
           case 1:
             this.selectedDistributionStation = queryParams.liabilityNumber;
+            console.log(this.selectedDistributionStation);
             this.search();
             break;
           case 2:
@@ -180,7 +181,7 @@ export class CylinderRecordComponent implements OnInit {
           this.cylinderStorageList = data.data.map(
             item => ({ label: item.supplyStationName, value: item.supplyStationNumber })
           );
-          this.selectedCylinderStorage = this.cylinderStorageList[0].value;
+          this.selectedCylinderStorage = this.selectedCylinderStorage ? this.selectedCylinderStorage : this.cylinderStorageList[0].value;
         }
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取供应站失败', detail: data.msg });
@@ -193,7 +194,7 @@ export class CylinderRecordComponent implements OnInit {
           this.distributionStationList = data.data.map(
             item => ({ label: item.inflatableName, value: item.inflatableStationNumber })
           );
-          this.selectedDistributionStation = this.distributionStationList[0].value;
+          this.selectedDistributionStation = this.selectedDistributionStation ? this.selectedDistributionStation : this.distributionStationList[0].value;
         }
       } else {
         this.messageService.add({ severity: 'warn', summary: '获取储配站失败', detail: data.msg });

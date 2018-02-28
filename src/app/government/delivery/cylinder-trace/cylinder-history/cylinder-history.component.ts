@@ -113,21 +113,21 @@ export class CylinderHistoryComponent implements OnInit {
     switch (typeId) {
       case 1:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        this.router.navigate(['../cylinder-record', { type: 1 }], { relativeTo: this.route, queryParams });
+        this.router.navigate(['../cylinder-record/1'], { relativeTo: this.route, queryParams });
         break;
       case 2:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        this.router.navigate(['../cylinder-record', { type: 2 }], { relativeTo: this.route, queryParams });
+        this.router.navigate(['../cylinder-record/2'], { relativeTo: this.route, queryParams });
         break;
       case 3:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
         queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
-        this.router.navigate(['../cylinder-record', { type: 3 }], { relativeTo: this.route, queryParams });
+        this.router.navigate(['../cylinder-record/3'], { relativeTo: this.route, queryParams });
         break;
       case 4:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
         queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
-        this.router.navigate(['../cylinder-record', { type: 4 }], { relativeTo: this.route, queryParams });
+        this.router.navigate(['../cylinder-record/4'], { relativeTo: this.route, queryParams });
         break;
       default:
         break;

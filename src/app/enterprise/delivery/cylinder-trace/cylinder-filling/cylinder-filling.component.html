@@ -3,31 +3,31 @@
     <label for="" style="width:100px;display:inline-block">充装工姓名</label>
     <input type="text" [(ngModel)]="inflator" pInputText placeholder="充装工姓名" style="width:180px">
   </div>
-  
+
   <div class="ui-g-12 ui-lg-6 ">
       <label style="width:100px;display:inline-block">气瓶条码</label>
     <input type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px">
   </div>
-  
+
   <div class="ui-g-12 ui-lg-6 ">
       <label style="width:100px;display:inline-block">气站名称</label>
     <input type="text" [(ngModel)]="stationName" pInputText placeholder="气站名称" style="width:180px">
   </div>
-  
+
   <div class="ui-g-12 ui-lg-6 ">
       <label style="width:100px;display:inline-block">开始时间</label>
     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
       [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"
       [style]="{'width':'180px'}"></p-calendar>
   </div>
-  
+
   <div class="ui-g-12 ui-lg-6 ">
       <label style="width:100px;display:inline-block">结束时间</label>
     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
       [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today" readonlyInput="true"
       [style]="{'width':'180px'}"></p-calendar>
   </div>
-  
+
   <div class="ui-g-12 ui-lg-6 ">
     <button pButton type="button" label="查询" (click)="search()"></button>
   </div>
@@ -45,7 +45,7 @@
     </p-column> -->
     <p-column header="气瓶条码" [style]="{'width':'150px'}">
       <ng-template let-rowData="rowData" pTemplate="body">
-        <a href="javascript:void(0);" [routerLink]="['../cylinder-history']" 
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-history']"
         [queryParams]="{cylinderNumber:rowData.gasLabelNumber,
           beginTime:beginTime.getTime(),
           endTime:endTime.getTime()
@@ -54,7 +54,7 @@
     </p-column>
     <p-column field="inflatableStationName" header="充装站名称" [style]="{'width':'150px'}">
       <ng-template let-rowData="rowData" pTemplate="body">
-        <a href="javascript:void(0);" [routerLink]="['../cylinder-record',{type:1}]" 
+        <a href="javascript:void(0);" [routerLink]="['../cylinder-record/1']"
         [queryParams]="{
           liabilityNumber:rowData.inflatableStationNumber,
           beginTime:beginTime.getTime(),

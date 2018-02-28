@@ -147,7 +147,7 @@ export class DispatcherDetailsComponent implements OnInit {
         type,
       };
       this.router.navigate(
-        ['/enterprise/delivery/cylinder-trace/cylinder-record', { type: 3 }],
+        ['/enterprise/delivery/cylinder-trace/cylinder-record/3'],
         { relativeTo: this.routerInfo, queryParams }
       );
       return false;
