@@ -24,7 +24,9 @@
       "scss/styles.scss"
     ],
     "scripts": [
-
+      "../node_modules/echarts/dist/echarts.js",
+      "../node_modules/echarts-liquidfill/dist/echarts-liquidfill.js",
+      "./assets/wenzhou.map.js"
     ],
     "environmentSource": "environments/environment.ts",
     "environments": {

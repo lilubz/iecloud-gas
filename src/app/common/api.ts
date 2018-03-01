@@ -234,4 +234,7 @@ export const API = {
   'signIn': URL + 'sysUserPermissions/user/login.do',
   'signUp': URL + 'sysUserPermissions/login.do',
   'logout': URL + 'sysUserPermissions/user/logout.do',
+  // 大屏展示
+  'getBigScreenData': URL + 'visualization/getBigScreenData.do',
+
 };

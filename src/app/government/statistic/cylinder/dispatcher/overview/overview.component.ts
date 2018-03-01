@@ -276,9 +276,9 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       series: [{
         name: '配送量',
         type: 'bar',
-        color: '#FC9738',
         data: data
-      }]
+      }],
+      color: ['#d87c7c'],
     };
 
     // 使用刚指定的配置项和数据显示图表。

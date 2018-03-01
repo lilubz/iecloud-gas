@@ -1648,11 +1648,24 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
+echarts-liquidfill@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/echarts-liquidfill/-/echarts-liquidfill-2.0.0.tgz#65e6dffb5aec42fc588844360d57cb723b02287b"
+  dependencies:
+    echarts "^4.0.2"
+    zrender "^4.0.1"
+
 echarts@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/echarts/-/echarts-4.0.2.tgz#c405e9e479af982383c8ae2b5946e52d058c6220"
   dependencies:
     zrender "4.0.1"
+
+echarts@v3.8.4:
+  version "3.8.4"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-3.8.4.tgz#57d48738cf64ac3fcbcdf53dee7a7b31301b8ca2"
+  dependencies:
+    zrender "3.7.3"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -3054,6 +3067,10 @@ jasmine@^2.5.3:
 jasminewd2@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
+
+jquery@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
 js-base64@^2.1.5, js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.2"
@@ -6238,6 +6255,10 @@ zone.js@^0.8.14:
   version "0.8.20"
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.20.tgz#a218c48db09464b19ff6fc8f0d4bb5b1046e185d"
 
-zrender@4.0.1:
+zrender@3.7.3:
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-3.7.3.tgz#4d8e643aa18054d177afcf75d89b9e4ad44134c3"
+
+zrender@4.0.1, zrender@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/zrender/-/zrender-4.0.1.tgz#961e77abc5042eaa624b5230f8d673bf648298e9"
