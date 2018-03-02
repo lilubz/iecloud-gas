@@ -8,6 +8,7 @@ import { EnterpriseSuperviseRoutingModule } from './enterprise-supervise-routing
 import { EnterpriseSuperviseComponent } from './enterprise-supervise.component';
 import { AffairListComponent } from './affair-list/affair-list.component';
 import { AffairDetailsComponent } from './affair-details/affair-details.component';
+import { RepricingRistComponent } from './repricing-rist/repricing-rist.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { AffairDetailsComponent } from './affair-details/affair-details.componen
   declarations: [
     EnterpriseSuperviseComponent,
     AffairListComponent,
-    AffairDetailsComponent
+    AffairDetailsComponent,
+    RepricingRistComponent
   ]
 })
 export class EnterpriseSuperviseModule { }

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EnterpriseSuperviseComponent } from './enterprise-supervise.component';
 import { AffairDetailsComponent } from './affair-details/affair-details.component';
 import { AffairListComponent } from './affair-list/affair-list.component';
+import { RepricingRistComponent } from './repricing-rist/repricing-rist.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
           title: '报表管理'
         }
       },
+      {
+        path: 'repricing-rist',
+        component: RepricingRistComponent
+      }
     ]
   },
   {

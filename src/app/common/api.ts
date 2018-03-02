@@ -168,6 +168,10 @@ export const API = {
   'listFillingInfo': URL + 'corpBusiness/applyManagement/listFillingInfo.do',
   'getDispachterDistributions': URL + 'corpBusiness/applyManagement/getDispachterDistributions.do',
   'listGasReceiveAndDispatch': URL + 'basicInformation/gasCylinder/listGasReceiveAndDispatch.do',
+  //重瓶定价
+  'listGcPricingByCorp': URL + 'basicInformation/gcPricing/listGcPricingByCorp.do', //获取企业定价列表
+  'updateOrAddPricing': URL + 'basicInformation/gcPricing/updateOrAddPricing.do', //新增/更新定价
+  'deletePricing': URL + 'basicInformation/gcPricing/deletePricing.do', //删除定价
 
   // 协同管理
   'listCorpInflatableStationInfo': URL + 'corpBusiness/collaborative/listCorpInflatableStationInfo.do', // 2.模糊搜索充装站信息

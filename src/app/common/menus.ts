@@ -127,7 +127,8 @@ export const EnterpriseMenus: MenuItem[] = [
     routerLink: ['/enterprise/enterprise-supervise'],
     items: [
       { label: '报表管理', routerLink: ['/enterprise/enterprise-supervise/report'] },
-      { label: '事务处理', routerLink: ['/enterprise/enterprise-supervise/affair-list'] }
+      { label: '事务处理', routerLink: ['/enterprise/enterprise-supervise/affair-list'] },
+      { label: '重瓶定价', routerLink: ['/enterprise/enterprise-supervise/repricing-rist'] }
     ]
   },
   {
