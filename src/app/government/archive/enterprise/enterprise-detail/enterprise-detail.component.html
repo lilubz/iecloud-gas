@@ -23,9 +23,9 @@
     </div>
     <!-- 服务电话 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-          <span class="inputgroup">服务电话</span>
-          <input type="text" class="textInput" [(ngModel)]="searchParams.phone" maxlength="20" pInputText placeholder="" style="width:180px">
-      </div>
+      <span class="inputgroup">服务电话</span>
+      <input type="text" class="textInput" [(ngModel)]="searchParams.phone" maxlength="20" pInputText placeholder="" style="width:180px">
+    </div>
     <!-- </div> -->
     <!-- 发证日期 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
@@ -35,17 +35,17 @@
         [showButtonBar]="true" [maxDate]="end.value" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
         [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}">
       </p-calendar>
-      
+
       <!-- </div> -->
     </div>
     <!-- 到期 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-        <span  class="inputgroup">&#12288;&#12288;至&#12288;</span>
-        <p-calendar [locale]="cn" #end (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="start.value"
-          placeholder="2017-12-29" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
-          [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
+      <span class="inputgroup">&#12288;&#12288;至&#12288;</span>
+      <p-calendar [locale]="cn" #end (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="start.value"
+        placeholder="2017-12-29" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
+        [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
     </div>
-    
+
     <!-- 查询按钮 -->
     <div class="ui-g-12 ui-lg-12">
       <button pButton type="button" label="查询" class="searchBtn" (click)="getEnterPrise()"></button>
@@ -80,6 +80,9 @@
         <div class="text-left">
           未查询到数据
         </div>
+      </ng-template>
+      <ng-template pTemplate="paginatorRight">
+        共 {{ pages.total || 0 }} 条记录
       </ng-template>
     </p-dataTable>
   </div>

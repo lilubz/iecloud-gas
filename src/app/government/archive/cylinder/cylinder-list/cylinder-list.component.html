@@ -81,13 +81,16 @@
       <p-column [style]="{'width':'100px'}" field="electronNumber" header="电子编号（预留）"></p-column>
       <p-column [style]="{'width':'100px'}" field="area13" header="登记时间"></p-column>
       <p-column [style]="{'width':'100px'}" field="productionUnit" header="制造单位"></p-column>
-  
+
       <ng-template pTemplate="emptymessage">
         <div class="text-left">
           未查询到数据
         </div>
       </ng-template>
-  
+
+      <ng-template pTemplate="paginatorRight">
+        共 {{ dataTable.total || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
   </div>
 </div>

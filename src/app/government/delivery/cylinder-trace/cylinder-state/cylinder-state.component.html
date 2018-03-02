@@ -21,5 +21,8 @@
     <p-column field="liabilityName" header="责任主体名称" [style]="{'width':'150px'}"></p-column>
     <p-column field="liabilityContact" header="责任主体联系方式" [style]="{'width':'150px'}"></p-column>
     <p-column field="liabilityAddress" header="责任主体地址" [style]="{'width':'150px'}"></p-column>
+    <ng-template pTemplate="paginatorRight">
+      共 {{ total || 0 }} 条记录
+    </ng-template>
   </p-dataTable>
 </div>

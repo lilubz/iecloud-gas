@@ -1,38 +1,38 @@
 <div class="ui-g-12 card customer-list">
   <form class="ui-g padding" [formGroup]="formModel" (submit)="onSearch();">
-      <!-- <div class="ui-g"> -->
-        <div class="ui-g-12 ui-lg-6 form-group">
-            <label style="width:80px;display:inline-block">所在区域</label>
-          <p-dropdown [options]="dropdown.region" [style]="{'width':'240px'}" formControlName="regionId" (onChange)="onChangeAreaID($event)"></p-dropdown>
-        </div>
-        <div class="ui-g-12 ui-lg-6 form-group">
-            <label style="width:80px;display:inline-block">供气企业</label>
-          <p-dropdown [options]="dropdown.corp" [style]="{'width':'240px'}" formControlName="enterpriseNumber"></p-dropdown>
-        </div>
-        <div class="ui-g-12 ui-lg-6 form-group">
-            <label style="width:80px;display:inline-block">用户名称</label>
-          <input class="textInput" type="text" pInputText formControlName="userName" style="width:240px">
-        </div>
-        <div class="ui-g-12 ui-lg-6 form-group">
-            <label style="width:80px;display:inline-block">地址</label>
-          <input class="textInput" type="text" pInputText formControlName="address" style="width:240px">
-        </div>
-        <div class="ui-g-12 ui-lg-6 form-group">
-            <label style="width:80px;display:inline-block">客户类别</label>
-          <p-dropdown [options]="dropdown.userType" [style]="{'width':'240px'}" formControlName="userTypeId"></p-dropdown>
-        </div>
-        <div class="ui-g-12 ui-lg-6 form-group">
-            <label style="width:80px;display:inline-block">用户性质</label>
-          <p-dropdown [options]="dropdown.userNature" [style]="{'width':'240px'}" formControlName="userNatureId"></p-dropdown>
-        </div>
-        <div class="ui-g-12 ui-lg-6 form-group">
-          <p-checkbox name="group1" label="只看有合同" formControlName="haveContract" binary="true"></p-checkbox>
-        </div>
-        <div class="ui-g-12 ui-lg-4">
-          <button pButton type="submit" label="查询" class="searchBtn"></button>
-        </div>
-      <!-- </div> -->
-    </form>
+    <!-- <div class="ui-g"> -->
+    <div class="ui-g-12 ui-lg-6 form-group">
+      <label style="width:80px;display:inline-block">所在区域</label>
+      <p-dropdown [options]="dropdown.region" [style]="{'width':'240px'}" formControlName="regionId" (onChange)="onChangeAreaID($event)"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-lg-6 form-group">
+      <label style="width:80px;display:inline-block">供气企业</label>
+      <p-dropdown [options]="dropdown.corp" [style]="{'width':'240px'}" formControlName="enterpriseNumber"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-lg-6 form-group">
+      <label style="width:80px;display:inline-block">用户名称</label>
+      <input class="textInput" type="text" pInputText formControlName="userName" style="width:240px">
+    </div>
+    <div class="ui-g-12 ui-lg-6 form-group">
+      <label style="width:80px;display:inline-block">地址</label>
+      <input class="textInput" type="text" pInputText formControlName="address" style="width:240px">
+    </div>
+    <div class="ui-g-12 ui-lg-6 form-group">
+      <label style="width:80px;display:inline-block">客户类别</label>
+      <p-dropdown [options]="dropdown.userType" [style]="{'width':'240px'}" formControlName="userTypeId"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-lg-6 form-group">
+      <label style="width:80px;display:inline-block">用户性质</label>
+      <p-dropdown [options]="dropdown.userNature" [style]="{'width':'240px'}" formControlName="userNatureId"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-lg-6 form-group">
+      <p-checkbox name="group1" label="只看有合同" formControlName="haveContract" binary="true"></p-checkbox>
+    </div>
+    <div class="ui-g-12 ui-lg-4">
+      <button pButton type="submit" label="查询" class="searchBtn"></button>
+    </div>
+    <!-- </div> -->
+  </form>
 
   <div class="ui-g padding">
     <div class="ui-g-12">
@@ -47,16 +47,15 @@
         <p-column [style]="{'width':'150px'}" field="userIdentityCardNumber" header="用户卡号">
           <ng-template let-col let-user="rowData" pTemplate="body">
             <a href="javascript:0;" [routerLink]="['../detail', {city:'330300',type:'userCardNumber',typeNumber:user.userIdentityCardNumber||''}]"
-            title="点击查看用户祥情">
+              title="点击查看用户祥情">
               {{ user.userIdentityCardNumber }}
             </a>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户">
           <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record/4']"
-            [queryParams]="{liabilityName:rowData.userName,liabilityNumber:rowData.userNumber,liabilitySubjectType:4}"
-            title="{{'点击查询流转记录' }}">{{rowData.userName}}</a>
+            <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record/4']" [queryParams]="{liabilityName:rowData.userName,liabilityNumber:rowData.userNumber,liabilitySubjectType:4}"
+              title="{{'点击查询流转记录' }}">{{rowData.userName}}</a>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
@@ -83,7 +82,9 @@
             未查询到数据
           </div>
         </ng-template>
-
+        <ng-template pTemplate="paginatorRight">
+          共 {{ dataTable.total || 0 }} 条记录
+        </ng-template>
       </p-dataTable>
     </div>
   </div>

@@ -246,11 +246,15 @@ input {
       padding: 1.5em;
       box-sizing: border-box;
       border-radius: 4px;
-    }
-    // .ui-state-default{
+    } // .ui-state-default{
     //   margin: 5px;
     // }
   }
+}
+
+.ui-paginator .ui-paginator-right-content {
+  float: none;
+  display: inline-block;
 }
 
 a {
@@ -269,7 +273,6 @@ a.router-link-active {
 //   margin: 5px 10px;
 //   float: left;
 // }
-
 /* 菜单栏图标 */
 
 .menu-icon {

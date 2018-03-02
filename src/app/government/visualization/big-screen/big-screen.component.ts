@@ -92,26 +92,39 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   first11 = true;
   firstLoad = true;
   dataList = {
-    gcCountAddedCurrentMouth: null,
-    gcCountNeedInspectCurrentMonth: null,
-    gcCountNeedScrapCurrentMonth: null,
-    completionRateGcNeedInspectCurrentMonth: null,
-    completionRateGcNeedScrapCurrentMonth: null,
-    gcDispatchCountFullCurrentDay: null,
-    gcDispatchCountFullCurrentMonth: null,
-    growthGcDispatchCountYearOnYear: null,
-    growthGcDispatchCountMonthOnMonth: null,
-    gcCount: 1526592,
-    gcCountTakeBySupplyStation: 83,
-    gcCountNormal: 1492579,
-    corpDispatcherCount: 6134,
-    carCount: 35,
-    gcUserCount: 344613,
-    rateCompletionCase: null,
-    rateProcessingCase: null,
-    rateOutOfDateCase: null,
-    titleWarning: null,
-    caseCountOutOfDateList: []
+    regionId: null,
+    regionName: '',
+    partOfGc: {
+      gcCountAddedCurrentMouth: null,
+      gcCountNeedInspectCurrentMonth: null,
+      gcCountNeedScrapCurrentMonth: null,
+      completionRateGcNeedInspectCurrentMonth: 0,
+      completionRateGcNeedScrapCurrentMonth: 0
+    },
+    partOfDispatch: {
+      gcDispatchCountFullCurrentDay: null,
+      gcDispatchCountFullCurrentMonth: null,
+      growthGcDispatchCountYearOnYear: 0,
+      growthGcDispatchCountMonthOnMonth: 0
+    },
+    partOfBasicInfo: {
+      gcCount: null,
+      gcCountTakeBySupplyStation: null,
+      gcCountNormal: null,
+      corpDispatcherCount: null,
+      carCount: null,
+      gcUserCount: null
+    },
+    partOfCase: {
+      rateCompletionCase: null,
+      rateProcessingCase: null,
+      rateOutOfDateCase: null,
+      caseCountOutOfDateList: [
+      ]
+    },
+    partOfWarning: {
+      titleWarning: null
+    },
   };
   regionId: any;
   earthFirst = true; // 第一次请求接口后数据赋值给地图
@@ -131,6 +144,11 @@ export class BigScreenComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.messageService.add({ severity: 'success', summary: '', detail: '按F11全屏展示！' });
+    this.getBigData();
+
+    this.requestInterval = setInterval(() => {
+      this.getBigData();
+    }, 30 * 60 * 1000);
     // this.getBigData();
     /**
      * 滚动内容
@@ -235,81 +253,15 @@ export class BigScreenComponent implements OnInit, OnDestroy {
     this.msfullscreenchange = this.renderer.listen('window', 'msfullscreenchange', (event) => {
       this.update_iframe_pos();
     });
-    const myChart = echarts.init(this.chart.nativeElement);
-    const myChart1 = echarts.init(this.chart1.nativeElement);
-    const myChart2 = echarts.init(this.chart2.nativeElement);
-    const myChart3 = echarts.init(this.chart3.nativeElement);
-    const option = {
-      series: [{
-        type: 'liquidFill',
-        radius: '76%',
-        period: '2000',
-        label: {
-          fontSize: 40,
-          color: 'rgb(59, 77, 241)',
-          position: ['50%', '30%'],
-        },
-        itemStyle: {
-          borderColor: 'rgb(59, 77, 241)',
-        },
-        backgroundStyle: {
-          color: 'rgb(13, 42, 66)',
-        },
-        data: [0.6, 0.45]
-        // 0.6/0.45
-      }]
-    };
-    const option1 = {
-      series: [{
-        type: 'liquidFill',
-        radius: '76%',
-        period: '2000',
-        label: {
-          fontSize: 40,
-          color: 'rgb(132, 52, 36)',
-          position: ['50%', '30%'],
-        },
-        itemStyle: {
-          borderColor: 'rgb(255, 78, 0)',
-          // shadowColor: 'rgb(255, 78, 0)',
-        },
-        outline: {
-          itemStyle: {
-            borderColor: '#a0371d',
-          }
-        },
-        backgroundStyle: {
-          color: 'rgb(13, 42, 66)',
-        },
 
-        data: [{
-          value: 0.6,
-          itemStyle: {
-            color: 'rgb(132, 52, 36)',
-          },
-        },
-        {
-          value: 0.45,
-          itemStyle: {
-            color: 'rgba(255, 78, 0,0.8)',
-          }
-        }]
-      }]
-    };
-    myChart.setOption(option);
-    myChart1.setOption(option1);
-    myChart2.setOption(option);
-    myChart3.setOption(option1);
 
     /**
      * 地图
      */
     this.pie();
-    this.getBigData();
+    this.setMap();
 
-    this.requestInterval = setInterval(() => {
-      this.getBigData();
-    }, 30 * 60 * 1000);
+
   }
 
 
@@ -1024,25 +976,44 @@ export class BigScreenComponent implements OnInit, OnDestroy {
 
   getBigData(param?) {
     this._service.getData({ regionId: param || '' }).then(data => {
-      // console.log(data.data);
-      this.dataList = data.data;
-      this.dataList['gcCount'] = this.changeType(data.data['gcCount']);
-      this.dataList['gcCountTakeBySupplyStation'] = this.changeType(data.data['gcCountTakeBySupplyStation']);
-      this.dataList['gcCountNormal'] = this.changeType(data.data['gcCountNormal']);
-      this.dataList['corpDispatcherCount'] = this.changeType(data.data['corpDispatcherCount']);
-      this.dataList['carCount'] = this.changeType(data.data['carCount']);
-      this.dataList['gcUserCount'] = this.changeType(data.data['gcUserCount']);
-      if (this.earthFirst) {
-        this.earth(this.transform(this.dataList.caseCountOutOfDateList));
-        this.earthFirst = false;
+      if (data.status === 0) {
+        console.log(data.data);
+        this.dataList = data.data;
+        this.dataList['partOfGc']['gcCountAddedCurrentMouth'] = this.changeType(data.data['partOfGc']['gcCountAddedCurrentMouth']);
+        this.dataList['partOfGc']['gcCountNeedInspectCurrentMonth'] = this.changeType(data.data['partOfGc']['gcCountNeedInspectCurrentMonth']);
+        this.dataList['partOfGc']['gcCountNeedScrapCurrentMonth'] = this.changeType(data.data['partOfGc']['gcCountNeedScrapCurrentMonth']);
+
+        this.dataList['partOfGc']['completionRateGcNeedInspectCurrentMonth'] = parseInt(data.data['partOfGc']['completionRateGcNeedInspectCurrentMonth'], 10);
+        this.dataList['partOfGc']['completionRateGcNeedScrapCurrentMonth'] = parseInt(data.data['partOfGc']['completionRateGcNeedScrapCurrentMonth'], 10);
+        console.log(parseInt(data.data['partOfGc']['completionRateGcNeedScrapCurrentMonth'], 10));
+
+        this.dataList['partOfDispatch']['gcDispatchCountFullCurrentDay'] = this.changeType(data.data['partOfDispatch']['gcDispatchCountFullCurrentDay']);
+        this.dataList['partOfDispatch']['gcDispatchCountFullCurrentMonth'] = this.changeType(data.data['partOfDispatch']['gcDispatchCountFullCurrentMonth']);
+        this.dataList['partOfDispatch']['growthGcDispatchCountYearOnYear'] = parseInt(data.data['partOfDispatch']['growthGcDispatchCountYearOnYear'], 10);
+        this.dataList['partOfDispatch']['growthGcDispatchCountMonthOnMonth'] = parseInt(data.data['partOfDispatch']['growthGcDispatchCountMonthOnMonth'], 10);
+        if (this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth < 0) {
+          this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth = 0;
+        }
+
+        this.dataList['partOfBasicInfo']['gcCount'] = this.changeType(data.data['partOfBasicInfo']['gcCount']);
+        this.dataList['partOfBasicInfo']['gcCountTakeBySupplyStation'] = this.changeType(data.data['partOfBasicInfo']['gcCountTakeBySupplyStation']);
+        this.dataList['partOfBasicInfo']['gcCountNormal'] = this.changeType(data.data['partOfBasicInfo']['gcCountNormal']);
+        this.dataList['partOfBasicInfo']['corpDispatcherCount'] = this.changeType(data.data['partOfBasicInfo']['corpDispatcherCount']);
+        this.dataList['partOfBasicInfo']['carCount'] = this.changeType(data.data['partOfBasicInfo']['carCount']);
+        this.dataList['partOfBasicInfo']['gcUserCount'] = this.changeType(data.data['partOfBasicInfo']['gcUserCount']);
+
+        if (this.earthFirst) {
+          this.earth(this.transform(this.dataList.partOfCase.caseCountOutOfDateList));
+          this.earthFirst = false;
+        } else {
+          return false;
+        }
+        this.setMap();
       } else {
-        return false;
+        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
       }
-
-
-
     }).catch(error => {
-
+      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
     });
   }
 
@@ -1050,13 +1021,137 @@ export class BigScreenComponent implements OnInit, OnDestroy {
    * animate滚动
    */
   move = () => {
-    console.log(new Date());
+    // console.log(new Date());
     $('.ul-container ul').animate(
       { 'margin-top': '-69px' }, 800, () => {
         const first = $('.ul-container ul li:first-child'); // 找到ul的第一个子元素
         $('.ul-container ul').append(first); // 插入到ul的里面最后后面
         $('.ul-container ul').css('margin-top', 0); // ulmargin-top归0
       });
+  }
+  setMap() {
+    const myChart = echarts.init(this.chart.nativeElement);
+    const myChart1 = echarts.init(this.chart1.nativeElement);
+    const myChart2 = echarts.init(this.chart2.nativeElement);
+    const myChart3 = echarts.init(this.chart3.nativeElement);
+    const option = {
+      series: [{
+        type: 'liquidFill',
+        radius: '76%',
+        period: '2000',
+        label: {
+          fontSize: 40,
+          color: 'rgb(59, 77, 241)',
+          position: ['50%', '30%'],
+        },
+        itemStyle: {
+          borderColor: 'rgb(59, 77, 241)',
+        },
+        backgroundStyle: {
+          color: 'rgb(13, 42, 66)',
+        },
+        data: [this.dataList.partOfGc.completionRateGcNeedInspectCurrentMonth, this.dataList.partOfGc.completionRateGcNeedInspectCurrentMonth * (0.6 / 0.45)]
+        // 0.6/0.45
+      }]
+    };
+    const option2 = {
+      series: [{
+        type: 'liquidFill',
+        radius: '76%',
+        period: '2000',
+        label: {
+          fontSize: 40,
+          color: 'rgb(59, 77, 241)',
+          position: ['50%', '30%'],
+        },
+        itemStyle: {
+          borderColor: 'rgb(59, 77, 241)',
+        },
+        backgroundStyle: {
+          color: 'rgb(13, 42, 66)',
+        },
+        data: [this.dataList.partOfGc.completionRateGcNeedScrapCurrentMonth, this.dataList.partOfGc.completionRateGcNeedScrapCurrentMonth * (0.6 / 0.45)]
+        // 0.6/0.45
+      }]
+    };
+    const option3 = {
+      series: [{
+        type: 'liquidFill',
+        radius: '76%',
+        period: '2000',
+        label: {
+          fontSize: 40,
+          color: 'rgb(132, 52, 36)',
+          position: ['50%', '30%'],
+        },
+        itemStyle: {
+          borderColor: 'rgb(255, 78, 0)',
+          // shadowColor: 'rgb(255, 78, 0)',
+        },
+        outline: {
+          itemStyle: {
+            borderColor: '#a0371d',
+          }
+        },
+        backgroundStyle: {
+          color: 'rgb(13, 42, 66)',
+        },
+
+        data: [{
+          value: this.dataList.partOfDispatch.growthGcDispatchCountYearOnYear,
+          itemStyle: {
+            color: 'rgb(132, 52, 36)',
+          },
+        },
+        {
+          value: this.dataList.partOfDispatch.growthGcDispatchCountYearOnYear * (0.6 / 0.45),
+          itemStyle: {
+            color: 'rgba(255, 78, 0,0.8)',
+          }
+        }]
+      }]
+    };
+    const option4 = {
+      series: [{
+        type: 'liquidFill',
+        radius: '76%',
+        period: '2000',
+        label: {
+          fontSize: 40,
+          color: 'rgb(132, 52, 36)',
+          position: ['50%', '30%'],
+        },
+        itemStyle: {
+          borderColor: 'rgb(255, 78, 0)',
+          // shadowColor: 'rgb(255, 78, 0)',
+        },
+        outline: {
+          itemStyle: {
+            borderColor: '#a0371d',
+          }
+        },
+        backgroundStyle: {
+          color: 'rgb(13, 42, 66)',
+        },
+
+        data: [{
+          value: this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth,
+          itemStyle: {
+            color: 'rgb(132, 52, 36)',
+          },
+        },
+        {
+          value: this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth * (0.6 / 0.45),
+          itemStyle: {
+            color: 'rgba(255, 78, 0,0.8)',
+          }
+        }]
+      }]
+    };
+    myChart.setOption(option);
+    myChart1.setOption(option3);
+    myChart2.setOption(option2);
+    myChart3.setOption(option4);
   }
 
   ngOnDestroy() {

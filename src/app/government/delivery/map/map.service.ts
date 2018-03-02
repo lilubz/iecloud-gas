@@ -45,7 +45,8 @@ export class MapService {
   sellingCarPathPointSymbol; // 直销车位置标记符号
   sellingCarPathSymbol;  // 直销车路径线条符号
 
-  stationInfoTemplate; // 站点弹窗信息模板
+  supplyStationInfoTemplate; // 供应站弹窗信息模板
+  fillingStationInfoTemplate; // 充装站弹窗信息模板
   dispatcherPathPointTemplate; // 送气工轨迹点弹窗信息模板
   sellingCarPathPointTemplate; // 送气工轨迹点弹窗信息模板
 
@@ -156,12 +157,24 @@ export class MapService {
         this.dispatcherPathSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([243, 66, 52]), 2);
         this.sellingCarPathSymbol = this.dispatcherPathSymbol;
 
-        this.stationInfoTemplate = new InfoTemplate(
-          '${supplyStationName}',
-          '<b>名称：</b> ${supplyStationName} <br/>' +
-          '<b>负责人：</b> ${principal} <br/>' +
-          '<b>地址：</b> ${supplyStationAddress} <br/>' +
-          '<b>许可证：</b> ${supplyLicenseNum} <br/>' +
+        this.supplyStationInfoTemplate = new InfoTemplate(
+          '${stationName}',
+          '<b>名称：</b> ${stationName} <br/>' +
+          '<b>所属公司：</b> ${enterpriseName} <br/>' +
+          '<b>气瓶数量：</b> ${gcCount} <br/>' +
+          '<b>送气工数量：</b> ${dispatcherCount} <br/>' +
+          '<b>今日配送气瓶数：</b> ${gcCountToday} <br/>' +
+          '<b>类型：</b> ${type} <br/>'
+        );
+
+        this.fillingStationInfoTemplate = new InfoTemplate(
+          '${stationName}',
+          '<b>名称：</b> ${stationName} <br/>' +
+          '<b>所属公司：</b> ${enterpriseName} <br/>' +
+          '<b>气瓶数量：</b> ${gcCount} <br/>' +
+          '<b>送气工数量：</b> ${dispatcherCount} <br/>' +
+          '<b>今日配送气瓶数：</b> ${gcCountToday} <br/>' +
+          '<b>今日充装气瓶数：</b> ${fillingCountToday} <br/>' +
           '<b>类型：</b> ${type} <br/>'
         );
 
@@ -259,8 +272,8 @@ export class MapService {
           this.map.addLayer(this.sellingCarPathPointLayer);
 
 
-          this.supplyStationLayer.setInfoTemplate(this.stationInfoTemplate);
-          this.distributionStationLayer.setInfoTemplate(this.stationInfoTemplate);
+          this.supplyStationLayer.setInfoTemplate(this.supplyStationInfoTemplate);
+          this.distributionStationLayer.setInfoTemplate(this.fillingStationInfoTemplate);
           this.dispatcherPathPointLayer.setInfoTemplate(this.dispatcherPathPointTemplate);
           this.sellingCarPathPointLayer.setInfoTemplate(this.sellingCarPathPointTemplate);
 
@@ -458,11 +471,10 @@ export class MapService {
                 const graphic = new Graphic(
                   new Point(coordinates[0], coordinates[1], this.wenzhouSpatialReference),
                   this.distributionStationSymbol,
-                  marker,
-
+                  marker
                 );
                 this.distributionStationLayer.add(graphic);
-              } else if (marker.type === '瓶库') {
+              } else if (marker.type === '供应站') {
                 const graphic = new Graphic(
                   new Point(coordinates[0], coordinates[1], this.wenzhouSpatialReference),
                   this.supplyStationSymbol,
