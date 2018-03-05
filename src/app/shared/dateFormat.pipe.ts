@@ -12,6 +12,10 @@ import * as moment from 'moment';
 @Pipe({ name: 'DateFormat' })
 export class DateFormat implements PipeTransform {
   transform(value: number, exponent: string): string {
-    return moment(value).format(exponent || 'YYYY-MM-DD HH:mm:ss');
+    if (value) {
+      return moment(value).format(exponent || 'YYYY-MM-DD HH:mm:ss');
+    } else {
+      return '';
+    }
   }
 }

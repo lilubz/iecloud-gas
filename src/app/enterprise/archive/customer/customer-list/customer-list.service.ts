@@ -35,4 +35,13 @@ export class CustomerListService {
     return this.httpService
       .getRequest(this.API.getCustomerList, params);
   }
+
+  deleteCustomer(params: any): Promise<any> {
+    return this.httpService
+      .getRequest(this.API.deleteGcUser, params);
+  }
+  displayCustomer(params: any): Promise<any> {
+    return this.httpService
+      .formPostRequest(this.API.updateGcUser, params);
+  }
 }

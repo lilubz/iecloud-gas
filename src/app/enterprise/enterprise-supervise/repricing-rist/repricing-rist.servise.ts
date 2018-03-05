@@ -6,7 +6,7 @@ import { API } from '../../../common/api';
 export class RepricingRistService {
     constructor(private HttpService: HttpService) { }
     //气瓶规格列表
-    listGcsoecification(params?) {
+    listGcSpecification(params?) {
         return this.HttpService.getRequest(API.getCylinderSpecification, params);
     }
     //列表

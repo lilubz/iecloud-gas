@@ -89,6 +89,9 @@ export const API = {
   'getDropdownForUserNature': URL + 'basicInformation/gcUserInfo/listUserNature.do',
   'getDropdownForUserType': URL + 'basicInformation/gcUserInfo/listUserType.do',
   'getDropdownForCorpInfoInRegion': URL + 'basicInformation/corpInfo/listCorpInfoInRegion.do',
+  'deleteGcUser': URL + 'basicInformation/gcUserInfo/deleteGcUser.do',
+  'updateGcUser': URL + 'basicInformation/gcUserInfo/updateGcUser.do',
+
 
   /**
    * 信息录入

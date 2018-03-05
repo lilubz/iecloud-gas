@@ -59,7 +59,18 @@
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
-        <p-column [style]="{'width':'180px'}" field="address" header="地址"></p-column>
+        <p-column [style]="{'width':'180px' }" field="address" header="证件地址"></p-column>
+
+        <p-column [style]="{'width':'150px' ,'line-height':'45px'}" header="操作">
+          <ng-template pTemplate="body" let-rowData="rowData">
+            <button pButton type="button" (click)="onEdit(rowData)" label="修改"></button>
+            <button pButton type="button" (click)="onDelete(rowData)" label="删除" class="deletebtn"></button>
+            <!-- <span class="fa fa-pencil " aria-hidden="true">修改</span>&nbsp;&nbsp;
+            <span class="fa fa-trash-o " aria-hidden="true">删除</span> -->
+
+          </ng-template>
+        </p-column>
+
         <p-column [style]="{'width':'150px'}" field="dispatcherName" header="配送工"></p-column>
         <p-column [style]="{'width':'150px'}" field="enterpriseName" header="供气企业"></p-column>
         <p-column [style]="{'width':'80px'}" field="userType" header="客户类别"></p-column>
@@ -88,5 +99,59 @@
       </p-dataTable>
     </div>
   </div>
+
+  <!-- 修改功能 -->
+  <div class="ui-g">
+    <p-dialog [(visible)]="displayEditDialog" [showHeader]="false" [closeOnEscape]="false" [width]="800" [contentStyle]="{'padding':'0','overflow':'visible'}"
+      [minWidth]="800" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+      <form class="dialog">
+        <div class="ui-g ui-g-nopad">
+          <div class="ui-g-12 ui-g-nopad">
+            <h2 class="text-center">修改信息</h2>
+          </div>
+        </div>
+
+        <div class="form-group ui-g-12">
+          <label for="" style="padding: 0" class="ui-g-4 text-right">
+            <span class="warn"></span>客户名称：</label>
+          <div class="ui-g-4">
+            <div>{{ willEditCustomer?.userName }}</div>
+          </div>
+        </div>
+
+
+        <div class="form-group ui-g-12">
+          <label for="inputEmail3" class="ui-g-4 control-label text-right" style="padding: 0">
+            <span class="warn">*</span>派送地址：</label>
+          <div class="ui-g-4">
+            <input type="text" pInputText [(ngModel)]="willEditCustomer.deliveryAddress" name="deliveryAddress" />
+          </div>
+        </div>
+
+        <div class="form-group ui-g-12">
+          <label for="inputEmail3" class="ui-g-4 control-label text-right" style="padding: 0">
+            <span class="warn">*</span>联系电话：</label>
+          <div class="ui-g-4">
+            <input type="text" pInputText [(ngModel)]="willEditCustomer.phone" name="phone" />
+          </div>
+        </div>
+
+        <div class="ui-g-12 text-center" style="padding:10px">
+          <button (click)="editCustomer();" pButton type="submit" label="确认"></button>
+          <button (click)="onCancel();" pButton type="button" class="ui-button-secondary" label="取消"></button>
+        </div>
+      </form>
+    </p-dialog>
+  </div>
+
+  <!-- 删除功能 -->
+  <p-dialog header="删除通知" [(visible)]="displayDeleteDialog" [closeOnEscape]="false" [width]="500" [minWidth]="500" [modal]="true">
+    <div>确认删除
+      <b> {{ willDeleteCustomer?.userName }} </b>吗？</div>
+    <p-footer>
+      <button type="button" (click)="deleteCustomer()" pButton label="确认"></button>
+      <button type="button" (click)="onCancel();" pButton label="取消" class="deletebtn"></button>
+    </p-footer>
+  </p-dialog>
 
 </div>
