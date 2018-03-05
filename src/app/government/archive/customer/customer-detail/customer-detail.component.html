@@ -2,7 +2,7 @@
   <h2>查不到此信息</h2>
 </div>
 <div *ngIf="loading===0" class="ui-g-12 card">
-  <div class="ui-g-12 cylinder-detail">
+  <div class="ui-g-12 cylinder-detail">  
     <div class="ui-g-12">
       <div class="ui-g-12 padding-none">
         <div class="ui-g-6 padding-none">
@@ -175,6 +175,9 @@
           未查询到数据
         </div>
       </ng-template>
+      <ng-template pTemplate="paginatorRight">
+          共 {{ total || 0 }} 条记录
+        </ng-template>
     </p-dataTable>
   </div>
   <p-footer>

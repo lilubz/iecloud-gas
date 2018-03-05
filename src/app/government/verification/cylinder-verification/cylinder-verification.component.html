@@ -25,6 +25,9 @@
                 <a href="javascript:void(0);" style="color:blue" (click)="showdetail(cylinder)">查看详情</a>
               </ng-template>
             </p-column>
+            <ng-template pTemplate="paginatorRight">
+                共 {{ cylinderNumberTotal || 0 }} 条记录
+            </ng-template>
           </p-dataTable>
         </div>
         <p-dialog header="详情查看" [draggable]="false" [(visible)]="display" modal="modal" width="900" minWidth="900" height="700" [responsive]="true">
@@ -75,6 +78,9 @@
               <div class="text-left">
                 未查询到数据
               </div>
+            </ng-template>
+            <ng-template pTemplate="paginatorRight">
+                共 {{ cylinderListTotal || 0 }} 条记录
             </ng-template>
             <!-- <p-column [style]="{'width':'150px'}" field="area5" header="附件"></p-column> -->
           </p-dataTable>

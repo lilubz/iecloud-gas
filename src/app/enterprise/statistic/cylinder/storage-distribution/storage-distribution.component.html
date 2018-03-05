@@ -1,6 +1,6 @@
 <div class="ui-g-12">
   <h3>储配站气瓶统计</h3>
-  <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
+  <p-dataTable [value]="storageDistributionFilters"   [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" 
     [loading]="cylinderLoading" emptyMessage="未查询到数据">
 
     <!-- <p-column header="序号" [style]="{'width':'50px'}">
@@ -38,6 +38,7 @@
         {{ countyCylinder.codeAbnormalCount || 0 }}
       </ng-template>
     </p-column> -->
+    
 
   </p-dataTable>
   <!-- for="" class="search-label" -->
