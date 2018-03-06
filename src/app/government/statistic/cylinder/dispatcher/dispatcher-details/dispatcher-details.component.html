@@ -45,7 +45,7 @@
             <p-column [style]="{'width':'120px'}" header="送气工编号" field="stationNumber" [filter]="true" filterPlaceholder="搜索"></p-column>
             <p-column [style]="{'width':'120px'}" header="送气工名称" field="stationName" [filter]="true" filterPlaceholder="搜索"></p-column>
 
-            <p-column [style]="{'width':'120px'}" header="收重瓶数量">
+            <p-column [style]="{'width':'120px'}" header="提取重瓶数量">
               <ng-template let-rowData="rowData" pTemplate="body">
                 <span *ngIf="rowData.fullBottleReceiveCount===0">
                   {{rowData.fullBottleReceiveCount}}
@@ -56,7 +56,7 @@
               </ng-template>
             </p-column>
 
-            <p-column [style]="{'width':'120px'}" header="发放重瓶数量">
+            <p-column [style]="{'width':'120px'}" header="发放重瓶（到用户）">
               <ng-template let-rowData="rowData" pTemplate="body">
                 <span *ngIf="rowData.fullBottleSendCount===0">
                   {{rowData.fullBottleSendCount}}
@@ -67,7 +67,7 @@
               </ng-template>
             </p-column>
 
-            <p-column [style]="{'width':'120px'}" header="回收空瓶数量">
+            <p-column [style]="{'width':'120px'}" header="（从用户）回收空瓶">
               <ng-template let-rowData="rowData" pTemplate="body">
                 <span *ngIf="rowData.emptyBottleReceiveCount===0">
                   {{rowData.emptyBottleReceiveCount}}
