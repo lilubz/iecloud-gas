@@ -37,6 +37,7 @@ export const GovernmentMenus: MenuItem[] = [
       // { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
       { label: '报表管理', routerLink: ['/government/gov-affairs/report'] },
       { label: '协同管理', routerLink: ['/government/gov-affairs/collaborative'] },
+      { label: '设置气瓶阈值', routerLink: ['/government/gov-affairs/cylinder-warning'] },
     ]
   },
   {
@@ -57,6 +58,8 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '气瓶', routerLink: ['/government/statistic/cylinder'] },
       { label: '企业', routerLink: ['/government/statistic/enterprise'] },
       { label: '执法', routerLink: ['/government/statistic/affair'] },
+      { label: '实时预警', routerLink: ['/government/statistic/current-warning'] },
+      { label: '历史预警', routerLink: ['/government/statistic/history-warning'] },
     ]
   },
   {

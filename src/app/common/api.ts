@@ -204,6 +204,13 @@ export const API = {
   'reportStatistics': URL + 'corpBusiness/reportManagementController/reportStatistics.do', // 5.获取报表统计列表
   'reportCommitDetail': URL + 'corpBusiness/reportManagementController/reportCommitDetail.do', // 6.查询某次报表提交祥情列表。
 
+  // 气瓶存量预警
+  'listGcThresholdCurrentWarning': URL + 'corpBusiness/gcStockMonitor/listGcThresholdCurrentWarning.do',
+  'listGcThreshold': URL + 'corpBusiness/gcStockMonitor/listGcThreshold.do',
+  'addGcThreshold': URL + 'corpBusiness/gcStockMonitor/addGcThreshold.do',
+  'listGcThresholdHistoryWarning': URL + 'corpBusiness/gcStockMonitor/listGcThresholdHistoryWarning.do',
+  'listGcThresholdHistoryWarningDetail': URL + 'corpBusiness/gcStockMonitor/listGcThresholdHistoryWarningDetail.do',
+
   // 车辆管理
   'getCarType': URL + 'basicInformation/corpCarInfo/getCarType.do', // 获取车辆类型
   'getCarNumberList': URL + 'basicInformation/corpCarInfo/getCarNumberList.do', // 获取登陆用户能够查看的车牌列表，模糊查询车牌号

@@ -10,12 +10,27 @@ import { EnterpriseComponent as CylinderEnterpriseComponent } from './cylinder/e
 import { CylinderStorageComponent } from './cylinder/cylinder-storage/cylinder-storage.component';
 import { StorageDistributionComponent } from './cylinder/storage-distribution/storage-distribution.component';
 import { CustomerComponent } from './cylinder/customer/customer.component';
+import { CurrentWarningComponent } from './current-warning/current-warning.component';
+import { HistoryWarningComponent } from './history-warning/history-warning.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'cylinder',
     pathMatch: 'full'
+  },
+  {
+    path: 'current-warning',
+    component: CurrentWarningComponent
+  },
+  {
+    path: 'history-warning',
+    redirectTo: 'history-warning/1',
+    pathMatch: 'full'
+  },
+  {
+    path: 'history-warning/:type',
+    component: HistoryWarningComponent
   },
   {
     path: '',
