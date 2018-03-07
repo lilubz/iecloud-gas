@@ -106,11 +106,11 @@ export class CylinderWarningComponent implements OnInit {
 
   }
   checkForm() {
-    if (this.formModelSet.count <= 0) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入正确的气瓶阈值' });
+    if (this.formModelSet.count < 0 || this.formModelSet.count > 100000) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入0-100000的气瓶阈值' });
       return false;
-    } else if (this.formModelSet.describe === '' || this.formModelSet.describe === null) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入设置依据' });
+    } else if (this.formModelSet.describe === '' || this.formModelSet.describe === null || this.formModelSet.describe.length > 50) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入1-50字的设置依据' });
       return false;
     }
     return true;

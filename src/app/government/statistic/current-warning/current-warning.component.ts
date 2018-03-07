@@ -9,7 +9,7 @@ import { CurrentWarningService } from './current-warning.service';
   providers: [CurrentWarningService]
 })
 export class CurrentWarningComponent implements OnInit {
-  loading = false;
+  loading = true;
   dropdown = {
     default: [
       {
@@ -18,10 +18,10 @@ export class CurrentWarningComponent implements OnInit {
       }
     ],
     type: [
-      // {
-      //   label: '全部',
-      //   value: ''
-      // },
+      {
+        label: '全部',
+        value: ''
+      },
       {
         label: '储配站',
         value: '1'
@@ -35,7 +35,7 @@ export class CurrentWarningComponent implements OnInit {
         value: '3'
       },
       {
-        label: '配送车',
+        label: '运输车',
         value: '5'
       },
     ],
@@ -55,11 +55,11 @@ export class CurrentWarningComponent implements OnInit {
     pageNumber: 1
   };
   formModel = {
-    type: '1',
+    type: '',
     region: '',
   };
   pageParams = {
-    type: '1',
+    type: '',
     region: '',
   };
   constructor(
@@ -82,19 +82,16 @@ export class CurrentWarningComponent implements OnInit {
       pageNumber: this.dataTable.pageNumber
     });
   }
-  onPageChange($event) {
-    this.dataTable.list = [];
-    this.onPageChange = event => {
-      this.loading = true;
-      this.dataTable.pageNumber = event.first / event.rows + 1;
-      this.dataTable.pageSize = event.rows;
-      this.getDataTableList({
-        liabilityTypeId: this.pageParams.type,
-        regionId: this.pageParams.region,
-        pageNumber: this.dataTable.pageNumber,
-        pageSize: this.dataTable.pageSize,
-      });
-    };
+  onPageChange(event) {
+    this.loading = true;
+    this.dataTable.pageNumber = event.first / event.rows + 1;
+    this.dataTable.pageSize = event.rows;
+    this.getDataTableList({
+      liabilityTypeId: this.pageParams.type,
+      regionId: this.pageParams.region,
+      pageNumber: this.dataTable.pageNumber,
+      pageSize: this.dataTable.pageSize,
+    });
   }
   getDropdownRegion(params?) {
     this._service.listRegionInfo(params)

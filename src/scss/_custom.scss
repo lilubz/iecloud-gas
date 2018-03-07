@@ -196,6 +196,7 @@ input {
         .ui-menuitem {
           border-bottom: 0 !important;
           border-left: 0;
+          position: relative;
         }
         .ui-menuitem-text {
           color: #f0f0f0; // font-weight: bolder;
@@ -219,6 +220,20 @@ input {
     }
     .ui-state-active {
       background: #31383e !important;
+    }
+
+    .warning-icon{ // 预警小图标
+      display: block;
+    }
+    .warning-icon:after{ // 预警小图标
+      content: '';
+      position: absolute;
+      height:25px;
+      width:25px;
+      right:0;
+      top:0;
+      background-image: url(../assets/img/warning.png);
+      background-size:25px 25px;
     }
   }
   /*右侧内容区*/
