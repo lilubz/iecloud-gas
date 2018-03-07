@@ -54,7 +54,7 @@
 
 
 
-  <div class="ui-g-12">
+  <div class="ui-g">
     <p-dataTable [value]="enterpriseList" [lazy]="true" dataKey="title" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
       scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
       [(first)]="pages.first">

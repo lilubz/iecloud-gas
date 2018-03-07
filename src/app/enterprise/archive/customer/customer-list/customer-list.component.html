@@ -35,7 +35,7 @@
   </form>
 
   <div class="ui-g padding">
-    <div class="ui-g-12">
+    <!-- <div class="ui-g-12"> -->
       <p-dataTable [value]="dataTable.list" [lazy]="true" dataKey="userNumber" [paginator]="true" [rows]="dataTable.option[1]"
         [scrollable]="false" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
         [(first)]="dataTable.first">
@@ -65,8 +65,6 @@
           <ng-template pTemplate="body" let-rowData="rowData">
             <button pButton type="button" (click)="onEdit(rowData)" label="修改"></button>
             <button pButton type="button" (click)="onDelete(rowData)" label="删除" class="deletebtn"></button>
-            <!-- <span class="fa fa-pencil " aria-hidden="true">修改</span>&nbsp;&nbsp;
-            <span class="fa fa-trash-o " aria-hidden="true">删除</span> -->
 
           </ng-template>
         </p-column>
@@ -88,7 +86,7 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" field="contractAppendixUrl" header="合同附件"></p-column>
 
-        <ng-template pTemplate="emptymessage">
+        <ng-template pTemplate="emptymessage" >
           <div class="text-left">
             未查询到数据
           </div>
@@ -97,7 +95,7 @@
           共 {{ dataTable.total || 0 }} 条记录
         </ng-template>
       </p-dataTable>
-    </div>
+    <!-- </div> -->
   </div>
 
   <!-- 修改功能 -->

@@ -36,7 +36,9 @@
       </div>
     </div>
   </form>
+
   <div class="ui-g-12">
+    <div class="ui-g">
     <p-dataTable [value]="dataTable.list" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="dataTable.option[1]"
       [scrollable]="false" scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
       [(first)]="dataTable.first">
@@ -92,5 +94,7 @@
         共 {{ dataTable.total || 0 }} 条记录
       </ng-template>
     </p-dataTable>
+
+  </div>
   </div>
 </div>
