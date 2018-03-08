@@ -68,7 +68,7 @@ export class DetailsComponent implements OnInit {
       this.getDetails({ transactionBasicNumber: this.id });
       this.getMultiSelectDepartment();
     } else {
-      throw new Error('查询参数不能为空');
+      // throw new Error('查询参数不能为空');
     }
   }
 

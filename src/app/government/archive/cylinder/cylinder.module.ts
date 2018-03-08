@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../../../shared/shared.module';
-import { CylinderRoutingModule } from './cylinder-routing.module';
 
 import { CylinderComponent } from './cylinder.component';
 import { CylinderListComponent } from './cylinder-list/cylinder-list.component';
@@ -13,7 +12,6 @@ import { CylinderOverviewService } from './cylinder-overview/cylinder-overview.s
 @NgModule({
   imports: [
     SharedModule,
-    CylinderRoutingModule,
   ],
   declarations: [
     CylinderComponent,

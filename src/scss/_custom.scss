@@ -112,11 +112,38 @@ input {
   .breadcrumb {
     left: $menu-width;
     top: $header-height;
-    width: calc( 100% - 70px);
     right: 0;
     height: $breadcrumb-height;
     background: #fff;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    color: #337ab7;
+    font-weight: bold;
+    padding: 0 20px;
+    .breadcrumb-item {
+      display: inline-block;
+      color: #337ab7;
+      a {
+        color: #337ab7;
+        text-decoration: none;
+        line-height: $breadcrumb-height;
+        &:hover {
+          text-decoration: initial;
+        }
+      }
+      span {
+        line-height: $breadcrumb-height;
+      }
+      +.breadcrumb-item::before {
+        display: inline-block;
+        padding-right: 4px;
+        padding-left: 4px;
+        color: #536c79;
+        content: "/";
+      }
+    }
+    .breadcrumb-item.active {
+      color: #536c79;
+    }
   }
   /* 侧边栏 */
   .sidebar {
@@ -282,9 +309,7 @@ a.router-link {
 
 a.router-link-active {
   color: #3399ff;
-}
-
-// .search-group {
+} // .search-group {
 //   margin: 5px 10px;
 //   float: left;
 // }
@@ -390,8 +415,8 @@ div.esriBasemapGalleryLabelContainer {
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb,

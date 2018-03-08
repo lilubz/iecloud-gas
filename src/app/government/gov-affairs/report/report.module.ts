@@ -13,7 +13,7 @@ import { DetailsComponent } from './details/details.component';
   imports: [
     CommonModule,
     SharedModule,
-    ReportRoutingModule
+    // ReportRoutingModule
   ],
   declarations: [
     ReportComponent,

@@ -13,23 +13,23 @@ const routes: Routes = [
   },
   {
     path: 'dispatcher',
-    component: DispatcherComponent,
-    data: {
-      title: '气瓶统计'
-    },
+    // component: DispatcherComponent,
+    // data: {
+    //   title: '气瓶统计'
+    // },
     children: [
       {
         path: 'overview',
         component: OverviewComponent,
         data: {
-          title: '用户详情'
+          title: '送气工概览'
         },
       },
       {
         path: 'dispatcher-details',
         component: DispatcherDetailsComponent,
         data: {
-          title: '用户列表'
+          title: '送气工详情'
         },
       },
     ]

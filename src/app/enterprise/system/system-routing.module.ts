@@ -9,28 +9,32 @@ import { BottleLibraryComponent } from './bottle-library/bottle-library.componen
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
     component: SystemComponent,
+    data: {
+      title: '系统配置'
+    },
     children: [
       {
+        path: '',
+        redirectTo: 'user',
+        pathMatch: 'full'
+      },
+      {
         path: 'user',
-        component: UserComponent
+        component: UserComponent,
+        data: {
+          title: '个人信息'
+        },
       },
       {
         path: 'bottle-library',
-        component: BottleLibraryComponent
+        component: BottleLibraryComponent,
+        data: {
+          title: '供应站管理'
+        },
       },
     ]
   },
-  {
-    path: '**',
-    redirectTo: 'user',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({

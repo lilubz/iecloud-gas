@@ -10,35 +10,45 @@ import { CylinderVerificationComponent } from './cylinder-verification/cylinder-
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'customer',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
     component: VerificationComponent,
+    data: {
+      title: '审核管理'
+    },
     children: [
       {
+        path: '',
+        redirectTo: 'customer',
+        pathMatch: 'full'
+      },
+      {
         path: 'customer',
-        component: CustomerComponent
+        component: CustomerComponent,
+        data: {
+          title: '用户信息'
+        }
       },
       {
         path: 'cylinder',
-        component: CylinderVerificationComponent
+        component: CylinderVerificationComponent,
+        data: {
+          title: '气瓶信息'
+        }
       },
       {
         path: 'cylinder-tag',
-        component: CylinderTagComponent
+        component: CylinderTagComponent,
+        data: {
+          title: '气瓶标签审核'
+        }
       },
       {
         path: 'user-card',
-        component: UserCardComponent
+        component: UserCardComponent,
+        data: {
+          title: '用户认证卡审核'
+        }
       },
     ]
-  },
-  {
-    path: '**',
-    redirectTo: 'customer',
-    pathMatch: 'full'
   }
 ];
 

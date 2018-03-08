@@ -1,65 +1,68 @@
+.main {
+  left: 90px;
+}
 
 .affair-details {
-  padding:80px 10px 0 10px;
-  [class^='ui-g']{
-    padding:0;
+  padding: 80px 10px 0 10px;
+  [class^='ui-g'] {
+    padding: 0;
   }
-  .warn{
-    color:#f00;
+  .warn {
+    color: #f00;
   }
-  form{
-    .has-multiSelect{
-      height:44px;
+  form {
+    .has-multiSelect {
+      height: 44px;
     }
   }
-  a{
-    color:#3399ff !important;
+  a {
+    color: #3399ff !important;
   }
   form,
   .node-handle,
-  .node-reply{
-    padding:10px 0px !important;
+  .node-reply {
+    padding: 10px 0px !important;
   }
-  .title{
-    background:#1a5687;
+  .title {
+    background: #1a5687;
     font-weight: bold;
   }
-  .content{
-    border:1px solid #797979;
+  .content {
+    border: 1px solid #797979;
     line-height: 35px;
-    height:40px;
+    height: 40px;
     text-align: center;
-    color:white;
-    word-break:break-all;
+    color: white;
+    word-break: break-all;
     box-sizing: border-box;
     overflow: auto;
   }
-  .content:last-child{
-    color:black;
+  .content:last-child {
+    color: black;
   }
-  h2{
-    margin:5px 0;
-    font-size:18px;
+  h2 {
+    margin: 5px 0;
+    font-size: 18px;
   }
-  .dashed-border{
-    margin-top:10px;
-    border:1px dashed #666;
-    padding:10px;
-    border-radius:10px;
+  .dashed-border {
+    margin-top: 10px;
+    border: 1px dashed #666;
+    padding: 10px;
+    border-radius: 10px;
   }
-  .tree-node{
-    height:260px;
+  .tree-node {
+    height: 260px;
     overflow: auto;
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
-  .dialog-footer{
-    margin:20px auto;
-    >button{
-      margin:0 50px;
-      font-size:20px;
+  .dialog-footer {
+    margin: 20px auto;
+    >button {
+      margin: 0 50px;
+      font-size: 20px;
     }
   }
-  .form-group{
-    margin-bottom:10px;
+  .form-group {
+    margin-bottom: 10px;
   }
 }

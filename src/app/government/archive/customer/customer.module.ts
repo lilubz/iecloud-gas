@@ -13,7 +13,7 @@ import { CustomerOverviewCountyComponent } from './customer-overview/customer-ov
 @NgModule({
   imports: [
     CommonModule,
-    CustomerRoutingModule,
+    // CustomerRoutingModule,
     SharedModule
   ],
   declarations: [
@@ -24,7 +24,7 @@ import { CustomerOverviewCountyComponent } from './customer-overview/customer-ov
     CustomerOverviewCountyComponent
   ],
   providers: [
-    CustomerOverviewService
+    // CustomerOverviewService
   ]
 })
 export class CustomerModule { }

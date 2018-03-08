@@ -12,7 +12,7 @@ import { CustomerOverviewEnterpriseComponent } from './customer-overview/custome
 @NgModule({
   imports: [
     CommonModule,
-    CustomerRoutingModule,
+    // CustomerRoutingModule,
     SharedModule
   ],
   declarations: [

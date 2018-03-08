@@ -9,24 +9,35 @@ import { SingleSoliderComponent } from './single-solider/single-solider.componen
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'video-monitor',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
-    component: VisualizationComponent,
+    data: {
+      title: '视频查看'
+    },
     children: [
       {
+        path: '',
+        redirectTo: 'video-monitor',
+        pathMatch: 'full'
+      },
+      {
         path: 'video-monitor',
-        component: VideoMonitoringComponent
+        component: VideoMonitoringComponent,
+        data: {
+          title: '视频监控'
+        }
       },
       {
         path: 'big-screen',
-        component: BigScreenComponent
+        component: BigScreenComponent,
+        data: {
+          title: '大屏展示'
+        }
       },
       {
         path: 'single-solider',
-        component: SingleSoliderComponent
+        component: SingleSoliderComponent,
+        data: {
+          title: '单兵执法'
+        }
       },
     ]
   },

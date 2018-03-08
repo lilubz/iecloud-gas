@@ -872,7 +872,7 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   setScreen() {
     const height = document.querySelector('.bigScreen')
       ? (document.querySelector('.bigScreen').clientHeight / 1080) : null;
-    const marginLeft = -((1920 * height) - document.body.clientWidth) / 2;
+    const marginLeft = -((1920 * height) - (document.body.clientWidth- 110)) / 2;
     this.renderer.setStyle(document.querySelector('.screen'), 'transform', `scale(${height})`);
     this.renderer.setStyle(document.querySelector('.screen'), '-ms-transform', `scale(${height})`);
     this.renderer.setStyle(document.querySelector('.screen'), 'margin-left', `${marginLeft}` + 'px');

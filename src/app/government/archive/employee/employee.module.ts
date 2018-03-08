@@ -9,7 +9,7 @@ import { DispatcherComponent } from './dispatcher/dispatcher.component';
 @NgModule({
   imports: [
     SharedModule,
-    EmployeeRoutingModule,
+    // EmployeeRoutingModule,
   ],
   declarations: [
     EmployeeComponent,

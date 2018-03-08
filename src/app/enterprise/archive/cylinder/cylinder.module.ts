@@ -12,7 +12,7 @@ import { CylinderOverviewService } from './cylinder-overview/cylinder-overview.s
 @NgModule({
   imports: [
     SharedModule,
-    CylinderRoutingModule,
+    // CylinderRoutingModule,
   ],
   declarations: [
     CylinderComponent,

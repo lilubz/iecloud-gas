@@ -4,39 +4,39 @@
       <div class="ui-g-12">
         <h3>主体类型选择</h3>
       </div>
-  
+
       <div class="ui-g-12">
         <button pButton type="button" label="储配站" [routerLink]="['../1']" routerLinkActive="link-active"></button>
       </div>
-  
+
       <div class="ui-g-12">
-        <button pButton type="button" label="运输车" [routerLink]="['../5']" routerLinkActive="link-active"></button>
+        <button pButton type="button" label="直销车" [routerLink]="['../5']" routerLinkActive="link-active"></button>
       </div>
 
       <div class="ui-g-12">
         <button pButton type="button" label="供应站" [routerLink]="['../2']" routerLinkActive="link-active"></button>
       </div>
-  
+
       <div class="ui-g-12">
         <button pButton type="button" label="送气工" [routerLink]="['../3']" routerLinkActive="link-active"></button>
       </div>
-  
+
     </div>
   </div>
   <div class="main">
     <div class="ui-g-12 card">
       <form class="ui-g-12" (submit)="onSearch()">
         <div class="ui-g">
-  
+
           <div class="ui-g-12 ui-lg-6">
             <label class="search-label">区域选择:</label>
             <p-dropdown [options]="dropdown.region" [(ngModel)]="formModelSearch.regionId" name="region" [style]="{'width':'180px'}"></p-dropdown>
           </div>
-  
+
           <div class="ui-g-12 ui-lg-6">
             <button class="searchBtn" pButton type="submit" label="搜索"></button>
           </div>
-  
+
         </div>
       </form>
       <div class="ui-g-12 dataTable">
@@ -63,13 +63,13 @@
               <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
             </ng-template>
           </p-column>
-  
+
           <ng-template pTemplate="emptymessage">
             <div class="text-left">
               未查询到数据
             </div>
           </ng-template>
-  
+
           <ng-template pTemplate="paginatorRight">
             共 {{ dataTable.total || 0 }} 条记录
           </ng-template>
@@ -97,17 +97,17 @@
               <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
             </ng-template>
           </p-column>
-          
+
           <ng-template pTemplate="emptymessage">
             <div class="text-left">
               未查询到数据
             </div>
           </ng-template>
-          
+
           <ng-template pTemplate="paginatorRight">
             共 {{ dataTable.total || 0 }} 条记录
           </ng-template>
-  
+
         </p-dataTable>
         <!-- 3表示送气工 -->
         <p-dataTable *ngIf="type===3" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
@@ -137,17 +137,17 @@
               <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
             </ng-template>
           </p-column>
-  
+
           <ng-template pTemplate="emptymessage">
             <div class="text-left">
               未查询到数据
             </div>
           </ng-template>
-  
+
           <ng-template pTemplate="paginatorRight">
             共 {{ dataTable.total || 0 }} 条记录
           </ng-template>
-  
+
         </p-dataTable>
         <!-- 5表示直销车 -->
         <p-dataTable *ngIf="type===5" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
@@ -173,7 +173,7 @@
               <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
             </ng-template>
           </p-column>
-  
+
           <ng-template pTemplate="emptymessage">
             <div class="text-left">
               未查询到数据
@@ -227,7 +227,7 @@
               <label for="">送气工</label>
             </div>
           </div>
-          
+
           <div class="ui-g-12 ui-g-nopad">
             <div class="ui-g-5 text-right">
               <label for="">区域：</label>
@@ -247,7 +247,7 @@
               <label for="">{{selectedRowData?.carNumber}}</label>
             </div>
           </div>
-          
+
           <div class="ui-g-12 ui-g-nopad">
             <div class="ui-g-5 text-right">
               <label for="">所属公司：</label>
@@ -266,7 +266,7 @@
             <input type="number" pInputText style="width:208px" min="0" name="number" [(ngModel)]="formModelSet.count" name="count">
           </div>
         </div>
-  
+
         <div class="ui-g-12 ui-g-nopad">
           <div class="ui-g-5 text-right">
             <span class="color-red">*</span><label for="">设置依据：</label>
@@ -275,7 +275,7 @@
             <textarea rows="3" cols="20" pInputTextarea style="resize:none" [(ngModel)]="formModelSet.describe" name="describe"></textarea>
           </div>
         </div>
-  
+
         <div class="ui-g-12 text-center">
           <button pButton type="submit" class="ui-button-primery searchBtn" label="确认"></button>
           <button (click)="visible = false;" pButton type="button" class="ui-button-secondary" label="取消"></button>

@@ -24,51 +24,30 @@ const routes: Routes = [
       {
         path: 'archive',
         loadChildren: './archive/archive.module#ArchiveModule',
-        data: {
-          title: '基础档案'
-        }
       },
       {
         path: 'delivery',
         loadChildren: './delivery/delivery.module#DeliveryModule',
-        data: {
-          title: '监管查询'
-        }
       },
       {
         path: 'gov-affairs',
         loadChildren: './gov-affairs/gov-affairs.module#GovAffairsModule',
-        data: {
-          title: '监管事务'
-        }
       },
       {
         path: 'visualization',
         loadChildren: './visualization/visualization.module#VisualizationModule',
-        data: {
-          title: '可视化'
-        }
       },
       {
         path: 'statistic',
         loadChildren: './statistic/statistic.module#StatisticModule',
-        data: {
-          title: '统计查询'
-        }
       },
       {
         path: 'system',
         loadChildren: './system/system.module#SystemModule',
-        data: {
-          title: '系统管理'
-        }
       },
       {
         path: 'verification',
         loadChildren: './verification/verification.module#VerificationModule',
-        data: {
-          title: '审核管理'
-        }
       }
     ]
   },

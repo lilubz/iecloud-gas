@@ -11,8 +11,8 @@ import { HistoryComponent } from './history/history.component';
 @NgModule({
   imports: [
     CommonModule,
-    ReportRoutingModule,
     SharedModule
+    // ReportRoutingModule,
   ],
   declarations: [
     ReportComponent,

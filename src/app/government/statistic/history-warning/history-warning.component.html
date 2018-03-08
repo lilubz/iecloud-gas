@@ -9,7 +9,7 @@
     </div>
 
     <div class="ui-g-12">
-      <button pButton type="button" label="运输车" [routerLink]="['../5']" routerLinkActive="link-active"></button>
+      <button pButton type="button" label="直销车" [routerLink]="['../5']" routerLinkActive="link-active"></button>
     </div>
 
     <div class="ui-g-12">
@@ -25,12 +25,12 @@
 <div class="main">
   <div class="ui-g-12 card">
     <form class="ui-g-12" (submit)="onSubmit()">
-    
+
       <div class="ui-g-12 ui-lg-4">
         <span class="search-label">区域选择：</span>
         <p-dropdown [options]="dropdown.region" [filter]="true" [(ngModel)]="formModel.region" name="type" [style]="{'width':'180px'}"></p-dropdown>
       </div>
-    
+
       <div class="ui-g-12 ui-lg-4">
         <label class="search-label">开始时间：</label>
         <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
@@ -46,11 +46,11 @@
           name="endTime">
         </p-calendar>
       </div>
-    
+
       <div class="ui-g-12">
         <button class="searchBtn" pButton type="submit" label="搜索"></button>
       </div>
-    
+
     </form>
     <div class="ui-g-12 dataTable">
       <!-- 储配站 -->
@@ -62,7 +62,7 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-    
+
         <p-column [style]="{'width':'30%'}" field="liabilityName" header="站点名称"></p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
         <p-column field="countOverTime" header="超限次数"></p-column>
@@ -92,7 +92,7 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-      
+
         <p-column [style]="{'width':'30%'}" field="liabilityName" header="站点名称"></p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
         <p-column field="countOverTime" header="超限次数"></p-column>
@@ -104,7 +104,7 @@
             <button pButton type="button" (click)="onOpenDialogDetail(rowData)" label="详情"></button>
           </ng-template>
         </p-column>
-      
+
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
             未查询到数据
@@ -123,7 +123,7 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-      
+
         <p-column field="liabilityName" header="姓名"></p-column>
         <p-column field="regionName" header="区域"></p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
@@ -136,7 +136,7 @@
             <button pButton type="button" (click)="onOpenDialogDetail(rowData)" label="详情"></button>
           </ng-template>
         </p-column>
-      
+
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
             未查询到数据
@@ -155,7 +155,7 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-      
+
         <p-column [style]="{'width':'110px'}" field="carNumber" header="车牌号"></p-column>
         <p-column [style]="{'width':'30%'}" field="liabilityName" header="所属企业"></p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
@@ -168,7 +168,7 @@
             <button pButton type="button" (click)="onOpenDialogDetail(rowData)" label="详情"></button>
           </ng-template>
         </p-column>
-      
+
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
             未查询到数据
@@ -191,7 +191,7 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-      
+
         <p-column [style]="{'width':'30%'}" field="liabilityName" header="对象名称"></p-column>
         <p-column header="开始时间">
           <ng-template pTemplate="body" let-rowData="rowData">

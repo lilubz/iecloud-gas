@@ -9,7 +9,7 @@ import { SearchComponent } from './search/search.component';
 @NgModule({
   imports: [
     SharedModule,
-    CarRoutingModule,
+    // CarRoutingModule,
   ],
   declarations: [
     CarComponent,

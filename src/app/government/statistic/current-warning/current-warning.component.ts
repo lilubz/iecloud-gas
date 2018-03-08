@@ -35,7 +35,7 @@ export class CurrentWarningComponent implements OnInit {
         value: '3'
       },
       {
-        label: '运输车',
+        label: '直销车',
         value: '5'
       },
     ],

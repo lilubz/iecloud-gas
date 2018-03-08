@@ -65,7 +65,7 @@ export class AffairDetailsComponent implements OnInit {
       this.getDetails({ transactionBasicNumber: this.id });
       this.getTodo({ transactionBasicNumber: this.id });
     } else {
-      throw new Error('查询参数不能为空');
+      // throw new Error('查询参数不能为空');
     }
   }
   onSubmit(file) {
