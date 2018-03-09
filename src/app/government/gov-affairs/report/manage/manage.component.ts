@@ -6,12 +6,13 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../../../common/date-localization';
 import { API } from '../../../../../app/common/api';
 import * as moment from 'moment';
+import { ConfirmationService } from 'primeng/primeng';
 
 @Component({
   selector: 'gas-manage',
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.scss'],
-  providers: [ManageService]
+  providers: [ManageService, ConfirmationService]
 })
 export class ManageComponent implements OnInit {
   zh = zh_CN;
@@ -37,7 +38,8 @@ export class ManageComponent implements OnInit {
   };
   constructor(
     private _service: ManageService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -80,7 +82,16 @@ export class ManageComponent implements OnInit {
       formData.set('reportCommitInitialDate', moment(this.formModel.initTime).format('YYYY-MM-DD HH:mm:ss'));
       this.sendForm(formData);
     }
-
+  }
+  confirmDelete(rowData?) {
+    this.confirmationService.confirm({
+      message: '你确定要删除此报表吗?',
+      accept: () => {
+        this.sendDelete({
+          corpReportManagementId: rowData.corpReportManagementId
+        });
+      }
+    });
   }
   onCancel() {
     this.visible = false;
@@ -120,6 +131,22 @@ export class ManageComponent implements OnInit {
           this.getDataTableList({
             pageSize: this.dataTable.pageSize,
             pageNumber: this.dataTable.pageNumber
+          });
+          this.visible = false;
+          this.messageService.add({ severity: 'success', summary: '操作成功', detail: data.msg });
+        } else {
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        }
+      });
+  }
+  sendDelete(params?) {
+    this._service.deleteReport(params)
+      .then(data => {
+        if (data.status === 0) {
+          this.dataTable.first = 0;
+          this.getDataTableList({
+            pageSize: this.dataTable.pageSize,
+            pageNumber: 1
           });
           this.visible = false;
           this.messageService.add({ severity: 'success', summary: '操作成功', detail: data.msg });

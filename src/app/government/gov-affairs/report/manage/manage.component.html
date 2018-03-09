@@ -30,6 +30,11 @@
             <span>{{rowData.reportCommitIntervalTime}}天</span>
           </ng-template>
         </p-column>
+        <p-column [style]="{'width':'60px'}" header="操作">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <button pButton type="button" (click)="confirmDelete(rowData)" label="删除"></button>
+          </ng-template>
+        </p-column>
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
             未查询到数据
@@ -110,4 +115,5 @@
       </form>
     </p-dialog>
   </div>
+  <p-confirmDialog header="请确认" icon="fa fa-question-circle" width="425"></p-confirmDialog>
 </div>
