@@ -1,3 +1,4 @@
+import { Util } from './../../../../core/util';
 import { Component, OnInit } from '@angular/core';
 import { CylinderOverviewService } from '../../../archive/cylinder/cylinder-overview/cylinder-overview.service';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -27,7 +28,8 @@ export class EnterpriseComponent implements OnInit {
   constructor(
     private cylinderOverviewService: CylinderOverviewService,
     private messageService: MessageService,
-    private userStateService: UserStateService
+    private userStateService: UserStateService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -63,6 +65,16 @@ export class EnterpriseComponent implements OnInit {
         this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
         this.loading = false;
       });
+  }
+
+  exportEnterpriseStatistic() {
+    this.cylinderOverviewService.getCylinderEnterpriseOverviewByOrganizationId({
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
+      }
+    });
   }
 
   // TODO:这里可能会有性能问题，因为首次加载会执行20次（4次调用*5列），再次点击会执行10次

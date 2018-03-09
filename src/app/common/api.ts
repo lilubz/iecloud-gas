@@ -235,6 +235,7 @@ export const API = {
   'dispatcherSendAndReceiveCount': URL + 'statisticalQuery/gasCylinders/dispatcherSendAndReceiveCount.do',
   'getUserInfoImprecise': URL + 'basicInformation/gcUserInfo/getUserInfoImprecise.do',
   'listGasCylinderBySupplyStationNumber': URL + 'basicInformation/gasCylinder/listGasCylinderBySupplyStationNumber.do',
+  'listGcNewAddCount': URL + 'statisticalQuery/gasCylinders/listGcNewAddCount.do', // 统计最近新增气瓶和新增气瓶异常数量
 
 
   'listCollaborativeInfo': URL + 'corpBusiness/collaborative/listCollaborativeInfo.do', // 16.获取协同企业列表

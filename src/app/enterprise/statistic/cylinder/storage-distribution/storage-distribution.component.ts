@@ -1,5 +1,4 @@
 import { MessageService } from 'primeng/components/common/messageservice';
-import { StatisticCylinderService } from './../statistic-cylinder.service';
 import { CommonRequestService } from './../../../../core/common-request.service';
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
@@ -7,6 +6,8 @@ import { StorageDistributionStatistic } from './StorageDistributionStatistic.mod
 import { zh_CN } from '../../../../common/date-localization';
 import { StorageDistributionCirculation } from './StorageDistributionCirculation.model';
 import * as moment from 'moment';
+import { StatisticCylinderService } from '../../../../government/statistic/cylinder/statistic-cylinder.service';
+import { Util } from '../../../../core/util';
 @Component({
   selector: 'gas-storage-distribution',
   templateUrl: './storage-distribution.component.html',
@@ -30,7 +31,8 @@ export class StorageDistributionComponent implements OnInit {
   constructor(
     private commonRequestService: CommonRequestService,
     private statisticCylinderService: StatisticCylinderService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private util: Util
   ) {
 
   }
@@ -80,7 +82,7 @@ export class StorageDistributionComponent implements OnInit {
     });
   }
 
-
+  // 查询气瓶统计
   searchStorageDistributionStatistic() {
     this.statisticCylinderService.getStorageDistributionCount().then(data => {
       if (data.status === 0) {
@@ -115,6 +117,33 @@ export class StorageDistributionComponent implements OnInit {
       this.circulationLoading = false;
     }).catch(error => {
       this.circulationLoading = false;
+    });
+  }
+
+  exportFillingStationStatistic() {
+    this.statisticCylinderService.getStorageDistributionCount({
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
+      }
+    });
+  }
+
+  exportFillingStationCirculationStatistic() {
+    if (this.circulationBeginTime > this.circulationEndTime) {
+      this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
+      return false;
+    }
+
+    this.statisticCylinderService.getStorageDistributionCirculation({
+      startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
+      endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00',
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
+      }
     });
   }
 

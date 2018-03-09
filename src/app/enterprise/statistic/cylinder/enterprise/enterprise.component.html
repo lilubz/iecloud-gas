@@ -1,7 +1,11 @@
 <div class="ui-g-12">
   <h3>企业气瓶统计</h3>
+  <div class="ui-g">
+    <!-- <div class="ui-g-12">
+      <button pButton type="button" (click)="exportEnterpriseStatistic()" class="ui-button-info right" label="导出"></button>
+    </div> -->
+  </div>
   <p-dataTable [value]="countyCylinders" [styleClass]="" [loading]="loading" emptyMessage="未查询到数据">
-
     <p-column header="序号" [style]="{'width':'80px'}">
       <ng-template pTemplate="body" let-index="rowIndex">
         {{index + 1}}

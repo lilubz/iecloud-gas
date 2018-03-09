@@ -17,7 +17,7 @@ export class HttpService {
   ) { }
 
   // 重封装get请求
-  getRequest(url, data) {
+  getRequest = (url, data) => {
     return this.http.get(url + '?' + this.transformRequest(data))
       .toPromise()
       .then(res => this.httpStatusFilter(res))
@@ -25,7 +25,7 @@ export class HttpService {
   }
 
   // 重封装delete请求
-  delete(url, data) {
+  delete = (url, data) => {
     return this.http.delete(url + '?' + this.transformRequest(data))
       .toPromise()
       .then(res => this.httpStatusFilter(res))
@@ -33,7 +33,7 @@ export class HttpService {
   }
 
   // 重封装post请求
-  JSONPostRequest(url, data, options?: RequestOptionsArgs) {
+  JSONPostRequest = (url, data, options?: RequestOptionsArgs) => {
     return this.http
       .post(url, JSON.stringify(data), options)
       .toPromise()
@@ -42,7 +42,7 @@ export class HttpService {
   }
 
   // 重封装post请求，参数序列化
-  formPostRequest(url, data) {
+  formPostRequest = (url, data) => {
     return this.http
       .post(url, this.transformRequest(data), { headers: this.formHeaders })
       .toPromise()
@@ -51,7 +51,7 @@ export class HttpService {
   }
 
   // 重封装post请求，不修改content-type请求头
-  formDataPostRequest(url, data, options?: RequestOptionsArgs) {
+  formDataPostRequest = (url, data, options?: RequestOptionsArgs) => {
     return this.http
       .post(url, data)
       .toPromise()
@@ -60,17 +60,17 @@ export class HttpService {
   }
 
   // 重封装post请求，允许cookie，参数序列化
-  withCredentialsPostRequest(url, data, options?: RequestOptionsArgs) {
+  withCredentialsPostRequest = (url, data, options?: RequestOptionsArgs) => {
     return this.http
       .post(url, this.transformRequest(data),
-      Object.assign({}, { headers: this.formHeaders, withCredentials: true }, options))
+        Object.assign({}, { headers: this.formHeaders, withCredentials: true }, options))
       .toPromise()
       .then(res => this.httpStatusFilter(res))
       .catch(error => this.handleError(error));
   }
 
   // 重封装post请求，允许cookie，参数序列化
-  withCredentialsPost(url, data) {
+  withCredentialsPost = (url, data) => {
     return this.http
       .post(url, this.transformRequest(data), {
         headers: this.formHeaders,

@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../../../../common/date-localization';
 import { StatisticCylinderService } from './../../statistic-cylinder.service';
 import * as moment from 'moment';
+import { Util } from '../../../../../core/util';
 
 @Component({
   selector: 'gas-dispatcher-details',
@@ -108,6 +109,7 @@ export class DispatcherDetailsComponent implements OnInit {
     private router: Router,
     private _service: StatisticCylinderService,
     public messageService: MessageService,
+    private util: Util
   ) { }
   ngOnInit() {
     if (this.routerInfo.queryParams['value'].id) {
@@ -182,4 +184,18 @@ export class DispatcherDetailsComponent implements OnInit {
       });
   }
 
+  exportDispathcerStatistic = () => {
+    this._service.dispatcherSendAndReceiveCount({
+      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
+      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      enterpriseNumber: this.id,
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+      }
+    });
+  }
 }

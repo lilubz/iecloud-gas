@@ -25,6 +25,11 @@ export class CylinderOverviewService implements CanActivate {
       .getRequest(API.getCylinderCountiesOverview, params);
   }
 
+  exportCountiesOverview(): Promise<any> {
+    return this.httpService
+      .getRequest(API.getCylinderCountiesOverview, { resultType: 'excel' });
+  }
+
   getCylinderEnterpriseOverviewByAreaId(params: any): Promise<any> {
     return this.httpService
       .getRequest(API.getCylinderEnterpriseOverviewByAreaId, params);

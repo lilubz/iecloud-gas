@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { CylinderOverviewService } from './enterprise.service';
 import { Params } from '@angular/router';
+import { Util } from '../../../core/util';
 @Component({
   selector: 'gas-enterprise',
   templateUrl: './enterprise.component.html',
@@ -25,7 +26,7 @@ export class EnterpriseComponent implements OnInit {
     private messageService: MessageService,
     private cylinderOverviewService: CylinderOverviewService,
     private userStateService: UserStateService,
-
+    private util: Util,
   ) { }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class EnterpriseComponent implements OnInit {
     });
   }
 
+  // 获取企业信息统计
   getBusinessId() {
     this.cylinderOverviewService.getBusinessOverview({
       regionId: this.selectedCities, // 根据参数返回
@@ -55,6 +57,18 @@ export class EnterpriseComponent implements OnInit {
         this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
       }
       this.loading = false;
+    });
+  }
+
+  // 导出企业信息统计
+  exportEnterpriseStatistic() {
+    this.cylinderOverviewService.getBusinessOverview({
+      regionId: this.selectedCities, // 根据参数返回
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
+      }
     });
   }
 

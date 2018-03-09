@@ -7,6 +7,7 @@ import { StorageDistributionStatistic } from './StorageDistributionStatistic.mod
 import { zh_CN } from '../../../../common/date-localization';
 import { StorageDistributionCirculation } from './StorageDistributionCirculation.model';
 import * as moment from 'moment';
+import { Util } from '../../../../core/util';
 @Component({
   selector: 'gas-storage-distribution',
   templateUrl: './storage-distribution.component.html',
@@ -31,7 +32,8 @@ export class StorageDistributionComponent implements OnInit {
   constructor(
     private commonRequestService: CommonRequestService,
     private statisticCylinderService: StatisticCylinderService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private util: Util
   ) {
 
   }
@@ -81,7 +83,6 @@ export class StorageDistributionComponent implements OnInit {
     });
   }
 
-
   searchStorageDistributionStatistic() {
     this.statisticCylinderService.getStorageDistributionCount().then(data => {
       if (data.status === 0) {
@@ -98,25 +99,46 @@ export class StorageDistributionComponent implements OnInit {
 
   // 查询流通统计
   searchStorageDistributionCirculations() {
+    if (this.checkForm()) {
+      this.statisticCylinderService.getStorageDistributionCirculation({
+        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
+        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00'
+      }).then(data => {
+        if (data.status === 0) {
+          this.storageDistributionCirculations = data.data;
+          this.selectCirculationRegion(this.selectedCirculationRegion);
+        } else {
+          this.messageService.add({ severity: 'warn', summary: '获取储配站气瓶流通统计数据失败', detail: data.msg });
+        }
+        this.circulationLoading = false;
+      }).catch(error => {
+        this.circulationLoading = false;
+      });
+    }
+  }
+
+  // 导出流通统计
+  exportFillingStationCirculationStatistic = () => {
+    if (this.checkForm()) {
+      this.statisticCylinderService.getStorageDistributionCirculation({
+        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
+        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00',
+        resultType: 'excel'
+      }).then(data => {
+        if (data.status === 0) {
+          this.util.downloadFile(data.data);
+        } else {
+          this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+        }
+      });
+    }
+  }
+
+  checkForm(): boolean {
     if (this.circulationBeginTime > this.circulationEndTime) {
       this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
       return false;
     }
-
-    this.statisticCylinderService.getStorageDistributionCirculation({
-      startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00'
-    }).then(data => {
-      if (data.status === 0) {
-        this.storageDistributionCirculations = data.data;
-        this.selectCirculationRegion(this.selectedCirculationRegion);
-      } else {
-        this.messageService.add({ severity: 'warn', summary: '获取储配站气瓶流通统计数据失败', detail: data.msg });
-      }
-      this.circulationLoading = false;
-    }).catch(error => {
-      this.circulationLoading = false;
-    });
+    return true;
   }
-
 }

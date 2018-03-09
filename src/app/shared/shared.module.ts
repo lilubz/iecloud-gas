@@ -42,6 +42,7 @@ import { DistrictsComponent } from './districts/districts.component';
 import { PermissionRoleDirective } from './permission-role.directive';
 import { DispatcherAutocompleteComponent } from './dispatcher-autocomplete/dispatcher-autocomplete.component';
 import { DateFormat } from './dateFormat.pipe';
+import { ExportFileDirective } from './export-file.directive';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
@@ -90,6 +91,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     PermissionRoleDirective,
     DispatcherAutocompleteComponent,
     DateFormat,
+    ExportFileDirective,
     BreadcrumbComponent
   ],
 
@@ -138,6 +140,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     PermissionRoleDirective,
     DispatcherAutocompleteComponent,
     DateFormat,
+    ExportFileDirective,
     BreadcrumbComponent
   ]
 })

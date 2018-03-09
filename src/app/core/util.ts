@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import * as moment from 'moment';
+import { API } from '../common/api';
 
 /**
  * 工具类--提供常用方法
@@ -10,6 +11,13 @@ import * as moment from 'moment';
  */
 @Injectable()
 export class Util {
+  private renderer: Renderer2;
+
+  constructor(
+    private rendererFactory: RendererFactory2,
+  ) {
+    this.renderer = rendererFactory.createRenderer(null, null);
+  }
 
   /**
    * 计算对象数组中某属性值之和
@@ -59,5 +67,19 @@ export class Util {
       }
     }
     return weekRangeOfMonth;
+  }
+
+  /**
+   * 下载文件
+   * 2018-03-07 14:40:20
+   * @memberof Util
+   */
+  downloadFile = (path: string) => {
+    var $form = this.renderer.createElement('form');
+    this.renderer.setAttribute($form, 'menthod', 'get');
+    this.renderer.setAttribute($form, 'action', API.url + path);
+    this.renderer.appendChild(document.body, $form);
+    $form.submit();
+    this.renderer.removeChild(document.body, $form);
   }
 }

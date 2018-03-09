@@ -1,10 +1,11 @@
+import { Util } from './../../../../core/util';
 import { Component, OnInit } from '@angular/core';
 import { zh_CN } from '../../../../common/date-localization';
 import { SelectItem } from 'primeng/primeng';
 import { CommonRequestService } from '../../../../core/common-request.service';
-import { StatisticCylinderService } from '../statistic-cylinder.service';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { StatisticCylinderService } from '../../../../government/statistic/cylinder/statistic-cylinder.service';
 
 @Component({
   selector: 'gas-cylinder-storage',
@@ -48,7 +49,8 @@ export class CylinderStorageComponent implements OnInit {
   constructor(
     private commonRequestService: CommonRequestService,
     private statisticCylinderService: StatisticCylinderService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private util: Util
   ) {
 
   }
@@ -146,6 +148,7 @@ export class CylinderStorageComponent implements OnInit {
       this.circulationLoading = false;
     });
   }
+
   listGasCylinderBySupplyStationNumber(params?) {
     this.statisticCylinderService.listGasCylinderBySupplyStationNumber(params).then(data => {
       if (data.status === 0) {
@@ -156,6 +159,33 @@ export class CylinderStorageComponent implements OnInit {
         this.dialogDataTable.list = [];
         this.dialogDataTable.total = 0;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+      }
+    });
+  }
+
+  exportSupplyStationStatistic() {
+    this.statisticCylinderService.getCylinderStorageCount({
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
+      }
+    });
+  }
+
+  exportSupplyStationCirculationStatistic() {
+    if (this.circulationBeginTime > this.circulationEndTime) {
+      this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
+      return false;
+    }
+
+    this.statisticCylinderService.getCylinderStorageCirculation({
+      startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
+      endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00',
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
       }
     });
   }
