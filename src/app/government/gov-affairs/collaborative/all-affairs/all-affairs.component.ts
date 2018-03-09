@@ -113,10 +113,6 @@ zh = zh_CN;
           this.dropdown.department = this.dropdown.default.concat([]);
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.department = this.dropdown.default.concat([]);
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 
@@ -133,11 +129,6 @@ zh = zh_CN;
           this.dataTable.total = 0;
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dataTable.list = [];
-        this.dataTable.total = 0;
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getDropdownAffairsType() {
@@ -150,10 +141,6 @@ zh = zh_CN;
           this.dropdown.affairsType = this.dropdown.default.concat([]);
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.affairsType = this.dropdown.default.concat([]);
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 }

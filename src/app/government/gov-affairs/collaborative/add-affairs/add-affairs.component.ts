@@ -237,9 +237,6 @@ export class AddAffairsComponent implements OnInit {
         } else {
           this.suggestions = [];
         }
-      }).catch(error => {
-        this.suggestions = [];
-        throw error;
       });
   }
   getMultiSelectDepartment() {
@@ -254,10 +251,6 @@ export class AddAffairsComponent implements OnInit {
           this.multiSelect.department = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.multiSelect.department = [];
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getMultiSelectCompany() {
@@ -272,10 +265,6 @@ export class AddAffairsComponent implements OnInit {
           this.multiSelect.company = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.multiSelect.company = [];
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getDropdownRegion() {
@@ -292,10 +281,6 @@ export class AddAffairsComponent implements OnInit {
           this.dropdown.region = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.region = [];
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getDropdownAffairsType() {
@@ -307,10 +292,6 @@ export class AddAffairsComponent implements OnInit {
           this.dropdown.affairsType = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.affairsType = [];
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getDropdownOrigin() {
@@ -326,10 +307,6 @@ export class AddAffairsComponent implements OnInit {
           this.dropdown.origin = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.origin = [];
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 
@@ -342,9 +319,6 @@ export class AddAffairsComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 }

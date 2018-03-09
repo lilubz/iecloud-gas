@@ -33,8 +33,6 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     if (this.routerInfo.queryParams['value'].id) {
       this.id = this.routerInfo.queryParams['value'].id;
-    } else {
-      // throw new Error('查询参数不能为空');
     }
   }
   onPageChange(event) {

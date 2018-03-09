@@ -91,10 +91,6 @@ export class UserCardComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.regionOpt = this.dropdown.default;
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getUserCardInfo(params?) {
@@ -108,11 +104,6 @@ export class UserCardComponent implements OnInit {
           this.dataTable.total = 0;
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dataTable.list = [];
-        this.dataTable.total = 0;
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 
@@ -125,9 +116,6 @@ export class UserCardComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 }

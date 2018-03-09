@@ -115,8 +115,6 @@ export class DispatcherDetailsComponent implements OnInit {
     if (this.routerInfo.queryParams['value'].id) {
       this.id = this.routerInfo.queryParams['value'].id;
       this.onSubmit();
-    } else {
-      throw new Error('查询参数不能为空');
     }
   }
 

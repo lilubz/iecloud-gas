@@ -138,10 +138,6 @@ export class MyAffairsComponent implements OnInit {
           this.dropdown.region = this.dropdown.default.concat([]);
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.region = this.dropdown.default.concat([]);
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getDropdownOrigin() {
@@ -156,10 +152,6 @@ export class MyAffairsComponent implements OnInit {
           this.dropdown.origin = this.dropdown.default.concat([]);
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.origin = this.dropdown.default.concat([]);
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getDropdownAffairsType() {
@@ -172,10 +164,6 @@ export class MyAffairsComponent implements OnInit {
           this.dropdown.affairsType = this.dropdown.default.concat([]);
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dropdown.affairsType = this.dropdown.default.concat([]);
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getDataTableList(params?) {
@@ -190,11 +178,6 @@ export class MyAffairsComponent implements OnInit {
           this.dataTable.total = 0;
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dataTable.list = [];
-        this.dataTable.total = 0;
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 }
