@@ -1,0 +1,8 @@
+<div class="breadcrumb">
+  <ng-template ngFor let-breadcrumb [ngForOf]="breadcrumbs" let-last=last>
+    <div class="breadcrumb-item" *ngIf="breadcrumb.label.title" [ngClass]="{active: last}">
+      <a *ngIf="!last" [routerLink]="breadcrumb.url">{{breadcrumb.label.title}}</a>
+      <span *ngIf="last" [routerLink]="breadcrumb.url">{{breadcrumb.label.title}}</span>
+    </div>
+  </ng-template>
+</div>

@@ -37,6 +37,7 @@ export const GovernmentMenus: MenuItem[] = [
       // { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
       { label: '报表管理', routerLink: ['/government/gov-affairs/report'] },
       { label: '协同管理', routerLink: ['/government/gov-affairs/collaborative'] },
+      { label: '设置气瓶阈值', routerLink: ['/government/gov-affairs/cylinder-warning'] },
     ]
   },
   {
@@ -44,6 +45,7 @@ export const GovernmentMenus: MenuItem[] = [
     icon: 'menu-icon visualization-icon',
     routerLink: ['/government/visualization'],
     items: [
+      { label: '大屏展示', routerLink: ['/government/visualization/big-screen'] },
       { label: '视频监控', routerLink: ['/government/visualization/video-monitor'] },
       { label: '单兵执法', routerLink: ['/government/visualization/single-solider'] },
     ]
@@ -56,6 +58,8 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '气瓶', routerLink: ['/government/statistic/cylinder'] },
       { label: '企业', routerLink: ['/government/statistic/enterprise'] },
       { label: '执法', routerLink: ['/government/statistic/affair'] },
+      { label: '实时预警', routerLink: ['/government/statistic/current-warning'] },
+      { label: '历史预警', routerLink: ['/government/statistic/history-warning'] },
     ]
   },
   {
@@ -126,7 +130,8 @@ export const EnterpriseMenus: MenuItem[] = [
     routerLink: ['/enterprise/enterprise-supervise'],
     items: [
       { label: '报表管理', routerLink: ['/enterprise/enterprise-supervise/report'] },
-      { label: '事务处理', routerLink: ['/enterprise/enterprise-supervise/affair-list'] }
+      { label: '事务处理', routerLink: ['/enterprise/enterprise-supervise/affair-list'] },
+      { label: '重瓶定价', routerLink: ['/enterprise/enterprise-supervise/repricing-rist'] }
     ]
   },
   {

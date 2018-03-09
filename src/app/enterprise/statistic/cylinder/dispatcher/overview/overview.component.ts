@@ -1,5 +1,4 @@
 import { UserStateService } from './../../../../../core/userState.service';
-import { StatisticCylinderService } from './../../statistic-cylinder.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CommonRequestService } from './../../../../../core/common-request.service';
 import { SelectItem } from 'primeng/primeng';
@@ -8,6 +7,7 @@ import { Util } from '../../../../../core/util';
 import * as echarts from 'echarts';
 import { zh_CN } from './../../../../../common/date-localization';
 import * as moment from 'moment';
+import { StatisticCylinderService } from '../../../../../government/statistic/cylinder/statistic-cylinder.service';
 @Component({
   selector: 'gas-dispatcher-overview',
   templateUrl: './overview.component.html',
@@ -196,6 +196,19 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     // this.render();
   }
 
+  exportDispatcherStatistic() {
+    this.statisticCylinderService.corpDispatcherSendAndReceiveList({
+      startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
+      endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      regionId: this.formModel.regionId,
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.utilService.downloadFile(data.data);
+      }
+    });
+  }
+
   // 获取配送量统计
   getDeliveryStatistic() {
     this.statisticCylinderService.getDeliveryStatistic({
@@ -277,7 +290,8 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         type: 'bar',
         color: '#FC9738',
         data: data
-      }]
+      }],
+      color: ['#d87c7c'],
     };
 
     // 使用刚指定的配置项和数据显示图表。

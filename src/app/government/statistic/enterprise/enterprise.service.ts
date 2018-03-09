@@ -12,7 +12,7 @@ export class CylinderOverviewService {
   constructor(private httpService: HttpService, private userStateService: UserStateService, private router: Router) { }
 
   // 企业
-  getBusinessOverview(params?: any): Promise<any> {
+  getBusinessOverview(params?: { regionId: string, resultType?: string }): Promise<any> {
     return this.httpService
       .getRequest(API.BusinessInformation, params);
   }

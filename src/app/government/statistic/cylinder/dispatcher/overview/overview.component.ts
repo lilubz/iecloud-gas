@@ -3,7 +3,7 @@ import { StatisticCylinderService } from './../../statistic-cylinder.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CommonRequestService } from './../../../../../core/common-request.service';
 import { SelectItem } from 'primeng/primeng';
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Util } from '../../../../../core/util';
 import * as echarts from 'echarts';
 import { zh_CN } from './../../../../../common/date-localization';
@@ -14,7 +14,7 @@ import * as moment from 'moment';
   styleUrls: ['./overview.component.scss'],
   providers: [StatisticCylinderService]
 })
-export class OverviewComponent implements OnInit, AfterViewInit {
+export class OverviewComponent implements OnInit {
   zh = zh_CN;
   dropdown: any = {
     timeType: [
@@ -145,8 +145,9 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     });
 
     this.loading = true;
-    this.getDispatcherCylinder();
+    // this.getDispatcherCylinder();
   }
+
   onDropdownTimeTypeChange() {
     if (this.formModel.timeType) {
       this.formModel.startTime = moment().subtract(this.formModel.timeType.count, this.formModel.timeType.unit)['_d'];
@@ -155,6 +156,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     }
     this.formModel.endTime = moment()['_d'];
   }
+
   onSubmit() {
     this.loading = true;
     this.getDataTableList({
@@ -165,6 +167,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     Object.assign(this.pageParams, this.formModel);
     this.dataTable.first = 0;
   }
+
   onPageChange($event) {
     this.dataTable.list = [];
     this.onPageChange = event => {
@@ -179,6 +182,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       });
     };
   }
+
   getDataTableList(params?) {
     this.statisticCylinderService.corpDispatcherSendAndReceiveList(params)
       .then(data => {
@@ -192,8 +196,21 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         }
       });
   }
-  ngAfterViewInit() {
-    // this.render();
+
+  // 导出送气工统计
+  exportDispathcerStatistic() {
+    this.statisticCylinderService.corpDispatcherSendAndReceiveList({
+      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
+      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      regionId: this.formModel.regionId,
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.utilService.downloadFile(data.data);
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+      }
+    });
   }
 
   // 获取配送量统计
@@ -278,7 +295,8 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         type: 'bar',
         color: '#FC9738',
         data: data
-      }]
+      }],
+      color: ['#d87c7c'],
     };
 
     // 使用刚指定的配置项和数据显示图表。

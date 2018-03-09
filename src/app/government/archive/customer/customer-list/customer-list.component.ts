@@ -174,12 +174,6 @@ export class CustomerListComponent implements OnInit {
           this.dataTable.first = 0;
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dataTable.list = [];
-        this.dataTable.total = 0;
-        this.dataTable.first = 0;
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 
@@ -194,10 +188,6 @@ export class CustomerListComponent implements OnInit {
         this.dropdown.corp = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    }).catch(error => {
-      this.dropdown.corp = this.dropdown.default;
-      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-      throw error;
     });
   }
 
@@ -212,10 +202,6 @@ export class CustomerListComponent implements OnInit {
         this.dropdown.userNature = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    }).catch(error => {
-      this.dropdown.userNature = this.dropdown.default;
-      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-      throw error;
     });
   }
 
@@ -230,10 +216,6 @@ export class CustomerListComponent implements OnInit {
         this.dropdown.userType = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    }).catch(error => {
-      this.dropdown.userType = this.dropdown.default;
-      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-      throw error;
     });
   }
 
@@ -248,10 +230,6 @@ export class CustomerListComponent implements OnInit {
         this.dropdown.region = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    }).catch(error => {
-      this.dropdown.region = this.dropdown.default;
-      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-      throw error;
     });
   }
 }

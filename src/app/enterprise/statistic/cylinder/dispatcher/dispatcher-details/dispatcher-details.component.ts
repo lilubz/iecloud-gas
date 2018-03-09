@@ -1,10 +1,11 @@
+import { Util } from './../../../../../core/util';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../../../../common/date-localization';
-import { StatisticCylinderService } from './../../statistic-cylinder.service';
 import * as moment from 'moment';
+import { StatisticCylinderService } from '../../../../../government/statistic/cylinder/statistic-cylinder.service';
 
 @Component({
   selector: 'gas-dispatcher-details',
@@ -108,13 +109,13 @@ export class DispatcherDetailsComponent implements OnInit {
     private router: Router,
     private _service: StatisticCylinderService,
     public messageService: MessageService,
+    public util: Util,
   ) { }
+
   ngOnInit() {
     if (this.routerInfo.queryParams['value'].id) {
       this.id = this.routerInfo.queryParams['value'].id;
       this.onSubmit();
-    } else {
-      throw new Error('查询参数不能为空');
     }
   }
 
@@ -183,4 +184,17 @@ export class DispatcherDetailsComponent implements OnInit {
       });
   }
 
+  exportDispatcherDetailStatistic() {
+    this._service.dispatcherSendAndReceiveCount({
+      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
+      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      enterpriseNumber: this.id,
+      resultType: 'excel'
+    }).then(data => {
+      this.loading = false;
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
+      }
+    });
+  }
 }

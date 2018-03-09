@@ -26,45 +26,26 @@ const routes: Routes = [
       {
         path: 'archive',
         loadChildren: './archive/archive-enterprise.module#ArchiveModule',
-        // component: PageNotFoundComponent,
-        data: {
-          title: '基础档案'
-        }
       },
       {
         path: 'delivery',
         loadChildren: './delivery/delivery-enterprise.module#DeliveryModule',
-        data: {
-          title: '监管查询'
-        }
       },
       {
         path: 'statistic',
         loadChildren: './statistic/statistic-enterprise.module#StatisticModule',
-        data: {
-          title: '统计查询'
-        }
       },
       {
         path: 'system',
         loadChildren: './system/system-enterprise.module#SystemModule',
-        data: {
-          title: '系统管理'
-        }
       },
       {
         path: 'enterprise-supervise',
         loadChildren: './enterprise-supervise/enterprise-supervise.module#EnterpriseSuperviseModule',
-        data: {
-          title: '企业监管'
-        }
       },
       {
         path: 'input',
         loadChildren: './input/input-enterprise.module#InputModule',
-        data: {
-          title: '信息录入'
-        }
       },
     ]
   },

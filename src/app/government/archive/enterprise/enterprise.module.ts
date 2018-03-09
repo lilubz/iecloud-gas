@@ -6,20 +6,20 @@ import { EnterpriseDetailComponent } from './enterprise-detail/enterprise-detail
 import { EnterpriseDetailService } from './enterprise-detail/enterprise-detail.service';
 
 @NgModule({
-    declarations: [
-        EnterpriseComponent,
-        EnterpriseDetailComponent,
-        // TODO: add components
-        // DemoComponent
-    ],
-    imports: [
-        EnterpriseRoutingModule,
-        SharedModule,
-    ],
-    providers: [
-      EnterpriseDetailService
-        // TODO: and services
-        // DemoService
-    ]
+  declarations: [
+    EnterpriseComponent,
+    EnterpriseDetailComponent,
+    // TODO: add components
+    // DemoComponent
+  ],
+  imports: [
+    SharedModule,
+    // EnterpriseRoutingModule,
+  ],
+  providers: [
+    EnterpriseDetailService
+    // TODO: and services
+    // DemoService
+  ]
 })
 export class EnterpriseModule { }

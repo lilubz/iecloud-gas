@@ -10,20 +10,27 @@ import { EnterpriseComponent as CylinderEnterpriseComponent } from './cylinder/e
 import { CylinderStorageComponent } from './cylinder/cylinder-storage/cylinder-storage.component';
 import { StorageDistributionComponent } from './cylinder/storage-distribution/storage-distribution.component';
 import { CustomerComponent } from './cylinder/customer/customer.component';
+import { CurrentWarningComponent } from './current-warning/current-warning.component';
+import { HistoryWarningComponent } from './history-warning/history-warning.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'cylinder',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
-    component: StatisticComponent,
+    data: {
+      title: '统计分析'
+    },
     children: [
+      {
+        path: '',
+        redirectTo: 'cylinder',
+        pathMatch: 'full'
+      },
       {
         path: 'cylinder',
         component: CylinderComponent,
+        data: {
+          title: '气瓶统计'
+        },
         children: [
           {
             path: '',
@@ -32,19 +39,31 @@ const routes: Routes = [
           },
           {
             path: 'enterprise',
-            component: CylinderEnterpriseComponent
+            component: CylinderEnterpriseComponent,
+            data: {
+              title: '企业统计'
+            }
           },
           {
             path: 'cylinder-storage',
-            component: CylinderStorageComponent
+            component: CylinderStorageComponent,
+            data: {
+              title: '供应站统计'
+            }
           },
           {
             path: 'storage-distribution',
-            component: StorageDistributionComponent
+            component: StorageDistributionComponent,
+            data: {
+              title: '储配站统计'
+            }
           },
           {
             path: 'customer',
-            component: CustomerComponent
+            component: CustomerComponent,
+            data: {
+              title: '燃气用户统计'
+            }
           },
           {
             path: 'dispatcher',
@@ -54,18 +73,38 @@ const routes: Routes = [
       },
       {
         path: 'enterprise',
-        component: EnterpriseComponent
+        component: EnterpriseComponent,
+        data: {
+          title: '企业统计'
+        }
       },
       {
         path: 'affair',
-        component: AffairComponent
+        component: AffairComponent,
+        data: {
+          title: '执法事务统计'
+        }
+      },
+      {
+        path: 'current-warning',
+        component: CurrentWarningComponent,
+        data: {
+          title: '实时预警'
+        }
+      },
+      {
+        path: 'history-warning',
+        redirectTo: 'history-warning/1',
+        pathMatch: 'full'
+      },
+      {
+        path: 'history-warning/:type',
+        component: HistoryWarningComponent,
+        data: {
+          title: '历史预警'
+        }
       },
     ]
-  },
-  {
-    path: '**',
-    redirectTo: 'cylinder',
-    pathMatch: 'full'
   }
 ];
 

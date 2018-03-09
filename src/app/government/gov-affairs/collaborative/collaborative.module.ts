@@ -15,7 +15,7 @@ import { AddAffairsComponent } from './add-affairs/add-affairs.component';
   imports: [
     CommonModule,
     SharedModule,
-    CollaborativeRoutingModule
+    // CollaborativeRoutingModule
   ],
   declarations: [
     CollaborativeComponent,

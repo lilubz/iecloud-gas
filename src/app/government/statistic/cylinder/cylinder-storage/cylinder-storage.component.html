@@ -4,6 +4,8 @@
     <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
       <label for="" class="search-label">区域选择：</label>
       <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
+      <!-- <button pButton type="button" gasExportFile [request]="statisticCylinderService.getCylinderStorageCount" class="ui-button-info right"
+      label="导出"></button> -->
     </div>
     <p-dataTable [value]="cylinderStorageFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
       [loading]="cylinderLoading" emptyMessage="未查询到数据">
@@ -53,6 +55,7 @@
         <div class="ui-g-12 ui-lg-12">
           <button pButton class="searchBtn" type="button" label="查询" (click)="searchCylinderStorageCirculations()">
           </button>
+          <!-- <button pButton type="button" (click)="exportSupplyStationCirculationStatistic()" class="ui-button-info right" label="导出"></button> -->
         </div>
       </div>
     </div>
@@ -64,7 +67,7 @@
           {{index + 1}}
         </ng-template>
       </p-column> -->
-      <p-column field="stationName" header="供应站" [style]="{'width':'20%'}">
+      <p-column field="stationName" header="供应站" [style]="{'width':'40%'}">
       </p-column>
       <p-column field="fullBottleReceiveCount" header="重瓶入库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
@@ -135,6 +138,9 @@
             <div class="text-left">
               未查询到数据
             </div>
+          </ng-template>
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dialogDataTable.total || 0 }} 条记录
           </ng-template>
         </p-dataTable>
       </div>

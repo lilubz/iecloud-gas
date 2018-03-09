@@ -112,11 +112,38 @@ input {
   .breadcrumb {
     left: $menu-width;
     top: $header-height;
-    width: calc( 100% - 70px);
     right: 0;
     height: $breadcrumb-height;
     background: #fff;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    color: #337ab7;
+    font-weight: bold;
+    padding: 0 20px;
+    .breadcrumb-item {
+      display: inline-block;
+      color: #337ab7;
+      a {
+        color: #337ab7;
+        text-decoration: none;
+        line-height: $breadcrumb-height;
+        &:hover {
+          text-decoration: initial;
+        }
+      }
+      span {
+        line-height: $breadcrumb-height;
+      }
+      +.breadcrumb-item::before {
+        display: inline-block;
+        padding-right: 4px;
+        padding-left: 4px;
+        color: #536c79;
+        content: "/";
+      }
+    }
+    .breadcrumb-item.active {
+      color: #536c79;
+    }
   }
   /* 侧边栏 */
   .sidebar {
@@ -196,6 +223,7 @@ input {
         .ui-menuitem {
           border-bottom: 0 !important;
           border-left: 0;
+          position: relative;
         }
         .ui-menuitem-text {
           color: #f0f0f0; // font-weight: bolder;
@@ -219,6 +247,20 @@ input {
     }
     .ui-state-active {
       background: #31383e !important;
+    }
+
+    .warning-icon{ // 预警小图标
+      display: block;
+    }
+    .warning-icon:after{ // 预警小图标
+      content: '';
+      position: absolute;
+      height:25px;
+      width:25px;
+      right:0;
+      top:0;
+      background-image: url(../assets/img/warning.png);
+      background-size:25px 25px;
     }
   }
   /*右侧内容区*/
@@ -246,11 +288,15 @@ input {
       padding: 1.5em;
       box-sizing: border-box;
       border-radius: 4px;
-    }
-    // .ui-state-default{
+    } // .ui-state-default{
     //   margin: 5px;
     // }
   }
+}
+
+.ui-paginator .ui-paginator-right-content {
+  float: none;
+  display: inline-block;
 }
 
 a {
@@ -263,13 +309,10 @@ a.router-link {
 
 a.router-link-active {
   color: #3399ff;
-}
-
-// .search-group {
+} // .search-group {
 //   margin: 5px 10px;
 //   float: left;
 // }
-
 /* 菜单栏图标 */
 
 .menu-icon {
@@ -330,6 +373,14 @@ a.router-link-active {
   border-color: #D32F2F;
 }
 
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
 /* Login */
 
 .login-body {
@@ -373,7 +424,7 @@ div.esriBasemapGalleryLabelContainer {
 
 ::-webkit-scrollbar {
   width: 8px;
-  height: 12px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb,

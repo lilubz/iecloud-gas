@@ -64,8 +64,6 @@ export class AffairDetailsComponent implements OnInit {
       this.id = this.routerInfo.queryParams['value'].id;
       this.getDetails({ transactionBasicNumber: this.id });
       this.getTodo({ transactionBasicNumber: this.id });
-    } else {
-      throw new Error('查询参数不能为空');
     }
   }
   onSubmit(file) {
@@ -107,10 +105,6 @@ export class AffairDetailsComponent implements OnInit {
           this.details = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.details = {};
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getTodo(params?) {
@@ -123,10 +117,6 @@ export class AffairDetailsComponent implements OnInit {
           this.todo = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.todo = {};
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   sendForm(params?) {
@@ -140,9 +130,6 @@ export class AffairDetailsComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 }

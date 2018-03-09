@@ -1,3 +1,4 @@
+import { StatisticCylinderService } from './../statistic-cylinder.service';
 import { Component, OnInit } from '@angular/core';
 import { CylinderOverviewService } from '../../../archive/cylinder/cylinder-overview/cylinder-overview.service';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -6,6 +7,7 @@ import { SelectItem } from 'primeng/primeng';
 import { zh_CN } from './../../../../common/date-localization';
 
 import * as moment from 'moment';
+import { Util } from '../../../../core/util';
 @Component({
   selector: 'gas-enterprise',
   templateUrl: './enterprise.component.html',
@@ -20,16 +22,13 @@ export class EnterpriseComponent implements OnInit {
     {
       label: '最近一周',
       value: 2
-    },
-    {
+    }, {
       label: '最近一月',
       value: 3
-    },
-    {
+    }, {
       label: '自定义时间',
       value: 4
-    }
-  ];
+    }];
   selectedDateRange = this.dateRange[0].value;
 
   today = new Date();
@@ -37,7 +36,7 @@ export class EnterpriseComponent implements OnInit {
   endTime: Date = new Date();
 
   loading = false;
-  addloading = false;
+  addLoading = false;
 
   countyCylinders: {
     name: string,
@@ -49,51 +48,87 @@ export class EnterpriseComponent implements OnInit {
     regionId: string,
     parentRegionId: string,
   }[] = [];
-  addcountyCylinders: {
+  addCountyCylinders: {
+    id: string,
     name: string,
-    totalCount: number,
-    normalCount: number,
-    expireCount: number,
-    scrapCount: number,
-    codeAbnormalCount: number,
-    regionId: string,
-    parentRegionId: string,
+    newCount: string,
+    expireCount: string,
   }[] = [];
+  addStatisticType = 'region';
+  addStatisticRegionId = '';
 
   constructor(
     private cylinderOverviewService: CylinderOverviewService,
+    private statisticCylinderService: StatisticCylinderService,
     private messageService: MessageService,
-    private userStateService: UserStateService
+    private userStateService: UserStateService,
+    public util: Util
   ) { }
 
   ngOnInit() {
     this.loading = true;
-    this.addloading = true;
+    this.addLoading = true;
     this.getCountiesOverview().then(data => {
       this.loading = false;
       this.countyCylinders = data;
     });
-    this.searchTrack()
+    this.searchGcAddCount();
   }
+
   /**
-     * 查询
-     * 2018-02-05 11:50:27
-     * @author hzb
-     * @memberof MapComponent
-     */
-  searchTrack() {
+   * 获取区域新增气瓶统计
+   * 2018-03-07 09:40:33
+   * @author hzb
+   * @returns
+   * @memberof EnterpriseComponent
+   */
+  searchGcAddCount() {
+    this.addStatisticRegionId = '';
+    this.addStatisticType = 'region';
+    this.addCountyCylinders = [];
+    this.addLoading = true;
+    this.listGcNewAddCount({
+      type: this.addStatisticType,
+      regionId: ''
+    }).then(data => {
+      this.addLoading = false;
+      if (data) {
+        this.addCountyCylinders = data;
+      }
+    });
+  }
+
+  // 获取企业新增气瓶统计
+  searchGcAddCountDetail(regionId) {
+    this.addStatisticRegionId = regionId;
+    this.addStatisticType = 'corp';
+    this.addCountyCylinders = [];
+    this.addLoading = true;
+    this.listGcNewAddCount({
+      type: this.addStatisticType,
+      regionId: this.addStatisticRegionId
+    }).then(data => {
+      this.addLoading = false;
+      if (data) {
+        this.addCountyCylinders = data;
+      }
+    });
+  }
+
+  // 获取新增气瓶统计
+  listGcNewAddCount = (params: { type: string, regionId: string, resultType?: string }): Promise<any> => {
     if (this.selectedDateRange === 4 && (this.beginTime > this.endTime)) {
       this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
-      return;
+      return Promise.resolve();
     }
     const dateRange = this.getSelectedTime(this.selectedDateRange, this.beginTime, this.endTime);
-    this.addloading = true;
-    this.getCountiesOverview({
-      beginTime: moment(dateRange.beginTime).format('YYYY-MM-DD'),
-      endTime: moment(dateRange.endTime).format('YYYY-MM-DD'),
-    }).then(data => {
-      this.addloading = false;
-      this.addcountyCylinders = data;
+    return this.statisticCylinderService.listGcNewAddCount(Object.assign({}, params, dateRange)).then(data => {
+      if (data.status === 0) {
+        return data.data;
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+        return;
+      }
     });
   }
 
@@ -107,66 +142,61 @@ export class EnterpriseComponent implements OnInit {
    * @returns {{ beginTime: Date, endTime: Date }}
    * @memberof MapComponent
    */
-  getSelectedTime(dateRange: number, selectedBeginTime: Date, selectedEndTime: Date): { beginTime: Date, endTime: Date } {
+  getSelectedTime(dateRange: number, selectedBeginTime: Date, selectedEndTime: Date): { beginTime: string, endTime: string } {
     let beginTime;
     let endTime;
     if (dateRange === 2) {
-      const week = new Date((new Date().getTime() - 7 * 24 * 60 * 60 * 1000));
-      beginTime = moment(moment(week).format('YYYY-MM-DD') + ' 00:00:00');
-      endTime = moment(new Date());
+      const week = new Date((new Date().getTime() - 6 * 24 * 60 * 60 * 1000));
+      beginTime = moment(week).format('YYYY-MM-DD') + ' 00:00:00';
+      endTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
     } else if (dateRange === 3) {
-      beginTime = moment(moment(new Date((new Date().getTime() - 30 * 24 * 60 * 60 * 1000))).format('YYYY-MM-DD') + ' 00:00:00');
-      endTime = moment(new Date());
+      beginTime = moment(new Date((new Date().getTime() - 29 * 24 * 60 * 60 * 1000))).format('YYYY-MM-DD') + ' 00:00:00';
+      endTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
     } else if (dateRange === 4) {
-      beginTime = moment(moment(selectedBeginTime).format('YYYY-MM-DD'));
-      endTime = moment(selectedEndTime);
+      beginTime = moment(selectedBeginTime).format('YYYY-MM-DD') + ' 00:00:00';
+      endTime = moment(selectedEndTime).format('YYYY-MM-DD') + ' 23:59:59';
     }
     return { beginTime, endTime };
   }
-  //获取信息
-  getCountiesOverview(params?: {
-    beginTime: string,
-    endTime: string
-  }): Promise<any[]> {
-    return this.cylinderOverviewService.getCountiesOverview(params)
-      .then(data => {
-        this.loading = false;
-        if (data.status === 0) {
-          return data.data;
-        } else {
-          this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
-          return [];
-        }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
-        this.loading = false;
+
+  // 获取持有气瓶统计信息
+  getCountiesOverview(params?: { beginTime: string, endTime: string }): Promise<any[]> {
+    return this.cylinderOverviewService.getCountiesOverview(params).then(data => {
+      this.loading = false;
+      if (data.status === 0) {
+        return data.data;
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
         return [];
-      });
+      }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
+      this.loading = false;
+      return [];
+    });
   }
 
-  // getEnterpriseOverview() {
-  //   this.cylinderOverviewService.getCylinderEnterpriseOverviewByOrganizationId({})
-  //     .then(data => {
-  //       if (data.status === 0) {
-  //         this.countyCylinders = data.data;
-  //       } else {
-  //         this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
-  //       }
-  //       this.loading = false;
-  //     }).catch(error => {
-  //       this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
-  //       this.loading = false;
-  //     });
-  // }
-
-  // TODO:这里可能会有性能问题，因为首次加载会执行20次（4次调用*5列），再次点击会执行10次
-  calculateTotal(prop: string, data: any) {
-    let sum = 0;
-    for (let i = 0; i < data.length; i++) {
-      const element = data[i];
-      sum += element[prop];
-    }
-    return sum;
+  // 导出企业气瓶统计
+  exportEnterpriseCylinderStatistic() {
+    this.cylinderOverviewService.exportCountiesOverview().then(data => {
+      if (data.status === 0) {
+        this.util.downloadFile(data.data);
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+      }
+    });
   }
 
+  // 导出企业新增气瓶统计
+  exportEnterpriseAddCylinderStatistic() {
+    this.listGcNewAddCount({
+      type: this.addStatisticType,
+      regionId: this.addStatisticRegionId || '',
+      resultType: 'excel'
+    }).then(data => {
+      if (data) {
+        this.util.downloadFile(data);
+      }
+    });
+  }
 }

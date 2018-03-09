@@ -16,29 +16,44 @@ import { DeliveryCarComponent } from './delivery-car/delivery-car.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user-info',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
     component: InputComponent,
+    data: {
+      title: '信息录入'
+    },
     children: [
+      {
+        path: '',
+        redirectTo: 'user-info',
+        pathMatch: 'full'
+      },
       {
         path: 'user-info',
         component: UserInfoComponent,
+        data: {
+          title: '用户实名登记'
+        },
         resolve: { userType: UserInfoResolverService }
       },
       {
         path: 'user-card',
-        component: UserCardComponent
+        component: UserCardComponent,
+        data: {
+          title: '身份认证卡绑定'
+        },
       },
       {
         path: 'delivery-car',
-        component: DeliveryCarComponent
+        component: DeliveryCarComponent,
+        data: {
+          title: '配送车'
+        },
       },
       {
         path: 'transport-car',
-        component: TransportCarComponent
+        component: TransportCarComponent,
+        data: {
+          title: '车辆录入'
+        },
       },
       // {
       //   path: 'cylinder-info',
@@ -57,11 +72,6 @@ const routes: Routes = [
       //   component: ExportComponent
       // },
     ]
-  },
-  {
-    path: '**',
-    redirectTo: 'user-info',
-    pathMatch: 'full'
   }
 ];
 

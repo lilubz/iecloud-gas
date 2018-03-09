@@ -27,6 +27,9 @@
               <a href="javascript:void(0);" (click)="showBindCardDialog(customerCard)">{{customerCard[col.field]}}</a>
             </ng-template>
           </p-column>
+          <ng-template pTemplate="paginatorRight">
+              共 {{total || 0 }} 条记录
+          </ng-template>
         </p-dataTable>
       </div>
 

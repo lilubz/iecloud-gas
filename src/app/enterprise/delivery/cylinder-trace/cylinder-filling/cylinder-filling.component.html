@@ -75,5 +75,8 @@
       </ng-template>
     </p-column>
     <p-column field="fillingStaff" header="充装人员" [style]="{'width':'150px'}"></p-column>
+    <ng-template pTemplate="paginatorRight">
+        共 {{ total || 0 }} 条记录
+    </ng-template>
   </p-dataTable>
 </div>

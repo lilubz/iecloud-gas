@@ -1,5 +1,10 @@
 <div class="ui-g-12">
   <h3>供应站气瓶统计</h3>
+  <div class="ui-g">
+    <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
+      <!-- <button pButton type="button" (click)="exportSupplyStationStatistic()" class="ui-button-info right" label="导出"></button> -->
+    </div>
+  </div>
   <p-dataTable [value]="cylinderStorageFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
     [loading]="cylinderLoading" emptyMessage="未查询到数据">
 
@@ -28,16 +33,18 @@
 
   <!-- 流通统计 -->
   <h3>流通信息统计</h3>
-
-  <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-    <label for="" class="search-label"> 时间范围：</label>
-    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
-      dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
+  <div class="ui-g">
+    <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
+      <label for="" class="search-label"> 时间范围：</label>
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
+        dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
       <label for="" class="search-label" style="text-align: center">至</label>
-    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
-      dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
+        dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
 
-    <button pButton type="button" label="查询" class="searchBtn" (click)="searchCylinderStorageCirculations()"></button>
+      <button pButton type="button" label="查询" class="searchBtn" (click)="searchCylinderStorageCirculations()"></button>
+      <!-- <button pButton type="button" (click)="exportSupplyStationCirculationStatistic()" class="ui-button-info right" label="导出"></button> -->
+    </div>
   </div>
 
 

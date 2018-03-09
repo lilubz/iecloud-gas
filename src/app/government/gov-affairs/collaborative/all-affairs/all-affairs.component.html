@@ -72,7 +72,9 @@
           未查询到数据
         </div>
       </ng-template>
-
+      <ng-template pTemplate="paginatorRight">
+          共 {{ dataTable.total || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
   </div>
 </div>

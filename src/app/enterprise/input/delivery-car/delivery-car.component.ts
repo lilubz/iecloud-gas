@@ -72,9 +72,6 @@ export class DeliveryCarComponent implements OnInit {
         } else {
           this.suggestions = [];
         }
-      }).catch(error => {
-        this.suggestions = [];
-        throw error;
       });
   }
   sendForm(params) {
@@ -90,9 +87,6 @@ export class DeliveryCarComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 }

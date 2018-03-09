@@ -5,6 +5,7 @@ import { CommonRequestService } from '../../../../core/common-request.service';
 import { StatisticCylinderService } from '../statistic-cylinder.service';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { Util } from '../../../../core/util';
 
 @Component({
   selector: 'gas-cylinder-storage',
@@ -48,7 +49,8 @@ export class CylinderStorageComponent implements OnInit {
   constructor(
     private commonRequestService: CommonRequestService,
     private statisticCylinderService: StatisticCylinderService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private util: Util
   ) {
 
   }
@@ -124,27 +126,23 @@ export class CylinderStorageComponent implements OnInit {
   }
 
   searchCylinderStorageCirculations() {
-    if (this.circulationBeginTime > this.circulationEndTime) {
-      this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
-      return false;
+    if (this.checkCirculationParams()) {
+      this.statisticCylinderService.getCylinderStorageCirculation({
+        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
+        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00'
+      }).then(data => {
+        if (data.status === 0) {
+          this.cylinderStorageCirculations = data.data;
+          this.selectCirculationRegion(this.selectedCirculationRegion);
+        } else {
+          this.messageService.add({ severity: 'warn', summary: '获取储配站气瓶流通统计数据失败', detail: data.msg });
+        }
+        this.circulationLoading = false;
+      }).catch(error => {
+        this.circulationLoading = false;
+      });
     }
-
-    this.statisticCylinderService.getCylinderStorageCirculation({
-      startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00'
-    }).then(data => {
-      if (data.status === 0) {
-        this.cylinderStorageCirculations = data.data;
-        this.selectCirculationRegion(this.selectedCirculationRegion);
-      } else {
-        this.messageService.add({ severity: 'warn', summary: '获取储配站气瓶流通统计数据失败', detail: data.msg });
-      }
-      this.circulationLoading = false;
-    }).catch(error => {
-      this.circulationLoading = false;
-    });
   }
-
   listGasCylinderBySupplyStationNumber(params?) {
     this.statisticCylinderService.listGasCylinderBySupplyStationNumber(params).then(data => {
       if (data.status === 0) {
@@ -154,8 +152,32 @@ export class CylinderStorageComponent implements OnInit {
       } else {
         this.dialogDataTable.list = [];
         this.dialogDataTable.total = 0;
-        this.messageService.add({severity: 'warn', summary: '响应消息', detail: data.msg});
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
     });
+  }
+
+  exportSupplyStationCirculationStatistic() {
+    if (this.checkCirculationParams()) {
+      this.statisticCylinderService.getCylinderStorageCirculation({
+        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
+        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00',
+        resultType: 'excel'
+      }).then(data => {
+        if (data.status === 0) {
+          this.util.downloadFile(data.data);
+        } else {
+          this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+        }
+      });
+    }
+  }
+
+  checkCirculationParams(): boolean {
+    if (this.circulationBeginTime > this.circulationEndTime) {
+      this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
+      return false;
+    }
+    return true;
   }
 }

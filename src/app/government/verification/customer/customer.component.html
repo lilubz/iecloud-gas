@@ -21,6 +21,9 @@
             <a href="javascript:void(0);" (click)="showDetail(record)">查看详情</a>
           </ng-template>
         </p-column>
+        <ng-template pTemplate="paginatorRight">
+            共 {{ statisticTotal || 0 }} 条记录
+        </ng-template>
       </p-dataTable>
     </div>
   </div>
@@ -56,6 +59,9 @@
       </ng-template>
     </p-column>
     <!-- <p-column [style]="{'width':'150px'}" field="date" header="附件"></p-column> -->
+    <ng-template pTemplate="paginatorRight">
+        共 {{ recordTotal || 0 }} 条记录
+    </ng-template>
   </p-dataTable>
   <p-footer>
     <button type="button" pButton (click)="detailVisible=false" class="searchBtn" label="确定"></button>

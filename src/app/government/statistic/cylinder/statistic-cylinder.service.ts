@@ -23,9 +23,9 @@ export class StatisticCylinderService {
    * @param params
    * @returns
    */
-  getStorageDistributionCount(): Promise<any> {
+  getStorageDistributionCount = (params?: { resultType?: string }): Promise<any> => {
     return this.httpService
-      .getRequest(API.inflatableStationHas, {});
+      .getRequest(API.inflatableStationHas, params);
   }
 
   /**
@@ -35,9 +35,9 @@ export class StatisticCylinderService {
    * @param params
    * @returns
    */
-  getCylinderStorageCount(): Promise<any> {
+  getCylinderStorageCount = (params?: { resultType?: string }): Promise<any> => {
     return this.httpService
-      .getRequest(API.supplyStationHas, {});
+      .getRequest(API.supplyStationHas, params);
   }
 
   /**
@@ -47,9 +47,9 @@ export class StatisticCylinderService {
    * @param params
    * @returns
    */
-  getDispatcherCylinderCount(): Promise<any> {
+  getDispatcherCylinderCount = (params?: { resultType?: string }): Promise<any> => {
     return this.httpService
-      .getRequest(API.dispatcherHas, {});
+      .getRequest(API.dispatcherHas, params);
   }
 
   /**
@@ -59,9 +59,9 @@ export class StatisticCylinderService {
    * @param params
    * @returns
    */
-  getCustomerCylinderCount(): Promise<any> {
+  getCustomerCylinderCount = (params?: { resultType?: string }): Promise<any> => {
     return this.httpService
-      .getRequest(API.gcUserHas, {});
+      .getRequest(API.gcUserHas, params);
   }
 
   /**
@@ -70,7 +70,7 @@ export class StatisticCylinderService {
    * @author hzb
    * @param params
    */
-  getStorageDistributionCirculation(params: { startTime: string, endTime: string }): Promise<any> {
+  getStorageDistributionCirculation(params: { startTime: string, endTime: string, resultType?: string }): Promise<any> {
     return this.httpService.getRequest(API.inflatableStationSendAndReceiveCount, params);
   }
 
@@ -80,7 +80,7 @@ export class StatisticCylinderService {
    * @author hzb
    * @param params
    */
-  getCylinderStorageCirculation(params: { startTime: string, endTime: string }): Promise<any> {
+  getCylinderStorageCirculation(params: { startTime: string, endTime: string, resultType?: string }): Promise<any> {
     return this.httpService.getRequest(API.supplyStationSendAndReceiveCount, params);
   }
 
@@ -90,21 +90,27 @@ export class StatisticCylinderService {
    * @author hzb
    * @param params
    */
-  getDeliveryStatistic(params: { regionId: string, range: string }): Promise<any> {
+  getDeliveryStatistic(params: { regionId: string, range: string, resultType?: string }): Promise<any> {
     return this.httpService.getRequest(API.dispatcherStatisyical, params);
   }
+
+  listGcNewAddCount(params: { type: string, regionId?: string, beginTime: string, endTime: string, resultType?: string }): Promise<any> {
+    return this.httpService.getRequest(API.listGcNewAddCount, params);
+  }
+
   /**
    * 送气工收发重瓶，空瓶数量
    */
-  dispatcherSendAndReceiveCount(params): Promise<any> {
+  dispatcherSendAndReceiveCount(params: { startTime: string, endTime: string, enterpriseNumber: string, resultType?: string }): Promise<any> {
     return this.httpService.getRequest(API.dispatcherSendAndReceiveCount, params);
   }
   /**
    * 查看某个企业下送气工收发重瓶空瓶的情况
    */
-  corpDispatcherSendAndReceiveList(params): Promise<any> {
+  corpDispatcherSendAndReceiveList = (params: { startTime: string, endTime: string, regionId: string, resultType?: string }): Promise<any> => {
     return this.httpService.getRequest(API.corpDispatcherSendAndReceiveList, params);
   }
+
   /**
    * 查询储配站拥有的气瓶详细列表
    */

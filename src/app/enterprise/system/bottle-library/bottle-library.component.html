@@ -18,7 +18,7 @@
         <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
       </div>
 
-      <div class="ui-g-12">
+      <!-- <div class="ui-g-12"> -->
         <p-dataTable [value]="bottleLibraryList" [lazy]="true" dataKey="enterpriseName" [paginator]="true" [rows]="pages.pageSize"
           [scrollable]="false" scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
           [(first)]="pages.first">
@@ -54,8 +54,11 @@
               未查询到数据
             </div>
           </ng-template>
+          <ng-template pTemplate="paginatorRight">
+              共 {{ pages.total || 0 }} 条记录
+          </ng-template>
         </p-dataTable>
-      </div>
+      <!-- </div> -->
 
       <p-dialog [visible]="editBottleVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
         [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">

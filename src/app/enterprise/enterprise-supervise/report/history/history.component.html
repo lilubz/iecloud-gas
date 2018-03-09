@@ -7,7 +7,7 @@
 				 dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" name="startDate"></p-calendar>
 			</div>
 			<div class="ui-g-12 ui-lg-4">
-					<label for="" class="search-label">至</label>
+				<label for="" class="search-label">至</label>
 				<p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
 				 dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" name="endDate"></p-calendar>
 			</div>
@@ -35,7 +35,9 @@
 				</ng-template>
 
 			</p-column>
-
+			<ng-template pTemplate="paginatorRight">
+				共 {{ total || 0 }} 条记录
+			</ng-template>
 		</p-dataTable>
 	</div>
 </div>

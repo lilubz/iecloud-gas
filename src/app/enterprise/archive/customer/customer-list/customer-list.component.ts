@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-
 import { CustomerListService } from './customer-list.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 
@@ -14,6 +13,19 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 
 export class CustomerListComponent implements OnInit {
+  displayEditDialog = false;
+  displayDeleteDialog = false;
+  selectedCustomer: {
+    userNumber?: string,
+    userName?: string,
+    deliveryAddress?: string,
+    phone?: string
+  } = {
+      userNumber: '',
+      userName: '',
+      deliveryAddress: '',
+      phone: ''
+    };
   dropdown = {
     userNature: [
       {
@@ -104,7 +116,13 @@ export class CustomerListComponent implements OnInit {
       pageSize: this.dataTable.option[1],
       pageNumber: 1
     };
-
+  willDeleteCustomer;
+  willEditCustomer = {
+    userNumber: '',
+    userName: '',
+    deliveryAddress: '',
+    phone: ''
+  };
   constructor(
     private routerInfo: ActivatedRoute,
     private customerListService: CustomerListService,
@@ -147,6 +165,61 @@ export class CustomerListComponent implements OnInit {
     }
   }
 
+  onDelete(rowData) {
+    this.displayDeleteDialog = true;
+    this.willDeleteCustomer = Object.assign({}, rowData);
+  }
+
+  deleteCustomer() {
+    this.customerListService.deleteCustomer({
+      userNumber: this.willDeleteCustomer.userNumber
+    }).then(data => {
+      if (data.status === 0) {
+        this.messageService.add({ severity: 'success', summary: '响应消息', detail: data.msg });
+        this.displayDeleteDialog = false;
+        this.onSearch();
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.status });
+        // this.delete = false;
+        // this.onSearch();
+      }
+    });
+  }
+  onEdit(rowData) {
+    this.displayEditDialog = true;
+    this.willEditCustomer = Object.assign({}, rowData);
+  }
+
+  editCustomer() {
+    if (this.willEditCustomer.deliveryAddress === '') {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的派送地址' });
+      return false;
+    } else if (this.willEditCustomer.phone === '') {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的联系电话' });
+      return false;
+    }
+
+    this.customerListService.displayCustomer({
+      userNumber: this.willEditCustomer.userNumber,
+      deliveryAddress: this.willEditCustomer.deliveryAddress,
+      phone: this.willEditCustomer.phone
+    }).then(data => {
+      if (data.status === 0) {
+        this.messageService.add({ severity: 'success', summary: '响应消息', detail: data.msg });
+        this.displayEditDialog = false;
+        this.onSearch();
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        // this.displayEditDialog= false;
+        // this.onSearch();
+      }
+    });
+  }
+
+  onCancel() {
+    this.displayEditDialog = false;
+    this.displayDeleteDialog = false;
+  }
   onChangeAreaID(event) {
     this.dropdown.corp = this.dropdown.default;
     this.formModel.patchValue({
@@ -179,12 +252,6 @@ export class CustomerListComponent implements OnInit {
           this.dataTable.first = 0;
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.dataTable.list = [];
-        this.dataTable.total = 0;
-        this.dataTable.first = 0;
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 
@@ -199,10 +266,6 @@ export class CustomerListComponent implements OnInit {
         this.dropdown.corp = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    }).catch(error => {
-      this.dropdown.corp = this.dropdown.default;
-      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-      throw error;
     });
   }
 
@@ -217,10 +280,6 @@ export class CustomerListComponent implements OnInit {
         this.dropdown.userNature = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    }).catch(error => {
-      this.dropdown.userNature = this.dropdown.default;
-      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-      throw error;
     });
   }
 
@@ -235,10 +294,6 @@ export class CustomerListComponent implements OnInit {
         this.dropdown.userType = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    }).catch(error => {
-      this.dropdown.userType = this.dropdown.default;
-      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-      throw error;
     });
   }
 
@@ -253,10 +308,6 @@ export class CustomerListComponent implements OnInit {
         this.dropdown.region = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    }).catch(error => {
-      this.dropdown.region = this.dropdown.default;
-      this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-      throw error;
     });
   }
 }

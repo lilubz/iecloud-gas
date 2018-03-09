@@ -1,6 +1,6 @@
 <div class="flow">
   <div class="min-width:1000px">
-    <div class="ui-g" style="margin-top:70px;">
+    <div class="ui-g">
       <div class="ui-g-6">
         <button pButton type="button" label="返回" style="margin-left:10px;width:96px;" [routerLink]="['../dispatcher']" routerLinkActive="link-active"></button>
       </div>
@@ -30,6 +30,7 @@
         </div>
         <div class="ui-g-12 ui-xl-3 form-group">
           <button pButton type="submit" label="搜索" style="margin-left:10px"></button>
+          <!-- <button pButton type="button" (click)="exportDispathcerStatistic()" class="ui-button-info right" label="导出"></button> -->
         </div>
       </form>
       <div class="ui-g">
@@ -45,7 +46,7 @@
             <p-column [style]="{'width':'120px'}" header="送气工编号" field="stationNumber" [filter]="true" filterPlaceholder="搜索"></p-column>
             <p-column [style]="{'width':'120px'}" header="送气工名称" field="stationName" [filter]="true" filterPlaceholder="搜索"></p-column>
 
-            <p-column [style]="{'width':'120px'}" header="收重瓶数量">
+            <p-column [style]="{'width':'120px'}" header="提取重瓶数量">
               <ng-template let-rowData="rowData" pTemplate="body">
                 <span *ngIf="rowData.fullBottleReceiveCount===0">
                   {{rowData.fullBottleReceiveCount}}
@@ -56,7 +57,7 @@
               </ng-template>
             </p-column>
 
-            <p-column [style]="{'width':'120px'}" header="发放重瓶数量">
+            <p-column [style]="{'width':'120px'}" header="发放重瓶（到用户）">
               <ng-template let-rowData="rowData" pTemplate="body">
                 <span *ngIf="rowData.fullBottleSendCount===0">
                   {{rowData.fullBottleSendCount}}
@@ -67,7 +68,7 @@
               </ng-template>
             </p-column>
 
-            <p-column [style]="{'width':'120px'}" header="回收空瓶数量">
+            <p-column [style]="{'width':'120px'}" header="（从用户）回收空瓶">
               <ng-template let-rowData="rowData" pTemplate="body">
                 <span *ngIf="rowData.emptyBottleReceiveCount===0">
                   {{rowData.emptyBottleReceiveCount}}

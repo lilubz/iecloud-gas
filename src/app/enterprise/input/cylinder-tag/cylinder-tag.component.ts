@@ -349,9 +349,6 @@ export class CylinderTagComponent implements OnInit {
         } else {
           this.setMessages('warn', '响应消息', data.msg);
         }
-      }).catch(error => {
-        this.setMessages('error', '出错了', '错误代码：' + error.status);
-        throw error;
       });
   }
   sendTagBinding(params?) {
@@ -363,9 +360,6 @@ export class CylinderTagComponent implements OnInit {
         } else {
           this.setMessages('warn', '响应消息', data.msg);
         }
-      }).catch(error => {
-        this.setMessages('error', '出错了', '错误代码：' + error.status);
-        throw error;
       });
   }
   getTags(params?) {
@@ -381,11 +375,6 @@ export class CylinderTagComponent implements OnInit {
           this.dataList.page.total = 0;
           this.setMessages('warn', '响应消息', data.msg);
         }
-      }).catch(error => {
-        this.dataList.data = [];
-        this.dataList.page.total = 0;
-        this.setMessages('error', '出错了', '错误代码：' + error.status);
-        throw error;
       });
   }
   getCylinders(params?) {
@@ -401,11 +390,6 @@ export class CylinderTagComponent implements OnInit {
           this.dataList.page.total = 0;
           this.setMessages('warn', '响应消息', data.msg);
         }
-      }).catch(error => {
-        this.dataList.data = [];
-        this.dataList.page.total = 0;
-        this.setMessages('error', '出错了', '错误代码：' + error.status);
-        throw error;
       });
   }
   getGcBasicInfo(params?) {
@@ -416,10 +400,6 @@ export class CylinderTagComponent implements OnInit {
         } else {
           this.proposals = [];
         }
-      }).catch(error => {
-        this.proposals = [];
-        this.setMessages('error', '出错了', '错误代码：' + error.status);
-        throw error;
       });
   }
   getGcLabelInfo(params?) {
@@ -435,9 +415,6 @@ export class CylinderTagComponent implements OnInit {
         } else {
           this.proposals = [];
         }
-      }).catch(error => {
-        this.setMessages('error', '出错了', '错误代码：' + error.status);
-        throw error;
       });
   }
   setMessages(type, title, msg) {

@@ -22,7 +22,7 @@ import { AccountOpeningService } from './account-opening/account-opening.service
   ],
   imports: [
     SharedModule,
-    EnterpriseManagementRoutingModule,
+    // EnterpriseManagementRoutingModule,
   ],
   providers: [
     AccountDetailService,

@@ -42,7 +42,7 @@ export class LoginComponent implements OnDestroy, OnInit {
         // console.log(this.messageList.length);
 
       }
-    }, 4000);
+    }, 1000);
 
   }
   ngOnDestroy(): void {

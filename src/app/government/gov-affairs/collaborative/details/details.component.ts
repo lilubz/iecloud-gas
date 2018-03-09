@@ -67,8 +67,6 @@ export class DetailsComponent implements OnInit {
       this.getTreeNode();
       this.getDetails({ transactionBasicNumber: this.id });
       this.getMultiSelectDepartment();
-    } else {
-      throw new Error('查询参数不能为空');
     }
   }
 
@@ -157,9 +155,6 @@ export class DetailsComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getAllNodeDetailsInfo(params?) {
@@ -209,9 +204,6 @@ export class DetailsComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
 
@@ -225,10 +217,6 @@ export class DetailsComponent implements OnInit {
           this.details = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.details = {};
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   sendHandle(params?) {
@@ -242,9 +230,6 @@ export class DetailsComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   sendDelete(params?) {
@@ -256,9 +241,6 @@ export class DetailsComponent implements OnInit {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   getMultiSelectDepartment() {
@@ -273,10 +255,6 @@ export class DetailsComponent implements OnInit {
           this.multiSelectOptions = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      }).catch(error => {
-        this.multiSelectOptions = [];
-        this.messageService.add({ severity: 'error', summary: '出错了', detail: '错误代码：' + error.status });
-        throw error;
       });
   }
   /**

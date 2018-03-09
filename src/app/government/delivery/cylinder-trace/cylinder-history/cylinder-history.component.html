@@ -5,13 +5,14 @@
   </div>
   <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
     开始时间
-    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px'}" [selectOtherMonths]="true" [(ngModel)]="beginTime"
-      dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px'}" [selectOtherMonths]="true"
+      [(ngModel)]="beginTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
   </div>
   <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
     结束时间
-    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px'}" [selectOtherMonths]="true" [(ngModel)]="endTime"
-      dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today" readonlyInput="true"></p-calendar>
+    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px'}" [selectOtherMonths]="true"
+      [(ngModel)]="endTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime" [maxDate]="today"
+      readonlyInput="true"></p-calendar>
   </div>
   <div class="ui-g-12">
     <button pButton type="button" label="查询" class="searchBtn" (click)="searchCylinderHistory()"></button>
@@ -77,6 +78,9 @@
     </p-column>
     <p-column field="afterLiabilityContact"></p-column>
     <p-column field="afterLiabilityAddress"></p-column>
+    <ng-template pTemplate="paginatorRight">
+      共 {{ total || 0 }} 条记录
+    </ng-template>
   </p-dataTable>
 </div>
 

@@ -9,11 +9,14 @@
   <div class="ui-g-12 content card">
     <div style="min-width:500px">
       <h3>企业信息统计</h3>
-      <span>区域选择</span>
-      <p-dropdown [options]="cities" [(ngModel)]="selectedCities" (onChange)="getBusinessId()"
-        [style]="{'width':'102px'}"></p-dropdown>
-
-      <p-dataTable [value]="datas" [loading]="loading" [styleClass]="'ui-lg-10 ui-xl-8'" emptyMessage="未查询到数据">
+      <div class="ui-g">
+        <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
+          <span>区域选择</span>
+          <p-dropdown [options]="cities" [(ngModel)]="selectedCities" (onChange)="getBusinessId()" [style]="{'width':'102px'}"></p-dropdown>
+          <!-- <button pButton type="button" (click)="exportEnterpriseStatistic()" class="ui-button-info right" label="导出"></button> -->
+        </div>
+      </div>
+      <p-dataTable [value]="datas" [loading]="loading" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'" emptyMessage="未查询到数据">
         <p-column field="enterpriseName" header="企业名称"></p-column>
         <p-column field="inflatableCount" header="储配站数量"></p-column>
         <p-column field="dispatcherCount" header="送气工数量"></p-column>

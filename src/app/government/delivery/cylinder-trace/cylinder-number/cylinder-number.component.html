@@ -53,5 +53,8 @@
     <p-column field="afterLiabilityName"></p-column>
     <p-column field="afterLiabilityContact"></p-column>
     <p-column field="afterLiabilityAddress"></p-column>
+    <ng-template pTemplate="paginatorRight">
+      共 {{ totalHistory || 0 }} 条记录
+    </ng-template>
   </p-dataTable>
 </div>

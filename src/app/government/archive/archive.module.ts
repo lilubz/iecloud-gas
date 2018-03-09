@@ -9,6 +9,8 @@ import { CylinderModule } from './cylinder/cylinder.module';
 import { EmployeeModule } from './employee/employee.module';
 import { ArchiveComponent } from './archive.component';
 import { EnterpriseModule } from './enterprise/enterprise.module';
+import { CylinderOverviewService } from './cylinder/cylinder-overview/cylinder-overview.service';
+import { CustomerOverviewService } from './customer/customer-overview/customer-overview.service';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { EnterpriseModule } from './enterprise/enterprise.module';
     ArchiveComponent,
   ],
   providers: [
+    CylinderOverviewService,
+    CustomerOverviewService
   ]
 })
 export class ArchiveModule { }

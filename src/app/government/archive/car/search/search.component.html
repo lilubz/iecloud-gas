@@ -1,4 +1,3 @@
-
 <div class="ui-g-12 search card">
   <form class="ui-g-12">
 
@@ -15,8 +14,8 @@
     <div class="ui-g-12 ui-lg-6">
       <label class="search-label">车牌号</label>
       <p-autoComplete [(ngModel)]="formModel.carNumber" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="3"
-        autoHighlight="true" emptyMessage="请输入正确的车牌号" [style]="{'width':'280px'}" name="carNumber" placeholder="请输入车牌号"
-        (onBlur)="onBlurAutoComplete()" field="carNumber">
+        autoHighlight="true" emptyMessage="请输入正确的车牌号" [style]="{'width':'280px'}" name="carNumber" placeholder="请输入车牌号" (onBlur)="onBlurAutoComplete()"
+        field="carNumber">
         <ng-template let-value pTemplate="item">
           <span>
             {{value.carNumber}}---{{value.ownerName}}
@@ -39,7 +38,7 @@
           <span>{{index+1}}</span>
         </ng-template>
       </p-column>
-  
+
       <p-column [style]="{'width':'110px'}" field="carNumber" header="车牌号"></p-column>
       <p-column [style]="{'width':'100px'}" field="enterpriseName" header="企业名称"></p-column>
       <p-column [style]="{'width':'100px'}" field="driverName" header="驾驶员"></p-column>
@@ -50,13 +49,15 @@
       <p-column [style]="{'width':'50px'}" field="ownerType" header="车主类型"></p-column>
       <p-column [style]="{'width':'100px'}" field="maxCapacity" header="载重量（KG）"></p-column>
       <p-column [style]="{'width':'70px'}" field="maxCylinderNum" header="载运气瓶数"></p-column>
-  
+
       <ng-template pTemplate="emptymessage">
         <div class="text-left">
           未查询到数据
         </div>
       </ng-template>
-  
+      <ng-template pTemplate="paginatorRight">
+        共 {{ dataTable.total || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
   </div>
 </div>

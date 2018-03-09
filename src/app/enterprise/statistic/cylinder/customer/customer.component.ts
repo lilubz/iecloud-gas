@@ -1,9 +1,9 @@
 import { SelectItem } from 'primeng/primeng';
 import { Component, OnInit } from '@angular/core';
-import { StatisticCylinderService } from '../statistic-cylinder.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Util } from '../../../../core/util';
 import { CommonRequestService } from '../../../../core/common-request.service';
+import { StatisticCylinderService } from '../../../../government/statistic/cylinder/statistic-cylinder.service';
 
 @Component({
   selector: 'gas-customer',
@@ -72,4 +72,13 @@ export class CustomerComponent implements OnInit {
     });
   }
 
+  exportCustomerStatistic() {
+    this.statisticCylinderService.getCustomerCylinderCount({
+      resultType: 'excel'
+    }).then(data => {
+      if (data.status === 0) {
+        this.utilService.downloadFile(data.data);
+      }
+    });
+  }
 }

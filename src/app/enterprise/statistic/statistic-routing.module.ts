@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { StatisticComponent } from './statistic.component';
 import { CylinderComponent } from './cylinder/cylinder.component';
 import { EnterpriseComponent } from './enterprise/enterprise.component';
-import { AffairComponent } from './affair/affair.component';
 import { EnterpriseComponent as CylinderEnterpriseComponent } from './cylinder/enterprise/enterprise.component';
 import { CylinderStorageComponent } from './cylinder/cylinder-storage/cylinder-storage.component';
 import { StorageDistributionComponent } from './cylinder/storage-distribution/storage-distribution.component';
@@ -14,16 +13,21 @@ import { CustomerComponent } from './cylinder/customer/customer.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'cylinder',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
-    component: StatisticComponent,
+    data: {
+      title: '统计分析'
+    },
     children: [
+      {
+        path: '',
+        redirectTo: 'cylinder',
+        pathMatch: 'full'
+      },
       {
         path: 'cylinder',
         component: CylinderComponent,
+        data: {
+          title: '气瓶统计'
+        },
         children: [
           {
             path: '',
@@ -32,40 +36,46 @@ const routes: Routes = [
           },
           {
             path: 'enterprise',
-            component: CylinderEnterpriseComponent
+            component: CylinderEnterpriseComponent,
+            data: {
+              title: '企业统计'
+            }
           },
           {
             path: 'cylinder-storage',
-            component: CylinderStorageComponent
+            component: CylinderStorageComponent,
+            data: {
+              title: '供应站统计'
+            }
           },
           {
             path: 'storage-distribution',
-            component: StorageDistributionComponent
+            component: StorageDistributionComponent,
+            data: {
+              title: '储配站统计'
+            }
+          },
+          {
+            path: 'customer',
+            component: CustomerComponent,
+            data: {
+              title: '燃气用户统计'
+            }
           },
           {
             path: 'dispatcher',
             loadChildren: './cylinder/dispatcher/dispatcher-enterprise.module#DispatcherModule',
           },
-          {
-            path: 'customer',
-            component: CustomerComponent
-          },
         ]
       },
       {
         path: 'enterprise',
-        component: EnterpriseComponent
-      },
-      {
-        path: 'affair',
-        component: AffairComponent
-      },
+        component: EnterpriseComponent,
+        data: {
+          title: '企业统计'
+        }
+      }
     ]
-  },
-  {
-    path: '**',
-    redirectTo: 'cylinder',
-    pathMatch: 'full'
   }
 ];
 

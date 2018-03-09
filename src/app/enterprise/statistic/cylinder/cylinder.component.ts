@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticCylinderService } from './statistic-cylinder.service';
+import { StatisticCylinderService } from '../../../government/statistic/cylinder/statistic-cylinder.service';
 
 @Component({
   selector: 'gas-cylinder',

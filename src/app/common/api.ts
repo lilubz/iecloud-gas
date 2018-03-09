@@ -89,6 +89,9 @@ export const API = {
   'getDropdownForUserNature': URL + 'basicInformation/gcUserInfo/listUserNature.do',
   'getDropdownForUserType': URL + 'basicInformation/gcUserInfo/listUserType.do',
   'getDropdownForCorpInfoInRegion': URL + 'basicInformation/corpInfo/listCorpInfoInRegion.do',
+  'deleteGcUser': URL + 'basicInformation/gcUserInfo/deleteGcUser.do',
+  'updateGcUser': URL + 'basicInformation/gcUserInfo/updateGcUser.do',
+
 
   /**
    * 信息录入
@@ -168,6 +171,10 @@ export const API = {
   'listFillingInfo': URL + 'corpBusiness/applyManagement/listFillingInfo.do',
   'getDispachterDistributions': URL + 'corpBusiness/applyManagement/getDispachterDistributions.do',
   'listGasReceiveAndDispatch': URL + 'basicInformation/gasCylinder/listGasReceiveAndDispatch.do',
+  // 重瓶定价
+  'listGcPricingByCorp': URL + 'basicInformation/gcPricing/listGcPricingByCorp.do', // 获取企业定价列表
+  'updateOrAddPricing': URL + 'basicInformation/gcPricing/updateOrAddPricing.do', // 新增/更新定价
+  'deletePricing': URL + 'basicInformation/gcPricing/deletePricing.do', // 删除定价
 
   // 协同管理
   'listCorpInflatableStationInfo': URL + 'corpBusiness/collaborative/listCorpInflatableStationInfo.do', // 2.模糊搜索充装站信息
@@ -197,6 +204,13 @@ export const API = {
   'reportStatistics': URL + 'corpBusiness/reportManagementController/reportStatistics.do', // 5.获取报表统计列表
   'reportCommitDetail': URL + 'corpBusiness/reportManagementController/reportCommitDetail.do', // 6.查询某次报表提交祥情列表。
 
+  // 气瓶存量预警
+  'listGcThresholdCurrentWarning': URL + 'corpBusiness/gcStockMonitor/listGcThresholdCurrentWarning.do',
+  'listGcThreshold': URL + 'corpBusiness/gcStockMonitor/listGcThreshold.do',
+  'addGcThreshold': URL + 'corpBusiness/gcStockMonitor/addGcThreshold.do',
+  'listGcThresholdHistoryWarning': URL + 'corpBusiness/gcStockMonitor/listGcThresholdHistoryWarning.do',
+  'listGcThresholdHistoryWarningDetail': URL + 'corpBusiness/gcStockMonitor/listGcThresholdHistoryWarningDetail.do',
+
   // 车辆管理
   'getCarType': URL + 'basicInformation/corpCarInfo/getCarType.do', // 获取车辆类型
   'getCarNumberList': URL + 'basicInformation/corpCarInfo/getCarNumberList.do', // 获取登陆用户能够查看的车牌列表，模糊查询车牌号
@@ -221,6 +235,7 @@ export const API = {
   'dispatcherSendAndReceiveCount': URL + 'statisticalQuery/gasCylinders/dispatcherSendAndReceiveCount.do',
   'getUserInfoImprecise': URL + 'basicInformation/gcUserInfo/getUserInfoImprecise.do',
   'listGasCylinderBySupplyStationNumber': URL + 'basicInformation/gasCylinder/listGasCylinderBySupplyStationNumber.do',
+  'listGcNewAddCount': URL + 'statisticalQuery/gasCylinders/listGcNewAddCount.do', // 统计最近新增气瓶和新增气瓶异常数量
 
 
   'listCollaborativeInfo': URL + 'corpBusiness/collaborative/listCollaborativeInfo.do', // 16.获取协同企业列表
@@ -234,4 +249,7 @@ export const API = {
   'signIn': URL + 'sysUserPermissions/user/login.do',
   'signUp': URL + 'sysUserPermissions/login.do',
   'logout': URL + 'sysUserPermissions/user/logout.do',
+  // 大屏展示
+  'getBigScreenData': URL + 'visualization/getBigScreenData.do',
+
 };
