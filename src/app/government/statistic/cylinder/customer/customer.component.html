@@ -32,6 +32,9 @@
         <p-column [footer]="calculateTotal('gcCount', customerStatistics)"></p-column>
       </p-row>
     </p-footerColumnGroup> -->
+      <ng-template pTemplate="paginatorRight">
+        共 {{ customerStatisticsFilter.length || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
   </div>
 </div>

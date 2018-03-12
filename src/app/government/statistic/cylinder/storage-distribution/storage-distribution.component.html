@@ -45,7 +45,9 @@
           {{ countyCylinder.codeAbnormalCount || 0 }}
         </ng-template>
       </p-column> -->
-
+      <ng-template pTemplate="paginatorRight">
+        共 {{ storageDistributionFilters.length || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
 
     <!-- 流通统计 -->
@@ -106,6 +108,9 @@
         {{ countyCylinder.emptyBottleSendCount || 0 }}
       </ng-template>
     </p-column> -->
+      <ng-template pTemplate="paginatorRight">
+        共 {{ storageDistributionCirculationFilters.length || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
   </div>
 </div>

@@ -30,7 +30,9 @@
           </a>
         </ng-template>
       </p-column>
-
+      <ng-template pTemplate="paginatorRight">
+        共 {{ cylinderStorageFilters.length || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
 
     <!-- 流通统计 -->
@@ -88,8 +90,11 @@
         <ng-template let-countyCylinder="rowData" pTemplate="body">
           {{ countyCylinder.emptyBottleSendCount || 0 }}
         </ng-template>
-      </p-column>
 
+      </p-column>
+      <ng-template pTemplate="paginatorRight">
+        共 {{ cylinderStorageCirculationFilters.length || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
 
     <p-dialog [visible]="storageVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
