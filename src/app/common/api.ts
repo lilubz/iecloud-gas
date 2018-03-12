@@ -7,6 +7,7 @@ const URL = release;
 export const API = {
   // 项目地址
   'url': URL,
+  'mapServerAddress': '122.228.28.0:16080',
 
   /**
    * 公共接口

@@ -2,7 +2,7 @@ const PROXY_CONFIG = [
   // {
   //   context: [
   //     "/wenZhouGas",
-  //     "/upload",
+  //     // "/upload",
   //   ],
   //   target: "http://192.168.1.26:8080",// 费峰
   //   secure: false,

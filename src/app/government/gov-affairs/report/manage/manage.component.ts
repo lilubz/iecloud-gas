@@ -7,6 +7,7 @@ import { zh_CN } from './../../../../common/date-localization';
 import { API } from '../../../../../app/common/api';
 import * as moment from 'moment';
 import { ConfirmationService } from 'primeng/primeng';
+import { Util } from '../../../../core/util';
 
 @Component({
   selector: 'gas-manage',
@@ -16,6 +17,7 @@ import { ConfirmationService } from 'primeng/primeng';
 })
 export class ManageComponent implements OnInit {
   zh = zh_CN;
+  loading = false;
   document: any = document;
   window = window;
   API = API;
@@ -39,7 +41,8 @@ export class ManageComponent implements OnInit {
   constructor(
     private _service: ManageService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -113,9 +116,6 @@ export class ManageComponent implements OnInit {
         if (data.status === 0) {
           this.dataTable.list = data.data.list;
           this.dataTable.total = data.data.total;
-          this.dataTable.list.forEach(item => {
-            item.attachmentUrl = item.attachmentUrl ? this.API.url + item.attachmentUrl : '';
-          });
         } else {
           this.dataTable.list = [];
           this.dataTable.total = 0;
@@ -124,8 +124,10 @@ export class ManageComponent implements OnInit {
       });
   }
   sendForm(params?) {
+    this.loading = true;
     this._service.addReportInfo(params)
       .then(data => {
+        this.loading = false;
         if (data.status === 0) {
           this.resetFromModel();
           this.getDataTableList({
@@ -140,8 +142,10 @@ export class ManageComponent implements OnInit {
       });
   }
   sendDelete(params?) {
+    this.loading = true;
     this._service.deleteReport(params)
       .then(data => {
+        this.loading = false;
         if (data.status === 0) {
           this.dataTable.first = 0;
           this.getDataTableList({
