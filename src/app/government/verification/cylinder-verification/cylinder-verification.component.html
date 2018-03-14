@@ -1,95 +1,93 @@
-<div class="cylinder-verification card ui-g-12">
+<div class="cylinder-verification ui-g-12">
   <div style="min-width: 550px;">
     <div class="ui-g">
-      <div class="ui-g-12 ">
-        <div class="ui-g-12">
-            <label for=""class="search-label">所在区</label>
-          <p-dropdown [options]="Area" [(ngModel)]="searchParams.regionId" (onChange)="changearea($event)" [style]="{'width':'100px'}"></p-dropdown>
-        </div>
-        <!-- {{searchParams.regionId}} -->
-        <div class="ui-g-12">
-          <p-dataTable [value]="cylinderInfo" emptyMessage="暂未查询到数据" [lazy]="true" [paginator]="true" [rows]="searchParams.pageSize"
-            [(first)]="first" [scrollable]="false" scrollHeight="510px" [totalRecords]="cylinderNumberTotal" [rowsPerPageOptions]="[1,10,20,30,40] "
-            (onLazyLoad)="change($event)">
-
-            <p-column header="序号">
-              <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
-                <span>{{index+1}}</span>
-              </ng-template>
-            </p-column>
-            <p-column field="regionName" header="所在区"></p-column>
-            <p-column field="enterpriseName" header="登记企业"></p-column>
-            <p-column field="count" header="登记数量"></p-column>
-            <p-column header="操作">
-              <ng-template let-col let-cylinder="rowData" pTemplate="body">
-                <a href="javascript:void(0);" style="color:blue" (click)="showdetail(cylinder)">查看详情</a>
-              </ng-template>
-            </p-column>
-            <ng-template pTemplate="paginatorRight">
-                共 {{ cylinderNumberTotal || 0 }} 条记录
-            </ng-template>
-          </p-dataTable>
-        </div>
-        <p-dialog header="详情查看" [draggable]="false" [(visible)]="display" modal="modal" width="900" minWidth="900" height="700" [responsive]="true">
-          <p-dataTable [value]="cylinderInfoList" [paginator]="true" [rows]="detailPageSize" [headerCheckboxToggleAllPages]="false"
-            [scrollable]="false" scrollHeight="470px" [rowsPerPageOptions]="[10,20,30,40]" [totalRecords]="cylinderListTotal"
-            (onLazyLoad)="pageChange($event)" [lazy]="true">
-            <p-column [style]="{'width':'100px'}" header="序号">
-              <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
-                <span>{{index+1}}</span>
-              </ng-template>
-            </p-column>
-            <p-column [style]="{'width':'150px'}" field="serialNumber" header="气瓶出厂编号"></p-column>
-            <p-column [style]="{'width':'150px'}" field="enterpriseCylinderCode" header="企业自有编号"></p-column>
-            <p-column [style]="{'width':'150px'}" field="productNature" header="产权性质"></p-column>
-            <p-column [style]="{'width':'150px'}" field="enterpriseName" header="产权单位"></p-column>
-            <p-column [style]="{'width':'150px'}" field="manufacturingOrganizationName" header="生产单位"></p-column>
-            <p-column [style]="{'width':'150px'}" field="intoStationDate" header="进站日期">
-              <ng-template let-record="rowData" pTemplate="body">
-                {{ record.intoStationDate | date: 'yyyy-MM-dd'}}
-              </ng-template>
-            </p-column>
-            <p-column [style]="{'width':'150px'}" field="timeManufacture" header="制造日期">
-              <ng-template let-record="rowData" pTemplate="body">
-                {{ record.timeManufacture | date: 'yyyy-MM-dd'}}
-              </ng-template>
-            </p-column>
-            <p-column [style]="{'width':'150px'}" field="expectedScrapTime" header="报废日期">
-              <ng-template let-record="rowData" pTemplate="body">
-                {{ record.expectedScrapTime | date: 'yyyy-MM-dd'}}
-              </ng-template>
-            </p-column>
-            <p-column [style]="{'width':'150px'}" field="equipmentVarieties" header="设备品种"></p-column>
-            <p-column [style]="{'width':'150px'}" field="fillingMedia" header="充装介质"></p-column>
-            <p-column [style]="{'width':'150px'}" field="specificationId" header="型号规格"></p-column>
-            <p-column [style]="{'width':'150px'}" field="inspectionOrganizationName" header="上次检测单位"></p-column>
-            <p-column [style]="{'width':'150px'}" field="inspectionNumber" header="检测编号"></p-column>
-            <p-column [style]="{'width':'150px'}" field="lastInspectionTime" header="上次检测日期">
-              <ng-template let-record="rowData" pTemplate="body">
-                {{ record.lastInspectionTime | date: 'yyyy-MM-dd'}}
-              </ng-template>
-            </p-column>
-            <p-column [style]="{'width':'150px'}" field="nextInspectionTime" header="下次检测日期">
-              <ng-template let-record="rowData" pTemplate="body">
-                {{ record.nextInspectionTime | date: 'yyyy-MM-dd'}}
-              </ng-template>
-            </p-column>
-            <ng-template pTemplate="emptymessage">
-              <div class="text-left">
-                未查询到数据
-              </div>
-            </ng-template>
-            <ng-template pTemplate="paginatorRight">
-                共 {{ cylinderListTotal || 0 }} 条记录
-            </ng-template>
-            <!-- <p-column [style]="{'width':'150px'}" field="area5" header="附件"></p-column> -->
-          </p-dataTable>
-          <p-footer>
-            <button type="button" pButton icon="fa-check" (click)="display=false" label="确定"></button>
-            <!-- <button type="button" pButton icon="fa-close" (click)="display=false" label="取消"></button> -->
-          </p-footer>
-        </p-dialog>
+      <div class="ui-g-12">
+        <label for="" class="search-label">所在区</label>
+        <p-dropdown [options]="Area" [(ngModel)]="searchParams.regionId" (onChange)="changearea($event)" [style]="{'width':'100px'}"></p-dropdown>
       </div>
+      <!-- {{searchParams.regionId}} -->
+      <div class="ui-g-12">
+        <p-dataTable [value]="cylinderInfo" emptyMessage="暂未查询到数据" [lazy]="true" [paginator]="true" [rows]="searchParams.pageSize"
+          [(first)]="first" [scrollable]="false" scrollHeight="510px" [totalRecords]="cylinderNumberTotal" [rowsPerPageOptions]="[1,10,20,30,40] "
+          (onLazyLoad)="change($event)">
+
+          <p-column header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="regionName" header="所在区"></p-column>
+          <p-column field="enterpriseName" header="登记企业"></p-column>
+          <p-column field="count" header="登记数量"></p-column>
+          <p-column header="操作">
+            <ng-template let-col let-cylinder="rowData" pTemplate="body">
+              <a href="javascript:void(0);" style="color:blue" (click)="showdetail(cylinder)">查看详情</a>
+            </ng-template>
+          </p-column>
+          <ng-template pTemplate="paginatorRight">
+            共 {{ cylinderNumberTotal || 0 }} 条记录
+          </ng-template>
+        </p-dataTable>
+      </div>
+      <p-dialog header="详情查看" [draggable]="false" [(visible)]="display" modal="modal" width="900" minWidth="900" height="700" [responsive]="true">
+        <p-dataTable [value]="cylinderInfoList" [paginator]="true" [rows]="detailPageSize" [headerCheckboxToggleAllPages]="false"
+          [scrollable]="false" scrollHeight="470px" [rowsPerPageOptions]="[10,20,30,40]" [totalRecords]="cylinderListTotal"
+          (onLazyLoad)="pageChange($event)" [lazy]="true">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'150px'}" field="serialNumber" header="气瓶出厂编号"></p-column>
+          <p-column [style]="{'width':'150px'}" field="enterpriseCylinderCode" header="企业自有编号"></p-column>
+          <p-column [style]="{'width':'150px'}" field="productNature" header="产权性质"></p-column>
+          <p-column [style]="{'width':'150px'}" field="enterpriseName" header="产权单位"></p-column>
+          <p-column [style]="{'width':'150px'}" field="manufacturingOrganizationName" header="生产单位"></p-column>
+          <p-column [style]="{'width':'150px'}" field="intoStationDate" header="进站日期">
+            <ng-template let-record="rowData" pTemplate="body">
+              {{ record.intoStationDate | date: 'yyyy-MM-dd'}}
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'150px'}" field="timeManufacture" header="制造日期">
+            <ng-template let-record="rowData" pTemplate="body">
+              {{ record.timeManufacture | date: 'yyyy-MM-dd'}}
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'150px'}" field="expectedScrapTime" header="报废日期">
+            <ng-template let-record="rowData" pTemplate="body">
+              {{ record.expectedScrapTime | date: 'yyyy-MM-dd'}}
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'150px'}" field="equipmentVarieties" header="设备品种"></p-column>
+          <p-column [style]="{'width':'150px'}" field="fillingMedia" header="充装介质"></p-column>
+          <p-column [style]="{'width':'150px'}" field="specificationId" header="型号规格"></p-column>
+          <p-column [style]="{'width':'150px'}" field="inspectionOrganizationName" header="上次检测单位"></p-column>
+          <p-column [style]="{'width':'150px'}" field="inspectionNumber" header="检测编号"></p-column>
+          <p-column [style]="{'width':'150px'}" field="lastInspectionTime" header="上次检测日期">
+            <ng-template let-record="rowData" pTemplate="body">
+              {{ record.lastInspectionTime | date: 'yyyy-MM-dd'}}
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'150px'}" field="nextInspectionTime" header="下次检测日期">
+            <ng-template let-record="rowData" pTemplate="body">
+              {{ record.nextInspectionTime | date: 'yyyy-MM-dd'}}
+            </ng-template>
+          </p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+          <ng-template pTemplate="paginatorRight">
+            共 {{ cylinderListTotal || 0 }} 条记录
+          </ng-template>
+          <!-- <p-column [style]="{'width':'150px'}" field="area5" header="附件"></p-column> -->
+        </p-dataTable>
+        <p-footer>
+          <button type="button" pButton icon="fa-check" (click)="display=false" label="确定"></button>
+          <!-- <button type="button" pButton icon="fa-close" (click)="display=false" label="取消"></button> -->
+        </p-footer>
+      </p-dialog>
     </div>
   </div>
 </div>

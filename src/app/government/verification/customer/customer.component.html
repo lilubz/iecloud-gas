@@ -1,4 +1,4 @@
-<div class="ui-g-12 customer card">
+<div class="ui-g-12 customer">
   <div style="min-width: 550px;">
     <div class="ui-g-12">
       <label for="" class="search-label">所在区</label>
@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="720" [responsive]="true" 
+<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="720" [responsive]="true"
 [style]="{'border':'none','overflow':'auto'}" positionTop="90">
   <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [style]="{'max-height':'540px'}" [paginator]="true" [rows]="recordPageSize"
     [lazy]="true" scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)" [scrollable]="false" [totalRecords]="recordTotal"
