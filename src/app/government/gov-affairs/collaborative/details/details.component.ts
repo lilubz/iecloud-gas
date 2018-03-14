@@ -251,6 +251,8 @@ export class DetailsComponent implements OnInit {
             item.time = null;
             return item;
           });
+        } else if (data.status === 402) { // 如果状态码为402则表示没有部门可以指派（当前帐号），但是不弹出提示信息。
+          this.multiSelectOptions = [];
         } else {
           this.multiSelectOptions = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
