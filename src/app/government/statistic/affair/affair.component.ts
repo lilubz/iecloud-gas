@@ -56,6 +56,7 @@ export class AffairComponent implements OnInit {
       if (data.status === 0) {
         this.affairStatistics = data.data;
       } else {
+        this.affairStatistics = [];
         this.messageService.add({ severity: 'warn', summary: '获取事务统计失败', detail: data.msg });
       }
       this.loading = false;

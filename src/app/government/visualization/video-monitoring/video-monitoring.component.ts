@@ -18,11 +18,13 @@ export class VideoMonitoringComponent implements OnInit {
 
   // 浏览器检查
   isIE(): boolean {
-    const ua = window.navigator.userAgent.toLowerCase();
-    const regIE = new RegExp("msie (\\d+\\.\\d+);");
-    if (regIE.test(ua)) {
-      return true;
+    const ua = window.navigator.userAgent;
+    let version = 0;
+    if (/MSIE([^;]+)/.test(ua)) { // 判断IE11以下（不含IE11）
+      version = parseFloat(RegExp['$1']);
+    } else if (/rv:([^\)]+)\) like Gecko/.test(ua)) { // 判断IE11
+      version = parseFloat(RegExp['$1']);
     }
-    return false;
+    return version > 0;
   }
 }
