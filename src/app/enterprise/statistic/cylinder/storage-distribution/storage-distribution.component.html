@@ -2,7 +2,7 @@
   <h3>储配站气瓶统计</h3>
   <div class="ui-g">
     <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-      <!-- <button pButton type="button" (click)="exportFillingStationStatistic()" class="ui-button-info right" label="导出"></button> -->
+      <button pButton type="button" (click)="exportFillingStationStatistic()" class="ui-button-info right" label="导出"></button>
     </div>
   </div>
   <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
@@ -58,7 +58,7 @@
       dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true"></p-calendar>
 
     <button pButton type="button" label="查询" class="searchBtn" (click)="searchStorageDistributionCirculations()"></button>
-    <!-- <button pButton type="button" (click)="exportFillingStationCirculationStatistic()" class="ui-button-info right" label="导出"></button> -->
+    <button pButton type="button" (click)="exportFillingStationCirculationStatistic()" class="ui-button-info right" label="导出"></button>
   </div>
 
   <p-dataTable [value]="storageDistributionCirculationFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]"

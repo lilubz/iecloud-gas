@@ -160,51 +160,48 @@ export class DetailsComponent implements OnInit {
   getAllNodeDetailsInfo(params?) {
     this._service.listEventDetailInfo({
       transactionBasicId: this.treeNode.data[0].data
-    })
-      .then(data => {
-        if (data.status === 0) {
-          data.data.forEach(item => {
-            if (item.relateNumber === 2) { // 需要处理
-              item.url = item.url ? this.API.url + item.url : '';
-              this.treeNode.needHandle = item;
-            } else {
-              item.url = item.url ? this.API.url + item.url : '';
-              this.treeNode.replyInfo.push(item);
-            }
-          });
-          // 填充需处理事务下面的信息
-          const target = this.treeNode.needHandle;
-
-          if (target && target.lastEventId) {
-            const parentNode = (() => {
-              for (let i = 0; i < this.treeNode.replyInfo.length; i++) {
-                const current = this.treeNode.replyInfo[i];
-                if (target.lastEventId === current.eventId) {
-                  return current;
-                }
-              }
-              return null;
-            })();
-            if (parentNode) {
-              target['parentEndTime'] = parentNode.endTime; // 结束时间
-              target['parentDescription'] = parentNode.description; // 描述
-              target['parentEventHandleName'] = parentNode.eventHandleName; // 事件处理人名称
-              target['parentEventHandleOrganizationName'] = parentNode.eventHandleOrganizationName;
-              target['parentUrl'] = parentNode.url;
-            }
-          } else if (target && !target.lastEventId) { // 没有lastEventId 那么此节点的父节点是根节点
-            setTimeout(() => {
-              target['parentEndTime'] = ''; // 结束时间
-              target['parentDescription'] = this.details.description ? this.details.description : ''; // 描述
-              target['parentEventHandleName'] = this.details.transactionUserName ? this.details.transactionUserName : ''; // 事件处理人名称
-              target['parentEventHandleOrganizationName'] = this.details.transactionOrganizationName ? this.details.transactionOrganizationName : '';
-              target['parentUrl'] = this.details.url ? this.details.url : '';
-            }, 3000);
+    }).then(data => {
+      if (data.status === 0) {
+        data.data.forEach(item => {
+          if (item.relateNumber === 2) { // 需要处理
+            this.treeNode.needHandle = item;
+          } else {
+            this.treeNode.replyInfo.push(item);
           }
-        } else {
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        });
+        // 填充需处理事务下面的信息
+        const target = this.treeNode.needHandle;
+
+        if (target && target.lastEventId) {
+          const parentNode = (() => {
+            for (let i = 0; i < this.treeNode.replyInfo.length; i++) {
+              const current = this.treeNode.replyInfo[i];
+              if (target.lastEventId === current.eventId) {
+                return current;
+              }
+            }
+            return null;
+          })();
+          if (parentNode) {
+            target['parentEndTime'] = parentNode.endTime; // 结束时间
+            target['parentDescription'] = parentNode.description; // 描述
+            target['parentEventHandleName'] = parentNode.eventHandleName; // 事件处理人名称
+            target['parentEventHandleOrganizationName'] = parentNode.eventHandleOrganizationName;
+            target['parentUrl'] = parentNode.url;
+          }
+        } else if (target && !target.lastEventId) { // 没有lastEventId 那么此节点的父节点是根节点
+          setTimeout(() => {
+            target['parentEndTime'] = ''; // 结束时间
+            target['parentDescription'] = this.details.description ? this.details.description : ''; // 描述
+            target['parentEventHandleName'] = this.details.transactionUserName ? this.details.transactionUserName : ''; // 事件处理人名称
+            target['parentEventHandleOrganizationName'] = this.details.transactionOrganizationName ? this.details.transactionOrganizationName : '';
+            target['parentUrl'] = this.details.url ? this.details.url : '';
+          }, 3000);
         }
-      });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+      }
+    });
   }
 
   getDetails(params?) {
@@ -212,7 +209,6 @@ export class DetailsComponent implements OnInit {
       .then(data => {
         if (data.status === 0) {
           this.details = data.data;
-          this.details['url'] = this.details['url'] ? this.API.url + this.details['url'] : '';
         } else {
           this.details = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });

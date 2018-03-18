@@ -181,9 +181,9 @@ export class CustomerDetailComponent implements OnInit {
   ondetail(data) {
     this.detailLists = this.detailList[data];
     this.certificateAppendixImages = this.detailLists.certificateAppendixUrl ? this.detailLists.certificateAppendixUrl
-      .split(',').map(item => ({ source: item, thumbnail: item, title: '' })) : '';
+      .split(',').map(item => ({ source: item, thumbnail: item, title: '' })) : [];
     this.contractAppendixImages = this.detailLists.contractAppendixUrl ? this.detailLists.contractAppendixUrl.split(',')
-      .map(item => ({ source: item, thumbnail: item, title: '' })) : '';
+      .map(item => ({ source: item, thumbnail: item, title: '' })) : [];
   }
   /**
    * 弹出框

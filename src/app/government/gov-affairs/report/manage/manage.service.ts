@@ -13,6 +13,6 @@ export class ManageService {
     return this.HttpService.formDataPostRequest(API.addReportInfo, params);
   }
   deleteReport(params?: any): Promise<any> {
-    return this.HttpService.delete(API.deleteReport, params);
+    return this.HttpService.getRequest(API.deleteReport, params);
   }
 }

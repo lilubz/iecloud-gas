@@ -64,11 +64,6 @@ export class LoginComponent implements OnDestroy, OnInit {
       this.messageService.add({ severity: 'error', summary: '服务器错误', detail: error.status });
     });
   }
-  download(data) {
-    const downloadUrl = 'http://' + API.mapServerAddress + data.fileUrl;
-    window.location.href = downloadUrl;
-  }
-
 
   signIn() {
     this.loginService.signIn({

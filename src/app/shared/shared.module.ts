@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import {
-  AutoCompleteModule,
   ButtonModule,
   CalendarModule,
   CheckboxModule,
@@ -44,6 +43,7 @@ import { DispatcherAutocompleteComponent } from './dispatcher-autocomplete/dispa
 import { DateFormat } from './dateFormat.pipe';
 import { ExportFileDirective } from './export-file.directive';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { AutoCompleteModule } from './autocomplete/autocomplete';
 
 @NgModule({
   imports: [
@@ -92,7 +92,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     DispatcherAutocompleteComponent,
     DateFormat,
     ExportFileDirective,
-    BreadcrumbComponent
+    BreadcrumbComponent,
   ],
 
   exports: [

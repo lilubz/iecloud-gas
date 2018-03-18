@@ -70,7 +70,7 @@ export class DispatcherAutocompleteComponent implements OnInit {
       jobNumber: this.selectedDispatcherSearchField === 1 ? query : '',
       phone: '',
       idNumber: '',
-      pageSize: 999999,
+      pageSize: 99,
       pageNumber: 1
     }).then(data => {
       if (data.status === 0) {

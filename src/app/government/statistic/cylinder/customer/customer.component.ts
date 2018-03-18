@@ -19,7 +19,7 @@ export class CustomerComponent implements OnInit {
 
   calculateTotal = this.utilService.calculateTotal;
   constructor(
-    private statisticCylinderService: StatisticCylinderService,
+    public statisticCylinderService: StatisticCylinderService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
     private utilService: Util

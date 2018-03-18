@@ -77,7 +77,7 @@ export class Util {
   downloadFile = (path: string) => {
     var $form = this.renderer.createElement('form');
     this.renderer.setAttribute($form, 'menthod', 'get');
-    this.renderer.setAttribute($form, 'action', API.url + path.slice(1, path.length));
+    this.renderer.setAttribute($form, 'action', path);
     this.renderer.appendChild(document.body, $form);
     $form.submit();
     this.renderer.removeChild(document.body, $form);

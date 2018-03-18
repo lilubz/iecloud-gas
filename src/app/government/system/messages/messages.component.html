@@ -16,7 +16,7 @@
           <p-fileUpload #MessageFile [auto]="false" name="" mode="advanced" [multiple]="false" accept=".doc,.docx,.pdf" invalidFileSizeMessageSummary="{0}: 文件过大,"
             invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型," invalidFileTypeMessageDetail="允许的文件类型是: {0}."
             chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false" [showCancelButton]="false" previewWidth="50"
-            [customUpload]="true" ></p-fileUpload>
+            [customUpload]="true"></p-fileUpload>
           <div class="ui-g-6">
             <button type="button" class="searchBtn" pButton label="发布" (click)="addConfirm(MessageFile)"></button>
           </div>
@@ -35,7 +35,7 @@
           <p-column [style]="{'width':'150px'}" field="title" header="标题"></p-column>
           <p-column [style]="{'width':'150px'}" header="文件查看">
             <ng-template pTemplate="body" let-Data="rowData">
-              <a href="javascript:;" style="color:blue;text-decoration: none;" (click)="download(Data)">查看文件</a>
+              <a [href]="Data.fileUrl" target="_blank" style="color:blue;text-decoration: none;">查看文件</a>
             </ng-template>
           </p-column>
           <p-column [style]="{'width':'150px'}" header="发布时间">
@@ -56,11 +56,11 @@
             </div>
           </ng-template>
           <ng-template pTemplate="paginatorRight">
-              共 {{ total || 0 }} 条记录
+            共 {{ total || 0 }} 条记录
           </ng-template>
         </p-dataTable>
       </div>
-      
+
       <p-confirmDialog #cd>
         <p-footer>
           <button type="button" pButton label="取消" (click)="cd.reject()"></button>
