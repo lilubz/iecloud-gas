@@ -1,7 +1,7 @@
 <div class="ui-g-12">
   <div class="ui-g-12 ui-lg-4">
     <label style="width:80px;display:inline-block">气瓶条码</label>
-    <input type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px"> 
+    <input type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px">
   </div>
 
   <div class="ui-g-12 ui-lg-4">
@@ -82,7 +82,7 @@
     <p-column field="afterLiabilityAddress"></p-column>
 
     <ng-template pTemplate="paginatorRight">
-        共 {{ totalHistory || 0 }} 条记录
+        共 {{ cylinderHistoryList.length || 0 }} 条记录
     </ng-template>
   </p-dataTable>
 </div>
