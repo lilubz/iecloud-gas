@@ -7,6 +7,7 @@ import { BigScreenService, } from './big-screen.service';
 import { DOCUMENT } from '@angular/common';
 import * as $ from 'jquery';
 import { UserStateService } from '../../../core/userState.service';
+import { WarningMockData } from './warningMockData';
 
 declare const echarts: any;
 
@@ -24,6 +25,7 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   webkitfullscreenchange: any;
   msfullscreenchange: any;
   keydownListener: any;
+  chartContainer: any;
   @ViewChild('chart') chart: ElementRef;
   @ViewChild('chart1') chart1: ElementRef;
   @ViewChild('chart2') chart2: ElementRef;
@@ -33,60 +35,7 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   DateTime: any;
   currentTime: any;
   timer: any;
-  List = [
-    {
-      id: 1,
-      content: '超期未报费气瓶预警'
-    },
-    {
-      id: 2,
-      content: '某某某某某公司经营许可证到期提醒'
-    },
-    {
-      id: 3,
-      content: '某某某某某公司经营许可证到期提醒'
-    },
-    {
-      id: 4,
-      content: '超期未报费气瓶预警'
-    },
-    {
-      id: 5,
-      content: '超期未报费气瓶预警'
-    },
-    {
-      id: 6,
-      content: '某某某某某公司经营许可证到期提醒'
-    },
-    {
-      id: 7,
-      content: '超期未报费气瓶预警'
-    },
-    {
-      id: 8,
-      content: '超期未报费气瓶预警'
-    },
-    {
-      id: 9,
-      content: '某某某某某公司经营许可证到期提醒'
-    },
-    {
-      id: 10,
-      content: '超期未报费气瓶预警'
-    },
-    {
-      id: 11,
-      content: '某某某某某公司经营许可证到期提醒'
-    },
-    {
-      id: 12,
-      content: '超期未报费气瓶预警'
-    },
-    {
-      id: 13,
-      content: '某某某某某公司经营许可证到期提醒'
-    },
-  ];
+  List: { id: number, content: string }[] = WarningMockData;
   list = [];
 
   first11 = true;
@@ -95,31 +44,41 @@ export class BigScreenComponent implements OnInit, OnDestroy {
     regionId: null,
     regionName: '',
     partOfGc: {
-      gcCountAddedCurrentMouth: null,
-      gcCountNeedInspectCurrentMonth: null,
-      gcCountNeedScrapCurrentMonth: null,
+      gcCountAddedCurrentMouth: 0,
+      gcCountNeedInspectCurrentMonth: 0,
+      gcCountNeedScrapCurrentMonth: 0,
       completionRateGcNeedInspectCurrentMonth: 0,
       completionRateGcNeedScrapCurrentMonth: 0
     },
     partOfDispatch: {
-      gcDispatchCountFullCurrentDay: null,
-      gcDispatchCountFullCurrentMonth: null,
+      gcDispatchCountFullCurrentDay: 0,
+      gcDispatchCountFullCurrentMonth: 0,
       growthGcDispatchCountYearOnYear: 0,
       growthGcDispatchCountMonthOnMonth: 0
     },
     partOfBasicInfo: {
-      gcCount: null,
-      gcCountTakeBySupplyStation: null,
-      gcCountNormal: null,
-      corpDispatcherCount: null,
-      carCount: null,
-      gcUserCount: null
+      gcCount: 0,
+      gcCountTakeBySupplyStation: 0,
+      gcCountNormal: 0,
+      corpDispatcherCount: 0,
+      carCount: 0,
+      gcUserCount: 0
     },
     partOfCase: {
       rateCompletionCase: null,
       rateProcessingCase: null,
       rateOutOfDateCase: null,
       caseCountOutOfDateList: [
+        { name: '市辖区', regionId: 330301, value: 0 },
+        { name: '洞头区', regionId: 330305, value: 0 },
+        { name: '永嘉县', regionId: 330324, value: 0 },
+        { name: '平阳县', regionId: 330326, value: 0 },
+        { name: '苍南县', regionId: 330327, value: 0 },
+        { name: '文成县', regionId: 330328, value: 0 },
+        { name: '泰顺县', regionId: 330329, value: 0 },
+        { name: '瑞安市', regionId: 330381, value: 0 },
+        { name: '乐清市', regionId: 330382, value: 0 }
+
       ]
     },
     partOfWarning: {
@@ -128,12 +87,35 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   };
   regionId: any;
   earthFirst = true; // 第一次请求接口后数据赋值给地图
+  earthInit = true; // 初始化数据赋值给地图
   seconds: any;
   minutes: any;
   Hours: any;
   scrollInterval: any;
   timeInterval: any;
   requestInterval: any;
+  option: any;
+  option2: any;
+  option3: any;
+  option4: any;
+  // 地图
+  mapData;
+  geoCoordMap = {
+    '市辖区': [120.6, 27.993144],
+    '洞头区': [121.15202, 27.853144],
+    '永嘉县': [120.697875, 28.259922],
+    '平阳县': [120.402279, 27.608007],
+    '文成县': [120.084401, 27.79932],
+    '苍南县': [120.532872, 27.423336],
+    '泰顺县': [119.923953, 27.502516],
+    '瑞安市': [120.461759, 27.804332],
+    '乐清市': [120.991934, 28.219178],
+  };
+  max = 480;
+  min = 9;
+  maxSize4Pin = 100;
+  minSize4Pin = 20;
+
   constructor(
     private _service: BigScreenService,
     private renderer: Renderer2,
@@ -144,29 +126,21 @@ export class BigScreenComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.messageService.add({ severity: 'success', summary: '', detail: '按F11全屏展示！' });
+
+    this.max = 480;
+    this.min = 9;
+    this.maxSize4Pin = 100;
+    this.minSize4Pin = 20;
     this.getBigData();
 
     this.requestInterval = setInterval(() => {
       this.getBigData();
     }, 30 * 60 * 1000);
-    // this.getBigData();
+    this.earth(this.dataList.partOfCase.caseCountOutOfDateList);
+
     /**
      * 滚动内容
      */
-    // let sum = -1;
-    // this.timer = setInterval(() => {
-    //   sum += 1;
-    //   this.list = this.List.slice(sum, sum + 5);
-    //   // console.log(sum);
-    //   if (sum >= this.List.length - 5) {
-    //     sum = -1;
-    //     // tslint:disable-next-line:no-unused-expression
-    //     this.timer;
-    //     // console.log(this.messageList.length);
-
-    //   }
-    // }, 2000);
-    //  this.move();
     this.scrollInterval = setInterval(this.move, 3000);
 
     /**
@@ -176,22 +150,6 @@ export class BigScreenComponent implements OnInit, OnDestroy {
       const Hour = this.FormatNum(new Date().getHours());
       const minute = this.FormatNum(new Date().getMinutes());
       const second = this.FormatNum(new Date().getSeconds());
-      // if (Hour < 10) {
-      //   this.Hours = '0' + Hour.toString();
-      // } else {
-      //   this.Hours = Hour;
-      // }
-      // if (minute < 10) {
-      //   this.minutes = '0' + minute.toString();
-      // } else {
-      //   this.minutes = minute;
-      // }
-      // if (second < 10) {
-      //   this.seconds = '0' + second.toString();
-      // } else {
-      //   this.seconds = second;
-      // }
-
       const date = new Date();
       // console.log(date);
       this.DateTime = date.getFullYear() + '-' + this.FormatNum(date.getMonth() + 1)
@@ -237,7 +195,6 @@ export class BigScreenComponent implements OnInit, OnDestroy {
       // this.removeStyle();
     }));
     // }
-
     /**
      * 监听全屏与否
      */
@@ -253,25 +210,18 @@ export class BigScreenComponent implements OnInit, OnDestroy {
     this.msfullscreenchange = this.renderer.listen('window', 'msfullscreenchange', (event) => {
       this.update_iframe_pos();
     });
-
-
     /**
      * 地图
      */
     this.pie();
-    this.setMap();
-
-
+    this.setDrop();
   }
-
-
   /**
    * 初始化分界线
    * @function sa 在数字每隔三位加一个逗号处理
    */
 
   changeType(data?) {
-    // const n = '12';
     const str = data.toString();
     const len = str.length;
     if (len <= 3) { return str; }
@@ -279,16 +229,6 @@ export class BigScreenComponent implements OnInit, OnDestroy {
     return result > 0 ? str.slice(0, result) + ',' +
       str.slice(result, len).match(/\d{3}/g).join(',') : str.slice(result, len).match(/\d{3}/g).join(',');
   }
-
-  // FormatDate(strTime) { // 这里的 strTime = "2017-03-31 11:42:00";
-  //   //  IE11里面不能直接转换带"-",必须先替换成"/"
-  //   strTime = strTime.replace('-', '/');
-  //   strTime = strTime.replace('-', '/');
-  //   const date = new Date(strTime);
-  //   console.log(date);
-  //   // 这里也可以写成 Date.parse(strTime);
-  //   return date.getFullYear() + '-' + this.FormatNum(date.getMonth() + 1) + '-' + this.FormatNum(date.getDate());
-  // }
 
   FormatNum(strTime) {
     if (strTime < 10) {
@@ -468,76 +408,32 @@ export class BigScreenComponent implements OnInit, OnDestroy {
       ]
     };
     myChart.setOption(Option);
-    // myChart.setOption(option);
-    // $(window).resize(function () {
-    //   myChart.resize();
-    // });
   }
   /**
    * 地图嵌入
    */
-  transform(data?) {
-    return data.map(event => {
-      return {
-        name: event.regionName,
-        value: event.caseCount,
-        regionId: event.regionId
-      };
-    });
-  }
-  earth = (arr?) => {
-    const user = this.userStateService.getUser();
-    const geoCoordMap = {
-      // '鹿城区': [120.661851, 28.020502],
-      // '龙湾区': [120.818508, 27.939041],
-      // '瓯海区': [120.621477, 27.97321],
-      '市辖区': [120.6, 27.993144],
-      '洞头区': [121.15202, 27.853144],
-      '永嘉县': [120.697875, 28.259922],
-      '平阳县': [120.402279, 27.608007],
-      '文成县': [120.084401, 27.79932],
-      '苍南县': [120.532872, 27.423336],
-      '泰顺县': [119.923953, 27.502516],
-      '瑞安市': [120.461759, 27.804332],
-      '乐清市': [120.991934, 28.219178],
-    };
 
-    const data = arr;
-    const max = 480, min = 9; // todo
-    const maxSize4Pin = 100, minSize4Pin = 20;
+  earth = (arr?) => {
+    this.mapData = arr;
     let zoom = 7;
     let mins = 7;
     let roam = true;
     let center = [120.37, 28];
-    console.log(user.regionId);
+
+    const user = this.userStateService.getUser();
     if (user.regionId != '330300') {
       zoom = 30;
       mins = 40;
       roam = false;
-      for (let i = 0; i < data.length; i++) {
-        if (user.regionId === data[i].regionId) {
-          center = geoCoordMap[data[i].name];
+      for (let i = 0; i < arr.length; i++) {
+        if (user.regionId === arr[i].regionId) {
+          center = this.geoCoordMap[arr[i].name];
         }
       }
     }
-    const convertData = (regionData) => {
-      const res = [];
-      for (let i = 0; i < regionData.length; i++) {
-        const geoCoord = geoCoordMap[regionData[i].name];
-        if (geoCoord) {
-          res.push({
-            name: regionData[i].name,
-            value: geoCoord.concat(regionData[i].value)
-          });
-        }
-      }
 
-      return res;
-    };
-
-    const chart = echarts.init(document.getElementById('main'));
-    // console.log(convertData(data));
-    chart.setOption({
+    this.chartContainer = echarts.init(document.getElementById('main'));
+    this.chartContainer.setOption({
       tooltip: {
         trigger: 'item',
         formatter: function (params) {
@@ -600,270 +496,223 @@ export class BigScreenComponent implements OnInit, OnDestroy {
           }
         }
       },
-      series: [
-        // type: 'scatter',图例
-        {
-          name: '预警',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          data: convertData(data),
-          symbolSize: function (val) {
-            return val[2] / 10 + 1;
-          },
-          label: {
-            normal: {
-              formatter: '{b}',
-              position: 'right',
-              show: true,
-              fontSize: 20,
-            },
-            emphasis: {
-              show: true
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#05C3F9'
-            },
+      series: this.getSeries(this.mapData),
+    }, true);
 
+    if (user.regionId == '330300') {
+      this.chartContainer.on('click', this.clickChart);
+    }
+  }
+
+  clickChart = (params) => {
+    let mins = 7;
+    let roam = true;
+    let zoom = 30;
+    let city = params.data.name;
+    let center = this.geoCoordMap[city];
+    const user = this.userStateService.getUser();
+    if (user.regionId != '330300') {
+      zoom = 30;
+      mins = 40;
+      roam = false;
+      for (let i = 0; i < this.mapData.length; i++) {
+        if (user.regionId === this.mapData[i].regionId) {
+          center = this.geoCoordMap[this.mapData[i].name];
+        }
+      }
+    }
+    if (city === '鹿城区' || city === '瓯海区' || city === '龙湾区') {
+      city = '市辖区';
+      this.regionId = '330301';
+      this.getBigData(this.regionId);
+    } else {
+      this.regionId = params.data.regionId;
+      this.getBigData(this.regionId);
+    }
+    this.chartContainer.setOption({
+      tooltip: {
+        trigger: 'item',
+        formatter: function (param) {
+          if (typeof (param.value)[2] === 'undefined') {
+            return param.name + ' : ' + param.value;
+          } else {
+            return param.name + ' : ' + param.value[2];
+          }
+        }
+      },
+      visualMap: {
+        show: false,
+        min: 0,
+        max: 500,
+        left: 'left',
+        top: 'bottom',
+        text: ['高', '低'], // 文本，默认为数值文本
+        calculable: true,
+        seriesIndex: [1],
+        inRange: {
+          // color: ['#3B5077', '#031525'] // 蓝黑
+          // color: ['#ffc0cb', '#800080'] // 红紫
+          // color: ['#3C3B3F', '#605C3C'] // 黑绿
+          color: ['#0f0c29', '#302b63', '#24243e'] // 黑紫黑
+          // color: ['#23074d', '#cc5333'] // 紫红
+          // color: ['#00467F', '#A5CC82'] // 蓝绿
+          // color: ['#1488CC', '#2B32B2'] // 浅蓝
+          // color: ['#00467F', '#A5CC82'] // 蓝绿
+          // color: ['#00467F', '#A5CC82'] // 蓝绿
+          // color: ['#00467F', '#A5CC82'] // 蓝绿
+          // color: ['#00467F', '#A5CC82'] // 蓝绿
+
+        }
+      },
+      geo: {
+        show: true,
+        map: 'china',
+        label: {
+          normal: {
+            show: false
+          },
+          emphasis: {
+            show: false,
           }
         },
-        // type: 'map',地图
-        {
-          type: 'map',
-          map: 'china',
-          geoIndex: 0,
-          aspectScale: 0.75, // 长宽比
-          showLegendSymbol: false, // 存在legend时显示
-          label: {
-            normal: {
-              show: false
-            },
-            emphasis: {
-              show: false,
-              textStyle: {
-                color: '#fff'
-              }
-            }
-          },
-          roam: true,
-          itemStyle: {
-            normal: {
-              areaColor: '#031525',
-              borderColor: '#3B5077',
-            },
-            emphasis: {
-              areaColor: '#2B91B7'
-            }
-          },
-          animation: false,
-          data: data
+        scaleLimit: {
+          min: mins,
+          max: 40,
         },
-        // type: 'scatter',点
-        {
-          name: '点',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbol: 'pin',
-          symbolSize: function (val) {
-            const a = (maxSize4Pin - minSize4Pin) / (max - min);
-            let b = minSize4Pin - a * min;
-            b = maxSize4Pin - a * max;
-            return a * val[2] + b + 14;
+        zoom: zoom,
+        center: center,
+        roam: roam,
+        itemStyle: {
+          normal: {
+            areaColor: '#031525',
+            borderColor: '#3B5077',
           },
-          label: {
-            normal: {
-              show: true,
-              textStyle: {
-                color: '#fff',
-                fontSize: 14,
-              }
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgba(240,240,240,0.5)', // 标志颜色
-            }
-          },
-          zlevel: 6,
-          data: convertData(data),
-        },
-
-      ]
-    }, true);
-    if (user.regionId == '330300') {
-      chart.on('click', (params) => {
-        // console.log(params);
-        let city = params.data.name;
-        // if (city === '洞头县') {
-        //   city = '洞头区';
-        // }
-        if (city === '鹿城区' || city === '瓯海区' || city === '龙湾区') {
-          city = '市辖区';
-          this.regionId = '330301';
-          this.getBigData(this.regionId);
-        } else {
-          this.regionId = params.data.regionId;
-          this.getBigData(this.regionId);
+          emphasis: {
+            areaColor: '#2B91B7',
+          }
         }
-        // const city = params.name;
-        center = geoCoordMap[city];
-        zoom = 30;
-        chart.setOption({
-          tooltip: {
-            trigger: 'item',
-            formatter: function (param) {
-              if (typeof (param.value)[2] === 'undefined') {
-                return param.name + ' : ' + param.value;
-              } else {
-                return param.name + ' : ' + param.value[2];
-              }
-            }
-          },
-          visualMap: {
-            show: false,
-            min: 0,
-            max: 500,
-            left: 'left',
-            top: 'bottom',
-            text: ['高', '低'], // 文本，默认为数值文本
-            calculable: true,
-            seriesIndex: [1],
-            inRange: {
-              // color: ['#3B5077', '#031525'] // 蓝黑
-              // color: ['#ffc0cb', '#800080'] // 红紫
-              // color: ['#3C3B3F', '#605C3C'] // 黑绿
-              color: ['#0f0c29', '#302b63', '#24243e'] // 黑紫黑
-              // color: ['#23074d', '#cc5333'] // 紫红
-              // color: ['#00467F', '#A5CC82'] // 蓝绿
-              // color: ['#1488CC', '#2B32B2'] // 浅蓝
-              // color: ['#00467F', '#A5CC82'] // 蓝绿
-              // color: ['#00467F', '#A5CC82'] // 蓝绿
-              // color: ['#00467F', '#A5CC82'] // 蓝绿
-              // color: ['#00467F', '#A5CC82'] // 蓝绿
+      },
+      series: this.getSeries(this.mapData)
+    }, true);
+    this.chartContainer.resize();
+  }
 
-            }
-          },
-          geo: {
-            show: true,
-            map: 'china',
-            label: {
-              normal: {
-                show: false
-              },
-              emphasis: {
-                show: false,
-              }
-            },
-            scaleLimit: {
-              min: mins,
-              max: 40,
-            },
-            zoom: zoom,
-            center: center,
-            roam: roam,
-            itemStyle: {
-              normal: {
-                areaColor: '#031525',
-                borderColor: '#3B5077',
-              },
-              emphasis: {
-                areaColor: '#2B91B7',
-              }
-            }
-          },
-          series: [
-            // type: 'scatter',
-            {
-              name: '预警',
-              type: 'scatter',
-              coordinateSystem: 'geo',
-              data: convertData(data),
-              symbolSize: function (val) {
-                return val[2] / 10 + 1;
-              },
-              label: {
-                normal: {
-                  formatter: '{b}',
-                  position: 'right',
-                  show: true,
-                  fontSize: 20,
-                },
-                emphasis: {
-                  show: true
-                }
-              },
-              itemStyle: {
-                normal: {
-                  color: '#05C3F9'
-                }
-              }
-            },
-            // type: 'map',
-            {
-              type: 'map',
-              map: 'china',
-              geoIndex: 0,
-              aspectScale: 0.75, // 长宽比
-              showLegendSymbol: false, // 存在legend时显示
-              label: {
-                normal: {
-                  show: false
-                },
-                emphasis: {
-                  show: false,
-                  textStyle: {
-                    color: '#fff'
-                  }
-                }
-              },
-              roam: true,
-              itemStyle: {
-                normal: {
-                  areaColor: '#031525',
-                  borderColor: '#3B5077',
-                },
-                emphasis: {
-                  areaColor: '#2B91B7'
-                }
-              },
-              animation: false,
-              data: data
-            },
-            // type: 'scatter',
-            {
-              name: '点',
-              type: 'scatter',
-              coordinateSystem: 'geo',
-              symbol: 'pin',
-              symbolSize: function (val) {
-                const a = (maxSize4Pin - minSize4Pin) / (max - min);
-                let b = minSize4Pin - a * min;
-                b = maxSize4Pin - a * max;
-                return a * val[2] + b + 14;
-              },
-              label: {
-                normal: {
-                  show: true,
-                  textStyle: {
-                    color: '#fff',
-                    fontSize: 14,
-                  }
-                }
-              },
-              itemStyle: {
-                normal: {
-                  color: 'rgba(240,240,240,0.5)', // 标志颜色
-                }
-              },
-              zlevel: 6,
-              data: convertData(data),
-            },
-          ]
-        }, true);
-        chart.resize();
-      });
+  /**
+   *地图数据处理函数
+  */
+  convertData(regionData) {
+    const res = [];
+    for (let i = 0; i < regionData.length; i++) {
+      const geoCoord = this.geoCoordMap[regionData[i].name];
+      if (geoCoord) {
+        res.push({
+          name: regionData[i].name,
+          value: geoCoord.concat(regionData[i].value)
+        });
+      }
     }
+    return res;
+  }
+  transform(data?) {
+    return data.map(event => {
+      return {
+        name: event.regionName,
+        value: event.caseCount,
+        regionId: event.regionId
+      };
+    });
+  }
+  // 返回series
+  getSeries(arr) {
+    return [
+      // type: 'scatter',图例
+      {
+        name: '预警',
+        type: 'scatter',
+        coordinateSystem: 'geo',
+        data: this.convertData(arr),
+        symbolSize: function (val) {
+          return val[2] / 10 + 1;
+        },
+        label: {
+          normal: {
+            formatter: '{b}',
+            position: 'right',
+            show: true,
+            fontSize: 20,
+          },
+          emphasis: {
+            show: true
+          }
+        },
+        itemStyle: {
+          normal: {
+            color: '#05C3F9'
+          },
+
+        }
+      },
+      // type: 'map',地图
+      {
+        type: 'map',
+        map: 'china',
+        geoIndex: 0,
+        aspectScale: 0.75, // 长宽比
+        showLegendSymbol: false, // 存在legend时显示
+        label: {
+          normal: {
+            show: false
+          },
+          emphasis: {
+            show: false,
+            textStyle: {
+              color: '#fff'
+            }
+          }
+        },
+        roam: true,
+        itemStyle: {
+          normal: {
+            areaColor: '#031525',
+            borderColor: '#3B5077',
+          },
+          emphasis: {
+            areaColor: '#2B91B7'
+          }
+        },
+        animation: false,
+        data: arr
+      },
+      // type: 'scatter',点
+      {
+        name: '点',
+        type: 'scatter',
+        coordinateSystem: 'geo',
+        symbol: 'pin',
+        symbolSize: (val) => {
+          const a = (this.maxSize4Pin - this.minSize4Pin) / (this.max - this.min);
+          let b = this.minSize4Pin - a * this.min;
+          b = this.maxSize4Pin - a * this.max;
+          return a * val[2] + b + 14;
+        },
+        label: {
+          normal: {
+            show: true,
+            textStyle: {
+              color: '#fff',
+              fontSize: 14,
+            }
+          }
+        },
+        itemStyle: {
+          normal: {
+            color: 'rgba(240,240,240,0.5)', // 标志颜色
+          }
+        },
+        zlevel: 6,
+        data: this.convertData(arr),
+      },
+    ];
   }
 
   /**
@@ -872,7 +721,11 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   setScreen() {
     const height = document.querySelector('.bigScreen')
       ? (document.querySelector('.bigScreen').clientHeight / 1080) : null;
-    const marginLeft = -((1920 * height) - (document.body.clientWidth- 110)) / 2;
+    // console.log(document.body.clientWidth);
+
+    const marginLeft = -((1920 * height) - (document.body.clientWidth - 110)) / 2;
+    // console.log(marginLeft);
+
     this.renderer.setStyle(document.querySelector('.screen'), 'transform', `scale(${height})`);
     this.renderer.setStyle(document.querySelector('.screen'), '-ms-transform', `scale(${height})`);
     this.renderer.setStyle(document.querySelector('.screen'), 'margin-left', `${marginLeft}` + 'px');
@@ -977,23 +830,19 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   getBigData(param?) {
     this._service.getData({ regionId: param || '' }).then(data => {
       if (data.status === 0) {
-        console.log(data.data);
+        // console.log(data.data);
         this.dataList = data.data;
         this.dataList['partOfGc']['gcCountAddedCurrentMouth'] = this.changeType(data.data['partOfGc']['gcCountAddedCurrentMouth']);
         this.dataList['partOfGc']['gcCountNeedInspectCurrentMonth'] = this.changeType(data.data['partOfGc']['gcCountNeedInspectCurrentMonth']);
         this.dataList['partOfGc']['gcCountNeedScrapCurrentMonth'] = this.changeType(data.data['partOfGc']['gcCountNeedScrapCurrentMonth']);
 
-        this.dataList['partOfGc']['completionRateGcNeedInspectCurrentMonth'] = parseInt(data.data['partOfGc']['completionRateGcNeedInspectCurrentMonth'], 10);
-        this.dataList['partOfGc']['completionRateGcNeedScrapCurrentMonth'] = parseInt(data.data['partOfGc']['completionRateGcNeedScrapCurrentMonth'], 10);
-        console.log(parseInt(data.data['partOfGc']['completionRateGcNeedScrapCurrentMonth'], 10));
+        this.dataList['partOfGc']['completionRateGcNeedInspectCurrentMonth'] = parseFloat(data.data['partOfGc']['completionRateGcNeedInspectCurrentMonth']);
+        this.dataList['partOfGc']['completionRateGcNeedScrapCurrentMonth'] = parseFloat(data.data['partOfGc']['completionRateGcNeedScrapCurrentMonth']);
 
         this.dataList['partOfDispatch']['gcDispatchCountFullCurrentDay'] = this.changeType(data.data['partOfDispatch']['gcDispatchCountFullCurrentDay']);
         this.dataList['partOfDispatch']['gcDispatchCountFullCurrentMonth'] = this.changeType(data.data['partOfDispatch']['gcDispatchCountFullCurrentMonth']);
-        this.dataList['partOfDispatch']['growthGcDispatchCountYearOnYear'] = parseInt(data.data['partOfDispatch']['growthGcDispatchCountYearOnYear'], 10);
-        this.dataList['partOfDispatch']['growthGcDispatchCountMonthOnMonth'] = parseInt(data.data['partOfDispatch']['growthGcDispatchCountMonthOnMonth'], 10);
-        if (this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth < 0) {
-          this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth = 0;
-        }
+        this.dataList['partOfDispatch']['growthGcDispatchCountYearOnYear'] = parseFloat(data.data['partOfDispatch']['growthGcDispatchCountYearOnYear']);
+        this.dataList['partOfDispatch']['growthGcDispatchCountMonthOnMonth'] = parseFloat(data.data['partOfDispatch']['growthGcDispatchCountMonthOnMonth']);
 
         this.dataList['partOfBasicInfo']['gcCount'] = this.changeType(data.data['partOfBasicInfo']['gcCount']);
         this.dataList['partOfBasicInfo']['gcCountTakeBySupplyStation'] = this.changeType(data.data['partOfBasicInfo']['gcCountTakeBySupplyStation']);
@@ -1002,18 +851,19 @@ export class BigScreenComponent implements OnInit, OnDestroy {
         this.dataList['partOfBasicInfo']['carCount'] = this.changeType(data.data['partOfBasicInfo']['carCount']);
         this.dataList['partOfBasicInfo']['gcUserCount'] = this.changeType(data.data['partOfBasicInfo']['gcUserCount']);
 
+        this.setDrop();
         if (this.earthFirst) {
+          // console.log('哈');
           this.earth(this.transform(this.dataList.partOfCase.caseCountOutOfDateList));
           this.earthFirst = false;
         } else {
           return false;
         }
-        this.setMap();
       } else {
-        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
+        // this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
       }
     }).catch(error => {
-      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
+      // this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
     });
   }
 
@@ -1021,7 +871,6 @@ export class BigScreenComponent implements OnInit, OnDestroy {
    * animate滚动
    */
   move = () => {
-    // console.log(new Date());
     $('.ul-container ul').animate(
       { 'margin-top': '-69px' }, 800, () => {
         const first = $('.ul-container ul li:first-child'); // 找到ul的第一个子元素
@@ -1029,130 +878,159 @@ export class BigScreenComponent implements OnInit, OnDestroy {
         $('.ul-container ul').css('margin-top', 0); // ulmargin-top归0
       });
   }
-  setMap() {
+  /**
+   * 画水滴图
+  */
+  setDrop() {
     const myChart = echarts.init(this.chart.nativeElement);
     const myChart1 = echarts.init(this.chart1.nativeElement);
     const myChart2 = echarts.init(this.chart2.nativeElement);
     const myChart3 = echarts.init(this.chart3.nativeElement);
-    const option = {
-      series: [{
-        type: 'liquidFill',
-        radius: '76%',
-        period: '2000',
-        label: {
-          fontSize: 40,
-          color: 'rgb(59, 77, 241)',
-          position: ['50%', '30%'],
-        },
-        itemStyle: {
-          borderColor: 'rgb(59, 77, 241)',
-        },
-        backgroundStyle: {
-          color: 'rgb(13, 42, 66)',
-        },
-        data: [this.dataList.partOfGc.completionRateGcNeedInspectCurrentMonth, this.dataList.partOfGc.completionRateGcNeedInspectCurrentMonth * (0.6 / 0.45)]
-        // 0.6/0.45
-      }]
-    };
-    const option2 = {
-      series: [{
-        type: 'liquidFill',
-        radius: '76%',
-        period: '2000',
-        label: {
-          fontSize: 40,
-          color: 'rgb(59, 77, 241)',
-          position: ['50%', '30%'],
-        },
-        itemStyle: {
-          borderColor: 'rgb(59, 77, 241)',
-        },
-        backgroundStyle: {
-          color: 'rgb(13, 42, 66)',
-        },
-        data: [this.dataList.partOfGc.completionRateGcNeedScrapCurrentMonth, this.dataList.partOfGc.completionRateGcNeedScrapCurrentMonth * (0.6 / 0.45)]
-        // 0.6/0.45
-      }]
-    };
-    const option3 = {
-      series: [{
-        type: 'liquidFill',
-        radius: '76%',
-        period: '2000',
-        label: {
-          fontSize: 40,
-          color: 'rgb(132, 52, 36)',
-          position: ['50%', '30%'],
-        },
-        itemStyle: {
-          borderColor: 'rgb(255, 78, 0)',
-          // shadowColor: 'rgb(255, 78, 0)',
-        },
-        outline: {
-          itemStyle: {
-            borderColor: '#a0371d',
-          }
-        },
-        backgroundStyle: {
-          color: 'rgb(13, 42, 66)',
-        },
-
-        data: [{
-          value: this.dataList.partOfDispatch.growthGcDispatchCountYearOnYear,
-          itemStyle: {
-            color: 'rgb(132, 52, 36)',
-          },
-        },
-        {
-          value: this.dataList.partOfDispatch.growthGcDispatchCountYearOnYear * (0.6 / 0.45),
-          itemStyle: {
-            color: 'rgba(255, 78, 0,0.8)',
-          }
-        }]
-      }]
-    };
-    const option4 = {
-      series: [{
-        type: 'liquidFill',
-        radius: '76%',
-        period: '2000',
-        label: {
-          fontSize: 40,
-          color: 'rgb(132, 52, 36)',
-          position: ['50%', '30%'],
-        },
-        itemStyle: {
-          borderColor: 'rgb(255, 78, 0)',
-          // shadowColor: 'rgb(255, 78, 0)',
-        },
-        outline: {
-          itemStyle: {
-            borderColor: '#a0371d',
-          }
-        },
-        backgroundStyle: {
-          color: 'rgb(13, 42, 66)',
-        },
-
-        data: [{
-          value: this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth,
-          itemStyle: {
-            color: 'rgb(132, 52, 36)',
-          },
-        },
-        {
-          value: this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth * (0.6 / 0.45),
-          itemStyle: {
-            color: 'rgba(255, 78, 0,0.8)',
-          }
-        }]
-      }]
-    };
-    myChart.setOption(option);
-    myChart1.setOption(option3);
-    myChart2.setOption(option2);
-    myChart3.setOption(option4);
+    // 画图
+    myChart.setOption(this.getOption1(this.dataList.partOfGc.completionRateGcNeedInspectCurrentMonth));
+    myChart1.setOption(this.getOption2(this.dataList.partOfDispatch.growthGcDispatchCountYearOnYear));
+    myChart2.setOption(this.getOption1(this.dataList.partOfGc.completionRateGcNeedScrapCurrentMonth));
+    myChart3.setOption(this.getOption2(this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth));
   }
+  /**
+   * 设置水滴图的参数
+   * @param option1 蓝色水滴
+   */
+  getOption1(option1) {
+    if (option1 < 0) {
+      return {
+        series: [{
+          type: 'liquidFill',
+          radius: '76%',
+          period: '2000',
+          label: {
+            fontSize: 40,
+            color: 'rgb(59, 77, 241)',
+            position: ['50%', '30%'],
+          },
+          itemStyle: {
+            borderColor: 'rgb(59, 77, 241)',
+          },
+          backgroundStyle: {
+            color: 'rgb(13, 42, 66)',
+          },
+          data: [option1, -option1 * (0.55 / 0.6), -option1 * (0.55 / 0.6)]
+          // 0.6/0.45
+        }]
+      };
+    } else {
+      return {
+        series: [{
+          type: 'liquidFill',
+          radius: '76%',
+          period: '2000',
+          label: {
+            fontSize: 40,
+            color: 'rgb(59, 77, 241)',
+            position: ['50%', '30%'],
+          },
+          itemStyle: {
+            borderColor: 'rgb(59, 77, 241)',
+          },
+          backgroundStyle: {
+            color: 'rgb(13, 42, 66)',
+          },
+          data: [option1, option1 * (0.45 / 0.6)]
+          // 0.6/0.45
+        }]
+      };
+    }
+  }
+  /**
+   * @param option2 橙色
+   */
+  getOption2(option2) {
+    if (option2 < 0) {
+      return {
+        series: [{
+          type: 'liquidFill',
+          radius: '76%',
+          period: '2000',
+          label: {
+            fontSize: 40,
+            color: 'rgb(132, 52, 36)',
+            position: ['50%', '30%'],
+          },
+          itemStyle: {
+            borderColor: 'rgb(255, 78, 0)',
+            // shadowColor: 'rgb(255, 78, 0)',
+          },
+          outline: {
+            itemStyle: {
+              borderColor: '#a0371d',
+            }
+          },
+          backgroundStyle: {
+            color: 'rgb(13, 42, 66)',
+          },
+
+          data: [{
+            value: option2,
+            itemStyle: {
+              color: 'rgb(132, 52, 36)',
+            },
+          },
+          {
+            value: -option2 * (0.55 / 0.6),
+            itemStyle: {
+              color: 'rgba(255, 78, 0,0.8)',
+            }
+          },
+          {
+            value: -option2 * (0.45 / 0.6),
+            itemStyle: {
+              color: 'rgba(255, 78, 0,0.8)',
+            }
+          },
+          ]
+        }]
+      };
+    } else {
+      return {
+        series: [{
+          type: 'liquidFill',
+          radius: '76%',
+          period: '2000',
+          label: {
+            fontSize: 40,
+            color: 'rgb(132, 52, 36)',
+            position: ['50%', '30%'],
+          },
+          itemStyle: {
+            borderColor: 'rgb(255, 78, 0)',
+            // shadowColor: 'rgb(255, 78, 0)',
+          },
+          outline: {
+            itemStyle: {
+              borderColor: '#a0371d',
+            }
+          },
+          backgroundStyle: {
+            color: 'rgb(13, 42, 66)',
+          },
+          data: [{
+            value: option2,
+            itemStyle: {
+              color: 'rgb(132, 52, 36)',
+            },
+          },
+          {
+            value: option2 * (0.45 / 0.6),
+            itemStyle: {
+              color: 'rgba(255, 78, 0,0.8)',
+            }
+          }]
+        }]
+      };
+
+    }
+  }
+
 
   ngOnDestroy() {
     this.resizeListener();

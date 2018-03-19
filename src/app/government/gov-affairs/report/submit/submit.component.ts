@@ -52,9 +52,6 @@ export class SubmitComponent implements OnInit {
         if (data.status === 0) {
           this.dataTable.list = data.data.list;
           this.dataTable.total = data.data.total;
-          this.dataTable.list.forEach(item => {
-            item['attachmentUrl'] = item['attachmentUrl'] ? this.API.url + item['attachmentUrl'] : '';
-          });
         } else {
           this.dataTable.list = [];
           this.dataTable.total = 0;

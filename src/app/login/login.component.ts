@@ -22,7 +22,7 @@ export class LoginComponent implements OnDestroy, OnInit {
   ss = 'hhh';
   timer: any;
 
-  constructor( @Inject(DOCUMENT) private document: Document, private renderer: Renderer2,
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2,
     private loginService: LoginService, private messageService: MessageService, private router: Router,
     private userStateService: UserStateService) {
     this.renderer.addClass(this.document.body, 'login-body');
@@ -64,11 +64,6 @@ export class LoginComponent implements OnDestroy, OnInit {
       this.messageService.add({ severity: 'error', summary: '服务器错误', detail: error.status });
     });
   }
-  download(data) {
-    const downloadUrl = API.url + data.fileUrl;
-    window.location.href = downloadUrl;
-  }
-
 
   signIn() {
     this.loginService.signIn({

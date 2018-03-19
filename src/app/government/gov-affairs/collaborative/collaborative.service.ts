@@ -35,7 +35,7 @@ export class CollaborativeService {
   }
 
   deleteTransaction(params?: any): Promise<any> {
-    return this.HttpService.delete(API.deleteTransaction, params);
+    return this.HttpService.getRequest(API.deleteTransaction, params);
   }
 
   get(interfaceName, params) {

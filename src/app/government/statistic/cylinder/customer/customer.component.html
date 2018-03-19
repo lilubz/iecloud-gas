@@ -4,8 +4,8 @@
     <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
       区域选择：
       <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
-      <!-- <button pButton type="button" gasExportFile [request]="statisticCylinderService.getCustomerCylinderCount" class="ui-button-info right" label="导出">
-      </button> -->
+      <button pButton type="button" gasExportFile [request]="statisticCylinderService.getCustomerCylinderCount" class="ui-button-info right" label="导出">
+      </button>
     </div>
     <p-dataTable [value]="customerStatisticsFilter" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
       [loading]="loading" emptyMessage="未查询到数据">
@@ -32,6 +32,9 @@
         <p-column [footer]="calculateTotal('gcCount', customerStatistics)"></p-column>
       </p-row>
     </p-footerColumnGroup> -->
+      <ng-template pTemplate="paginatorRight">
+        共 {{ customerStatisticsFilter.length || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
   </div>
 </div>

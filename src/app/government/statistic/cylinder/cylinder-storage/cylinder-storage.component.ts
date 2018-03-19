@@ -48,7 +48,7 @@ export class CylinderStorageComponent implements OnInit {
   }
   constructor(
     private commonRequestService: CommonRequestService,
-    private statisticCylinderService: StatisticCylinderService,
+    public statisticCylinderService: StatisticCylinderService,
     private messageService: MessageService,
     private util: Util
   ) {

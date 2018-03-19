@@ -12,4 +12,7 @@ export class ManageService {
   addReportInfo(params?: any): Promise<any> {
     return this.HttpService.formDataPostRequest(API.addReportInfo, params);
   }
+  deleteReport(params?: any): Promise<any> {
+    return this.HttpService.getRequest(API.deleteReport, params);
+  }
 }

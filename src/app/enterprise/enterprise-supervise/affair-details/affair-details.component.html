@@ -41,10 +41,10 @@
       </div>
       <div class="ui-g-12">
         <span class="ui-g-2 content title">附件</span>
-        <span class="ui-g-10 content" title="{{details.url}}" *ngIf="details.url!==''">
-          <a href="javascript:void(0);" (click)="window.location.href=details.url">点击预览</a>
+        <span class="ui-g-10 content" [title]="details.url" *ngIf="details.url">
+          <a [href]="details.url">点击预览</a>
         </span>
-        <span class="ui-g-10 content" *ngIf="details.url===''">
+        <span class="ui-g-10 content" *ngIf="!details.url">
           没有附件
         </span>
       </div>
@@ -97,7 +97,7 @@
               <span class="ui-g-6 content title">附件</span>
               <span class="ui-g-6 content">
                 <span *ngIf="!todo?.url">没有附件</span>
-                <a href="javascript:void(0);" *ngIf="todo?.url" (click)="window.location.href=todo?.url">点击预览</a>
+                <a [href]="todo?.url" *ngIf="todo?.url">点击预览</a>
               </span>
             </div>
           </div>

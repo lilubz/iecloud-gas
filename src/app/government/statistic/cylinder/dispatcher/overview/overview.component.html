@@ -14,7 +14,7 @@
       </div>
       <div class="ui-g-12 form-group">
         <button pButton class="searchBtn" type="submit" label="搜索"></button>
-        <!-- <button pButton type="button" (click)="exportDispathcerStatistic()" class="ui-button-info right" label="导出"></button> -->
+        <button pButton type="button" (click)="exportDispathcerStatistic()" class="ui-button-info right" label="导出"></button>
       </div>
       <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
         <div class="ui-g-6 form-group">
@@ -57,7 +57,9 @@
             未查询到数据
           </div>
         </ng-template>
-
+        <ng-template pTemplate="paginatorRight">
+          共 {{ dataTable.list.length || 0 }} 条记录
+        </ng-template>
       </p-dataTable>
     </div>
 

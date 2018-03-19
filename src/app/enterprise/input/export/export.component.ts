@@ -37,7 +37,7 @@ export class ExportComponent implements OnInit, OnDestroy {
   exportUserInfo() {
     this._service.exportuserInfo({}).then(data => {
       if (data.status === 0) {
-        this.exportParams.exportUserInfoUrl = API.url + data.data;
+        this.exportParams.exportUserInfoUrl = data.data;
         window.location.href = this.exportParams.exportUserInfoUrl;
         setTimeout(() => {
           this.messageService.add({
@@ -64,7 +64,7 @@ export class ExportComponent implements OnInit, OnDestroy {
   exportCardInfo() {
     this._service.exportcardInfo({}).then(data => {
       if (data.status === 0) {
-        this.exportParams.exportCardInfoUrl = API.url + data.data;
+        this.exportParams.exportCardInfoUrl = data.data;
         window.location.href = this.exportParams.exportCardInfoUrl;
         setTimeout(() => {
           this.messageService.add({
@@ -91,7 +91,7 @@ export class ExportComponent implements OnInit, OnDestroy {
   exportCylinderInfo() {
     this._service.exportcylinderInfo({}).then(data => {
       if (data.status === 0) {
-        this.exportParams.exportCylinderInfoUrl = API.url + data.data;
+        this.exportParams.exportCylinderInfoUrl = data.data;
         window.location.href = this.exportParams.exportCylinderInfoUrl;
         setTimeout(() => {
           this.messageService.add({
@@ -118,7 +118,7 @@ export class ExportComponent implements OnInit, OnDestroy {
   exportCylinderTagInfo() {
     this._service.exportcylinderTagInfo({}).then(data => {
       if (data.status === 0) {
-        this.exportParams.exportCylinderTagInfoUrl = API.url + data.data;
+        this.exportParams.exportCylinderTagInfoUrl = data.data;
         window.location.href = this.exportParams.exportCylinderTagInfoUrl;
         setTimeout(() => {
           this.messageService.add({

@@ -3,7 +3,7 @@
     <div class="ui-g">
       <h3>企业气瓶统计</h3>
       <div class="ui-g-12 ui-g-nopad">
-        <!-- <button pButton type="button" (click)="exportEnterpriseCylinderStatistic()" class="ui-button-info right" label="导出"></button> -->
+        <button pButton type="button" (click)="exportEnterpriseCylinderStatistic()" class="ui-button-info right" label="导出"></button>
       </div>
       <p-dataTable class="ui-g-12" [value]="countyCylinders" [styleClass]="" [loading]="loading" emptyMessage="未查询到数据">
         <p-column header="序号" [style]="{'width':'80px'}">
@@ -76,7 +76,7 @@
       <div class="ui-g-12">
         <button pButton type="button" (click)="addStatisticType=='region'?searchGcAddCount():searchGcAddCountDetail(addStatisticRegionId)"
           label="查询"></button>
-        <!-- <button pButton type="button" (click)="exportEnterpriseAddCylinderStatistic()" class="ui-button-info right" label="导出"></button> -->
+        <button pButton type="button" (click)="exportEnterpriseAddCylinderStatistic()" class="ui-button-info right" label="导出"></button>
       </div>
       <div class="ui-g-12 ui-g-nopad">
         <button pButton type="button" *ngIf="addStatisticType=='corp'" (click)="searchGcAddCount()" label="返回区域概览"></button>

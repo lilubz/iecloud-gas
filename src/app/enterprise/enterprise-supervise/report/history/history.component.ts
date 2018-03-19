@@ -78,9 +78,4 @@ export class HistoryComponent implements OnInit {
       });
     };
   }
-
-  download(Data) {
-    const downloadUrl = API.url + Data.attachment;
-    window.location.href = downloadUrl;
-  }
 }

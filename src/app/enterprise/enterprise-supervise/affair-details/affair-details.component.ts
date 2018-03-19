@@ -77,7 +77,7 @@ export class AffairDetailsComponent implements OnInit {
       formData.set('cylinderImage', file.files[0] ? file.files[0] : '');
       this.sendForm(formData);
     } else {
-      this.messageService.add({severity: 'warn', summary: '', detail: '请填写回复内容'});
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写回复内容' });
     }
   }
 
@@ -100,7 +100,6 @@ export class AffairDetailsComponent implements OnInit {
       .then(data => {
         if (data.status === 0) {
           this.details = data.data;
-          this.details['url'] = this.details['url'] ? this.API.url + this.details['url'] : '';
         } else {
           this.details = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
@@ -112,7 +111,6 @@ export class AffairDetailsComponent implements OnInit {
       .then(data => {
         if (data.status === 0) {
           this.todo = data.data;
-          this.todo['url'] = this.todo['url'] ? this.API.url + this.todo['url'] : '';
         } else {
           this.todo = {};
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });

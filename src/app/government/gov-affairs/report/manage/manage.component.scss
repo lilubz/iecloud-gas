@@ -1,20 +1,13 @@
 .manage{
-  // margin:70px 10px 10px 10px;
-  // border:1px solid #666;
   border-radius:4px;
-  // padding:10px 20px 0px 20px;
   min-height: 400px;
   background: #ffffff;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
-  // [class^='ui-g']{
-  //   padding:0;
-  // }
-  // h1{
-  //   margin:0;
-  //   font-size: 20px;
-  // }
   a{
     color:  #3186dc;
+  }
+  .warn{
+    color:#f00;
   }
   .searchBtn {
     border-radius: 4px;
@@ -22,24 +15,11 @@
     height: 45px;
     font-size: 1em;
     background: #3186dc;
-}
-.ui-button-secondary{
-  border-radius: 4px;
+  }
+  .ui-button-secondary{
+    border-radius: 4px;
     width: 96px;
     height: 45px;
     font-size: 1em;
-}
-  // form{
-  //   padding-bottom:10px;
-  //   button{
-  //     margin:0px 15px;
-  //   }
-  //   .warn{
-  //     color:#f00;
-  //   }
-  //   .interval{
-  //     width: calc(100% - 20px);
-  //   }
-  // }
-
+  }
 }

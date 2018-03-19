@@ -64,16 +64,16 @@
         <div class="photo-container">
           <div class="ui-g-12">证件(附件)</div>
           <ng-container *ngFor="let image of certificateAppendixImages">
-            <a href="{{image.source}}" target="_blank" title="新标签页打开">
-              <img src="{{image.source}}" class="photo-view">
+            <a [href]="image.source || ''" target="_blank" title="新标签页打开">
+              <img [src]="image.source || ''" class="photo-view">
             </a>
           </ng-container>
         </div>
         <div class="photo-container">
           <div class="ui-g-12">合同(附件)</div>
           <ng-container *ngFor="let image of contractAppendixImages">
-            <a href="{{image.source}}" target="_blank" title="新标签页打开">
-              <img src="{{image.source}}" class="photo-view">
+            <a [href]="image.source || ''" target="_blank" title="新标签页打开">
+              <img [src]="image.source || ''" class="photo-view">
             </a>
           </ng-container>
         </div>
@@ -177,7 +177,7 @@
         </div>
       </ng-template>
       <ng-template pTemplate="paginatorRight">
-          共 {{ total || 0 }} 条记录
+        共 {{ total || 0 }} 条记录
       </ng-template>
     </p-dataTable>
   </div>

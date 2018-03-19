@@ -22,12 +22,17 @@
         <p-column [style]="{'width':'120px'}" header="报表名称" field="reportName"></p-column>
         <p-column [style]="{'width':'80px'}" header="模板下载">
           <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" (click)="window.location.href=rowData.attachmentUrl">点击查看</a>
+            <a href="javascript:void(0);" (click)="util.downloadFile(rowData.attachmentUrl)">点击查看</a>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'60px'}" header="提交间隔">
           <ng-template let-rowData="rowData" pTemplate="body">
             <span>{{rowData.reportCommitIntervalTime}}天</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'60px'}" header="操作">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <button pButton type="button" (click)="confirmDelete(rowData)" label="删除"></button>
           </ng-template>
         </p-column>
         <ng-template pTemplate="emptymessage">
@@ -36,7 +41,7 @@
           </div>
         </ng-template>
         <ng-template pTemplate="paginatorRight">
-            共 {{ dataTable.total || 0 }} 条记录
+          共 {{ dataTable.total || 0 }} 条记录
         </ng-template>
       </p-dataTable>
     </div>
@@ -65,7 +70,7 @@
               <label for="inputEmail3" class="ui-g-4 control-label text-right">
                 <span class="warn">*</span>附件：</label>
               <div class="ui-g-8">
-                <input type="file" #file id="file" name="file">
+                <input type="file" #file id="file" name="file" accept=".doc,.xls,.docx,.xlsx" />
               </div>
             </div>
           </div>
@@ -75,7 +80,8 @@
             <label for="inputEmail3" class="ui-g-4 control-label text-right">
               <span class="warn">*</span>提交间隔：</label>
             <div class="ui-g-8">
-              <input class="interval ui-g-11" type="number" pInputText [(ngModel)]="formModel.interval" name="interval" min="1" step="1"/>
+              <input class="interval ui-g-11" type="number" pInputText [(ngModel)]="formModel.interval" name="interval" min="1" step="1"
+              />
               <span>天</span>
             </div>
           </div>
@@ -94,9 +100,9 @@
               <label for="inputEmail3" class="ui-g-4 control-label text-right">
                 <span class="warn">*</span>首次提交：</label>
               <div class="ui-g-8">
-                <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" [yearNavigator]="true"
-                  yearRange="1970:2050" dateFormat="yy-mm-dd"[locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false"
-                  placeholder="初始提交时间" [minDate]="currentDate" [showButtonBar]="true" [style]="{'width':'100%'}"></p-calendar>
+                <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
+                  [locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false" placeholder="初始提交时间" [minDate]="currentDate"
+                  [showButtonBar]="true" [style]="{'width':'100%'}"></p-calendar>
               </div>
             </div>
           </div>
@@ -104,10 +110,13 @@
         <div class="ui-g">
           <div class="ui-g-12 text-center">
             <button pButton type="submit" class="ui-button-primery searchBtn" label="确认"></button>
-            <button (click)="onCancel();" pButton type="button" class="ui-button-secondary" label="取消" ></button>
+            <button (click)="onCancel();" pButton type="button" class="ui-button-secondary" label="取消"></button>
           </div>
         </div>
       </form>
     </p-dialog>
   </div>
+  <p-confirmDialog header="请确认" icon="fa fa-question-circle" width="425"></p-confirmDialog>
 </div>
+
+<gas-loading *ngIf="loading"></gas-loading>

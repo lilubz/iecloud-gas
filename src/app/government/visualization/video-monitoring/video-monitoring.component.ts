@@ -16,4 +16,15 @@ export class VideoMonitoringComponent implements OnInit {
     this.isAdmin = (this.userStateService.getUser().roleId).toString() === '4' ? true : false;
   }
 
+  // 浏览器检查
+  isIE(): boolean {
+    const ua = window.navigator.userAgent;
+    let version = 0;
+    if (/MSIE([^;]+)/.test(ua)) { // 判断IE11以下（不含IE11）
+      version = parseFloat(RegExp['$1']);
+    } else if (/rv:([^\)]+)\) like Gecko/.test(ua)) { // 判断IE11
+      version = parseFloat(RegExp['$1']);
+    }
+    return version > 0;
+  }
 }

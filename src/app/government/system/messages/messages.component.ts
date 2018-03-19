@@ -123,10 +123,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
       this.showMessage('error', '服务器错误', '错误码:' + error.status);
     });
   }
-  download(Data) {
-    const downloadUrl = API.url + Data.fileUrl;
-    window.location.href = downloadUrl;
-  }
 
   checkForm(): boolean {
     if (!this.List.title) {

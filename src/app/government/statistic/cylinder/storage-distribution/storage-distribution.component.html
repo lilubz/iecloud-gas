@@ -4,8 +4,8 @@
     <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
       <label for="" class="search-label">区域选择：</label>
       <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'120px'}"></p-dropdown>
-      <!-- <button pButton type="button" gasExportFile [request]="statisticCylinderService.getStorageDistributionCount" class="ui-button-info right"
-        label="导出"></button> -->
+      <button pButton type="button" gasExportFile [request]="statisticCylinderService.getStorageDistributionCount" class="ui-button-info right" label="导出">
+      </button>
     </div>
     <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
       [loading]="cylinderLoading" emptyMessage="未查询到数据">
@@ -45,7 +45,9 @@
           {{ countyCylinder.codeAbnormalCount || 0 }}
         </ng-template>
       </p-column> -->
-
+      <ng-template pTemplate="paginatorRight">
+        共 {{ storageDistributionFilters.length || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
 
     <!-- 流通统计 -->
@@ -72,7 +74,7 @@
         <div class="ui-g-12">
           <button class="searchBtn" pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()">
           </button>
-          <!-- <button pButton type="button" (click)="exportFillingStationCirculationStatistic()" class="ui-button-info right" label="导出"></button> -->
+          <button pButton type="button" (click)="exportFillingStationCirculationStatistic()" class="ui-button-info right" label="导出"></button>
         </div>
       </div>
     </div>
@@ -106,6 +108,9 @@
         {{ countyCylinder.emptyBottleSendCount || 0 }}
       </ng-template>
     </p-column> -->
+      <ng-template pTemplate="paginatorRight">
+        共 {{ storageDistributionCirculationFilters.length || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
   </div>
 </div>

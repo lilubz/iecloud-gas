@@ -5,7 +5,7 @@
       <div class="ui-g">
 
         <div class="ui-g-12 ms-box " *ngFor="let item of messageList1">
-          <a (click)="download(item)">
+          <a [href]="item?.fileUrl" target="_blank">
             <div class="ui-g-8 ui-g-nopad content-h" [title]="item.title">
               {{item.title}}
             </div>
