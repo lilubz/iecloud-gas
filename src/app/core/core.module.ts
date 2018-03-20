@@ -10,6 +10,7 @@ import { UserStateService } from './userState.service';
 import { Util } from './util';
 import { Logger } from './logger';
 import { PermissionGuard } from './permission-guard.service';
+import { FullScreenService } from './full-screen.service';
 import { CookieService } from './cookie.service';
 import { Base64Service } from './base64.service';
 
@@ -27,6 +28,7 @@ import { Base64Service } from './base64.service';
     UserStateService,
     Util,
     Logger,
+    FullScreenService,
     CookieService,
     Base64Service
   ]

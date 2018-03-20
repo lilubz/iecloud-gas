@@ -10,8 +10,8 @@
 
 </div> -->
 
-<div class=" bigScreen" style="overflow:hidden">
-  <div class="screen">
+<div #bigScreen class="bigScreen" style="overflow:hidden">
+  <div class="screen" #screen>
     <!-- <div [@flyIn]>
           <p style="height: 40px; line-height: 40px; background: pink;">
             动画
@@ -38,7 +38,7 @@
           <!-- <span class="testData">(测试)</span> -->
         </div>
         <div class="title-content">
-         {{dataList.partOfGc.gcCountAddedCurrentMouth}}
+          {{ dataList.partOfGc.gcCountAddedCurrentMouth | number }}
           <span>瓶</span>
         </div>
         <div class="title-1">
@@ -50,21 +50,21 @@
           <!-- <span class="testData">(测试)</span> -->
         </div>
         <div class="title-1-content">
-          {{dataList.partOfGc.gcCountNeedInspectCurrentMonth}}
+          {{ dataList.partOfGc.gcCountNeedInspectCurrentMonth | number }}
           <span>瓶</span>
         </div>
         <div class="title-2-content">
-          {{dataList.partOfGc.gcCountNeedScrapCurrentMonth}}
+          {{ dataList.partOfGc.gcCountNeedScrapCurrentMonth | number }}
           <span>瓶</span>
         </div>
-        <div class="water-chart" #chart>
+        <div class="water-chart" #needInspectRateLiquidFill>
 
         </div>
         <div class="title-chart">
           完成率
           <!-- <span class="testData">(测试)</span> -->
         </div>
-        <div class="water-chart-1" #chart1>
+        <div class="water-chart-1" #needScrapRateLiquidFill>
 
         </div>
         <div class="title-chart-1">
@@ -81,24 +81,24 @@
           当天重瓶配重数
         </div>
         <div class="title2-1-content">
-          {{dataList.partOfDispatch.gcDispatchCountFullCurrentDay}}
+          {{ dataList.partOfDispatch.gcDispatchCountFullCurrentDay | number }}
           <span>瓶</span>
         </div>
         <div class="title2-2">
           当月重瓶配重数
         </div>
         <div class="title2-2-content">
-          {{dataList.partOfDispatch.gcDispatchCountFullCurrentMonth}}
+          {{ dataList.partOfDispatch.gcDispatchCountFullCurrentMonth | number }}
           <span>瓶</span>
         </div>
-        <div class="water2-chart" #chart2>
+        <div class="water2-chart" #yearOnYearLiquidFill>
 
         </div>
         <div class="title2-chart">
           本月同比
           <!-- <span class="testData">(测试)</span> -->
         </div>
-        <div class="water2-chart-1" #chart3>
+        <div class="water2-chart-1" #monthOnMonthLiquidFill>
 
         </div>
         <div class="title2-chart-1">
@@ -132,7 +132,7 @@
           <img src="./assets/img/bigScreen/标题标签.png">
         </div>
         <div class="cylinder-font">
-          {{dataList.partOfBasicInfo.gcCount}}
+          {{ dataList.partOfBasicInfo.gcCount | number}}
           <span>个</span>
         </div>
       </div>
@@ -142,7 +142,7 @@
           <img src="./assets/img/bigScreen/标题标签.png">
         </div>
         <div class="cylinder-font">
-            {{dataList.partOfBasicInfo.gcCountTakeBySupplyStation}}
+          {{ dataList.partOfBasicInfo.gcCountTakeBySupplyStation | number }}
           <span>个</span>
         </div>
       </div>
@@ -152,7 +152,7 @@
           <img src="./assets/img/bigScreen/标题标签.png">
         </div>
         <div class="cylinder-font">
-          {{dataList.partOfBasicInfo.gcCountNormal}}
+          {{ dataList.partOfBasicInfo.gcCountNormal | number}}
           <span>瓶</span>
         </div>
       </div>
@@ -162,7 +162,7 @@
           <img src="./assets/img/bigScreen/标题标签.png">
         </div>
         <div class="cylinder-font">
-          {{dataList.partOfBasicInfo.corpDispatcherCount}}
+          {{ dataList.partOfBasicInfo.corpDispatcherCount | number}}
           <span>人</span>
         </div>
       </div>
@@ -172,7 +172,7 @@
           <img src="./assets/img/bigScreen/标题标签.png">
         </div>
         <div class="cylinder-font" style="color:#fbf320">
-          {{dataList.partOfBasicInfo.carCount}}
+          {{ dataList.partOfBasicInfo.carCount | number}}
           <span>辆</span>
         </div>
       </div>
@@ -182,14 +182,14 @@
           <img src="./assets/img/bigScreen/标题标签.png">
         </div>
         <div class="cylinder-font" style="color:#fbf320">
-          {{dataList.partOfBasicInfo.gcUserCount}}
+          {{ dataList.partOfBasicInfo.gcUserCount | number}}
           <span>人</span>
         </div>
       </div>
     </div>
     <div class="bigScreen-right">
       <div class="time">
-        {{DateTime}} {{currentTime}}
+        {{ currentTime }}
       </div>
       <div class="right-title">
         <div class="title-word">执 法

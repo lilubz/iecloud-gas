@@ -31,7 +31,7 @@ export class CylinderOverviewCountyComponent implements OnInit {
   }
 
   getCountiesOverview() {
-    let areaID = '';
+    let areaID = null;
     if (this.userStateService.getUser()) {
       areaID = this.userStateService.getUser().regionId;
     }

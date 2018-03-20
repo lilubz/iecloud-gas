@@ -1,601 +1,607 @@
 .bigScreen {
+  position: absolute;
+  left: 90px;
+  top: 150px;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -icab-box-sizing: border-box;
+  -khtml-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: calc( 100% - 110px);
+  height: calc( 100vh - 170px);
+  background: url(../../../../assets/img/bigScreen/7.png); //   @media screen and (max-height: 800px) {
+  //     width: 100% ;
+  //     height:100vh;
+  // }
+  &:-webkit-full-screen {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+  }
+  .btn-container {
     position: absolute;
-    left: 90px;
-    top: 150px;
-    font-size: 18px;
+    left: 10px;
+    width: 100px;
+    height: 50px;
+    z-index: 1000;
+  }
+  .main1 {
+    position: absolute;
+    right: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0;
+    top: 0;
     margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    box-sizing: border-box;
-    -o-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -icab-box-sizing: border-box;
-    -khtml-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    width: calc( 100% - 110px);
-    height: calc( 100vh - 170px);
-    background: url(../../../../assets/img/bigScreen/7.png); //   @media screen and (max-height: 800px) {
-    //     width: 100% ;
-    //     height:100vh;
-    // }
-    .btn-container {
-        position: absolute;
-        left: 10px;
-        width: 100px;
-        height: 50px;
-        z-index: 1000;
+    overflow: hidden;
+  }
+  .screen {
+    // width: 1920px;
+    // height: 1080px;
+    width: 100%;
+    height: 100%; // margin-left: 70px;
+    background: url(../../../../assets/img/bigScreen/7.png);
+    transform-origin: left top 0px;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: left top 0px;
+    color: white;
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      vertical-align: baseline;
+      box-sizing: border-box;
+      -o-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -icab-box-sizing: border-box;
+      -khtml-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
     }
-    .main1 {
-        position: absolute;
-        right: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        left: 0;
-        top: 0;
-        margin: 0;
-        overflow: hidden;
+    .testData {
+      font-size: 13px;
+      color: #ffffff;
+      vertical-align: initial;
     }
-    .screen {
-        // width: 1920px;
-        // height: 1080px;
+    .bigScreen-left {
+      float: left;
+      width: 25%;
+      height: 100%;
+      .leftImg-container {
+        width: 450px;
+        height: 300px;
+        position: absolute;
+        left: -70px;
+        top: 40px;
+      }
+      .leftImg {
         width: 100%;
-        height: 100%; // margin-left: 70px;
-        background: url(../../../../assets/img/bigScreen/7.png);
-        transform-origin: left top 0px;
-        -ms-transform-origin: 0 0;
-        -webkit-transform-origin: left top 0px;
-        color: white;
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-size: 100%;
-            vertical-align: baseline;
-            box-sizing: border-box;
-            -o-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            -icab-box-sizing: border-box;
-            -khtml-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
+        height: 100%;
+        opacity: 1;
+        background-image: url(../../../../assets/img/bigScreen/四角动图1.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: left top; // transform: rotate3d(180deg,90deg);
+        transform: scaleX(-1) rotate(270deg); // transform: ;
+      }
+      .screen-left {
+        width: 231px;
+        height: 35px;
+        margin-left: 69px;
+        margin-top: 90px; // left: 69px;
+        // top: 132px;
+        // position: absolute;
+        img {
+          width: 100%;
+          height: auto;
         }
-        .testData {
-            font-size: 13px;
-            color: #ffffff;
-            vertical-align: initial;
+        .word {
+          position: absolute;
+          left: 90px;
+          font-size: 24px
         }
-        .bigScreen-left {
-            float: left;
-            width: 25%;
-            height: 100%;
-            .leftImg-container {
-                width: 450px;
-                height: 300px;
-                position: absolute;
-                left: -70px;
-                top: 40px;
-            }
-            .leftImg {
-                width: 100%;
-                height: 100%;
-                opacity: 1;
-                background-image: url(../../../../assets/img/bigScreen/四角动图1.png);
-                background-size: 100%;
-                background-repeat: no-repeat;
-                background-position: left top; // transform: rotate3d(180deg,90deg);
-                transform: scaleX(-1) rotate(270deg); // transform: ;
-            }
-            .screen-left {
-                width: 231px;
-                height: 35px;
-                margin-left: 69px;
-                margin-top: 90px; // left: 69px;
-                // top: 132px;
-                // position: absolute;
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-                .word {
-                    position: absolute;
-                    left: 90px;
-                    font-size: 24px
-                }
-            }
-            .screen-left2 {
-                width: 231px;
-                height: 35px;
-                margin-left: 69px;
-                margin-top: 25px; // left: 69px;
-                // top: 132px;
-                // position: absolute;
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-                .word {
-                    position: absolute;
-                    left: 90px;
-                    font-size: 24px
-                }
-            }
-            .water {
-                margin-top: 50px;
-                margin-left: 50px;
-                width: 399px;
-                height: 384px;
-                border: 1px solid white;
-                border-radius: 5px; // border-style: solid;
-                // border-width: 32px 37px;
-                // border-image: url(../../../../assets/img/bigScreen/白色框.png);
-                // border-image-slice: 32 37 fill;
-                // border-image-width: initial;
-                // border-image-outset: initial;
-                // border-image-repeat: initial;
-                background: none;
-            }
-            .water2 {
-                margin-top: 40px;
-                margin-left: 50px;
-                width: 399px;
-                height: 384px;
-                border: 1px solid white;
-                border-radius: 5px; // border-style: solid;
-                // border-width: 32px 37px;
-                // border-image: url(../../../../assets/img/bigScreen/白色框.png);
-                // border-image-slice: 32 37 fill;
-                // border-image-width: initial;
-                // border-image-outset: initial;
-                // border-image-repeat: initial;
-                background: none;
-            }
-            .water-title {
-                position: absolute;
-                left: 94px;
-                top: 194px;
-                width: 144px;
-                height: 51px;
-                font-size: 24px;
-            }
-            .title-content {
-                position: absolute;
-                left: 265px;
-                top: 190px;
-                width: 378px;
-                height: 111px;
-                font-size: 30px;
-                color: rgba(29, 241, 62, 0.79);
-                span {
-                    font-size: 10px;
-                    color: #ffffff;
-                    vertical-align: middle;
-                }
-            }
-            .title-1 {
-                position: absolute;
-                left: 94px;
-                top: 244px;
-                width: 144px;
-                height: 51px;
-                font-size: 24px;
-            }
-            .title-2 {
-                position: absolute;
-                left: 265px;
-                top: 244px;
-                width: 170px;
-                height: 51px;
-                font-size: 24px;
-            }
-            .title-1-content {
-                position: absolute;
-                left: 94px;
-                top: 284px;
-                width: 215px;
-                height: 35px;
-                font-size: 30px;
-                color: rgb(59, 77, 241);
-                span {
-                    font-size: 10px;
-                    color: #ffffff;
-                    vertical-align: middle;
-                }
-            }
-            .title-2-content {
-                position: absolute;
-                left: 260px;
-                top: 284px;
-                width: 215px;
-                height: 35px;
-                font-size: 30px;
-                color: rgb(255, 78, 0);
-                span {
-                    font-size: 10px;
-                    color: #ffffff;
-                    vertical-align: middle;
-                }
-            }
-            .water-chart {
-                position: absolute;
-                left: 55px;
-                top: 340px;
-                width: 201px;
-                height: 153px;
-            }
-            .title-chart {
-                position: absolute;
-                left: 80px;
-                top: 498px;
-                width: 144px;
-                height: 51px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 24px;
-            }
-            .water-chart-1 {
-                position: absolute;
-                left: 240px;
-                top: 340px;
-                width: 201px;
-                height: 153px;
-            }
-            .title-chart-1 {
-                position: absolute;
-                left: 270px;
-                top: 498px;
-                width: 144px;
-                height: 51px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 24px;
-            }
-            .title2-1 {
-                position: absolute;
-                left: 72px;
-                top: 708px;
-                width: 228px;
-                height: 51px;
-                font-size: 24px;
-            }
-            .title2-1-content {
-                position: absolute;
-                left: 280px;
-                top: 706px;
-                width: 215px;
-                height: 35px;
-                font-size: 30px;
-                color: rgb(59, 77, 241);
-                span {
-                    font-size: 10px;
-                    color: #ffffff;
-                    vertical-align: middle;
-                }
-            }
-            .title2-2 {
-                position: absolute;
-                left: 72px;
-                top: 762px;
-                width: 228px;
-                height: 51px;
-                font-size: 24px;
-            }
-            .title2-2-content {
-                position: absolute;
-                left: 280px;
-                top: 760px;
-                width: 215px;
-                height: 35px;
-                font-size: 30px;
-                color: rgb(59, 77, 241);
-                span {
-                    font-size: 10px;
-                    color: #ffffff;
-                    vertical-align: middle;
-                }
-            }
-            .water2-chart {
-                position: absolute;
-                left: 55px;
-                top: 822px;
-                width: 201px;
-                height: 153px;
-            }
-            .water2-chart-1 {
-                position: absolute;
-                left: 240px;
-                top: 822px;
-                width: 201px;
-                height: 153px;
-            }
-            .title2-chart {
-                position: absolute;
-                left: 80px;
-                top: 975px;
-                width: 144px;
-                height: 51px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 24px;
-            }
-            .title2-chart-1 {
-                position: absolute;
-                left: 270px;
-                top: 975px;
-                width: 144px;
-                height: 51px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 24px;
-            }
+      }
+      .screen-left2 {
+        width: 231px;
+        height: 35px;
+        margin-left: 69px;
+        margin-top: 25px; // left: 69px;
+        // top: 132px;
+        // position: absolute;
+        img {
+          width: 100%;
+          height: auto;
         }
-        .bigScreen-center {
-            float: left;
-            width: 50%;
-            height: 100%;
-            .header-imgl {
-                position: absolute;
-                width: 180px;
-                height: 35px;
-                top: 36px;
-                left: 510px;
-                background-image: url(../../../../assets/img/bigScreen/标题左侧.png);
-                background-repeat: no-repeat;
-                background-size: 100% 100%; // display: inline-block
-            }
-            .header-word {
-                position: absolute;
-                top: 24px;
-                left: 694px;
-                width: 656px;
-                height: 64px;
-                color: rgb(255, 255, 255);
-                font-weight: normal;
-                font-family: "Microsoft Yahei", Arial, sans-serif;
-                font-size: 40px;
-                white-space: nowrap;
-                overflow: hidden; // display: inline-block
-            }
-            .header-imgr {
-                position: absolute;
-                width: 180px;
-                height: 35px;
-                top: 36px;
-                left: 1256px;
-                background-image: url(../../../../assets/img/bigScreen/标题右侧.png);
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-            }
-            .header-imgc {
-                position: absolute;
-                left: 672px;
-                top: 84px;
-                width: 592px;
-                height: 64px;
-                .gif {
-                    width: 100%;
-                    height: 100%;
-                    opacity: 1;
-                    background-image: url(../../../../assets/img/bigScreen/标题下侧.gif);
-                    background-size: 100%;
-                    background-repeat: no-repeat;
-                    background-position: center center;
-                }
-            }
-            .map {
-                position: absolute;
-                top: 150px;
-                left: 490px;
-                width: 960px;
-                height: 660px; // background-color: black;
-            }
-            .cylinder {
-                position: absolute;
-                left: 600px;
-                top: 830px;
-                width: 215px;
-                height: 135px;
-            }
-            .gas-station {
-                position: absolute;
-                left: 600px;
-                top: 960px;
-                width: 215px;
-                height: 135px;
-            }
-            .gas {
-                position: absolute;
-                left: 900px;
-                top: 830px;
-                width: 215px;
-                height: 135px;
-            }
-            .gas-down {
-                position: absolute;
-                left: 900px;
-                top: 960px;
-                width: 215px;
-                height: 135px;
-            }
-            .car {
-                position: absolute;
-                left: 1200px;
-                top: 830px;
-                width: 215px;
-                height: 135px;
-            }
-            .car-down {
-                position: absolute;
-                left: 1200px;
-                top: 960px;
-                width: 215px;
-                height: 135px;
-            }
-            .cylinder-left {
-                width: 215px;
-                height: 35px; // left: 69px;
-                // top: 132px;
-                // position: absolute;
-                .word-pos {
-                    position: absolute;
-                    left: 20px;
-                    font-size: 20px;
-                }
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-            }
-            .cylinder-font {
-                color: rgb(89, 235, 232);
-                font-size: 40px;
-                text-align: center;
-                white-space: nowrap;
-                line-height: normal;
-                font-family: "Microsoft Yahei";
-                background-color: rgba(0, 0, 0, 0);
-                span {
-                    font-size: 22px;
-                    color: #59EBE8;
-                    vertical-align: baseline;
-                }
-            }
+        .word {
+          position: absolute;
+          left: 90px;
+          font-size: 24px
         }
-        .bigScreen-right {
-            float: left;
-            width: 25%;
-            height: 100%;
-            .time {
-                width: 360px;
-                height: 35px;
-                font-size: 30px;
-                position: absolute;
-                left: 1550px;
-                top: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .right-title {
-                position: absolute;
-                left: 1484px;
-                top: 196px;
-                width: 235px;
-                height: 35px;
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-                .title-word {
-                    position: absolute;
-                    left: 20px;
-                    font-size: 24px;
-                }
-            }
-            .month {
-                position: absolute;
-                left: 1800px;
-                top: 195px;
-                width: 117px;
-                height: 57px;
-                font-size: 24px;
-                font-family: "Microsoft Yahei";
-            }
-            .pie {
-                position: absolute;
-                left: 1452px;
-                top: 280px;
-                width: 456px;
-                height: 237px;
-            }
-            .danger {
-                position: absolute;
-                left: 1484px;
-                top: 580px;
-                width: 235px;
-                height: 35px;
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-                .title-word {
-                    position: absolute;
-                    left: 20px;
-                    font-size: 24px;
-                }
-            }
-            .carousel {
-                position: absolute;
-                left: 1488px;
-                top: 640px;
-                width: 400px;
-                height: 408px; //  display: flex;
-                // align-items: center;
-                .ul-container {
-                    overflow: hidden;
-                    height: 345px;
-                }
-                ul {
-                    list-style: none;
-                    li {
-                        display:flex;
-                        -webkit-align-items:center;
-                        -moz-align-items:center;
-                        -ms-align-items:center;
-                        -o-align-items:center;
-                        align-items:center;
-                        height: 69px;
-                        font-size: 20px;
-                        width: 100%;
-                        text-overflow: ellipsis;
-                        text-align: center;
-                        background-color: transparent;
-                        font-size: 20px;
-                        color: #44d3e4;
-                        font-weight: normal
-                    } // .radius-con {
-                    //     // display: inline-block;
-                    //     // text-align: center;
-                    //     vertical-align: middle;
-                    //     width: 8%;
-                    //     color: #ffffff;
-                    //     font-size: 17px;
-                    // }
-                    .radius {
-                        float: left;
-                        background-color: #56baca;
-                        width: 25.12px;
-                        height: 25.12px;
-                        line-height: 25.12px;
-                        // vertical-align: middle;
-                        margin: auto;
-                        border-radius: 12.56px;
-                        text-align: center;
-                        color: white;
-                        font-size: 17px; // display: inline-block;
-                        // width: 8%;
-                    }
-                    .content {
-                        width: 100%; // display: inline-block;
-                        text-overflow: ellipsis;
-                        text-align: center;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        // vertical-align: middle;
-                        background-color: transparent; // font-family: ;
-                        font-size: 20px;
-                        color: #44d3e4;
-                        font-weight: normal; // height: ;
-                        // width: 8%;
-                    }
-                }
-            }
+      }
+      .water {
+        margin-top: 50px;
+        margin-left: 50px;
+        width: 399px;
+        height: 384px;
+        border: 1px solid white;
+        border-radius: 5px; // border-style: solid;
+        // border-width: 32px 37px;
+        // border-image: url(../../../../assets/img/bigScreen/白色框.png);
+        // border-image-slice: 32 37 fill;
+        // border-image-width: initial;
+        // border-image-outset: initial;
+        // border-image-repeat: initial;
+        background: none;
+      }
+      .water2 {
+        margin-top: 40px;
+        margin-left: 50px;
+        width: 399px;
+        height: 384px;
+        border: 1px solid white;
+        border-radius: 5px; // border-style: solid;
+        // border-width: 32px 37px;
+        // border-image: url(../../../../assets/img/bigScreen/白色框.png);
+        // border-image-slice: 32 37 fill;
+        // border-image-width: initial;
+        // border-image-outset: initial;
+        // border-image-repeat: initial;
+        background: none;
+      }
+      .water-title {
+        position: absolute;
+        left: 94px;
+        top: 194px;
+        width: 144px;
+        height: 51px;
+        font-size: 24px;
+      }
+      .title-content {
+        position: absolute;
+        left: 265px;
+        top: 190px;
+        width: 378px;
+        height: 111px;
+        font-size: 30px;
+        color: rgba(29, 241, 62, 0.79);
+        span {
+          font-size: 10px;
+          color: #ffffff;
+          vertical-align: middle;
         }
+      }
+      .title-1 {
+        position: absolute;
+        left: 94px;
+        top: 244px;
+        width: 144px;
+        height: 51px;
+        font-size: 24px;
+      }
+      .title-2 {
+        position: absolute;
+        left: 265px;
+        top: 244px;
+        width: 170px;
+        height: 51px;
+        font-size: 24px;
+      }
+      .title-1-content {
+        position: absolute;
+        left: 94px;
+        top: 284px;
+        width: 215px;
+        height: 35px;
+        font-size: 30px;
+        color: rgb(59, 77, 241);
+        span {
+          font-size: 10px;
+          color: #ffffff;
+          vertical-align: middle;
+        }
+      }
+      .title-2-content {
+        position: absolute;
+        left: 260px;
+        top: 284px;
+        width: 215px;
+        height: 35px;
+        font-size: 30px;
+        color: rgb(255, 78, 0);
+        span {
+          font-size: 10px;
+          color: #ffffff;
+          vertical-align: middle;
+        }
+      }
+      .water-chart {
+        position: absolute;
+        left: 55px;
+        top: 340px;
+        width: 201px;
+        height: 153px;
+      }
+      .title-chart {
+        position: absolute;
+        left: 80px;
+        top: 498px;
+        width: 144px;
+        height: 51px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+      .water-chart-1 {
+        position: absolute;
+        left: 240px;
+        top: 340px;
+        width: 201px;
+        height: 153px;
+      }
+      .title-chart-1 {
+        position: absolute;
+        left: 270px;
+        top: 498px;
+        width: 144px;
+        height: 51px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+      .title2-1 {
+        position: absolute;
+        left: 72px;
+        top: 708px;
+        width: 228px;
+        height: 51px;
+        font-size: 24px;
+      }
+      .title2-1-content {
+        position: absolute;
+        left: 280px;
+        top: 706px;
+        width: 215px;
+        height: 35px;
+        font-size: 30px;
+        color: rgb(59, 77, 241);
+        span {
+          font-size: 10px;
+          color: #ffffff;
+          vertical-align: middle;
+        }
+      }
+      .title2-2 {
+        position: absolute;
+        left: 72px;
+        top: 762px;
+        width: 228px;
+        height: 51px;
+        font-size: 24px;
+      }
+      .title2-2-content {
+        position: absolute;
+        left: 280px;
+        top: 760px;
+        width: 215px;
+        height: 35px;
+        font-size: 30px;
+        color: rgb(59, 77, 241);
+        span {
+          font-size: 10px;
+          color: #ffffff;
+          vertical-align: middle;
+        }
+      }
+      .water2-chart {
+        position: absolute;
+        left: 55px;
+        top: 822px;
+        width: 201px;
+        height: 153px;
+      }
+      .water2-chart-1 {
+        position: absolute;
+        left: 240px;
+        top: 822px;
+        width: 201px;
+        height: 153px;
+      }
+      .title2-chart {
+        position: absolute;
+        left: 80px;
+        top: 975px;
+        width: 144px;
+        height: 51px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+      .title2-chart-1 {
+        position: absolute;
+        left: 270px;
+        top: 975px;
+        width: 144px;
+        height: 51px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
     }
+    .bigScreen-center {
+      float: left;
+      width: 50%;
+      height: 100%;
+      .header-imgl {
+        position: absolute;
+        width: 180px;
+        height: 35px;
+        top: 36px;
+        left: 510px;
+        background-image: url(../../../../assets/img/bigScreen/标题左侧.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%; // display: inline-block
+      }
+      .header-word {
+        position: absolute;
+        top: 24px;
+        left: 694px;
+        width: 656px;
+        height: 64px;
+        color: rgb(255, 255, 255);
+        font-weight: normal;
+        font-family: "Microsoft Yahei", Arial, sans-serif;
+        font-size: 40px;
+        white-space: nowrap;
+        overflow: hidden; // display: inline-block
+      }
+      .header-imgr {
+        position: absolute;
+        width: 180px;
+        height: 35px;
+        top: 36px;
+        left: 1256px;
+        background-image: url(../../../../assets/img/bigScreen/标题右侧.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .header-imgc {
+        position: absolute;
+        left: 672px;
+        top: 84px;
+        width: 592px;
+        height: 64px;
+        .gif {
+          width: 100%;
+          height: 100%;
+          opacity: 1;
+          background-image: url(../../../../assets/img/bigScreen/标题下侧.gif);
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+      }
+      .map {
+        position: absolute;
+        top: 150px;
+        left: 490px;
+        width: 960px;
+        height: 660px; // background-color: black;
+      }
+      .cylinder {
+        position: absolute;
+        left: 600px;
+        top: 830px;
+        width: 215px;
+        height: 135px;
+      }
+      .gas-station {
+        position: absolute;
+        left: 600px;
+        top: 960px;
+        width: 215px;
+        height: 135px;
+      }
+      .gas {
+        position: absolute;
+        left: 900px;
+        top: 830px;
+        width: 215px;
+        height: 135px;
+      }
+      .gas-down {
+        position: absolute;
+        left: 900px;
+        top: 960px;
+        width: 215px;
+        height: 135px;
+      }
+      .car {
+        position: absolute;
+        left: 1200px;
+        top: 830px;
+        width: 215px;
+        height: 135px;
+      }
+      .car-down {
+        position: absolute;
+        left: 1200px;
+        top: 960px;
+        width: 215px;
+        height: 135px;
+      }
+      .cylinder-left {
+        width: 215px;
+        height: 35px; // left: 69px;
+        // top: 132px;
+        // position: absolute;
+        .word-pos {
+          position: absolute;
+          left: 20px;
+          font-size: 20px;
+        }
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .cylinder-font {
+        color: rgb(89, 235, 232);
+        font-size: 40px;
+        text-align: center;
+        white-space: nowrap;
+        line-height: normal;
+        font-family: "Microsoft Yahei";
+        background-color: rgba(0, 0, 0, 0);
+        span {
+          font-size: 22px;
+          color: #59EBE8;
+          vertical-align: baseline;
+        }
+      }
+    }
+    .bigScreen-right {
+      float: left;
+      width: 25%;
+      height: 100%;
+      .time {
+        width: 360px;
+        height: 35px;
+        font-size: 30px;
+        position: absolute;
+        left: 1550px;
+        top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .right-title {
+        position: absolute;
+        left: 1484px;
+        top: 196px;
+        width: 235px;
+        height: 35px;
+        img {
+          width: 100%;
+          height: auto;
+        }
+        .title-word {
+          position: absolute;
+          left: 20px;
+          font-size: 24px;
+        }
+      }
+      .month {
+        position: absolute;
+        left: 1800px;
+        top: 195px;
+        width: 117px;
+        height: 57px;
+        font-size: 24px;
+        font-family: "Microsoft Yahei";
+      }
+      .pie {
+        position: absolute;
+        left: 1452px;
+        top: 280px;
+        width: 456px;
+        height: 237px;
+      }
+      .danger {
+        position: absolute;
+        left: 1484px;
+        top: 580px;
+        width: 235px;
+        height: 35px;
+        img {
+          width: 100%;
+          height: auto;
+        }
+        .title-word {
+          position: absolute;
+          left: 20px;
+          font-size: 24px;
+        }
+      }
+      .carousel {
+        position: absolute;
+        left: 1488px;
+        top: 640px;
+        width: 400px;
+        height: 408px; //  display: flex;
+        // align-items: center;
+        .ul-container {
+          overflow: hidden;
+          height: 345px;
+        }
+        ul {
+          list-style: none;
+          li {
+            display: flex;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            -o-align-items: center;
+            align-items: center;
+            height: 69px;
+            font-size: 20px;
+            width: 100%;
+            text-overflow: ellipsis;
+            text-align: center;
+            background-color: transparent;
+            font-size: 20px;
+            color: #44d3e4;
+            font-weight: normal
+          } // .radius-con {
+          //     // display: inline-block;
+          //     // text-align: center;
+          //     vertical-align: middle;
+          //     width: 8%;
+          //     color: #ffffff;
+          //     font-size: 17px;
+          // }
+          .radius {
+            float: left;
+            background-color: #56baca;
+            width: 25.12px;
+            height: 25.12px;
+            line-height: 25.12px; // vertical-align: middle;
+            margin: auto;
+            border-radius: 12.56px;
+            text-align: center;
+            color: white;
+            font-size: 17px; // display: inline-block;
+            // width: 8%;
+          }
+          .content {
+            width: 100%; // display: inline-block;
+            text-overflow: ellipsis;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden; // vertical-align: middle;
+            background-color: transparent; // font-family: ;
+            font-size: 20px;
+            color: #44d3e4;
+            font-weight: normal; // height: ;
+            // width: 8%;
+          }
+        }
+      }
+    }
+  }
 }
