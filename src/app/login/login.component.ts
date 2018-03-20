@@ -6,29 +6,41 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../core/userState.service';
+import { CookieService } from './../core/cookie.service';
+import { Base64Service } from './../core/base64.service';
+
 import { clearInterval } from 'timers';
 import { API } from '../common/api';
 @Component({
   selector: 'gas-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnDestroy, OnInit {
-  userName = '';
+  chkRememberPass = false;
+  window: any = window;
+  userName: any = '';
   password = '';
   messageList = [];
   messageList1: any[] = [];
   total = 0;
   ss = 'hhh';
   timer: any;
-
+  name: any;
+  checked: any;
   constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2,
-    private loginService: LoginService, private messageService: MessageService, private router: Router,
-    private userStateService: UserStateService) {
+    private loginService: LoginService,
+    private messageService: MessageService,
+    private router: Router,
+    private userStateService: UserStateService,
+    private cookieService: CookieService,//注入服务
+    private base64Service: Base64Service
+  ) {
     this.renderer.addClass(this.document.body, 'login-body');
     this.renderer.setStyle(this.document.querySelector('html'), 'height', '100%');
   }
   ngOnInit() {
+    this.getUserInfoInCookie();
     this.getList();
     let sum = -1;
     this.timer = setInterval(() => {
@@ -69,6 +81,33 @@ export class LoginComponent implements OnDestroy, OnInit {
     this.loginService.signIn({
       username: this.userName,
       password: this.password
+    }).then(data => {
+      if (data) {
+        this.setUserInfoInCookie();
+      }
     });
+  }
+
+  getUserInfoInCookie() {
+    this.chkRememberPass = this.cookieService.getItem('chkRememberPass') === 'true' ? true : false;
+    if (this.chkRememberPass) {
+      var userNameValue = this.cookieService.getItem("userName");
+      this.userName = this.base64Service.b64DecodeUnicode(userNameValue);//解密
+      var userPassValue = this.cookieService.getItem("password");
+      this.password = this.base64Service.b64DecodeUnicode(userPassValue);//解密
+    }
+  }
+
+  setUserInfoInCookie() {
+    if (this.chkRememberPass) {
+      //记住账号密码
+      this.cookieService.setItem("userName", this.base64Service.b64EncodeUnicode(this.userName), 365 * 10);//加密
+      this.cookieService.setItem("password", this.base64Service.b64EncodeUnicode(this.password), 365 * 10);//加密
+      this.cookieService.setItem("chkRememberPass", this.chkRememberPass, 365 * 10)
+    } else {
+      this.cookieService.removeItem("userName");
+      this.cookieService.removeItem("password");
+      this.cookieService.removeItem("chkRememberPass");
+    }
   }
 }
