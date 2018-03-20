@@ -92,17 +92,17 @@ export class LoginComponent implements OnDestroy, OnInit {
     this.chkRememberPass = this.cookieService.getItem('chkRememberPass') === 'true' ? true : false;
     if (this.chkRememberPass) {
       var userNameValue = this.cookieService.getItem("userName");
-      this.userName = this.base64Service.b64DecodeUnicode(userNameValue);//解密
+      this.userName = this.base64Service.decode(userNameValue);//解密
       var userPassValue = this.cookieService.getItem("password");
-      this.password = this.base64Service.b64DecodeUnicode(userPassValue);//解密
+      this.password = this.base64Service.decode(userPassValue);//解密
     }
   }
 
   setUserInfoInCookie() {
     if (this.chkRememberPass) {
       //记住账号密码
-      this.cookieService.setItem("userName", this.base64Service.b64EncodeUnicode(this.userName), 365 * 10);//加密
-      this.cookieService.setItem("password", this.base64Service.b64EncodeUnicode(this.password), 365 * 10);//加密
+      this.cookieService.setItem("userName", this.base64Service.encode(this.userName), 365 * 10);//加密
+      this.cookieService.setItem("password", this.base64Service.encode(this.password), 365 * 10);//加密
       this.cookieService.setItem("chkRememberPass", this.chkRememberPass, 365 * 10)
     } else {
       this.cookieService.removeItem("userName");
