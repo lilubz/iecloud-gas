@@ -7,10 +7,10 @@ import { LoginService } from './login.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../core/userState.service';
 import { CookieService } from './../core/cookie.service';
-import { Base64Service } from './../core/base64.service';
+import { Base64 } from 'js-base64';
 
-import { clearInterval } from 'timers';
 import { API } from '../common/api';
+
 @Component({
   selector: 'gas-login',
   templateUrl: './login.component.html',
@@ -34,7 +34,6 @@ export class LoginComponent implements OnDestroy, OnInit {
     private router: Router,
     private userStateService: UserStateService,
     private cookieService: CookieService,//注入服务
-    private base64Service: Base64Service
   ) {
     this.renderer.addClass(this.document.body, 'login-body');
     this.renderer.setStyle(this.document.querySelector('html'), 'height', '100%');
@@ -92,17 +91,17 @@ export class LoginComponent implements OnDestroy, OnInit {
     this.chkRememberPass = this.cookieService.getItem('chkRememberPass') === 'true' ? true : false;
     if (this.chkRememberPass) {
       var userNameValue = this.cookieService.getItem("userName");
-      this.userName = this.base64Service.decode(userNameValue);//解密
+      this.userName = Base64.decode(userNameValue);//解密
       var userPassValue = this.cookieService.getItem("password");
-      this.password = this.base64Service.decode(userPassValue);//解密
+      this.password = Base64.decode(userPassValue);//解密
     }
   }
 
   setUserInfoInCookie() {
     if (this.chkRememberPass) {
       //记住账号密码
-      this.cookieService.setItem("userName", this.base64Service.encode(this.userName), 365 * 10);//加密
-      this.cookieService.setItem("password", this.base64Service.encode(this.password), 365 * 10);//加密
+      this.cookieService.setItem("userName", Base64.encode(this.userName), 365 * 10);//加密
+      this.cookieService.setItem("password", Base64.encode(this.password), 365 * 10);//加密
       this.cookieService.setItem("chkRememberPass", this.chkRememberPass, 365 * 10)
     } else {
       this.cookieService.removeItem("userName");

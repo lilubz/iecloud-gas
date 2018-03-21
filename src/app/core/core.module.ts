@@ -12,7 +12,6 @@ import { Logger } from './logger';
 import { PermissionGuard } from './permission-guard.service';
 import { FullScreenService } from './full-screen.service';
 import { CookieService } from './cookie.service';
-import { Base64Service } from './base64.service';
 
 @NgModule({
   imports: [
@@ -29,8 +28,7 @@ import { Base64Service } from './base64.service';
     Util,
     Logger,
     FullScreenService,
-    CookieService,
-    Base64Service
+    CookieService
   ]
 })
 export class CoreModule {
