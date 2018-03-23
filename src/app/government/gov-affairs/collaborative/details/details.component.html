@@ -2,9 +2,8 @@
   <div class="ui-g-12">
     <div class="ui-g-4">
       <span class="ui-g-6 content title">操作</span>
-      <span class="ui-g-6 content">
-        <button type="button" (click)="history.go(-1)" class="padding0">返回</button>
-        <button type="button" (click)="onDestroy()" *ngIf="details.boolIsRelate" class="padding0">撤销</button>
+      <span class="ui-g-6 content">&nbsp;
+        <button pButton type="button" label="撤消" class="ui-button-danger" (click)="onDestroy()" *ngIf="details.boolIsRelate"></button>
       </span>
     </div>
     <div class="ui-g-4 ">
@@ -72,7 +71,7 @@
 
     <!-- 需要处理的节点 -->
 
-    <div class="node-handle" [hidden]="!treeNode.needHandle">
+    <div class="node-handle" [hidden]="!treeNode.needHandle || treeNode.needHandle.boolIsHide===2">
       <div class="ui-g-12">
         <h2>需处理事务</h2>
       </div>
@@ -106,7 +105,7 @@
             <span class="ui-g-6 content title">附件</span>
             <span class="ui-g-6 content">
               <span *ngIf="!treeNode.needHandle?.parentUrl">没有附件</span>
-              <a href="javascript:void(0);" *ngIf="treeNode.needHandle?.parentUrl" (click)="window.location.href=treeNode.needHandle?.parentUrl">点击预览</a>
+              <a href="{{treeNode.needHandle?.parentUrl}}" *ngIf="treeNode.needHandle?.parentUrl">点击预览</a>
             </span>
           </div>
         </div>
@@ -166,29 +165,44 @@
       <div class="ui-g-12">
         <h2>部门回复状况：</h2>
       </div>
-      <div class="ui-g-10 node-reply" *ngFor="let item of treeNode.replyInfo">
-        <div class="ui-g-4">
+      <div class="ui-g-12 node-reply" *ngFor="let item of treeNode.replyInfo">
+        <div class="ui-g-3">
           <span class="ui-g-6 content title">部门</span>
           <span class="ui-g-6 content" title="{{item.eventHandleOrganizationName}}">{{item.eventHandleOrganizationName}}</span>
         </div>
-        <div class="ui-g-4">
-          <span class="ui-g-6 content title">处理时间</span>
-          <span class="ui-g-6 content" title="{{item.expirationDate}}">{{item.expirationDate| date:"yyyy-MM-dd"}}</span>
+        <div class="ui-g-3">
+          <span class="ui-g-6 content title">截止时间</span>
+          <span class="ui-g-6 content" title="{{item.expirationDate| date:'yyyy-MM-dd HH:mm:ss'}}">{{item.expirationDate| date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </div>
-        <div class="ui-g-4">
+        <div class="ui-g-3">
           <span class="ui-g-6 content title">处理人</span>
           <span class="ui-g-6 content" title="{{item.eventHandleName}}">{{item.eventHandleName}}</span>
         </div>
-        <div class="ui-g-8">
+        <div class="ui-g-3">
+          <span class="ui-g-6 content title">处理情况</span>
+          <span class="ui-g-6 content">
+            <span *ngIf="item.boolIsHandle===2">已超期</span>
+            <span *ngIf="item.boolIsHandle===0">已回复</span>
+            <span *ngIf="item.boolIsHandle===1">未回复</span>
+          </span>
+        </div>
+        <div class="ui-g-6">
           <span class="ui-g-3 content title">说明</span>
           <span class="ui-g-9 content" title="{{item.description}}">{{item.description}}</span>
         </div>
-        <div class="ui-g-4">
+        <div class="ui-g-3">
           <span class="ui-g-6 content title">附件</span>
-          <a href="javascript:void(0);" class="ui-g-6 content" (click)="window.location.href=item.url" *ngIf="item.url">
+          <a href="{{item.url}}" class="ui-g-6 content" target="_blank" *ngIf="item.url">
             点击预览
           </a>
-          <span *ngIf="!item.url" class="ui-g-6 content">无</span>
+          <span *ngIf="!item.url" class="ui-g-6 content"></span>
+        </div>
+        <div class="ui-g-3">
+          <span class="ui-g-6 content title">操作</span>
+          <span class="ui-g-6 content">
+            <a *ngIf="item.boolIsHide===0" href="javascript:void(0);" (click)="onOpenDialog(item)">重新指派</a>
+            <a *ngIf="item.boolIsHide===1" href="javascript:void(0);" ></a>
+          </span>
         </div>
       </div>
     </div>
@@ -233,6 +247,15 @@
     </div> -->
   </div>
 
-  <p-confirmDialog header="请确认！" icon="fa fa-question-circle" width="425">
+  <p-confirmDialog header="请确认！" icon="fa fa-question-circle" width="425" acceptLabel="确认" rejectLabel="取消">
   </p-confirmDialog>
+  <p-dialog [visible]="visible" [showHeader]="false" [modal]="true" [closable]="false" [width]="310" [height]="440"
+    [contentStyle]="{'padding':'2px'}" [style]="{'border':'none'}">
+    <p-calendar [(ngModel)]="formModel.nextSubmitTime" [locale]="zh" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true" [yearNavigator]="true"
+       yearRange="2018:2050" readonlyInput="true" [inline]="true" [showTime]="true" [minDate]="currentDate"></p-calendar>
+      <div class="text-center" style="margin-top:10px">
+        <button pButton type="button" label="确定" style="margin-right:20px" (click)="sendNextSubmitTime()"></button>
+        <button pButton type="button" label="取消" class="ui-button-secondary" (click)="visible = false"></button>
+      </div>
+  </p-dialog>
 </div>

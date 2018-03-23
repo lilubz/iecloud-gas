@@ -63,4 +63,13 @@ export class CollaborativeService {
   listTransactionInfo(params) {
     return this.HttpService.getRequest(API.listTransactionInfo, params);
   }
+  updateDeadlineTime(params) {
+    return this.HttpService.formPostRequest(API.updateDeadlineTime, params);
+  }
+  listTransactionOverdueHistory(params) {
+    return this.HttpService.getRequest(API.listTransactionOverdueHistory, params);
+  }
+  listCorpTransactionOverdueHistory(params) {
+    return this.HttpService.getRequest(API.listCorpTransactionOverdueHistory, params);
+  }
 }

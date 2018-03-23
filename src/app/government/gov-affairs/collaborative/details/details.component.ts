@@ -14,6 +14,7 @@ import * as moment from 'moment';
   providers: [ConfirmationService]
 })
 export class DetailsComponent implements OnInit {
+  visible = false;
   zh = zh_CN;
   window = window; // 文件下载时使用了
   API = API;
@@ -27,7 +28,9 @@ export class DetailsComponent implements OnInit {
     explain: '',
     shiftList: [],
     file: null,
-    boolIsApproved: false
+    boolIsApproved: false,
+    nextSubmitTime: new Date(),
+    nextSubmitEventId: ''
   };
   details: {
     transactionBasicNumber?: string,
@@ -79,6 +82,11 @@ export class DetailsComponent implements OnInit {
         });
       }
     });
+  }
+  onOpenDialog(rowData) {
+    this.formModel.nextSubmitTime = new Date();
+    this.visible = true;
+    this.formModel.nextSubmitEventId = rowData.eventId;
   }
   checkForm(): boolean {
     if (this.formModel.explain === '') {
@@ -235,6 +243,23 @@ export class DetailsComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: '操作成功', detail: data.msg });
           this.history.go(-1);
         } else {
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        }
+      });
+  }
+  sendNextSubmitTime() {
+    this.visible = false;
+    const params = {
+      eventId: this.formModel.nextSubmitEventId,
+      deadline: this.formModel.nextSubmitTime
+    };
+    this._service.updateDeadlineTime(params)
+      .then(data => {
+        if (data.status === 0) {
+          this.treeNode.replyInfo = [];
+          this.getTreeNode();
+          this.messageService.add({ severity: 'success', summary: '操作成功', detail: data.msg });
+        }else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       });

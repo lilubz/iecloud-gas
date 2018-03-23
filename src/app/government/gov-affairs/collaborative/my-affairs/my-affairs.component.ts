@@ -30,7 +30,7 @@ export class MyAffairsComponent implements OnInit {
     origin: [],
     status: [
       {
-        label: '未完成',
+        label: '处理中',
         value: 1
       },
       {
@@ -54,7 +54,6 @@ export class MyAffairsComponent implements OnInit {
     affairType: '',
     origin: '',
     status: 1,
-    place: '',
   };
   pageParams = {
     startTime: moment().subtract(365, 'days')['_d'],
@@ -64,7 +63,6 @@ export class MyAffairsComponent implements OnInit {
     affairType: '',
     origin: '',
     status: 1,
-    place: '',
   };
 
   ngOnInit() {
@@ -82,7 +80,6 @@ export class MyAffairsComponent implements OnInit {
       transactionType: this.formModel.affairType,
       transactionSource: this.formModel.origin,
       boolIsHandle: this.formModel.status,
-      addressKeyWord: this.formModel.place,
       pageNumber: 1,
       pageSize: this.dataTable.pageSize,
     });
@@ -105,7 +102,6 @@ export class MyAffairsComponent implements OnInit {
         transactionType: this.pageParams.affairType,
         transactionSource: this.pageParams.origin,
         boolIsHandle: this.pageParams.status,
-        addressKeyWord: this.pageParams.place,
         pageNumber: page.pageNumber,
         pageSize: page.pageSize,
       });

@@ -10,6 +10,8 @@ import { DetailsComponent } from './details/details.component';
 
 import { CollaborativeService } from './collaborative.service';
 import { AddAffairsComponent } from './add-affairs/add-affairs.component';
+import { TimeoutSearchComponent } from './timeout-search/timeout-search.component';
+import { MassesReportComponent } from './masses-report/masses-report.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { AddAffairsComponent } from './add-affairs/add-affairs.component';
     MyAffairsComponent,
     AllAffairsComponent,
     DetailsComponent,
-    AddAffairsComponent
+    AddAffairsComponent,
+    TimeoutSearchComponent,
+    MassesReportComponent
   ],
   providers: [
     CollaborativeService

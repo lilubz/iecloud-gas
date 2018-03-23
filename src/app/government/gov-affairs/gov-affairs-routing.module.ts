@@ -12,6 +12,8 @@ import { SubmitComponent } from './report/submit/submit.component';
 import { DetailsComponent } from './collaborative/details/details.component';
 import { DetailsComponent as ReportDetailsComponent } from './report/details/details.component';
 import { CylinderWarningComponent } from './cylinder-warning/cylinder-warning.component';
+import { TimeoutSearchComponent } from './collaborative/timeout-search/timeout-search.component';
+import { MassesReportComponent } from './collaborative/masses-report/masses-report.component';
 
 const routes: Routes = [
   {
@@ -64,7 +66,21 @@ const routes: Routes = [
             data: {
               title: '事务详情'
             },
-          }
+          },
+          {
+            path: 'timeout-search',
+            component: TimeoutSearchComponent,
+            data: {
+              title: '事务超期历史查询'
+            },
+          },
+          {
+            path: 'masses-report',
+            component: MassesReportComponent,
+            data: {
+              title: '群众举报'
+            },
+          },
         ],
       },
       {

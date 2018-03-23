@@ -7,6 +7,7 @@ import { HistoryComponent } from './report/history/history.component';
 import { ReportComponent } from './report/report.component';
 import { SubmitComponent } from './report/submit/submit.component';
 import { RepricingRistComponent } from './repricing-rist/repricing-rist.component';
+import { TimeoutSearchComponent } from './timeout-search/timeout-search.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,13 @@ const routes: Routes = [
             component: AffairDetailsComponent,
             data: {
               title: '事务详情'
+            },
+          },
+          {
+            path: 'timeout-search',
+            component: TimeoutSearchComponent,
+            data: {
+              title: '超期查询'
             },
           },
         ]

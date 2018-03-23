@@ -189,6 +189,9 @@ export const API = {
   'listTransactionDetailInfo': URL + 'corpBusiness/collaborative/listTransactionDetailInfo.do', // 13,查询事务祥情
   'listTransactionChildren': URL + 'corpBusiness/collaborative/listTransactionChildren.do', // 14,获取某个事务下面所有节点的信息
   'listEventDetailInfo': URL + 'corpBusiness/collaborative/listEventDetailInfo.do', // 15,根据节点ID查询事务信息。
+  'updateDeadlineTime': URL + 'corpBusiness/collaborative/updateDeadlineTime.do', // 【改】23、重新指定截止时间
+  'listTransactionOverdueHistory': URL + 'corpBusiness/collaborative/listTransactionOverdueHistory.do', // 【查】24、事务超期历史查询
+  'listCorpTransactionOverdueHistory': URL + 'corpBusiness/collaborative/listCorpTransactionOverdueHistory.do',
 
 
   // 报表管理
