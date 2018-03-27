@@ -14,6 +14,7 @@ import * as moment from 'moment';
   styleUrls: ['./add-affairs.component.scss']
 })
 export class AddAffairsComponent implements OnInit {
+  disabledSubmitBtn = false;
   zh = zh_CN;
   currentDate: Date = new Date();
   dropdown = {
@@ -311,8 +312,10 @@ export class AddAffairsComponent implements OnInit {
   }
 
   sendFormModel(params?) {
+    this.disabledSubmitBtn = true;
     this._service.insertTransactionBasic(params)
       .then(data => {
+        this.disabledSubmitBtn = false;
         if (data.status === 0) {
           this.resetFromModel();
           this.messageService.add({ severity: 'success', summary: '操作成功', detail: data.msg });
