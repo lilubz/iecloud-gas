@@ -1,5 +1,3 @@
-import { InjectionToken } from '@angular/core';
-
 const release = '/wenZhouGas/';
 const local = '/api/';
 
