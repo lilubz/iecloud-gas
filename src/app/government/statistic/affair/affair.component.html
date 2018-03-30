@@ -23,17 +23,17 @@
       <p-dataTable [value]="affairStatistics" [styleClass]="'ui-lg-12 ui-xl-8'" [loading]="loading" emptyMessage="未查询到数据">
 
         <p-column field="name" header="政府部门名称" [style]="{'width':'20%'}"></p-column>
-        <p-column field="totalCount" header="一级事务">
+        <p-column field="totalCount" header="一般事务">
           <ng-template let-countyCylinder="rowData" pTemplate="body">
             {{ countyCylinder.emergencyDegreeFirst || 0 }}
           </ng-template>
         </p-column>
-        <p-column field="totalCount" header="二级事务">
+        <p-column field="totalCount" header="重要事务">
           <ng-template let-countyCylinder="rowData" pTemplate="body">
             {{ countyCylinder.emergencyDegreeSecond || 0 }}
           </ng-template>
         </p-column>
-        <p-column field="totalCount" header="三级事务">
+        <p-column field="totalCount" header="紧急事务">
           <ng-template let-countyCylinder="rowData" pTemplate="body">
             {{ countyCylinder.emergencyDegreeThird || 0 }}
           </ng-template>

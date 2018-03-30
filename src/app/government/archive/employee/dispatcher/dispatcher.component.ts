@@ -13,8 +13,7 @@ import { validator } from '../../../../common/validator';
 })
 
 export class DispatcherComponent implements OnInit {
-  constructor(private dispatcherService: DispatcherService, private messageService: MessageService,
-    private fb: FormBuilder) { }
+  currentImgUrl = '';
   dropdown = {
     companyOpt: [
       {
@@ -37,7 +36,7 @@ export class DispatcherComponent implements OnInit {
   };
   formModel: any = this.fb.group({
     enterpriseId: '',
-    name: '',
+    name: ['', validator.minLength(2, '姓名')],
     jobNumber: '',
     phone: ['', validator.phone],
     idNumber: ['', validator.idNumber]
@@ -51,11 +50,22 @@ export class DispatcherComponent implements OnInit {
     pageSize: this.dataTable.option[1],
     pageNumber: 1
   };
-
+  constructor(private dispatcherService: DispatcherService, private messageService: MessageService,
+    private fb: FormBuilder) { }
   ngOnInit() {
     this.cylinderSelectOpt();
   }
-
+  showImg(event, url, overlaypanel) {
+    this.currentImgUrl = '';
+    overlaypanel.toggle(event);
+    const el = overlaypanel.container;
+    setTimeout(() => {
+      this.currentImgUrl = url;
+      el.style.top = parseFloat(el.style.top) - 150 + 'px';
+      el.style.left = parseFloat(el.style.left) - 350 + 'px';
+      el.style.maxWidth = '300px';
+    }, 0);
+  }
   onSearch() {
     let params = {};
     if (this.formModel.valid) { // 通过了验证

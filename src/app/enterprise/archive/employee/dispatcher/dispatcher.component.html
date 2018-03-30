@@ -59,31 +59,26 @@
               title="点击查询流转记录">{{rowData.name}}</a>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'120px'}" field="jobNumber" header="工号"></p-column>
+        <p-column [style]="{'width':'90px'}" field="jobNumber" header="工号"></p-column>
         <p-column [style]="{'width':'100px'}" field="licensePlateNumber" header="车牌号"></p-column>
         <p-column [style]="{'width':'150px'}" field="subsidiaryEnterprises" header="所属企业"></p-column>
         <p-column [style]="{'width':'150px'}" field="supplyStation" header="所属供应站"></p-column>
-        <!-- <p-column [style]="{'width':'50px'}" field="sex" header="性别"></p-column>
-      <p-column [style]="{'width':'120px'}" field="birthday" header="出生年月"></p-column> -->
-        <p-column [style]="{'width':'180px'}" field="idNumber" header="身份证号"></p-column>
+        <p-column [style]="{'width':'110px'}" field="idNumber" header="身份证号"></p-column>
         <p-column [style]="{'width':'120px'}" field="phone" header="电话号码"></p-column>
-        <p-column [style]="{'width':'100px'}" field="" header="头像"></p-column>
-        <p-column [style]="{'width':'100px'}" field="" header="二维码"></p-column>
+        <p-column [style]="{'width':'140px'}" field="" header="头像">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <button pButton (click)="showImg($event,rowData.headPortraitUrl,imgBox);" label="查看头像" *ngIf="rowData.headPortraitUrl"></button>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'180px'}" field="" header="二维码">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <button type="button" pButton (click)="showImg($event,rowData.qrCodeUrl,imgBox);" *ngIf="rowData.qrCodeUrl" label="查看二维码"></button>
+          </ng-template>
+        </p-column>
         <p-column [style]="{'width':'70px'}" field="status" header="状态"></p-column>
-        <p-column [style]="{'width':'100px'}" field="dangerousGoodsTransportLicenseNumber" header="危险品运输许可证编号"></p-column>
         <p-column [style]="{'width':'100px'}" header="到期时间">
           <ng-template let-rowData="rowData" pTemplate="body">
             <span>{{rowData.expirationTime|date:"yyyy-MM-dd"}}</span>
-          </ng-template>
-        </p-column>
-        <p-column [style]="{'width':'100px'}" header="创建时间">
-          <ng-template let-rowData="rowData" pTemplate="body">
-            <span>{{rowData.creationTime|date:"yyyy-MM-dd"}}</span>
-          </ng-template>
-        </p-column>
-        <p-column [style]="{'width':'100px'}" header="修改时间">
-          <ng-template let-rowData="rowData" pTemplate="body">
-            <span>{{rowData.modificationTime|date:"yyyy-MM-dd"}}</span>
           </ng-template>
         </p-column>
 
@@ -97,5 +92,9 @@
         </ng-template>
       </p-dataTable>
     </div>
+
+    <p-overlayPanel #imgBox>
+      <img src="{{currentImgUrl}}" *ngIf="currentImgUrl" style="max-width: 262px" />
+    </p-overlayPanel>
   </div>
 </div>

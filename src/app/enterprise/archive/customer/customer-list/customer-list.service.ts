@@ -11,11 +11,6 @@ export class CustomerListService {
 
   constructor(private httpService: HttpService ) { }
 
-  getDropdownForUserNature(params: any): Promise<any> {
-    return this.httpService
-      .getRequest(this.API.getDropdownForUserNature, params);
-  }
-
   getDropdownForUserType(params: any): Promise<any> {
     return this.httpService
       .getRequest(this.API.getDropdownForUserType, params);

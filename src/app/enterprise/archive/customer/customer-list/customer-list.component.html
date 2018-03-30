@@ -22,10 +22,6 @@
       <p-dropdown [options]="dropdown.userType" [style]="{'width':'240px'}" formControlName="userTypeId"></p-dropdown>
     </div>
     <div class="ui-g-12 ui-lg-6 form-group">
-      <label style="width:80px;display:inline-block">用户性质</label>
-      <p-dropdown [options]="dropdown.userNature" [style]="{'width':'240px'}" formControlName="userNatureId"></p-dropdown>
-    </div>
-    <div class="ui-g-12 ui-lg-6 form-group">
       <p-checkbox name="group1" label="只看有合同" formControlName="haveContract" binary="true"></p-checkbox>
     </div>
     <div class="ui-g-12 ui-lg-4">
@@ -52,10 +48,11 @@
             </a>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户">
+        <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户"></p-column>
+        <p-column [style]="{'width':'120px'}" header="操作">
           <ng-template let-rowData="rowData" pTemplate="body">
             <a href="javascript:void(0);" [routerLink]="['/enterprise/delivery/cylinder-trace/cylinder-record/4']" [queryParams]="{liabilityName:rowData.userName,liabilityNumber:rowData.userNumber,liabilitySubjectType:4}"
-              title="{{'点击查询流转记录' }}">{{rowData.userName}}</a>
+              title="{{'点击查询流转记录' }}">查看流转记录</a>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>

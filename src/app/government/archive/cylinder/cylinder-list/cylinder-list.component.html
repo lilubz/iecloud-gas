@@ -81,7 +81,11 @@
       <p-column [style]="{'width':'100px'}" field="serialNumber" header="出厂编号"></p-column>
       <p-column [style]="{'width':'100px'}" field="enterpriseCylinderCode" header="自有编号"></p-column>
       <p-column [style]="{'width':'100px'}" field="electronNumber" header="电子编号（预留）"></p-column>
-      <p-column [style]="{'width':'100px'}" field="area13" header="登记时间"></p-column>
+      <p-column [style]="{'width':'100px'}" header="登记时间">
+        <ng-template let-next="rowData" pTemplate="body">
+          <span>{{next.registrationTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
       <p-column [style]="{'width':'100px'}" field="productionUnit" header="制造单位"></p-column>
 
       <ng-template pTemplate="emptymessage">

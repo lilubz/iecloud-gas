@@ -74,6 +74,11 @@
           <span>{{dates.releaseTime | date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
+      <p-column [style]="{'width':'150px'}" header="证件到期日期">
+        <ng-template let-dates="rowData" pTemplate="body">
+          <span>{{dates.effectiveTimeEnd | date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
       <p-column [style]="{'width':'150px'}" field="issuingUnit" header="发证机关"></p-column>
       <p-column [style]="{'width':'150px'}" field="serviceLine" header="服务电话"></p-column>
       <ng-template pTemplate="emptymessage">

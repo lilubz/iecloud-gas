@@ -108,7 +108,6 @@ export class CustomerListComponent implements OnInit {
     };
 
   ngOnInit() {
-    this.getDropdownForUserNature();
     this.getDropdownForUserType();
     this.getDropdownForRegionSysUser();
     this.getDropdownForCorpInfoInRegion({
@@ -186,20 +185,6 @@ export class CustomerListComponent implements OnInit {
         })));
       } else {
         this.dropdown.corp = this.dropdown.default;
-        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
-      }
-    });
-  }
-
-  getDropdownForUserNature() {
-    this.customerListService.getDropdownForUserNature({}).then(data => {
-      if (data.status === 0) {
-        this.dropdown.userNature = this.dropdown.default.concat(data.data.map((item) => ({
-          label: item.name,
-          value: item.value,
-        })));
-      } else {
-        this.dropdown.userNature = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
     });
