@@ -44,8 +44,8 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
     first?: number;
   } = {
       pageNumber: 1,
-      pageSize: 10,
-      pageOption: [10, 20, 30, 50],
+      pageSize: 40,
+      pageOption: [10, 20, 40, 80],
       total: 0,
       first: 0,
     };
@@ -89,7 +89,7 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
       releaseTimeStart: this.searchParams.startTime || '',
       releaseTimeEnd: this.searchParams.endTime || '',
       serviceLine: this.searchParams.phone || '',
-      pageSize: 10,
+      pageSize: 40,
       pageNumber: 1
     };
     if (pages) {

@@ -4,13 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CylinderInfoComponent } from './cylinder-info/cylinder-info.component';
-import { CylinderTagComponent } from './cylinder-tag/cylinder-tag.component';
 import { InputComponent } from './input.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UserInfoComponent } from './user-info/user-info.component';
-import { UploadComponent } from './upload/upload.component';
-import { ExportComponent } from './export/export.component';
 import { TransportCarComponent } from './transport-car/transport-car.component';
 import { DeliveryCarComponent } from './delivery-car/delivery-car.component';
 const routes: Routes = [
@@ -55,22 +51,6 @@ const routes: Routes = [
           title: '车辆录入'
         },
       },
-      // {
-      //   path: 'cylinder-info',
-      //   component: CylinderInfoComponent
-      // },
-      // {
-      //   path: 'cylinder-tag',
-      //   component: CylinderTagComponent
-      // },
-      // {
-      //   path: 'upload',
-      //   component: UploadComponent
-      // },
-      // {
-      //   path: 'export',
-      //   component: ExportComponent
-      // },
     ]
   }
 ];

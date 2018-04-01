@@ -32,9 +32,9 @@ export class TimeoutSearchComponent implements OnInit {
     list: [],
     first: 0,
     total: 0,
-    pageSize: 10,
+    pageSize: 40,
     pageNumber: 1,
-    option: [5, 10, 20, 40]
+    option: [10, 20, 40, 80]
   };
   constructor(
     private _service: CollaborativeService,

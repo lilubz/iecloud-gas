@@ -38,7 +38,7 @@
 
 <div class="ui-g-12">
   <p-dataTable [value]="cylinderFillingHistoryList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" [scrollable]="false"
-    [lazy]="true" [(first)]="pageFirst" (onLazyLoad)="onFillingHistoryPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[5,10,20,40]">
+    [lazy]="true" [(first)]="pageFirst" (onLazyLoad)="onFillingHistoryPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[10,20,40,80]">
     <!-- <p-column header="序号" [style]="{'width':'50px'}">
       <ng-template pTemplate="body" let-index="rowIndex">
         {{index + 1}}

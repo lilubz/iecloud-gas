@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { DeliveryComponent } from './delivery.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CylinderTraceComponent } from './cylinder-trace/cylinder-trace.component';
-import { CylinderStateComponent } from './cylinder-trace/cylinder-state/cylinder-state.component';
-import { CylinderNumberComponent } from './cylinder-trace/cylinder-number/cylinder-number.component';
 import { CylinderRecordComponent } from './cylinder-trace/cylinder-record/cylinder-record.component';
 import { CylinderFillingComponent } from './cylinder-trace/cylinder-filling/cylinder-filling.component';
 const routes: Routes = [
@@ -33,14 +31,6 @@ const routes: Routes = [
             path: '',
             redirectTo: 'cylinder-filling',
           },
-          // {
-          //   path: 'state',
-          //   component: CylinderStateComponent
-          // },
-          // {
-          //   path: 'cylinder-number',
-          //   component: CylinderNumberComponent
-          // },
           {
             path: 'cylinder-filling',
             component: CylinderFillingComponent,

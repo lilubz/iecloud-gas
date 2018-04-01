@@ -5,8 +5,6 @@ import { CommonModule } from '@angular/common';
 import { VerificationComponent } from './verification.component';
 import { CustomerComponent } from './customer/customer.component';
 import { UserCardComponent } from './user-card/user-card.component';
-import { CylinderTagComponent } from './cylinder-tag/cylinder-tag.component';
-import { CylinderVerificationComponent } from './cylinder-verification/cylinder-verification.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,20 +23,6 @@ const routes: Routes = [
         component: CustomerComponent,
         data: {
           title: '用户信息'
-        }
-      },
-      {
-        path: 'cylinder',
-        component: CylinderVerificationComponent,
-        data: {
-          title: '气瓶信息'
-        }
-      },
-      {
-        path: 'cylinder-tag',
-        component: CylinderTagComponent,
-        data: {
-          title: '气瓶标签审核'
         }
       },
       {

@@ -103,7 +103,7 @@ export class CylinderRecordComponent implements OnInit {
     afterLiabilityAddress: string
   }> = [];
 
-  pageSize = 10;
+  pageSize = 40;
   pageNumber = 1;
   total = 0;
   first = 0;

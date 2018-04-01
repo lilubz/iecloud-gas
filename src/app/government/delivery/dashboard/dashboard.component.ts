@@ -15,7 +15,7 @@ import { Order } from './order.model';
 })
 export class DashboardComponent implements OnInit {
   pageNumber = 1;
-  pageSize = 10;
+  pageSize = 40;
   total = 0;
 
   orderSourceList: SelectItem[] = [

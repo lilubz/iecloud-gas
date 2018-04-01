@@ -4,7 +4,7 @@
       <h2>报表提交</h2>
       <div class="ui-g">
         <div class="ui-g-12">
-          <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
+          <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
             [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
             [(first)]="dataTable.first">
             <p-column [style]="{'width':'40px'}" header="序号">

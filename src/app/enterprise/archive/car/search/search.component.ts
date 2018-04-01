@@ -34,10 +34,10 @@ export class SearchComponent implements OnInit {
   };
   dataTable = {
     list: [],
-    option: [5, 10, 20, 40],
+    option: [10, 20, 40, 80],
     total: 0,
     first: 0,
-    pageSize: 10
+    pageSize: 40
   };
   formModel = {
     company: '',

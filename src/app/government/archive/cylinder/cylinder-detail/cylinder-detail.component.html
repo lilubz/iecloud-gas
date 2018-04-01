@@ -14,7 +14,7 @@
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">使用情况</span>
-      <span class="span_detail01">{{detailList.serviceCondition}}</span>
+      <span class="span_detail01"></span>
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">充装状态</span>
@@ -22,15 +22,15 @@
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">流转状态</span>
-      <span class="span_detail01">{{detailList.transmittingState}}</span>
+      <span class="span_detail01"></span>
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">当前库位</span>
-      <span class="span_detail01">{{detailList.currentLocation}}</span>
+      <span class="span_detail01">{{detailList.liabilityAddress}}</span>
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">当前流转环节</span>
-      <span class="span_detail01">{{detailList.currentCirculation}}</span>
+      <span class="span_detail01"></span>
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">当前持有者身份</span>
@@ -43,11 +43,11 @@
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">登记人姓名</span>
-      <span class="span_detail01">{{detailList.registrationPerson}}</span>
+      <span class="span_detail01">{{detailList.gcLabelInfo?.registrationPerson}}</span>
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01">登记时间</span>
-      <span class="span_detail01">{{detailList.registrationDate | date: "y-MM-dd"}}</span>
+      <span class="span_detail01">{{detailList.gcLabelInfo?.registrationDate | date: "y-MM-dd"}}</span>
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <span class="span_detail bg_color01"></span>
@@ -61,34 +61,34 @@
     </div>
     <div class="ui-g-5 ui-g-nopad">
       <span class="span_gasright bg_colorR">充装介质</span>
-      <span class="span_textright">{{detailList.gcSpecification.fillingMedia}}</span>
+      <span class="span_textright">{{detailList.gcSpecification?.fillingMedia}}</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
       <span class="span_gasleft bg_colorR">出厂编号</span>
-      <span class="span_textleft">{{detailList.gcLabelInfo.serialNumber}}</span>
+      <span class="span_textleft">{{detailList.gcLabelInfo?.serialNumber}}</span>
 
     </div>
     <div class="ui-g-5 ui-g-nopad">
       <span class="span_gasright bg_colorR">瓶体重量</span>
-      <span class="span_textright">{{detailList.gcSpecification.weight}}kg</span>
+      <span class="span_textright">{{detailList.gcSpecification?.weight?detailList.gcSpecification?.weight:0}}kg</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR">钢印编号</span>
-      <span class="span_textleft">{{detailList.gcLabelInfo.enterpriseCylinderCode}}</span>
+      <span class="span_gasleft bg_colorR">自有编号</span>
+      <span class="span_textleft">{{detailList.gcLabelInfo?.enterpriseCylinderCode}}</span>
 
     </div>
     <div class="ui-g-5 ui-g-nopad">
       <span class="span_gasright bg_colorR">容积</span>
-      <span class="span_textright">{{detailList.gcSpecification.volume}}L</span>
+      <span class="span_textright">{{detailList.gcSpecification?.volume?detailList.gcSpecification?.volume:0}}L</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
       <span class="span_gasleft bg_colorR">电子编号（预留）</span>
-      <span class="span_textleft">{{detailList.null}}</span>
+      <span class="span_textleft"></span>
 
     </div>
     <div class="ui-g-5 ui-g-nopad">
       <span class="span_gasright bg_colorR">设计壁厚</span>
-      <span class="span_textright">{{detailList?.gcSpecification.designWallThickness}}mm</span>
+      <span class="span_textright">{{detailList.gcSpecification?.designWallThickness?detailList.gcSpecification?.designWallThickness:0}}mm</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
       <span class="span_gasleft bg_colorR">型号</span>
@@ -97,16 +97,16 @@
     </div>
     <div class="ui-g-5 ui-g-nopad">
       <span class="span_gasright bg_colorR">水压试验压力</span>
-      <span class="span_textright">{{detailList.MPa?detailList.MPa:0}}MPa</span>
+      <span class="span_textright">{{detailList.gcSpecification?.waterPressureTest?detailList.gcSpecification?.waterPressureTest:0}}MPa</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
       <span class="span_gasleft bg_colorR">规格</span>
-      <span class="span_textleft">{{detailList.gcSpecification.specificationId}}</span>
+      <span class="span_textleft">{{detailList.gcSpecification?.specificationId}}</span>
 
     </div>
     <div class="ui-g-5 ui-g-nopad">
       <span class="span_gasright bg_colorR">公称工作压力</span>
-      <span class="span_textright">{{detailList.gcSpecification.nominalWorkingPressure}}MPa</span>
+      <span class="span_textright">{{detailList.gcSpecification?.nominalWorkingPressure?detailList.gcSpecification?.nominalWorkingPressure:0}}MPa</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
       <span class="span_gasleft bg_colorR">生产单位</span>
@@ -119,7 +119,7 @@
     </div>
     <div class="ui-g-7 ui-g-nopad">
       <span class="span_gasleft bg_colorR">生产日期</span>
-      <span class="span_textleft">{{detailList.gcLabelInfo.timeManufacture | date: "y-MM-dd"}}</span>
+      <span class="span_textleft">{{detailList.gcLabelInfo?.timeManufacture | date: "y-MM-dd"}}</span>
 
     </div>
     <div class="ui-g-5 ui-g-nopad">
@@ -128,7 +128,7 @@
     </div>
     <div class="ui-g-7 ui-g-nopad">
       <span class="span_gasleft bg_colorR">下次检测日期</span>
-      <span class="span_textleft">{{detailList.gcLabelInfo.nextInspectionTime | date: "y-MM-dd"}}</span>
+      <span class="span_textleft">{{detailList.gcLabelInfo?.nextInspectionTime | date: "y-MM-dd"}}</span>
 
     </div>
     <div class="ui-g-5 ui-g-nopad">
@@ -137,7 +137,7 @@
     </div>
     <div class="ui-g-7 ui-g-nopad">
       <span class="span_gasleft bg_colorR">上次检测单位名称 </span>
-      <span class="span_textleft">{{detailList.inspector}}</span>
+      <span class="span_textleft"></span>
 
     </div>
     <div class="ui-g-5 ui-g-nopad">

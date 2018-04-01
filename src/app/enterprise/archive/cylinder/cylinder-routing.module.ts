@@ -6,7 +6,7 @@ import { CylinderListComponent } from './cylinder-list/cylinder-list.component';
 import { CylinderDetailComponent } from './cylinder-detail/cylinder-detail.component';
 import { CylinderOverviewEnterpriseComponent } from './cylinder-overview/cylinder-overview-enterprise.component';
 import { CylinderOverviewService } from './cylinder-overview/cylinder-overview.service';
-console.log('cylinder');
+// console.log('cylinder');
 const routes: Routes = [
   {
     path: 'cylinder',

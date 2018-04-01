@@ -115,7 +115,7 @@
     <div class="ui-g-12 result-container">
       <div *ngIf="!detailList.length">无查询结果</div>
       <div *ngIf="detailList.length">
-        <div class="ui-g-8 padding-none" (click)="ondetail(i)" *ngFor="let DetailList of detailList,let i=index">
+        <div class="ui-g-8 padding-none" style="cursor: pointer;" (click)="ondetail(i)" *ngFor="let DetailList of detailList,let i=index">
           <div class="ui-g-1 user-result">{{i+1}}</div>
           <div class="ui-g-3 user-result">{{DetailList.certificateId?DetailList.certificateId:'无'}}</div>
           <div class="ui-g-2 user-result">{{DetailList.userName?DetailList.userName:'无'}}</div>
@@ -128,12 +128,12 @@
   </div>
 </div>
 
-<p-dialog [visible]="cylinderVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
-  [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
-  <h3 class="title">用户在用气瓶详情</h3>
-  <div class="ui-g-12 ">
-    <p-dataTable [value]="dataTablelist" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageSize" [scrollable]="false"
-      scrollHeight="510px" [rowsPerPageOptions]="pageOption" [totalRecords]="total" (onLazyLoad)="onPageChange($event)" [(first)]="first">
+<p-dialog [visible]="cylinderVisible" header="用户在用气瓶详情" [responsive]="true"  [showHeader]="true" [modal]="true" [closable]="false" [width]="800"
+  [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="130">
+  <!-- <h3 class="title"></h3> -->
+  <div class="ui-g">
+    <p-dataTable [value]="dataTablelist" [style]="{'max-height':'450px'}" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageSize" [scrollable]="false"
+       [rowsPerPageOptions]="pageOption" scrollHeight="360px" [totalRecords]="total" (onLazyLoad)="onPageChange($event)" [(first)]="first">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <span>{{index+1}}</span>

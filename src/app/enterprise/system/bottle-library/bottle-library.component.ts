@@ -25,8 +25,8 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     first?: number;
   } = {
       pageNumber: 1,
-      pageSize: 10,
-      pageOption: [5, 10, 20, 30, 50],
+      pageSize: 40,
+      pageOption: [10, 20, 40, 80],
       total: 0,
       first: 0,
     };
@@ -132,7 +132,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
       supplyName: this.searchParams.supplyName,
       enterpriseNumber: this.searchParams.enterpriseName,
       pageNumber: 1,
-      pageSize: 10
+      pageSize: 40
     };
     if (page) {
       params.pageNumber = page.pageNumber;

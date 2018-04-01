@@ -33,9 +33,9 @@
         <button pButton type="submit" label="搜索" class="searchBtn"></button>
       </div>
     </form>
-  
+
     <div class="ui-g">
-      <p-dataTable [value]="dataTable.list" [lazy]="true" dataKey="title" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
+      <p-dataTable [value]="dataTable.list" [lazy]="true" dataKey="title" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
         scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
         [(first)]="dataTable.first">
         <p-column [style]="{'width':'80px'}" header="序号">

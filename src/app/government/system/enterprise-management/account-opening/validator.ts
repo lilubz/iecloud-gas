@@ -116,6 +116,15 @@ export const validator = {
       return error;
     }
     return null;
-  },
+  }
+  // gender(control: AbstractControl) {
+  //   const error = { msg: '' };
+  //   const value = control.value;
+  //   if (!value) {
+  //     error.msg = '性别是否选择';
+  //     return error;
+  //   }
+  //   return null;
+  // },
 
 };

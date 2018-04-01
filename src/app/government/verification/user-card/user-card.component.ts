@@ -50,7 +50,7 @@ export class UserCardComponent implements OnInit {
   dataTable = {
     list: [],
     total: 0,
-    pageOpt: [5, 10, 20, 40],
+    pageOpt: [10, 20, 40, 80],
     size: 10
   };
   constructor(private userInfoService: UserInfoService, private messageService: MessageService) { }

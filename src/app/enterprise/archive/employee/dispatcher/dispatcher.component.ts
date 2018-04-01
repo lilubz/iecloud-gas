@@ -30,7 +30,7 @@ export class DispatcherComponent implements OnInit {
   };
   dataTable = {
     list: [],
-    option: [5, 10, 20, 40],
+    option: [10, 20, 40, 80],
     total: 0,
     first: 0,
   };
@@ -47,7 +47,7 @@ export class DispatcherComponent implements OnInit {
     jobNumber: '',
     phone: '',
     idNumber: '',
-    pageSize: this.dataTable.option[1],
+    pageSize: this.dataTable.option[2],
     pageNumber: 1
   };
   constructor(private dispatcherService: DispatcherService, private messageService: MessageService,

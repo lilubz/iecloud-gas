@@ -30,7 +30,7 @@ export class CylinderHistoryComponent implements OnInit {
   }> = [];
   cylinderFillingHistoryList: Array<CylinderFilling> = [];
 
-  pageSizeHistory = 10;
+  pageSizeHistory = 40;
   pageNumberHistory = 1;
   totalHistory = 0;
   historyFirst = 0;

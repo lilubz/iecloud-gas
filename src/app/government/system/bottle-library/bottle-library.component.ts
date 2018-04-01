@@ -24,8 +24,8 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     first?: number;
   } = {
       pageNumber: 1,
-      pageSize: 10,
-      pageOption: [5, 10, 20, 30, 50],
+      pageSize: 40,
+      pageOption: [10, 20, 40, 80],
       total: 0,
       first: 0,
     };
@@ -91,7 +91,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
       }
     }).catch(error => {
       this.areaDrop = this.areaDrop.concat(this.default);
-      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码1:', detail: error.status });
+      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
     });
   }
   getEnterprises() {
@@ -104,7 +104,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
       }
     }).catch(error => {
       this.enterpriseDrop = this.enterpriseDrop.concat(this.default);
-      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码2:', detail: error.status });
+      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
     });
   }
   /**
@@ -131,7 +131,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
       supplyName: this.searchParams.supplyName,
       enterpriseNumber: this.searchParams.enterpriseName,
       pageNumber: 1,
-      pageSize: 10
+      pageSize: 40
     };
     if (page) {
       params.pageNumber = page.pageNumber;
@@ -289,6 +289,9 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     if (!this.editForm.regionId) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '所属区域不能为空' });
       return false;
+    } else if (!this.addForm.enterpriseNumber) {
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '归属企业不能为空' });
+      return false;
     } else if (!this.editForm.supplyStationName) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '站点名称不能为空' });
       return false;
@@ -316,6 +319,9 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
   checkForm2(): boolean {
     if (!this.addForm.regionId) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '所属区域不能为空' });
+      return false;
+    } else if (!this.addForm.enterpriseNumber) {
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '归属企业不能为空' });
       return false;
     } else if (!this.addForm.supplyStationName) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '站点名称不能为空' });

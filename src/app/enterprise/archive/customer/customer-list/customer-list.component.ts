@@ -82,7 +82,7 @@ export class CustomerListComponent implements OnInit {
     first: number
   } = {
       list: [],
-      option: [5, 10, 20, 40],
+      option: [10, 20, 40, 80],
       total: 0,
       first: 0
     };
@@ -113,7 +113,7 @@ export class CustomerListComponent implements OnInit {
       address: '',
       userTypeId: '',
       userNatureId: '',
-      pageSize: this.dataTable.option[1],
+      pageSize: this.dataTable.option[2],
       pageNumber: 1
     };
   willDeleteCustomer;

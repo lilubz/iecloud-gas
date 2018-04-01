@@ -54,7 +54,7 @@
     </form>
     <div class="ui-g-12 dataTable">
       <!-- 储配站 -->
-      <p-dataTable *ngIf="type===1"[value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[1]" [scrollable]="false"
+      <p-dataTable *ngIf="type===1"[value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[2]" [scrollable]="false"
         [lazy]="true" [rowsPerPageOptions]="dataTableOverview.option" [totalRecords]="dataTableOverview.total" (onLazyLoad)="onPageChangeOverview($event)"
         [(first)]="dataTableOverview.first">
         <p-column [style]="{'width':'80px'}" header="序号">
@@ -84,7 +84,7 @@
         </ng-template>
       </p-dataTable>
       <!-- 供应站 -->
-      <p-dataTable *ngIf="type===2" [value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[1]"
+      <p-dataTable *ngIf="type===2" [value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[2]"
         [scrollable]="false" [lazy]="true" [rowsPerPageOptions]="dataTableOverview.option" [totalRecords]="dataTableOverview.total" (onLazyLoad)="onPageChangeOverview($event)"
         [(first)]="dataTableOverview.first">
         <p-column [style]="{'width':'80px'}" header="序号">
@@ -115,7 +115,7 @@
         </ng-template>
       </p-dataTable>
       <!-- 送气工 -->
-      <p-dataTable *ngIf="type===3" [value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[1]"
+      <p-dataTable *ngIf="type===3" [value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[2]"
         [scrollable]="false" [lazy]="true" [rowsPerPageOptions]="dataTableOverview.option" [totalRecords]="dataTableOverview.total" (onLazyLoad)="onPageChangeOverview($event)"
         [(first)]="dataTableOverview.first">
         <p-column [style]="{'width':'80px'}" header="序号">
@@ -147,7 +147,7 @@
         </ng-template>
       </p-dataTable>
       <!-- 运输车 -->
-      <p-dataTable *ngIf="type===5" [value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[1]"
+      <p-dataTable *ngIf="type===5" [value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[2]"
         [scrollable]="false" [lazy]="true" [rowsPerPageOptions]="dataTableOverview.option" [totalRecords]="dataTableOverview.total" (onLazyLoad)="onPageChangeOverview($event)"
         [(first)]="dataTableOverview.first">
         <p-column [style]="{'width':'80px'}" header="序号">

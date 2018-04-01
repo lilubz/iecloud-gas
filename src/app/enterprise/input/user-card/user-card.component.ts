@@ -12,7 +12,7 @@ import { Customer } from './../user-info/Customer.model';
 })
 export class UserCardComponent implements OnInit {
   pageNumber = 1;
-  pageSize = 10;
+  pageSize = 40;
   total = 0;
 
   // 绑定卡时的客户查询类型

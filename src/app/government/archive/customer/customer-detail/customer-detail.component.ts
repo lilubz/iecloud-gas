@@ -65,9 +65,9 @@ export class CustomerDetailComponent implements OnInit {
   cylinderVisible = false;
   dataTablelist: any[] = [];
   pageNumber = 1;
-  pageSize = 10;
+  pageSize = 40;
   pageOption = [5, 10, 20, 30, 40];
-  total = 3;
+  total = 0;
   first = 0;
   pageData = {};
   firstStatus = false;
@@ -213,11 +213,11 @@ export class CustomerDetailComponent implements OnInit {
     const params = {
       userNumber: this.detailLists.userNumber || '',
       pageNumber: 1,
-      pageSize: 10,
+      pageSize: 40,
     };
     if (page) {
       params['pageNumber'] = page.pageNumber;
-      params['pageSize'] = page.pageNumber;
+      params['pageSize'] = page.pageSize;
     } else {
       this.first = 0;
     }

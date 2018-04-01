@@ -22,9 +22,9 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
     }, { validator: validator.passwords }),
     certificateName: ['', [validator.certificateName]],
     certificateId: ['', [validator.certificateId]],
-    gender: [''],
-    isfreezed: ['', [validator.isfreezed]],
     enterpriseNumber: ['', [validator.enterpriseNumber]],
+    isfreezed: ['', [validator.isfreezed]],
+    gender: [''],
   });
   category: SelectItem[] = [  // 证件类别
     {
@@ -54,7 +54,7 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
   }
   addEnterpriseUser() {
     if (this.formModel.valid) { // 通过了验证
-      console.log(this.formModel.value);
+      // console.log(this.formModel.value);
       const formData = new FormData();
       for (const key in this.formModel.value) {
         if (key) {

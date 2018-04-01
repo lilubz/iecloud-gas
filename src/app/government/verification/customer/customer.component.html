@@ -7,7 +7,7 @@
     <div class="ui-g-12">
       <p-dataTable [value]="enterpriseRegisterStatistic" emptyMessage="未查询到数据" [paginator]="true" [rows]="statisticPageSize" [lazy]="true"
         [(first)]="statisticFirst" (onLazyLoad)="onStatisticPageChange($event)" [scrollable]="false" [totalRecords]="statisticTotal"
-        [rowsPerPageOptions]="[1,5,10,20,40]">
+        [rowsPerPageOptions]="[10,20,40,80]">
         <p-column header="序号" [style]="{'width':'50px'}">
           <ng-template pTemplate="body" let-index="rowIndex">
             {{index + 1}}
@@ -33,7 +33,7 @@
 [style]="{'border':'none','overflow':'auto'}" positionTop="90">
   <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [style]="{'max-height':'540px'}" [paginator]="true" [rows]="recordPageSize"
     [lazy]="true" scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)" [scrollable]="false" [totalRecords]="recordTotal"
-    [rowsPerPageOptions]="[5,10,20,40]">
+    [rowsPerPageOptions]="[10,20,40,80]">
     <p-column [style]="{'width':'150px'}" field="regionName" header="所在区"></p-column>
     <p-column [style]="{'width':'150px'}" field="userName" header="用户名称"></p-column>
     <p-column [style]="{'width':'150px'}" field="userType" header="客户类型"></p-column>

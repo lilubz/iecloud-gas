@@ -16,7 +16,7 @@ export class HistoryComponent implements OnInit {
   circulationBeginTime: Date = moment().subtract(30, 'days').toDate();
   circulationEndTime: Date = new Date();
   pageNumber = 1;
-  pageSize = 10;
+  pageSize = 40;
   firstIndex = 0;
   total = 0;
   datas: any = [];

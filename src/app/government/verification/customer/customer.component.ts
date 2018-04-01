@@ -12,7 +12,7 @@ import { Customer } from '../../../enterprise/input/user-info/Customer.model';
 })
 export class CustomerComponent implements OnInit {
   // 企业统计分页参数
-  statisticPageSize = 10;
+  statisticPageSize = 40;
   statisticPageNumber = 1;
   statisticTotal = 0;
   statisticFirst = 0;

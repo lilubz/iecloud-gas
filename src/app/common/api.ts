@@ -52,8 +52,6 @@ export const API = {
   'importGasCylinderInfoUnbound': URL + 'dataImport/gasCylinder/importGasCylinderInfoUnbound.do',
   // 审核
   'listRegionInfo': URL + 'basicInformation/region/listRegionInfo.do',
-  'getGcCountRecentlyRegister': URL + 'basicInformation/gasCylinder/getGcCountRecentlyRegister.do',
-  'listGcInfoRecentlyRegister': URL + 'basicInformation/gasCylinder/listGcInfoRecentlyRegister.do',
   // 系统管理
   'queryLog': URL + '',
   // 通知公告
@@ -148,10 +146,6 @@ export const API = {
   // 身份认证卡审核
   'getUserCertNumApply': URL + 'basicInformation/gcUserInfo/getUserCertNumApply.do',
   'getCheckApply': URL + 'basicInformation/gcUserInfo/checkUserCertCardApply.do',
-
-  // 身份认证卡审核
-  'getGcLabelNumApply': URL + 'basicInformation/gasCylinder/getGcLabelNumApply.do',
-  'sendGcLabelApply': URL + 'basicInformation/gasCylinder/checkGcLabelApply.do',
 
   // 信息批量导入
   'importUser': URL + 'dataImport/gcUser/importGcUserCertInfo.do',

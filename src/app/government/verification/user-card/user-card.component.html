@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="ui-g-12">
-    <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.pageOpt[1]"
+    <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.pageOpt[2]"
       scrollHeight="510px" [rowsPerPageOptions]="dataTable.pageOpt" [totalRecords]="dataTable.total"
       (onLazyLoad)="onPageChange($event)" [lazy]="true" [scrollable]="false">
       <p-column [style]="{'width':'80px'}" header="序号">

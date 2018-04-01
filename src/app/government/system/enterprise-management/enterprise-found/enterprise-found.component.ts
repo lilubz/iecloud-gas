@@ -208,10 +208,14 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
   */
   AddEnterprise() {
     for (let i = 0; i < this.selectedAreaList.length; i++) {
-      this.addForm.businessArea += this.selectedAreaList[i].areaName + ',';
+      if (this.selectedAreaList.length === 1 || i === (this.selectedAreaList.length - 1)) {
+        this.addForm.businessArea += this.selectedAreaList[i].areaName;
+      } else {
+        this.addForm.businessArea += this.selectedAreaList[i].areaName + ',';
+      }
     }
     if (this.checkForm()) {
-      const formData = new FormData();
+    const formData = new FormData();
       for (const key in this.addForm) {
         if (key) {
           if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {

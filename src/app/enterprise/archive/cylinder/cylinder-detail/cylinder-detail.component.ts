@@ -6,6 +6,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { CylinderDetailService } from './cylinder-detail.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
+import { CylinderList } from './cylinder.model';
 
 @Component({
   selector: 'gas-cylinder-detail',
@@ -19,41 +20,7 @@ export class CylinderDetailComponent implements OnInit {
   loading: any;
   // data: any;
 
-  detailList: {
-    gcLabelInfo: any,
-    gcSpecification: any,
-    inspector: any,
-    cylinderCode: string,
-    regionName: string,
-    enterpriseName: string,
-    serviceCondition: string,
-    fillingState: string,
-    transmittingState: string,
-    currentLocation: string,
-    currentCirculation: string,
-    liabilityName: string,
-    createTime: string,
-    registrationPerson: string,
-    registrationDate: string,
-    gasLabelNumber: string,
-    serialNumber: string,
-    enterpriseCylinderCode: string,
-    null: string,
-    typeId: string,
-    manufactureName: string,
-    timeManufacture: string,
-    nextInspectionTime: string,
-    inspectionOrganization: string,
-    fillingMedia: string,
-    weight: string,
-    volume: string,
-    designWallThickness: string,
-    MPa: string,
-    nominalWorkingPressure: string,
-    scrapDate: string,
-    scrapDisposalSituation: string,
-    scrapDisposalDate: string,
-  };
+  detailList: CylinderList = new CylinderList();
   photoList: Array<{
     pictureUrl: string;
   }>;
@@ -61,43 +28,7 @@ export class CylinderDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, private messageService: MessageService) {
   }
-  initDetail() {
-    this.detailList = {
-      gcLabelInfo: {},
-      gcSpecification: {},
-      inspector: {},
-      cylinderCode: '',
-      regionName: '',
-      enterpriseName: '',
-      serviceCondition: '',
-      fillingState: '',
-      transmittingState: '',
-      currentLocation: '',
-      currentCirculation: '',
-      liabilityName: '',
-      createTime: '',
-      registrationPerson: '',
-      registrationDate: '',
-      gasLabelNumber: '',
-      serialNumber: '',
-      enterpriseCylinderCode: '',
-      null: '',
-      typeId: '',
-      manufactureName: '',
-      timeManufacture: '',
-      nextInspectionTime: '',
-      inspectionOrganization: '',
-      fillingMedia: '',
-      weight: '',
-      volume: '',
-      designWallThickness: '',
-      MPa: '',
-      nominalWorkingPressure: '',
-      scrapDate: '',
-      scrapDisposalSituation: '',
-      scrapDisposalDate: '',
-    };
-  }
+
   ngOnInit() {
     this.route.paramMap
       .switchMap((params: ParamMap) => {
@@ -122,7 +53,7 @@ export class CylinderDetailComponent implements OnInit {
           detail: '请输入正确的气瓶条码'
         });
       });
-    this.initDetail();
+      this.detailList=new CylinderList();
     this.loading = '';
   }
 }

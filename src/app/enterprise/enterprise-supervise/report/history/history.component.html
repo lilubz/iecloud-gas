@@ -14,7 +14,7 @@
     </div>
     <button class="searchBtn" pButton type="button" label="查询" (click)="searchCylinderStorageCirculations()"></button>
 
-    <p-dataTable class="ui-g-12" [value]="datas" [lazy]="true" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,40]"
+    <p-dataTable class="ui-g-12" [value]="datas" [lazy]="true" [paginator]="true" [rows]="40" [rowsPerPageOptions]="[10,20,40,80]"
       [styleClass]="' ui-g-12 ui-lg-10 ui-xl-8'" emptyMessage="未查询到数据" [(first)]="firstIndex" [totalRecords]="total" (onLazyLoad)="onPageChange($event)">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">

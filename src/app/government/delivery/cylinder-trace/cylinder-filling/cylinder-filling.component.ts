@@ -13,7 +13,7 @@ import { CylinderTraceService } from '../cylinder-trace.service';
 export class CylinderFillingComponent implements OnInit {
   JSON = JSON;
   zh = zh_CN;
-  pageSize = 10;
+  pageSize = 40;
   pageNumber = 1;
   total = 0;
   pageFirst = 0;

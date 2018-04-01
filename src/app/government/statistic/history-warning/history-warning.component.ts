@@ -34,10 +34,10 @@ export class HistoryWarningComponent implements OnInit {
   };
   dataTableOverview = {
     list: [],
-    option: [5, 10, 20, 40],
+    option: [10, 20, 40, 80],
     total: 0,
     first: 0,
-    pageSize: 10,
+    pageSize: 40,
     pageNumber: 1
   };
   dataTableDetail = {
@@ -45,7 +45,7 @@ export class HistoryWarningComponent implements OnInit {
     option: [5],
     total: 0,
     first: 0,
-    pageSize: 5,
+    pageSize: 40,
     pageNumber: 1,
     queryParams: ''
   };

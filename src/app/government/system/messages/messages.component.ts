@@ -17,7 +17,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ];
   pageNumber = 1;
-  pageSize = 10;
+  pageSize = 40;
   pageOption = [1, 10, 20, 30, 40];
   total = 3;
   first = 0;
@@ -47,10 +47,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
         pageSize: event.rows,
         pageNumber: event.first / event.rows + 1
       };
-    console.log(event);
+    // console.log(event);
   }
   deleteConfirm(deData) {
-    console.log(deData);
+    // console.log(deData);
     this.confirmationService.confirm({
       message: '确定删除吗?',
       header: '删除通知',

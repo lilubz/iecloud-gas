@@ -78,6 +78,7 @@ input {
     line-height: 70px;
     height: $header-height;
     background: $header-bg-color;
+    white-space:nowrap;
     z-index: 99999;
     .logo {
       margin: 5px 20px;
