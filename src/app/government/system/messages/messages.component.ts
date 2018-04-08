@@ -95,13 +95,16 @@ export class MessagesComponent implements OnInit, OnDestroy {
         if (data.status === 0) {
           this.showMessage('success', '提示信息', data.msg);
           MessageFiles.clear();
+          this.List.title = '';
           this.getList();
         } else {
           MessageFiles.clear();
+          this.List.title = '';
           this.showMessage('warn', '提示信息', data.msg);
         }
       }).catch(error => {
         MessageFiles.clear();
+        this.List.title = '';
         this.showMessage('error', '服务器错误', '错误码:' + error.status);
       });
     }

@@ -1,11 +1,14 @@
 <div class="login">
   <div class="messgae">
     <div class="messgae-container">
-      <h2 class="head">通知</h2>
+      <h2 class="head">
+        通知
+        <gas-explanation tooltip="政府最近发布的重要公告，供用户查看和下载" style="display:inline-block" position="bottom"></gas-explanation>
+      </h2>
       <div class="ui-g carousel">
         <ul>
           <li class="ui-g-12 ms-box " *ngFor="let item of messageList">
-            <a [href]="item?.fileUrl" target="_blank">
+            <a [href]="item?.fileUrl" download="" target="_blank">
               <div class="ui-g-8 ui-g-nopad content-h" [title]="item.title">
                 {{item.title}}
               </div>
@@ -52,5 +55,4 @@
       </div>
     </div>
   </div>
-
 </div>

@@ -4,7 +4,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { validator } from './validator';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { UserStateService } from '../../../../core/userState.service';
 
 
 @Component({
@@ -46,8 +45,7 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
 
   constructor(private _service: AccountOpeningService,
     private fb: FormBuilder,
-    private messageService: MessageService,
-    private userStateService: UserStateService, ) { }
+    private messageService: MessageService,) { }
 
   ngOnInit() {
     this.getEnterprise();
@@ -85,15 +83,14 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
       for (const key in this.formModel.controls) {
         if (this.formModel.controls[key].errors) {
           const msg = this.formModel.controls[key].errors.msg;
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: msg });
+          this.messageService.add({ severity: 'warn', summary: '提示消息', detail: msg });
           return;
         }
       }
     }
   }
   getEnterprise() {  // 获取企业列表
-    const user = this.userStateService.getUser();
-    this._service.getEnterpriseList({ regionId: user.regionId }).then(data => {
+    this._service.getEnterpriseList({ regionId: '' }).then(data => {
       if (data.status === 0) {
         const list = data.data.map((item) => {
           return {

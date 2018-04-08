@@ -40,7 +40,7 @@ export const validator = {
     if (!password.valid) {
       return password.errors;
     } else if (password.value !== passwoedConfirm.value) {
-      error.msg = '两次输入的密码不一样';
+      error.msg = '前后输入的密码不一致';
       return error;
     }
     return null;
@@ -93,8 +93,9 @@ export const validator = {
   certificateId(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    if (!value) {
-      error.msg = '证件编号不能为空';
+    const regexp = /^[1-9]{1}\d{16}[0-9Xx]$|^[1-9]{1}\d{14}$/;
+    if (value !== '' && !regexp.test(value)) {
+      error.msg = '您输入的不是15位或18位的身份证号码！';
       return error;
     }
     return null;

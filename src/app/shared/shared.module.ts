@@ -33,6 +33,7 @@ import {
   ConfirmDialogModule,
   ToggleButtonModule,
   RadioButtonModule,
+  TooltipModule,
 } from 'primeng/primeng';
 
 import { LoadingComponent } from './loading/loading.component';
@@ -44,6 +45,8 @@ import { DateFormat } from './dateFormat.pipe';
 import { ExportFileDirective } from './export-file.directive';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { AutoCompleteModule } from './autocomplete/autocomplete';
+import { ExplanationComponent } from './explanation/explanation.component';
+// import { Tooltip } from './tooltip/tooltip';
 
 @NgModule({
   imports: [
@@ -82,7 +85,8 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     TreeModule,
     OverlayPanelModule,
     ConfirmDialogModule,
-    _SharedModule
+    _SharedModule,
+    TooltipModule
   ],
   declarations: [
     LoadingComponent,
@@ -93,6 +97,7 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     DateFormat,
     ExportFileDirective,
     BreadcrumbComponent,
+    ExplanationComponent,
   ],
 
   exports: [
@@ -133,6 +138,7 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     _SharedModule,
     ConfirmDialogModule,
     RadioButtonModule,
+    TooltipModule,
 
     LoadingComponent,
     PageNotFoundComponent,
@@ -141,7 +147,8 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     DispatcherAutocompleteComponent,
     DateFormat,
     ExportFileDirective,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ExplanationComponent,
   ]
 })
 export class SharedModule { }

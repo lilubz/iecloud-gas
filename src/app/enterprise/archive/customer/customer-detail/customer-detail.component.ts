@@ -150,13 +150,13 @@ export class CustomerDetailComponent implements OnInit {
             this.messageService.add({
               severity: 'warn',
               summary: '查询结果',
-              detail: '未查询到证件编码信息'
+              detail: '未查询到证件编号信息'
             });
           } else if (this.typeList === 'userCardNumber') {
             this.messageService.add({
               severity: 'warn',
               summary: '查询结果',
-              detail: '未查询到用户卡信息'
+              detail: '未查询到用户卡号信息'
             });
           } else {
             this.messageService.add({

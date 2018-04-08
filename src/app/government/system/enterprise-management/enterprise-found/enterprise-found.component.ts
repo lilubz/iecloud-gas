@@ -61,6 +61,7 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
   addCountry = '';
   addUrbanDistrict = '';
   addStreet = '';
+  initSelectedUrbanDistrict: SelectItem[] = []; // 默认的市辖区后的区县
 
   constructor(
     private _service: EnterpriseFoundService,
@@ -101,6 +102,7 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
           this.deliveryUrbanDistrictList = data.data.map(
             element => ({ label: element.regionName, value: element.regionId }));
           this.deliveryUrbanDistrictList.unshift({ label: '--请选择--', value: '' });
+          this.initSelectedUrbanDistrict=this.deliveryUrbanDistrictList;
           this.selectedUrbanDistrict = '';
         } else {
           this.deliveryStreetList = data.data.map(
@@ -249,6 +251,11 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
   clearAddForm() {
     this.addForm = new AddForm();
     this.selectedAreaList = [];
+    this.selectedCountyRegionId = this.deliveryRegionList[0].value;
+    this.deliveryUrbanDistrictList = this.initSelectedUrbanDistrict;
+    this.selectedUrbanDistrict = '';
+    this.deliveryStreetList = [{ label: '--请选择--', value: '' }];
+    this.selectedStreetRegionId = '';
   }
   checkForm(): boolean {
     if (!this.addForm.enterpriseName) {

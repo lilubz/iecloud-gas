@@ -36,7 +36,6 @@ export class LoginComponent implements OnDestroy, OnInit {
   ngOnInit() {
     this.getUserInfoInCookie();
     this.getList();
-    this.scrollInterval = setInterval(this.move, 3000);
   }
   ngOnDestroy(): void {
     this.renderer.removeClass(this.document.body, 'login-body');
@@ -46,7 +45,10 @@ export class LoginComponent implements OnDestroy, OnInit {
   getList() {
     this.loginService.query({}).then(data => {
       if (data.status === 0) {
-        this.messageList = data.data.announcements;
+        this.messageList = data.data.announcements.reverse();
+        if (this.messageList.length > 5) {
+          this.scrollInterval = setInterval(this.move, 4000);
+        }
         // console.log(data.data);
       } else {
         this.messageList = [];
@@ -71,7 +73,7 @@ export class LoginComponent implements OnDestroy, OnInit {
   // animate滚动
   move = () => {
     $('.carousel ul').animate(
-      { 'margin-top': '-41px' }, 500, () => {
+      { 'margin-top': '-41px' }, 800, () => {
         const first = $('.carousel ul li:first-child'); // 找到ul的第一个子元素
         $('.carousel ul').append(first); // 插入到ul的里面最后后面
         $('.carousel ul').css('margin-top', '0px'); // ulmargin-top归0
@@ -81,9 +83,9 @@ export class LoginComponent implements OnDestroy, OnInit {
   getUserInfoInCookie() {
     this.chkRememberPass = this.cookieService.getItem('chkRememberPass') === 'true' ? true : false;
     if (this.chkRememberPass) {
-      var userNameValue = this.cookieService.getItem("userName");
+      var userNameValue = this.cookieService.getItem('userName');
       this.userName = Base64.decode(userNameValue);//解密
-      var userPassValue = this.cookieService.getItem("password");
+      var userPassValue = this.cookieService.getItem('password');
       this.password = Base64.decode(userPassValue);//解密
     }
   }
@@ -91,13 +93,13 @@ export class LoginComponent implements OnDestroy, OnInit {
   setUserInfoInCookie() {
     if (this.chkRememberPass) {
       //记住账号密码
-      this.cookieService.setItem("userName", Base64.encode(this.userName), 365 * 10);//加密
-      this.cookieService.setItem("password", Base64.encode(this.password), 365 * 10);//加密
-      this.cookieService.setItem("chkRememberPass", this.chkRememberPass, 365 * 10)
+      this.cookieService.setItem('userName', Base64.encode(this.userName), 365 * 10);//加密
+      this.cookieService.setItem('password', Base64.encode(this.password), 365 * 10);//加密
+      this.cookieService.setItem('chkRememberPass', this.chkRememberPass, 365 * 10)
     } else {
-      this.cookieService.removeItem("userName");
-      this.cookieService.removeItem("password");
-      this.cookieService.removeItem("chkRememberPass");
+      this.cookieService.removeItem('userName');
+      this.cookieService.removeItem('password');
+      this.cookieService.removeItem('chkRememberPass');
     }
   }
 }
