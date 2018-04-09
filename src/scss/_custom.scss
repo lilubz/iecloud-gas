@@ -251,19 +251,23 @@ input {
       background: #31383e !important;
     }
     .warning-icon {
-      // 预警小图标
+      // 预警小红点
       display: block;
     }
     .warning-icon:after {
-      // 预警小图标
+      // 预警小红点
       content: '';
       position: absolute;
-      height: 25px;
-      width: 25px;
-      right: 0;
-      top: 0;
-      background-image: url(../assets/img/warning.png);
-      background-size: 25px 25px;
+      height: 10px;
+      width: 10px;
+      right: 5px;
+      top: 10px;
+      background-color: red;
+      border-radius: 50%;
+    }
+    // 解决 当前预警菜单 文字不居中的问题。
+    a[href="#/government/statistic/current-warning"] .fa-fw{
+      width:0;
     }
   }
   /*右侧内容区*/
