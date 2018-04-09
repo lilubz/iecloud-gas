@@ -1,7 +1,16 @@
-// .breadcrumb {
-//   position: fixed;
-//   top: 70px;
-//   left: 70px;
-//   right: 0;
-//   height: 70px;
-// }
+.breadcrumb {
+  .navbar-toggle{
+    margin-right:10px;
+    cursor: pointer;
+    padding:10px;
+    border-radius: 5px;
+  }
+  .navbar-toggle:hover{
+    background:#4e489d;
+  }
+  // position: fixed;
+  // top: 70px;
+  // left: 70px;
+  // right: 0;
+  // height: 70px;
+}
