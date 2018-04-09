@@ -48,12 +48,7 @@ export class UserInfoComponent implements OnInit {
   dispatcherList: SelectItem[] = [{ label: '--请选择--', value: '' }];
   certificateAddress = ''; // 证件地址
   certificateDetailAddress = ''; // 证件详细地址
-  deliveryRegionList: SelectItem[] = []; // 配送地址列表
-  selectedCountyRegionId = ''; // 选中的区县regionId
-  deliveryUrbanDistrictList: SelectItem[] = []; // 选中市辖区时的区县列表
-  selectedUrbanDistrict = ''; // 选中市辖区时的区县regionId
-  deliveryStreetList: SelectItem[] = [{ label: '--请选择--', value: '' }]; // 配送街道列表
-  selectedStreetRegionId = ''; // 选中的区县regionId
+  deliveryRegionId; // 配送区域id
 
   constructor(
     private userStateService: UserStateService,
@@ -72,18 +67,6 @@ export class UserInfoComponent implements OnInit {
         this.customerTypes = data.userType.map(element => ({ label: element.name, value: element.userTypeId }));
         this.customer.userTypeId = this.customerTypes[0].value;
       });
-    this.commonRequestService.getRegions().then(data => {
-      if (data.status === 0) {
-        this.deliveryRegionList = data.data.map(element => ({ label: element.regionName, value: element.regionId }));
-        this.selectedCountyRegionId = this.deliveryRegionList[0].value;
-        return this.selectedCountyRegionId;
-      }
-      return null;
-    }).then(regionId => {
-      if (regionId) {
-        this.deliveryCountyChange(regionId);
-      }
-    });
 
     this.getDispatcher();
   }
@@ -93,8 +76,7 @@ export class UserInfoComponent implements OnInit {
     this.customer.userTypeId = this.customerTypes[0].value;
     this.certificateAddress = '';
     this.certificateDetailAddress = '';
-    this.selectedCountyRegionId = this.deliveryRegionList[0].value;
-    this.deliveryCountyChange(this.selectedCountyRegionId);
+    this.deliveryRegionId = '';
   }
 
   save(IDImageUpload: any, OtherImageUpload: any) {
@@ -103,8 +85,7 @@ export class UserInfoComponent implements OnInit {
     this.customer.identity = IDImageUpload.files;
     this.customer.others = OtherImageUpload.files;
     this.customer.certificateAddress = this.certificateAddress + this.certificateDetailAddress;
-    this.customer.deliveryRegionId = this.selectedStreetRegionId || this.selectedUrbanDistrict
-      || this.selectedCountyRegionId;
+    this.customer.deliveryRegionId = this.deliveryRegionId;
     if (this.checkForm()) {
       const formData = new FormData();
       for (const key in this.customer) {
@@ -138,6 +119,7 @@ export class UserInfoComponent implements OnInit {
 
   checkForm(): boolean {
     console.log(this.customer);
+    console.log(this.deliveryRegionId);
     if (this.customer.userName === '') {
       this.showMessage('warn', '', '请填写客户姓名！');
       return false;
@@ -150,8 +132,7 @@ export class UserInfoComponent implements OnInit {
     } else if (this.certificateAddress === '' || this.certificateDetailAddress === '') {
       this.showMessage('warn', '', '请填写完整的证件地址信息！');
       return false;
-    } else if (this.customer.deliveryAddress === '' || this.selectedCountyRegionId === '' ||
-      this.selectedStreetRegionId === '') {
+    } else if (this.customer.deliveryAddress === '' || this.deliveryRegionId === '') {
       this.showMessage('warn', '', '请填写完整的居住地址信息！');
       return false;
     } else if (this.customer.phone === '') {
@@ -214,60 +195,6 @@ export class UserInfoComponent implements OnInit {
     } else {
       this.showMessage('warn', '上传失败', JSON.parse(event.xhr.responseText).msg);
     }
-  }
-
-  deliveryCountyChange(countyRegionId) {
-    if (countyRegionId.toString() !== '330301') {
-      this.deliveryUrbanDistrictList = [];
-      this.selectedUrbanDistrict = '';
-    } else {
-      this.deliveryStreetList = [{ label: '--请选择--', value: '' }];
-      this.selectedStreetRegionId = '';
-    }
-    this.commonRequestService.getWenZhouRegionList({
-      regionId: countyRegionId
-    }).then(data => {
-      if (data.status === 0) {
-        if (countyRegionId.toString() === '330301') {
-          this.deliveryUrbanDistrictList = data.data.map(
-            element => ({ label: element.regionName, value: element.regionId }));
-          this.deliveryUrbanDistrictList.unshift({ label: '--请选择--', value: '' });
-          this.selectedUrbanDistrict = '';
-        } else {
-          this.deliveryStreetList = data.data.map(
-            element => ({ label: element.regionName, value: element.regionId }));
-          this.deliveryStreetList.unshift({ label: '--请选择--', value: '' });
-          this.selectedStreetRegionId = this.deliveryStreetList[0].value;
-        }
-      } else {
-        if (countyRegionId.toString() === '330301') {
-          this.showMessage('warn', '', '获取辖区信息失败');
-        } else {
-          this.showMessage('warn', '', '获取街道信息失败');
-        }
-      }
-    });
-  }
-
-  deliveryUrbanDistrictChange(urbanRegionId) {
-    if (urbanRegionId === '') {
-      this.deliveryStreetList = [{ label: '--请选择--', value: '' }];
-      this.selectedStreetRegionId = '';
-      return;
-    }
-
-    this.commonRequestService.getWenZhouRegionList({
-      regionId: urbanRegionId
-    }).then(data => {
-      if (data.status === 0) {
-        this.deliveryStreetList = data.data.map(
-          element => ({ label: element.regionName, value: element.regionId }));
-        this.deliveryStreetList.unshift({ label: '--请选择--', value: '' });
-        this.selectedStreetRegionId = this.deliveryStreetList[0].value;
-      } else {
-        this.showMessage('warn', '', '获取街道信息失败');
-      }
-    });
   }
 
   getDispatcher(regionId?) {

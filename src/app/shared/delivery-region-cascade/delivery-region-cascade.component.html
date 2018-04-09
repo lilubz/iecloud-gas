@@ -1,0 +1,8 @@
+<p-dropdown [options]="deliveryCountyRegionList" (onChange)="deliveryCountyChange($event.value)" [(ngModel)]="selectedCountyRegionId"
+  [style]="{'width':'100px'}"></p-dropdown>
+<ng-template [ngIf]="deliveryUrbanDistrictList.length!=0">
+  <p-dropdown [options]="deliveryUrbanDistrictList" (onChange)="deliveryUrbanDistrictChange($event.value)" [(ngModel)]="selectedUrbanDistrict"
+    [style]="{'width':'100px'}"></p-dropdown>
+</ng-template>
+<p-dropdown [options]="deliveryStreetList" [(ngModel)]="selectedStreetRegionId" (onChange)="deliveryStreetChange($event.value)"
+  [style]="{'width':'150px'}"></p-dropdown>

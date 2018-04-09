@@ -4,13 +4,24 @@ import { API } from './../../../../common/api';
 import { HttpService } from './../../../../core/http.service';
 
 @Injectable()
+
 export class CustomerListService {
+  HttpService: any;
   API = API;
 
 
 
-  constructor(private httpService: HttpService ) { }
+  constructor(private httpService: HttpService) { }
 
+  listTheCorpDispatcherInfoByTheNameOfTheCorpDispatcher(params?: any): Promise<any> {
+    return this.httpService
+      .getRequest(API.listTheCorpDispatcherInfoByTheNameOfTheCorpDispatcher, params);
+  }
+
+  // 通过区县id获取街道列表
+  getStreetsByRegionId(params): Promise<any> {
+    return this.httpService.getRequest(API.getDropdownForRegionSysUser, null);
+  }
   getDropdownForUserType(params: any): Promise<any> {
     return this.httpService
       .getRequest(this.API.getDropdownForUserType, params);
@@ -35,7 +46,7 @@ export class CustomerListService {
     return this.httpService
       .getRequest(this.API.deleteGcUser, params);
   }
-  displayCustomer(params: any): Promise<any> {
+  editCustomer(params: any): Promise<any> {
     return this.httpService
       .formPostRequest(this.API.updateGcUser, params);
   }

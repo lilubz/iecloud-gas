@@ -3,28 +3,41 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { CustomerListService } from './customer-list.service';
+import { CommonRequestService } from './../../../../core/common-request.service';
+import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'gas-customer-list',
   templateUrl: 'customer-list.component.html',
   styleUrls: ['customer-list.component.scss'],
-  providers: [CustomerListService]
+  providers: [CustomerListService, CommonRequestService]
 })
 
 export class CustomerListComponent implements OnInit {
+  deliveryRegionId;
+  dispatcherSuggestions: {
+    dispatcherNumber: number,
+    employeeName: string,
+    phoneNumber: string
+  }[] = [];
   displayEditDialog = false;
   displayDeleteDialog = false;
   selectedCustomer: {
     userNumber?: string,
     userName?: string,
     deliveryAddress?: string,
-    phone?: string
+    phone?: string,
+    userIdentityCardNumber?: string,
+    dispatcherNumber?: string
   } = {
       userNumber: '',
       userName: '',
       deliveryAddress: '',
-      phone: ''
+      phone: '',
+      userIdentityCardNumber: '',
+      dispatcherNumber: ''
     };
   dropdown = {
     userNature: [
@@ -121,11 +134,21 @@ export class CustomerListComponent implements OnInit {
     userNumber: '',
     userName: '',
     deliveryAddress: '',
-    phone: ''
+    phone: '',
+    userIdentityCardNumber: '',
+    dispatcherNumber: ''
   };
+  selectedEditDispatcher: {
+    dispatcherNumber: number,
+    employeeName: string,
+    phoneNumber?: string
+  };
+  // 提示消息
+  msgs: Message[] = [];
   constructor(
     private routerInfo: ActivatedRoute,
     private customerListService: CustomerListService,
+    private commonRequestService: CommonRequestService,
     private messageService: MessageService,
     private fb: FormBuilder
   ) { }
@@ -146,6 +169,36 @@ export class CustomerListComponent implements OnInit {
     this.onSearch();
   }
 
+  showMessage(type, title, msg) {
+    this.msgs.push({
+      severity: type,
+      summary: title,
+      detail: msg
+    });
+    setTimeout(() => this.msgs.shift(), 2000);
+  }
+
+  onBlurAutoComplete() {
+    // if (typeof this.formModel.default === 'string') {
+    //   if (this.dispatcherSuggestions.length === 1 && this.dispatcherSuggestions[0]['employeeName'] === this.formModel.default) {
+    //     this.formModel.default = this.dispatcherSuggestions[0];
+    //   } else {
+    //     this.formModel.default = null;
+    //   }
+    // }
+  }
+  getSuggestions(event?) {
+    this.customerListService.listTheCorpDispatcherInfoByTheNameOfTheCorpDispatcher({
+      employeeName: event.query
+    })
+      .then(data => {
+        if (data.status === 0) {
+          this.dispatcherSuggestions = data.data;
+        } else {
+          this.dispatcherSuggestions = [];
+        }
+      });
+  }
   onSearch() {
     let params = {};
     if (this.formModel.valid) { // 通过了验证
@@ -187,21 +240,42 @@ export class CustomerListComponent implements OnInit {
   onEdit(rowData) {
     this.displayEditDialog = true;
     this.willEditCustomer = Object.assign({}, rowData);
+    this.selectedEditDispatcher = {
+      employeeName: rowData.dispatcherName,
+      dispatcherNumber: rowData.dispatcherNumber
+    };
+    this.deliveryRegionId = rowData.deliveryRegionId;
   }
 
   editCustomer() {
-    if (this.willEditCustomer.deliveryAddress === '') {
+    if (this.willEditCustomer.userName === '') {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的燃气用户' });
+      return false;
+    } else if (this.willEditCustomer.deliveryAddress === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的派送地址' });
       return false;
     } else if (this.willEditCustomer.phone === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的联系电话' });
       return false;
+    } else if (this.willEditCustomer.userIdentityCardNumber === '') {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的用户卡编号' });
+      return false;
+      // } else if (!this.selectedEditDispatcher || !this.selectedEditDispatcher.dispatcherNumber) {
+      //   this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的默认送气工' });
+      //   return false;
+    } else if (!this.deliveryRegionId) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请选择配送区域' });
+      return false;
     }
 
-    this.customerListService.displayCustomer({
+    this.customerListService.editCustomer({
       userNumber: this.willEditCustomer.userNumber,
+      userName: this.willEditCustomer.userName,
       deliveryAddress: this.willEditCustomer.deliveryAddress,
-      phone: this.willEditCustomer.phone
+      phone: this.willEditCustomer.phone,
+      userIdentityCardNumber: this.willEditCustomer.userIdentityCardNumber,
+      dispatcherNumber: this.selectedEditDispatcher ? this.selectedEditDispatcher.dispatcherNumber || '' : '',
+      deliveryRegionId: this.deliveryRegionId
     }).then(data => {
       if (data.status === 0) {
         this.messageService.add({ severity: 'success', summary: '响应消息', detail: data.msg });

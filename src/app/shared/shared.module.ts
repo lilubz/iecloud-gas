@@ -45,8 +45,8 @@ import { DateFormat } from './dateFormat.pipe';
 import { ExportFileDirective } from './export-file.directive';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { AutoCompleteModule } from './autocomplete/autocomplete';
+import { DeliveryRegionCascadeComponent } from './delivery-region-cascade/delivery-region-cascade.component';
 import { ExplanationComponent } from './explanation/explanation.component';
-// import { Tooltip } from './tooltip/tooltip';
 
 @NgModule({
   imports: [
@@ -97,6 +97,7 @@ import { ExplanationComponent } from './explanation/explanation.component';
     DateFormat,
     ExportFileDirective,
     BreadcrumbComponent,
+    DeliveryRegionCascadeComponent,
     ExplanationComponent,
   ],
 
@@ -148,6 +149,7 @@ import { ExplanationComponent } from './explanation/explanation.component';
     DateFormat,
     ExportFileDirective,
     BreadcrumbComponent,
+    DeliveryRegionCascadeComponent,
     ExplanationComponent,
   ]
 })

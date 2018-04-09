@@ -132,13 +132,7 @@
             <input type="text" pInputText placeholder="温州市" disabled>
           </div>
           <div class="ui-g-6">
-            <p-dropdown [options]="deliveryRegionList" (onChange)="deliveryCountyChange($event.value)" [(ngModel)]="selectedCountyRegionId"
-              [style]="{'width':'100px'}"></p-dropdown>
-            <ng-template [ngIf]="deliveryUrbanDistrictList.length!=0">
-              <p-dropdown [options]="deliveryUrbanDistrictList" (onChange)="deliveryUrbanDistrictChange($event.value)" [(ngModel)]="selectedUrbanDistrict"
-                [style]="{'width':'100px'}"></p-dropdown>
-            </ng-template>
-            <p-dropdown [options]="deliveryStreetList" [(ngModel)]="selectedStreetRegionId" [style]="{'width':'150px'}"></p-dropdown>
+            <gas-delivery-region-cascade [(deliveryRegionId)]="deliveryRegionId"></gas-delivery-region-cascade>
           </div>
         </div>
         <div class="ui-g-10 ui-xl-6">
