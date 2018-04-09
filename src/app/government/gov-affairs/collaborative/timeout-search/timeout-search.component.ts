@@ -115,6 +115,7 @@ export class TimeoutSearchComponent implements OnInit {
           }));
           this.dropdown.currentObject = this.dropdown.government.concat([]);
           this.formModel.id = this.dropdown.currentObject[0].value;
+          this.pageParams.id = this.formModel.id;
         } else {
           this.dropdown.government = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
@@ -135,6 +136,7 @@ export class TimeoutSearchComponent implements OnInit {
           }));
           this.dropdown.currentObject = this.dropdown.enterprise.concat([]);
           this.formModel.id = this.dropdown.currentObject[0].value;
+          this.pageParams.id = this.formModel.id;
         } else {
           this.dropdown.enterprise = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });

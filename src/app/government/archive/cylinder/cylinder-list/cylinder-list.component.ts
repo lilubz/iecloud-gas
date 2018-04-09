@@ -40,6 +40,14 @@ export class CylinderListComponent implements OnInit {
         label: '过期 ',
         value: 1
       },
+      {
+        label: '报废 ',
+        value: 2
+      },
+      {
+        label: '标签异常 ',
+        value: 3
+      }
     ],
     default: [
       {
