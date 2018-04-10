@@ -14,8 +14,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 
 export class CustomerListComponent implements OnInit {
-  constructor(private routerInfo: ActivatedRoute, private customerListService: CustomerListService,
-    private messageService: MessageService, private fb: FormBuilder) { }
+  loading = false;
   dropdown = {
     userNature: [
       {
@@ -107,6 +106,13 @@ export class CustomerListComponent implements OnInit {
       pageNumber: 1
     };
 
+  constructor(
+    private routerInfo: ActivatedRoute,
+    private customerListService: CustomerListService,
+    private messageService: MessageService,
+    private fb: FormBuilder
+  ) { }
+
   ngOnInit() {
     this.getDropdownForUserType();
     this.getDropdownForRegionSysUser();
@@ -162,8 +168,10 @@ export class CustomerListComponent implements OnInit {
   }
 
   getCustomerList(params?) {
+    this.loading = true;
     this.customerListService.getCustomerList(params)
       .then(data => {
+        this.loading = false;
         if (data.status === 0) {
           this.dataTable.list = data.data.list;
           this.dataTable.total = data.data.total;

@@ -16,6 +16,7 @@ import { SelectItem } from 'primeng/primeng';
 })
 
 export class CustomerListComponent implements OnInit {
+  loading = false;
   deliveryRegionId;
   dispatcherSuggestions: {
     dispatcherNumber: number,
@@ -165,8 +166,8 @@ export class CustomerListComponent implements OnInit {
         enterpriseNumber: enterpriseNumber
       });
       this.formModel.enterpriseNumber = enterpriseNumber;
+      this.onSearch();
     }
-    this.onSearch();
   }
 
   showMessage(type, title, msg) {
@@ -240,6 +241,8 @@ export class CustomerListComponent implements OnInit {
   onEdit(rowData) {
     this.displayEditDialog = true;
     this.willEditCustomer = Object.assign({}, rowData);
+    // 选中的用户是否 有用户卡编号
+    this.willEditCustomer['userIdentityCardNumberIsEmpty'] = !this.willEditCustomer.userIdentityCardNumber;
     this.selectedEditDispatcher = {
       employeeName: rowData.dispatcherName,
       dispatcherNumber: rowData.dispatcherNumber
@@ -257,7 +260,7 @@ export class CustomerListComponent implements OnInit {
     } else if (this.willEditCustomer.phone === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的联系电话' });
       return false;
-    } else if (this.willEditCustomer.userIdentityCardNumber === '') {
+    } else if (this.willEditCustomer.userIdentityCardNumber === null && !this.willEditCustomer['userIdentityCardNumberIsEmpty']) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的用户卡编号' });
       return false;
       // } else if (!this.selectedEditDispatcher || !this.selectedEditDispatcher.dispatcherNumber) {
@@ -273,7 +276,7 @@ export class CustomerListComponent implements OnInit {
       userName: this.willEditCustomer.userName,
       deliveryAddress: this.willEditCustomer.deliveryAddress,
       phone: this.willEditCustomer.phone,
-      userIdentityCardNumber: this.willEditCustomer.userIdentityCardNumber,
+      userIdentityCardNumber: this.willEditCustomer.userIdentityCardNumber ? this.willEditCustomer.userIdentityCardNumber : '',
       dispatcherNumber: this.selectedEditDispatcher ? this.selectedEditDispatcher.dispatcherNumber || '' : '',
       deliveryRegionId: this.deliveryRegionId
     }).then(data => {
@@ -314,8 +317,10 @@ export class CustomerListComponent implements OnInit {
   }
 
   getCustomerList(params?) {
+    this.loading = true;
     this.customerListService.getCustomerList(params)
       .then(data => {
+        this.loading = false;
         if (data.status === 0) {
           this.dataTable.list = data.data.list;
           this.dataTable.total = data.data.total;

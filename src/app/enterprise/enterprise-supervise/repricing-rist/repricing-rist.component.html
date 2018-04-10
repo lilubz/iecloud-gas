@@ -21,7 +21,7 @@
           <p-column [style]="{'width':'120px'}" field="price" header="定价/元"></p-column>
           <p-column [style]="{'width':'120px'}" header="添加时间">
             <ng-template let-index="rowIndex" pTemplate="body">
-              <span>{{priceList[index].enterpriseNumber | DateFormat}}</span>
+              <span>{{priceList[index].createTime | DateFormat}}</span>
             </ng-template>
           </p-column>
           <p-column [style]="{'width':'120px'}" header="修改时间">

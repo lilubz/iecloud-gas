@@ -12,8 +12,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 
 export class CylinderListComponent implements OnInit {
-  constructor(private routerInfo: ActivatedRoute, private cylinderListService: CylinderListService,
-    private messageService: MessageService , private fb: FormBuilder) { }
+  loading = false;
   dropdown = {
     company: [
       {
@@ -81,6 +80,13 @@ export class CylinderListComponent implements OnInit {
     pageNumber: 1
   };
 
+  constructor(
+    private routerInfo: ActivatedRoute,
+    private cylinderListService: CylinderListService,
+    private messageService: MessageService,
+    private fb: FormBuilder
+  ) { }
+
   onSearch(page?) {
     let params = {};
     if (this.formModel.valid) { // 通过了验证
@@ -139,8 +145,10 @@ export class CylinderListComponent implements OnInit {
   }
 
   getCylinders(params?) {
+    this.loading = true;
     this.cylinderListService.getCylinders(params)
       .then(data => {
+        this.loading = false;
         if (data.status === 0) {
           this.dataTable.list = data.data.list;
           this.dataTable.total = data.data.total;
