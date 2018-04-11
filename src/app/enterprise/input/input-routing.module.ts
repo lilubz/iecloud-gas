@@ -9,6 +9,8 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { TransportCarComponent } from './transport-car/transport-car.component';
 import { DeliveryCarComponent } from './delivery-car/delivery-car.component';
+import { CylinderInfoComponent } from './cylinder-info/cylinder-info.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -49,6 +51,13 @@ const routes: Routes = [
         component: TransportCarComponent,
         data: {
           title: '车辆录入'
+        },
+      },
+      {
+        path: 'cylinder-info',
+        component: CylinderInfoComponent,
+        data: {
+          title: '气瓶录入'
         },
       },
     ]

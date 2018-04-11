@@ -33,7 +33,7 @@ export const API = {
   'getListGcSpecification': URL + 'basicInformation/commonInfo/listGcSpecification.do',
   'getListInspection': URL + 'basicInformation/commonInfo/listInspection.do',
   'getGcSpecification': URL + 'basicInformation/commonInfo/getGcSpecification.do',
-  'getSerialNumber': URL + 'basicInformation/gasCylinder/getSerialNumber.do',
+  'getEnterpriseCylinderCode': URL + 'basicInformation/gasCylinder/getEnterpriseCylinderCode.do',
   'insertGCInfoBasic': URL + 'basicInformation/gasCylinder/insertGCInfoBasic.do',
   'getEnterpriseName': URL + 'basicInformation/corpInfo/getEnterpriseName.do',
 

@@ -13,6 +13,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { TransportCarComponent } from './transport-car/transport-car.component';
 import { DeliveryCarComponent } from './delivery-car/delivery-car.component';
+import { CylinderInfoComponent } from './cylinder-info/cylinder-info.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +25,8 @@ import { DeliveryCarComponent } from './delivery-car/delivery-car.component';
     UserCardComponent,
     UserInfoComponent,
     TransportCarComponent,
-    DeliveryCarComponent
+    DeliveryCarComponent,
+    CylinderInfoComponent
   ],
   providers: [
     UserInfoService,

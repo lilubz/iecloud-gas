@@ -137,7 +137,8 @@ export class CustomerListComponent implements OnInit {
     deliveryAddress: '',
     phone: '',
     userIdentityCardNumber: '',
-    dispatcherNumber: ''
+    dispatcherNumber: '',
+    userIdentityCardNumberIsEmpty: false
   };
   selectedEditDispatcher: {
     dispatcherNumber: number,
@@ -242,7 +243,7 @@ export class CustomerListComponent implements OnInit {
     this.displayEditDialog = true;
     this.willEditCustomer = Object.assign({}, rowData);
     // 选中的用户是否 有用户卡编号
-    this.willEditCustomer['userIdentityCardNumberIsEmpty'] = !this.willEditCustomer.userIdentityCardNumber;
+    this.willEditCustomer.userIdentityCardNumberIsEmpty = !this.willEditCustomer.userIdentityCardNumber;
     this.selectedEditDispatcher = {
       employeeName: rowData.dispatcherName,
       dispatcherNumber: rowData.dispatcherNumber

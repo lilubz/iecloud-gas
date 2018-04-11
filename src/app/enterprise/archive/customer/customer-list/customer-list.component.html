@@ -125,7 +125,7 @@
 
         <div class="form-group ui-g-12">
           <label for="inputEmail3" class="ui-g-4 control-label text-right" style="padding: 0">
-            <span class="warn">*</span>用户卡编号：</label>
+            <span class="warn" *ngIf="!willEditCustomer.userIdentityCardNumberIsEmpty">*</span>用户卡编号：</label>
           <div class="ui-g-4">
             <input type="number" pInputText [(ngModel)]="willEditCustomer.userIdentityCardNumber" name="userIdentityCardNumber" />
           </div>
