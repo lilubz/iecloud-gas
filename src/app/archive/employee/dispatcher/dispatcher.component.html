@@ -45,7 +45,7 @@
         </p-column>
         <p-column [style]="{'width':'100px'}" field="name" header="姓名">
           <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
               title="点击查询流转记录">{{rowData.name}}</a>
           </ng-template>
         </p-column>

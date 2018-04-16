@@ -50,7 +50,7 @@
       <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户"></p-column>
       <p-column [style]="{'width':'120px'}" header="操作">
         <ng-template let-col let-rowData="rowData" pTemplate="body">
-          <a href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-record/4']" [queryParams]="{liabilityName:rowData.userName,liabilityNumber:rowData.userNumber,liabilitySubjectType:4}"
+          <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/4']" [queryParams]="{liabilityName:rowData.userName,liabilityNumber:rowData.userNumber,liabilitySubjectType:4}"
             title="{{'点击查询流转记录' }}">查看流转记录</a>
         </ng-template>
       </p-column>

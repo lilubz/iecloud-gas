@@ -54,7 +54,7 @@
       </p-column>
       <p-column [style]="{'width':'120px'}" header="操作">
         <ng-template let-col let-rowData="rowData" pTemplate="body">
-          <a href="javascript:void(0);" [routerLink]="['/government/delivery/cylinder-trace/cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber}"
+          <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber}"
             title="点击查看流转记录">查看流转记录</a>
         </ng-template>
       </p-column>

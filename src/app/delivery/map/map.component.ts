@@ -43,8 +43,7 @@ export class MapComponent implements OnInit, OnDestroy {
   stationVisible = true;
   selectedDispatcher;
   selectedDispatcherNumber;
-  cars; // 直销车列表
-  selectedCar;
+  cardNumber;
 
   today = new Date();
   beginTime: Date = new Date((new Date().getTime() - 5 * 24 * 60 * 60 * 1000));
@@ -172,45 +171,45 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 查询配送车轨迹
+   * 查询车辆轨迹
    * 2018-02-08 11:48:31
    * @author hzb
    * @returns
    * @memberof MapComponent
    */
   searchTrackCar() {
-    if (!this.selectedCar) {
-      this.messageService.add({ severity: 'warn', summary: '请选择直销车', detail: '' });
+    if (!this.cardNumber) {
+      this.messageService.add({ severity: 'warn', summary: '请输入车牌号', detail: '' });
       return;
     } else if (this.selectedDateRangeCar === 4 && (this.beginTimeCar > this.endTimeCar)) {
       this.messageService.add({ severity: 'warn', summary: '开始时间不可大于结束时间', detail: '' });
       return;
     }
     const dateRange = this.getSelectedTime(this.selectedDateRangeCar, this.beginTimeCar, this.endTimeCar);
-
-    this.mapService.getThePathByAccountId({
-      beginTime: dateRange.beginTime,
-      endTime: dateRange.endTime,
-      accountId: this.selectedCar.supplyStationNumber,
-      accountTypeId: '3'
-    }).then(data => {
-      if (data.status === 0) {
-        this.mapService.showSellingCarPathAndPoint(
-          data.data.map(item => {
-            return Object.assign({}, item, {
-              supplyStationName: this.selectedCar.supplyStationName,
-              supplyStationAddress: this.selectedCar.supplyStationAddress,
-              supplyLicenseNum: this.selectedCar.supplyLicenseNum,
-              principal: this.selectedCar.principal,
-              carNumber: this.selectedCar.carNumber,
-              time: moment(item.createTime).format('YYYY-MM-DD HH:mm')
-            });
-          })
-        );
-      } else {
-        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
-      }
-    });
+    this.messageService.add({ severity: 'warn', summary: '数据对接中，暂时无法查询车辆轨迹！', detail: '' });
+    // this.mapService.getThePathByAccountId({
+    //   beginTime: dateRange.beginTime,
+    //   endTime: dateRange.endTime,
+    //   accountId: this.selectedCarNumber,
+    //   accountTypeId: '3'
+    // }).then(data => {
+    //   if (data.status === 0) {
+    //     this.mapService.showSellingCarPathAndPoint(
+    //       data.data.map(item => {
+    //         return Object.assign({}, item, {
+    //           supplyStationName: this.selectedCar.supplyStationName,
+    //           supplyStationAddress: this.selectedCar.supplyStationAddress,
+    //           supplyLicenseNum: this.selectedCar.supplyLicenseNum,
+    //           principal: this.selectedCar.principal,
+    //           carNumber: this.selectedCar.carNumber,
+    //           time: moment(item.createTime).format('YYYY-MM-DD HH:mm')
+    //         });
+    //       })
+    //     );
+    //   } else {
+    //     this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+    //   }
+    // });
   }
 
   /**
