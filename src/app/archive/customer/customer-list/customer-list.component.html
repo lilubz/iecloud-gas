@@ -56,10 +56,10 @@
       </p-column>
       <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
       <p-column [style]="{'width':'180px'}" field="address" header="证件地址"></p-column>
-      <p-column [style]="{'width':'150px' ,'line-height':'45px'}" header="操作">
+      <p-column [style]="{'width':'150px' ,'line-height':'45px'}" header="操作" *gasPermissionRole="[RoleType.Enterprise]">
         <ng-template pTemplate="body" let-rowData="rowData">
           <button pButton type="button" (click)="onEdit(rowData)" label="修改"></button>
-          <button pButton type="button" (click)="onDelete(rowData)" label="删除" class="deletebtn"></button>
+          <button pButton type="button" (click)="onDelete(rowData)" label="删除" class="ui-button-secondary"></button>
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'150px'}" field="dispatcherName" header="配送工"></p-column>

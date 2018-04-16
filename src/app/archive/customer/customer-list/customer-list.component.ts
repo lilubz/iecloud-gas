@@ -7,6 +7,7 @@ import { CustomerListService } from './customer-list.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Message } from 'primeng/primeng';
 import { CommonRequestService } from '../../../core/common-request.service';
+import { RoleType } from '../../../common/RoleType';
 
 @Component({
   selector: 'gas-customer-list',
@@ -16,6 +17,7 @@ import { CommonRequestService } from '../../../core/common-request.service';
 })
 
 export class CustomerListComponent implements OnInit {
+  RoleType = RoleType;
   loading = false;
   deliveryRegionId;
   dispatcherSuggestions: {
