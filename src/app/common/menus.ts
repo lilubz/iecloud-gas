@@ -4,79 +4,79 @@ export const GovernmentMenus: MenuItem[] = [
   // {
   //   label: '首页',
   //   icon: 'menu-icon home-icon',
-  //   routerLink: ['/government/home']
+  //   routerLink: ['/home']
   // },
   {
     label: '基础档案',
     icon: 'menu-icon archive-icon',
-    routerLink: ['/government/archive'],
+    routerLink: ['/archive'],
     items: [
-      { label: '气瓶档案', routerLink: ['/government/archive/cylinder'] },
-      { label: '用户档案', routerLink: ['/government/archive/customer'] },
-      { label: '企业档案', routerLink: ['/government/archive/enterprise'] },
-      { label: '车辆信息', routerLink: ['/government/archive/car'] },
-      { label: '送气工信息', routerLink: ['/government/archive/employee'] },
+      { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
+      { label: '用户档案', routerLink: ['/archive/customer'] },
+      { label: '企业档案', routerLink: ['/archive/enterprise'] },
+      { label: '车辆信息', routerLink: ['/archive/car'] },
+      { label: '送气工信息', routerLink: ['/archive/employee'] },
     ]
   },
   {
     label: '监管查询',
     icon: 'menu-icon distribution-icon',
-    routerLink: ['/government/delivery'],
+    routerLink: ['/delivery'],
     items: [
-      { label: '气瓶全过程监管追溯查询', routerLink: ['/government/delivery/cylinder-trace'] },
-      { label: '地图轨迹', routerLink: ['/government/delivery/map'] },
+      { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
+      { label: '地图轨迹', routerLink: ['/delivery/map'] },
       // { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
     ]
   },
   {
     label: '监管事务',
     icon: 'menu-icon supervise-icon',
-    routerLink: ['/government/gov-affairs'],
+    routerLink: ['/gov-affairs'],
     items: [
       // { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
       // { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
-      { label: '报表管理', routerLink: ['/government/gov-affairs/report'] },
-      { label: '协同管理', routerLink: ['/government/gov-affairs/collaborative'] },
-      { label: '设置气瓶阈值', routerLink: ['/government/gov-affairs/cylinder-warning'] },
+      { label: '报表管理', routerLink: ['/gov-affairs/report'] },
+      { label: '协同管理', routerLink: ['/gov-affairs/collaborative'] },
+      { label: '设置气瓶阈值', routerLink: ['/gov-affairs/cylinder-warning'] },
     ]
   },
   {
     label: '视频查看',
     icon: 'menu-icon visualization-icon',
-    routerLink: ['/government/visualization'],
+    routerLink: ['/visualization'],
     items: [
-      { label: '大屏展示', routerLink: ['/government/visualization/big-screen'] },
-      { label: '视频监控', routerLink: ['/government/visualization/video-monitor'] },
-      { label: '单兵执法', routerLink: ['/government/visualization/single-solider'] },
+      { label: '大屏展示', routerLink: ['/visualization/big-screen'] },
+      { label: '视频监控', routerLink: ['/visualization/video-monitor'] },
+      { label: '单兵执法', routerLink: ['/visualization/single-solider'] },
     ]
   },
   {
     label: '统计分析',
     icon: 'menu-icon statistic-icon',
-    routerLink: ['/government/statistic'],
+    routerLink: ['/statistic'],
     items: [
-      { label: '气瓶', routerLink: ['/government/statistic/cylinder'] },
-      { label: '企业', routerLink: ['/government/statistic/enterprise'] },
-      { label: '执法', routerLink: ['/government/statistic/affair'] },
-      { label: '实时预警', routerLink: ['/government/statistic/current-warning'] },
-      { label: '历史预警', routerLink: ['/government/statistic/history-warning'] },
+      { label: '气瓶', routerLink: ['/statistic/cylinder'] },
+      { label: '企业', routerLink: ['/statistic/enterprise'] },
+      { label: '执法', routerLink: ['/statistic/affair'] },
+      { label: '实时预警', routerLink: ['/statistic/current-warning'] },
+      { label: '历史预警', routerLink: ['/statistic/history-warning'] },
     ]
   },
   {
     label: '系统配置',
     icon: 'menu-icon system-icon',
-    routerLink: ['/government/system'],
+    routerLink: ['/system'],
     items: [
-      { label: '个人信息', routerLink: ['/government/system/user'] },
-      { label: '通知公告', routerLink: ['/government/system/message'] },
-      { label: '企业管理', routerLink: ['/government/system/enterprise-management'] },
-      { label: '供应站管理', routerLink: ['/government/system/bottle-library'] },
+      { label: '个人信息', routerLink: ['/system/user'] },
+      { label: '通知公告', routerLink: ['/system/message'] },
+      { label: '企业管理', routerLink: ['/system/enterprise-management'] },
+      { label: '供应站管理', routerLink: ['/system/bottle-library'] },
     ]
   },
   {
     label: '审核管理',
     icon: 'menu-icon verification-icon',
-    routerLink: ['/government/verification']
+    routerLink: ['/verification']
   }
 ];
 
@@ -84,59 +84,59 @@ export const EnterpriseMenus: MenuItem[] = [
   // {
   //   label: '首页',
   //   icon: 'menu-icon home-icon',
-  //   routerLink: ['/enterprise/home']
+  //   routerLink: ['/home']
   // },
   {
     label: '基础档案',
     icon: 'menu-icon archive-icon',
-    routerLink: ['/enterprise/archive'],
+    routerLink: ['/archive'],
     items: [
-      { label: '气瓶档案', routerLink: ['/enterprise/archive/cylinder'] },
-      { label: '用户档案', routerLink: ['/enterprise/archive/customer'] },
-      { label: '车辆信息', routerLink: ['/enterprise/archive/car'] },
-      { label: '送气工信息', routerLink: ['/enterprise/archive/employee'] },
+      { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
+      { label: '用户档案', routerLink: ['/archive/customer'] },
+      { label: '车辆信息', routerLink: ['/archive/car'] },
+      { label: '送气工信息', routerLink: ['/archive/employee'] },
     ]
   },
   {
     label: '监管查询',
     icon: 'menu-icon distribution-icon',
-    routerLink: ['/enterprise/delivery'],
+    routerLink: ['/delivery'],
     items: [
-      { label: '气瓶全过程监管追溯查询', routerLink: ['/enterprise/delivery/cylinder-trace'] },
-      // { label: '充装记录', routerLink: ['/enterprise/delivery/cylinder-filling'] }
+      { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
+      // { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
     ]
   },
   {
     label: '统计分析',
     icon: 'menu-icon statistic-icon',
-    routerLink: ['/enterprise/statistic'],
+    routerLink: ['/statistic'],
     items: [
-      { label: '气瓶', routerLink: ['/enterprise/statistic/cylinder'] },
-      { label: '企业', routerLink: ['/enterprise/statistic/enterprise'] },
+      { label: '气瓶', routerLink: ['/statistic/cylinder'] },
+      { label: '企业', routerLink: ['/statistic/enterprise'] },
     ]
   },
   {
     label: '系统配置',
     icon: 'menu-icon system-icon',
-    routerLink: ['/enterprise/system'],
+    routerLink: ['/system'],
     items: [
-      { label: '个人信息', routerLink: ['/enterprise/system/user'] },
-      { label: '供应站管理', routerLink: ['/enterprise/system/bottle-library'] },
+      { label: '个人信息', routerLink: ['/system/user'] },
+      { label: '供应站管理', routerLink: ['/system/bottle-library'] },
     ]
   },
   {
     label: '企业监管',
     icon: 'menu-icon statistic-icon',
-    routerLink: ['/enterprise/enterprise-supervise'],
+    routerLink: ['/enterprise-supervise'],
     items: [
-      { label: '报表管理', routerLink: ['/enterprise/enterprise-supervise/report'] },
-      { label: '事务处理', routerLink: ['/enterprise/enterprise-supervise/affair-list'] },
-      { label: '重瓶定价', routerLink: ['/enterprise/enterprise-supervise/repricing-rist'] }
+      { label: '报表管理', routerLink: ['/enterprise-supervise/report'] },
+      { label: '事务处理', routerLink: ['/enterprise-supervise/affair-list'] },
+      { label: '重瓶定价', routerLink: ['/enterprise-supervise/repricing-rist'] }
     ]
   },
   {
     label: '信息录入',
     icon: 'menu-icon input-icon',
-    routerLink: ['/enterprise/input']
+    routerLink: ['/input']
   }
 ];

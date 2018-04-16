@@ -1,6 +1,7 @@
 import { UserStateService } from './../core/userState.service';
 import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
 import { RoleType } from '../common/RoleType';
+import { PermissionTable } from '../common/PermissionTable';
 
 /**
  * 根据用户权限和输入的权限列表判断是否展示展示界面
@@ -27,6 +28,17 @@ export class PermissionRoleDirective {
       this.viewContainer.createEmbeddedView(this.templateRef);
       this.hasView = true;
     } else if ((roles.indexOf(userRole) === -1) && this.hasView) {
+      this.viewContainer.clear();
+      this.hasView = false;
+    }
+  }
+
+  @Input() set gasPermissionKey(key: string) {
+    const userPermissions: PermissionTable = this.userStateService.getUserPermissions();
+    if (userPermissions[key] === true && !this.hasView) {
+      this.viewContainer.createEmbeddedView(this.templateRef);
+      this.hasView = true;
+    } else if (userPermissions[key] === true && this.hasView) {
       this.viewContainer.clear();
       this.hasView = false;
     }

@@ -1,0 +1,16 @@
+@import "../../../../scss/_variable";
+
+
+.main {
+  padding-top: $header-height;
+}
+a{
+  color:#39f;
+}
+.searchBtn{
+  border-radius: 4px;
+  width: 96px;
+  height: 45px;
+  font-size: 1em;
+  background: #3186dc;
+}

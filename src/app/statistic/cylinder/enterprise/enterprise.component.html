@@ -1,0 +1,82 @@
+<div class="ui-g-12 content">
+  <div style="min-width: 820px;">
+    <div class="ui-g">
+      <h3>企业气瓶统计</h3>
+      <div class="ui-g-12 ui-g-nopad">
+        <button pButton type="button" (click)="exportStatistic()" class="ui-button-info right" label="导出"></button>
+      </div>
+
+      <ng-container *gasPermissionRole="[RoleType.Government]">
+        <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false"></gas-cylinder-overview-table>
+      </ng-container>
+      <ng-container *gasPermissionRole="[RoleType.Enterprise]">
+        <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false" [roleType]="RoleType.Enterprise"></gas-cylinder-overview-table>
+      </ng-container>
+    </div>
+
+    <ng-container *gasPermissionRole="[RoleType.Government]">
+      <h3>新增气瓶统计</h3>
+      <div class="ui-g-12">
+        <div class="ui-g-12 ui-lg-4">
+          选择时间：
+          <p-dropdown appendTo="body" [options]="dateRange" [(ngModel)]="selectedDateRange" [style]="{'width': '150px'}"></p-dropdown>
+        </div>
+        <ng-container class="ui-g-12 ui-lg-8" *ngIf="selectedDateRange === 4">
+          <div class="ui-g-12 ui-lg-4 no-left-pad">
+            开始时间：
+            <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+              [(ngModel)]="beginTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [style]="{'width': '150px'}" [maxDate]="today"
+              readonlyInput="true"></p-calendar>
+          </div>
+          <div class="ui-g-12 ui-lg-4 no-left-pad">
+            结束时间：
+            <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+              [(ngModel)]="endTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [style]="{'width': '150px'}" [maxDate]="today"
+              readonlyInput="true"></p-calendar>
+          </div>
+        </ng-container>
+        <div class="ui-g-12">
+          <button pButton type="button" (click)="addStatisticType=='region'?searchGcAddCount():searchGcAddCountDetail(addStatisticRegionId)"
+            label="查询"></button>
+          <button pButton type="button" (click)="exportEnterpriseAddCylinderStatistic()" class="ui-button-info right" label="导出"></button>
+        </div>
+        <div class="ui-g-12 ui-g-nopad">
+          <button pButton type="button" *ngIf="addStatisticType=='corp'" (click)="searchGcAddCount()" label="返回区域概览"></button>
+        </div>
+      </div>
+
+      <p-dataTable class="ui-g-12" [value]="addCountyCylinders" [styleClass]="" [loading]="addLoading" emptyMessage="未查询到数据">
+        <p-column header="序号" [style]="{'width':'80px'}">
+          <ng-template pTemplate="body" let-index="rowIndex">
+            {{index + 1}}
+          </ng-template>
+        </p-column>
+        <p-column field="name" [header]="addStatisticType=='region'?'区域':'企业'">
+          <ng-template let-countyCylinder="rowData" pTemplate="body">
+            <a href="javascript:void(0);" *ngIf="addStatisticType=='region'" (click)="searchGcAddCountDetail(countyCylinder.id)" class="router-link"
+              title="查看企业新增统计">{{ countyCylinder.name }}</a>
+            <span *ngIf="addStatisticType!='region'">{{ countyCylinder.name }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="newCount" header="新增气瓶数">
+          <ng-template let-countyCylinder="rowData" pTemplate="body">
+            {{ countyCylinder.newCount || 0 }}
+          </ng-template>
+        </p-column>
+        <p-column field="expireCount" header="新增过期数">
+          <ng-template let-countyCylinder="rowData" pTemplate="body">
+            {{ countyCylinder.expireCount || 0 }}
+          </ng-template>
+        </p-column>
+        <p-footerColumnGroup>
+          <p-row>
+            <p-column footer=""></p-column>
+            <p-column footer="合计"></p-column>
+            <p-column [footer]="util.calculateTotal('newCount', addCountyCylinders)"></p-column>
+            <p-column [footer]="util.calculateTotal('expireCount', addCountyCylinders)"></p-column>
+          </p-row>
+        </p-footerColumnGroup>
+      </p-dataTable>
+    </ng-container>
+  </div>
+</div>

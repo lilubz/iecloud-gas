@@ -45,6 +45,7 @@ import { DateFormat } from './dateFormat.pipe';
 import { ExportFileDirective } from './export-file.directive';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { AutoCompleteModule } from './autocomplete/autocomplete';
+import { HeaderComponent } from './header/header.component';
 import { DeliveryRegionCascadeComponent } from './delivery-region-cascade/delivery-region-cascade.component';
 import { ExplanationComponent } from './explanation/explanation.component';
 
@@ -97,6 +98,7 @@ import { ExplanationComponent } from './explanation/explanation.component';
     DateFormat,
     ExportFileDirective,
     BreadcrumbComponent,
+    HeaderComponent,
     DeliveryRegionCascadeComponent,
     ExplanationComponent,
   ],
@@ -149,6 +151,7 @@ import { ExplanationComponent } from './explanation/explanation.component';
     DateFormat,
     ExportFileDirective,
     BreadcrumbComponent,
+    HeaderComponent,
     DeliveryRegionCascadeComponent,
     ExplanationComponent,
   ]

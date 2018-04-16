@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import { User } from './../model/User.model';
 import { RoleType } from '../common/RoleType';
 import { OrganizationType } from '../common/OrganizationType';
+import { PermissionTable, GovernmentPermissionTable, EnterprisePermissionTable } from '../common/PermissionTable';
 
 /**
  * 用户信息服务
@@ -98,5 +99,27 @@ export class UserStateService {
       }
     }
     return null;
+  }
+
+  /**
+   * 获取用户权限列表信息
+   * 2018-04-08 10:59:20
+   * @author hzb
+   * @returns {PermissionTable}
+   * @memberof UserStateService
+   */
+  getUserPermissions(): PermissionTable {
+    if (this.getUser()) {
+      switch (this.getUser().organizationType) {
+        case 4:
+          return GovernmentPermissionTable;
+
+        case 1:
+          return EnterprisePermissionTable;
+
+        default:
+          return;
+      }
+    }
   }
 }

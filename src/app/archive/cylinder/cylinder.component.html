@@ -1,0 +1,29 @@
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group ">
+    <div class="ui-g-12">
+      <button pButton type="button" label="气瓶信息概览" [routerLink]="organizationType == OrganizationType.Government?['./overview/county']:['./overview/enterprise']"
+        routerLinkActive="link-active"></button>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="综合查询" [routerLink]="['./list']" routerLinkActive="link-active"></button>
+    </div>
+  </div>
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">气瓶条码</div>
+    <!-- <div class="ui-g-12">
+        <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
+      </div> -->
+    <div class="ui-g-12">
+      <input type="text" pInputText [(ngModel)]="gasInput" (keyup.enter)="onSearch()" placeholder="请输入气瓶条码">
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="查询" [routerLink]="['./detail',gasInput||'']"></button>
+    </div>
+  </div>
+</div>
+<!-- 右侧内容区域 -->
+<div class="main">
+  <div class="card">
+    <router-outlet></router-outlet>
+  </div>
+</div>
