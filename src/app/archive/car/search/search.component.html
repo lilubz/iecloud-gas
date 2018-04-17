@@ -9,6 +9,7 @@
     <div class="ui-g-12 ui-lg-6">
       <label class="search-label">车辆类型</label>
       <p-dropdown [options]="dropdown.carType" [(ngModel)]="formModel.carType" name="carType" [style]="{'width':'280px'}"></p-dropdown>
+      <gas-explanation tooltip="运送气瓶车辆种类（包含直销车，运输车，配送车）" position="bottom"></gas-explanation>
     </div>
 
     <div class="ui-g-12 ui-lg-6">
@@ -42,13 +43,29 @@
       <p-column [style]="{'width':'110px'}" field="carNumber" header="车牌号"></p-column>
       <p-column [style]="{'width':'100px'}" field="enterpriseName" header="企业名称"></p-column>
       <p-column [style]="{'width':'100px'}" field="driverName" header="驾驶员"></p-column>
-      <p-column [style]="{'width':'100px'}" field="carCarrierName" header="押运员"></p-column>
+      <p-column [style]="{'width':'100px'}" field="carCarrierName">
+          <ng-template pTemplate="header">
+              押运员 <gas-explanation tooltip="负责押送气瓶的人员" position="bottom"></gas-explanation>
+          </ng-template>
+      </p-column>
       <p-column [style]="{'width':'100px'}" field="transportLicense" header="运输许可证"></p-column>
       <p-column [style]="{'width':'80px'}" field="typeOfVehicle" header="车辆类型"></p-column>
-      <p-column [style]="{'width':'60px'}" field="ownerName" header="车主名称"></p-column>
+      <p-column [style]="{'width':'80px'}" field="ownerName">
+          <ng-template pTemplate="header">
+              车主名称 <gas-explanation tooltip="由于车辆类型不同，车辆的归属者可能不是驾驶员" position="bottom"></gas-explanation>
+          </ng-template>
+      </p-column>
       <p-column [style]="{'width':'50px'}" field="ownerType" header="车主类型"></p-column>
-      <p-column [style]="{'width':'100px'}" field="maxCapacity" header="载重量（KG）"></p-column>
-      <p-column [style]="{'width':'70px'}" field="maxCylinderNum" header="载运气瓶数"></p-column>
+      <p-column [style]="{'width':'110px'}" field="maxCapacity">
+          <ng-template pTemplate="header">
+              载重量（KG） <gas-explanation tooltip="车辆的最大载重量（kg）" position="bottom"></gas-explanation>
+          </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'90px'}" field="maxCylinderNum">
+          <ng-template pTemplate="header">
+              载运气瓶数 <gas-explanation tooltip="车辆单次运送气瓶的最大数量" position="bottom"></gas-explanation>
+          </ng-template>
+      </p-column>
 
       <ng-template pTemplate="emptymessage">
         <div class="text-left">

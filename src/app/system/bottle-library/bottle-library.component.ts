@@ -291,7 +291,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     if (!this.editForm.regionId) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '所属区域不能为空' });
       return false;
-    } else if (!this.addForm.enterpriseNumber) {
+    } else if (!this.editForm.enterpriseNumber) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '归属企业不能为空' });
       return false;
     } else if (!this.editForm.supplyStationName) {

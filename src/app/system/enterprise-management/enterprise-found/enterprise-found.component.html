@@ -18,6 +18,7 @@
         <label for="" class="search-label">企业编号
           <b style="color:red;">*</b>
         </label>
+        <gas-explanation tooltip="企业的唯一编码，能确认该企业的唯一性" position="bottom"></gas-explanation>
         <input type="text" class="textInput" [(ngModel)]="addForm.enterpriseNumber" maxlength="20" pInputText>
       <!-- </div> -->
     </div>
@@ -43,6 +44,7 @@
         <label for="" class="search-label">经营类别
           <b style="color:red;">*</b>
         </label>
+        <gas-explanation tooltip="该企业经营的燃气种类" position="bottom"></gas-explanation>
         <p-dropdown [options]="category" [(ngModel)]="addForm.businessCategory" [style]="{'width':'210px'}"></p-dropdown>
       <!-- </div> -->
     </div>
@@ -66,6 +68,7 @@
         <label for="" class="search-label">经营区域
           <b style="color:red;">*</b>
         </label>
+        <gas-explanation tooltip="该企业涉及的业务区域范围" position="bottom"></gas-explanation>
       </div>
       <p-dropdown [options]="deliveryRegionList" (onChange)="deliveryCountyChange($event.value)" [(ngModel)]="selectedCountyRegionId"
         [style]="{'width':'210px','margin-top':'5px'}">
@@ -107,6 +110,7 @@
           <label for="" class="search-label">许可证号
             <b style="color:red;">*</b>
           </label>
+          <gas-explanation tooltip="该企业的经营许可证号" position="bottom"></gas-explanation>
           <input type="text" class="textInput" [(ngModel)]="addForm.dangerousLicense" maxlength="20" pInputText placeholder="">
         <!-- </div> -->
       </div>

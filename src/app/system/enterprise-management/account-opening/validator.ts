@@ -15,16 +15,11 @@ export const validator = {
   password(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    // console.log(typeof value);
-    const regexp = /^\d{6}$/;
     if (!value) {
       error.msg = '密码不能为空';
       return error;
     } else if (value && value.length < 6) {
       error.msg = '密码不能小于6位';
-      return error;
-    } else if (regexp.test(value)) {
-      error.msg = '密码不能为6位纯数字';
       return error;
     } else if (value && value.length > 16) {
       error.msg = '密码不能大于16位';

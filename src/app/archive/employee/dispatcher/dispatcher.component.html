@@ -60,14 +60,20 @@
             <button pButton (click)="showImg($event,rowData.headPortraitUrl,imgBox);" label="查看头像" *ngIf="rowData.headPortraitUrl"></button>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'180px'}" field="" header="二维码">
+        <p-column [style]="{'width':'180px'}" field="">
+            <ng-template pTemplate="header">
+                二维码 <gas-explanation tooltip="扫码查看送气工证件照" position="bottom"></gas-explanation>
+            </ng-template>
           <ng-template let-rowData="rowData" pTemplate="body">
             <button type="button" pButton (click)="showImg($event,rowData.qrCodeUrl,imgBox);" *ngIf="rowData.qrCodeUrl" label="查看二维码"></button>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'70px'}" field="status" header="状态"></p-column>
         <!-- <p-column [style]="{'width':'100px'}" field="dangerousGoodsTransportLicenseNumber" header="危险品运输许可证编号"></p-column> -->
-        <p-column [style]="{'width':'100px'}" header="到期时间">
+        <p-column [style]="{'width':'110px'}">
+            <ng-template pTemplate="header">
+                到期时间 <gas-explanation tooltip="送气工证件到期时间" position="bottom"></gas-explanation>
+            </ng-template>
           <ng-template let-rowData="rowData" pTemplate="body">
             <span>{{rowData.expirationTime|date:"yyyy-MM-dd"}}</span>
           </ng-template>

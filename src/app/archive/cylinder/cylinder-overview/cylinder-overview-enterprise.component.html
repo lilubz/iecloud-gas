@@ -1,6 +1,8 @@
 <div class="ui-g-12 overview">
 
-  <h2 class="title">企业一览表</h2>
+  <h2 class="title">企业一览表
+    <gas-explanation tooltip="区域下各企业的气瓶状态概况统计，点击企业名可以查看该企业的气瓶基础信息" position="bottom"></gas-explanation>
+  </h2>
   <gas-cylinder-overview-table [cylinderStatistics]="enterpriseCylinders" [loading]="loading" [roleType]="RoleType.Enterprise"></gas-cylinder-overview-table>
 
 </div>

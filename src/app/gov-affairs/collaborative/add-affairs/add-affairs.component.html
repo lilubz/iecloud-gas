@@ -3,10 +3,11 @@
     <h1>执法事务录入</h1>
     <div class="ui-g">
       <div class="ui-g-8 ui-g form-group">
-        <div class="title ui-g-12 ui-lg-3" >
+        <div class="title ui-g-12 ui-lg-3">
           <label for="" style="width:130px;display:inline-block">
             <span class="warn">*</span>事务处理对象：
           </label>
+          <gas-explanation tooltip="发生的事件和哪个对象有关系" position="bottom"></gas-explanation>
         </div>
         <div class="ui-g-9 ui-g">
           <div class="ui-g-12 ui-xl-3 ui-lg-6">
@@ -30,8 +31,8 @@
           <span class="warn">*</span>储配站：</label>
         <div class="ui-g-10">
           <p-autoComplete [(ngModel)]="formModel.objValue" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="1"
-            autoHighlight="true" emptyMessage="请输入正确的查询条件" [style]="{'width':'168px'}" name="objValue" placeholder="请输入储配站名称" (onBlur)="onBlurAutoComplete()"
-            field="{{config.autoComplete[1].field}}">
+            autoHighlight="true" emptyMessage="请输入正确的查询条件" [style]="{'width':'168px'}" name="objValue" placeholder="请输入储配站名称"
+            (onBlur)="onBlurAutoComplete()" field="{{config.autoComplete[1].field}}">
           </p-autoComplete>
         </div>
       </div>
@@ -41,8 +42,8 @@
           <span class="warn">*</span>供应站：</label>
         <div class="ui-g-10">
           <p-autoComplete [(ngModel)]="formModel.objValue" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="1"
-            autoHighlight="true" emptyMessage="请输入正确的查询条件" [style]="{'width':'168px'}" name="objValue" placeholder="请输入供应站名称" (onBlur)="onBlurAutoComplete()"
-            field="{{config.autoComplete[2].field}}">
+            autoHighlight="true" emptyMessage="请输入正确的查询条件" [style]="{'width':'168px'}" name="objValue" placeholder="请输入供应站名称"
+            (onBlur)="onBlurAutoComplete()" field="{{config.autoComplete[2].field}}">
           </p-autoComplete>
         </div>
       </div>
@@ -51,8 +52,8 @@
           <span class="warn">*</span>送气工：</label>
         <div class="ui-g-10">
           <p-autoComplete [(ngModel)]="formModel.objValue" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="2"
-            autoHighlight="true" emptyMessage="请输入正确的查询条件" [style]="{'width':'168px'}" name="objValue" placeholder="请输入送气工姓名" (onBlur)="onBlurAutoComplete()"
-            field="{{config.autoComplete[3].field}}">
+            autoHighlight="true" emptyMessage="请输入正确的查询条件" [style]="{'width':'168px'}" name="objValue" placeholder="请输入送气工姓名"
+            (onBlur)="onBlurAutoComplete()" field="{{config.autoComplete[3].field}}">
             <ng-template let-value pTemplate="item">
               <span>
                 {{value.dispatcherName}}---{{value.dispatcherNumber}}
@@ -68,8 +69,8 @@
           <span class="warn">*</span>押送工：</label>
         <div class="ui-g-10">
           <p-autoComplete [(ngModel)]="formModel.objValue" [suggestions]="suggestions" (completeMethod)="getSuggestions($event)" [minLength]="2"
-            autoHighlight="true" emptyMessage="请输入正确的查询条件" [style]="{'width':'168px'}" name="objValue" placeholder="请输入押送工姓名" (onBlur)="onBlurAutoComplete()"
-            field="{{config.autoComplete[4].field}}">
+            autoHighlight="true" emptyMessage="请输入正确的查询条件" [style]="{'width':'168px'}" name="objValue" placeholder="请输入押送工姓名"
+            (onBlur)="onBlurAutoComplete()" field="{{config.autoComplete[4].field}}">
             <ng-template let-value pTemplate="item">
               <span>
                 {{value.gcCarrierName}}---{{value.gcCarrierId}}
@@ -88,14 +89,16 @@
         <div class="ui-g-10">
           <p-calendar [(ngModel)]="formModel.time" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
             [locale]="zh" [showIcon]="false" name="time" showTime="true" hourFormat="24" [showOtherMonths]="false" [stepMinute]="10"
-            placeholder="请输入发现时间" [maxDate]="currentDate"[showButtonBar]="true"></p-calendar>
+            placeholder="请输入发现时间" [maxDate]="currentDate" [showButtonBar]="true"></p-calendar>
         </div>
       </div>
     </div>
     <div class="ui-g">
       <div class="form-group ui-g-12">
         <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
-          <span class="warn">*</span>事务来源：</label>
+          <span class="warn">*</span>事务来源：
+          <gas-explanation tooltip="事件来源的渠道（有群众举报，巡查发现）" position="bottom"></gas-explanation>
+        </label>
         <div class="ui-g-10">
           <p-dropdown [options]="dropdown.origin" [(ngModel)]="formModel.originId" name="origin" [style]="{'width':'170px'}"></p-dropdown>
         </div>
@@ -113,7 +116,9 @@
     <div class="ui-g">
       <div class="form-group ui-g-12">
         <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
-          <span class="warn">*</span>事务地点：</label>
+          <span class="warn">*</span>事务地点：
+          <gas-explanation tooltip="该事件发生的地点位置" position="bottom"></gas-explanation>
+        </label>
         <div class="ui-g-10">
           <input type="text" pInputText [(ngModel)]="formModel.address" name="address" />
         </div>
@@ -123,6 +128,7 @@
       <div class="form-group ui-g-12 affair-type">
         <label for="inputEmail3" class="ui-g-12 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>事务类别：
+          <gas-explanation tooltip="事务处理的方式" position="bottom"></gas-explanation>
         </label>
         <div class="checkbox-container ui-g-12">
           <div class="checkbox ui-g-3" *ngFor="let item of dropdown.affairsType">
@@ -136,7 +142,9 @@
     <div class="ui-g">
       <div class="form-group ui-g-12">
         <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
-          <span class="warn">*</span>描述：</label>
+          <span class="warn">*</span>描述：
+          <gas-explanation tooltip="对该事件的发生原因的说明" position="bottom"></gas-explanation>
+        </label>
         <div class="ui-g-10">
           <input type="text" pInputText [(ngModel)]="formModel.describe" name="describe" />
         </div>
@@ -155,15 +163,16 @@
     <!-- 业务协同（可选） -->
     <div class="ui-g optional">
       <div class="ui-g-12 group padding-left">
-        <h3>业务协同（可选）</h3>
+        <h3>业务协同（可选）
+            <gas-explanation tooltip="如有需要，选择其他部门或企业去去处理该事件" position="bottom"></gas-explanation>
+        </h3>
         <div class="form-group ui-g-6 affair-type">
           <label for="inputEmail3" class="ui-g-3 control-label" style="width:130px;display:inline-block">
             协同部门：
           </label>
           <div class="ui-g-9">
-            <p-multiSelect [options]="multiSelect.department" [(ngModel)]="formModel.helpDepartment"name="department"
-             optionLabel="userName" [style]="{'width':'100%'}" defaultLabel="点击选择协同部门"
-              maxSelectedLabels="1" selectedItemsLabel="已经选择了{0}个协同部门" [showToggleAll]="false"></p-multiSelect>
+            <p-multiSelect [options]="multiSelect.department" [(ngModel)]="formModel.helpDepartment" name="department" optionLabel="userName"
+              [style]="{'width':'100%'}" defaultLabel="点击选择协同部门" maxSelectedLabels="1" selectedItemsLabel="已经选择了{0}个协同部门" [showToggleAll]="false"></p-multiSelect>
           </div>
 
           <div class="form-group ui-g-12" *ngFor="let item of formModel.helpDepartment; let i=index">
@@ -171,8 +180,8 @@
               {{item.userName}}：</label>
             <div class="ui-g-5">
               <p-calendar [(ngModel)]="item.time" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
-                [locale]="zh" [showIcon]="false" name="{{'helpDepartmentTime'+ i}}" showTime="true" hourFormat="24" [showOtherMonths]="false" [stepMinute]="10"
-                placeholder="请输入截止时间" [minDate]="currentDate"[showButtonBar]="true"></p-calendar>
+                [locale]="zh" [showIcon]="false" name="{{'helpDepartmentTime'+ i}}" showTime="true" hourFormat="24" [showOtherMonths]="false"
+                [stepMinute]="10" placeholder="请输入截止时间" [minDate]="currentDate" [showButtonBar]="true"></p-calendar>
             </div>
           </div>
         </div>
@@ -181,9 +190,8 @@
             协同企业：
           </label>
           <div class="ui-g-9">
-            <p-multiSelect [options]="multiSelect.company" [(ngModel)]="formModel.helpCompany" name="company"
-            optionLabel="enterpriseName" [style]="{'width':'100%'}" defaultLabel="点击选择协同企业" maxSelectedLabels="1"
-             selectedItemsLabel="已经选择了{0}个协同企业" [showToggleAll]="false"></p-multiSelect>
+            <p-multiSelect [options]="multiSelect.company" [(ngModel)]="formModel.helpCompany" name="company" optionLabel="enterpriseName"
+              [style]="{'width':'100%'}" defaultLabel="点击选择协同企业" maxSelectedLabels="1" selectedItemsLabel="已经选择了{0}个协同企业" [showToggleAll]="false"></p-multiSelect>
           </div>
 
           <div class="form-group ui-g-12" *ngFor="let item of formModel.helpCompany;let i = index;">
@@ -192,7 +200,7 @@
             <div class="ui-g-5">
               <p-calendar [(ngModel)]="item.time" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
                 [locale]="zh" [showIcon]="false" name="{{'helpCompanyTime'+ i}}" showTime="true" hourFormat="24" [showOtherMonths]="false"
-                [stepMinute]="10" placeholder="请输入截止时间" [minDate]="currentDate"[showButtonBar]="true"></p-calendar>
+                [stepMinute]="10" placeholder="请输入截止时间" [minDate]="currentDate" [showButtonBar]="true"></p-calendar>
             </div>
           </div>
 

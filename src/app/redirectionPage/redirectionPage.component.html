@@ -1,0 +1,169 @@
+<div class="redirectionPage">
+  <div class="ui-g layout">
+    <div class="ui-g-nopad header">
+      <img src="./assets/img/gov-logo.png" class="logo" alt="">
+      <span>温州市瓶装燃气信息化监管平台</span>
+      <div class="shortcut">
+        <img src="./assets/img/redirection/home.png" [routerLink]="['/home']" class="shortcut-left" alt="主页" title="主页">
+        <img src="./assets/img/personal-info.png" [routerLink]="['/system/user']" class="shortcut-left" alt="个人信息" title="个人信息">
+        <img src="./assets/img/logout.png" class="shortcut-right" alt="退出" title="退出" (click)="logout()">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showGovernment">
+    <h2 class="headline">
+      瓶装燃气监管系统
+    </h2>
+    <div class="container">
+      <div class="content " [routerLink]="['/delivery/cylinder-trace/cylinder-filling']">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/气瓶追溯.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            气瓶追溯监管
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/气瓶充装.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            气瓶充装监管
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/燃气日常监管监管.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            燃气日常监管巡查
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content ">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/监管对象档案管理.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            监管对象档案管理
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/系统配置.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            系统配置管理
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/可视化协同.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            可视化协同调度
+            <br> 应急指挥子系统
+          </span>
+        </div>
+      </div>
+      <!-- <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/气瓶追溯.png">
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div *ngIf="showEnterprise">
+    <h2 class="headline">
+      燃气企业运营系统
+    </h2>
+    <div class="container">
+      <div class="content ">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/气瓶档案管理.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            气瓶档案管理
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/用户档案管理.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            用户档案管理
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/企业档案管理.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            企业档案管理
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content ">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/气瓶充装管理.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            气瓶充装管理
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/企业监管.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            企业监管
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="photo-container">
+          <img src="./assets/img/redirection/物流配送.png">
+        </div>
+        <div class="title-container">
+          <span class="title">
+            物流配送管理
+            <br> 子系统
+          </span>
+        </div>
+      </div>
+      <!-- <div class="content">
+          <div class="photo-container">
+            <img src="./assets/img/redirection/气瓶追溯.png">
+          </div>
+        </div> -->
+    </div>
+  </div>
+</div>

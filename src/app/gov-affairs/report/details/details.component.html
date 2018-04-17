@@ -4,6 +4,7 @@
     <div class="ui-g-12">
       <h2>
         报表统计
+        <gas-explanation tooltip="统计本月已交报表数和未交报表数" position="bottom"></gas-explanation>
       </h2>
     </div>
   </div>
@@ -17,7 +18,12 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'120px'}" header="对象名称" field="reportOrganizationName"></p-column>
+        <p-column [style]="{'width':'120px'}" field="reportOrganizationName">
+          <ng-template pTemplate="header">
+            对象名称
+            <gas-explanation tooltip="需要提交报表的部门或企业" position="bottom"></gas-explanation>
+          </ng-template>
+        </p-column>
         <p-column [style]="{'width':'100px'}" header="提交时间">
           <ng-template let-rowData="rowData" pTemplate="body">
             <span>{{rowData.createTime|date:"yyyy-MM-dd"}}</span>

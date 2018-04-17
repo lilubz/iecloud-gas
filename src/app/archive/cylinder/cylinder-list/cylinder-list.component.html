@@ -4,31 +4,37 @@
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 经营企业</span>
         <p-dropdown [options]="dropdown.company" formControlName="enterpriseNumber" [style]="{'width':'280px'}"></p-dropdown>
+        <gas-explanation tooltip="气瓶归属的企业" position="bottom"></gas-explanation>
       </div>
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label">状&#12288;&#12288;态</span>
         <p-dropdown [options]="dropdown.status" formControlName="state" [style]="{'width':'280px'}"></p-dropdown>
+        <gas-explanation tooltip="气瓶现处于的状态（包括正常，过期，报废，标签异常）" position="bottom"></gas-explanation>
       </div>
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 制造单位</span>
         <p-dropdown [options]="dropdown.make" formControlName="productionUnit" [style]="{'width':'280px'}"></p-dropdown>
+        <gas-explanation tooltip="生产气瓶的厂商" position="bottom"></gas-explanation>
       </div>
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 气瓶条码</span>
         <input type="text" class="textInput" formControlName="cylinderCode" pInputText>
+        <gas-explanation tooltip="企业将购买的气瓶统一分配具有唯一性的标签" position="bottom"></gas-explanation>
       </div>
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 自有编号</span>
         <input type="text" class="textInput" formControlName="ownNumber" pInputText>
+        <gas-explanation tooltip="钢瓶本身序列号" position="bottom"></gas-explanation>
       </div>
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 出厂编号</span>
         <input type="text" class="textInput" formControlName="serialNumber" pInputText>
+        <gas-explanation tooltip="带有制造厂商编号参数" position="bottom"></gas-explanation>
       </div>
 
       <div class="ui-g-12 ui-lg-4">
@@ -68,12 +74,18 @@
           <span>{{first.productionDate|date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'100px'}" header="末检日期">
+      <p-column [style]="{'width':'110px'}">
+          <ng-template pTemplate="header">
+              末检日期 <gas-explanation tooltip="最近的一次气瓶安全检测时间"  position="bottom"></gas-explanation>
+          </ng-template>
         <ng-template let-end="rowData" pTemplate="body">
           <span>{{end.endCheckDate|date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'100px'}" header="下检日期">
+      <p-column [style]="{'width':'110px'}">
+          <ng-template pTemplate="header">
+              下检日期 <gas-explanation tooltip="下一次气瓶安全检测时间" position="bottom"></gas-explanation>
+          </ng-template>
         <ng-template let-next="rowData" pTemplate="body">
           <span>{{next.nextCheckDate|date:"yyyy-MM-dd"}}</span>
         </ng-template>

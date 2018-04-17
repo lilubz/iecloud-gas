@@ -56,15 +56,21 @@
   </div>
   <div class="ui-g-12">
     <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR">气瓶条码</span>
+      <span class="span_gasleft bg_colorR">气瓶条码
+          <gas-explanation tooltip="企业将购买的气瓶统一分配具有唯一性的标签" position="bottom"></gas-explanation>
+      </span>
       <span class="span_textleft">{{detailList.gasLabelNumber}}</span>
     </div>
     <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR">充装介质</span>
+      <span class="span_gasright bg_colorR">充装介质
+          <gas-explanation tooltip="气瓶充装的燃气种类，该系统只有液化石油气" position="bottom"></gas-explanation>
+      </span>
       <span class="span_textright">{{detailList.gcSpecification?.fillingMedia}}</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR">出厂编号</span>
+      <span class="span_gasleft bg_colorR">出厂编号
+          <gas-explanation tooltip="带有制造厂商编号参数" position="bottom"></gas-explanation>
+      </span>
       <span class="span_textleft">{{detailList.gcLabelInfo?.serialNumber}}</span>
 
     </div>
@@ -73,7 +79,9 @@
       <span class="span_textright">{{detailList.gcSpecification?.weight?detailList.gcSpecification?.weight:0}}kg</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR">自有编号</span>
+      <span class="span_gasleft bg_colorR">自有编号
+          <gas-explanation tooltip="钢瓶本身序列号" position="bottom"></gas-explanation>
+      </span>
       <span class="span_textleft">{{detailList.gcLabelInfo?.enterpriseCylinderCode}}</span>
 
     </div>
@@ -109,7 +117,9 @@
       <span class="span_textright">{{detailList.gcSpecification?.nominalWorkingPressure?detailList.gcSpecification?.nominalWorkingPressure:0}}MPa</span>
     </div>
     <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR">生产单位</span>
+      <span class="span_gasleft bg_colorR">制造单位
+          <gas-explanation tooltip="生产气瓶的厂商" position="bottom"></gas-explanation>
+      </span>
       <span class="span_textleft">{{detailList.manufactureName}}</span>
 
     </div>

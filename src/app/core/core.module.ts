@@ -12,6 +12,7 @@ import { Logger } from './logger';
 import { PermissionGuard } from './permission-guard.service';
 import { FullScreenService } from './full-screen.service';
 import { CookieService } from './cookie.service';
+import { RedirectionPageService } from '../redirectionPage/redirectionPage.service';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { CookieService } from './cookie.service';
     Util,
     Logger,
     FullScreenService,
-    CookieService
+    CookieService,
+    RedirectionPageService
   ]
 })
 export class CoreModule {

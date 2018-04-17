@@ -1,4 +1,3 @@
-
 <!-- 左侧二级菜单 -->
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
@@ -20,13 +19,13 @@
       <div class="form-group ui-g-9">
         <label for="" class="search-label">截止时间：</label>
         <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
-          [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true" [style]="{'width':'200px'}"
-          name="startTime">
+          [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
+          [style]="{'width':'200px'}" name="startTime">
         </p-calendar>
         <span>到</span>
         <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
-          [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true" [style]="{'width':'200px'}"
-          name="endTime">
+          [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
+          [style]="{'width':'200px'}" name="endTime">
         </p-calendar>
       </div>
       <div class="ui-g-3">
@@ -43,7 +42,12 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-        <p-column field="transactionBasicNumber" header="事务编号"></p-column>
+        <p-column field="transactionBasicNumber" header="事务编号">
+          <ng-template pTemplate="header">
+            事件编号
+            <gas-explanation tooltip="根据一定的编号规则生成的该事务的序列号" position="bottom"></gas-explanation>
+          </ng-template>
+        </p-column>
         <p-column field="transactionOrganizationName" header="对象名称"></p-column>
         <p-column header="指派时间">
           <ng-template let-rowData="rowData" pTemplate="body">

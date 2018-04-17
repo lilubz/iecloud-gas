@@ -201,7 +201,7 @@
           <span class="ui-g-6 content title">操作</span>
           <span class="ui-g-6 content">
             <a *ngIf="item.boolIsHide===0" href="javascript:void(0);" (click)="onOpenDialog(item)">重新指派</a>
-            <a *ngIf="item.boolIsHide===1" href="javascript:void(0);" ></a>
+            <a *ngIf="item.boolIsHide===1" href="javascript:void(0);"></a>
           </span>
         </div>
       </div>
@@ -249,13 +249,13 @@
 
   <p-confirmDialog header="请确认！" icon="fa fa-question-circle" width="425" acceptLabel="确认" rejectLabel="取消">
   </p-confirmDialog>
-  <p-dialog [visible]="visible" [showHeader]="false" [modal]="true" [closable]="false" [width]="310" [height]="440"
-    [contentStyle]="{'padding':'2px'}" [style]="{'border':'none'}">
-    <p-calendar [(ngModel)]="formModel.nextSubmitTime" [locale]="zh" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true" [yearNavigator]="true"
-       yearRange="2018:2050" readonlyInput="true" [inline]="true" [showTime]="true" [minDate]="currentDate"></p-calendar>
-      <div class="text-center" style="margin-top:10px">
-        <button pButton type="button" label="确定" style="margin-right:20px" (click)="sendNextSubmitTime()"></button>
-        <button pButton type="button" label="取消" class="ui-button-secondary" (click)="visible = false"></button>
-      </div>
+  <p-dialog [visible]="visible" [showHeader]="false" [modal]="true" [closable]="false" [width]="310" [height]="440" [contentStyle]="{'padding':'2px'}"
+    [style]="{'border':'none'}">
+    <p-calendar [(ngModel)]="formModel.nextSubmitTime" [locale]="zh" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
+      [yearNavigator]="true" yearRange="2018:2050" readonlyInput="true" [inline]="true" [showTime]="true" [minDate]="currentDate"></p-calendar>
+    <div class="text-center" style="margin-top:10px">
+      <button pButton type="button" label="确定" style="margin-right:20px" (click)="sendNextSubmitTime()"></button>
+      <button pButton type="button" label="取消" class="ui-button-secondary" (click)="visible = false"></button>
+    </div>
   </p-dialog>
 </div>

@@ -21,8 +21,11 @@
           <span>{{index+1}}</span>
         </ng-template>
       </p-column>
-      <p-column field="reportName" header="报表名称">
-
+      <p-column field="reportName">
+        <ng-template pTemplate="header">
+          报表名称
+          <gas-explanation tooltip="该报表的主要内容的简单描述" position="bottom"></gas-explanation>
+        </ng-template>
       </p-column>
       <p-column header="提交时间">
         <ng-template pTemplate="body" let-Data="rowData">

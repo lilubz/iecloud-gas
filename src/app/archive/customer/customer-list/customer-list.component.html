@@ -8,6 +8,7 @@
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label">供气企业：</span>
         <p-dropdown [options]="dropdown.corp" [style]="{'width':'280px'}" formControlName="enterpriseNumber"></p-dropdown>
+        <gas-explanation tooltip="出售气瓶给客户的企业" position="bottom"></gas-explanation>
       </div>
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label">用户名称：</span>
@@ -20,9 +21,11 @@
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 客户类别：</span>
         <p-dropdown [options]="dropdown.userType" [style]="{'width':'280px'}" formControlName="userTypeId"></p-dropdown>
+        <gas-explanation tooltip="根据气瓶使用途径区别的客户类别（有个人，商业，工业三种）" position="bottom"></gas-explanation>
       </div>
       <div class="ui-g-12 ui-lg-6">
         <p-checkbox name="group1" label="只看有合同" formControlName="haveContract" binary="true"></p-checkbox>
+        <gas-explanation tooltip="按是否具有合同信息来筛选查询结果" position="bottom"></gas-explanation>
       </div>
       <div class="ui-g-12 ui-lg-4">
         <button pButton type="submit" label="查询" class="searchBtn"></button>
@@ -62,13 +65,24 @@
           <button pButton type="button" (click)="onDelete(rowData)" label="删除" class="ui-button-secondary"></button>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'150px'}" field="dispatcherName" header="配送工"></p-column>
+
+      <p-column [style]="{'width':'150px'}" field="dispatcherName">
+        <ng-template pTemplate="header">
+          配送工
+          <gas-explanation tooltip="用户指定的配送气瓶的送气工（默认）" position="bottom"></gas-explanation>
+        </ng-template>
+      </p-column>
       <p-column [style]="{'width':'150px'}" field="enterpriseName" header="供气企业"></p-column>
       <p-column [style]="{'width':'80px'}" field="userType" header="客户类别"></p-column>
       <p-column [style]="{'width':'80px'}" field="userNature" header="用户性质"></p-column>
       <p-column [style]="{'width':'80px'}" field="certificateName" header="证件类型"></p-column>
       <p-column [style]="{'width':'200px'}" field="certificateId" header="证件编号"></p-column>
-      <p-column [style]="{'width':'80px'}" field="principal" header="负责人"></p-column>
+      <p-column [style]="{'width':'110px'}" field="principal">
+        <ng-template pTemplate="header">
+          负责人
+          <gas-explanation tooltip="用户证件上的名字，用来区分燃气用户名" position="bottom"></gas-explanation>
+        </ng-template>
+      </p-column>
       <p-column [style]="{'width':'150px'}" field="phone" header="联系电话"></p-column>
       <!-- <p-column [style]="{'width':'50px'}" field="gcCount" header="在用气瓶数"></p-column> -->
       <p-column [style]="{'width':'150px'}" field="contractNo" header="合同编号"></p-column>

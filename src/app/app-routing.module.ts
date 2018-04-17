@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { PermissionGuard } from './core/permission-guard.service';
+import { RedirectionPageComponent } from './redirectionPage/redirectionPage.component';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
@@ -55,6 +56,13 @@ const routes: Routes = [
         loadChildren: './input/input.module#InputModule',
       },
     ]
+  },
+  {
+    path: 'home',
+    component: RedirectionPageComponent,
+    data: {
+      title: '跳转页'
+    }
   },
   {
     path: 'login',

@@ -1,7 +1,9 @@
 <div class="submit">
   <div class="ui-g-12 card">
     <div style="min-width:700px">
-      <h2>报表提交</h2>
+      <h2>报表提交
+          <gas-explanation tooltip="用于查看哪些报表需要编辑提交" position="bottom"></gas-explanation>
+      </h2>
       <div class="ui-g">
         <div class="ui-g-12">
           <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
@@ -24,7 +26,12 @@
                 </div>
               </ng-template>
             </p-column>
-            <p-column [style]="{'width':'120px'}" header="报表名称" field="reportName"></p-column>
+            <p-column [style]="{'width':'120px'}" field="reportName">
+              <ng-template pTemplate="header">
+                报表名称
+                <gas-explanation tooltip="该报表的主要内容的简单描述" position="bottom"></gas-explanation>
+              </ng-template>
+            </p-column>
             <p-column [style]="{'width':'60px'}" header="模板下载">
               <ng-template let-rowData="rowData" pTemplate="body">
                 <a [href]="rowData.attachmentUrl" target="_blank">点击查看</a>

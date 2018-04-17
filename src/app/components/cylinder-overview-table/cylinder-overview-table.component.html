@@ -26,6 +26,10 @@
     </ng-template>
   </p-column>
   <p-column field="expireCount" header="过期">
+    <ng-template pTemplate="header">
+      过期
+      <gas-explanation tooltip="检验气瓶时间超过下次检验时间" position="bottom"></gas-explanation>
+    </ng-template>
     <ng-template let-cylinderStatistic="rowData" pTemplate="body">
       {{ cylinderStatistic.expireCount || 0 }}
     </ng-template>
@@ -36,6 +40,10 @@
     </ng-template>
   </p-column>
   <p-column field="scrapCount" header="标签异常">
+    <ng-template pTemplate="header">
+      标签异常
+      <gas-explanation tooltip="气瓶不归属于该企业，却挂在该企业下" position="bottom"></gas-explanation>
+    </ng-template>
     <ng-template let-cylinderStatistic="rowData" pTemplate="body">
       {{ cylinderStatistic.codeAbnormalCount || 0 }}
     </ng-template>

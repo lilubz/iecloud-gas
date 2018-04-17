@@ -1,7 +1,9 @@
 <div class="submit ui-g-12">
   <div class="ui-g">
     <div class="ui-g-12">
-      <h2>报表提交</h2>
+      <h2>报表提交
+        <gas-explanation tooltip="用于查看需要提交哪些报表" position="bottom"></gas-explanation>
+      </h2>
     </div>
   </div>
   <div class="ui-g">
@@ -26,7 +28,12 @@
             </div>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'120px'}" header="报表名称" field="reportName"></p-column>
+        <p-column [style]="{'width':'120px'}" field="reportName">
+          <ng-template pTemplate="header">
+            报表名称
+            <gas-explanation tooltip="该报表的主要内容的简单描述" position="bottom"></gas-explanation>
+          </ng-template>
+        </p-column>
         <p-column [style]="{'width':'80px'}" header="模板下载">
           <ng-template let-rowData="rowData" pTemplate="body">
             <a href="javascript:void(0);" (click)="window.location.href=rowData.attachmentUrl">点击查看</a>
@@ -54,7 +61,7 @@
           </div>
         </ng-template>
         <ng-template pTemplate="paginatorRight">
-            共 {{ dataTable.total || 0 }} 条记录
+          共 {{ dataTable.total || 0 }} 条记录
         </ng-template>
       </p-dataTable>
     </div>

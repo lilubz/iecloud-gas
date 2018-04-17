@@ -1,44 +1,30 @@
 <div class="ui-g-12 enterprise-detail">
   <div class="ui-g padding">
-    <!-- 辖区、企业名称、负责人 -->
-    <!-- <div class="ui-g-12 ui-lg-12 "> -->
-    <!-- 辖区 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
       <span class="inputgroup">辖&#12288;&#12288;区</span>
       <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
     </div>
-    <!-- 企业名称 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <!-- <div class="inputgroup"> -->
       <span class="inputgroup">企业名称</span>
       <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText placeholder="" style="width:180px">
-      <!-- </div> -->
     </div>
-    <!-- 负责人 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <!-- <div class="inputgroup"> -->
       <span class="inputgroup">负&nbsp;&nbsp;责&nbsp;&nbsp;人</span>
       <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="" style="width:180px">
-      <!-- </div> -->
     </div>
-    <!-- 服务电话 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
       <span class="inputgroup">服务电话</span>
       <input type="text" class="textInput" [(ngModel)]="searchParams.phone" maxlength="20" pInputText placeholder="" style="width:180px">
     </div>
-    <!-- </div> -->
-    <!-- 发证日期 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <!-- <div class="inputgroup"> -->
       <span class="inputgroup">发证日期</span>
       <p-calendar [locale]="cn" #start (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)" placeholder="2017-10-1"
-        [showButtonBar]="true" [maxDate]="end.value" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
-        [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}">
-      </p-calendar>
+      [showButtonBar]="true" [maxDate]="end.value" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
+      [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}">
+    </p-calendar>
+    <gas-explanation tooltip="选择时间段按发证日期的时间间隔查询" position="bottom"></gas-explanation>
 
-      <!-- </div> -->
     </div>
-    <!-- 到期 -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
       <span class="inputgroup">&#12288;&#12288;至&#12288;</span>
       <p-calendar [locale]="cn" #end (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="start.value"

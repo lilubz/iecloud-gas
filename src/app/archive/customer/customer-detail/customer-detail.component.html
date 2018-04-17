@@ -29,11 +29,15 @@
         <span class="span_textaddress">{{detailLists.certificateAddress}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR">用户类型</span>
+        <span class="span_gasleft bg_colorR">用户类型
+          <gas-explanation tooltip="根据气瓶使用途径区别的客户类别（有个人，商业，工业三种）" position="bottom"></gas-explanation>
+        </span>
         <span class="span_textleft">{{detailLists.userTypeName}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR">负责人</span>
+        <span class="span_gasright bg_colorR">负责人
+          <gas-explanation tooltip="用户证件上的名字，用来区分燃气用户名" position="bottom"></gas-explanation>
+        </span>
         <span class="span_textright">{{detailLists.principal}}</span>
       </div>
       <div class="ui-g-6 padding-none">
@@ -49,7 +53,9 @@
         <span class="span_textleft">{{detailLists.deliveryAddress}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR">配送工</span>
+        <span class="span_gasright bg_colorR">配送工
+          <gas-explanation tooltip="用户指定的配送气瓶的送气工（默认）" position="bottom"></gas-explanation>
+        </span>
         <span class="span_textright">{{ detailLists.dispatcherName }}</span>
       </div>
       <div class="ui-g-6 padding-none">
@@ -128,12 +134,13 @@
   </div>
 </div>
 
-<p-dialog [visible]="cylinderVisible" header="用户在用气瓶详情" [responsive]="true"  [showHeader]="true" [modal]="true" [closable]="false" [width]="800"
-  [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="130">
+<p-dialog [visible]="cylinderVisible" header="用户在用气瓶详情" [responsive]="true" [showHeader]="true" [modal]="true" [closable]="false"
+  [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="130">
   <!-- <h3 class="title"></h3> -->
   <div class="ui-g">
-    <p-dataTable [value]="dataTablelist" [style]="{'max-height':'450px'}" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="pageSize" [scrollable]="false"
-       [rowsPerPageOptions]="pageOption" scrollHeight="360px" [totalRecords]="total" (onLazyLoad)="onPageChange($event)" [(first)]="first">
+    <p-dataTable [value]="dataTablelist" [style]="{'max-height':'450px'}" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true"
+      [rows]="pageSize" [scrollable]="false" [rowsPerPageOptions]="pageOption" scrollHeight="360px" [totalRecords]="total"
+      (onLazyLoad)="onPageChange($event)" [(first)]="first">
       <p-column [style]="{'width':'100px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <span>{{index+1}}</span>
@@ -176,8 +183,8 @@
         </div>
       </ng-template>
       <ng-template pTemplate="paginatorRight">
-          共 {{ total || 0 }} 条记录
-        </ng-template>
+        共 {{ total || 0 }} 条记录
+      </ng-template>
     </p-dataTable>
   </div>
   <p-footer>

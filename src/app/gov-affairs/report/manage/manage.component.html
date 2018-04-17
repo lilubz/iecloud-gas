@@ -3,6 +3,7 @@
     <div class="ui-g-6">
       <h3>
         报表管理
+        <gas-explanation tooltip="具有日常报表数据录入和统计分析功能，将县（区）监管单位、经营企业日常需要提交的报表数据，通过系统提交，实现自动统计分析的功能" position="bottom"></gas-explanation>
       </h3>
     </div>
     <div class="ui-g-6 text-right">
@@ -19,13 +20,22 @@
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'120px'}" header="报表名称" field="reportName"></p-column>
+        <p-column [style]="{'width':'120px'}" field="reportName">
+          <ng-template pTemplate="header">
+            报表名称
+            <gas-explanation tooltip="该报表的主要内容的简单描述" position="bottom"></gas-explanation>
+          </ng-template>
+        </p-column>
         <p-column [style]="{'width':'80px'}" header="模板下载">
           <ng-template let-rowData="rowData" pTemplate="body">
             <a href="javascript:void(0);" (click)="util.downloadFile(rowData.attachmentUrl)">点击查看</a>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'60px'}" header="提交间隔">
+        <p-column [style]="{'width':'60px'}">
+          <ng-template pTemplate="header">
+            提交间隔
+            <gas-explanation tooltip="该报表提交时间的频率" position="bottom"></gas-explanation>
+          </ng-template>
           <ng-template let-rowData="rowData" pTemplate="body">
             <span>{{rowData.reportCommitIntervalTime}}天</span>
           </ng-template>
@@ -68,7 +78,9 @@
           <div class="ui-g-6">
             <div class="form-group ui-g-12">
               <label for="inputEmail3" class="ui-g-4 control-label text-right">
-                <span class="warn">*</span>附件：</label>
+                <span class="warn">*</span>附件：
+                <gas-explanation tooltip="按照上级指定的报表模板填写完整信息的文件" position="bottom"></gas-explanation>
+              </label>
               <div class="ui-g-8">
                 <input type="file" #file id="file" name="file" accept=".doc,.xls,.docx,.xlsx" />
               </div>
@@ -87,10 +99,12 @@
           </div>
           <div class="ui-g-6 form-group">
             <label for="inputEmail3" class="ui-g-4 control-label text-right">
-              <span class="warn">*</span>使用对象：</label>
+              <span class="warn">*</span>使用对象：
+            </label>
             <div class="ui-g-8">
               <p-radioButton name="target" value="1" label="执法部门" [(ngModel)]="formModel.target" inputId="opt1"></p-radioButton>
               <p-radioButton name="target" value="2" label="企业" [(ngModel)]="formModel.target" inputId="opt2"></p-radioButton>
+              <gas-explanation tooltip="选择需要提交报表的对象是部门或者企业" position="bottom"></gas-explanation>
             </div>
           </div>
         </div>
@@ -98,11 +112,13 @@
           <div class="ui-g-6">
             <div class="ui-g-12 form-group">
               <label for="inputEmail3" class="ui-g-4 control-label text-right">
-                <span class="warn">*</span>首次提交：</label>
+                <span class="warn">*</span>首次提交：
+              </label>
               <div class="ui-g-8">
                 <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
-                  [locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false" placeholder="初始提交时间" [minDate]="currentDate"
-                  [showButtonBar]="true" [style]="{'width':'100%'}"></p-calendar>
+                [locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false" placeholder="初始提交时间" [minDate]="currentDate"
+                [showButtonBar]="true" [style]="{'width':'90%'}"></p-calendar>
+                <gas-explanation tooltip="指定第一次提交的时间" position="bottom"></gas-explanation>
               </div>
             </div>
           </div>

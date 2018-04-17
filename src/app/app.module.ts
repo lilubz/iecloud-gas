@@ -9,12 +9,14 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { RedirectionPageComponent } from './redirectionPage/redirectionPage.component';
 import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RedirectionPageComponent,
     LayoutComponent
   ],
   imports: [

@@ -3,9 +3,9 @@ import { Component, OnInit, OnDestroy, Input, } from '@angular/core';
 @Component({
   selector: 'gas-explanation',
   template: `
-   <div class="explanation">
-     <i class="fa fa-question-circle"  [pTooltip]="tooltip" [tooltipPosition]="position" ></i>
-    </div>
+   
+     <i class="fa fa-question-circle explanation" [pTooltip]="tooltip" [tooltipPosition]="position" ></i>
+
     `,
   styleUrls: ['./explanation.component.css']
 })

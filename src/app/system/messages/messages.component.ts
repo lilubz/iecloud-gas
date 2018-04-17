@@ -128,15 +128,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   checkForm(): boolean {
-    if (!this.List.title) {
+    if (!this.List.title || /^\s+$/gi.test(this.List.title)) {
       this.showMessage('warn', '提示信息', '标题不能为空');
       return false;
-    } else if (!this.List.file) {
+    } else if (this.List.file.length <= 0) {
       this.showMessage('warn', '提示信息', '上传文件不能为空');
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   showMessage(type, title, msg) {
     this.msgs.push({

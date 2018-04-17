@@ -13,14 +13,16 @@
               <b style="color:red;">*</b>
             </label>
             <input type="text" class="textInput" formControlName="realname" pInputText placeholder="">
+            <gas-explanation tooltip="管理员姓名" position="bottom"></gas-explanation>
           </div>
         </div>
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
-            <label for="" class="search-label">登陆名
+            <label for="" class="search-label">用户名
               <b style="color:red;">*</b>
             </label>
             <input type="text" class="textInput" formControlName="username" pInputText placeholder="">
+            <gas-explanation tooltip="用户名即登录系统的账号名称" position="bottom"></gas-explanation>
           </div>
         </div>
 
@@ -49,6 +51,7 @@
               <b style="color:red;">*</b>
             </label>
             <p-dropdown [options]="category" formControlName="certificateName" [style]="{'width':'300px'}"></p-dropdown>
+            <gas-explanation tooltip="管理员的证件暂定身份证" position="bottom"></gas-explanation>
           </div>
         </div>
         <!-- 证件编号 -->
@@ -67,6 +70,7 @@
               <b style="color:red;">*</b>
             </label>
             <p-dropdown [options]="enterpriseDrop" formControlName="enterpriseNumber" [style]="{'width':'300px'}"></p-dropdown>
+            <gas-explanation tooltip="选择企业就是给该企业开通账号" position="bottom"></gas-explanation>
           </div>
         </div>
         <!-- 账号状态 -->

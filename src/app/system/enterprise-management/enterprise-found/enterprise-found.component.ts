@@ -38,11 +38,7 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
     {
       label: '瓶装燃气',
       value: '瓶装燃气',
-    },
-    {
-      label: '管道燃气(天然气、液化石油气)',
-      value: '管道燃气(天然气、液化石油气)',
-    },
+    }
   ];
   regionDropdown: SelectItem[] = [
     {
