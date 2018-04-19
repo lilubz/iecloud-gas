@@ -38,7 +38,7 @@ export class CustomerListService {
   }
   editCustomer(params: any): Promise<any> {
     return this.httpService
-      .formPostRequest(this.API.updateGcUser, params);
+      .formDataPostRequest(this.API.updateGcUser, params);
   }
 
   listTheCorpDispatcherInfoByTheNameOfTheCorpDispatcher(params?: any): Promise<any> {

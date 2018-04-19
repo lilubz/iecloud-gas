@@ -33,7 +33,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <p-dropdown [options]="IDTypes" [(ngModel)]="customer.certificateName"></p-dropdown>
+                <input type="text" [(ngModel)]="customer.certificateName" pInputText disabled>
             </div>
           </div>
           <div class="ui-g-12">
@@ -65,7 +65,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <p-dropdown [options]="customerTypes" [(ngModel)]="customer.userTypeId"></p-dropdown>
+              <p-dropdown [options]="customerTypes" [(ngModel)]="customer.userTypeId" (ngModelChange)="selectCustomerType()"></p-dropdown>
             </div>
           </div>
           <div *ngIf="customer.userTypeId!='0'">
@@ -211,9 +211,10 @@
       <h3>附件</h3>
       <div class="ui-g-12 ui-g-nopad">
         <div class="ui-g-12">
-          <div class="ui-g-3 ui-lg-2 ui-g-nopad">
+          <div class="ui-g-3 ui-g-nopad">
             <span>证件信息
               <span class="required">*</span>
+              <gas-explanation tooltip="个体用户请上传身份证照片，工业和商业用户请上传营业执照和合同"></gas-explanation>
             </span>
           </div>
           <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
@@ -225,8 +226,8 @@
           </div>
         </div>
         <div class="ui-g-12">
-          <div class="ui-g-3 ui-lg-2 ui-g-nopad">
-            <span>其他</span>
+          <div class="ui-g-3 ui-g-nopad">
+            <span>用户安全供气协议书</span>
           </div>
           <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
             <p-fileUpload #OtherImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"

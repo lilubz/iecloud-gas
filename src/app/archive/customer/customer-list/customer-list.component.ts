@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,6 +17,7 @@ import { RoleType } from '../../../common/RoleType';
 })
 
 export class CustomerListComponent implements OnInit {
+  @ViewChild('contractPhotoFile') contractPhotoFile: ElementRef;
   RoleType = RoleType;
   loading = false;
   deliveryRegionId;
@@ -225,6 +226,7 @@ export class CustomerListComponent implements OnInit {
     });
   }
   onEdit(rowData) {
+    this.contractPhotoFile.nativeElement.value = null;
     this.displayEditDialog = true;
     this.willEditCustomer = Object.assign({}, rowData);
     // 选中的用户是否 有用户卡编号
@@ -256,16 +258,17 @@ export class CustomerListComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择配送区域' });
       return false;
     }
+    let formData = new FormData();
+    formData.append('userNumber', this.willEditCustomer.userNumber);
+    formData.append('userName', this.willEditCustomer.userName);
+    formData.append('deliveryAddress', this.willEditCustomer.deliveryAddress);
+    formData.append('phone', this.willEditCustomer.phone);
+    formData.append('userIdentityCardNumber', this.willEditCustomer.userIdentityCardNumber ? this.willEditCustomer.userIdentityCardNumber : '');
+    formData.append('dispatcherNumber', this.selectedEditDispatcher ? this.selectedEditDispatcher.dispatcherNumber ? this.selectedEditDispatcher.dispatcherNumber.toString() : '' : '');
+    formData.append('deliveryRegionId', this.deliveryRegionId);
+    formData.append('contractPhoto', this.contractPhotoFile.nativeElement.files[0] || '');
 
-    this.customerListService.editCustomer({
-      userNumber: this.willEditCustomer.userNumber,
-      userName: this.willEditCustomer.userName,
-      deliveryAddress: this.willEditCustomer.deliveryAddress,
-      phone: this.willEditCustomer.phone,
-      userIdentityCardNumber: this.willEditCustomer.userIdentityCardNumber ? this.willEditCustomer.userIdentityCardNumber : '',
-      dispatcherNumber: this.selectedEditDispatcher ? this.selectedEditDispatcher.dispatcherNumber || '' : '',
-      deliveryRegionId: this.deliveryRegionId
-    }).then(data => {
+    this.customerListService.editCustomer(formData).then(data => {
       if (data.status === 0) {
         this.messageService.add({ severity: 'success', summary: '响应消息', detail: data.msg });
         this.displayEditDialog = false;

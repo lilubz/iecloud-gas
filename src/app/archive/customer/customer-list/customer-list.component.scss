@@ -1,5 +1,5 @@
-div.customer-list{
-  a{
+div.customer-list {
+  a {
     color: #3399ff;
   }
   .textInput {
@@ -11,5 +11,11 @@ div.customer-list{
     height: 45px;
     font-size: 1em;
     background: #3186dc;
+  }
+  .warn {
+    color: red;
+  }
+  .search-label{
+    width: 120px;
   }
 }
