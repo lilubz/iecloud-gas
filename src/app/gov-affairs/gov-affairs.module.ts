@@ -11,11 +11,13 @@ import { CollaborativeModule } from './collaborative/collaborative.module';
 import { ReportModule } from './report/report.module';
 import { CylinderWarningComponent } from './cylinder-warning/cylinder-warning.component';
 import { FillingScaleModule } from './filling-scale/filling-scale.module';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
+    ComponentsModule,
     ReportModule,
     CollaborativeModule,
     FillingScaleModule,

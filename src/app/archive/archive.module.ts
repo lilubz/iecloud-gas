@@ -12,6 +12,9 @@ import { EnterpriseModule } from './enterprise/enterprise.module';
 import { CylinderOverviewService } from './cylinder/cylinder-overview/cylinder-overview.service';
 import { CustomerOverviewService } from './customer/customer-overview/customer-overview.service';
 import { ComponentsModule } from '../components/components.module';
+import { GasHolderComponent } from './gasHolder/gasHolder.component';
+import { GasHolderService } from './gasHolder/gasHolder.service';
+import { FillingScaleListComponent } from './filling-scale-list/filling-scale-list.component';
 
 
 @NgModule({
@@ -27,10 +30,13 @@ import { ComponentsModule } from '../components/components.module';
   ],
   declarations: [
     ArchiveComponent,
+    GasHolderComponent,
+    FillingScaleListComponent,
   ],
   providers: [
     CylinderOverviewService,
-    CustomerOverviewService
+    CustomerOverviewService,
+    GasHolderService,
   ]
 })
 export class ArchiveModule { }

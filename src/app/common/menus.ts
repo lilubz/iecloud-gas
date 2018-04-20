@@ -16,6 +16,8 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '企业档案', routerLink: ['/archive/enterprise'] },
       { label: '车辆信息', routerLink: ['/archive/car'] },
       { label: '送气工信息', routerLink: ['/archive/employee'] },
+      { label: '储气罐档案', routerLink: ['/archive/gasHolder'] },
+      { label: '充装秤档案', routerLink: ['/archive/filling-scale'] },
     ]
   },
   {
@@ -75,6 +77,8 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '通知公告', routerLink: ['/system/message'] },
       { label: '企业管理', routerLink: ['/system/enterprise-management'] },
       { label: '供应站管理', routerLink: ['/system/bottle-library'] },
+      { label: '政府用户管理', routerLink: ['/system/system-user'] },
+      { label: '配置管理', routerLink: ['/system/setting'] },
     ]
   },
   {
@@ -99,6 +103,8 @@ export const EnterpriseMenus: MenuItem[] = [
       { label: '用户档案', routerLink: ['/archive/customer'] },
       { label: '车辆信息', routerLink: ['/archive/car'] },
       { label: '送气工信息', routerLink: ['/archive/employee'] },
+      { label: '储气罐档案', routerLink: ['/archive/gasHolder'] },
+      { label: '充装秤档案', routerLink: ['/archive/filling-scale'] },
     ]
   },
   {

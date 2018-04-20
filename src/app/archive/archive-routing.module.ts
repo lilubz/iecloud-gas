@@ -21,6 +21,8 @@ import { EnterpriseDetailComponent } from './enterprise/enterprise-detail/enterp
 import { CarComponent } from './car/car.component';
 import { SearchComponent } from './car/search/search.component';
 import { DispatcherComponent } from './employee/dispatcher/dispatcher.component';
+import { GasHolderComponent } from './gasHolder/gasHolder.component';
+import { FillingScaleListComponent } from './filling-scale-list/filling-scale-list.component';
 const routes: Routes = [
   {
     path: '',
@@ -191,6 +193,20 @@ const routes: Routes = [
             }
           },
         ]
+      },
+      {
+        path: 'gasHolder',
+        component: GasHolderComponent,
+        data: {
+          title: '储气罐档案'
+        },
+      },
+      {
+        path: 'filling-scale',
+        component: FillingScaleListComponent,
+        data: {
+          title: '充装秤档案'
+        },
       },
     ]
   },

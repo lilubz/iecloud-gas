@@ -13,6 +13,7 @@ import { CylinderTraceService } from './cylinder-trace/cylinder-trace.service';
 import { DashboardService } from './dashboard/dashboard.service';
 import { CylinderFillingComponent } from './cylinder-trace/cylinder-filling/cylinder-filling.component';
 import { MapComponent } from './map/map.component';
+import { GISSettingService } from '../system/setting-management/GIS-setting/GIS-setting.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { MapComponent } from './map/map.component';
   providers: [
     DashboardService,
     CylinderTraceService,
+    GISSettingService
   ]
 })
 export class DeliveryModule { }

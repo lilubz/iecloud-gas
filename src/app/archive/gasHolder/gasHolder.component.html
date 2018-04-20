@@ -1,0 +1,63 @@
+<div class="main">
+  <div class="ui-g-12 card">
+    <div class="gasHolder">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-lg-6">
+          <label class="search-label">所属企业</label>
+          <p-dropdown [options]="dropdown.enterprise" [(ngModel)]="searchParams.enterpriseNumber"  [style]="{'width':'280px'}"></p-dropdown>
+        </div>
+
+        <!-- <div class="ui-g-12 ui-lg-6">
+          <label class="search-label">充装站点编码</label>
+          <input class="textInput" type="text" pInputText [(ngModel)]="searchParams.inflatableStationNumber" />
+        </div>
+
+        <div class="ui-g-12 ui-lg-6">
+          <label class="search-label">秤号</label>
+          <input class="textInput" type="text" pInputText [(ngModel)]="searchParams.balanceNumber" />
+        </div> -->
+
+        <div class="ui-g-12">
+          <button class="searchBtn" pButton label="搜索" (click)="getDataList()"></button>
+        </div>
+      </div>
+
+      <div class="ui-g">
+        <p-dataTable [value]="fillingBalanceList" [lazy]="true" dataKey="enterpriseNumber" [paginator]="true" [rows]="pages.pageSize"
+          [scrollable]="false" scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="pages.first">
+          <p-column [style]="{'width':'80px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'150px'}" field="enterpriseName" header="所属企业"></p-column>
+          <!-- <p-column [style]="{'width':'150px'}" field="inflatableStationNumber" header="充装站编号"></p-column> -->
+          <p-column [style]="{'width':'150px'}" field="inflatableStationName" header="充装站名称"></p-column>
+          <p-column [style]="{'width':'150px'}" field="gasTankId" header="罐所在充装站编号"></p-column>
+          <p-column [style]="{'width':'150px'}" field="specification" header="规格说明"></p-column>
+          <p-column [style]="{'width':'150px'}" field="remark" header="备注"></p-column>
+          <p-column [style]="{'width':'150px'}" header="创建时间">
+            <ng-template let-rowdata="rowData" pTemplate="body">
+              <span>{{rowdata.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'150px'}" header="更新时间">
+            <ng-template let-rowdata="rowData" pTemplate="body">
+              <span>{{rowdata.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+            </ng-template>
+          </p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+          <ng-template pTemplate="paginatorRight">
+            共 {{ pages.total || 0 }} 条记录
+          </ng-template>
+        </p-dataTable>
+      </div>
+
+    </div>
+  </div>
+</div>

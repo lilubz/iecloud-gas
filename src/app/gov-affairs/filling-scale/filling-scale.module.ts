@@ -7,10 +7,12 @@ import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { SetScaleRuleComponent } from './set-scale-rule/set-scale-rule.component';
 import { FillingScaleService } from './filling-scale.service';
+import { ComponentsModule } from '../../components/components.module';
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
+    ComponentsModule
   ],
   declarations: [
     FillingScaleComponent,

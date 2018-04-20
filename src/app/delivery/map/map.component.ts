@@ -186,7 +186,7 @@ export class MapComponent implements OnInit, OnDestroy {
       return;
     }
     const dateRange = this.getSelectedTime(this.selectedDateRangeCar, this.beginTimeCar, this.endTimeCar);
-    this.messageService.add({ severity: 'warn', summary: '数据对接中，暂时无法查询车辆轨迹！', detail: '' });
+    this.messageService.add({ severity: 'warn', summary: '未查询到信息！', detail: '' });
     // this.mapService.getThePathByAccountId({
     //   beginTime: dateRange.beginTime,
     //   endTime: dateRange.endTime,

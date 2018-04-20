@@ -1,0 +1,80 @@
+<div class="ui-g-12 user-opening">
+  <div style="min-width: 450px;">
+    <div class="ui-g-8">
+      <h2 class="title">
+        政府管理账号开通
+      </h2>
+    </div>
+    <form [formGroup]="formModel" (submit)="addSystemUser()">
+      <div class="ui-g-8">
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">组织名称
+              <b style="color:red;">*</b>
+            </label>
+            <p-dropdown [options]="dropdown.organization" formControlName="organization" (onChange)="onChangeOrganzation($event)" [style]="{'width':'300px'}"></p-dropdown>
+            <gas-explanation tooltip="根据组织名称选择角色名称，以便于权限等级分配（必填项）" position="bottom"></gas-explanation>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">角色名
+              <b style="color:red;">*</b>
+            </label>
+            <p-dropdown [options]="dropdown.role" formControlName="role" [style]="{'width':'300px'}"></p-dropdown>
+            <gas-explanation tooltip="根据选择的角色名称，系统会分配权限等级，不同角色拥有的权限也不同（必填项）" position="bottom"></gas-explanation>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">用户名
+              <b style="color:red;">*</b>
+            </label>
+            <input type="text" class="textInput" formControlName="username" pInputText placeholder="请输入用户名">
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-nopad" formGroupName="passwords">
+          <div class="ui-g-12 ui-g-offset-3">
+            <div class="inputgroup">
+              <label for="" class="search-label">登录密码
+                <b style="color:red;">*</b>
+              </label>
+              <input type="password" class="textInput" formControlName="password" pInputText placeholder="请输入登录密码">
+            </div>
+          </div>
+          <div class="ui-g-12 ui-g-offset-3">
+            <div class="inputgroup">
+              <label for="" class="search-label">确认密码
+                <b style="color:red;">*</b>
+              </label>
+              <input type="password" class="textInput" formControlName="passwordConfirm" pInputText placeholder="请再次输入密码">
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">管理员姓名
+            </label>
+            <input type="text" class="textInput" formControlName="realname" pInputText placeholder="请输入管理员姓名">
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">手机号
+            </label>
+            <input type="text" class="textInput" formControlName="phone" pInputText placeholder="请输入手机号">
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g ui-g-offset-3">
+          <div class="save ui-lg-4 ui-g-12 ui-g-nopad">
+            <!-- <button pButton type="submit" label="确认开通" *ngIf="!formModel.valid" disabled></button> -->
+            <button pButton type="submit" label="确认开通"></button>
+          </div>
+          <div class="save ui-lg-4 ui-g-12 ui-g-nopad">
+            <button pButton type="reset" label="重置"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

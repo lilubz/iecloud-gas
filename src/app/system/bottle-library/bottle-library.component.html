@@ -100,7 +100,7 @@
   <p-dialog [visible]="editBottleVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
     [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
     <h3 class="dialogtitle">编辑供应站信息</h3>
-    <div class="ui-g-12 " style="height:400px">
+    <div class="ui-g-12 " style="height:380px">
       <div class="ui-g-12 ui-md-6">
         <div class="inputgroup">
           <label for="" class="search-label">所属区域
@@ -215,7 +215,7 @@
       <button type="button " pButton icon="fa-close " (click)="editBottleVisible=false " label="关闭 "></button>
     </p-footer>
   </p-dialog>
-  <p-dialog [visible]="addBottleVisible" [responsive]="true " [showHeader]="false " [modal]="true " [closable]="false
+  <p-dialog [visible]="addBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false
             " [width]="800 " [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
     <h3 class="dialogtitle">新增供应站信息</h3>
     <div class="ui-g-12 " style="height:400px">

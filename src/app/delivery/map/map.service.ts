@@ -1,3 +1,4 @@
+import { GISSettingService } from './../../system/setting-management/GIS-setting/GIS-setting.service';
 import { UserStateService } from './../../core/userState.service';
 import { Injectable, ElementRef, EventEmitter } from '@angular/core';
 import {
@@ -54,7 +55,8 @@ export class MapService {
 
   constructor(
     private httpService: HttpService,
-    private userStateService: UserStateService
+    private userStateService: UserStateService,
+    private gisSettingService: GISSettingService
   ) { }
 
   /**
@@ -114,11 +116,13 @@ export class MapService {
 
         // 矢量图与影像图选择按钮
         const shiliangBasemap = new Basemap({
+          id: 'shiliang',
           layers: [this.shiliangLayer],
           title: '矢量图',
           thumbnailUrl: './assets/img/shiliang-thumb.jpg'
         });
         const yingxiangBasemap = new Basemap({
+          id: 'yingxiang',
           layers: [this.yingxiangLayer],
           title: '影像图',
           thumbnailUrl: './assets/img/yingxiang-thumb.jpg'
@@ -128,7 +132,7 @@ export class MapService {
           showArcGISBasemaps: false,
           basemaps: [
             shiliangBasemap,
-            yingxiangBasemap
+            yingxiangBasemap,
           ]
         }, 'BasemapToggle');
         this.supplyStationSymbol = new SimpleMarkerSymbol(
@@ -255,7 +259,13 @@ export class MapService {
         Point,
       ]) => {
         this.initMap(mapEl).then(() => {
-          this.map.addLayer(this.shiliangLayer);
+          if (this.gisSettingService.getMapSetting() === 'shiliang') {
+            this.map.addLayer(this.shiliangLayer);
+            this.basemapGallery.select('shiliang');
+          } else {
+            this.map.addLayer(this.yingxiangLayer);
+            this.basemapGallery.select('yingxiang');
+          }
 
           // 根据当前用户设置地图中心点
           const center = this.getMapCenterByUserRegionId();

@@ -1,0 +1,28 @@
+.user-search {
+    .title {
+        color: #3186dc;
+        text-align: center;
+        white-space: nowrap;
+    }
+    .inputgroup {
+      width: 90px;
+      display: inline-block;
+      color: rgb(102, 102, 102);
+  }
+  .textInput {
+      width: 280px;
+  }
+  .ui-g{
+      padding-left: 9px;
+      .ui-lg-3{
+          padding-top: 9px;
+      }
+  }
+  .searchBtn {
+      border-radius: 4px;
+      width: 96px;
+      height: 45px;
+      font-size: 1em;
+      background: #3186dc;
+  }
+}

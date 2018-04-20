@@ -251,6 +251,15 @@ export const API = {
   // 大屏展示
   'getBigScreenData': URL + 'visualization/getBigScreenData.do',
 
+  // 储气罐档案
+  'listFillingGasTank': URL + 'gcFillingSupervise/listFillingGasTank.do',
+
+  //系统用户管理
+  'addUser': URL + 'sysUserPermissions/user/addUser.do', // 新增系统用户
+  'getGovSysUsers': URL + 'sysUserPermissions/user/getGovSysUsers.do', // 查询
+  'getGovOrganzations': URL + 'sysUserPermissions/user/getGovOrganzations.do', // 组织ID
+  'getRoles': URL + 'sysUserPermissions/user/getRoles.do', // 角色ID
+  // 充装秤
   /**
    * 监管数据统计分析
    */

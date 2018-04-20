@@ -10,6 +10,11 @@ import { EnterpriseManagementComponent } from './enterprise-management/enterpris
 import { AccountDetailComponent } from './enterprise-management/account-detail/account-detail.component';
 import { EnterpriseFoundComponent } from './enterprise-management/enterprise-found/enterprise-found.component';
 import { AccountOpeningComponent } from './enterprise-management/account-opening/account-opening.component';
+import { SystemUserComponent } from './system-user/system-user.component';
+import { UserSearchComponent } from './system-user/user-search/user-search.component';
+import { UserOpeningComponent } from './system-user/user-opening/user-opening.component';
+import { SettingManagementComponent } from './setting-management/setting-management.component';
+import { GISSettingComponent } from './setting-management/GIS-setting/GIS-setting.component';
 
 const routes: Routes = [
   {
@@ -78,6 +83,55 @@ const routes: Routes = [
         data: {
           title: '供应站管理'
         },
+      },
+      {
+        path: 'system-user',
+        component: SystemUserComponent,
+        data: {
+          title: '政府用户管理'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'user-search',
+            pathMatch: 'full'
+          },
+          {
+            path: 'user-search',
+            component: UserSearchComponent,
+            data: {
+              title: '账号概览'
+            },
+          },
+          {
+            path: 'user-opening',
+            component: UserOpeningComponent,
+            data: {
+              title: '政府账号开通'
+            },
+          },
+        ]
+      },
+      {
+        path: 'setting',
+        component: SettingManagementComponent,
+        data: {
+          title: '配置管理'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'GIS-setting',
+            pathMatch: 'full'
+          },
+          {
+            path: 'GIS-setting',
+            component: GISSettingComponent,
+            data: {
+              title: 'GIS默认图层配置管理'
+            },
+          },
+        ]
       },
     ]
   },
