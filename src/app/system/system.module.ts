@@ -13,6 +13,7 @@ import { MessagesService } from './messages/messages.service';
 import { ConfirmationService } from 'primeng/primeng';
 import { BottleLibraryComponent } from './bottle-library/bottle-library.component';
 import { BottleLibraryService } from './bottle-library/bottle-library.service';
+import { GasBusinessLicenseComponent } from './gas-business-license/gas-business-license.component';
 import { SystemUserModule } from './system-user/system-user.module';
 import { SettingManagementModule } from './setting-management/setting-management.module';
 @NgModule({
@@ -29,6 +30,7 @@ import { SettingManagementModule } from './setting-management/setting-management
     UserComponent,
     MessagesComponent,
     BottleLibraryComponent,
+    GasBusinessLicenseComponent
 
   ],
   providers: [

@@ -77,6 +77,7 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '通知公告', routerLink: ['/system/message'] },
       { label: '企业管理', routerLink: ['/system/enterprise-management'] },
       { label: '供应站管理', routerLink: ['/system/bottle-library'] },
+      { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
       { label: '政府用户管理', routerLink: ['/system/system-user'] },
       { label: '配置管理', routerLink: ['/system/setting'] },
     ]

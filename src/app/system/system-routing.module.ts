@@ -10,6 +10,7 @@ import { EnterpriseManagementComponent } from './enterprise-management/enterpris
 import { AccountDetailComponent } from './enterprise-management/account-detail/account-detail.component';
 import { EnterpriseFoundComponent } from './enterprise-management/enterprise-found/enterprise-found.component';
 import { AccountOpeningComponent } from './enterprise-management/account-opening/account-opening.component';
+import { GasBusinessLicenseComponent } from './gas-business-license/gas-business-license.component';
 import { SystemUserComponent } from './system-user/system-user.component';
 import { UserSearchComponent } from './system-user/user-search/user-search.component';
 import { UserOpeningComponent } from './system-user/user-opening/user-opening.component';
@@ -83,6 +84,13 @@ const routes: Routes = [
         data: {
           title: '供应站管理'
         },
+      },
+      {
+        path: 'gas-business-license',
+        component: GasBusinessLicenseComponent,
+        data: {
+          title: '燃气经营许可证管理'
+        }
       },
       {
         path: 'system-user',
