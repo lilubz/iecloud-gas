@@ -46,6 +46,7 @@ export class GasHolderComponent implements OnInit, OnDestroy {
       }
     ],
   };
+  loading = false;
   constructor(private _service: GasHolderService,
     private messageService: MessageService) { }
 
@@ -77,6 +78,7 @@ export class GasHolderComponent implements OnInit, OnDestroy {
   }
 
   getDataList(page?) {
+    this.loading = true;
     const params = {
       enterpriseNumber: this.searchParams.enterpriseNumber,
       // organizationId: this.searchParams.organization,
@@ -91,6 +93,7 @@ export class GasHolderComponent implements OnInit, OnDestroy {
       this.pages.first = 0;
     }
     this._service.getGasHolder(params).then(data => {
+      this.loading = false;
       if (data.status === 0) {
         this.fillingBalanceList = data.data.list;
         this.pages.total = data.data.total;

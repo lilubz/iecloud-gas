@@ -23,7 +23,7 @@
       </div>
 
       <div class="ui-g">
-        <p-dataTable [value]="fillingBalanceList" [lazy]="true" dataKey="enterpriseNumber" [paginator]="true" [rows]="pages.pageSize"
+        <p-dataTable [value]="fillingBalanceList" [loading]="loading"  [lazy]="true" dataKey="enterpriseNumber" [paginator]="true" [rows]="pages.pageSize"
           [scrollable]="false" scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
           [(first)]="pages.first">
           <p-column [style]="{'width':'80px'}" header="序号">
