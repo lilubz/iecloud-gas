@@ -34,7 +34,7 @@ export class HistoryWarningComponent implements OnInit {
     state: [
       {
         label: '全部',
-        value: '2'
+        value: ''
       },
       {
         label: '空瓶',
@@ -62,16 +62,16 @@ export class HistoryWarningComponent implements OnInit {
     pageSize: 40,
     pageNumber: 1,
     liabilityId: '', // 责任类型ID
-    boolIsFull: 0  // 0空瓶预警，1重瓶预警，2不限
+    boolIsFull: 0  // 0空瓶预警，1重瓶预警，''不限
   };
   formModel = {
-    state: '2',
+    state: '',
     region: '',
     startTime: moment().subtract(365, 'day')['_d'],
     endTime: moment()['_d'],
   };
   pageParams = {
-    state: '2',
+    state: '',
     region: '',
     startTime: moment().subtract(365, 'day')['_d'],
     endTime: moment()['_d'],

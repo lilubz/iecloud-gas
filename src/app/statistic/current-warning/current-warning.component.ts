@@ -52,7 +52,7 @@ export class CurrentWarningComponent implements OnInit {
     state: [
       {
         label: '全部',
-        value: '2'
+        value: ''
       },
       {
         label: '空瓶',
@@ -75,12 +75,12 @@ export class CurrentWarningComponent implements OnInit {
   formModel = {
     type: '',
     region: '',
-    state: '2'
+    state: ''
   };
   pageParams = {
     type: '',
     region: '',
-    state: '2'
+    state: ''
   };
   constructor(
     private _service: CurrentWarningService,

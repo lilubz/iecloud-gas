@@ -107,10 +107,10 @@ export class CylinderWarningComponent implements OnInit {
 
   }
   checkForm() {
-    if (this.formModelSet.emptyCount < 0 || this.formModelSet.emptyCount > 100000) {
+    if (typeof this.formModelSet.emptyCount !== 'number' || this.formModelSet.emptyCount < 0 || this.formModelSet.emptyCount > 100000) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入0-100000的空瓶阈值' });
       return false;
-    }else if (this.formModelSet.fullCount < 0 || this.formModelSet.fullCount > 100000) {
+    } else if (typeof this.formModelSet.fullCount !== 'number' || this.formModelSet.fullCount < 0 || this.formModelSet.fullCount > 100000) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入0-100000的重瓶阈值' });
       return false;
     } else if (this.formModelSet.describe === '' || this.formModelSet.describe === null || this.formModelSet.describe.length > 50) {
@@ -120,7 +120,6 @@ export class CylinderWarningComponent implements OnInit {
     return true;
   }
   onOpenDialog(rowData) {
-    console.log(rowData);
     this.selectedRowData = rowData;
     this.visible = true;
     this.formModelSet.fullCount = this.selectedRowData.gcThresholdFull;

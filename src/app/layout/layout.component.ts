@@ -35,7 +35,7 @@ export class LayoutComponent implements OnInit {
 
   getWarningInfo(delay: number) {
     this._service.listGcThresholdCurrentWarning({
-      boolIsFull: '2',
+      boolIsFull: '',
       liabilityTypeId: '',
       regionId: '',
       pageSize: 1,
