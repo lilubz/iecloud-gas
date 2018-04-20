@@ -61,7 +61,8 @@ export class HistoryWarningComponent implements OnInit {
     first: 0,
     pageSize: 40,
     pageNumber: 1,
-    queryParams: ''
+    liabilityId: '', // 责任类型ID
+    boolIsFull: 0  // 0空瓶预警，1重瓶预警，2不限
   };
   formModel = {
     state: '2',
@@ -112,10 +113,11 @@ export class HistoryWarningComponent implements OnInit {
   onOpenDialogDetail(rowData) {
     this.dataTableDetail.pageNumber = 1;
     this.dataTableDetail.first = 0;
-    this.dataTableDetail.queryParams = rowData.liabilityId;
+    this.dataTableDetail.liabilityId = rowData.liabilityId;
+    this.dataTableDetail.boolIsFull = rowData.boolIsFull ? 1 : 0;
     this.getDataTableDetailList({
-      boolIsFull: rowData.boolIsFull ? 1 : 0 ,
-      liabilityId: this.dataTableDetail.queryParams,
+      boolIsFull: this.dataTableDetail.boolIsFull ,
+      liabilityId: this.dataTableDetail.liabilityId,
       liabilityTypeId: this.type,
       pageNumber: this.dataTableDetail.pageNumber,
       pageSize: this.dataTableDetail.pageSize,
@@ -149,7 +151,8 @@ export class HistoryWarningComponent implements OnInit {
       this.dataTableDetail.pageNumber = event.first / event.rows + 1;
       this.dataTableDetail.pageSize = event.rows;
       this.getDataTableDetailList({
-        liabilityId: this.dataTableDetail.queryParams,
+        boolIsFull: this.dataTableDetail.boolIsFull,
+        liabilityId: this.dataTableDetail.liabilityId,
         liabilityTypeId: this.type,
         pageNumber: this.dataTableDetail.pageNumber,
         pageSize: this.dataTableDetail.pageSize,

@@ -27,7 +27,7 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
     if (this.userStateService.getUserOrganizationType() === OrganizationType.Government) {
       this.menus = GovernmentMenus;
-      // this.getWarningInfo(10 * 60 * 1000);
+      this.getWarningInfo(10 * 60 * 1000);
     } else if (this.userStateService.getUserOrganizationType() === OrganizationType.Enterprise) {
       this.menus = EnterpriseMenus;
     }
