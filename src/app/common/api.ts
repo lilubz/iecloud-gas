@@ -238,7 +238,7 @@ export const API = {
   'listCollaborativeInfo': URL + 'corpBusiness/collaborative/listCollaborativeInfo.do', // 16.获取协同企业列表
   'listTransactionTypeInfo': URL + 'corpBusiness/collaborative/listTransactionTypeInfo.do', // 17.获取事务类别树。
   'listTransactionSourceInfo': URL + 'corpBusiness/collaborative/listTransactionSourceInfo.do', // 18.获取事务来源列表。
-    // 19.获取事务所在部门下拉框数据。
+  // 19.获取事务所在部门下拉框数据。
   'listChildUserId': URL + 'corpBusiness/collaborative/listChildUserId.do',
   'listTransactionInfo': URL + 'corpBusiness/collaborative/listTransactionInfo.do', // 20.事务一览表中的查询。
 
@@ -248,5 +248,11 @@ export const API = {
   'logout': URL + 'sysUserPermissions/user/logout.do',
   // 大屏展示
   'getBigScreenData': URL + 'visualization/getBigScreenData.do',
+
+  'getBalanceStatus': URL + 'gcFillingSupervise/getBalanceStatus.do', // 查询充装秤的状态
+  'listBalanceInfo': URL + 'gcFillingSupervise/listBalanceInfo.do', // 获取某个企业、充装站的所有秤信息
+  'listBalanceLockRecord': URL + 'gcFillingSupervise/listBalanceLockRecord.do', // 查询锁秤记录
+  'setRuleForFillingSupervise': URL + 'gcFillingSupervise/setRuleForFillingSupervise.do', // 设置充装监管规则
+  'getRuleForFillingSupervise': URL + 'gcFillingSupervise/getRuleForFillingSupervise.do', // 获取充装监管规则
 
 };

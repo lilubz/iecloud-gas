@@ -5,6 +5,7 @@
  * @enum {number}
  */
 export enum RoleType {
+  Admin,
   Government,
   Enterprise
 }

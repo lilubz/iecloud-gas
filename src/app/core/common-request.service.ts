@@ -128,6 +128,18 @@ export class CommonRequestService {
   }
 
   /**
+   * 获取区域下属企业列表；为空则查询所有下属企业
+   * 2018-04-17 15:42:03
+   * @author hzb
+   * @param {{ regionId: string }} [params]
+   * @returns {Promise<any>}
+   * @memberof CommonRequestService
+   */
+  listCorpInfoInRegion(params?: { regionId: string }): Promise<any> {
+    return this.httpService.getRequest(API.listCorpInfoInRegion, params || { regionId: '' });
+  }
+
+  /**
    * 获取供应站列表
    * 2018-01-08 20:50:42
    * @author hzb

@@ -38,6 +38,7 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '报表管理', routerLink: ['/gov-affairs/report'] },
       { label: '协同管理', routerLink: ['/gov-affairs/collaborative'] },
       { label: '设置气瓶阈值', routerLink: ['/gov-affairs/cylinder-warning'] },
+      { label: '充装监管', routerLink: ['/gov-affairs/filling-scale'] },
     ]
   },
   {

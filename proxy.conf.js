@@ -48,9 +48,9 @@ const PROXY_CONFIG = [
   //   ],
   //   target: "http://192.168.1.107:28080",// 涛哥
   //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
-  //   }
+  //   // "pathRewrite": {
+  //   //   "^/wenZhouGas": ""
+  //   // }
   // },
   // {
   //   context: [

@@ -1,20 +1,18 @@
 <div class="ui-g-12 content">
   <div style="min-width: 820px;">
-    <div class="ui-g">
-      <h3>企业气瓶统计</h3>
-      <div class="ui-g-12 ui-g-nopad">
-        <button pButton type="button" (click)="exportStatistic()" class="ui-button-info right" label="导出"></button>
-      </div>
-
-      <ng-container *gasPermissionRole="[RoleType.Government]">
-        <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false"></gas-cylinder-overview-table>
-      </ng-container>
-      <ng-container *gasPermissionRole="[RoleType.Enterprise]">
-        <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false" [roleType]="RoleType.Enterprise"></gas-cylinder-overview-table>
-      </ng-container>
+    <h3>企业气瓶统计</h3>
+    <div class="ui-g-12 ui-g-nopad clearfloat">
+      <button pButton type="button" (click)="exportStatistic()" class="ui-button-info right" label="导出"></button>
     </div>
+    <div style="clear: both"></div>
+    <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
+      <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false"></gas-cylinder-overview-table>
+    </ng-container>
+    <ng-container *gasPermissionRole="[RoleType.Enterprise]">
+      <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false" [roleType]="RoleType.Enterprise"></gas-cylinder-overview-table>
+    </ng-container>
 
-    <ng-container *gasPermissionRole="[RoleType.Government]">
+    <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
       <h3>新增气瓶统计</h3>
       <div class="ui-g-12">
         <div class="ui-g-12 ui-lg-4">

@@ -13,7 +13,7 @@
               <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText>
             </div>
           </div>
-          <div class="ui-g-12 ui-lg-6 ui-lg-md-12" *gasPermissionRole="[RoleType.Government]">
+          <div class="ui-g-12 ui-lg-6 ui-lg-md-12" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
             <div class="inputgroup">
               <label for="" class="search-label">所属企业</label>
               <p-dropdown [options]="enterpriseDrop" appendTo="body" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'calc(100% - 100px','max-width':'300px','min-width':'180px'}"></p-dropdown>
@@ -24,7 +24,7 @@
     </div>
     <div class="ui-g-12">
 
-      <button pButton *gasPermissionRole="[RoleType.Government]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
+      <button pButton *gasPermissionRole="[RoleType.Government,RoleType.Admin]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
 
       <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
     </div>

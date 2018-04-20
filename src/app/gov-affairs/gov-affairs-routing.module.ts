@@ -14,6 +14,10 @@ import { DetailsComponent as ReportDetailsComponent } from './report/details/det
 import { CylinderWarningComponent } from './cylinder-warning/cylinder-warning.component';
 import { TimeoutSearchComponent } from './collaborative/timeout-search/timeout-search.component';
 import { MassesReportComponent } from './collaborative/masses-report/masses-report.component';
+import { FillingScaleComponent } from './filling-scale/filling-scale.component';
+import { FillingScaleListComponent } from './filling-scale/filling-scale-list/filling-scale-list.component';
+import { LockScaleHistoryComponent } from './filling-scale/lock-scale-history/lock-scale-history.component';
+import { SetScaleRuleComponent } from './filling-scale/set-scale-rule/set-scale-rule.component';
 
 const routes: Routes = [
   {
@@ -136,6 +140,41 @@ const routes: Routes = [
         data: {
           title: '设置气瓶阈值'
         }
+      },
+      {
+        path: 'filling-scale',
+        component: FillingScaleComponent,
+        data: {
+          title: '充装监管'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full'
+          },
+          {
+            path: 'list',
+            component: FillingScaleListComponent,
+            data: {
+              title: '充装秤管理'
+            }
+          },
+          {
+            path: 'history',
+            component: LockScaleHistoryComponent,
+            data: {
+              title: '锁称记录'
+            }
+          },
+          {
+            path: 'set-rule',
+            component: SetScaleRuleComponent,
+            data: {
+              title: '充装监管规则设置'
+            }
+          },
+        ]
       },
     ]
   }

@@ -70,7 +70,7 @@ export class EnterpriseComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     let roleType = this.userStateService.getUserRoleType();
-    if (roleType === RoleType.Government) {
+    if (roleType !== RoleType.Enterprise) {
       this.addLoading = true;
       this.getCountiesOverview().then(data => {
         this.loading = false;
@@ -200,7 +200,7 @@ export class EnterpriseComponent implements OnInit {
   }
 
   exportStatistic() {
-    if (this.userStateService.getUserRoleType() === RoleType.Government) {
+    if (this.userStateService.getUserRoleType() !== RoleType.Enterprise) {
       this.exportEnterpriseCylinderStatistic();
     } else {
       this.exportEnterpriseStatistic();

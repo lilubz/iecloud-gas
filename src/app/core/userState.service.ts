@@ -64,6 +64,9 @@ export class UserStateService {
    */
   getUserRoleType(): RoleType | null {
     if (this.getUser()) {
+      if (this.getUser().roleId === 4) {
+        return RoleType.Admin;
+      }
       switch (this.getUser().roleType) {
         case 1:
           return RoleType.Government;

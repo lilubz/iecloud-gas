@@ -5,12 +5,12 @@
       {{index + 1}}
     </ng-template>
   </p-column>
-  <p-column *ngIf="roleType === RoleType.Government" field="regionName" header="区域" [style]="{'width':'20%'}">
+  <p-column *gasPermissionRole="[RoleType.Government,RoleType.Admin]" field="regionName" header="区域" [style]="{'width':'20%'}">
     <ng-template *ngIf="isShowRouterLink" let-col let-cylinderStatistic="rowData" pTemplate="body">
       <a href="javascript:void(0);" [routerLink]="['../enterprise', cylinderStatistic.regionId || '']" class="router-link">{{cylinderStatistic.regionName}}</a>
     </ng-template>
   </p-column>
-  <p-column *ngIf="roleType === RoleType.Enterprise" field="enterpriseName" header="企业名称" [style]="{'width':'30%'}">
+  <p-column *gasPermissionRole="[RoleType.Enterprise]" field="enterpriseName" header="企业名称" [style]="{'width':'30%'}">
     <ng-template *ngIf="isShowRouterLink" let-col let-cylinderStatistic="rowData" pTemplate="body">
       <a href="javascript:void(0);" [routerLink]="['../../../list', {enterpriseID:cylinderStatistic.enterpriseNumber||''}]" class="router-link">{{cylinderStatistic.enterpriseName}}</a>
     </ng-template>

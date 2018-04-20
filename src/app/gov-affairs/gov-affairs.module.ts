@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CollaborativeModule } from './collaborative/collaborative.module';
 import { ReportModule } from './report/report.module';
 import { CylinderWarningComponent } from './cylinder-warning/cylinder-warning.component';
+import { FillingScaleModule } from './filling-scale/filling-scale.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { CylinderWarningComponent } from './cylinder-warning/cylinder-warning.co
     SharedModule,
     ReportModule,
     CollaborativeModule,
+    FillingScaleModule,
     GovAffairsRoutingModule,
   ],
   declarations: [
