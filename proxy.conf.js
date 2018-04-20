@@ -31,16 +31,16 @@ const PROXY_CONFIG = [
   //     "^/wenZhouGas": ""
   //   }
   // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //   ],
-  //   target: "http://192.168.1.8:8080", // 妮娜
-  //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
-  //   }
-  // },
+  {
+    context: [
+      "/wenZhouGas",
+    ],
+    target: "http://192.168.1.25:8080", // 妮娜
+    secure: false,
+    "pathRewrite": {
+      "^/wenZhouGas": ""
+    }
+  },
   // {
   //   context: [
   //     "/wenZhouGas",
@@ -62,6 +62,17 @@ const PROXY_CONFIG = [
   //   "pathRewrite": {
   //     "^/wenZhouGas": ""
   //   }
+  // },
+  // {
+  //   context: [
+  //     "/wenZhouGas",
+  //     "/upload",
+  //   ],
+  //   target: "http://60.190.114.126", // 线上
+  //   secure: false,
+  //   // "pathRewrite": {
+  //   //   "^/wenZhouGas": ""
+  //   // }
   // },
   // {
   //   context: [

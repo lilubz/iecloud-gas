@@ -1,0 +1,59 @@
+<div class="ui-g-12 license">
+  <form class="ui-g-12" (submit)="onSubmit()">
+
+    <div class="ui-g-12 ui-lg-6">
+      <label class="search-label">所属企业：</label>
+      <p-dropdown [filter]="true" [options]="dropdown.company" [(ngModel)]="formModel.company" name="company" [style]="{'width':'280px'}"></p-dropdown>
+    </div>
+
+    <div class="ui-g-12 ui-lg-6">
+      <button class="searchBtn" pButton type="button" label="搜索" (click)="onSubmit();"></button>
+    </div>
+
+  </form>
+
+  <div class="ui-g-12 dataTable">
+    <p-dataTable [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+      [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+      [(first)]="dataTable.first">
+      <p-column [style]="{'width':'80px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column field="gasLabelNumber" header="气瓶条码"></p-column>
+      <p-column field="regionName" header="所属行政区"></p-column>
+      <p-column [style]="{'width':'30%'}" field="enterpriseName" header=" 企业名称"></p-column>
+      <p-column [style]="{'width':'110px'}" header="制造年月">
+        <ng-template let-first="rowData" pTemplate="body">
+          <span>{{first.productionDate|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'110px'}" header="上次检验时间">
+        <ng-template let-end="rowData" pTemplate="body">
+          <span>{{end.lastInspectionTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'110px'}" header="下次检验时间">
+        <ng-template let-next="rowData" pTemplate="body">
+          <span>{{next.nextInspectionTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" field="scrapDays" header="到期天数">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span *ngIf="rowData.scrapDays > 0">{{rowData.scrapDays}}</span>
+          <span *ngIf="rowData.scrapDays <= 0" style="color:red;">已到期</span>
+        </ng-template>
+      </p-column>
+
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+      <ng-template pTemplate="paginatorRight">
+        共 {{ dataTable.total || 0 }} 条记录
+      </ng-template>
+    </p-dataTable>
+  </div>
+</div>

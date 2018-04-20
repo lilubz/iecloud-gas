@@ -251,6 +251,12 @@ export const API = {
   // 大屏展示
   'getBigScreenData': URL + 'visualization/getBigScreenData.do',
 
+  /**
+   * 监管数据统计分析
+   */
+  'listLicenseExpire': URL + 'corpBusiness/gcStockMonitor/listLicenseExpire.do', // 1.燃气经营许可证到期预警
+  'listGasInspection': URL + 'corpBusiness/gcStockMonitor/listGasInspection.do', // 2.气瓶检验预警
+  'listGasScrap': URL + 'corpBusiness/gcStockMonitor/listGasScrap.do', // 3.气瓶报废预警
   'getBalanceStatus': URL + 'gcFillingSupervise/getBalanceStatus.do', // 查询充装秤的状态
   'listBalanceInfo': URL + 'gcFillingSupervise/listBalanceInfo.do', // 获取某个企业、充装站的所有秤信息
   'listBalanceLockRecord': URL + 'gcFillingSupervise/listBalanceLockRecord.do', // 查询锁秤记录

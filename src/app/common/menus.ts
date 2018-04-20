@@ -61,6 +61,7 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '执法', routerLink: ['/statistic/affair'] },
       { label: '实时预警', routerLink: ['/statistic/current-warning'] },
       { label: '历史预警', routerLink: ['/statistic/history-warning'] },
+      { label: '监管数据', routerLink: ['/statistic/supervise-data'] },
       { label: '入户安检统计', routerLink: ['/statistic/safety-check'] },
       { label: '行业分析', routerLink: ['/statistic/industry-analyze'] },
     ]
@@ -116,6 +117,7 @@ export const EnterpriseMenus: MenuItem[] = [
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
       { label: '企业', routerLink: ['/statistic/enterprise'] },
+      { label: '经营许可证到期预警', routerLink: ['/statistic/supervise-data/license'] },
     ]
   },
   {

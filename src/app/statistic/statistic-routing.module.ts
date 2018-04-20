@@ -12,6 +12,10 @@ import { StorageDistributionComponent } from './cylinder/storage-distribution/st
 import { CustomerComponent } from './cylinder/customer/customer.component';
 import { CurrentWarningComponent } from './current-warning/current-warning.component';
 import { HistoryWarningComponent } from './history-warning/history-warning.component';
+import { SuperviseDataComponent } from './supervise-data/supervise-data.component';
+import { LicenseComponent } from './supervise-data/license/license.component';
+import { GcScrapComponent } from './supervise-data/gc-scrap/gc-scrap.component';
+import { GcDetectionComponent } from './supervise-data/gc-detection/gc-detection.component';
 import { IndustryAnalyzeComponent } from './industry-analyze/industry-analyze.component';
 import { SafetyCheckComponent } from './safety-check/safety-check.component';
 
@@ -107,6 +111,41 @@ const routes: Routes = [
         }
       },
       {
+        path: 'supervise-data',
+        component: SuperviseDataComponent,
+        data: {
+          title: '监管数据统计'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'license',
+            pathMatch: 'full'
+          },
+          {
+            path: 'license',
+            component: LicenseComponent,
+            data: {
+              title: '许可证预警'
+            }
+          },
+          {
+            path: 'gc-detection',
+            component: GcDetectionComponent,
+            data: {
+              title: '气瓶检测过期预警'
+            }
+          },
+          {
+            path: 'gc-scrap',
+            component: GcScrapComponent,
+            data: {
+              title: '气瓶报废预警'
+            }
+          }
+        ],
+      },
+      {
         path: 'safety-check',
         component: SafetyCheckComponent,
         data: {
@@ -119,7 +158,7 @@ const routes: Routes = [
         data: {
           title: '行业分析'
         }
-      },
+      }
     ]
   }
 ];
