@@ -251,6 +251,13 @@ export const API = {
   // 大屏展示
   'getBigScreenData': URL + 'visualization/getBigScreenData.do',
 
+  //公众服务
+    // 问卷调查
+  'uploadNewQuestionnaire':   URL + 'publicService/questionnaire/uploadNewQuestionnaire.do',// 上传一份新的调查问卷
+  'listQuestionnaire': URL + 'publicService/questionnaire/listQuestionnaire.do', // 获取所有问卷列表
+  'listQuestions': URL + 'publicService/questionnaire/listQuestions.do', // 获取某个问卷中问题列表
+  'listCurrentQuestions': URL + 'publicService/questionnaire/listCurrentQuestions.do', // 获取当前最新问卷调查中的所有问题
+  'listQuestionnaireResult': URL + 'publicService/questionnaire/listQuestionnaireResult.do', // 获取某个问卷的调查结果
   // 储气罐档案
   'listFillingGasTank': URL + 'gcFillingSupervise/listFillingGasTank.do',
 

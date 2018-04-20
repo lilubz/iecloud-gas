@@ -86,6 +86,15 @@ export const AdminMenus: MenuItem[] = [
     label: '审核管理',
     icon: 'menu-icon verification-icon',
     routerLink: ['/verification']
+  },
+  {
+    label: '公众服务',
+    icon: 'menu-icon public-icon',
+    routerLink: ['/pub-service'],
+    items: [
+      { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
+      // { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
+    ]
   }
 ];
 
@@ -174,8 +183,17 @@ export const GovernmentMenus: MenuItem[] = [
     label: '审核管理',
     icon: 'menu-icon verification-icon',
     routerLink: ['/verification']
-  }
+  },
+
+
+
+
 ];
+
+
+
+
+
 
 export const EnterpriseMenus: MenuItem[] = [
   // {

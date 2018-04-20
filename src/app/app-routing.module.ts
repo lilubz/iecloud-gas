@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PermissionGuard } from './core/permission-guard.service';
 import { RedirectionPageComponent } from './redirectionPage/redirectionPage.component';
 import { LayoutComponent } from './layout/layout.component';
+import {PubServiceModule} from './pub-service/pub-service.module';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'verification',
         loadChildren: './verification/verification.module#VerificationModule',
+      },
+      {
+        path: 'pub-service',
+        loadChildren: './pub-service/pub-service.module#PubServiceModule',
       },
       {
         path: 'enterprise-supervise',
