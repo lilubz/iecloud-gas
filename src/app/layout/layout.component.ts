@@ -2,12 +2,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { GovernmentMenus, EnterpriseMenus } from './../common/menus';
+import { GovernmentMenus, EnterpriseMenus, AdminMenus } from './../common/menus';
 
 import { LoginService } from './../login/login.service';
 import { UserStateService } from './../core/userState.service';
 import { OrganizationType } from './../common/OrganizationType';
 import { LayoutService } from './layout.service';
+import { RoleType } from '../common/RoleType';
 @Component({
   selector: 'gas-layout',
   templateUrl: './layout.component.html',
@@ -25,10 +26,13 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.userStateService.getUserOrganizationType() === OrganizationType.Government) {
+    if (this.userStateService.getUserRoleType() === RoleType.Government) {
       this.menus = GovernmentMenus;
       this.getWarningInfo(10 * 60 * 1000);
-    } else if (this.userStateService.getUserOrganizationType() === OrganizationType.Enterprise) {
+    } else if (this.userStateService.getUserRoleType() === RoleType.Admin) {
+      this.menus = AdminMenus;
+      this.getWarningInfo(10 * 60 * 1000);
+    } else if (this.userStateService.getUserRoleType() === RoleType.Enterprise) {
       this.menus = EnterpriseMenus;
     }
   }
