@@ -233,6 +233,8 @@ export const API = {
   'getUserInfoImprecise': URL + 'basicInformation/gcUserInfo/getUserInfoImprecise.do',
   'listGasCylinderBySupplyStationNumber': URL + 'basicInformation/gasCylinder/listGasCylinderBySupplyStationNumber.do',
   'listGcNewAddCount': URL + 'statisticalQuery/gasCylinders/listGcNewAddCount.do', // 统计最近新增气瓶和新增气瓶异常数量
+  'fillingFluctuations': URL + 'statisticalQuery/industry/fillingFluctuations.do', // 查询本年，本月充装量波动情况
+  'checkResults': URL + 'statisticalQuery/security/checkResults.do', // 安检情况统计
 
 
   'listCollaborativeInfo': URL + 'corpBusiness/collaborative/listCollaborativeInfo.do', // 16.获取协同企业列表

@@ -12,6 +12,8 @@ import { StorageDistributionComponent } from './cylinder/storage-distribution/st
 import { CustomerComponent } from './cylinder/customer/customer.component';
 import { CurrentWarningComponent } from './current-warning/current-warning.component';
 import { HistoryWarningComponent } from './history-warning/history-warning.component';
+import { IndustryAnalyzeComponent } from './industry-analyze/industry-analyze.component';
+import { SafetyCheckComponent } from './safety-check/safety-check.component';
 
 const routes: Routes = [
   {
@@ -102,6 +104,20 @@ const routes: Routes = [
         component: HistoryWarningComponent,
         data: {
           title: '历史预警'
+        }
+      },
+      {
+        path: 'safety-check',
+        component: SafetyCheckComponent,
+        data: {
+          title: '入户安全统计'
+        }
+      },
+      {
+        path: 'industry-analyze',
+        component: IndustryAnalyzeComponent,
+        data: {
+          title: '行业分析'
         }
       },
     ]

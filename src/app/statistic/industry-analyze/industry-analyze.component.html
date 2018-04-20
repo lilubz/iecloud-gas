@@ -1,0 +1,25 @@
+<div class="main" style="left:90px">
+  <div class="ui-g-12 card industry-analyze">
+    <form class="ui-g padding" (submit)="onSubmit();">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label"> 所在区域：</span>
+          <p-dropdown name="region" [options]="dropdown.region" [style]="{'width':'280px'}" [(ngModel)]="formModel.regionId" (onChange)="onChangeAreaID($event)"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">供气企业：</span>
+          <p-dropdown name="corp" [filter]="true" [options]="dropdown.corp" [style]="{'width':'280px'}" [(ngModel)]="formModel.corpId" ></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label"> 时间：</span>
+          <p-dropdown name="range" [options]="dropdown.range" [(ngModel)]="formModel.range" [style]="{'width':'280px'}" ></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-4">
+          <button pButton type="submit" label="查询" class="searchBtn"></button>
+        </div>
+      </div>
+    </form>
+    <div id="charts" style="width: 100%;height:400px;" (window:resize)="charts?.instance?.resize()">
+    </div>
+  </div>
+</div>

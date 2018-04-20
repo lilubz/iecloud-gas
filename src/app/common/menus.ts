@@ -61,6 +61,8 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '执法', routerLink: ['/statistic/affair'] },
       { label: '实时预警', routerLink: ['/statistic/current-warning'] },
       { label: '历史预警', routerLink: ['/statistic/history-warning'] },
+      { label: '入户安检统计', routerLink: ['/statistic/safety-check'] },
+      { label: '行业分析', routerLink: ['/statistic/industry-analyze'] },
     ]
   },
   {

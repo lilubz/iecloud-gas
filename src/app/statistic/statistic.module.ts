@@ -17,6 +17,8 @@ import { CustomerComponent } from './cylinder/customer/customer.component';
 import { CurrentWarningComponent } from './current-warning/current-warning.component';
 import { HistoryWarningComponent } from './history-warning/history-warning.component';
 import { ComponentsModule } from '../components/components.module';
+import { IndustryAnalyzeComponent } from './industry-analyze/industry-analyze.component';
+import { SafetyCheckComponent } from './safety-check/safety-check.component';
 
 @NgModule({
   imports: [
@@ -36,6 +38,8 @@ import { ComponentsModule } from '../components/components.module';
     CustomerComponent,
     CurrentWarningComponent,
     HistoryWarningComponent,
+    IndustryAnalyzeComponent,
+    SafetyCheckComponent,
   ],
   providers: [
 
