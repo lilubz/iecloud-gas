@@ -21,6 +21,10 @@
         <button pButton type="button" label="送气工" [routerLink]="['../3']" routerLinkActive="link-active"></button>
       </div>
 
+      <div class="ui-g-12">
+        <button pButton type="button" label="燃气用户" [routerLink]="['../4']" routerLinkActive="link-active"></button>
+      </div>
+
     </div>
   </div>
   <div class="main">
@@ -50,7 +54,8 @@
             </ng-template>
           </p-column>
           <p-column [style]="{'width':'20%'}" field="liabilityName" header="站点名称"></p-column>
-          <p-column field="gcThreshold" header="气瓶阈值"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
           <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
           <p-column header="设置时间">
             <ng-template pTemplate="body" let-rowData="rowData">
@@ -84,7 +89,8 @@
             </ng-template>
           </p-column>
           <p-column [style]="{'width':'20%'}" field="liabilityName" header="站点名称"></p-column>
-          <p-column field="gcThreshold" header="气瓶阈值"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
           <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
           <p-column header="设置时间">
             <ng-template pTemplate="body" let-rowData="rowData">
@@ -124,7 +130,8 @@
             </ng-template>
           </p-column>
           <p-column field="regionName" header="区域"></p-column>
-          <p-column field="gcThreshold" header="气瓶阈值"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
           <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
           <p-column header="设置时间">
             <ng-template pTemplate="body" let-rowData="rowData">
@@ -149,6 +156,44 @@
           </ng-template>
 
         </p-dataTable>
+        <!-- 4表示燃气用户 -->
+        <p-dataTable *ngIf="type===4" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[2]"
+          [scrollable]="false" scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total"
+          (onLazyLoad)="onPageChange($event)" [(first)]="dataTable.first">
+          <p-column [style]="{'width':'80px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="liabilityName" header="用户性质">
+          </p-column>
+          <p-column field="regionName" header="区域"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
+          <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
+          <p-column header="设置时间">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              {{rowData.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}
+            </ng-template>
+          </p-column>
+          <p-column field="settingReason" header="设置依据"></p-column>
+          <p-column [style]="{'width':'100px'}" header="操作">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
+            </ng-template>
+          </p-column>
+        
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+        
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dataTable.total || 0 }} 条记录
+          </ng-template>
+        
+        </p-dataTable>
         <!-- 5表示直销车 -->
         <p-dataTable *ngIf="type===5" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
           scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
@@ -160,7 +205,8 @@
           </p-column>
           <p-column field="carNumber" header="车牌号"></p-column>
           <p-column [style]="{'width':'20%'}" field="liabilityName" header="站点名称"></p-column>
-          <p-column field="gcThreshold" header="气瓶阈值"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
           <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
           <p-column header="设置时间">
             <ng-template pTemplate="body" let-rowData="rowData">
@@ -237,6 +283,26 @@
             </div>
           </div>
         </div>
+        <!-- 燃气用户 -->
+        <div *ngIf="type === 4">
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">区域：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.regionName}}</label>
+            </div>
+          </div>
+        
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">用户性质：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.liabilityName}}</label>
+            </div>
+          </div>
+        </div>
         <!-- 运输车 -->
         <div *ngIf="type === 5">
           <div class="ui-g-12 ui-g-nopad">
@@ -260,10 +326,20 @@
         <!-- 气瓶阈值和设置依据 -->
         <div class="ui-g-12 ui-g-nopad">
           <div class="ui-g-5 text-right">
-            <span class="color-red">*</span><label for="">气瓶阈值：</label>
+            <span class="color-red">*</span><label for="">空瓶阈值：</label>
           </div>
           <div class="ui-g-7">
-            <input type="number" pInputText style="width:208px" min="0" name="number" [(ngModel)]="formModelSet.count" name="count">
+            <input type="number" pInputText style="width:208px" min="0" name="emptyCount" [(ngModel)]="formModelSet.emptyCount">
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-5 text-right">
+            <span class="color-red">*</span>
+            <label for="">重瓶阈值：</label>
+          </div>
+          <div class="ui-g-7">
+            <input type="number" pInputText style="width:208px" min="0" name="fullCount" [(ngModel)]="formModelSet.fullCount">
           </div>
         </div>
 

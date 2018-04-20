@@ -30,6 +30,20 @@ export class HistoryWarningComponent implements OnInit {
         label: '全部',
         value: ''
       }
+    ],
+    state: [
+      {
+        label: '全部',
+        value: '2'
+      },
+      {
+        label: '空瓶',
+        value: '0'
+      },
+      {
+        label: '重瓶',
+        value: '1'
+      },
     ]
   };
   dataTableOverview = {
@@ -50,11 +64,13 @@ export class HistoryWarningComponent implements OnInit {
     queryParams: ''
   };
   formModel = {
+    state: '2',
     region: '',
     startTime: moment().subtract(365, 'day')['_d'],
     endTime: moment()['_d'],
   };
   pageParams = {
+    state: '2',
     region: '',
     startTime: moment().subtract(365, 'day')['_d'],
     endTime: moment()['_d'],
@@ -84,6 +100,7 @@ export class HistoryWarningComponent implements OnInit {
     Object.assign(this.pageParams, this.formModel);
     this.loading = true;
     this.getDataTableOverviewList({
+      boolIsFull: this.formModel.state,
       liabilityTypeId: this.type,
       regionId: this.formModel.region,
       startTime: moment(this.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
@@ -97,6 +114,7 @@ export class HistoryWarningComponent implements OnInit {
     this.dataTableDetail.first = 0;
     this.dataTableDetail.queryParams = rowData.liabilityId;
     this.getDataTableDetailList({
+      boolIsFull: rowData.boolIsFull ? 1 : 0 ,
       liabilityId: this.dataTableDetail.queryParams,
       liabilityTypeId: this.type,
       pageNumber: this.dataTableDetail.pageNumber,
@@ -115,6 +133,7 @@ export class HistoryWarningComponent implements OnInit {
       this.dataTableOverview.pageNumber = event.first / event.rows + 1;
       this.dataTableOverview.pageSize = event.rows;
       this.getDataTableOverviewList({
+        boolIsFull: this.formModel.state,
         liabilityTypeId: this.type,
         regionId: this.pageParams.region,
         startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD') + ' 00:00:00',

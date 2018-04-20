@@ -20,6 +20,10 @@
       <button pButton type="button" label="送气工" [routerLink]="['../3']" routerLinkActive="link-active"></button>
     </div>
 
+    <div class="ui-g-12">
+      <button pButton type="button" label="燃气用户" [routerLink]="['../4']" routerLinkActive="link-active"></button>
+    </div>
+
   </div>
 </div>
 <div class="main">
@@ -47,6 +51,11 @@
         </p-calendar>
       </div>
 
+      <div class="ui-g-12 ui-lg-4">
+        <label class="search-label">状&#12288;&#12288;态：</label>
+        <p-dropdown [options]="dropdown.state" [(ngModel)]="formModel.state" name="region" [style]="{'width':'180px'}"></p-dropdown>
+      </div>
+
       <div class="ui-g-12">
         <button class="searchBtn" pButton type="submit" label="搜索"></button>
       </div>
@@ -64,6 +73,11 @@
         </p-column>
 
         <p-column [style]="{'width':'30%'}" field="liabilityName" header="站点名称"></p-column>
+        <p-column header="预警类型">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{rowData.boolIsFull?'重瓶预警':'空瓶预警'}}</span>
+          </ng-template>
+        </p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
         <p-column field="countOverTime" header="超限次数"></p-column>
         <p-column field="overTime" header="累计时长/分"></p-column>
@@ -94,6 +108,11 @@
         </p-column>
 
         <p-column [style]="{'width':'30%'}" field="liabilityName" header="站点名称"></p-column>
+        <p-column header="预警类型">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{rowData.boolIsFull?'重瓶预警':'空瓶预警'}}</span>
+          </ng-template>
+        </p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
         <p-column field="countOverTime" header="超限次数"></p-column>
         <p-column field="overTime" header="累计时长/分"></p-column>
@@ -126,6 +145,11 @@
 
         <p-column field="liabilityName" header="姓名"></p-column>
         <p-column field="regionName" header="区域"></p-column>
+        <p-column header="预警类型">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{rowData.boolIsFull?'重瓶预警':'空瓶预警'}}</span>
+          </ng-template>
+        </p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
         <p-column field="countOverTime" header="超限次数"></p-column>
         <p-column field="overTime" header="累计时长/分"></p-column>
@@ -137,6 +161,43 @@
           </ng-template>
         </p-column>
 
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+        <ng-template pTemplate="paginatorRight">
+          共 {{ dataTableOverview.total || 0 }} 条记录
+        </ng-template>
+      </p-dataTable>
+      <!-- 燃气用户 -->
+      <p-dataTable *ngIf="type===4" [value]="dataTableOverview.list" [loading]="loading" [paginator]="true" [rows]="dataTableOverview.option[2]"
+        [scrollable]="false" [lazy]="true" [rowsPerPageOptions]="dataTableOverview.option" [totalRecords]="dataTableOverview.total"
+        (onLazyLoad)="onPageChangeOverview($event)" [(first)]="dataTableOverview.first">
+        <p-column [style]="{'width':'80px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+      
+        <p-column field="liabilityName" header="姓名"></p-column>
+        <p-column field="regionName" header="区域"></p-column>
+        <p-column header="预警类型">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{rowData.boolIsFull?'重瓶预警':'空瓶预警'}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="gcThreshold" header="气瓶阈值"></p-column>
+        <p-column field="countOverTime" header="超限次数"></p-column>
+        <p-column field="overTime" header="累计时长/分"></p-column>
+        <p-column [style]="{'width':'30%'}" field="liabilityPeople" header="所属公司"></p-column>
+        <p-column field="liabilityContact" header="联系方式"></p-column>
+        <p-column [style]="{'width':'100px'}" header="操作">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <button pButton type="button" (click)="onOpenDialogDetail(rowData)" label="详情"></button>
+          </ng-template>
+        </p-column>
+      
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
             未查询到数据
@@ -158,6 +219,11 @@
 
         <p-column [style]="{'width':'110px'}" field="carNumber" header="车牌号"></p-column>
         <p-column [style]="{'width':'30%'}" field="liabilityName" header="所属企业"></p-column>
+        <p-column header="预警类型">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{rowData.boolIsFull?'重瓶预警':'空瓶预警'}}</span>
+          </ng-template>
+        </p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
         <p-column field="countOverTime" header="超限次数"></p-column>
         <p-column field="overTime" header="累计时长/分"></p-column>

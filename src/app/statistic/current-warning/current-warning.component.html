@@ -12,7 +12,12 @@
         <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.region" name="region" [style]="{'width':'280px'}"></p-dropdown>
       </div>
 
-      <div class="ui-g-12">
+      <div class="ui-g-12 ui-lg-6">
+        <label class="search-label">状&#12288;&#12288;态：</label>
+        <p-dropdown [options]="dropdown.state" [(ngModel)]="formModel.state" name="state" [style]="{'width':'280px'}"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-lg-6">
         <button class="searchBtn" pButton type="button" label="搜索" (click)="onSubmit();"></button>
       </div>
 
@@ -30,6 +35,11 @@
         <p-column [style]="{'width':'30%'}" field="liabilityName" header="名称"></p-column>
         <p-column field="liabilityTypeName" header="类型"></p-column>
         <p-column field="regionName" header="区域"></p-column>
+        <p-column header="预警类型">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{rowData.boolIsFull?'重瓶预警':'空瓶预警'}}</span>
+          </ng-template>
+        </p-column>
         <p-column field="gcThreshold" header="气瓶阈值"></p-column>
         <p-column field="gcActualNumber" header="实际值"></p-column>
         <p-column field="overTime" header="超限时间/分"></p-column>

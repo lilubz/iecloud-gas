@@ -45,7 +45,8 @@ export class CylinderWarningComponent implements OnInit {
     regionId: ''
   };
   formModelSet = {
-    count: 0,
+    emptyCount: 0,
+    fullCount: 0,
     describe: ''
   };
   constructor(
@@ -69,7 +70,6 @@ export class CylinderWarningComponent implements OnInit {
   onSearch() {
     this.dataTable.pageNumber = 1;
     this.dataTable.first = 0;
-    this.loading = true;
     Object.assign(this.pageParams, this.formModelSearch);
     this.getDataTableList({
       regionId: this.formModelSearch.regionId,
@@ -97,7 +97,8 @@ export class CylinderWarningComponent implements OnInit {
     if (this.checkForm()) {
       this.sendFormModelSet({
         settingId: this.selectedRowData.settingId,
-        gcThreshold: this.formModelSet.count,
+        gcThresholdEmpty: this.formModelSet.emptyCount,
+        gcThresholdFull: this.formModelSet.fullCount,
         settingReason: this.formModelSet.describe
       });
     }
@@ -106,8 +107,11 @@ export class CylinderWarningComponent implements OnInit {
 
   }
   checkForm() {
-    if (this.formModelSet.count < 0 || this.formModelSet.count > 100000) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入0-100000的气瓶阈值' });
+    if (this.formModelSet.emptyCount < 0 || this.formModelSet.emptyCount > 100000) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入0-100000的空瓶阈值' });
+      return false;
+    }else if (this.formModelSet.fullCount < 0 || this.formModelSet.fullCount > 100000) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入0-100000的重瓶阈值' });
       return false;
     } else if (this.formModelSet.describe === '' || this.formModelSet.describe === null || this.formModelSet.describe.length > 50) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入1-50字的设置依据' });
@@ -116,12 +120,15 @@ export class CylinderWarningComponent implements OnInit {
     return true;
   }
   onOpenDialog(rowData) {
+    console.log(rowData);
     this.selectedRowData = rowData;
     this.visible = true;
-    this.formModelSet.count = this.selectedRowData.gcThreshold;
+    this.formModelSet.fullCount = this.selectedRowData.gcThresholdFull;
+    this.formModelSet.emptyCount = this.selectedRowData.gcThresholdEmpty;
     this.formModelSet.describe = this.selectedRowData.settingReason;
   }
   getDataTableList(params?) {
+    this.loading = true;
     this._service.listGcThreshold(params)
       .then(data => {
         this.loading = false;

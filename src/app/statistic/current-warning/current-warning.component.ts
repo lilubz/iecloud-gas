@@ -35,6 +35,10 @@ export class CurrentWarningComponent implements OnInit {
         value: '3'
       },
       {
+        label: '燃气用户',
+        value: '4'
+      },
+      {
         label: '直销车',
         value: '5'
       },
@@ -44,6 +48,20 @@ export class CurrentWarningComponent implements OnInit {
         label: '全部',
         value: ''
       }
+    ],
+    state: [
+      {
+        label: '全部',
+        value: '2'
+      },
+      {
+        label: '空瓶',
+        value: '0'
+      },
+      {
+        label: '重瓶',
+        value: '1'
+      },
     ]
   };
   dataTable = {
@@ -57,10 +75,12 @@ export class CurrentWarningComponent implements OnInit {
   formModel = {
     type: '',
     region: '',
+    state: '2'
   };
   pageParams = {
     type: '',
     region: '',
+    state: '2'
   };
   constructor(
     private _service: CurrentWarningService,
@@ -76,6 +96,7 @@ export class CurrentWarningComponent implements OnInit {
     this.dataTable.first = 0;
     Object.assign(this.pageParams, this.formModel);
     this.getDataTableList({
+      boolIsFull: this.formModel.state,
       liabilityTypeId: this.formModel.type,
       regionId: this.formModel.region,
       pageSize: this.dataTable.pageSize,
@@ -87,6 +108,7 @@ export class CurrentWarningComponent implements OnInit {
     this.dataTable.pageNumber = event.first / event.rows + 1;
     this.dataTable.pageSize = event.rows;
     this.getDataTableList({
+      boolIsFull: this.pageParams.state,
       liabilityTypeId: this.pageParams.type,
       regionId: this.pageParams.region,
       pageNumber: this.dataTable.pageNumber,

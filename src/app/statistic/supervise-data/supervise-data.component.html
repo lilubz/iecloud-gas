@@ -7,7 +7,7 @@
     <div class="ui-g-12">
       <button pButton type="button" label="经营许可证到期预警" [routerLink]="['license']" routerLinkActive="link-active"></button>
     </div>
-    <ng-container *gasPermissionRole="[RoleType.Government]">
+    <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
       <div class="ui-g-12">
         <button pButton type="button" label="气瓶检测过期预警" [routerLink]="['gc-detection']" routerLinkActive="link-active"></button>
       </div>
