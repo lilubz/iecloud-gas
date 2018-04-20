@@ -135,6 +135,7 @@ export class CustomerListComponent implements OnInit {
     };
   willDeleteCustomer;
   willEditCustomer = {
+    certificateName: '',
     userNumber: '',
     userName: '',
     deliveryAddress: '',

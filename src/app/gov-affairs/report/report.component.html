@@ -13,6 +13,9 @@
         <div class="ui-g-12">
             <button pButton type="button" label="报表统计" [routerLink]="['statistics']" routerLinkActive="link-active"></button>
         </div>
+        <div class="ui-g-12" *ngIf="showAnalysisBtn">
+            <button pButton type="button" label="统计报表下载" [routerLink]="['analysis']" routerLinkActive="link-active"></button>
+        </div>
     </div>
 </div>
 

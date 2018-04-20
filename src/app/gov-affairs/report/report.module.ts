@@ -7,6 +7,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { SubmitComponent } from './submit/submit.component';
 import { ManageComponent } from './manage/manage.component';
 import { DetailsComponent } from './details/details.component';
+import { AnalysisComponent } from './analysis/analysis.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { DetailsComponent } from './details/details.component';
     StatisticsComponent,
     SubmitComponent,
     ManageComponent,
-    DetailsComponent
+    DetailsComponent,
+    AnalysisComponent
   ]
 })
 export class ReportModule { }

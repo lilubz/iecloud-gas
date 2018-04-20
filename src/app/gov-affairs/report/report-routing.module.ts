@@ -8,6 +8,7 @@ import { ManageComponent } from './manage/manage.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { SubmitComponent } from './submit/submit.component';
 import { DetailsComponent } from './details/details.component';
+import { AnalysisComponent } from './analysis/analysis.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,13 @@ const routes: Routes = [
       {
         path: 'details',
         component: DetailsComponent,
+        data: {
+          title: '报表统计'
+        }
+      },
+      {
+        path: 'analysis',
+        component: AnalysisComponent,
         data: {
           title: '报表统计'
         }

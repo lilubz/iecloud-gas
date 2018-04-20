@@ -14,6 +14,7 @@ import { DetailsComponent as ReportDetailsComponent } from './report/details/det
 import { CylinderWarningComponent } from './cylinder-warning/cylinder-warning.component';
 import { TimeoutSearchComponent } from './collaborative/timeout-search/timeout-search.component';
 import { MassesReportComponent } from './collaborative/masses-report/masses-report.component';
+import { AnalysisComponent } from './report/analysis/analysis.component';
 import { FillingScaleComponent } from './filling-scale/filling-scale.component';
 import { FillingScaleListComponent } from './filling-scale/filling-scale-list/filling-scale-list.component';
 import { LockScaleHistoryComponent } from './filling-scale/lock-scale-history/lock-scale-history.component';
@@ -125,6 +126,13 @@ const routes: Routes = [
             component: ReportDetailsComponent,
             data: {
               title: '报表详情'
+            }
+          },
+          {
+            path: 'analysis',
+            component: AnalysisComponent,
+            data: {
+              title: '报表统计下载'
             }
           },
         ]
