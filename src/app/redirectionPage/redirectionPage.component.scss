@@ -26,6 +26,7 @@
         background-color: white;
         box-shadow: 2.5px 4.33px 5px 0px rgba( 0, 0, 0, 0.1);
         transition: all .2s linear;
+        cursor: pointer;
         &:hover {
             transition: translate3d(0, -2px, 0);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);

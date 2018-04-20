@@ -49,6 +49,7 @@ export class UserSearchComponent implements OnInit, OnDestroy {
     role: '',
     userName: ''
   };
+  loading = false;
   constructor(
     private _service: UserSearchService,
     private messageService: MessageService, ) { }
@@ -109,6 +110,7 @@ export class UserSearchComponent implements OnInit, OnDestroy {
     })
   }
   getSystemUserList(page?) {
+    this.loading = true;
     const params = {
       username: this.searchParams.userName,
       organizationId: this.searchParams.organization,
@@ -123,6 +125,7 @@ export class UserSearchComponent implements OnInit, OnDestroy {
       this.pages.first = 0;
     }
     this._service.getGovSysUsers(params).then(data => {
+      this.loading = false;
       if (data.status === 0) {
         this.systemUserList = data.data.list;
         this.pages.total = data.data.total;

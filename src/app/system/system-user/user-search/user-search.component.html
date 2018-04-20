@@ -23,7 +23,7 @@
 
   <div class="ui-g-12">
     <div class="ui-g">
-      <p-dataTable [value]="systemUserList" [lazy]="true" dataKey="" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
+      <p-dataTable [value]="systemUserList" [loading]="loading" [lazy]="true" dataKey="" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
         scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
         [(first)]="pages.first">
         <p-column [style]="{'width':'80px'}" header="编号">
