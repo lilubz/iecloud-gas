@@ -9,7 +9,7 @@
       <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false"></gas-cylinder-overview-table>
     </ng-container>
     <ng-container *gasPermissionRole="[RoleType.Enterprise]">
-      <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false" [roleType]="RoleType.Enterprise"></gas-cylinder-overview-table>
+      <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false" type="enterprise"></gas-cylinder-overview-table>
     </ng-container>
 
     <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">

@@ -11,7 +11,7 @@ import { CylinderOverviewVO } from './cylinder-overview.model';
 export class CylinderOverviewTableComponent implements OnInit {
   @Input() cylinderStatistics: CylinderOverviewVO[] = [];
   @Input() loading = false;
-  @Input() roleType: RoleType = RoleType.Government;
+  @Input() type: 'county' | 'enterprise' = 'county';
   @Input() isShowRouterLink = true;
   RoleType = RoleType;
   constructor(

@@ -34,6 +34,7 @@ export class CylinderInfoComponent implements OnInit {
   msgs: Message[] = [];
   // 气瓶录入数据
   cylinderInfo: {
+    gasLabelNumber?: string;
     serialNumber?: string,
     enterpriseCylinderCode?: string,
     productNature?: string,
@@ -52,11 +53,12 @@ export class CylinderInfoComponent implements OnInit {
     nominalWorkingPressure?: string,
     inspectionOrganizationName?: string,
     inspectionNumber?: string,
-    lastTestDate?: string,
-    nextTestDate?: string,
+    lastInspectionTime?: string,
+    nextInspectionTime?: string,
     cylinderImage?: File[],
     innerDiameter?: string,
   } = {
+      gasLabelNumber: '',
       serialNumber: '',
       enterpriseCylinderCode: '',
       productNature: '',
@@ -75,8 +77,8 @@ export class CylinderInfoComponent implements OnInit {
       nominalWorkingPressure: '',
       inspectionOrganizationName: '',
       inspectionNumber: '',
-      lastTestDate: '',
-      nextTestDate: '',
+      lastInspectionTime: '',
+      nextInspectionTime: '',
       cylinderImage: [],
       innerDiameter: '1',
     };
@@ -232,10 +234,10 @@ export class CylinderInfoComponent implements OnInit {
     this.cylinderInfo.expectedScrapTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   selectedLastTestDate(event) {
-    this.cylinderInfo.lastTestDate = moment(event).format('YYYY-MM-DD HH:mm:ss');
+    this.cylinderInfo.lastInspectionTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   selectedNextTestDate(event) {
-    this.cylinderInfo.nextTestDate = moment(event).format('YYYY-MM-DD HH:mm:ss');
+    this.cylinderInfo.nextInspectionTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
   }
   clearIntoStationDate(event) {
     this.cylinderInfo.intoStationDate = '';
@@ -247,10 +249,10 @@ export class CylinderInfoComponent implements OnInit {
     this.cylinderInfo.expectedScrapTime = '';
   }
   clearLastTestDate(event) {
-    this.cylinderInfo.lastTestDate = '';
+    this.cylinderInfo.lastInspectionTime = '';
   }
   clearNextTestDate(event) {
-    this.cylinderInfo.nextTestDate = '';
+    this.cylinderInfo.nextInspectionTime = '';
   }
   // onclear(event) {
   //   event.files = [];
@@ -299,6 +301,7 @@ export class CylinderInfoComponent implements OnInit {
     }
   }
   clearInfo() {
+    this.cylinderInfo.gasLabelNumber = '';
     this.cylinderInfo.serialNumber = '';
     this.cylinderInfo.enterpriseCylinderCode = '';
     this.cylinderInfo.inspectionNumber = '';
@@ -306,7 +309,10 @@ export class CylinderInfoComponent implements OnInit {
 
   checkForm(): boolean {
     // console.log(this.cylinderInfo);
-    if (!this.cylinderInfo.serialNumber) {
+    if (!this.cylinderInfo.gasLabelNumber) {
+      this.showMessage('warn', '提示信息', '气瓶条码不能为空');
+      return false;
+    } else if (!this.cylinderInfo.serialNumber) {
       this.showMessage('warn', '提示信息', '气瓶出厂编号不能为空');
       return false;
     } else if (!this.cylinderInfo.enterpriseCylinderCode) {

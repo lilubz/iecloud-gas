@@ -8,7 +8,7 @@ import { QuestionListService } from '../questionnaire-list/question-list.service
   styleUrls: ['./addquestion.component.scss']
 })
 export class AddquestionComponent implements OnInit {
-  private questionlist = [];
+  questionlist = [];
   question: any = '';
   questionnaire: any;
   getQuestionnaire: any;
