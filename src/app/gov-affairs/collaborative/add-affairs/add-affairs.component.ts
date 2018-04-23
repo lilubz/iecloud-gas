@@ -124,13 +124,13 @@ export class AddAffairsComponent implements OnInit {
     } else if (this.formModel.regionId === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择所属区域' });
       return false;
-    } else if (this.formModel.address === '') {
+    } else if (!this.formModel.address.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写地地址信息' });
       return false;
     } else if (this.formModel.affairType.length === 0) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择事务类型' });
       return false;
-    } else if (this.formModel.describe === '') {
+    } else if (!this.formModel.describe.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写描述信息' });
       return false;
     } else if (this.formModel.level === '') {

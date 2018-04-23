@@ -89,7 +89,7 @@ export class DetailsComponent implements OnInit {
     this.formModel.nextSubmitEventId = rowData.eventId;
   }
   checkForm(): boolean {
-    if (this.formModel.explain === '') {
+    if (!this.formModel.explain.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写说明信息' });
       return false;
     }

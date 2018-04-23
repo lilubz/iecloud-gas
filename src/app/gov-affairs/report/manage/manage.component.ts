@@ -48,13 +48,13 @@ export class ManageComponent implements OnInit {
   ngOnInit() {
   }
   checkForm(file): boolean {
-    if (this.formModel.name === '') {
+    if (!this.formModel.name.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入报表名称' });
       return false;
     } else if (file.files.length === 0) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请上传一个附件' });
       return false;
-    } else if (this.formModel.interval === '') {
+    } else if (!/^[1-9]\d*$/.test(this.formModel.interval + '')) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入提交间隔' });
       return false;
     } else if (this.formModel.target === '') {
