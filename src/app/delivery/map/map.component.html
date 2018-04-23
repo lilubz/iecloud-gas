@@ -30,13 +30,13 @@
     <ng-container *ngIf="selectedDateRange === 4">
       <div class="ui-g-12 no-left-pad">
         开始时间：
-        <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+        <p-calendar appendTo="body" [monthNavigator]="true" [baseZIndex]="99999" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
           [(ngModel)]="beginTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}"
           [maxDate]="today" readonlyInput="true"></p-calendar>
       </div>
       <div class="ui-g-12 no-left-pad">
         结束时间：
-        <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+        <p-calendar appendTo="body" [monthNavigator]="true" [baseZIndex]="99999" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
           [(ngModel)]="endTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}"
           [maxDate]="today" readonlyInput="true"></p-calendar>
       </div>
@@ -64,13 +64,13 @@
     <ng-container *ngIf="selectedDateRangeCar === 4">
       <div class="ui-g-12 no-left-pad">
         开始时间：
-        <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+        <p-calendar appendTo="body" [monthNavigator]="true" [baseZIndex]="99999" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
           [(ngModel)]="beginTimeCar" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}"
           [maxDate]="today" readonlyInput="true"></p-calendar>
       </div>
       <div class="ui-g-12 no-left-pad">
         结束时间：
-        <p-calendar appendTo="body" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+        <p-calendar appendTo="body" [monthNavigator]="true" [baseZIndex]="99999" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
           [(ngModel)]="endTimeCar" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [showTime]="true" [style]="{'width': '200px'}"
           [maxDate]="today" readonlyInput="true"></p-calendar>
       </div>

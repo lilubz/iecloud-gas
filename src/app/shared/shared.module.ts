@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 
 import {
   ButtonModule,
-  CalendarModule,
   CheckboxModule,
   DataTableModule,
   DropdownModule,
@@ -49,6 +48,7 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
 import { HeaderComponent } from './header/header.component';
 import { DeliveryRegionCascadeComponent } from './delivery-region-cascade/delivery-region-cascade.component';
 import { ExplanationComponent } from './explanation/explanation.component';
+import { CalendarModule } from './calendar/calendar';
 
 @NgModule({
   imports: [
