@@ -107,20 +107,7 @@ export class MyAffairsComponent implements OnInit {
       });
     };
   }
-  transformDropdownAffairsType(data) {
-    if (data) {
-      const temp = {
-        label: data.t.transactionTypeName,
-        value: data.t.transactionTypeId
-      };
-      this.dropdown.affairsType.push(temp);
-      if (data.children) {
-        for (const item of data.children) {
-          this.transformDropdownAffairsType(item);
-        }
-      }
-    }
-  }
+
 
   getDropdownRegion(params?) {
     this._service.getDropdownForRegionSysUser(params)
@@ -154,8 +141,11 @@ export class MyAffairsComponent implements OnInit {
     this._service.listTransactionTypeInfo({})
       .then(data => {
         if (data.status === 0) {
-          this.transformDropdownAffairsType(data.data);
-          this.dropdown.affairsType = this.dropdown.default.concat(this.dropdown.affairsType);
+          this.dropdown.affairsType = this.dropdown.default.concat(data.data.map((item) => ({
+            value: item.transactionTypeId,
+            label: item.transactionTypeName
+          })));
+          this.formModel.affairType = this.dropdown.affairsType[0].value;
         } else {
           this.dropdown.affairsType = this.dropdown.default.concat([]);
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });

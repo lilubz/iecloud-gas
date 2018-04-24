@@ -133,7 +133,9 @@
         <div class="checkbox-container ui-g-12">
           <div class="checkbox ui-g-3" *ngFor="let item of dropdown.affairsType">
             <label>
-              <p-checkbox [(ngModel)]="formModel.affairType" name="affairType" [value]="item.value" [label]="item.label"></p-checkbox>
+              <!-- <p-checkbox [(ngModel)]="formModel.affairType" name="affairType" [value]="item.value" [label]="item.label"></p-checkbox> -->
+              <p-radioButton name="affairType" [value]="item.value" [label]="item.label" [(ngModel)]="formModel.affairType"
+              (click)="onAffairTypeChange()"></p-radioButton>
             </label>
           </div>
         </div>
@@ -161,7 +163,7 @@
     </div>
 
     <!-- 业务协同（可选） -->
-    <div class="ui-g optional">
+    <div class="ui-g optional" *ngIf="formModel.affairType !== 1">
       <div class="ui-g-12 group padding-left">
         <h3>业务协同（可选）
             <gas-explanation tooltip="如有需要，选择其他部门或企业去去处理该事件" position="bottom"></gas-explanation>
@@ -205,16 +207,17 @@
           </div>
 
         </div>
-        <div class="form-group ui-g-12">
-          <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
-            紧急程度：</label>
-          <div class="ui-g-10">
-            <p-dropdown [options]="dropdown.level" [(ngModel)]="formModel.level" name="level" [style]="{'width':'170px'}"></p-dropdown>
-          </div>
-        </div>
       </div>
     </div>
 
+    <div class="form-group ui-g-12">
+      <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
+        紧急程度：</label>
+      <div class="ui-g-10">
+        <p-dropdown [options]="dropdown.level" [(ngModel)]="formModel.level" name="level" [style]="{'width':'170px'}"></p-dropdown>
+      </div>
+    </div>
+  
     <div class="ui-g-12 dialog-footer text-center">
       <button pButton type="submit" class="ui-button-primery" label="确认" (click)="onSubmit(file)" [disabled]="disabledSubmitBtn"></button>
       <button pButton type="button" class="ui-button-secondary" label="重置" (click)="onReset(file)"></button>

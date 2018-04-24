@@ -93,7 +93,7 @@ export class AddAffairsComponent implements OnInit {
     originId: '',
     regionId: '',
     address: '',
-    affairType: [],
+    affairType: '',
     describe: '',
     file: null,
     helpDepartment: [],
@@ -184,7 +184,7 @@ export class AddAffairsComponent implements OnInit {
       formData.set('transactionPatrolTime', moment(this.formModel.time).format('YYYY-MM-DD HH:mm:ss'));
       formData.set('transactionRegionId', this.formModel.regionId);
       formData.set('transactionAddress', this.formModel.address);
-      formData.set('transactionTypeList', this.formModel.affairType);
+      formData.set('transactionTypeId', this.formModel.affairType);
       formData.set('description', this.formModel.describe);
       formData.set('cylinderImage', file.files[0]);
       formData.set('collaborativeOrganizationInfoTOS', JSON.stringify(helpList));
@@ -201,6 +201,13 @@ export class AddAffairsComponent implements OnInit {
     this.formModel.objValue = null;
     this.suggestions = [{}];
   }
+  onAffairTypeChange() {
+    if (this.formModel.affairType === 1) {
+      this.formModel.helpCompany = [];
+      this.formModel.helpDepartment = [];
+    }
+  }
+
   onBlurAutoComplete() {
     const config = this.config.autoComplete[this.formModel.objType];
     if (typeof this.formModel.objValue === 'string') {
@@ -212,20 +219,6 @@ export class AddAffairsComponent implements OnInit {
     }
   }
 
-  transformDropdownAffairsType(data) {
-    if (data) {
-      const temp = {
-        label: data.t.transactionTypeName,
-        value: data.t.transactionTypeId
-      };
-      this.dropdown.affairsType.push(temp);
-      if (data.children) {
-        for (const item of data.children) {
-          this.transformDropdownAffairsType(item);
-        }
-      }
-    }
-  }
   // http 请求
   getSuggestions(event) {
     const config = this.config.autoComplete[this.formModel.objType];
@@ -288,7 +281,10 @@ export class AddAffairsComponent implements OnInit {
     this._service.listTransactionTypeInfo({})
       .then(data => {
         if (data.status === 0) {
-          this.transformDropdownAffairsType(data.data);
+          this.dropdown.affairsType = data.data.map((item) => ({
+            value: item.transactionTypeId,
+            label: item.transactionTypeName
+          }));
         } else {
           this.dropdown.affairsType = [];
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
