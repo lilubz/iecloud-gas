@@ -46,7 +46,7 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
 
   constructor(private _service: AccountOpeningService,
     private fb: FormBuilder,
-    private messageService: MessageService,) { }
+    private messageService: MessageService, ) { }
 
   ngOnInit() {
     this.getEnterprise();
@@ -107,6 +107,12 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
     }).catch(error => {
       this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
     });
+  }
+  reset() {
+    this.formModel.reset();
+    this.formModel.patchValue({
+      gender: ''
+    })
   }
 
   ngOnDestroy() {

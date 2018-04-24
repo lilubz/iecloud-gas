@@ -294,16 +294,16 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     } else if (!this.editForm.enterpriseNumber) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '归属企业不能为空' });
       return false;
-    } else if (!this.editForm.supplyStationName) {
+    } else if (!this.editForm.supplyStationName.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '站点名称不能为空' });
       return false;
-    } else if (!this.editForm.principal) {
+    } else if (!this.editForm.principal.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
       return false;
-    } else if (!this.editForm.supplyLicenseNum) {
+    } else if (!this.editForm.supplyLicenseNum.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '供应许可证编号不能为空' });
       return false;
-    } else if (!this.editForm.issuingUnit) {
+    } else if (!this.editForm.issuingUnit.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '核发单位不能为空' });
       return false;
     } else if (!this.editForm.releaseTime) {
@@ -325,16 +325,16 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
     } else if (!this.addForm.enterpriseNumber) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '归属企业不能为空' });
       return false;
-    } else if (!this.addForm.supplyStationName) {
+    } else if (!this.addForm.supplyStationName.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '站点名称不能为空' });
       return false;
-    } else if (!this.addForm.principal) {
+    } else if (!this.addForm.principal.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
       return false;
-    } else if (!this.addForm.supplyLicenseNum) {
+    } else if (!this.addForm.supplyLicenseNum.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '供应许可证编号不能为空' });
       return false;
-    } else if (!this.addForm.issuingUnit) {
+    } else if (!this.addForm.issuingUnit.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '核发单位不能为空' });
       return false;
     } else if (!this.addForm.releaseTime) {
