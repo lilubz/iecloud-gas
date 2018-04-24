@@ -90,7 +90,7 @@ export class DetailsComponent implements OnInit {
   }
   checkForm(): boolean {
     if (!this.formModel.explain.trim()) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写说明信息' });
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写描述信息' });
       return false;
     }
     // 检测是否填入了时间。
