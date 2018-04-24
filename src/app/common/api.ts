@@ -278,5 +278,7 @@ export const API = {
   'listBalanceLockRecord': URL + 'gcFillingSupervise/listBalanceLockRecord.do', // 查询锁秤记录
   'setRuleForFillingSupervise': URL + 'gcFillingSupervise/setRuleForFillingSupervise.do', // 设置充装监管规则
   'getRuleForFillingSupervise': URL + 'gcFillingSupervise/getRuleForFillingSupervise.do', // 获取充装监管规则
+  'setBalanceInnerLockStatus': URL + 'gcFillingSupervise/setBalanceInnerLockStatus.do', // 设置某个秤的联锁状态
+  'setBalanceLockStatus': URL + 'gcFillingSupervise/setBalanceLockStatus.do', // 设置某个秤的锁状态
 
 };

@@ -25,10 +25,14 @@ export class FillingScaleListComponent implements OnInit {
   balanceNumber = '';
   settingScaleDialogVisible = false;
   selectedScaleStatus: {
-    balanceId: string,
-    boolIsSetInterLock: string,
-    boolIsSetOuterLock: string,
-  };
+    balanceId: number,
+    boolIsSetInterLock: boolean,
+    boolIsSetOuterLock: boolean,
+  } = {
+      balanceId: null,
+      boolIsSetInterLock: null,
+      boolIsSetOuterLock: null,
+    };
   constructor(
     private commonRequestService: CommonRequestService,
     private fillingScaleService: FillingScaleService,
@@ -50,19 +54,6 @@ export class FillingScaleListComponent implements OnInit {
         this.enterpriseList.unshift({ label: '全部', value: '' });
       }
     });
-
-    // this.balanceList = [{
-    //   balanceId: '1',
-    //   enterpriseNumber: '11',
-    //   enterpriseName: '',
-    //   inflatableStationNumber: '',
-    //   inflatableName: '',
-    //   balanceNumber: '111',
-    //   specification: '',
-    //   remark: '',
-    //   createTime: '',
-    //   updateTime: ''
-    // }];
   }
 
   onPageChange(event) {
@@ -104,15 +95,14 @@ export class FillingScaleListComponent implements OnInit {
   }
 
   showSettingScaleDialog(scale: ScaleVO) {
-    this.settingScaleDialogVisible = true;
-    this.selectedScaleStatus = null;
+    // this.selectedScaleStatus = null;
     this.fillingScaleService.getBalanceStatus({
       balanceId: scale.balanceId || ''
     }).then(data => {
       if (data.status === 0) {
+        this.settingScaleDialogVisible = true;
         this.selectedScaleStatus = data.data;
       } else {
-        this.selectedScaleStatus = null;
         this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
       }
     });
@@ -124,5 +114,49 @@ export class FillingScaleListComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  setInnerLock(checked: boolean) {
+    this.fillingScaleService.setBalanceInnerLockStatus({
+      balanceId: this.selectedScaleStatus.balanceId,
+      boolIsAddInnerLock: checked
+    }).then(data => {
+      if (data.status === 0) {
+        this.messageService.add({ severity: 'success', summary: '', detail: '设置成功！' });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+        this.fillingScaleService.getBalanceStatus({
+          balanceId: this.selectedScaleStatus.balanceId || ''
+        }).then(data => {
+          if (data.status === 0) {
+            this.selectedScaleStatus = data.data;
+          } else {
+            this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
+          }
+        });
+      }
+    });
+  }
+
+  setLock(checked: boolean) {
+    this.fillingScaleService.setBalanceLockStatus({
+      balanceId: this.selectedScaleStatus.balanceId,
+      boolIsLockBalance: checked
+    }).then(data => {
+      if (data.status === 0) {
+        this.messageService.add({ severity: 'success', summary: '', detail: '设置成功！' });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+        this.fillingScaleService.getBalanceStatus({
+          balanceId: this.selectedScaleStatus.balanceId || ''
+        }).then(data => {
+          if (data.status === 0) {
+            this.selectedScaleStatus = data.data;
+          } else {
+            this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
+          }
+        });
+      }
+    });
   }
 }

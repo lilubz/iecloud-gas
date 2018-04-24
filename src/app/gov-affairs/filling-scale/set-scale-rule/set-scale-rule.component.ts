@@ -36,7 +36,7 @@ export class SetScaleRuleComponent implements OnInit {
       boolIsValidForGcNotAccordWithCorpNumber: this.boolIsValidForGcNotAccordWithCorpNumber,
     }).then(data => {
       if (data.status === 0) {
-        this.messageService.add({ severity: 'success', summary: '', detail: '保存成功' })
+        this.messageService.add({ severity: 'success', summary: '', detail: data.msg })
       } else {
         this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
       }
