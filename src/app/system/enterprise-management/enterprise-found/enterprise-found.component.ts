@@ -98,7 +98,7 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
           this.deliveryUrbanDistrictList = data.data.map(
             element => ({ label: element.regionName, value: element.regionId }));
           this.deliveryUrbanDistrictList.unshift({ label: '--请选择--', value: '' });
-          this.initSelectedUrbanDistrict=this.deliveryUrbanDistrictList;
+          this.initSelectedUrbanDistrict = this.deliveryUrbanDistrictList;
           this.selectedUrbanDistrict = '';
         } else {
           this.deliveryStreetList = data.data.map(
@@ -213,7 +213,7 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
       }
     }
     if (this.checkForm()) {
-    const formData = new FormData();
+      const formData = new FormData();
       for (const key in this.addForm) {
         if (key) {
           if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
@@ -254,31 +254,37 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
     this.selectedStreetRegionId = '';
   }
   checkForm(): boolean {
-    if (!this.addForm.enterpriseName) {
+    if (!this.addForm.enterpriseName.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '企业名称不能为空' });
       return false;
-    } else if (!this.addForm.enterpriseNumber) {
+    } else if (!this.addForm.enterpriseNumber.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '企业编号不能为空' });
       return false;
-    } else if (!this.addForm.legalRepresentative) {
+    } else if (!/^\d+$/.test(this.addForm.enterpriseNumber)) {
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '企业编号不合法' });
+      return false;
+    } else if (!this.addForm.legalRepresentative.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
       return false;
-    } else if (!this.addForm.businessCategory) {
+    } else if (!this.addForm.address.trim()) {
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '地址不能为空' });
+      return false;
+    } else if (!this.addForm.businessCategory.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '经营类别不能为空' });
       return false;
     } else if (!this.addForm.regionId) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '辖区不能为空' });
       return false;
-    } else if (!this.addForm.address) {
-      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '地址不能为空' });
+    } else if (!this.addForm.serviceLine.trim()) {
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '服务热线不能为空' });
       return false;
-    } else if (!this.addForm.businessArea) {
+    } else if (!this.addForm.businessArea.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '经营区域不能为空' });
       return false;
-    } else if (!this.addForm.dangerousLicense) {
+    } else if (!this.addForm.dangerousLicense.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '许可证号不能为空' });
       return false;
-    } else if (!this.addForm.issuingUnit) {
+    } else if (!this.addForm.issuingUnit.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '发证机关不能为空' });
       return false;
     } else if (!this.addForm.releaseTime) {

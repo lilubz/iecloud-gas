@@ -97,10 +97,10 @@
       <div class="form-group ui-g-12">
         <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>事务来源：
-          <gas-explanation tooltip="事件来源的渠道（有群众举报，巡查发现）" position="bottom"></gas-explanation>
         </label>
         <div class="ui-g-10">
           <p-dropdown [options]="dropdown.origin" [(ngModel)]="formModel.originId" name="origin" [style]="{'width':'170px'}"></p-dropdown>
+          <gas-explanation tooltip="事件来源的渠道（有群众举报，巡查发现）" position="bottom"></gas-explanation>
         </div>
       </div>
     </div>
@@ -117,10 +117,10 @@
       <div class="form-group ui-g-12">
         <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>事务地点：
-          <gas-explanation tooltip="该事件发生的地点位置" position="bottom"></gas-explanation>
         </label>
         <div class="ui-g-10">
           <input type="text" pInputText [(ngModel)]="formModel.address" name="address" />
+          <gas-explanation tooltip="该事件发生的地点位置" position="bottom"></gas-explanation>
         </div>
       </div>
     </div>
@@ -145,10 +145,10 @@
       <div class="form-group ui-g-12">
         <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           <span class="warn">*</span>描述：
-          <gas-explanation tooltip="对该事件的发生原因的描述" position="bottom"></gas-explanation>
         </label>
         <div class="ui-g-10">
           <input type="text" pInputText [(ngModel)]="formModel.describe" name="describe" />
+          <gas-explanation tooltip="对该事件的发生原因的说明" position="bottom"></gas-explanation>
         </div>
       </div>
     </div>

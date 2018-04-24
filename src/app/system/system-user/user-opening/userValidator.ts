@@ -7,7 +7,7 @@ export const validator = {
     const regexp = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
     if (!value) {
 
-    } else if (!regexp.test(value)){
+    } else if (!regexp.test(value)) {
       error.msg = '您输入的手机号码不正确！';
       return error;
     }
@@ -17,7 +17,7 @@ export const validator = {
   password(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    if (!value) {
+    if (!(value + '').trim()) {
       error.msg = '密码不能为空';
       return error;
     } else if (value && value.length < 6) {
@@ -45,10 +45,10 @@ export const validator = {
   username(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    if (!value) {
+    if (!(value + '').trim()) {
       error.msg = '用户名不能为空';
       return error;
-    } else if (value.length > 30) {
+    } else if ((value + '').length > 30) {
       error.msg = '用户名长度不能大于30位';
       return error;
     }
@@ -57,7 +57,12 @@ export const validator = {
   realname(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    if (value.length > 10) {
+    if (!value) {
+      return false;
+    } else if (!(value + '').trim()) {
+      error.msg = '姓名不能为空格';
+      return error;
+    } else if ((value + '').length > 10) {
       error.msg = '姓名不能大于10位';
       return error;
     }

@@ -6,11 +6,10 @@
         <p-dropdown [options]="dropdown.region" [style]="{'width':'280px'}" formControlName="regionId" (onChange)="onChangeAreaID($event)"></p-dropdown>
       </div>
       <div class="ui-g-12 ui-lg-6">
-        <span class="search-label">供气企业
-          <gas-explanation tooltip="出售气瓶给客户的企业" position="bottom"></gas-explanation>
-          ：
+        <span class="search-label">供气企业：
         </span>
         <p-dropdown [options]="dropdown.corp" [style]="{'width':'280px'}" formControlName="enterpriseNumber"></p-dropdown>
+        <gas-explanation tooltip="出售气瓶给客户的企业" position="bottom"></gas-explanation>
       </div>
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label">用户名称：</span>
@@ -21,11 +20,10 @@
         <input class="textInput" type="text" pInputText formControlName="address">
       </div>
       <div class="ui-g-12 ui-lg-6">
-        <span class="search-label"> 客户类别
-          <gas-explanation tooltip="根据气瓶使用途径区别的客户类别（有个人，商业，工业三种）" position="bottom"></gas-explanation>
-          ：
+        <span class="search-label"> 客户类别：
         </span>
         <p-dropdown [options]="dropdown.userType" [style]="{'width':'280px'}" formControlName="userTypeId"></p-dropdown>
+        <gas-explanation tooltip="根据气瓶使用途径区别的客户类别（有个人，商业，工业三种）" position="bottom"></gas-explanation>
       </div>
       <div class="ui-g-12 ui-lg-6">
         <p-checkbox name="group1" label="只看有合同" formControlName="haveContract" binary="true"></p-checkbox>
