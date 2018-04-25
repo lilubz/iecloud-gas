@@ -72,12 +72,12 @@
       </p-column>
       <p-column [style]="{'width':'100px'}" header="发起时间">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <span>{{rowData.createTime|date:"yyyy-MM-dd"}}</span>
+          <span>{{rowData.createTime|date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'100px'}" header="最后处理时间">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <span>{{rowData.updateTime|date:"yyyy-MM-dd"}}</span>
+          <span>{{rowData.updateTime|date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </ng-template>
       </p-column>
       <ng-template pTemplate="emptymessage">
