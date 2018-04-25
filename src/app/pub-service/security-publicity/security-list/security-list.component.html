@@ -27,7 +27,8 @@
       <button type="button" pButton (click)="detailVisible=false" label="确定"></button>
     </p-footer>
   </p-dialog>
-  <!-- <p-dialog [visible]="detailVisible" header="公告宣传" [modal]="true">
-    <div id="article"></div>
-  </p-dialog> -->
+  <p-dialog [visible]="deleteDetailVisible" header="删除宣传公告" [closable]="false" [modal]="true" [responsive]="true">
+    <button type="button" pButton (click)="confirmDelete()" label="确定"></button>
+    <button type="button" pButton (click)="deleteDetailVisible=false" label="取消"></button>
+  </p-dialog>
 </div>
