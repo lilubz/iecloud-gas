@@ -5,7 +5,7 @@
         政府管理账号开通
       </h2>
     </div>
-    <form [formGroup]="formModel" (submit)="addSystemUser()">
+    <form [formGroup]="formModel" (submit)="addSystemUser()" (reset)="reset()" >
       <div class="ui-g-8">
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
@@ -13,7 +13,7 @@
               <b style="color:red;">*</b>
             </label>
             <p-dropdown [options]="dropdown.organization" formControlName="organization" (onChange)="onChangeOrganzation($event)" [style]="{'width':'300px'}"></p-dropdown>
-            <gas-explanation tooltip="根据组织名称选择角色名称，以便于权限等级分配（必填项）" position="bottom"></gas-explanation>
+            <gas-explanation tooltip="根据组织名称（即账号属于哪个部门）选择角色名，以便于权限等级分配（必填项）" position="bottom"></gas-explanation>
           </div>
         </div>
         <div class="ui-g-12 ui-g-offset-3">
@@ -31,6 +31,7 @@
               <b style="color:red;">*</b>
             </label>
             <input type="text" class="textInput" formControlName="username" pInputText placeholder="请输入用户名">
+            <gas-explanation tooltip="账号的登陆名称" position="bottom"></gas-explanation>
           </div>
         </div>
         <div class="ui-g-12 ui-g-nopad" formGroupName="passwords">

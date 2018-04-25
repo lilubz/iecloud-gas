@@ -5,7 +5,7 @@
         企业管理账号开通
       </h2>
     </div>
-    <form [formGroup]="formModel" (submit)="addEnterpriseUser()">
+    <form [formGroup]="formModel" (submit)="addEnterpriseUser()" (reset)="reset()">
       <div class="ui-g-8">
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">

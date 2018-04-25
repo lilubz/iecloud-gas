@@ -15,7 +15,7 @@ export const validator = {
   password(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    if (!value) {
+    if (!(value + '').trim()) {
       error.msg = '密码不能为空';
       return error;
     } else if (value && value.length < 6) {
@@ -55,10 +55,10 @@ export const validator = {
   realname(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    if (!value) {
+    if (!(value + '').trim()) {
       error.msg = '姓名不能为空';
       return error;
-    } else if (value.length > 10) {
+    } else if ((value + '').length > 10) {
       error.msg = '姓名不能大于10位';
       return error;
     }
@@ -67,11 +67,11 @@ export const validator = {
   username(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    if (!value) {
-      error.msg = '登陆名长度不能为空';
+    if (!(value + '').trim()) {
+      error.msg = '用户名不能为空';
       return error;
-    } else if (value.length > 30) {
-      error.msg = '登陆名长度不能大于30位';
+    } else if ((value + '').length > 30) {
+      error.msg = '用户名长度不能大于30位';
       return error;
     }
     return null;

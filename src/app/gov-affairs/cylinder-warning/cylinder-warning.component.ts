@@ -107,13 +107,13 @@ export class CylinderWarningComponent implements OnInit {
 
   }
   checkForm() {
-    if (typeof this.formModelSet.emptyCount !== 'number' || this.formModelSet.emptyCount < 0 || this.formModelSet.emptyCount > 100000) {
+    if (!/^\d*$/.test(this.formModelSet.emptyCount + '') || this.formModelSet.emptyCount < 0 || this.formModelSet.emptyCount > 100000) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入0-100000的空瓶阈值' });
       return false;
-    } else if (typeof this.formModelSet.fullCount !== 'number' || this.formModelSet.fullCount < 0 || this.formModelSet.fullCount > 100000) {
+    } else if (!/^\d*$/.test(this.formModelSet.fullCount + '') || this.formModelSet.fullCount < 0 || this.formModelSet.fullCount > 100000) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入0-100000的重瓶阈值' });
       return false;
-    } else if (this.formModelSet.describe === '' || this.formModelSet.describe === null || this.formModelSet.describe.length > 50) {
+    } else if (!this.formModelSet.describe.trim() || this.formModelSet.describe.length > 50) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入1-50字的设置依据' });
       return false;
     }
