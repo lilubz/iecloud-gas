@@ -86,11 +86,11 @@
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title">截止时间</span>
-          <span class="ui-g-6 content">{{treeNode.needHandle?.expirationDate | date:"yyyy-MM-dd"}}</span>
+          <span class="ui-g-6 content">{{treeNode.needHandle?.expirationDate | date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </div>
         <div class="ui-g-12">
           <div class="ui-g-4">
-            <span class="ui-g-6 content title">说明</span>
+            <span class="ui-g-6 content title">描述</span>
             <span class="ui-g-6 content">
               {{treeNode.needHandle?.parentDescription}}
             </span>
@@ -146,7 +146,7 @@
           <div class="ui-g-12">
             <div class="ui-g-8 form-group ">
               <label for="inputEmail3" class="ui-g-3 control-label">
-                <span class="warn">*</span>说明：</label>
+                <span class="warn">*</span>描述：</label>
               <div class="ui-g-9">
                 <input type="text" pInputText [(ngModel)]="formModel.explain" name="address" />
               </div>
@@ -187,7 +187,7 @@
           </span>
         </div>
         <div class="ui-g-6">
-          <span class="ui-g-3 content title">说明</span>
+          <span class="ui-g-3 content title">描述</span>
           <span class="ui-g-9 content" title="{{item.description}}">{{item.description}}</span>
         </div>
         <div class="ui-g-3">
@@ -229,7 +229,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-6">
-          <span class="ui-g-2 content title">说明</span>
+          <span class="ui-g-2 content title">描述</span>
           <span class="ui-g-10 content">{{treeNode.selectInfo.description?treeNode.selectInfo.description:'-'}}</span>
         </div>
         <div class="ui-g-3">

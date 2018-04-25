@@ -59,16 +59,16 @@ export class TransportCarComponent implements OnInit {
     } else if (this.formModel.number.length < 6) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入正确的车牌号' });
       return false;
-    } else if (this.formModel.company === '') {
+    } else if (!this.formModel.company.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入所属危化品运输公司' });
       return false;
-    } else if (this.formModel.driver === '') {
+    } else if (!this.formModel.driver.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入驾驶员姓名' });
       return false;
-    } else if (this.formModel.escort === '') {
+    } else if (!this.formModel.escort.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入押运员姓名' });
       return false;
-    } else if (this.formModel.licence === '') {
+    } else if (!this.formModel.licence.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入运输许可证' });
       return false;
     }

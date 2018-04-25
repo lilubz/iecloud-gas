@@ -22,18 +22,18 @@
           </ng-template>
         </p-column>
         <ng-template pTemplate="paginatorRight">
-            共 {{ statisticTotal || 0 }} 条记录
+          共 {{ statisticTotal || 0 }} 条记录
         </ng-template>
       </p-dataTable>
     </div>
   </div>
 </div>
 
-<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="720" [responsive]="true"
-[style]="{'border':'none','overflow':'auto'}" positionTop="90">
-  <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [style]="{'max-height':'540px'}" [paginator]="true" [rows]="recordPageSize"
-    [lazy]="true" scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)" [scrollable]="false" [totalRecords]="recordTotal"
-    [rowsPerPageOptions]="[10,20,40,80]">
+<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="720" [responsive]="true" [style]="{'border':'none','overflow':'auto'}"
+  positionTop="90">
+  <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [style]="{'max-height':'540px'}" [paginator]="true"
+    [rows]="recordPageSize" [lazy]="true" scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)" [scrollable]="false"
+    [totalRecords]="recordTotal" [rowsPerPageOptions]="[10,20,40,80]">
     <p-column [style]="{'width':'150px'}" field="regionName" header="所在区"></p-column>
     <p-column [style]="{'width':'150px'}" field="userName" header="用户名称"></p-column>
     <p-column [style]="{'width':'150px'}" field="userType" header="客户类型"></p-column>
@@ -60,7 +60,7 @@
     </p-column>
     <!-- <p-column [style]="{'width':'150px'}" field="date" header="附件"></p-column> -->
     <ng-template pTemplate="paginatorRight">
-        共 {{ recordTotal || 0 }} 条记录
+      共 {{ recordTotal || 0 }} 条记录
     </ng-template>
   </p-dataTable>
   <p-footer>

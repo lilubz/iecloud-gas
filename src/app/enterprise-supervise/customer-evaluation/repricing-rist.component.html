@@ -1,0 +1,105 @@
+<div class="main">
+  <div class="repricing-list ui-g-12 card">
+    <div style="min-width:900px">
+      <div class="ui-g-12">
+        <div class="ui-g-10 time">
+          <label for="">此刻时间</label>
+          <span>{{nowTime | DateFormat}}</span>
+        </div>
+        <div class="ui-g-2">
+          <button type="text" (click)="showAddDialog()" class="searchBtn" pButton label="添加"></button>
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <p-dataTable [value]="priceList">
+          <p-column [style]="{'width':'120px'}" header="序号">
+            <ng-template let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" field="specificationId" header="规格"></p-column>
+          <p-column [style]="{'width':'120px'}" field="price" header="定价/元"></p-column>
+          <p-column [style]="{'width':'120px'}" header="添加时间">
+            <ng-template let-index="rowIndex" pTemplate="body">
+              <span>{{priceList[index].createTime | DateFormat}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="修改时间">
+            <ng-template let-index="rowIndex" pTemplate="body">
+              <span>{{priceList[index].updateTime | DateFormat}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" header="操作">
+            <ng-template let-index="rowIndex" let-next="rowData" pTemplate="body">
+              <button type="text" (click)="showEditDialog(next)" pButton class="searchBtn" label="修改"></button>
+              <button type="text" (click)="showDeleteDialog(next)" pButton class="deleteBtn" label="删除"></button>
+            </ng-template>
+
+          </p-column>
+          <ng-template pTemplate="emptymessage">
+            <div>
+              未查询到数据
+            </div>
+          </ng-template>
+
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="新增记录" [modal]="true" [(visible)]="displayAddDialog" [width]="300">
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">气瓶规格</div>
+    <p-dropdown class="ui-g-6" [options]="cylinderSpecificationList" name="specificationId" [(ngModel)]="formModel.specificationId"
+      [style]="{'width':'100px'}"></p-dropdown>
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">价格</div>
+    <input type="number" min="0" class="ui-g-6" style="width:100px;margin-left:9px" [(ngModel)]="formModel.repricing" maxlength="10"
+      pInputText>
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g-6">
+      <button type="text" (click)="saveAddPrice()" class="searchBtn" pButton label="保存"></button>
+    </div>
+    <div class="ui-g-6">
+      <button type="text" (click)="hideDialog()" class="deleteBtn" pButton label="取消"></button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="修改价格" [modal]="true" [(visible)]="displayEditDialog" [width]="300">
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">气瓶规格</div>
+    <div class="ui-g-6">{{ formModel.specificationId }}</div>
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">价格</div>
+    <input type="number" min="0" class="ui-g-6" style="width:100px;margin-left:9px" [(ngModel)]="formModel.repricing" maxlength="10"
+      pInputText>
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g-6">
+      <button type="text" (click)="saveAddPrice()" class="searchBtn" pButton label="保存"></button>
+    </div>
+    <div class="ui-g-6">
+      <button type="text" (click)="hideDialog()" class="deleteBtn" pButton label="取消"></button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="删除" [modal]="true" [(visible)]="displayDeleteDialog" [width]="300">
+  <div class="ui-g-12">
+    确认删除
+    <b> {{ formModel.specificationId }} </b>气瓶价格信息？
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g-6">
+      <button type="text" (click)="deletePrice()" class="searchBtn" pButton label="确认"></button>
+    </div>
+    <div class="ui-g-6">
+      <button type="text" (click)="hideDialog()" class="deleteBtn" pButton label="取消"></button>
+    </div>
+  </div>
+</p-dialog>

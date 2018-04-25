@@ -1,0 +1,14 @@
+<div class="ui-g-12">
+  <div class="ui-g-4"></div>
+  <div class="ui-g-4">
+    <span class="ui-float-label">
+      <input id="float-input" [(ngModel)]="articleTitle" type="text" size="30" pInputText style="width:478px">
+      <label for="float-input">标题</label>
+    </span>
+    <br>
+    <textarea [rows]="5" [cols]="50" [(ngModel)]="articleDescription" pInputTextarea autoResize="autoResize" placeholder="内容"></textarea>
+    <br>
+    <button pButton type="button" label="清空内容" (click)="articleDescription=null" class="float" style="margin-left:5px;"></button>
+    <button pButton type="button" label="提交" (click)="Addsecurity()" class="float"></button>
+  </div>
+</div>

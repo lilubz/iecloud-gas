@@ -1,0 +1,33 @@
+<div>
+  <h1 style="text-align: center;">安全宣传列表</h1>
+
+  <button pButton type="button" [routerLink]="['../add-security']" label="添加宣传" style="float: right;"></button>
+  <div class="ui-g-12 ui-g-nopad" style="margin-top: 30px;">
+    <!-- <p-dataTable [value]="enterpriseRegisterStatistic" emptyMessage="未查询到数据" [paginator]="true" [rows]="statisticPageSize" [lazy]="true"
+      [(first)]="statisticFirst" (onLazyLoad)="onStatisticPageChange($event)" [scrollable]="false" [totalRecords]="statisticTotal"
+      [rowsPerPageOptions]="[10,20,40,80]"> -->
+    <p-dataTable [value]="securityList" emptyMessage="未查询到数据">
+      <p-column header="序号" [style]="{'width':'50px'}">
+        <ng-template pTemplate="body" let-index="rowIndex">
+          {{index + 1}}
+        </ng-template>
+      </p-column>
+      <p-column field="articleTitle" header="宣传名称"></p-column>
+      <p-column header="操作" [style]="{'width':'250px'}">
+        <ng-template let-col="rowData" let-customerCard="rowData" pTemplate="body">
+          <button pButton type="button" label="查看" (click)="show(col)"></button>
+          <button pButton type="button" label="删除" (click)="delete(col)"></button>
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>
+  <p-dialog [visible]="detailVisible" header="公告宣传" [closable]="false" width="1000" height="auto" [modal]="true" [responsive]="true">
+    {{title}}
+    <p-footer>
+      <button type="button" pButton (click)="detailVisible=false" label="确定"></button>
+    </p-footer>
+  </p-dialog>
+  <!-- <p-dialog [visible]="detailVisible" header="公告宣传" [modal]="true">
+    <div id="article"></div>
+  </p-dialog> -->
+</div>
