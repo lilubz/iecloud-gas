@@ -1272,7 +1272,7 @@ export class Calendar implements AfterViewInit,AfterViewChecked,OnInit,OnDestroy
             this.domHandler.absolutePosition(this.overlayViewChild.nativeElement, this.inputfieldViewChild.nativeElement);
         else
           this.domHandler.relativePosition(this.overlayViewChild.nativeElement, this.inputfieldViewChild.nativeElement);
-          this.overlayViewChild.nativeElement.style.top = this.inputfieldViewChild.nativeElement.offsetHeight;
+          this.overlayViewChild.nativeElement.style.top = this.inputfieldViewChild.nativeElement.offsetHeight + 'px';
     }
 
     writeValue(value: any) : void {
