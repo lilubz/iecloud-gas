@@ -13,7 +13,7 @@
       </div>
       <div class="ui-g-4">
         <span class="ui-g-6 content title">巡查时间</span>
-        <span class="ui-g-6 content">{{details.transactionPatrolTime | date:'yyyy-MM-dd'}}</span>
+        <span class="ui-g-6 content">{{details.transactionPatrolTime |  date:"yyyy-MM-dd HH:mm:ss"}}</span>
       </div>
       <div class="ui-g-4">
         <span class="ui-g-6 content title">描述</span>
@@ -29,7 +29,7 @@
       </div>
       <div class="ui-g-4">
         <span class="ui-g-6 content title">发起时间</span>
-        <span class="ui-g-6 content">{{details.createTime | date:"yyyy-MM-dd"}}</span>
+        <span class="ui-g-6 content">{{details.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
       </div>
       <div class="ui-g-4">
         <span class="ui-g-6 content title">发起部门</span>
@@ -80,7 +80,7 @@
           </div>
           <div class="ui-g-4">
             <span class="ui-g-6 content title">处理时间</span>
-            <span class="ui-g-6 content">{{todo?.endTime | date:"yyyy-MM-dd"}}</span>
+            <span class="ui-g-6 content">{{todo?.endTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
           </div>
           <div class="ui-g-4">
             <span class="ui-g-6 content title">截止时间</span>

@@ -60,8 +60,14 @@
   [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="130">
   <div class="ui-g-12 text-center">
     充装秤编号：{{ selectedScaleStatus?.balanceId }}
-    <br> 是否设置联锁：{{ selectedScaleStatus?selectedScaleStatus.boolIsSetInterLock?'是':'否':'' }}
-    <br> 是否设置锁：{{ selectedScaleStatus?selectedScaleStatus.boolIsSetOuterLock?'是':'否':'' }}
+    <div class="ui-g-12 ui-g-nopad">
+      是否设置联锁：
+      <p-inputSwitch onLabel="是" offLabel="否" [(ngModel)]="selectedScaleStatus.boolIsSetInterLock" (onChange)="setInnerLock($event.checked)"></p-inputSwitch>
+    </div>
+    <div class="ui-g-12 ui-g-nopad">
+      是否设置锁：
+      <p-inputSwitch onLabel="是" offLabel="否" [(ngModel)]="selectedScaleStatus.boolIsSetOuterLock" (onChange)="setLock($event.checked)"></p-inputSwitch>
+    </div>
   </div>
   <p-footer>
     <button type="button" pButton icon="fa-close" (click)="settingScaleDialogVisible=false" label="关闭"></button>

@@ -88,8 +88,8 @@
           <span class="warn">*</span>发现时间：</label>
         <div class="ui-g-10">
           <p-calendar [(ngModel)]="formModel.time" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
-            [locale]="zh" [showIcon]="false" name="time" showTime="true" hourFormat="24" [showOtherMonths]="false" [stepMinute]="10"
-            placeholder="请输入发现时间" [maxDate]="currentDate" [showButtonBar]="true"></p-calendar>
+            [locale]="zh" [showIcon]="false" name="time" hourFormat="24" [showOtherMonths]="false" [stepMinute]="10"
+            placeholder="请输入发现时间" [maxDate]="currentDate" [showButtonBar]="true" [showTime]="true"></p-calendar>
         </div>
       </div>
     </div>
@@ -133,7 +133,6 @@
         <div class="checkbox-container ui-g-12">
           <div class="checkbox ui-g-3" *ngFor="let item of dropdown.affairsType">
             <label>
-              <!-- <p-checkbox [(ngModel)]="formModel.affairType" name="affairType" [value]="item.value" [label]="item.label"></p-checkbox> -->
               <p-radioButton name="affairType" [value]="item.value" [label]="item.label" [(ngModel)]="formModel.affairType"
               (click)="onAffairTypeChange()"></p-radioButton>
             </label>
@@ -162,11 +161,12 @@
       </div>
     </div>
 
-    <!-- 业务协同（可选） -->
-    <div class="ui-g optional" *ngIf="formModel.affairType !== 1">
-      <div class="ui-g-12 group padding-left">
-        <h3>业务协同（可选）
-            <gas-explanation tooltip="如有需要，选择其他部门或企业去去处理该事件" position="bottom"></gas-explanation>
+    <!-- 业务协同（如果事务类别是【交办】那么业务协同将会是必填项） -->
+    <div class="ui-g optional" *ngIf="formModel.affairType === 2">
+      <div class="ui-g-12 group ui-g-nopad">
+        <h3>
+          <span class="warn">*</span>业务协同
+          <gas-explanation tooltip="选择其他部门或企业去去处理该事件" position="bottom"></gas-explanation>
         </h3>
         <div class="form-group ui-g-6 affair-type">
           <label for="inputEmail3" class="ui-g-3 control-label" style="width:130px;display:inline-block">

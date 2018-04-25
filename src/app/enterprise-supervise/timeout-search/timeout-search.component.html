@@ -62,7 +62,8 @@
         <p-column field="description" header="事件描述"></p-column>
         <p-column header="附件" [style]="{'width':'95px'}">
           <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="{{rowData.url}}" target="_blank">点击下载</a>
+            <a *ngIf="rowData.url" href="{{rowData.url}}" target="_blank">点击下载</a>
+            <span *ngIf="!rowData.url">没有附件</span>
           </ng-template>
         </p-column>
         <ng-template pTemplate="emptymessage">

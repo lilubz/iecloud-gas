@@ -93,9 +93,13 @@ export const AdminMenus: MenuItem[] = [
     routerLink: ['/pub-service'],
     items: [
       { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
-      // { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
+      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
     ]
   }
+
+
+
+
 ];
 
 export const GovernmentMenus: MenuItem[] = [
@@ -184,10 +188,15 @@ export const GovernmentMenus: MenuItem[] = [
     icon: 'menu-icon verification-icon',
     routerLink: ['/verification']
   },
-
-
-
-
+  {
+    label: '公众服务',
+    icon: 'menu-icon public-icon',
+    routerLink: ['/pub-service'],
+    items: [
+      { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
+      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
+    ]
+  }
 ];
 
 
@@ -249,7 +258,8 @@ export const EnterpriseMenus: MenuItem[] = [
     items: [
       { label: '报表管理', routerLink: ['/enterprise-supervise/report'] },
       { label: '事务处理', routerLink: ['/enterprise-supervise/affair-list'] },
-      { label: '重瓶定价', routerLink: ['/enterprise-supervise/repricing-rist'] }
+      { label: '重瓶定价', routerLink: ['/enterprise-supervise/repricing-rist'] },
+      { label: '客户评价', routerLink: ['/enterprise-supervise/customer-evaluation'] }
     ]
   },
   {
