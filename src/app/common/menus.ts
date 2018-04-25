@@ -96,6 +96,10 @@ export const AdminMenus: MenuItem[] = [
       // { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
     ]
   }
+
+
+
+
 ];
 
 export const GovernmentMenus: MenuItem[] = [
@@ -249,7 +253,8 @@ export const EnterpriseMenus: MenuItem[] = [
     items: [
       { label: '报表管理', routerLink: ['/enterprise-supervise/report'] },
       { label: '事务处理', routerLink: ['/enterprise-supervise/affair-list'] },
-      { label: '重瓶定价', routerLink: ['/enterprise-supervise/repricing-rist'] }
+      { label: '重瓶定价', routerLink: ['/enterprise-supervise/repricing-rist'] },
+      { label: '客户评价', routerLink: ['/enterprise-supervise/customer-evaluation'] }
     ]
   },
   {

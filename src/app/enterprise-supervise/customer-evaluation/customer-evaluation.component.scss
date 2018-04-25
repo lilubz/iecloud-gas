@@ -1,0 +1,11 @@
+.main{
+    left: 90px;
+    min-width: 800px;
+  }
+.repricing-list{
+    padding-top:80px;
+    padding-left:10px;
+    [class^='ui-g']{
+        padding:0;
+    }
+}

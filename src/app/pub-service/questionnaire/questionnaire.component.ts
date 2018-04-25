@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./questionnaire.component.scss'],
 })
 export class QuestionnaireComponent implements OnInit {
- 
+
   constructor() { }
   ngOnInit() {
 
   }
 
- 
+
 
 
 }

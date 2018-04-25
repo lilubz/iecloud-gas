@@ -10,6 +10,7 @@ import { AffairListComponent } from './affair-list/affair-list.component';
 import { AffairDetailsComponent } from './affair-details/affair-details.component';
 import { RepricingRistComponent } from './repricing-rist/repricing-rist.component';
 import { TimeoutSearchComponent } from './timeout-search/timeout-search.component';
+import { CustomerEvaluationComponent } from './customer-evaluation/customer-evaluation.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { TimeoutSearchComponent } from './timeout-search/timeout-search.componen
     AffairListComponent,
     AffairDetailsComponent,
     RepricingRistComponent,
-    TimeoutSearchComponent
+    TimeoutSearchComponent,
+    CustomerEvaluationComponent
   ]
 })
 export class EnterpriseSuperviseModule { }

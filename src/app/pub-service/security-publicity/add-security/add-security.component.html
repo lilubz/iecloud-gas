@@ -1,0 +1,19 @@
+<span class="ui-float-label">
+    <input id="float-input" [(ngModel)]="articleTitle" type="text" size="30" pInputText [disabled]="disabled">
+    <label for="float-input">标题</label>
+</span>
+<br>
+<textarea [rows]="5" [cols]="50" [(ngModel)]="articleDescription" pInputTextarea autoResize="autoResize" placeholder="内容"></textarea>
+<!-- <button id="disabled-btn" type="button" (click)="toggleDisabled()" pButton label="确定标题"></button> -->
+<!-- <p-editor [(ngModel)]="articleDescription" [style]="{'height':'320px'}">
+    <p-header>
+        <span class="ql-formats"> -->
+        <!-- <button class="ql-bold" aria-label="Bold"></button>
+            <button class="ql-italic" aria-label="Italic"></button>
+            <button class="ql-underline" aria-label="Underline"></button> -->
+        <!-- </span>
+    </p-header>
+</p-editor> -->
+<br>
+<button pButton type="button" label="清空内容" (click)="articleDescription=null"></button>
+<button pButton type="button" label="提交" (click)="Addsecurity()"></button>
