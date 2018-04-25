@@ -5,11 +5,11 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { SecurityPublicityComponent } from './security-publicity/security-publicity.component';
 import { AddquestionComponent } from './questionnaire/addquestion/addquestion.component';
 import { QuestionnaireListComponent } from './questionnaire/questionnaire-list/questionnaire-list.component';
+import { QuestionnaireDetailsComponent } from './questionnaire/questionnaire-details/questionnaire-details.component'
+import { SurveyResultComponent } from './questionnaire/survey-result/survey-result.component';
 import { SecurityListComponent } from './security-publicity/security-list/security-list.component';
 import { AddSecurityComponent } from './security-publicity/add-security/add-security.component';
-// import { StatisticComponent } from '../statistic/statistic.component';
 
-import {QuestionnaireDetailsComponent} from './questionnaire/questionnaire-details/questionnaire-details.component';
 const routes: Routes = [
   {
     path: '',
@@ -54,19 +54,48 @@ const routes: Routes = [
             data: {
               title: '问卷详情'
             },
-          }
+          },
+          {
+            path: 'survey-result',
+            component: SurveyResultComponent,
+            data: {
+              title: '统计结果'
+            },
+          },
+
         ]
       },
-      // {
-      //   path: 'security-publicity',
-      //   component: SecurityPublicityComponent,
-      //   data: {
-      //     title: '安全宣传'
-      //   },
-      // }
-      ]
+      {
+        path: 'security-publicity',
+        component: SecurityPublicityComponent,
+        data: {
+          title: '安全宣传'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'security-list',
+            pathMatch: 'full'
           },
-    ];
+          {
+            path: 'security-list',
+            component: SecurityListComponent,
+            data: {
+              title: '宣传列表'
+            },
+          },
+          {
+            path: 'add-security',
+            component: AddSecurityComponent,
+            data: {
+              title: '添加安全宣传'
+            },
+          }
+        ]
+      }
+    ]
+  },
+];
 
 
 @NgModule({

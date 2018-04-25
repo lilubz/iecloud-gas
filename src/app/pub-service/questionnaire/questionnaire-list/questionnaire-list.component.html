@@ -20,15 +20,17 @@
         </ng-template>
       </p-column>
       <p-column field="endTime" header="结束时间">
-          <ng-template let-rowData="rowData" pTemplate="body">
-              {{ rowData.startTime | date:'yyyy-MM-dd' }}
-            </ng-template>
+        <ng-template let-rowData="rowData" pTemplate="body">
+          {{ rowData.startTime | date:'yyyy-MM-dd' }}
+        </ng-template>
       </p-column>
       <p-column field="userId" header="上传用户ID"></p-column>
       <p-column header="操作" [style]="{'width':'180px'}">
         <ng-template let-col let-rowData="rowData" pTemplate="body">
           <!-- <a href="javascript:void(0);" (click)="viewStatistics()">查看统计</a> -->
           <button pButton type="button" label="查看问卷详情" [routerLink]="['../questionnaire-details', rowData.questionnaireId]"></button>
+          <button pButton type="button" label="查看统计结果" class="ui-button-secondary" [routerLink]="['../survey-result']" [queryParams]="{id:rowData.questionnaireId}"
+            style="margin-top: 10px;"></button>
         </ng-template>
       </p-column>
     </p-dataTable>
