@@ -10,6 +10,7 @@ import * as echarts from 'echarts';
   providers: [IndustryAnalyzeService]
 })
 export class IndustryAnalyzeComponent implements OnInit {
+  hidden = true;
   charts = {
     option: null,
     element: null,
@@ -63,6 +64,7 @@ export class IndustryAnalyzeComponent implements OnInit {
     this.drawingCharts([], []);
   }
   onSubmit() {
+    this.hidden = false;
     this.charts.instance.showLoading();
     this.getChartsData({
       regionId: this.formModel.regionId,
@@ -113,6 +115,7 @@ export class IndustryAnalyzeComponent implements OnInit {
       ]
     };
     this.charts.instance.setOption(this.charts.option);
+    this.hidden = xData.length <= 0;
   }
   onChangeAreaID(event) {
     this.dropdown.corp = this.dropdown.default;
