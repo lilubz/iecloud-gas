@@ -7,7 +7,7 @@ import { Util } from '../../../../../core/util';
 import * as echarts from 'echarts';
 import { zh_CN } from './../../../../../common/date-localization';
 import * as moment from 'moment';
-import { StatisticCylinderService } from '../../../../../government/statistic/cylinder/statistic-cylinder.service';
+import { StatisticCylinderService } from '../../../../../statistic/cylinder/statistic-cylinder.service';
 @Component({
   selector: 'gas-dispatcher-overview',
   templateUrl: './overview.component.html',

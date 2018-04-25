@@ -19,23 +19,23 @@ export class CustomerEvaluationComponent implements OnInit {
   dropdown = {
     status: [
       {
-        label: '强烈推荐-5分',
+        label: '强烈推荐--5分',
         value: 5
       },
       {
-        label: '很满意-4分',
+        label: '很满意--4分',
         value: 4
       },
       {
-        label: '还不错-3分',
+        label: '还不错--3分',
         value: 3
       },
       {
-        label: '一般-2分',
+        label: '一般--2分',
         value: 2
       },
       {
-        label: '差评-1分',
+        label: '差评--1分',
         value: 1
       },
     ]
@@ -66,8 +66,8 @@ export class CustomerEvaluationComponent implements OnInit {
   }
   onSubmit() {
     this.getDataTableList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD') + '00:00:00',
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD') + '23:59:59',
+      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
+      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD') + ' 23:59:59',
       rank: this.formModel.status,
       pageNumber: 1,
       pageSize: this.dataTable.pageSize,
@@ -84,8 +84,8 @@ export class CustomerEvaluationComponent implements OnInit {
         pageNumber: event.first / event.rows + 1
       };
       this.getDataTableList({
-        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
-        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
+        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD') + ' 00:00:00',
+        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD') + ' 23:59:59',
         rank: this.formModel.status,
         pageNumber: page.pageNumber,
         pageSize: page.pageSize,
@@ -110,8 +110,8 @@ export class CustomerEvaluationComponent implements OnInit {
   }
   getDataAverage = () => {
     this._service.avgOrderEvaluate({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD') + '00:00:00',
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD') + '23:59:59',
+      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
+      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD') + ' 23:59:59',
     }).then(data => {
       this.transactionType = data.data;
       this.average = true;

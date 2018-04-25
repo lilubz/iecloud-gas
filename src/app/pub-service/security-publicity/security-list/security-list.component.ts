@@ -18,7 +18,9 @@ export class SecurityListComponent implements OnInit {
 
   securityList: any = [];
   title: any;
+  articleId: any;
   detailVisible = false;
+  deleteDetailVisible = false;
 
   constructor(
     private SecurityListService: SecurityListService,
@@ -42,11 +44,17 @@ export class SecurityListComponent implements OnInit {
       });
   }
   delete = (articleId) => {
+    this.deleteDetailVisible = true;
+    this.articleId = articleId;
+  }
+  confirmDelete = () => {
     this.SecurityListService.deleteSecurityPublicityArticle({
-      articleId: articleId.articleId
+      articleId: this.articleId.articleId
     }).then(
       data => {
+        this.deleteDetailVisible = false;
         this.listSecurityPublicityArticle();
+        this.messageService.add({ severity: 'success', summary: '成功', detail: data.msg });
       }
     ).catch(
       data => {
@@ -54,17 +62,13 @@ export class SecurityListComponent implements OnInit {
       }
     );
   }
+  cancel = () => {
+    this.deleteDetailVisible = false;
+    this.articleId = '';
+  }
   show = (data) => {
-    console.dir(data.articleDescription);
-    // document.getElementById('article').innerHTML = data.articleDescription;
     this.title = data.articleDescription;
     this.detailVisible = true;
   }
-  // onStatisticPageChange = (event) => {
-  //   this.statisticPageNumber = event.first / event.rows + 1;
-  //   this.pageSize = event.rows;
-  //   console.log(event);
-  //   // this.pageSize = pageSize;
-  // }
 
 }
