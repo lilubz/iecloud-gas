@@ -25,7 +25,7 @@ const PROXY_CONFIG = [
       "/wenZhouGas",
       "/dataImport",
     ],
-    target: "http://192.168.1.141:8080", // 铁军台式
+    target: "http://192.168.1.141:8080", // 本地测试
     secure: false,
     // "pathRewrite": {
     //   "^/wenZhouGas": ""
@@ -51,17 +51,6 @@ const PROXY_CONFIG = [
   //   secure: false,
   //   "pathRewrite": {
   //     // "^/wenZhouGas": ""
-  //   }
-  // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //     "/dataImport",
-  //   ],
-  //   target: "http://192.168.1.141:8080",// 涛哥笔记本
-  //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
   //   }
   // },
   // {
