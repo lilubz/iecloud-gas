@@ -1,5 +1,3 @@
-import { InjectionToken } from '@angular/core';
-
 const release = '/wenZhouGas/';
 const local = '/api/';
 
@@ -35,7 +33,7 @@ export const API = {
   'getListGcSpecification': URL + 'basicInformation/commonInfo/listGcSpecification.do',
   'getListInspection': URL + 'basicInformation/commonInfo/listInspection.do',
   'getGcSpecification': URL + 'basicInformation/commonInfo/getGcSpecification.do',
-  'getSerialNumber': URL + 'basicInformation/gasCylinder/getSerialNumber.do',
+  'getEnterpriseCylinderCode': URL + 'basicInformation/gasCylinder/getEnterpriseCylinderCode.do',
   'insertGCInfoBasic': URL + 'basicInformation/gasCylinder/insertGCInfoBasic.do',
   'getEnterpriseName': URL + 'basicInformation/corpInfo/getEnterpriseName.do',
 
@@ -54,8 +52,6 @@ export const API = {
   'importGasCylinderInfoUnbound': URL + 'dataImport/gasCylinder/importGasCylinderInfoUnbound.do',
   // 审核
   'listRegionInfo': URL + 'basicInformation/region/listRegionInfo.do',
-  'getGcCountRecentlyRegister': URL + 'basicInformation/gasCylinder/getGcCountRecentlyRegister.do',
-  'listGcInfoRecentlyRegister': URL + 'basicInformation/gasCylinder/listGcInfoRecentlyRegister.do',
   // 系统管理
   'queryLog': URL + '',
   // 通知公告
@@ -92,6 +88,10 @@ export const API = {
   'getDropdownForCorpInfoInRegion': URL + 'basicInformation/corpInfo/listCorpInfoInRegion.do',
   'deleteGcUser': URL + 'basicInformation/gcUserInfo/deleteGcUser.do',
   'updateGcUser': URL + 'basicInformation/gcUserInfo/updateGcUser.do',
+
+  // 订单评价
+  'listOrderEvaluate': URL + 'order/listOrderEvaluate.do',
+  'avgOrderEvaluate': URL + 'order/avgOrderEvaluate.do',
 
 
   /**
@@ -151,10 +151,6 @@ export const API = {
   'getUserCertNumApply': URL + 'basicInformation/gcUserInfo/getUserCertNumApply.do',
   'getCheckApply': URL + 'basicInformation/gcUserInfo/checkUserCertCardApply.do',
 
-  // 身份认证卡审核
-  'getGcLabelNumApply': URL + 'basicInformation/gasCylinder/getGcLabelNumApply.do',
-  'sendGcLabelApply': URL + 'basicInformation/gasCylinder/checkGcLabelApply.do',
-
   // 信息批量导入
   'importUser': URL + 'dataImport/gcUser/importGcUserCertInfo.do',
   'importGc': URL + 'dataImport/gasCylinder/importGasLableInfo.do',
@@ -189,6 +185,9 @@ export const API = {
   'listTransactionDetailInfo': URL + 'corpBusiness/collaborative/listTransactionDetailInfo.do', // 13,查询事务祥情
   'listTransactionChildren': URL + 'corpBusiness/collaborative/listTransactionChildren.do', // 14,获取某个事务下面所有节点的信息
   'listEventDetailInfo': URL + 'corpBusiness/collaborative/listEventDetailInfo.do', // 15,根据节点ID查询事务信息。
+  'updateDeadlineTime': URL + 'corpBusiness/collaborative/updateDeadlineTime.do', // 【改】23、重新指定截止时间
+  'listTransactionOverdueHistory': URL + 'corpBusiness/collaborative/listTransactionOverdueHistory.do', // 【查】24、事务超期历史查询
+  'listCorpTransactionOverdueHistory': URL + 'corpBusiness/collaborative/listCorpTransactionOverdueHistory.do',
 
 
   // 报表管理
@@ -238,12 +237,14 @@ export const API = {
   'getUserInfoImprecise': URL + 'basicInformation/gcUserInfo/getUserInfoImprecise.do',
   'listGasCylinderBySupplyStationNumber': URL + 'basicInformation/gasCylinder/listGasCylinderBySupplyStationNumber.do',
   'listGcNewAddCount': URL + 'statisticalQuery/gasCylinders/listGcNewAddCount.do', // 统计最近新增气瓶和新增气瓶异常数量
+  'fillingFluctuations': URL + 'statisticalQuery/industry/fillingFluctuations.do', // 查询本年，本月充装量波动情况
+  'checkResults': URL + 'statisticalQuery/security/checkResults.do', // 安检情况统计
 
 
   'listCollaborativeInfo': URL + 'corpBusiness/collaborative/listCollaborativeInfo.do', // 16.获取协同企业列表
   'listTransactionTypeInfo': URL + 'corpBusiness/collaborative/listTransactionTypeInfo.do', // 17.获取事务类别树。
   'listTransactionSourceInfo': URL + 'corpBusiness/collaborative/listTransactionSourceInfo.do', // 18.获取事务来源列表。
-    // 19.获取事务所在部门下拉框数据。
+  // 19.获取事务所在部门下拉框数据。
   'listChildUserId': URL + 'corpBusiness/collaborative/listChildUserId.do',
   'listTransactionInfo': URL + 'corpBusiness/collaborative/listTransactionInfo.do', // 20.事务一览表中的查询。
 
@@ -253,5 +254,40 @@ export const API = {
   'logout': URL + 'sysUserPermissions/user/logout.do',
   // 大屏展示
   'getBigScreenData': URL + 'visualization/getBigScreenData.do',
+
+  //公众服务
+  // 问卷调查
+  'uploadNewQuestionnaire': URL + 'publicService/questionnaire/uploadNewQuestionnaire.do',// 上传一份新的调查问卷
+  'listQuestionnaire': URL + 'publicService/questionnaire/listQuestionnaire.do', // 获取所有问卷列表
+  'listQuestions': URL + 'publicService/questionnaire/listQuestions.do', // 获取某个问卷中问题列表
+  'listCurrentQuestions': URL + 'publicService/questionnaire/listCurrentQuestions.do', // 获取当前最新问卷调查中的所有问题
+  'listQuestionnaireResult': URL + 'publicService/questionnaire/listQuestionnaireResult.do', // 获取某个问卷的调查结果
+  // 公共服务
+  // 安全宣传
+  'listSecurityPublicityArticle': URL + 'publicService/securityPublicity/listSecurityPublicityArticle.do',
+  'deleteSecurityPublicityArticle': URL + 'publicService/securityPublicity/deleteSecurityPublicityArticle.do',
+  'uploadSecurityPublicityArticle': URL + 'publicService/securityPublicity/uploadSecurityPublicityArticle.do',
+  // 储气罐档案
+  'listFillingGasTank': URL + 'gcFillingSupervise/listFillingGasTank.do',
+
+  // 系统用户管理
+  'addUser': URL + 'sysUserPermissions/user/addUser.do', // 新增系统用户
+  'getGovSysUsers': URL + 'sysUserPermissions/user/getGovSysUsers.do', // 查询
+  'getGovOrganzations': URL + 'sysUserPermissions/user/getGovOrganzations.do', // 组织ID
+  'getRoles': URL + 'sysUserPermissions/user/getRoles.do', // 角色ID
+  // 充装秤
+  /**
+   * 监管数据统计分析
+   */
+  'listLicenseExpire': URL + 'corpBusiness/gcStockMonitor/listLicenseExpire.do', // 1.燃气经营许可证到期预警
+  'listGasInspection': URL + 'corpBusiness/gcStockMonitor/listGasInspection.do', // 2.气瓶检验预警
+  'listGasScrap': URL + 'corpBusiness/gcStockMonitor/listGasScrap.do', // 3.气瓶报废预警
+  'getBalanceStatus': URL + 'gcFillingSupervise/getBalanceStatus.do', // 查询充装秤的状态
+  'listBalanceInfo': URL + 'gcFillingSupervise/listBalanceInfo.do', // 获取某个企业、充装站的所有秤信息
+  'listBalanceLockRecord': URL + 'gcFillingSupervise/listBalanceLockRecord.do', // 查询锁秤记录
+  'setRuleForFillingSupervise': URL + 'gcFillingSupervise/setRuleForFillingSupervise.do', // 设置充装监管规则
+  'getRuleForFillingSupervise': URL + 'gcFillingSupervise/getRuleForFillingSupervise.do', // 获取充装监管规则
+  'setBalanceInnerLockStatus': URL + 'gcFillingSupervise/setBalanceInnerLockStatus.do', // 设置某个秤的联锁状态
+  'setBalanceLockStatus': URL + 'gcFillingSupervise/setBalanceLockStatus.do', // 设置某个秤的锁状态
 
 };

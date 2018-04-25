@@ -1,0 +1,37 @@
+<div class="ui-g-12 overview">
+  <h2 class="title">区域情况总体概览
+      <gas-explanation tooltip="温州市各区域下拥有用户数量统计" position="bottom"></gas-explanation>
+  </h2>
+
+  <!-- 区域概览 -->
+  <p-dataTable [value]="countyCustomers" [loading]="loading" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'">
+
+    <p-column header="序号" [style]="{'width':'80px'}">
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column>
+    <p-column field="regionName" header="区域" [style]="{'width':'50%'}">
+      <ng-template let-col let-countyCustomer="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCustomer.regionId||'']" class="router-link">{{countyCustomer[col.field]}}</a>
+      </ng-template>
+    </p-column>
+    <p-column field="userCount" header="用户数">
+      <ng-template let-countyCustomer="rowData" pTemplate="body">
+        {{ countyCustomer.userCount || 0 }}
+      </ng-template>
+    </p-column>
+
+    <p-footerColumnGroup>
+      <p-row>
+        <p-column footer=""></p-column>
+        <p-column footer="合计"></p-column>
+        <p-column [footer]="calculateTotal('userCount', countyCustomers)"></p-column>
+      </p-row>
+    </p-footerColumnGroup>
+
+    <ng-template pTemplate="emptymessage">
+      未查询到数据
+    </ng-template>
+  </p-dataTable>
+</div>

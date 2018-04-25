@@ -1,0 +1,99 @@
+<!-- 左侧二级菜单 -->
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">
+      <h3>事务管理</h3>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="事务列表" [routerLink]="['../affair-list']" routerLinkActive="link-active"></button>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="超期查询" [routerLink]="['../timeout-search']" routerLinkActive="link-active"></button>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="affair-list ui-g-12 card">
+    <div style="min-width:900px">
+      <form class="ui-g-12" (submit)="onSubmit()">
+        <div class="ui-g-12 ui-lg-3 form-group">
+          <label for="" class="search-label">发起时间</label>
+          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
+            [style]="{'width':'180px'}" name="startTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-lg-3 form-group">
+          <label for="" class="search-label">到</label>
+          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
+            [style]="{'width':'180px'}" name="endTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-lg-3">
+          <div class="form-group">
+            <label for="" class="search-label">状态</label>
+            <p-dropdown [options]="dropdown.status" [(ngModel)]="formModel.status" [style]="{'width':'180px'}" name="status"></p-dropdown>
+          </div>
+        </div>
+        <button class="searchBtn ui-g-12" pButton type="submit" class="searchBtn" label="搜索" style="margin-bottom:10px;"></button>
+      </form>
+      <div class="ui-g-12">
+        <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'100px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'100px'}" header="事件编号">
+            <ng-template pTemplate="header">
+              事件编号
+              <gas-explanation tooltip="根据一定的编号规则生成的该事务的序列号" position="bottom"></gas-explanation>
+            </ng-template>
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <a [routerLink]="['../affair-details']" [queryParams]="{'id':rowData.transactionBasicNumber}">{{rowData.transactionBasicNumber}}</a>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" field="transactionType">
+            <ng-template pTemplate="header">
+              事务类别
+              <gas-explanation tooltip="事务处理的方式" position="bottom"></gas-explanation>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" field="description" header="描述"></p-column>
+          <p-column [style]="{'width':'120px'}" header="处理情况">
+            <ng-template pTemplate="header">
+              处理情况
+              <gas-explanation tooltip="事务处理的进度（有正在处理，完成，超期三种状态）" position="bottom"></gas-explanation>
+            </ng-template>
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <span>{{rowData.boolIsHandle?'正在办理':'已经完结'}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'100px'}" header="发起时间">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <span>{{rowData.createTime|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" field="transactionOrganizationName" header="发起部门"></p-column>
+          <p-column [style]="{'width':'100px'}" header="最后处理时间">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <span>{{rowData.updateTime|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+            </ng-template>
+          </p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dataTable.total || 0 }} 条记录
+          </ng-template>
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="statistics ui-g-12">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h2>
+        报表统计
+        <gas-explanation tooltip="统计本月已交报表数和未交报表数" position="bottom"></gas-explanation>
+      </h2>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+        scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+        [(first)]="dataTable.first">
+        <p-column [style]="{'width':'80px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'120px'}" field="reportName">
+          <ng-template pTemplate="header">
+            报表名称
+            <gas-explanation tooltip="该报表的主要内容的简单描述" position="bottom"></gas-explanation>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'120px'}" field="commitCount">
+          <ng-template pTemplate="header">
+            已提交
+            <gas-explanation tooltip="已经提交报表的部门或企业数" position="bottom"></gas-explanation>
+          </ng-template>
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.commitCount?rowData.commitCount:0}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'120px'}">
+          <ng-template pTemplate="header">
+            未提交
+            <gas-explanation tooltip="还未提交报表的部门或企业数" position="bottom"></gas-explanation>
+          </ng-template>
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.unCommitCount?rowData.unCommitCount:0}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" header="本次截止时间">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.expectSubmissionTime|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}">
+          <ng-template pTemplate="header">
+            操作
+            <gas-explanation tooltip="点击查看详情可以查看部门或企业的报表提交情况" position="bottom"></gas-explanation>
+          </ng-template>
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['../details']" [queryParams]="{'id':rowData.corpReportManagementId}">详情查看</a>
+          </ng-template>
+        </p-column>
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+        <ng-template pTemplate="paginatorRight">
+          共 {{ dataTable.total || 0 }} 条记录
+        </ng-template>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

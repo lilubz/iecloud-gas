@@ -10,6 +10,9 @@ import { UserStateService } from './userState.service';
 import { Util } from './util';
 import { Logger } from './logger';
 import { PermissionGuard } from './permission-guard.service';
+import { FullScreenService } from './full-screen.service';
+import { CookieService } from './cookie.service';
+import { RedirectionPageService } from '../redirectionPage/redirectionPage.service';
 
 @NgModule({
   imports: [
@@ -25,6 +28,9 @@ import { PermissionGuard } from './permission-guard.service';
     UserStateService,
     Util,
     Logger,
+    FullScreenService,
+    CookieService,
+    RedirectionPageService
   ]
 })
 export class CoreModule {

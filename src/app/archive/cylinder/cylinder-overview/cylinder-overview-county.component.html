@@ -1,0 +1,8 @@
+<div class="ui-g-12 overview">
+
+  <h2 class="title">区域情况总体概览
+    <gas-explanation tooltip="各区域气瓶状态概况统计，点击区域名可以看查看该区域下各企业的气瓶概况" position="bottom"></gas-explanation>
+  </h2>
+  <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading"></gas-cylinder-overview-table>
+
+</div>

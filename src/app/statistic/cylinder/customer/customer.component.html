@@ -1,0 +1,44 @@
+<div class="ui-g-12 content">
+  <div style="min-width:450px;">
+    <div class="ui-g">
+      <h3>用户气瓶统计</h3>
+      <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
+        <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
+          区域选择：
+          <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
+        </ng-container>
+        <button pButton type="button" (click)="exportCustomerStatistic()" class="ui-button-info right" label="导出">
+        </button>
+      </div>
+    </div>
+    <p-dataTable [value]="customerStatisticsFilter" [paginator]="true" [rows]="40" [rowsPerPageOptions]="[10,20,40,80]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
+      [loading]="loading" emptyMessage="未查询到数据">
+
+      <!-- <p-column header="序号" [style]="{'width':'50px'}">
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column> -->
+      <p-column field="stationName" header="站点名称">
+        <!-- <ng-template let-col let-countyCylinder="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
+      </ng-template> -->
+      </p-column>
+      <p-column field="totalCount" header="气瓶数">
+        <ng-template let-countyCylinder="rowData" pTemplate="body">
+          {{ countyCylinder.gcCount || 0 }}
+        </ng-template>
+      </p-column>
+
+      <!-- <p-footerColumnGroup>
+      <p-row>
+        <p-column footer="合计"></p-column>
+        <p-column [footer]="calculateTotal('gcCount', customerStatistics)"></p-column>
+      </p-row>
+    </p-footerColumnGroup> -->
+      <ng-template pTemplate="paginatorRight">
+        共 {{ customerStatisticsFilter.length || 0 }} 条记录
+      </ng-template>
+    </p-dataTable>
+  </div>
+</div>

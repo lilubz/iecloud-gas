@@ -1,0 +1,116 @@
+<div class="ui-g-12 cylinderList">
+  <form class="ui-g-12" [formGroup]="formModel" (submit)="onSearch();">
+    <div class="ui-g">
+      <div class="ui-g-12 ui-lg-6">
+        <span class="search-label"> 经营企业</span>
+        <p-dropdown [options]="dropdown.company" formControlName="enterpriseNumber" [style]="{'width':'280px'}"></p-dropdown>
+        <gas-explanation tooltip="气瓶归属的企业" position="bottom"></gas-explanation>
+      </div>
+
+      <div class="ui-g-12 ui-lg-6">
+        <span class="search-label">状&#12288;&#12288;态</span>
+        <p-dropdown [options]="dropdown.status" formControlName="state" [style]="{'width':'280px'}"></p-dropdown>
+        <gas-explanation tooltip="气瓶现处于的状态（包括正常，过期，报废，标签异常）" position="bottom"></gas-explanation>
+      </div>
+
+      <div class="ui-g-12 ui-lg-6">
+        <span class="search-label"> 制造单位</span>
+        <p-dropdown [options]="dropdown.make" formControlName="productionUnit" [style]="{'width':'280px'}"></p-dropdown>
+        <gas-explanation tooltip="生产气瓶的厂商" position="bottom"></gas-explanation>
+      </div>
+
+      <div class="ui-g-12 ui-lg-6">
+        <span class="search-label"> 气瓶条码</span>
+        <input type="text" class="textInput" formControlName="cylinderCode" pInputText maxlength="10">
+        <gas-explanation tooltip="企业将购买的气瓶统一分配具有唯一性的标签" position="bottom"></gas-explanation>
+      </div>
+
+      <div class="ui-g-12 ui-lg-6">
+        <span class="search-label"> 自有编号</span>
+        <input type="text" class="textInput" formControlName="ownNumber" pInputText>
+        <gas-explanation tooltip="钢瓶本身序列号" position="bottom"></gas-explanation>
+      </div>
+
+      <div class="ui-g-12 ui-lg-6">
+        <span class="search-label"> 出厂编号</span>
+        <input type="text" class="textInput" formControlName="serialNumber" pInputText>
+        <gas-explanation tooltip="带有制造厂商编号参数" position="bottom"></gas-explanation>
+      </div>
+
+      <div class="ui-g-12 ui-lg-4">
+        <button pButton type="submit" label="查询" class="searchBtn"></button>
+      </div>
+    </div>
+  </form>
+
+  <div class="ui-g-12">
+    <div class="ui-g">
+    <p-dataTable [value]="dataTable.list" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true" [rows]="dataTable.option[2]"
+      [scrollable]="false" scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+      [(first)]="dataTable.first" [loading]="loading">
+      <p-column [style]="{'width':'100px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="气瓶条码">
+        <ng-template let-col let-cylinder="rowData" pTemplate="body">
+          <a href="javascript:void(0);" [routerLink]="['../detail', cylinder.gasLabelNumber || '']" title="点击查看气瓶详情">{{ cylinder.gasLabelNumber }}</a>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'120px'}" header="操作">
+        <ng-template let-col let-rowData="rowData" pTemplate="body">
+          <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber}"
+            title="点击查看流转记录">查看流转记录</a>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
+      <p-column [style]="{'width':'150px'}" field="enterpriseName" header="经营企业"></p-column>
+      <p-column [style]="{'width':'100px'}" field="type" header="气瓶规格"></p-column>
+      <p-column [style]="{'width':'100px'}" field="fillingMedium" header="充装介质"></p-column>
+      <p-column [style]="{'width':'80px'}" field="serviceCondition" header="状态"></p-column>
+      <p-column [style]="{'width':'100px'}" header="制造年月">
+        <ng-template let-first="rowData" pTemplate="body">
+          <span>{{first.productionDate|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'110px'}">
+          <ng-template pTemplate="header">
+              末检日期 <gas-explanation tooltip="最近的一次气瓶安全检测时间"  position="bottom"></gas-explanation>
+          </ng-template>
+        <ng-template let-end="rowData" pTemplate="body">
+          <span>{{end.endCheckDate|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'110px'}">
+          <ng-template pTemplate="header">
+              下检日期 <gas-explanation tooltip="下一次气瓶安全检测时间" position="bottom"></gas-explanation>
+          </ng-template>
+        <ng-template let-next="rowData" pTemplate="body">
+          <span>{{next.nextCheckDate|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" field="serialNumber" header="出厂编号"></p-column>
+      <p-column [style]="{'width':'100px'}" field="enterpriseCylinderCode" header="自有编号"></p-column>
+      <p-column [style]="{'width':'100px'}" field="electronNumber" header="电子编号（预留）"></p-column>
+      <p-column [style]="{'width':'100px'}" header="登记时间">
+        <ng-template let-next="rowData" pTemplate="body">
+          <span>{{next.registrationTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" field="productionUnit" header="制造单位"></p-column>
+
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="paginatorRight">
+        共 {{ dataTable.total || 0 }} 条记录
+      </ng-template>
+    </p-dataTable>
+
+  </div>
+  </div>
+</div>

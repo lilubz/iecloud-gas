@@ -1,0 +1,64 @@
+<p-dataTable [value]="cylinderStatistics" [loading]="loading" emptyMessage="未查询到数据">
+
+  <p-column header="序号" [style]="{'width':'80px'}">
+    <ng-template pTemplate="body" let-index="rowIndex">
+      {{index + 1}}
+    </ng-template>
+  </p-column>
+
+  <p-column *ngIf="type==='county'" field="regionName" header="区域" [style]="{'width':'20%'}">
+    <ng-template *ngIf="isShowRouterLink" let-col let-cylinderStatistic="rowData" pTemplate="body">
+      <a href="javascript:void(0);" [routerLink]="['../enterprise', cylinderStatistic.regionId || '']" class="router-link">{{cylinderStatistic.regionName}}</a>
+    </ng-template>
+  </p-column>
+  <p-column *ngIf="type==='enterprise'" field="enterpriseName" header="企业名称" [style]="{'width':'30%'}">
+    <ng-template *ngIf="isShowRouterLink" let-col let-cylinderStatistic="rowData" pTemplate="body">
+      <a href="javascript:void(0);" [routerLink]="['../../../list', {enterpriseID:cylinderStatistic.enterpriseNumber||''}]" class="router-link">{{cylinderStatistic.enterpriseName}}</a>
+    </ng-template>
+  </p-column>
+  <p-column field="totalCount" header="气瓶数">
+    <ng-template let-cylinderStatistic="rowData" pTemplate="body">
+      {{ cylinderStatistic.totalCount || 0 }}
+    </ng-template>
+  </p-column>
+  <p-column field="normalCount" header="正常">
+    <ng-template let-cylinderStatistic="rowData" pTemplate="body">
+      {{ cylinderStatistic.normalCount || 0 }}
+    </ng-template>
+  </p-column>
+  <p-column field="expireCount" header="过期">
+    <ng-template pTemplate="header">
+      过期
+      <gas-explanation tooltip="检验气瓶时间超过下次检验时间" position="bottom"></gas-explanation>
+    </ng-template>
+    <ng-template let-cylinderStatistic="rowData" pTemplate="body">
+      {{ cylinderStatistic.expireCount || 0 }}
+    </ng-template>
+  </p-column>
+  <p-column field="scrapCount" header="报废">
+    <ng-template let-cylinderStatistic="rowData" pTemplate="body">
+      {{ cylinderStatistic.scrapCount || 0 }}
+    </ng-template>
+  </p-column>
+  <p-column field="scrapCount" header="标签异常">
+    <ng-template pTemplate="header">
+      标签异常
+      <gas-explanation tooltip="气瓶不归属于该企业，却挂在该企业下" position="bottom"></gas-explanation>
+    </ng-template>
+    <ng-template let-cylinderStatistic="rowData" pTemplate="body">
+      {{ cylinderStatistic.codeAbnormalCount || 0 }}
+    </ng-template>
+  </p-column>
+
+  <p-footerColumnGroup>
+    <p-row>
+      <p-column footer=""></p-column>
+      <p-column footer="合计"></p-column>
+      <p-column [footer]="util.calculateTotal('totalCount', cylinderStatistics)"></p-column>
+      <p-column [footer]="util.calculateTotal('normalCount', cylinderStatistics)"></p-column>
+      <p-column [footer]="util.calculateTotal('expireCount', cylinderStatistics)"></p-column>
+      <p-column [footer]="util.calculateTotal('scrapCount', cylinderStatistics)"></p-column>
+      <p-column [footer]="util.calculateTotal('codeAbnormalCount', cylinderStatistics)"></p-column>
+    </p-row>
+  </p-footerColumnGroup>
+</p-dataTable>

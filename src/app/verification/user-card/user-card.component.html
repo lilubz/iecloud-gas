@@ -1,0 +1,67 @@
+<div class="ui-g-12 user-card">
+  <div class="ui-g-12">
+    <div class="ui-g-12 ui-lg-4 ui-md-12">
+      <div class="form-group">
+        <label for="" class="search-label">所在区</label>
+        <p-dropdown [style]="{'width':'100px'}" [options]="dropdown.regionOpt" [(ngModel)]="searchParams.regionId" (onChange)="onSearch()"></p-dropdown>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-lg-4 ui-md-12">
+      <div class="form-group">
+        <label for="" class="search-label">状态</label>
+        <p-dropdown [style]="{'width':'100px'}" [options]="dropdown.statusOpt" [(ngModel)]="searchParams.status" (onChange)="onSearch()"></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-12">
+    <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.pageOpt[2]"
+      scrollHeight="510px" [rowsPerPageOptions]="dataTable.pageOpt" [totalRecords]="dataTable.total"
+      (onLazyLoad)="onPageChange($event)" [lazy]="true" [scrollable]="false">
+      <p-column [style]="{'width':'80px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'100px'}" field="regionName" header="所在区"></p-column>
+      <p-column [style]="{'width':'100px'}" field="enterpriseName" header="申请企业"></p-column>
+      <p-column [style]="{'width':'100px'}" field="applyDescription" header="申请说明"></p-column>
+      <p-column [style]="{'width':'100px'}" field="count" header="申请数量"></p-column>
+      <p-column [style]="{'width':'100px'}" header="提交时间">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.applyTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'160px'}" header="分配号段">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <div class="rangeNumber">
+            <span>{{rowData.rangeNumberVOList | rangeNumber}}</span>
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'90px'}" field="status" header="审核状态"></p-column>
+      <p-column [style]="{'width':'100px'}" field="checkPerson" header="审核人"></p-column>
+      <p-column [style]="{'width':'100px'}" header="审核时间">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <span>{{rowData.checkTime|date:"yyyy-MM-dd"}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'90px'}" header="操作">
+        <ng-template let-rowData="rowData" pTemplate="body">
+          <div *ngIf="!rowData.checkPerson">
+            <span class="pass" (click)="onExamine(rowData.applyId,true)">通过&nbsp;</span>
+            <span class="reject" (click)="onExamine(rowData.applyId,false)">&nbsp;拒绝</span>
+          </div>
+        </ng-template>
+      </p-column>
+
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+      <ng-template pTemplate="paginatorRight">
+          共 {{ dataTable.total || 0 }} 条记录
+      </ng-template>
+    </p-dataTable>
+  </div>
+</div>

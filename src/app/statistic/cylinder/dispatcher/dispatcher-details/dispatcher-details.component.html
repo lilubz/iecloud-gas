@@ -1,0 +1,105 @@
+<div class="flow">
+  <div class="min-width:1000px">
+    <div class="ui-g">
+      <div class="ui-g-6">
+        <button pButton type="button" label="返回" style="margin-left:10px;width:96px;" [routerLink]="['../dispatcher']" routerLinkActive="link-active"></button>
+      </div>
+    </div>
+    <div class="ui-g">
+      <form class="ui-g-12" (submit)="onSubmit();">
+        <div class="ui-g-12 ui-xl-3 form-group">
+          <label for="">时间类型</label>
+          <p-dropdown [options]="dropdown.timeType" (onChange)="onDropdownTimeTypeChange();" [(ngModel)]="formModel.timeType" name="timeType"
+            [style]="{'width':'180px'}"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-xl-6 ui-g-nopad" *ngIf="formModel.timeType===null">
+          <div class="ui-g-12 ui-xl-6 form-group">
+            <label for="">开始时间</label>
+            <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+              [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
+              [style]="{'width':'180px'}" name="startTime">
+            </p-calendar>
+          </div>
+          <div class="ui-g-12 ui-xl-6 form-group">
+            <label for="">结束时间</label>
+            <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+              [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
+              [style]="{'width':'180px'}" name="endTime">
+            </p-calendar>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-xl-3 form-group">
+          <button pButton type="submit" label="搜索" style="margin-left:10px"></button>
+          <button pButton type="button" (click)="exportDispathcerStatistic()" class="ui-button-info right" label="导出"></button>
+        </div>
+      </form>
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+            scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" (onPageChange)="onPageChange($event)" [(first)]="dataTable.first"
+            [loading]="loading">
+            <p-column [style]="{'width':'100px'}" header="序号">
+              <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+                <span>{{index+1}}</span>
+              </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'120px'}" header="送气工编号" field="stationNumber" [filter]="true" filterPlaceholder="搜索"></p-column>
+            <p-column [style]="{'width':'120px'}" header="送气工名称" field="stationName" [filter]="true" filterPlaceholder="搜索"></p-column>
+
+            <p-column [style]="{'width':'120px'}" header="（从供应站）提取重瓶">
+              <ng-template let-rowData="rowData" pTemplate="body">
+                <span *ngIf="rowData.fullBottleReceiveCount===0">
+                  {{rowData.fullBottleReceiveCount}}
+                </span>
+                <a *ngIf="rowData.fullBottleReceiveCount!==0" href="javascript:void(0);" (click)="link(rowData,'重入')" title="点击查看流转记录">
+                  {{rowData.fullBottleReceiveCount}}
+                </a>
+              </ng-template>
+            </p-column>
+
+            <p-column [style]="{'width':'120px'}" header="发放重瓶（到用户）">
+              <ng-template let-rowData="rowData" pTemplate="body">
+                <span *ngIf="rowData.fullBottleSendCount===0">
+                  {{rowData.fullBottleSendCount}}
+                </span>
+                <a *ngIf="rowData.fullBottleSendCount!==0" href="javascript:void(0);" (click)="link(rowData,'重出')" title="点击查看流转记录">
+                  {{rowData.fullBottleSendCount}}
+                </a>
+              </ng-template>
+            </p-column>
+
+            <p-column [style]="{'width':'120px'}" header="（从用户）回收空瓶">
+              <ng-template let-rowData="rowData" pTemplate="body">
+                <span *ngIf="rowData.emptyBottleReceiveCount===0">
+                  {{rowData.emptyBottleReceiveCount}}
+                </span>
+                <a *ngIf="rowData.emptyBottleReceiveCount!==0" href="javascript:void(0);" (click)="link(rowData,'空入')" title="点击查看流转记录">
+                  {{rowData.emptyBottleReceiveCount}}
+                </a>
+              </ng-template>
+            </p-column>
+
+            <p-column [style]="{'width':'120px'}" header="发送空瓶（到供应站）" field="emptyBottleSendCount">
+              <ng-template let-rowData="rowData" pTemplate="body">
+                <span *ngIf="rowData.emptyBottleSendCount===0">
+                  {{rowData.emptyBottleSendCount}}
+                </span>
+                <a *ngIf="rowData.emptyBottleSendCount!==0" href="javascript:void(0);" (click)="link(rowData,'空出')" title="点击查看流转记录">
+                  {{rowData.emptyBottleSendCount}}
+                </a>
+              </ng-template>
+            </p-column>
+            <ng-template pTemplate="emptymessage">
+              <div class="text-left">
+                未查询到数据
+              </div>
+            </ng-template>
+            <ng-template pTemplate="paginatorRight">
+              共 {{ dataTable.list.length || 0 }} 条记录
+            </ng-template>
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div class="ui-g-12 account-opening">
+  <div style="min-width: 450px;">
+    <div class="ui-g-8">
+      <h2 class="title">
+        企业管理账号开通
+      </h2>
+    </div>
+    <form [formGroup]="formModel" (submit)="addEnterpriseUser()" (reset)="reset()">
+      <div class="ui-g-8">
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">姓名
+              <b style="color:red;">*</b>
+            </label>
+            <input type="text" class="textInput" formControlName="realname" pInputText placeholder="">
+            <gas-explanation tooltip="管理员姓名" position="bottom"></gas-explanation>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">用户名
+              <b style="color:red;">*</b>
+            </label>
+            <input type="text" class="textInput" formControlName="username" pInputText placeholder="">
+            <gas-explanation tooltip="用户名即登录系统的账号名称" position="bottom"></gas-explanation>
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-g-nopad" formGroupName="passwords">
+          <div class="ui-g-12 ui-g-offset-3">
+            <div class="inputgroup">
+              <label for="" class="search-label">登录密码
+                <b style="color:red;">*</b>
+              </label>
+              <input type="password" class="textInput" formControlName="password" pInputText placeholder="">
+            </div>
+          </div>
+          <div class="ui-g-12 ui-g-offset-3">
+            <div class="inputgroup">
+              <label for="" class="search-label">确认密码
+                <b style="color:red;">*</b>
+              </label>
+              <input type="password" class="textInput" formControlName="passwordConfirm" pInputText placeholder="">
+            </div>
+          </div>
+        </div>
+        <!-- 证件类型 -->
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">证件类型
+              <b style="color:red;">*</b>
+            </label>
+            <p-dropdown [options]="category" formControlName="certificateName" [style]="{'width':'300px'}"></p-dropdown>
+            <gas-explanation tooltip="管理员的证件暂定身份证" position="bottom"></gas-explanation>
+          </div>
+        </div>
+        <!-- 证件编号 -->
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">证件编号
+              <b style="color:red;">*</b>
+            </label>
+            <input type="text" formControlName="certificateId" class="textInput" pInputText placeholder="">
+          </div>
+        </div>
+        <!-- 用户归属企业 -->
+        <div class="ui-g-12 ui-g-offset-3">
+          <div class="inputgroup">
+            <label for="" class="search-label">归属企业
+              <b style="color:red;">*</b>
+            </label>
+            <p-dropdown [options]="enterpriseDrop" formControlName="enterpriseNumber" [style]="{'width':'300px'}"></p-dropdown>
+            <gas-explanation tooltip="选择企业就是给该企业开通账号" position="bottom"></gas-explanation>
+          </div>
+        </div>
+        <!-- 账号状态 -->
+        <div class="ui-g-8 ui-g ui-g-offset-3">
+          <div class="inputgroup ui-lg-4">
+            <label for="" class="search-label">账号状态
+              <b style="color:red;">*</b>
+            </label>
+          </div>
+          <div class="ui-lg-7">
+            <div class="ui-xl-5 ui-g-12">
+              <p-radioButton name="group1" formControlName="isfreezed" value="false" label="启用"></p-radioButton>
+            </div>
+            <div class=" ui-xl-5 ui-g-12">
+              <p-radioButton name="group1" formControlName="isfreezed" value="true" label="停用"></p-radioButton>
+            </div>
+          </div>
+        </div>
+        <!-- 性别 -->
+        <div class="ui-g-8 ui-g ui-g-offset-3">
+          <div class="inputgroup ui-lg-4">
+            <label for="" class="search-label">性别</label>
+          </div>
+          <div class="ui-lg-7">
+            <div class="ui-xl-5 ui-g-12">
+              <p-radioButton name="group2" formControlName="gender" value="true" label="男"></p-radioButton>
+            </div>
+            <div class="ui-xl-5 ui-g-12">
+              <p-radioButton name="group2" formControlName="gender" value="false" label="女"></p-radioButton>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g ui-g-offset-3">
+          <div class="save ui-lg-4 ui-g-12 ui-g-nopad">
+            <button pButton type="submit" label="确认提交"></button>
+          </div>
+          <div class="save ui-lg-4 ui-g-12 ui-g-nopad">
+            <button pButton type="reset" label="重置"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

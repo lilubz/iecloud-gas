@@ -1,0 +1,21 @@
+<!-- 左侧二级菜单 -->
+<div class="sidebar">
+    <div class="ui-g ui-g-nopad group">
+        <div class="ui-g-12">
+            <h3>报表管理</h3>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="报表提交" [routerLink]="['submit']" routerLinkActive="link-active"></button>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="历史记录" [routerLink]="['history']" routerLinkActive="link-active"></button>
+        </div>
+    </div>
+</div>
+
+<!-- 右侧内容区 -->
+<div class="main">
+    <div class="card">
+        <router-outlet></router-outlet>
+    </div>
+</div>

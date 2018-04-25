@@ -1,0 +1,362 @@
+<div class="cylinder-warning">
+  <div class="sidebar">
+    <div class="ui-g ui-g-nopad group">
+      <div class="ui-g-12">
+        <h3>主体类型选择</h3>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="button" label="储配站" [routerLink]="['../1']" routerLinkActive="link-active"></button>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="button" label="直销车" [routerLink]="['../5']" routerLinkActive="link-active"></button>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="button" label="供应站" [routerLink]="['../2']" routerLinkActive="link-active"></button>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="button" label="送气工" [routerLink]="['../3']" routerLinkActive="link-active"></button>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="button" label="燃气用户" [routerLink]="['../4']" routerLinkActive="link-active"></button>
+      </div>
+
+    </div>
+  </div>
+  <div class="main">
+    <div class="ui-g-12 card">
+      <form class="ui-g-12" (submit)="onSearch()">
+        <div class="ui-g">
+
+          <div class="ui-g-12 ui-lg-6">
+            <label class="search-label">区域选择:</label>
+            <p-dropdown [options]="dropdown.region" [(ngModel)]="formModelSearch.regionId" name="region" [style]="{'width':'180px'}"></p-dropdown>
+          </div>
+
+          <div class="ui-g-12 ui-lg-6">
+            <button class="searchBtn" pButton type="submit" label="搜索"></button>
+          </div>
+
+        </div>
+      </form>
+      <div class="ui-g-12 dataTable">
+         <!-- 1表示储配站 -->
+        <p-dataTable *ngIf="type===1" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'80px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'20%'}" field="liabilityName" header="站点名称"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
+          <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
+          <p-column header="设置时间">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              {{rowData.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}
+            </ng-template>
+          </p-column>
+          <p-column field="settingReason" header="设置依据"></p-column>
+          <p-column [style]="{'width':'100px'}" header="操作">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
+            </ng-template>
+          </p-column>
+
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dataTable.total || 0 }} 条记录
+          </ng-template>
+        </p-dataTable>
+        <!-- 2表示供应站 -->
+        <p-dataTable *ngIf="type===2" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'80px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'20%'}" field="liabilityName" header="站点名称"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
+          <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
+          <p-column header="设置时间">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              {{rowData.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}
+            </ng-template>
+          </p-column>
+          <p-column field="settingReason" header="设置依据"></p-column>
+          <p-column [style]="{'width':'100px'}" header="操作">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
+            </ng-template>
+          </p-column>
+
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dataTable.total || 0 }} 条记录
+          </ng-template>
+
+        </p-dataTable>
+        <!-- 3表示送气工 -->
+        <p-dataTable *ngIf="type===3" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'80px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column header="名称">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              送气工
+            </ng-template>
+          </p-column>
+          <p-column field="regionName" header="区域"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
+          <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
+          <p-column header="设置时间">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              {{rowData.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}
+            </ng-template>
+          </p-column>
+          <p-column field="settingReason" header="设置依据"></p-column>
+          <p-column [style]="{'width':'100px'}" header="操作">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
+            </ng-template>
+          </p-column>
+
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dataTable.total || 0 }} 条记录
+          </ng-template>
+
+        </p-dataTable>
+        <!-- 4表示燃气用户 -->
+        <p-dataTable *ngIf="type===4" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[2]"
+          [scrollable]="false" scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total"
+          (onLazyLoad)="onPageChange($event)" [(first)]="dataTable.first">
+          <p-column [style]="{'width':'80px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="liabilityName" header="用户性质">
+          </p-column>
+          <p-column field="regionName" header="区域"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
+          <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
+          <p-column header="设置时间">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              {{rowData.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}
+            </ng-template>
+          </p-column>
+          <p-column field="settingReason" header="设置依据"></p-column>
+          <p-column [style]="{'width':'100px'}" header="操作">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
+            </ng-template>
+          </p-column>
+        
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+        
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dataTable.total || 0 }} 条记录
+          </ng-template>
+        
+        </p-dataTable>
+        <!-- 5表示直销车 -->
+        <p-dataTable *ngIf="type===5" [value]="dataTable.list" [loading]="loading" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+          scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first">
+          <p-column [style]="{'width':'80px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="carNumber" header="车牌号"></p-column>
+          <p-column [style]="{'width':'20%'}" field="liabilityName" header="站点名称"></p-column>
+          <p-column field="gcThresholdEmpty" header="空瓶阈值"></p-column>
+          <p-column field="gcThresholdFull" header="重瓶阈值"></p-column>
+          <p-column [style]="{'width':'20%'}" field="userName" header="设置人"></p-column>
+          <p-column header="设置时间">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              {{rowData.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}
+            </ng-template>
+          </p-column>
+          <p-column field="settingReason" header="设置依据"></p-column>
+          <p-column [style]="{'width':'100px'}" header="操作">
+            <ng-template pTemplate="body" let-rowData="rowData">
+              <button pButton type="button" (click)="onOpenDialog(rowData)" label="修改"></button>
+            </ng-template>
+          </p-column>
+
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dataTable.total || 0 }} 条记录
+          </ng-template>
+
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-12 dialog">
+    <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="600" [contentStyle]="{'padding':'0','overflow':'visible'}"
+      [minWidth]="600" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+      <form class="dialog" (submit)="onSubmit();">
+        <div class="ui-g-12 ui-g-nopad">
+          <h2 class="text-center">设置阈值</h2>
+        </div>
+        <!-- 储配站 -->
+        <div *ngIf="type === 1">
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">站点名称：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.liabilityName}}</label>
+            </div>
+          </div>
+        </div>
+        <!-- 供应站 -->
+        <div *ngIf="type === 2">
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">站点名称：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.liabilityName}}</label>
+            </div>
+          </div>
+        </div>
+        <!-- 送气工 -->
+        <div *ngIf="type === 3">
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">对象：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">送气工</label>
+            </div>
+          </div>
+
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">区域：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.regionName}}</label>
+            </div>
+          </div>
+        </div>
+        <!-- 燃气用户 -->
+        <div *ngIf="type === 4">
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">区域：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.regionName}}</label>
+            </div>
+          </div>
+        
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">用户性质：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.liabilityName}}</label>
+            </div>
+          </div>
+        </div>
+        <!-- 运输车 -->
+        <div *ngIf="type === 5">
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">车牌号码：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.carNumber}}</label>
+            </div>
+          </div>
+
+          <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g-5 text-right">
+              <label for="">所属公司：</label>
+            </div>
+            <div class="ui-g-7">
+              <label for="">{{selectedRowData?.liabilityName}}</label>
+            </div>
+          </div>
+        </div>
+        <!-- 气瓶阈值和设置依据 -->
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-5 text-right">
+            <span class="color-red">*</span><label for="">空瓶阈值：</label>
+          </div>
+          <div class="ui-g-7">
+            <input type="number" pInputText style="width:208px" min="0" name="emptyCount" [(ngModel)]="formModelSet.emptyCount">
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-5 text-right">
+            <span class="color-red">*</span>
+            <label for="">重瓶阈值：</label>
+          </div>
+          <div class="ui-g-7">
+            <input type="number" pInputText style="width:208px" min="0" name="fullCount" [(ngModel)]="formModelSet.fullCount">
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-5 text-right">
+            <span class="color-red">*</span><label for="">设置依据：</label>
+          </div>
+          <div class="ui-g-7">
+            <textarea rows="3" cols="20" pInputTextarea style="resize:none" [(ngModel)]="formModelSet.describe" name="describe"></textarea>
+          </div>
+        </div>
+
+        <div class="ui-g-12 text-center">
+          <button pButton type="submit" class="ui-button-primery searchBtn" label="确认"></button>
+          <button (click)="visible = false;" pButton type="button" class="ui-button-secondary" label="取消"></button>
+        </div>
+      </form>
+    </p-dialog>
+  </div>
+</div>

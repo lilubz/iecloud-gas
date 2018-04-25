@@ -1,0 +1,268 @@
+<div class="ui-g-12 user-info card">
+  <div style="min-width:1000px">
+    <div class="ui-g-8">
+      <h3>用户实名登记</h3>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-6 ui-g-nopad">
+          <div class="ui-g-12">
+            <div class="ui-g-3 ui-g-nopad">
+              <span class="">所在区域</span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+              <input type="text" [(ngModel)]="user.regionName" pInputText disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-6 ui-g-nopad">
+          <div class="ui-g-12">
+            <div class="ui-g-3 ui-g-nopad">
+              <span class="">客户名称
+                <span class="required">*</span>
+              </span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+              <input type="text" [(ngModel)]="customer.userName" pInputText placeholder="客户名称" maxlength="50" required>
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>证件名称
+                <span class="required">*</span>
+              </span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+                <input type="text" [(ngModel)]="customer.certificateName" pInputText disabled>
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>姓名
+                <span class="required">*</span>
+              </span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+              <input type="text" [(ngModel)]="customer.principal" pInputText placeholder="姓名" maxlength="50" required>
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>证件号码
+                <span class="required">*</span>
+              </span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+              <input type="text" [(ngModel)]="customer.certificateId" pInputText placeholder="证件号码" maxlength="20" required>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-6 ui-g-nopad">
+          <div class="ui-g-12">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>客户类型
+                <span class="required">*</span>
+              </span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+              <p-dropdown [options]="customerTypes" [(ngModel)]="customer.userTypeId" (ngModelChange)="selectCustomerType()"></p-dropdown>
+            </div>
+          </div>
+          <div *ngIf="customer.userTypeId!='0'">
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span>营业执照
+                  <span class="required">*</span>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <input type="text" [(ngModel)]="customer.enterpriseOrganizationCode" pInputText placeholder="营业执照" maxlength="50">
+              </div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span>注册地址
+                  <span class="required">*</span>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <input type="text" [(ngModel)]="customer.address" pInputText placeholder="注册地址" maxlength="50">
+              </div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span>法定代表人
+                  <span class="required">*</span>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <input type="text" [(ngModel)]="customer.legalRepresentative" pInputText placeholder="法定代表人" maxlength="50">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-2">
+          <span>证件地址
+            <span class="required">*</span>
+          </span>
+        </div>
+        <div class="ui-g-10">
+          <gas-districts [disabledProvince]="false" [province]="customer.certificateId.substring(0,2)" [city]="customer.certificateId.substring(0,4)"
+            [county]="customer.certificateId.substring(0,6)" (onSelect)="selectIDAddress($event)"></gas-districts>
+        </div>
+        <div class="ui-g-10 ui-xl-6 ui-g-offset-2">
+          <input type="text" [(ngModel)]="certificateDetailAddress" pInputText placeholder="证件地址" maxlength="50" required>
+        </div>
+      </div>
+      <hr>
+      <h3>配送地址</h3>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-2">
+          <span>居住地址
+            <span class="required">*</span>
+          </span>
+        </div>
+        <div class="ui-g-10 ui-g-nopad">
+          <div class="ui-g-3 ui-xl-2">
+            <input type="text" pInputText placeholder="浙江省" disabled style="width:100p;">
+          </div>
+          <div class="ui-g-3 ui-xl-2">
+            <input type="text" pInputText placeholder="温州市" disabled>
+          </div>
+          <div class="ui-g-6">
+            <gas-delivery-region-cascade [(deliveryRegionId)]="deliveryRegionId"></gas-delivery-region-cascade>
+          </div>
+        </div>
+        <div class="ui-g-10 ui-xl-6">
+          <input [(ngModel)]="customer.deliveryAddress" type="text" pInputText placeholder="详细地址" maxlength="50" required>
+        </div>
+      </div>
+      <!-- <div class="ui-g-6 ui-g-nopad">
+      <div class="ui-g-12">
+        <div class="ui-g-3 ui-g-nopad">
+          <span>联系人
+            <span class="required">*</span>
+          </span>
+        </div>
+        <div class="ui-g-9 ui-g-nopad">
+          <input type="text" [(ngModel)]="customer.contactPerson" pInputText>
+        </div>
+      </div>
+    </div> -->
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-6">
+          <div class="ui-g-3 ui-g-nopad">
+            <span>联系电话
+              <span class="required">*</span>
+            </span>
+          </div>
+          <div class="ui-g-9 ui-g-nopad">
+            <input type="text" [(ngModel)]="customer.phone" pattern="[0-9]{7,11}" placeholder="联系电话" pInputText maxlength="11" required>
+          </div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-6">
+          <div class="ui-g-3 ui-g-nopad">
+            <span>配送工</span>
+          </div>
+          <div class="ui-g-9 ui-xl-6 ui-g-nopad">
+            <p-dropdown [options]="dispatcherList" [(ngModel)]="customer.dispatcherNumber" [style]="{'width':'150px'}" filter="true"></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <h3>合同</h3>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-6">
+          <div class="ui-g-3 ui-g-nopad">
+            <span>合同编号</span>
+          </div>
+          <div class="ui-g-9 ui-g-nopad">
+            <input type="text" [(ngModel)]="customer.contractNo" pattern="[0-9]*" placeholder="合同编号" pInputText maxlength="10" required>
+          </div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-6">
+          <div class="ui-g-3 ui-g-nopad">
+            <span>合同开始日期</span>
+          </div>
+          <div class="ui-g-9 ui-g-nopad">
+            <p-calendar #contractBeginDate [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+              [showButtonBar]="true" (onSelect)="selectConstractBeginDate($event)" (onClearClick)="clearBeginDate($event)"
+              dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="contractEndDate.value" readonlyInput="true"></p-calendar>
+          </div>
+        </div>
+        <div class="ui-g-6">
+          <div class="ui-g-3 ui-g-nopad">
+            <span>合同截止日期</span>
+          </div>
+          <div class="ui-g-9 ui-g-nopad">
+            <p-calendar #contractEndDate [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+              [showButtonBar]="true" (onSelect)="selectConstractEndDate($event)" (onClearClick)="clearEndDate($event)" dateFormat="yy-mm-dd"
+              [locale]="zh" [showIcon]="false" [minDate]="contractBeginDate.value" readonlyInput="true"></p-calendar>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <h3>附件</h3>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="ui-g-12">
+          <div class="ui-g-3 ui-g-nopad">
+            <span>证件信息
+              <span class="required">*</span>
+              <gas-explanation tooltip="个体用户请上传身份证照片，工业和商业用户请上传营业执照和合同"></gas-explanation>
+            </span>
+          </div>
+          <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
+            <p-fileUpload #IDImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
+              invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
+              invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
+              [showCancelButton]="false" previewWidth="50" [customUpload]="true">
+            </p-fileUpload>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-3 ui-g-nopad">
+            <span>用户安全供气协议书</span>
+          </div>
+          <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
+            <p-fileUpload #OtherImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
+              invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
+              invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
+              [showCancelButton]="false" previewWidth="50" [customUpload]="true">
+            </p-fileUpload>
+          </div>
+        </div>
+      </div>
+      <button pButton type="submit" class="searchBtn" label="保存" (click)="save(IDImageUpload,OtherImageUpload)"></button>
+    </div>
+    <div class="ui-g-4 ui-g-nopad">
+      <div class="ui-g-12">
+        <!-- <i class="fa fa-cloud-upload fa-fw fa-2x" style="color:grey;"></i>
+      <p-fileUpload [auto]="true" name="" mode="advanced" [multiple]="true" accept="application/vnd.ms-excel" maxFileSize="1000000"
+        invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
+        invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="用户基本信息导入" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
+        [showCancelButton]="false" previewWidth="100" [customUpload]="true">
+      </p-fileUpload> -->
+
+        <p-fileUpload name="gcUserExcel" [url]="importGcUserInfoUrl" [multiple]="false" invalidFileSizeMessageSummary="{0}: 文件过大,"
+          invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型," invalidFileTypeMessageDetail="允许的文件类型是: {0}."
+          chooseLabel="用户基本信息导入" uploadLabel="上传" cancelLabel="取消" maxFileSize="10000000" (onUpload)="uploadCustomerFile($event)">
+        </p-fileUpload>
+        <!-- <button pButton type="button" label="批量上传"></button> -->
+      </div>
+
+      <div class="ui-g-12">
+        <span>模板下载：</span>
+        <a href="http://122.228.28.0:16080/staticFile/excel/excel/未绑定用户实名登记导入文件模板.xlsx" target="_blank">未绑定用户实名登记模板.xls</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<p-growl [value]="msgs"></p-growl>

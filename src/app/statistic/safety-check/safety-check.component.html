@@ -1,0 +1,134 @@
+<div class="main" style="left:90px">
+  <div class="ui-g-12 card safety-check">
+    <h4>安全状况查询</h4>
+    <form class="ui-g padding" (submit)="onResultSubmit();">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label"> 所在区域：</span>
+          <p-dropdown name="result-region" [options]="result.dropdown.region" [style]="{'width':'280px'}" [(ngModel)]="result.formModel.regionId"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">开始时间：</span>
+          <p-calendar #resultStartTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          [locale]="zh" [showIcon]="false" [(ngModel)]="result.formModel.startTime" [maxDate]="resultEndTime.value" readonlyInput="true" [style]="{'width':'280px'}"
+          name="resultStartTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label"> 结束时间：</span>
+          <p-calendar #resultEndTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="result.formModel.endTime" [minDate]="resultStartTime.value" readonlyInput="true" [style]="{'width':'280px'}"
+            name="resultEndTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-lg-4">
+          <button pButton type="submit" label="查询" class="searchBtn"></button>
+        </div>
+      </div>
+    </form>
+    <div class="ui-g dataTableBox">
+      <p-dataTable [value]="result.dataTable.list" [loading]="result.dataTable.loading" emptyMessage="未查询到数据">
+        <p-column header="序号" [style]="{'width':'80px'}">
+          <ng-template pTemplate="body" let-index="rowIndex">
+            {{index + 1}}
+          </ng-template>
+        </p-column>
+        <p-column field="regionName" header="区域名称">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" (click)="onOpenResultDialog(rowData);">{{rowData.regionName}}</a>
+          </ng-template>
+        </p-column>
+        <p-column field="normalOrHaveAttachmentsCount" header="安检正常数"></p-column>
+        <p-column field="unnormalOrNoAttachmentsCount" header="安检异常数"></p-column>
+      </p-dataTable>
+    </div>
+
+
+    <!-- 附件状态查询 -->
+    <h4>附件状态查询</h4>
+    <form class="ui-g padding" (submit)="onAttrSubmit();">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label"> 所在区域：</span>
+          <p-dropdown name="attr-region" [options]="attr.dropdown.region" [style]="{'width':'280px'}" [(ngModel)]="attr.formModel.regionId"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">开始时间：</span>
+          <p-calendar #attrStartTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="attr.formModel.startTime" [maxDate]="attrEndTime.value"
+            readonlyInput="true" [style]="{'width':'280px'}" name="attrStartTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label"> 结束时间：</span>
+          <p-calendar #attrEndTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="attr.formModel.endTime" [minDate]="attrStartTime.value"
+            readonlyInput="true" [style]="{'width':'280px'}" name="attrEndTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-lg-4">
+          <button pButton type="submit" label="查询" class="searchBtn"></button>
+        </div>
+      </div>
+    </form>
+    <div class="ui-g dataTableBox">
+      <p-dataTable [value]="attr.dataTable.list" [loading]="attr.dataTable.loading" emptyMessage="未查询到数据">
+        <p-column header="序号" [style]="{'width':'80px'}">
+          <ng-template pTemplate="body" let-index="rowIndex">
+            {{index + 1}}
+          </ng-template>
+        </p-column>
+        <p-column field="regionName" header="区域名称">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" (click)="onOpenAttrDialog(rowData);">{{rowData.regionName}}</a>
+          </ng-template>
+        </p-column>
+        <p-column field="normalOrHaveAttachmentsCount" header="拥有附件数量"></p-column>
+        <p-column field="unnormalOrNoAttachmentsCount" header="没有附件数量"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+
+
+  <div class="dialog">
+    <p-dialog [visible]="result.dialog.visible" header="入户安检情况查询" [modal]="true" [closable]="false"
+      [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="130">
+      <div class="ui-g" style="max-height:600px">
+        <p-dataTable [value]="result.dialog.list" [loading]="result.dataTable.loading" emptyMessage="未查询到数据">
+          <p-column header="序号" [style]="{'width':'80px'}">
+            <ng-template pTemplate="body" let-index="rowIndex">
+              {{index + 1}}
+            </ng-template>
+          </p-column>
+          <p-column field="enterpriseName" header="企业名称"></p-column>
+          <p-column field="normalOrHaveAttachmentsCount" header="安检正常数"></p-column>
+          <p-column field="unnormalOrNoAttachmentsCount" header="安检异常数"></p-column>
+        </p-dataTable>
+      </div>
+      <p-footer>
+        <button type="button" pButton icon="fa-close" (click)="result.dialog.visible=false" label="关闭"></button>
+      </p-footer>
+    </p-dialog>
+  </div>
+  <div class="dialog">
+    <p-dialog [visible]="attr.dialog.visible" header="入户安检情况查询" [modal]="true" [closable]="false" [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}"
+      positionTop="130">
+      <div class="ui-g" style="max-height:600px">
+        <p-dataTable [value]="attr.dialog.list" [loading]="attr.dataTable.loading" emptyMessage="未查询到数据">
+          <p-column header="序号" [style]="{'width':'80px'}">
+            <ng-template pTemplate="body" let-index="rowIndex">
+              {{index + 1}}
+            </ng-template>
+          </p-column>
+          <p-column field="enterpriseName" header="企业名称"></p-column>
+          <p-column field="normalOrHaveAttachmentsCount" header="安检正常数"></p-column>
+          <p-column field="unnormalOrNoAttachmentsCount" header="安检异常数"></p-column>
+        </p-dataTable>
+      </div>
+      <p-footer>
+        <button type="button" pButton icon="fa-close" (click)="attr.dialog.visible=false" label="关闭"></button>
+      </p-footer>
+    </p-dialog>
+  </div>
+
+</div>

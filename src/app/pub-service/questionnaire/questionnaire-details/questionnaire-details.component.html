@@ -1,0 +1,16 @@
+<div class="ui-g-12">
+  <h1 style="text-align: center;">问卷详情</h1>
+  <div class="ui-g-12 ui-g-nopad">
+    <p-dataTable [value]="datas" emptyMessage="未查询到数据" [paginator]="true" [rows]="20" [scrollable]="false" [lazy]="false" [rowsPerPageOptions]="[10,20,40,80]">
+      <p-column header="序号" [style]="{'width':'100px'}">
+        <ng-template pTemplate="body" let-index="rowIndex">
+          {{index + 1}}
+        </ng-template>
+      </p-column>
+      <p-column field="questionTitle" header="问题标题"></p-column>
+      <p-column field="numberOfOptions" header="问题选项数量"></p-column>
+      <p-column field="optionsDescription" header="选项描述"></p-column>
+
+    </p-dataTable>
+  </div>
+</div>

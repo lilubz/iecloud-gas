@@ -1,0 +1,67 @@
+<div class="main">
+  <div class="repricing-list ui-g-12 card">
+    <form class="ui-g-12" (submit)="onSubmit()">
+      <div class="ui-g-12 ui-lg-3 form-group">
+        <label for="" class="search-label">下单时间</label>
+        <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
+          [style]="{'width':'180px'}" name="startTime">
+        </p-calendar>
+      </div>
+      <div class="ui-g-12 ui-lg-3 form-group">
+        <label for="" class="search-label">到</label>
+        <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
+          [style]="{'width':'180px'}" name="endTime"> 
+        </p-calendar>
+      </div>
+      <div class="ui-g-12 ui-lg-3">
+        <div class="form-group">
+          <label for="" class="search-label">评分</label>
+          <p-dropdown [options]="dropdown.status" [(ngModel)]="formModel.status" [style]="{'width':'180px'}" name="status"></p-dropdown>
+        </div>
+      </div>
+      <button class="searchBtn ui-g-12" pButton type="submit" class="searchBtn" label="搜索" style="margin-bottom:10px;"></button>
+    </form>
+    <div class="ui-g-12" *ngIf="average">
+      此时段平均值：{{transactionType}}分
+    </div>
+    <div class="ui-g-12">
+      <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="dataTable.option[1]" [scrollable]="false"
+        scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+        [(first)]="dataTable.first">
+        <p-column [style]="{'width':'100px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" field="grade" header="评分"></p-column>
+        <p-column [style]="{'width':'100px'}" field="comment" header="评语"></p-column>
+        <p-column [style]="{'width':'100px'}" field="orderId" header="订单编号"></p-column>
+        <p-column [style]="{'width':'120px'}" field="dispatcherName" header="送气工"></p-column>
+        <p-column [style]="{'width':'120px'}" header="订单内容">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <div *ngFor="let size of rowData.orderContents">
+              <div>气瓶规格：{{size.specificationId}}</div>
+              <div>气瓶数量：{{size. num}}</div>
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" header="下单时间">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.createTime|date:"yyyy-MM-dd HH:mm:dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" field="source" header="下单方式"></p-column>
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+        <ng-template pTemplate="paginatorRight">
+          共 {{ dataTable.total || 0 }} 条记录
+        </ng-template>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

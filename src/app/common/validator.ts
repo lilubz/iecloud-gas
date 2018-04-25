@@ -15,9 +15,8 @@ export const validator = {
   idNumber(control: AbstractControl) {
     const error = { msg: '' };
     const value = control.value;
-    const regexp18 = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-    const regexp15 = /^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/;
-    if (value !== '' && !regexp18.test(value) && !regexp15.test(value)) {
+    const regexp = /^[1-9]{1}\d{16}[0-9Xx]$|^[1-9]{1}\d{14}$/;
+    if (value !== '' && !regexp.test(value)) {
       error.msg = '您输入的不是15位或18位的身份证号码！';
       return error;
     }
@@ -30,6 +29,20 @@ export const validator = {
       const value = control.value;
       if (value === '') {
         error.msg = `${type}是必填项，不能输入空值！`;
+        return error;
+      }
+      return null;
+    };
+  },
+
+  minLength(length: number, type?: string) {
+    return (control: AbstractControl) => {
+      const error = { msg: '' };
+      const value = control.value;
+      const reg = /\s/g; // 空格不计数
+      const realityLen = value.replace(reg, '').length;
+      if (realityLen !== 0 && realityLen < length) {
+        error.msg = `${type || ''}最少输入${length}个有效字符`;
         return error;
       }
       return null;

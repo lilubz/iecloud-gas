@@ -99,10 +99,8 @@ export class HttpService {
   }
 
   private handleError(error: any): Promise<any> {
-    console.log(error);
-    console.log(error.status);
-    this.httpStatusFilter(error);
-    return Promise.reject(error.message || error);
+    // this.httpStatusFilter(error);
+    return Promise.resolve({ status: -1, msg: '操作失败！' });
   }
 
   private httpStatusFilter(res: Response | any) {

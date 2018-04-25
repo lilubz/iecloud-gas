@@ -1,0 +1,149 @@
+<div class="ui-g-12">
+  <!-- 责任主体
+  <p-dropdown [options]="cylinderStatus" [style]="{'width':'150px'}" [(ngModel)]="selectedCylinderStatus"></p-dropdown>&nbsp;&nbsp; -->
+  <!-- {{ selectedCylinderStatus | async}} -->
+  <div class="ui-g">
+    <ng-container *ngIf="selectedCylinderStatus === 1">
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">储配站</label>
+        <p-dropdown [options]="distributionStationList" [style]="{'width':'240px'}" [(ngModel)]="selectedDistributionStation" filter="true"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">类型</label>
+        <p-dropdown [options]="distributionStationSearchTypes" [style]="{'width':'240px'}" [(ngModel)]="selectedDistributionStationType"></p-dropdown>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="selectedCylinderStatus === 2">
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">供应站</label>
+        <p-dropdown [options]="cylinderStorageList" [style]="{'width':'240px'}" [(ngModel)]="selectedCylinderStorage" filter="true"></p-dropdown>
+      </div>
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">类型</label>
+        <p-dropdown [options]="cylinderStorageSearchTypes" [style]="{'width':'240px'}" [(ngModel)]="selectedCylinderStorageType"></p-dropdown>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="selectedCylinderStatus === 3">
+      <div class="ui-g-12 ui-xl-6">
+        <p-dropdown #dispatcherSearchField [options]="dispatcherSearchFields" [style]="{'width':'130px'}" [(ngModel)]="selectedDispatcherSearchField"
+          (onChange)="selectDispatcherSearchField($event)"></p-dropdown>
+        <p-autoComplete [(ngModel)]="selectedDispatcher" [field]="selectedDispatcherSearchField===1?'jobNumber':'name'" [suggestions]="dispatcherSuggestions"
+          (onBlur)="blurSelectDispatcher()" (completeMethod)="searchDispatcher($event.query)" [delay]="500" [size]="20" [minLength]="selectedDispatcherSearchField===1?6:2"
+          [maxlength]="20" [placeholder]="'请输入'+dispatcherSearchField.label" [style]="{'width':'240px'}">
+          <ng-template let-dispatcher pTemplate="item">
+            <div style="width:400px;">{{ dispatcher.name }} -- {{ dispatcher.jobNumber }} -- {{ dispatcher.subsidiaryEnterprises }}</div>
+          </ng-template>
+        </p-autoComplete>
+      </div>
+
+      <div class="ui-g-12 ui-xl-6">
+        <label style="width:130px;display:inline-block">类型</label>
+        <p-dropdown [options]="dispatcherSearchTypes" [style]="{'width':'240px'}" [(ngModel)]="selectedDispatcherType"></p-dropdown>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="selectedCylinderStatus === 4">
+      <div class="ui-g-12 ui-xl-6">
+        <p-dropdown [options]="userSearchFields" [style]="{'width':'130px'}" [(ngModel)]="selectedUserSearchField" (onChange)="selectUserSearchField($event)"></p-dropdown>
+        <p-autoComplete [(ngModel)]="selectedUser" [field]="selectedUserSearchField.field" [suggestions]="userSuggestions" (onBlur)="blurSelectUser()"
+          (completeMethod)="searchUser($event.query)" [delay]="500" [size]="20" [minLength]="selectedUserSearchField.minLength"
+          [maxlength]="20" [placeholder]="selectedUserSearchField.placeholder" [style]="{'width':'240px'}">
+          <ng-template let-user pTemplate="item">
+            <div style="width:400px;">{{ user.userName }} -- {{ user.phone }} -- {{ user.certificateId }}</div>
+          </ng-template>
+        </p-autoComplete>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12 ui-xl-6">
+      <label style="width:130px;display:inline-block">开始时间</label>
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
+        dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true" [style]="{'width':'240px'}"></p-calendar>
+    </div>
+
+    <div class="ui-g-12 ui-xl-6">
+      <label style="width:130px;display:inline-block">结束时间</label>
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
+        dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true" [style]="{'width':'240px'}"></p-calendar>
+    </div>
+  </div>
+
+  <div class="ui-g-12">
+    <button pButton type="button" label="查询" class="searchBtn" (click)="search()"></button>
+    <!-- <button pButton type="button" label="查询" (click)="getCylinderByStatus()"></button> -->
+  </div>
+
+</div>
+
+
+<div class="ui-g-12">
+
+  <p-dataTable [value]="cylinderList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pageSize" [scrollable]="false" [lazy]="true"
+    [(first)]="first" (onLazyLoad)="onPageChange($event)" [totalRecords]="total" [rowsPerPageOptions]="[10,20,40,80]" [loading]="loading">
+    <p-headerColumnGroup>
+      <p-row>
+        <!-- <p-column header="序号" rowspan="2"></p-column> -->
+        <p-column header="气瓶条码" rowspan="2"></p-column>
+        <p-column header="时间" rowspan="2"></p-column>
+        <p-column header="状态变迁" rowspan="2"></p-column>
+        <p-column header="开始责任主体" colspan="4"></p-column>
+        <p-column header="之后责任主体" colspan="4"></p-column>
+      </p-row>
+      <p-row>
+        <p-column header="类型" colspan="1"></p-column>
+        <p-column header="名称" colspan="1"></p-column>
+        <p-column header="联系方式" colspan="1"></p-column>
+        <p-column header="联系地址" colspan="1"></p-column>
+        <p-column header="类型" colspan="1"></p-column>
+        <p-column header="名称" colspan="1"></p-column>
+        <p-column header="联系方式" colspan="1"></p-column>
+        <p-column header="联系地址" colspan="1"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+
+
+    <!-- <p-column>
+      <ng-template pTemplate="body" let-index="rowIndex">
+        {{index + 1}}
+      </ng-template>
+    </p-column> -->
+    <p-column field="gasLabelNumber">
+      <ng-template let-rowData="rowData" pTemplate="body">
+        <a href="javascript:void(0);" [routerLink]="['../../cylinder-history']" [queryParams]="{cylinderNumber:rowData.gasLabelNumber,beginTime:beginTime.getTime(),endTime:endTime.getTime()}"
+          title="点击查看流转记录">{{rowData.gasLabelNumber}}</a>
+      </ng-template>
+    </p-column>
+    <p-column field="createTime">
+      <ng-template let-record="rowData" pTemplate="body">
+        {{ record.createTime | DateFormat}}
+      </ng-template>
+    </p-column>
+    <p-column field="gcStatusTypeName"></p-column>
+    <p-column field="beforeLiabilityTypeName"></p-column>
+    <p-column field="beforeLiabilityName">
+      <ng-template let-rowData="rowData" pTemplate="body">
+        <a *ngIf="rowData.beforeLiabilityTypeId<5" href="javascript:void(0);" (click)="link(rowData, 'before');" title="{{'点击查看' + rowData.beforeLiabilityName + '的流转记录'}}">{{rowData.beforeLiabilityName}}</a>
+        <span *ngIf="rowData.beforeLiabilityTypeId===5">{{rowData.beforeLiabilityName}}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="beforeLiabilityContact"></p-column>
+    <p-column field="beforeLiabilityAddress"></p-column>
+    <p-column field="afterLiabilityTypeName"></p-column>
+    <p-column field="afterLiabilityName">
+      <ng-template let-rowData="rowData" pTemplate="body">
+        <a *ngIf="rowData.afterLiabilityTypeId<5" href="javascript:void(0);" (click)="link(rowData, 'after');" title="{{'点击查看' + rowData.afterLiabilityName + '的流转记录'}}">{{rowData.afterLiabilityName}}</a>
+        <span *ngIf="rowData.afterLiabilityTypeId===5">{{rowData.afterLiabilityName}}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="afterLiabilityContact"></p-column>
+    <p-column field="afterLiabilityAddress"></p-column>
+    <ng-template pTemplate="paginatorRight">
+      共 {{ total || 0 }} 条记录
+    </ng-template>
+  </p-dataTable>
+</div>

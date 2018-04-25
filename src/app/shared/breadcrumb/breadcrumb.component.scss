@@ -1,7 +1,13 @@
-// .breadcrumb {
-//   position: fixed;
-//   top: 70px;
-//   left: 70px;
-//   right: 0;
-//   height: 70px;
-// }
+.breadcrumb {
+  .navbar-toggle{
+    margin-right:10px;
+    cursor: pointer;
+    padding:10px;
+    border-radius: 5px;
+  }
+  // position: fixed;
+  // top: 70px;
+  // left: 70px;
+  // right: 0;
+  // height: 70px;
+}

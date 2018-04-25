@@ -1,0 +1,65 @@
+<div class="ui-g-12 account-detail">
+  <h2 class="title">
+    企业账号信息概览
+    <gas-explanation tooltip="该账号权限下查看到的各企业开通的账号信息" position="bottom"></gas-explanation>
+  </h2>
+  <div class="ui-g">
+    <div class="ui-g-12 ui-lg-12 ui-xl-4">
+      <label for="" class="search-label">所在区域</label>
+      <p-dropdown [options]="areaDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-lg-12 ui-xl-4">
+      <label for="" class="search-label">许可证号</label>
+      <input type="text" class="textInput" [(ngModel)]="searchParams.licese" maxlength="20" pInputText>
+    </div>
+    <div class="ui-g-12 ui-lg-12 ui-xl-4">
+      <label for="" class="search-label">所属企业</label>
+      <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="查询" class="searchBtn" (click)="searchAccount()"></button>
+    </div>
+  </div>
+
+  <div class="ui-g-12">
+    <p-dataTable [value]="accountList" [lazy]="true" dataKey="enterprise" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
+      scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
+      [(first)]="pages.first">
+      <p-column [style]="{'width':'80px'}" header="编号">
+        <ng-template let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" field="enterpriseName" header="所属企业"></p-column>
+      <p-column [style]="{'width':'150px'}" field="dangerousLicense" header="许可证号"></p-column>
+      <p-column [style]="{'width':'150px'}" field="regionName" header="所在区域"></p-column>
+      <p-column [style]="{'width':'150px'}" field="userName" header="管理员">
+        <ng-template pTemplate="header">
+          管理员
+          <gas-explanation tooltip="该企业账号的管理人员" position="bottom"></gas-explanation>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" header="账号状态">
+        <ng-template let-rowdata="rowData" pTemplate="body">
+          <span>{{rowdata.isfreezed ? '冻结' : '启用'}}</span>
+        </ng-template>
+      </p-column>
+      <p-column [style]="{'width':'150px'}" header="操作">
+        <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
+          <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
+        </ng-template>
+      </p-column>
+      <ng-template pTemplate="emptymessage">
+        <div class="text-left">
+          未查询到数据
+        </div>
+      </ng-template>
+      <ng-template pTemplate="paginatorRight">
+        共 {{ pages.total || 0 }} 条记录
+      </ng-template>
+    </p-dataTable>
+  </div>
+
+
+
+</div>

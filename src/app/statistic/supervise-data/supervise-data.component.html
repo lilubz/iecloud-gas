@@ -1,0 +1,26 @@
+<!-- 左侧二级菜单内容-->
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">
+      <h3>预警类型选择</h3>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="经营许可证到期预警" [routerLink]="['license']" routerLinkActive="link-active"></button>
+    </div>
+    <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
+      <div class="ui-g-12">
+        <button pButton type="button" label="气瓶检测过期预警" [routerLink]="['gc-detection']" routerLinkActive="link-active"></button>
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="button" label="气瓶报废预警" [routerLink]="['gc-scrap']" routerLinkActive="link-active"></button>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- 右侧内容 -->
+<div class="main">
+  <div class="card">
+    <router-outlet></router-outlet>
+  </div>
+</div>

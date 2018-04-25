@@ -1,0 +1,25 @@
+ <!-- 左侧二级菜单 -->
+<div class="sidebar">
+    <div class="ui-g ui-g-nopad group">
+        <div class="ui-g-12">
+            <button pButton type="button" label="用户实名登记" [routerLink]="['user-info']" routerLinkActive="link-active"></button>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="用户身份认证卡" [routerLink]="['user-card']" routerLinkActive="link-active"></button>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="运输车/直销车" [routerLink]="['transport-car']" routerLinkActive="link-active"></button>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="配送车" [routerLink]="['delivery-car']" routerLinkActive="link-active"></button>
+        </div>
+        <div class="ui-g-12">
+            <button pButton type="button" label="气瓶录入" [routerLink]="['cylinder-info']" routerLinkActive="link-active"></button>
+        </div>
+    </div>
+</div>
+
+<!-- 右侧内容区 -->
+<div class="main">
+     <router-outlet></router-outlet>
+</div>

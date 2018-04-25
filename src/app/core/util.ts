@@ -82,4 +82,22 @@ export class Util {
     $form.submit();
     this.renderer.removeChild(document.body, $form);
   }
+
+  /**
+   * 判断是否是ie
+   * 2018-03-19 14:31:38
+   * @author hzb
+   * @returns {boolean}
+   * @memberof Util
+   */
+  isIE(): boolean {
+    const ua = window.navigator.userAgent;
+    let version = 0;
+    if (/MSIE([^;]+)/.test(ua)) { // 判断IE11以下（不含IE11）
+      version = parseFloat(RegExp['$1']);
+    } else if (/rv:([^\)]+)\) like Gecko/.test(ua)) { // 判断IE11
+      version = parseFloat(RegExp['$1']);
+    }
+    return version > 0;
+  }
 }

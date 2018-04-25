@@ -7,13 +7,13 @@ import { RouterModule } from '@angular/router';
 
 import {
   ButtonModule,
-  CalendarModule,
   CheckboxModule,
   DataTableModule,
   DropdownModule,
   DialogModule,
   FileUploadModule,
   GrowlModule,
+  InputSwitchModule,
   InputTextareaModule,
   InputTextModule,
   InputMaskModule,
@@ -22,6 +22,7 @@ import {
   MultiSelectModule,
   PanelModule,
   PaginatorModule,
+  EditorModule,
   LightboxModule,
   SpinnerModule,
   TieredMenuModule,
@@ -33,6 +34,7 @@ import {
   ConfirmDialogModule,
   ToggleButtonModule,
   RadioButtonModule,
+  TooltipModule,
 } from 'primeng/primeng';
 
 import { LoadingComponent } from './loading/loading.component';
@@ -44,6 +46,10 @@ import { DateFormat } from './dateFormat.pipe';
 import { ExportFileDirective } from './export-file.directive';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { AutoCompleteModule } from './autocomplete/autocomplete';
+import { HeaderComponent } from './header/header.component';
+import { DeliveryRegionCascadeComponent } from './delivery-region-cascade/delivery-region-cascade.component';
+import { ExplanationComponent } from './explanation/explanation.component';
+import { CalendarModule } from './calendar/calendar';
 
 @NgModule({
   imports: [
@@ -62,11 +68,13 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     ReactiveFormsModule,
     FileUploadModule,
     GrowlModule,
+    InputSwitchModule,
     InputTextareaModule,
     InputTextModule,
     InputMaskModule,
     MegaMenuModule,
     MenuModule,
+    EditorModule,
     MultiSelectModule,
     PanelModule,
     PaginatorModule,
@@ -82,7 +90,8 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     TreeModule,
     OverlayPanelModule,
     ConfirmDialogModule,
-    _SharedModule
+    _SharedModule,
+    TooltipModule
   ],
   declarations: [
     LoadingComponent,
@@ -93,6 +102,9 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     DateFormat,
     ExportFileDirective,
     BreadcrumbComponent,
+    HeaderComponent,
+    DeliveryRegionCascadeComponent,
+    ExplanationComponent,
   ],
 
   exports: [
@@ -112,6 +124,7 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     ReactiveFormsModule,
     FileUploadModule,
     GrowlModule,
+    InputSwitchModule,
     InputTextareaModule,
     InputTextModule,
     InputMaskModule,
@@ -119,6 +132,7 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     MenuModule,
     MultiSelectModule,
     PanelModule,
+    EditorModule,
     PaginatorModule,
     LightboxModule,
     SpinnerModule,
@@ -133,6 +147,7 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     _SharedModule,
     ConfirmDialogModule,
     RadioButtonModule,
+    TooltipModule,
 
     LoadingComponent,
     PageNotFoundComponent,
@@ -141,7 +156,10 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
     DispatcherAutocompleteComponent,
     DateFormat,
     ExportFileDirective,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    HeaderComponent,
+    DeliveryRegionCascadeComponent,
+    ExplanationComponent,
   ]
 })
 export class SharedModule { }

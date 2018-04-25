@@ -1,0 +1,46 @@
+<div class="ui-g-12 content">
+  <div style="min-width:350px">
+    <div class="ui-g-12">
+      <div class="ui-g-12 ui-lg-4">
+        <label for="" class="search-label">提交时间</label>
+        <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
+          dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" name="startDate"></p-calendar>
+      </div>
+      <div class="ui-g-12 ui-lg-4">
+        <label for="" class="search-label">至</label>
+        <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
+          dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" name="endDate"></p-calendar>
+      </div>
+    </div>
+    <button class="searchBtn" pButton type="button" label="查询" (click)="searchCylinderStorageCirculations()"></button>
+
+    <p-dataTable class="ui-g-12" [value]="datas" [lazy]="true" [paginator]="true" [rows]="40" [rowsPerPageOptions]="[10,20,40,80]"
+      [styleClass]="' ui-g-12 ui-lg-10 ui-xl-8'" emptyMessage="未查询到数据" [(first)]="firstIndex" [totalRecords]="total" (onLazyLoad)="onPageChange($event)">
+      <p-column [style]="{'width':'100px'}" header="序号">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <span>{{index+1}}</span>
+        </ng-template>
+      </p-column>
+      <p-column field="reportName">
+        <ng-template pTemplate="header">
+          报表名称
+          <gas-explanation tooltip="该报表的主要内容的简单描述" position="bottom"></gas-explanation>
+        </ng-template>
+      </p-column>
+      <p-column header="提交时间">
+        <ng-template pTemplate="body" let-Data="rowData">
+          {{Data.createTime| date:'yyyy-MM-dd'}}
+        </ng-template>
+      </p-column>
+      <p-column field="attachment" header="报表下载">
+        <ng-template pTemplate="body" let-Data="rowData">
+          <a [href]="Data.attachment" style="color:blue;text-decoration: none;" target="_blank">报表下载</a>
+        </ng-template>
+
+      </p-column>
+      <ng-template pTemplate="paginatorRight">
+        共 {{ total || 0 }} 条记录
+      </ng-template>
+    </p-dataTable>
+  </div>
+</div>

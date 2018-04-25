@@ -1,0 +1,18 @@
+<div class="ui-g-12">
+  <h3>充装监管规则设置</h3>
+  <div class="ui-g-6 text-right">
+    没有标签的气瓶不合法
+  </div>
+  <div class="ui-g-6">
+    <p-checkbox [(ngModel)]="boolIsValidForGcNoGasLabelNumber" binary="true"></p-checkbox>
+  </div>
+  <div class="ui-g-6 text-right">
+    企业编码与标签不一致的气瓶不合法
+  </div>
+  <div class="ui-g-6">
+    <p-checkbox [(ngModel)]="boolIsValidForGcNotAccordWithCorpNumber" binary="true"></p-checkbox>
+  </div>
+  <div class="ui-g-6 text-right">
+    <button pButton type="submit" (click)="save()" label="保存" class="searchBtn"></button>
+  </div>
+</div>

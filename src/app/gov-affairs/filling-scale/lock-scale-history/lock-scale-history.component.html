@@ -1,0 +1,75 @@
+<div class="ui-g-12">
+  <div class="ui-g">
+    <div class="ui-g-12 ui-lg-6">
+      <label class="search-label"> 经营企业 </label>
+      <p-dropdown [options]="enterpriseList" [(ngModel)]="enterpriseNumber" [style]="{'width':'280px'}" [filter]="true"></p-dropdown>
+    </div>
+
+    <div class="ui-g-12 ui-lg-6">
+      <label class="search-label"> 充装秤编号 </label>
+      <input type="number" class="textInput" [(ngModel)]="balanceNumber" pInputText maxlength="10">
+    </div>
+
+    <div class="ui-g-12 ui-lg-6 ">
+      <label for="" class="search-label"> 开始时间</label>
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'280px'}" [selectOtherMonths]="true"
+        [(ngModel)]="beginTime" [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime"
+        readonlyInput="true"></p-calendar>
+    </div>
+
+    <div class="ui-g-12 ui-lg-6">
+      <label for="" class="search-label">结束时间</label>
+      <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'280px'}" [selectOtherMonths]="true"
+        [(ngModel)]="endTime" [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime"
+        [maxDate]="today" readonlyInput="true"></p-calendar>
+    </div>
+
+    <div class="ui-g-12 ui-lg-4">
+      <button pButton type="submit" (click)="search()" label="查询" class="searchBtn"></button>
+    </div>
+  </div>
+</div>
+
+<div style="clear: both;"></div>
+<p-dataTable [value]="recordList" [lazy]="true" [paginator]="true" [rows]="pageSize" [rowsPerPageOptions]="[10,20,40,80]"
+  [totalRecords]="total" (onLazyLoad)="onPageChange($event)" [(first)]="first" [loading]="loading">
+  <p-column [style]="{'width':'100px'}" header="序号">
+    <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+      <span>{{index+1}}</span>
+    </ng-template>
+  </p-column>
+  <!-- <p-column field="balanceNumber" header="充装秤编号"></p-column> -->
+  <p-column field="balanceNumber" header="充装秤编号">
+    <ng-template let-rowData="rowData" pTemplate="body">
+      <a href="javascript:void(0);" [routerLink]="['../list']" class="router-link" [queryParams]="{balanceNumber:rowData.balanceNumber,enterpriseNumber:rowData.enterpriseNumber}"
+        title="点击查看充装秤信息">{{rowData.balanceNumber}}</a>
+    </ng-template>
+  </p-column>
+  <p-column field="enterpriseName" header="企业名称"></p-column>
+  <p-column header="创建时间">
+    <ng-template let-rowData="rowData" pTemplate="body">
+      <span>{{rowData.createTime|date:"yyyy-MM-dd"}}</span>
+    </ng-template>
+  </p-column>
+  <p-column header="加锁时间">
+    <ng-template let-rowData="rowData" pTemplate="body">
+      <span>{{rowData.lockBalanceTime|date:"yyyy-MM-dd"}}</span>
+    </ng-template>
+  </p-column>
+  <p-column header="解锁时间">
+    <ng-template let-rowData="rowData" pTemplate="body">
+      <span>{{rowData.unlockBalanceTime|date:"yyyy-MM-dd"}}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="remark" header="备注"></p-column>
+
+  <ng-template pTemplate="emptymessage">
+    <div class="text-left">
+      未查询到数据
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="paginatorRight">
+    共 {{ total || 0 }} 条记录
+  </ng-template>
+</p-dataTable>

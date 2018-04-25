@@ -1,0 +1,47 @@
+
+<div class="statistics ui-g-12">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h2>
+        报表统计
+        <gas-explanation tooltip="统计本月已交报表数和未交报表数" position="bottom"></gas-explanation>
+      </h2>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+        [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+        [(first)]="dataTable.first">
+        <p-column [style]="{'width':'100px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'120px'}" field="reportOrganizationName">
+          <ng-template pTemplate="header">
+            对象名称
+            <gas-explanation tooltip="需要提交报表的部门或企业" position="bottom"></gas-explanation>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" header="提交时间">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <span>{{rowData.createTime|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" header="操作">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <button pButton type="button" label="下载" *ngIf="rowData.boolIsCommit" (click)="window.location.href=rowData.attachment"></button>
+            <button pButton type="button" label="未提交" disabled="true" *ngIf="!rowData.boolIsCommit"></button>
+          </ng-template>
+        </p-column>
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+
+      </p-dataTable>
+    </div>
+  </div>
+</div>
