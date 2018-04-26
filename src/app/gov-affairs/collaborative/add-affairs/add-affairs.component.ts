@@ -189,7 +189,7 @@ export class AddAffairsComponent implements OnInit {
       formData.set('transactionAddress', this.formModel.address);
       formData.set('transactionTypeId', this.formModel.affairType);
       formData.set('description', this.formModel.describe);
-      formData.set('cylinderImage', file.files[0]);
+      formData.set('cylinderImage', file.files[0] || '');
       formData.set('collaborativeOrganizationInfoTOS', JSON.stringify(helpList));
       formData.set('emergencyDegree', this.formModel.level);
       formData.set('transactionSource', this.formModel.originId);
