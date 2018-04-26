@@ -37,26 +37,26 @@ export class UserComponent implements OnInit {
   }
 
   updatePassword() {
-    if (this.updatePasswordForm.oldPassword.trim() === '') {
+    if (this.updatePasswordForm.oldPassword === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入原密码' });
       return false;
-    } else if (this.updatePasswordForm.newPassword.trim() === '') {
+    } else if (this.updatePasswordForm.newPassword === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入新密码' });
       return false;
-    } else if (this.updatePasswordForm.newPassword.trim().length < 6) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '密码长度至少为六位，且首尾不能为空格' });
+    } else if (this.updatePasswordForm.newPassword.length < 6) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '密码长度至少为六位' });
       return false;
-    } else if (this.updatePasswordForm.confirmNewPassword.trim() === '') {
+    } else if (this.updatePasswordForm.confirmNewPassword === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入确认密码' });
       return false;
-    } else if (this.updatePasswordForm.confirmNewPassword.trim() !== this.updatePasswordForm.newPassword.trim()) {
+    } else if (this.updatePasswordForm.confirmNewPassword !== this.updatePasswordForm.newPassword) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请确认您输入的密码是否一致！' });
       return false;
     }
 
     this.userService.updatePassword({
-      oldPassword: this.updatePasswordForm.oldPassword.trim(),
-      newPassword: this.updatePasswordForm.newPassword.trim()
+      oldPassword: this.updatePasswordForm.oldPassword,
+      newPassword: this.updatePasswordForm.newPassword
     }).then(data => {
       if (data.status === 0) {
         this.messageService.add({ severity: 'success', summary: '', detail: '密码修改成功' });
