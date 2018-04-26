@@ -106,6 +106,8 @@ export class CustomerComponent implements OnInit {
 
   showDetail(record) {
     this.detailVisible = true;
+    this.customerRegisterRecords = [];
+    this.recordTotal = 0;
     this.selectedEnterpriseId = record.enterpriseNumber;
     this.getEnterpriseRegisterDetail();
   }
