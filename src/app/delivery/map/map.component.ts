@@ -9,6 +9,7 @@ import { SelectItem } from 'primeng/primeng';
 import { zh_CN } from './../../common/date-localization';
 import * as moment from 'moment';
 import { CommonRequestService } from '../../core/common-request.service';
+import { GISSettingService } from '../../system/setting-management/GIS-setting/GIS-setting.service';
 
 @Component({
   selector: 'gas-map',
@@ -44,6 +45,7 @@ export class MapComponent implements OnInit, OnDestroy {
   selectedDispatcher;
   selectedDispatcherNumber;
   cardNumber;
+  defaultStations: string[] = [];
 
   today = new Date();
   beginTime: Date = new Date((new Date().getTime() - 5 * 24 * 60 * 60 * 1000));
@@ -55,10 +57,20 @@ export class MapComponent implements OnInit, OnDestroy {
     private mapService: MapService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
+    private gisSettingService: GISSettingService
   ) { }
 
   ngOnInit() {
-    this.loadMap();
+    this.loadMap().then(data => {
+      console.log(data);
+      this.defaultStations = this.gisSettingService.transformStationData(this.gisSettingService.getMapStationSetting());
+      if (this.defaultStations.indexOf('fillingStation') !== -1) {
+        this.toggleDistributionStation(true);
+      }
+      if (this.defaultStations.indexOf('supplyStation') !== -1) {
+        this.toggleSupplyStation(true);
+      }
+    });
     // this.commonRequestService.listMobileCorpSupplyStationInfo().then(data => {
     //   if (data.status === 0) {
     //     this.cars = data.data.map(item => ({ label: item.supplyStationName, value: item }));
@@ -87,8 +99,8 @@ export class MapComponent implements OnInit, OnDestroy {
    * @author hzb
    * @memberof MapComponent
    */
-  loadMap() {
-    this.mapService.loadWebMap(this.mapEl);
+  loadMap(): Promise<any> {
+    return this.mapService.loadWebMap(this.mapEl);
   }
 
   /**
@@ -110,6 +122,7 @@ export class MapComponent implements OnInit, OnDestroy {
    * @memberof MapComponent
    */
   toggleSupplyStation(visible: boolean) {
+    console.log(1);
     this.mapService.toggleSupplyStation(visible);
   }
 

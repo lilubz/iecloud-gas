@@ -16,4 +16,27 @@ export class GISSettingService {
   setMapSetting(value: 'shiliang' | 'yingxiang') {
     localStorage.setItem('MapSettingData', value);
   }
+
+  getMapStationSetting(): { fillingStation: boolean, supplyStation: boolean } {
+    if (!localStorage.getItem('MapStationSettingData')) {
+      return { fillingStation: false, supplyStation: false };
+    } else {
+      return JSON.parse(localStorage.getItem('MapStationSettingData'));
+    }
+  }
+
+  setMapStationSetting(value: { fillingStation: boolean, supplyStation: boolean }) {
+    localStorage.setItem('MapStationSettingData', JSON.stringify(value));
+  }
+
+  transformStationData(data: { fillingStation: boolean, supplyStation: boolean }): string[] {
+    let temp = [];
+    if (data.fillingStation) {
+      temp.push('fillingStation');
+    }
+    if (data.supplyStation) {
+      temp.push('supplyStation');
+    }
+    return temp;
+  }
 }

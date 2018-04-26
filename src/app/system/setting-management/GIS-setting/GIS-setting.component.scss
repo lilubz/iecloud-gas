@@ -1,25 +1,33 @@
 .GIS-setting {
-    .title {
-        color: #3186dc;
-        text-align: center;
-        white-space: nowrap;
-    }
-    .margin{
-      margin-top: 10em;
-    }
-    .inputgroup {
-        width: 90px;
-        display: inline-block;
-        color: rgb(102, 102, 102);
-    }
-    .textInput {
-        width: 280px;
-    }
-    .searchBtn {
-        border-radius: 4px;
-        width: 96px;
-        height: 45px;
-        font-size: 1em;
-        background: #3186dc;
-    }
+  .title {
+    color: #3186dc;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .margin {
+    margin-top: 10em;
+  }
+  .inputgroup {
+    width: 90px;
+    display: inline-block;
+    color: rgb(102, 102, 102);
+  }
+  .textInput {
+    width: 280px;
+  }
+  .searchBtn {
+    border-radius: 4px;
+    width: 96px;
+    height: 45px;
+    font-size: 1em;
+    background: #3186dc;
+  }
+  .search-label {
+    width: 100%;
+    text-align: right;
+  }
+  .text-center{
+    text-align: center;
+  }
+
 }

@@ -249,16 +249,16 @@ export class MapService {
     });
   }
 
-  loadWebMap(mapEl: ElementRef) {
-    this.load({
+  loadWebMap(mapEl: ElementRef): Promise<any> {
+    return this.load({
       url: this.arcgis_js_url
     }).then((loadModules) => {
-      loadModules([
+      return loadModules([
         'esri/geometry/Point',
       ]).then(([
         Point,
       ]) => {
-        this.initMap(mapEl).then(() => {
+        return this.initMap(mapEl).then(() => {
           if (this.gisSettingService.getMapSetting() === 'shiliang') {
             this.map.addLayer(this.shiliangLayer);
             this.basemapGallery.select('shiliang');
@@ -511,6 +511,7 @@ export class MapService {
    * @memberof MapService
    */
   toggleSupplyStation(visible: boolean) {
+    console.log(2);
     this.supplyStationLayer.setVisibility(visible);
   }
 

@@ -4,16 +4,29 @@
     <!-- <gas-explanation tooltip="" position="bottom"></gas-explanation> -->
   </h2>
   <div class="ui-g">
-    <div class="ui-g-12 ui-g-offset-5 magin">
+    <div class="ui-g-6">
       <span class="search-label">矢量图</span>
+    </div>
+    <div class="ui-g-6">
       <p-radioButton name="map" value="shiliang" [(ngModel)]="selectedValue"></p-radioButton>
     </div>
-    <div class="ui-g-12 ui-g-offset-5 magin">
+    <div class="ui-g-6">
       <span class="search-label">影像图</span>
+    </div>
+    <div class="ui-g-6">
       <p-radioButton name="map" value="yingxiang" [(ngModel)]="selectedValue"></p-radioButton>
     </div>
-    <div class="ui-g-12 ui-g-offset-5 magin">
-      <button pButton type="button" label="保存" class="searchBtn" (click)="save()" ></button>
+    <div class="ui-g-6">
+      <span class="search-label">地图默认展示站点</span>
+    </div>
+    <div class="ui-g-6">
+      充装站
+      <p-checkbox name="groupname" value="fillingStation" [(ngModel)]="defaultStations"></p-checkbox>
+      供应站
+      <p-checkbox name="groupname" value="supplyStation" [(ngModel)]="defaultStations"></p-checkbox>
+    </div>
+    <div class="ui-g-12 text-center">
+      <button pButton type="button" label="保存" class="searchBtn" (click)="save()"></button>
     </div>
   </div>
 </div>
