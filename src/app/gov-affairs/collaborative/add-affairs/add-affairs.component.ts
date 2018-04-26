@@ -72,7 +72,7 @@ export class AddAffairsComponent implements OnInit {
         idName: 'dispatcherNumber',
         name: '送气工'
       },
-      '4': {
+      '5': {
         interfaceName: 'listGcCarrier',
         paramName: 'gcCarrierName',
         field: 'gcCarrierName',
@@ -117,7 +117,7 @@ export class AddAffairsComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择事务对象' });
       return false;
     } else if (this.formModel.time === null) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写发现时间' });
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写巡查时间' });
       return false;
     } else if (this.formModel.originId === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写事务来源' });
