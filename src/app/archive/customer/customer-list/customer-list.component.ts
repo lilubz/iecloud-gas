@@ -260,7 +260,7 @@ export class CustomerListComponent implements OnInit {
       return false;
     }
     let formData = new FormData();
-    formData.append('userNumber', this.willEditCustomer.userNumber.trim());
+    formData.append('userNumber', this.willEditCustomer.userNumber);
     formData.append('userName', this.willEditCustomer.userName.trim());
     formData.append('deliveryAddress', this.willEditCustomer.deliveryAddress.trim());
     formData.append('phone', this.willEditCustomer.phone.trim());
