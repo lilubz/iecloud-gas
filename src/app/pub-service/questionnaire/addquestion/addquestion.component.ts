@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { QuestionListService } from '../questionnaire-list/question-list.service';
@@ -14,10 +15,11 @@ export class AddquestionComponent implements OnInit {
   getQuestionnaire: any;
   obj: any;
   objnaire: any;
-  show: boolean = false;
   constructor(
     private messageService: MessageService,
-    private questionlistService: QuestionListService
+    private questionlistService: QuestionListService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -27,16 +29,12 @@ export class AddquestionComponent implements OnInit {
       const obj = this.question;
       this.questionlist.push(obj);
       this.question = '';
-      this.show = true;
     } else {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入题目名称' });
     }
   }
   deleteData(key) {
     this.questionlist.splice(key, 1);
-    if (this.questionlist.length == 0) {
-      this.show = false;
-    }
   }
   addQuestionNaireData() {
     this.getQuestionnaire = this.questionnaire;
@@ -44,9 +42,6 @@ export class AddquestionComponent implements OnInit {
   }
 
   release() {
-    console.log(this.getQuestionnaire);
-    console.log(this.questionlist)
-
     this.questionlistService.uploadNewQuestionnaire({
       psQuestionnaireVO: JSON.stringify(
         {
@@ -63,9 +58,13 @@ export class AddquestionComponent implements OnInit {
         }
       )
     }).then(data => {
-
-    })
-
+      if (data.status === 0) {
+        this.messageService.add({ severity: 'success', summary: '', detail: '添加成功！' });
+        this.router.navigate(['../questionnaire-list'], { relativeTo: this.route });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+      }
+    });
   }
 
 }

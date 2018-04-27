@@ -1,11 +1,7 @@
 <div class="ui-g-12">
 
-  <div class="ui-g-12">
-    <button pButton type="button" label="发布" *ngIf="show" (click)="release()" [routerLink]="['../questionnaire-list']">
-    </button>
-  </div>
 
-  <div class="example">
+  <div class="ui-g-12 example">
     <h3>示例：</h3>
     <div class="ui-g-2">问题描述:</div>
     <div class="ui-g-10">您对本次发布的版本满意吗？</div>
@@ -16,18 +12,23 @@
       <p-checkbox label="无所谓" [disabled]="true"></p-checkbox>
     </div>
   </div>
-  <div class="ui-g-12">
 
+  <div class="ui-g-12">
+    <button pButton type="button" label="发布" *ngIf="getQuestionnaire&&questionlist.length>0" (click)="release()">
+    </button>
+  </div>
+
+  <div class="ui-g-12">
     <div class="ui-g-12">
       <input type="text" pInputText placeholder="请输入问卷名称" [(ngModel)]="questionnaire" maxlength="50" style="width: 400px;
       height: 36px;">
       <button pButton type="button" label="确定" (click)="addQuestionNaireData()"></button>
       <p>
-        <b> 问卷名称:</b>&nbsp;&nbsp;&nbsp;&nbsp; {{getQuestionnaire}}</p>
+        <b> 问卷名称:</b>&nbsp;&nbsp;&nbsp;&nbsp; {{ getQuestionnaire }}</p>
     </div>
 
     <div class="ui-g-12">
-      <input type="text" pInputText placeholder="请输入题目名称" [(ngModel)]='question' maxlength="50" style="width: 400px;
+      <input type="text" pInputText placeholder="请输入题目名称" [(ngModel)]="question" maxlength="50" style="width: 400px;
       height: 36px;">
       <button pButton type="button" label="增加" (click)="addQuestionData()"></button>
     </div>

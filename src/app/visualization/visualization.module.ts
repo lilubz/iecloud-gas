@@ -8,6 +8,7 @@ import { VisualizationRoutingModule } from './visualization-routing.module';
 import { BigScreenComponent } from './big-screen/big-screen.component';
 import { BigScreenService } from './big-screen/big-screen.service';
 import { SingleSoliderComponent } from './single-solider/single-solider.component';
+import { TalkDispatchComponent } from './talk-dispatch/talk-dispatch.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,8 @@ import { SingleSoliderComponent } from './single-solider/single-solider.componen
     VisualizationComponent,
     VideoMonitoringComponent,
     BigScreenComponent,
-    SingleSoliderComponent
+    SingleSoliderComponent,
+    TalkDispatchComponent
   ],
   providers: [
     BigScreenService

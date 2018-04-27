@@ -3,7 +3,7 @@
 
   <button pButton [routerLink]="['../addquestion']" type="button" label="添加问卷" style="float: right;"></button>
 
-  <button pButton type="button" label="查询" style="float: left;" (click)="query()"></button>
+  <!-- <button pButton type="button" label="查询" style="float: left;" (click)="query()"></button> -->
   <div class="ui-g-12 ui-g-nopad" style="position: relative;top: 30px;">
     <p-dataTable [value]="questionnaireList" emptyMessage="未查询到数据" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
       [lazy]="true" (onLazyLoad)="onPageChange($event)" [totalRecords]="pages.total" [rowsPerPageOptions]="pages.pageOption">

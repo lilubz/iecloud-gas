@@ -29,7 +29,7 @@ export class SecurityListComponent implements OnInit {
     this.SecurityListService.listSecurityPublicityArticle({})
       .then(data => {
         if (data.status === 0) {
-          this.securityList = data.data.list;
+          this.securityList = data.data;
         } else {
           this.messageService.add({ severity: 'warn', summary: '没有数据', detail: data.msg });
           this.securityList = [];
