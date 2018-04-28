@@ -22,7 +22,7 @@
     </p-dataTable>
   </div>
   <p-dialog [visible]="detailVisible" header="公告宣传" [closable]="false" width="1000" height="auto" [modal]="true" [responsive]="true">
-    {{title}}
+    <div #detail></div>
     <p-footer>
       <button type="button" pButton (click)="detailVisible=false" label="确定"></button>
     </p-footer>

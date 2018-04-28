@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SecurityListService } from './security-list.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 
@@ -9,7 +9,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
   providers: [SecurityListService]
 })
 export class SecurityListComponent implements OnInit {
-
+  @ViewChild('detail') detailEle: ElementRef;
   securityList: any = [];
   title: any;
   articleId: any;
@@ -48,7 +48,7 @@ export class SecurityListComponent implements OnInit {
         if (data.status === 0) {
           this.messageService.add({ severity: 'success', summary: '成功', detail: data.msg });
           this.listSecurityPublicityArticle();
-        }else{
+        } else {
           this.messageService.add({ severity: 'warn', summary: '获取登记统计信息失败', detail: data.msg });
         }
         this.deleteDetailVisible = false;
@@ -56,7 +56,7 @@ export class SecurityListComponent implements OnInit {
     );
   }
   show = (data) => {
-    this.title = data.articleDescription;
+    this.detailEle.nativeElement.innerHTML = data.articleDescription;
     this.detailVisible = true;
   }
 

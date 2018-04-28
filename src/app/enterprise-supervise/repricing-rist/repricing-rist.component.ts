@@ -70,8 +70,8 @@ export class RepricingRistComponent implements OnInit {
     if (this.formModel.repricing === null || this.formModel.repricing === undefined) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入气瓶价格' });
       return;
-    } else if (this.formModel.repricing < 0) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '气瓶价格不能小于0' });
+    } else if (this.formModel.repricing <= 0) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '气瓶价格要求大于0' });
       return;
     }
     this._service.updateOrAddPricing({
