@@ -149,7 +149,7 @@ const routes: Routes = [
         path: 'safety-check',
         component: SafetyCheckComponent,
         data: {
-          title: '入户安全统计'
+          title: '入户安检统计'
         }
       },
       {
