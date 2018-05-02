@@ -22,6 +22,7 @@ export const API = {
   'listLocationInfo': URL + 'basicInformation/corpCarInfo/listCorpLocationInfo.do', // 获取站点位置信息
   'getThePathByAccountId': URL + 'corpBusiness/dispatchOrder/getThePathByAccountId.do', // 获取送气工轨迹
   'listMobileCorpSupplyStationInfoVO': URL + 'basicInformation/corpSupplyStation/listMobileCorpSupplyStationInfoVO.do', // 获取移动或固定供应站
+  'getRealTimeLocation': URL + 'corpBusiness/dispatchOrder/getRealTimeLocation.do', // 获取送气工实时位置
 
   // 气瓶档案
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',

@@ -46,6 +46,10 @@ export class MapComponent implements OnInit, OnDestroy {
   selectedDispatcherNumber;
   cardNumber;
   defaultStations: string[] = [];
+  regionList: SelectItem[] = [];
+  enterpriseList: SelectItem[] = [];
+  selectedDispatcherRegion = '';
+  selectedDispatcherEnterprise = '';
 
   today = new Date();
   beginTime: Date = new Date((new Date().getTime() - 5 * 24 * 60 * 60 * 1000));
@@ -71,6 +75,13 @@ export class MapComponent implements OnInit, OnDestroy {
         this.toggleSupplyStation(true);
       }
     });
+    this.commonRequestService.getRegions().then(data => {
+      if (data.data) {
+        this.regionList = data.data.map(item => ({ label: item.regionName, value: item.regionId }));
+        this.selectedDispatcherRegion = this.regionList[0].value;
+        this.listCorpInfoInRegion(this.selectedDispatcherRegion);
+      }
+    });
     // this.commonRequestService.listMobileCorpSupplyStationInfo().then(data => {
     //   if (data.status === 0) {
     //     this.cars = data.data.map(item => ({ label: item.supplyStationName, value: item }));
@@ -86,11 +97,43 @@ export class MapComponent implements OnInit, OnDestroy {
     this.mapService.destroyBasemapGallary();
   }
 
-  onSelected(event) {
-    console.log(event);
-    console.log(this.selectedMarkers);
-    console.log(this.stationVisible);
-    // this.mapService.layerChange(this);
+  listCorpInfoInRegion(regionId) {
+    console.log(regionId);
+    this.commonRequestService.listCorpInfoInRegion({ regionId }).then(data => {
+      if (data.status === 0) {
+        this.enterpriseList = data.data.map(item => ({ label: item.enterpriseName, value: item.enterpriseNumber }));
+        this.enterpriseList.unshift({ label: '全部', value: '' });
+        this.selectedDispatcherEnterprise = this.enterpriseList[0].value;
+      }
+    });
+  }
+
+  searchDispatcherLocation() {
+    this.mapService.getRealTimeLocation({
+      regionId: this.selectedDispatcherRegion,
+      enterpriseNumber: this.selectedDispatcherEnterprise
+    }).then(data => {
+      if (data.status === 0) {
+        this.mapService.showDispatcherLocation(
+          data.data.map(item => ({
+            accountId: item.dispatcherNumber,
+            dispatcherName: item.employeeName,
+            jobNumber: item.employeeNumber,
+            phone: item.phoneNumber,
+            enterpriseName: item.enterpriseName,
+            longitude: item.longitude,
+            latitude: item.latitude,
+            time: moment(item.createTime).format('YYYY-MM-DD HH:mm')
+          }))
+        );
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+      }
+    })
+  }
+
+  clearLocation() {
+    this.mapService.clearLocation();
   }
 
   /**
