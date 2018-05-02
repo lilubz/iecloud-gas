@@ -2,7 +2,7 @@
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
     <div class="ui-g-12">
-      <h3>事务管理</h3>
+      <h2>事务管理</h2>
     </div>
     <div class="ui-g-12">
       <button pButton type="button" label="事务列表" [routerLink]="['../affair-list']" routerLinkActive="link-active"></button>
@@ -48,7 +48,7 @@
               <span>{{index+1}}</span>
             </ng-template>
           </p-column>
-          <p-column [style]="{'width':'100px'}" header="事件编号">
+          <p-column [style]="{'width':'110px'}" header="事件编号">
             <ng-template pTemplate="header">
               事件编号
               <gas-explanation tooltip="根据一定的编号规则生成的该事务的序列号" position="bottom"></gas-explanation>
@@ -57,17 +57,17 @@
               <a [routerLink]="['../affair-details']" [queryParams]="{'id':rowData.transactionBasicNumber}">{{rowData.transactionBasicNumber}}</a>
             </ng-template>
           </p-column>
-          <p-column [style]="{'width':'120px'}" field="transactionType">
+          <p-column [style]="{'width':'110px'}" field="transactionType">
             <ng-template pTemplate="header">
               事务类别
               <gas-explanation tooltip="事务处理的方式" position="bottom"></gas-explanation>
             </ng-template>
           </p-column>
           <p-column [style]="{'width':'120px'}" field="description" header="描述"></p-column>
-          <p-column [style]="{'width':'120px'}" header="处理情况">
+          <p-column [style]="{'width':'110px'}" header="处理情况">
             <ng-template pTemplate="header">
               处理情况
-              <gas-explanation tooltip="事务处理的进度（有正在处理，完成，超期三种状态）" position="bottom"></gas-explanation>
+              <gas-explanation tooltip="事务处理的进度（有正在处理，完成两种状态）" position="bottom"></gas-explanation>
             </ng-template>
             <ng-template let-rowData="rowData" pTemplate="body">
               <span>{{rowData.boolIsHandle?'正在办理':'已经完结'}}</span>

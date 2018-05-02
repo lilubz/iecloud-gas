@@ -3,41 +3,43 @@
 // @import url('http://localhost:8080/arcgis_js_v323_api/arcgis_js_api/library/3.23/3.23/esri/css/esri.css');
 // @import url('http://localhost:8080/arcgis_js_api/library/4.5/esri/css/main.css');
 .main {
-  left: 390px;
-  .map {
-    height: 100%;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
-  }
-  .card {
-    padding: 0;
-  }
+    left: 380px;
+    .map {
+        height: 100%;
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+    }
+    .card {
+        padding: 0;
+    }
 }
 
 .sidebar {
-  width: 280px;
-  z-index: 1; // .sidebar-container{
-  //   overflow: auto;
-  // }
-  .group {
-    h3 {
-      margin: 10px 0;
+    width: 240px;
+    z-index: 1; // .sidebar-container{
+    //   overflow: auto;
+    // }
+    .group {
+      padding-left:10px;
+    //     padding: 20px;
+    //     h3 {
+    //         margin: 10px 0;
+    //     }
+    //     .ui-g-nopad {
+    //         padding-left: 0;
+    //     }
     }
-    .ui-g-nopad {
-      padding-left: 0;
+    .no-left-pad {
+        padding-left: 0;
     }
-  }
-  .no-left-pad {
-    padding-left: 0;
-  }
 }
 
 #yingxiang_lyr {
-  top: 100px;
-  right: 20px;
-  position: absolute;
-  z-index: 99;
-  background-color: white;
-  border-radius: 8px;
-  padding: 10px;
-  opacity: 0.75;
+    top: 100px;
+    right: 20px;
+    position: absolute;
+    z-index: 99;
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    opacity: 0.75;
 }

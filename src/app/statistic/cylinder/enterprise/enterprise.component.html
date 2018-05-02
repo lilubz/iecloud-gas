@@ -1,8 +1,8 @@
 <div class="ui-g-12 content">
   <div style="min-width: 820px;">
-    <h3>企业气瓶统计</h3>
+    <h2>企业气瓶统计</h2>
     <div class="ui-g-12 ui-g-nopad clearfloat">
-      <button pButton type="button" (click)="exportStatistic()" class="ui-button-info right" label="导出"></button>
+      <button pButton type="button" (click)="exportStatistic()" class=" right" label="导出"></button>
     </div>
     <div style="clear: both"></div>
     <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
@@ -13,7 +13,7 @@
     </ng-container>
 
     <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
-      <h3>新增气瓶统计</h3>
+      <h2>新增气瓶统计</h2>
       <div class="ui-g-12">
         <div class="ui-g-12 ui-lg-4">
           选择时间：
@@ -36,7 +36,7 @@
         <div class="ui-g-12">
           <button pButton type="button" (click)="addStatisticType=='region'?searchGcAddCount():searchGcAddCountDetail(addStatisticRegionId)"
             label="查询"></button>
-          <button pButton type="button" (click)="exportEnterpriseAddCylinderStatistic()" class="ui-button-info right" label="导出"></button>
+          <button pButton type="button" (click)="exportEnterpriseAddCylinderStatistic()" class=" right" label="导出"></button>
         </div>
         <div class="ui-g-12 ui-g-nopad">
           <button pButton type="button" *ngIf="addStatisticType=='corp'" (click)="searchGcAddCount()" label="返回区域概览"></button>

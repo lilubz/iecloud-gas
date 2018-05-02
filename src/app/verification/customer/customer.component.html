@@ -22,49 +22,55 @@
           </ng-template>
         </p-column>
         <ng-template pTemplate="paginatorRight">
-            共 {{ statisticTotal || 0 }} 条记录
+          共 {{ statisticTotal || 0 }} 条记录
         </ng-template>
       </p-dataTable>
     </div>
   </div>
 </div>
 
-<p-dialog [visible]="detailVisible" header="详情查看" [closable]="false" [modal]="true" [width]="720" [responsive]="true"
-[style]="{'border':'none','overflow':'auto'}" positionTop="90">
-  <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [style]="{'max-height':'540px'}" [paginator]="true" [rows]="recordPageSize"
-    [lazy]="true" scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)" [scrollable]="false" [totalRecords]="recordTotal"
-    [rowsPerPageOptions]="[10,20,40,80]">
-    <p-column [style]="{'width':'150px'}" field="regionName" header="所在区"></p-column>
-    <p-column [style]="{'width':'150px'}" field="userName" header="用户名称"></p-column>
-    <p-column [style]="{'width':'150px'}" field="userType" header="客户类型"></p-column>
-    <p-column [style]="{'width':'150px'}" field="certificateName" header="证件名称"></p-column>
-    <p-column [style]="{'width':'150px'}" field="principal" header="姓名"></p-column>
-    <p-column [style]="{'width':'150px'}" field="certificateId" header="证件号码"></p-column>
-    <p-column [style]="{'width':'150px'}" field="certificateAddress" header="证件地址"></p-column>
-    <p-column [style]="{'width':'150px'}" field="enterpriseOrganizationCode" header="营业执照"></p-column>
-    <p-column [style]="{'width':'150px'}" field="address" header="注册地址"></p-column>
-    <p-column [style]="{'width':'150px'}" field="legalRepresentative" header="法定代表人"></p-column>
-    <p-column [style]="{'width':'150px'}" field="deliveryAddress" header="居住地址"></p-column>
-    <p-column [style]="{'width':'150px'}" field="principal" header="联系人"></p-column>
-    <p-column [style]="{'width':'150px'}" field="phone" header="联系电话"></p-column>
-    <p-column [style]="{'width':'150px'}" field="contractNo" header="合同编号"></p-column>
-    <p-column [style]="{'width':'150px'}" field="contractEffectiveDate" header="合同开始期">
-      <ng-template let-record="rowData" pTemplate="body">
-        {{ record.contractEffectiveDate | date: 'yyyy-MM-dd'}}
-      </ng-template>
-    </p-column>
-    <p-column [style]="{'width':'150px'}" field="contractDeadline" header="合同截止期">
-      <ng-template let-record="rowData" pTemplate="body">
-        {{ record.contractDeadline | date: 'yyyy-MM-dd'}}
-      </ng-template>
-    </p-column>
-    <!-- <p-column [style]="{'width':'150px'}" field="date" header="附件"></p-column> -->
-    <ng-template pTemplate="paginatorRight">
-        共 {{ recordTotal || 0 }} 条记录
-    </ng-template>
-  </p-dataTable>
+<p-dialog [visible]="detailVisible" [showHeader]="false" [closable]="false" [modal]="true" [width]="900" [responsive]="true"
+  [style]="{'border':'none','overflow':'auto'}" positionTop="90">
+  <div class="ui-g ui-g-nopad">
+    <div class="ui-g-12 ui-g-nopad">
+      <h3 style="text-align: center">详情查看</h3>
+    </div>
+    <div class="ui-g ui-g-nopad">
+      <p-dataTable [value]="customerRegisterRecords" emptyMessage="未查询到数据" [style]="{'max-height':'450px'}" [paginator]="true"
+        [rows]="recordPageSize" [lazy]="true" scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)" [scrollable]="false"
+        [totalRecords]="recordTotal" [rowsPerPageOptions]="[10,20,40,80]">
+        <p-column [style]="{'width':'100px'}" field="regionName" header="所在区"></p-column>
+        <p-column [style]="{'width':'100px'}" field="userName" header="用户名称"></p-column>
+        <p-column [style]="{'width':'100px'}" field="userType" header="客户类型"></p-column>
+        <p-column [style]="{'width':'100px'}" field="certificateName" header="证件名称"></p-column>
+        <p-column [style]="{'width':'100px'}" field="principal" header="姓名"></p-column>
+        <p-column [style]="{'width':'150px'}" field="certificateId" header="证件号码"></p-column>
+        <p-column [style]="{'width':'150px'}" field="certificateAddress" header="证件地址"></p-column>
+        <p-column [style]="{'width':'150px'}" field="enterpriseOrganizationCode" header="营业执照"></p-column>
+        <p-column [style]="{'width':'150px'}" field="address" header="注册地址"></p-column>
+        <p-column [style]="{'width':'150px'}" field="legalRepresentative" header="法定代表人"></p-column>
+        <p-column [style]="{'width':'150px'}" field="deliveryAddress" header="居住地址"></p-column>
+        <p-column [style]="{'width':'150px'}" field="principal" header="联系人"></p-column>
+        <p-column [style]="{'width':'150px'}" field="phone" header="联系电话"></p-column>
+        <p-column [style]="{'width':'150px'}" field="contractNo" header="合同编号"></p-column>
+        <p-column [style]="{'width':'150px'}" field="contractEffectiveDate" header="合同开始期">
+          <ng-template let-record="rowData" pTemplate="body">
+            {{ record.contractEffectiveDate | date: 'yyyy-MM-dd'}}
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" field="contractDeadline" header="合同截止期">
+          <ng-template let-record="rowData" pTemplate="body">
+            {{ record.contractDeadline | date: 'yyyy-MM-dd'}}
+          </ng-template>
+        </p-column>
+        <!-- <p-column [style]="{'width':'150px'}" field="date" header="附件"></p-column> -->
+        <ng-template pTemplate="paginatorRight">
+          共 {{ recordTotal || 0 }} 条记录
+        </ng-template>
+      </p-dataTable>
+    </div>
+  </div>
   <p-footer>
     <button type="button" pButton (click)="detailVisible=false" class="searchBtn" label="确定"></button>
   </p-footer>
-
 </p-dialog>

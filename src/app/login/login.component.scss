@@ -2,25 +2,28 @@
     width: 350px;
     float: left;
     text-align: center;
-    padding: 0 2em;
+    padding: 0 1em 0 3em;
 }
 
 #login-wrapper #login-container {
     margin-top: 20px;
     box-sizing: border-box;
     height: 400px;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     padding: 5em 2em;
     text-align: center;
     color: #4f575b;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 #login-wrapper #login-container .title {
-    font-size: 20px;
+    font-size: 24px;
+    color: #3186dc;
+    font-weight: 600;
     display: block;
-    margin-bottom: 20px;
+    margin-top: -20px;
+    margin-bottom: 40px;
 }
 
 #login-wrapper #login-container .remember-me {
@@ -95,38 +98,59 @@
     margin-top: 50px;
 }
 
-@media (max-width: 40em) {
-    .login-body {
-        padding-top: 50px;
-    }
-    #login-wrapper {
-        width: 350px;
-    }
-    #login-wrapper #login-container {
-        height: 400px;
-    }
+// @media (max-width: 40em) {
+//     .login-body {
+//         padding-top: 50px;
+//     }
+//     #login-wrapper {
+//         width: 350px;
+//     }
+//     #login-wrapper #login-container {
+//         height: 400px;
+//     }
+// }
+.title-img {
+    background-image: url(../../assets/img/title-img.png);
+    width: 1014px;
+    height: 73px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  
+}
+.title-container{
+  position: relative;
+  width: 100%;
+  height: calc(50% - 420px/2);
+  height: -moz-calc(50% - 420px/2);
+  height: -webkit-calc(50% - 420px/2);
 }
 
 .login {
-    width: 1100px;
-    height: 50%;
-    margin: 0 auto;
-    padding: 3em 1em;
+    width: 1024px;
+    height: 493px;
+    margin: auto;
+    
 }
 
 .messgae {
-    width: 600px;
+    width: 610px;
     float: left;
     /* text-align: center; */
     .messgae-container {
         margin-top: 20px;
         box-sizing: border-box;
         height: 400px;
-        background-color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.8);
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
         padding: 0 2em;
         color: #4f575b;
-        border-radius: 5px;
+        border-radius: 4px;
         a {
             color: #2399e5;
         }

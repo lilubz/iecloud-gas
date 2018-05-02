@@ -1,64 +1,57 @@
-.delivery-car{
-  position:relative;
-  [class^="ui-g"]{
-    padding:0;
-  }
-  header{
-    // width:520px;
-    height: 65px;
-    // position:absolute;
-    top:80px;
-    // left:50%;
-    // transform: translateX(-50%);
-    font-size: 14px;
-    // border-radius:15px 15px 0 0;
-    // border:1px solid transparent;
-    // background: #9cf;
-    h1{
-      text-align: center;
-      margin:0;
-      padding:10px 0;
+.delivery-car {
+    position: relative;
+    [class^="ui-g"] {
+        padding: 0;
     }
-  }
-  form{
-    // width:520px;
-    height:270px;
-    // position:absolute;
-    top:145px;
-    // left:50%;
-    // transform: translateX(-50%);
-    // border:1px solid rgb(121,121,121);
-    border-top:none;
-    // border-radius:0 0 15px 15px;
-    // overflow: hidden;
-    // background: rgb(242,242,242);
-    ul{
-      margin:0 25px;
-      padding:20px 0;
-      list-style: none;
-      // border-bottom:1px solid #666;
-      li{
-        padding:10px 0;
-      }
+    header {
+        // width:520px;
+        height: 65px; // position:absolute;
+        top: 80px; // left:50%;
+        // transform: translateX(-50%);
+        font-size: 14px; // border-radius:15px 15px 0 0;
+        // border:1px solid transparent;
+        // background: #9cf;
+        h1 {
+            text-align: center;
+            margin: 0;
+            padding: 10px 0;
+        }
     }
-    label{
-      font-weight: bold;
-      font-size:18px;
+    form {
+        // width:520px;
+        height: 270px; // position:absolute;
+        top: 145px; // left:50%;
+        // transform: translateX(-50%);
+        // border:1px solid rgb(121,121,121);
+        border-top: none; // border-radius:0 0 15px 15px;
+        // overflow: hidden;
+        // background: rgb(242,242,242);
+        ul {
+            margin: 0 25px;
+            padding: 20px 0;
+            list-style: none; // border-bottom:1px solid #666;
+            li {
+                padding: 10px 0;
+            }
+        }
+        label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        footer {
+            padding: 20px;
+            font-size: 20px;
+        }
     }
-    footer{
-      padding:20px;
-      font-size:20px;
+    .warn {
+        color: #f00;
     }
-  }
-  .warn{
-    color:#f00;
-  }
-  .searchBtn {
-    margin-left: 20px;
-    border-radius: 4px;
-    width: 96px;
-    height: 45px;
-    font-size: 1em;
-    background: #3186dc;
-  }
+    .searchBtn {
+        margin-left: 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        height: 36px;
+        width: 80px;
+        background: #3186dc;
+    }
 }

@@ -8,7 +8,6 @@ export const AdminMenus: MenuItem[] = [
   // },
   {
     label: '基础档案',
-    icon: 'menu-icon archive-icon',
     routerLink: ['/archive'],
     items: [
       { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
@@ -22,7 +21,6 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '监管查询',
-    icon: 'menu-icon distribution-icon',
     routerLink: ['/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
@@ -32,7 +30,6 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '监管事务',
-    icon: 'menu-icon supervise-icon',
     routerLink: ['/gov-affairs'],
     items: [
       // { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
@@ -45,7 +42,6 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '视频查看',
-    icon: 'menu-icon visualization-icon',
     routerLink: ['/visualization'],
     items: [
       { label: '大屏展示', routerLink: ['/visualization/big-screen'] },
@@ -55,7 +51,6 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '统计分析',
-    icon: 'menu-icon statistic-icon',
     routerLink: ['/statistic'],
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
@@ -70,7 +65,6 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '系统配置',
-    icon: 'menu-icon system-icon',
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
@@ -84,12 +78,10 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '审核管理',
-    icon: 'menu-icon verification-icon',
     routerLink: ['/verification']
   },
   {
     label: '公众服务',
-    icon: 'menu-icon public-icon',
     routerLink: ['/pub-service'],
     items: [
       { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
@@ -106,7 +98,6 @@ export const GovernmentMenus: MenuItem[] = [
   // },
   {
     label: '基础档案',
-    icon: 'menu-icon archive-icon',
     routerLink: ['/archive'],
     items: [
       { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
@@ -120,7 +111,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '监管查询',
-    icon: 'menu-icon distribution-icon',
     routerLink: ['/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
@@ -130,7 +120,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '监管事务',
-    icon: 'menu-icon supervise-icon',
     routerLink: ['/gov-affairs'],
     items: [
       // { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
@@ -143,7 +132,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '视频查看',
-    icon: 'menu-icon visualization-icon',
     routerLink: ['/visualization'],
     items: [
       { label: '大屏展示', routerLink: ['/visualization/big-screen'] },
@@ -153,7 +141,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '统计分析',
-    icon: 'menu-icon statistic-icon',
     routerLink: ['/statistic'],
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
@@ -168,7 +155,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '系统配置',
-    icon: 'menu-icon system-icon',
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
@@ -181,7 +167,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '审核管理',
-    icon: 'menu-icon verification-icon',
     routerLink: ['/verification']
   },
 
@@ -203,7 +188,6 @@ export const EnterpriseMenus: MenuItem[] = [
   // },
   {
     label: '基础档案',
-    icon: 'menu-icon archive-icon',
     routerLink: ['/archive'],
     items: [
       { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
@@ -216,7 +200,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '监管查询',
-    icon: 'menu-icon distribution-icon',
     routerLink: ['/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
@@ -225,7 +208,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '统计分析',
-    icon: 'menu-icon statistic-icon',
     routerLink: ['/statistic'],
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
@@ -235,7 +217,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '系统配置',
-    icon: 'menu-icon system-icon',
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
@@ -244,7 +225,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '企业监管',
-    icon: 'menu-icon statistic-icon',
     routerLink: ['/enterprise-supervise'],
     items: [
       { label: '报表管理', routerLink: ['/enterprise-supervise/report'] },
@@ -254,7 +234,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '信息录入',
-    icon: 'menu-icon input-icon',
     routerLink: ['/input']
   }
 ];
