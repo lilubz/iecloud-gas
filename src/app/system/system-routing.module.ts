@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 
 import { SystemComponent } from './system.component';
 import { UserComponent } from './user/user.component';
-import { MessagesComponent } from './messages/messages.component';
 import { BottleLibraryComponent } from './bottle-library/bottle-library.component';
 import { EnterpriseManagementComponent } from './enterprise-management/enterprise-management.component';
 import { AccountDetailComponent } from './enterprise-management/account-detail/account-detail.component';
@@ -34,13 +33,6 @@ const routes: Routes = [
         component: UserComponent,
         data: {
           title: '个人信息'
-        },
-      },
-      {
-        path: 'message',
-        component: MessagesComponent,
-        data: {
-          title: '通知公告'
         },
       },
       {

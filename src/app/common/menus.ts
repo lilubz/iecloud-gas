@@ -75,7 +75,6 @@ export const AdminMenus: MenuItem[] = [
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '通知公告', routerLink: ['/system/message'] },
       { label: '企业管理', routerLink: ['/system/enterprise-management'] },
       { label: '供应站管理', routerLink: ['/system/bottle-library'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
@@ -94,7 +93,8 @@ export const AdminMenus: MenuItem[] = [
     routerLink: ['/pub-service'],
     items: [
       { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
-      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
+      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] },
+      { label: '通知公告', routerLink: ['/pub-service/message'] },
     ]
   }
 
@@ -178,7 +178,6 @@ export const GovernmentMenus: MenuItem[] = [
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '通知公告', routerLink: ['/system/message'] },
       { label: '企业管理', routerLink: ['/system/enterprise-management'] },
       { label: '供应站管理', routerLink: ['/system/bottle-library'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },

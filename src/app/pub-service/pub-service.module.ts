@@ -7,6 +7,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { SecurityPublicityComponent } from './security-publicity/security-publicity.component';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 import { SecurityPublicityModule } from './security-publicity/security-publicity.module';
+import { MessagesComponent } from './messages/messages.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +20,7 @@ import { SecurityPublicityModule } from './security-publicity/security-publicity
     PubServiceComponent,
     QuestionnaireComponent,
     SecurityPublicityComponent,
+    MessagesComponent
   ],
   providers: [
 
