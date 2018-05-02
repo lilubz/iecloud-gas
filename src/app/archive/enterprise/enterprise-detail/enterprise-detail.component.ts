@@ -6,6 +6,7 @@ import { SelectItem } from 'primeng/primeng';
 import { zh_CN } from '../../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'gas-enterprise',
@@ -20,21 +21,37 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
       value: '',
     }
   ];
+  stateDrop: SelectItem[] = [
+    {
+      label: '全部',
+      value: '',
+    },
+    {
+      label: '启用',
+      value: 1,
+    },
+    {
+      label: '停用',
+      value: 2,
+    }
+  ];
   enterpriseList: any[] = [];
   searchParams: {
     regionId?: string,
     enterpriseName?: string,
     person?: string,
-    startTime?: string,
-    endTime?: string,
-    phone?: number,
+    state?: any,
+    // startTime?: string,
+    // endTime?: string,
+    // phone?: number,
   } = {
       regionId: '',
       enterpriseName: '',
       person: '',
-      startTime: '',
-      endTime: '',
-      phone: null,
+      state: '',
+      // startTime: '',
+      // endTime: '',
+      // phone: null,
     };
   pages: {
     pageNumber?: number;
@@ -54,6 +71,7 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
     private commonRequestService: CommonRequestService,
     private userStateService: UserStateService,
     private messageService: MessageService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -84,11 +102,11 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
   getEnterPrise(pages?) {
     const params = {
       regionId: this.searchParams.regionId || '',
-      corpName: this.searchParams.enterpriseName || '',
+      corpName: this.searchParams.state || '',
       legalRepresentative: this.searchParams.person || '',
-      releaseTimeStart: this.searchParams.startTime || '',
-      releaseTimeEnd: this.searchParams.endTime || '',
-      serviceLine: this.searchParams.phone || '',
+      // releaseTimeStart: this.searchParams.startTime || '',
+      // releaseTimeEnd: this.searchParams.endTime || '',
+      // serviceLine: this.searchParams.phone || '',
       pageSize: 40,
       pageNumber: 1
     };
@@ -126,21 +144,25 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
     this.getEnterPrise(page);
   }
 
+  enterpriseAdded = () => {
+    // this.router.navigate(['/system/enterprise-management/enterprise-found']);
+  }
+
   /**
      * 时间转换
     */
-  selectedStartTime(event) {
-    this.searchParams.startTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
-  }
-  selectedEndTime(event) {
-    this.searchParams.endTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
-  }
-  clearStartTime(event) {
-    this.searchParams.startTime = '';
-  }
-  clearEndTime(event) {
-    this.searchParams.endTime = '';
-  }
+  // selectedStartTime(event) {
+  //   this.searchParams.startTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
+  // }
+  // selectedEndTime(event) {
+  //   this.searchParams.endTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
+  // }
+  // clearStartTime(event) {
+  //   this.searchParams.startTime = '';
+  // }
+  // clearEndTime(event) {
+  //   this.searchParams.endTime = '';
+  // }
   ngOnDestroy() {
   }
 }
