@@ -203,7 +203,11 @@ export const API = {
   'reportCommit': URL + 'corpBusiness/reportManagementController/reportCommit.do', // 4.报表提交
   'reportStatistics': URL + 'corpBusiness/reportManagementController/reportStatistics.do', // 5.获取报表统计列表
   'reportCommitDetail': URL + 'corpBusiness/reportManagementController/reportCommitDetail.do', // 6.查询某次报表提交祥情列表。
-  'deleteReport': URL + 'corpBusiness/reportManagementController/deleteReport.do', // 6.查询某次报表提交祥情列表。
+  'deleteReport': URL + 'corpBusiness/reportManagementController/deleteReport.do',
+  'loadTaskList': URL + 'corpBusiness/reportManagementController/loadTaskList.do', // 温州市加快管道燃气用户发展任务清单
+  'loadNewPipelineGasUsers': URL + 'corpBusiness/reportManagementController/loadNewPipelineGasUsers.do',
+  'loadRegulatoryStatistics': URL + 'corpBusiness/reportManagementController/loadRegulatoryStatistics.do',
+  'loadInformationSupervisionStatisticsByWeek': URL + 'corpBusiness/reportManagementController/loadInformationSupervisionStatisticsByWeek.do',
 
   // 气瓶存量预警
   'listGcThresholdCurrentWarning': URL + 'corpBusiness/gcStockMonitor/listGcThresholdCurrentWarning.do',

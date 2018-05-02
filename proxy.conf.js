@@ -1,15 +1,15 @@
 const PROXY_CONFIG = [
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //     // "/upload",
-  //   ],
-  //   target: "http://192.168.1.26:8080",// 费峰
-  //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
-  //   }
-  // },
+  {
+    context: [
+      "/wenZhouGas",
+      // "/upload",
+    ],
+    target: "http://192.168.1.26:8080",// 费峰
+    secure: false,
+    "pathRewrite": {
+      "^/wenZhouGas": ""
+    }
+  },
   // {
   //   context: [
   //     "/wenZhouGas",
@@ -19,6 +19,17 @@ const PROXY_CONFIG = [
   //   "pathRewrite": {
   //     "^/wenZhouGas": ""
   //   }
+  // },
+  // {
+  //   context: [
+  //     "/wenZhouGas",
+  //     "/dataImport",
+  //   ],
+  //   target: "http://192.168.1.141:8080", // 本地测试
+  //   secure: false,
+  //   // "pathRewrite": {
+  //   //   "^/wenZhouGas": ""
+  //   // }
   // },
   // {
   //   context: [

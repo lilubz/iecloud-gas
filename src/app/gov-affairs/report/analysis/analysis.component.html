@@ -3,17 +3,49 @@
     统计报表下载
   </h2>
   <ul>
+    <ng-container *gasPermissionRole="[RoleType.Admin]">
+      <li>
+        <span>温州市加快管道燃气用户发展任务清单</span>
+        <a pButton label="选择时间" (click)="openDialog(1)"></a>
+      </li>
+      <li>
+        <span>温州市新增管道燃气用户月报表</span>
+        <a pButton label="选择时间" (click)="openDialog(2)"></a>
+      </li>
+      <li>
+        <span>温州市城镇燃气行业和执法监管月报表</span>
+        <a pButton label="选择时间" (click)="openDialog(3)"></a>
+      </li>
+    </ng-container>
     <li>
-      <span>全市瓶装燃气和信息化进展月报汇总表</span>
-      <a href="http://122.228.28.0:16080/staticFile/0420/3.25全市瓶装燃气和信息化进展月报汇总表.xls" pButton label="点击下载"></a>
-    </li>
-    <li>
-      <span>温州市城镇燃气行业和执法监管月报表</span>
-      <a href="http://122.228.28.0:16080/staticFile/0420/温州市城镇燃气行业和执法监管月报表（2月）改.xls" pButton label="点击下载"></a>
-    </li>
-    <li>
-      <span>温州市瓶装燃气销售管控及信息化监管工作情况统计表</span>
-      <a href="http://122.228.28.0:16080/staticFile/0420/瓶装燃气销售管控及信息化监管工作情况统计表汇总表.xlsx" pButton label="点击下载"></a>
+      <span>全市瓶装燃气和信息化进展周报汇总表</span>
+      <a pButton label="选择时间" (click)="openDialog(4)"></a>
     </li>
   </ul>
+  <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="420" [height]="280" [contentStyle]="{'padding':'10px','overflow':'visible'}"
+    [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h2>
+          <!-- 选择一个时间 -->
+        </h2>
+      </div>
+      <div class="ui-g-12">
+        <span class="search-label"> 选择年：</span>
+        <p-dropdown [options]="dropdown.year" [style]="{'width':'280px'}" [(ngModel)]="formModel.year" [filter]="true"></p-dropdown>
+      </div>
+      <div class="ui-g-12" *ngIf="formModel.type !== 4">
+        <span class="search-label">选择月：</span>
+        <p-dropdown [options]="dropdown.month" [style]="{'width':'280px'}" [(ngModel)]="formModel.month"></p-dropdown>
+      </div>
+      <div class="ui-g-12" *ngIf="formModel.type === 4">
+        <span class="search-label">选择周：</span>
+        <p-dropdown [options]="dropdown.week" [style]="{'width':'280px'}" [(ngModel)]="formModel.week" [filter]="true"></p-dropdown>
+      </div>
+      <div class="ui-g-12 text-center btnS">
+        <button type="button" pButton label="下载" (click)="getUrl()"></button>
+        <button type="button" pButton label="取消" class="ui-button-secondary" (click)="visible=false"></button>
+      </div>
+    </div>
+  </p-dialog>
 </div>
