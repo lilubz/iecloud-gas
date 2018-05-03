@@ -47,6 +47,7 @@ export const AdminMenus: MenuItem[] = [
       { label: '大屏展示', routerLink: ['/visualization/big-screen'] },
       { label: '视频监控', routerLink: ['/visualization/video-monitor'] },
       { label: '单兵执法', routerLink: ['/visualization/single-solider'] },
+      // { label: '对讲调度', routerLink: ['/visualization/talk-dispatch'] },
     ]
   },
   {
@@ -68,7 +69,6 @@ export const AdminMenus: MenuItem[] = [
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '通知公告', routerLink: ['/system/message'] },
       { label: '企业管理', routerLink: ['/system/enterprise-management'] },
       { label: '供应站管理', routerLink: ['/system/bottle-library'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
@@ -85,9 +85,14 @@ export const AdminMenus: MenuItem[] = [
     routerLink: ['/pub-service'],
     items: [
       { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
-      // { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
+      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] },
+      { label: '通知公告', routerLink: ['/pub-service/message'] },
     ]
   }
+
+
+
+
 ];
 
 export const GovernmentMenus: MenuItem[] = [
@@ -135,8 +140,9 @@ export const GovernmentMenus: MenuItem[] = [
     routerLink: ['/visualization'],
     items: [
       { label: '大屏展示', routerLink: ['/visualization/big-screen'] },
-      { label: '视频监控', routerLink: ['/visualization/video-monitor'] },
-      { label: '单兵执法', routerLink: ['/visualization/single-solider'] },
+      // { label: '视频监控', routerLink: ['/visualization/video-monitor'] },
+      // { label: '单兵执法', routerLink: ['/visualization/single-solider'] },
+      // { label: '对讲调度', routerLink: ['/visualization/talk-dispatch'] },
     ]
   },
   {
@@ -158,7 +164,6 @@ export const GovernmentMenus: MenuItem[] = [
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '通知公告', routerLink: ['/system/message'] },
       { label: '企业管理', routerLink: ['/system/enterprise-management'] },
       { label: '供应站管理', routerLink: ['/system/bottle-library'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
@@ -169,10 +174,15 @@ export const GovernmentMenus: MenuItem[] = [
     label: '审核管理',
     routerLink: ['/verification']
   },
-
-
-
-
+  {
+    label: '公众服务',
+    icon: 'menu-icon public-icon',
+    routerLink: ['/pub-service'],
+    items: [
+      { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
+      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
+    ]
+  }
 ];
 
 
@@ -229,7 +239,8 @@ export const EnterpriseMenus: MenuItem[] = [
     items: [
       { label: '报表管理', routerLink: ['/enterprise-supervise/report'] },
       { label: '事务处理', routerLink: ['/enterprise-supervise/affair-list'] },
-      { label: '重瓶定价', routerLink: ['/enterprise-supervise/repricing-rist'] }
+      { label: '重瓶定价', routerLink: ['/enterprise-supervise/repricing-rist'] },
+      { label: '客户评价', routerLink: ['/enterprise-supervise/customer-evaluation'] }
     ]
   },
   {

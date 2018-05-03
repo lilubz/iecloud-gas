@@ -54,17 +54,23 @@
   [style]="{'border':'none'}">
   <div class="ui-g-12">
     <div class="ui-g-12">
-      <div class="ui-g-3">
+      <div class="ui-g-4">
         原密码：
       </div>
-      <div class="ui-g-9">
-        <input type="password" [(ngModel)]="updatePasswordForm.oldPassword" pInputText placeholder="原密码" maxlength="20">
+      <div class="ui-g-8">
+        <input type="password" [(ngModel)]="updatePasswordForm.oldPassword" pInputText placeholder="原密码" maxlength="16">
       </div>
-      <div class="ui-g-3">
+      <div class="ui-g-4">
         新密码：
       </div>
-      <div class="ui-g-9">
-        <input type="password" [(ngModel)]="updatePasswordForm.newPassword" pInputText placeholder="新密码" maxlength="20">
+      <div class="ui-g-8">
+        <input type="password" [(ngModel)]="updatePasswordForm.newPassword" pInputText placeholder="新密码" minlength="6" maxlength="16">
+      </div>
+      <div class="ui-g-4">
+        确认密码：
+      </div>
+      <div class="ui-g-8">
+        <input type="password" [(ngModel)]="updatePasswordForm.confirmNewPassword" pInputText placeholder="确认密码" minlength="6" maxlength="16">
       </div>
     </div>
     <div class="ui-g-4">

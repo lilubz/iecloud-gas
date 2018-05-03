@@ -127,6 +127,7 @@ input {
         font-weight: bold;
         padding: 0 20px;
         font-size: $breadcrumb-font-size;
+        white-space: nowrap;
         .breadcrumb-item {
             display: inline-block;
             color: #666;
@@ -322,6 +323,10 @@ input {
     display: inline-block;
 }
 
+.ui-inputswitch{
+  top: 0.4em;
+}
+
 a {
     color: #3399ff;
 }
@@ -439,10 +444,10 @@ a.router-link-active {
 }
 
 #BasemapToggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 50;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
 }
 
 div.esriBasemapGalleryNode {

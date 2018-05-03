@@ -67,7 +67,7 @@ export class AffairDetailsComponent implements OnInit {
     }
   }
   onSubmit(file) {
-    if (this.formModel.explain !== '') {
+    if (this.formModel.explain.trim()) {
       const formData: any = new FormData();
       formData.set('transactionBasicId', this.todo.eventId);
       formData.set('description', this.formModel.explain);

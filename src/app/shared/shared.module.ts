@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 
 import {
   ButtonModule,
-  CalendarModule,
   CheckboxModule,
   DataTableModule,
   DropdownModule,
@@ -23,6 +22,7 @@ import {
   MultiSelectModule,
   PanelModule,
   PaginatorModule,
+  EditorModule,
   LightboxModule,
   SpinnerModule,
   TieredMenuModule,
@@ -50,6 +50,7 @@ import { HeaderComponent } from './header/header.component';
 import { DeliveryRegionCascadeComponent } from './delivery-region-cascade/delivery-region-cascade.component';
 import { ExplanationComponent } from './explanation/explanation.component';
 import { DialogModule } from './dialog/dialog';
+import { CalendarModule } from './calendar/calendar';
 
 @NgModule({
   imports: [
@@ -74,6 +75,7 @@ import { DialogModule } from './dialog/dialog';
     InputMaskModule,
     MegaMenuModule,
     MenuModule,
+    EditorModule,
     MultiSelectModule,
     PanelModule,
     PaginatorModule,
@@ -131,6 +133,7 @@ import { DialogModule } from './dialog/dialog';
     MenuModule,
     MultiSelectModule,
     PanelModule,
+    EditorModule,
     PaginatorModule,
     LightboxModule,
     SpinnerModule,

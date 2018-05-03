@@ -240,13 +240,10 @@ export class CustomerListComponent implements OnInit {
   }
 
   editCustomer() {
-    if (this.willEditCustomer.userName === '') {
+    if (this.willEditCustomer.userName.trim() === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的燃气用户' });
       return false;
-    } else if (this.willEditCustomer.deliveryAddress === '') {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的派送地址' });
-      return false;
-    } else if (this.willEditCustomer.phone === '') {
+    } else if (this.willEditCustomer.phone.trim() === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的联系电话' });
       return false;
     } else if (this.willEditCustomer.userIdentityCardNumber === null && !this.willEditCustomer['userIdentityCardNumberIsEmpty']) {
@@ -258,12 +255,15 @@ export class CustomerListComponent implements OnInit {
     } else if (!this.deliveryRegionId) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择配送区域' });
       return false;
+    } else if (this.willEditCustomer.deliveryAddress.trim() === '') {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的派送地址' });
+      return false;
     }
     let formData = new FormData();
     formData.append('userNumber', this.willEditCustomer.userNumber);
-    formData.append('userName', this.willEditCustomer.userName);
-    formData.append('deliveryAddress', this.willEditCustomer.deliveryAddress);
-    formData.append('phone', this.willEditCustomer.phone);
+    formData.append('userName', this.willEditCustomer.userName.trim());
+    formData.append('deliveryAddress', this.willEditCustomer.deliveryAddress.trim());
+    formData.append('phone', this.willEditCustomer.phone.trim());
     formData.append('userIdentityCardNumber', this.willEditCustomer.userIdentityCardNumber ? this.willEditCustomer.userIdentityCardNumber : '');
     formData.append('dispatcherNumber', this.selectedEditDispatcher ? this.selectedEditDispatcher.dispatcherNumber ? this.selectedEditDispatcher.dispatcherNumber.toString() : '' : '');
     formData.append('deliveryRegionId', this.deliveryRegionId);

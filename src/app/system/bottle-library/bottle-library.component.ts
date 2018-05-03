@@ -301,7 +301,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
       return false;
     } else if (!this.editForm.supplyLicenseNum.trim()) {
-      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '供应许可证编号不能为空' });
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '许可证编号不能为空' });
       return false;
     } else if (!this.editForm.issuingUnit.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '核发单位不能为空' });
@@ -332,7 +332,7 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
       return false;
     } else if (!this.addForm.supplyLicenseNum.trim()) {
-      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '供应许可证编号不能为空' });
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '许可证编号不能为空' });
       return false;
     } else if (!this.addForm.issuingUnit.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '核发单位不能为空' });

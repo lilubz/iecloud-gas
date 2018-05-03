@@ -1,6 +1,19 @@
-// div.group {
-//   border: 1px solid #000;
-//   border-radius: 10px;
-//   margin-top: 10px;
-// }
+.main {
+  left: 90px;
+}
 
+.search {
+  a {
+    color: #3399ff;
+  }
+  .textInput {
+    width: 280px;
+  }
+  .searchBtn {
+    border-radius: 4px;
+    width: 96px;
+    height: 45px;
+    font-size: 1em;
+    background: #3186dc;
+  }
+}

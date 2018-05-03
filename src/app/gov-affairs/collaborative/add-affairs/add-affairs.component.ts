@@ -72,7 +72,7 @@ export class AddAffairsComponent implements OnInit {
         idName: 'dispatcherNumber',
         name: '送气工'
       },
-      '4': {
+      '5': {
         interfaceName: 'listGcCarrier',
         paramName: 'gcCarrierName',
         field: 'gcCarrierName',
@@ -109,6 +109,7 @@ export class AddAffairsComponent implements OnInit {
     this.getDropdownAffairsType();
   }
   checkForm(): boolean {
+    const helpList = this.formModel.helpCompany.concat(this.formModel.helpDepartment);
     if (this.formModel.objType === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择事务类型' });
       return false;
@@ -116,7 +117,7 @@ export class AddAffairsComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择事务对象' });
       return false;
     } else if (this.formModel.time === null) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写发现时间' });
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写巡查时间' });
       return false;
     } else if (this.formModel.originId === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写事务来源' });
@@ -133,12 +134,14 @@ export class AddAffairsComponent implements OnInit {
     } else if (!this.formModel.describe.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写描述信息' });
       return false;
-    } else if (this.formModel.level === '') {
+    }else if (this.formModel.affairType === 2 && helpList.length < 1) { // 事务类别ID如果===2（交办）那么就必须选择协同对象
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请选择协同部门或企业' });
+      return false;
+    }else if (this.formModel.level === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择紧急程度' });
       return false;
     }
     // 检测是否填入了协同时间。
-    const helpList = this.formModel.helpCompany.concat(this.formModel.helpDepartment);
     const hasTime = helpList.every(item => item.time ? true : false);
     if (!hasTime) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写协同的截止时间' });
@@ -186,7 +189,7 @@ export class AddAffairsComponent implements OnInit {
       formData.set('transactionAddress', this.formModel.address);
       formData.set('transactionTypeId', this.formModel.affairType);
       formData.set('description', this.formModel.describe);
-      formData.set('cylinderImage', file.files[0]);
+      formData.set('cylinderImage', file.files[0] || '');
       formData.set('collaborativeOrganizationInfoTOS', JSON.stringify(helpList));
       formData.set('emergencyDegree', this.formModel.level);
       formData.set('transactionSource', this.formModel.originId);

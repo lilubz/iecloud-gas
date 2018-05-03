@@ -1,9 +1,10 @@
-import { Component, OnInit} from '@angular/core';
-import { FormBuilder, AbstractControl, Validators, FormGroup} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, AbstractControl, Validators, FormGroup } from '@angular/forms';
 
 import { DispatcherService } from './dispatcher.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { validator } from '../../../common/validator';
+import { validator } from '../../common/validator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'gas-dispatcher',
@@ -50,11 +51,24 @@ export class DispatcherComponent implements OnInit {
     pageSize: this.dataTable.option[2],
     pageNumber: 1
   };
-  constructor(private dispatcherService: DispatcherService, private messageService: MessageService,
-    private fb: FormBuilder) { }
+  constructor(
+    private dispatcherService: DispatcherService, private messageService: MessageService,
+    private fb: FormBuilder,
+    private routerInfo: ActivatedRoute
+  ) { }
+
   ngOnInit() {
     this.cylinderSelectOpt();
+    this.routerInfo.paramMap.switchMap((params) => {
+      return Promise.resolve(params);
+    }).subscribe((params) => {
+      if (params.get('dispatcherNumber')) {
+        this.formModel.patchValue({ jobNumber: params.get('dispatcherNumber') });
+        this.onSearch();
+      }
+    });
   }
+
   showImg(event, url, overlaypanel) {
     this.currentImgUrl = '';
     overlaypanel.toggle(event);
@@ -85,11 +99,20 @@ export class DispatcherComponent implements OnInit {
   }
 
   onPageChange(event) {
-    const page = {
+    this.onPageChange = (event) => {
+      const page = {
         pageSize: event.rows,
         pageNumber: event.first / event.rows + 1
       };
-    this.getDispatcherInfo(Object.assign({}, this.pageParams, page));
+      this.formModel.setValue({
+        enterpriseId: this.pageParams.enterpriseId,
+        name: this.pageParams.name,
+        jobNumber: this.pageParams.jobNumber,
+        phone: this.pageParams.phone,
+        idNumber: this.pageParams.idNumber
+      });
+      this.getDispatcherInfo(Object.assign({}, this.pageParams, page));
+    }
   }
 
   getDispatcherInfo(params?) {
@@ -116,7 +139,7 @@ export class DispatcherComponent implements OnInit {
           })));
         } else {
           this.dropdown.companyOpt = this.dropdown.default;
-          this.messageService.add({severity: 'warn', summary: '响应消息', detail: data.msg});
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       });
   }

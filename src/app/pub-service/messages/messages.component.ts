@@ -9,7 +9,8 @@ import { API } from '../../common/api';
 @Component({
   selector: 'gas-message',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  styleUrls: ['./messages.component.scss'],
+  providers: [MessagesService, ConfirmationService]
 })
 export class MessagesComponent implements OnInit, OnDestroy {
 

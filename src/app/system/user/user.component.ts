@@ -16,10 +16,12 @@ export class UserComponent implements OnInit {
   organizationType: OrganizationType;
   updatePasswordForm: {
     oldPassword: string,
-    newPassword: string
+    newPassword: string,
+    confirmNewPassword: string
   } = {
       oldPassword: '',
-      newPassword: ''
+      newPassword: '',
+      confirmNewPassword: ''
     };
   updatePwdDialogVisiable = false;
 
@@ -35,15 +37,27 @@ export class UserComponent implements OnInit {
   }
 
   updatePassword() {
-    if (!this.updatePasswordForm.oldPassword) {
+    if (this.updatePasswordForm.oldPassword === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入原密码' });
       return false;
-    } else if (!this.updatePasswordForm.newPassword) {
+    } else if (this.updatePasswordForm.newPassword === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入新密码' });
+      return false;
+    } else if (this.updatePasswordForm.newPassword.length < 6) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '密码长度至少为六位' });
+      return false;
+    } else if (this.updatePasswordForm.confirmNewPassword === '') {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入确认密码' });
+      return false;
+    } else if (this.updatePasswordForm.confirmNewPassword !== this.updatePasswordForm.newPassword) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请确认您输入的密码是否一致！' });
       return false;
     }
 
-    this.userService.updatePassword(this.updatePasswordForm).then(data => {
+    this.userService.updatePassword({
+      oldPassword: this.updatePasswordForm.oldPassword,
+      newPassword: this.updatePasswordForm.newPassword
+    }).then(data => {
       if (data.status === 0) {
         this.messageService.add({ severity: 'success', summary: '', detail: '密码修改成功' });
         this.updatePwdDialogVisiable = false;
@@ -57,7 +71,8 @@ export class UserComponent implements OnInit {
     this.updatePwdDialogVisiable = true;
     this.updatePasswordForm = {
       oldPassword: '',
-      newPassword: ''
+      newPassword: '',
+      confirmNewPassword: '',
     };
   }
 }

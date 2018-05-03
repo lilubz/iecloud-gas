@@ -1,0 +1,102 @@
+<div class="main">
+  <div class="card">
+    <div class="ui-g-12 dispatcher">
+      <form class="ui-g-12" [formGroup]="formModel" (submit)="onSearch()">
+        <div class="ui-g">
+
+          <div class="ui-g-12 ui-lg-6">
+            <label class="search-label">企业</label>
+            <p-dropdown [options]="dropdown.companyOpt" formControlName="enterpriseId" [style]="{'width':'280px'}"></p-dropdown>
+          </div>
+
+          <div class="ui-g-12 ui-lg-6">
+            <label class="search-label">姓名</label>
+            <input class="textInput" type="text" pInputText formControlName="name" />
+          </div>
+
+          <div class="ui-g-12 ui-lg-6">
+            <label class="search-label">工号</label>
+            <input class="textInput" type="text" pInputText formControlName="jobNumber" />
+          </div>
+
+          <div class="ui-g-12 ui-lg-6">
+            <label class="search-label">手机号码</label>
+            <input class="textInput" type="text" pInputText formControlName="phone" />
+          </div>
+
+          <div class="ui-g-12 ui-lg-6">
+            <label class="search-label">身份证号</label>
+            <input class="textInput" type="text" pInputText formControlName="idNumber" />
+          </div>
+
+          <div class="ui-g-12">
+            <button class="searchBtn" pButton type="submit" label="搜索"></button>
+          </div>
+
+        </div>
+      </form>
+      <div class="ui-g-12">
+        <div class="ui-g">
+          <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+            scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+            [(first)]="dataTable.first">
+            <p-column [style]="{'width':'80px'}" header="序号">
+              <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+                <span>{{index+1}}</span>
+              </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'100px'}" field="name" header="姓名">
+              <ng-template let-rowData="rowData" pTemplate="body">
+                <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+                  title="点击查询流转记录">{{rowData.name}}</a>
+              </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'90px'}" field="jobNumber" header="工号"></p-column>
+            <p-column [style]="{'width':'100px'}" field="licensePlateNumber" header="车牌号"></p-column>
+            <p-column [style]="{'width':'150px'}" field="subsidiaryEnterprises" header="所属企业"></p-column>
+            <p-column [style]="{'width':'150px'}" field="supplyStation" header="所属供应站"></p-column>
+            <p-column [style]="{'width':'110px'}" field="idNumber" header="身份证号"></p-column>
+            <p-column [style]="{'width':'120px'}" field="phone" header="电话号码"></p-column>
+            <p-column [style]="{'width':'140px'}" field="" header="头像">
+              <ng-template let-rowData="rowData" pTemplate="body">
+                <button pButton (click)="showImg($event,rowData.headPortraitUrl,imgBox);" label="查看头像" *ngIf="rowData.headPortraitUrl"></button>
+              </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'180px'}" field="">
+              <ng-template pTemplate="header">
+                二维码
+                <gas-explanation tooltip="扫码查看送气工证件照" position="bottom"></gas-explanation>
+              </ng-template>
+              <ng-template let-rowData="rowData" pTemplate="body">
+                <button type="button" pButton (click)="showImg($event,rowData.qrCodeUrl,imgBox);" *ngIf="rowData.qrCodeUrl" label="查看二维码"></button>
+              </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'70px'}" field="status" header="状态"></p-column>
+            <!-- <p-column [style]="{'width':'100px'}" field="dangerousGoodsTransportLicenseNumber" header="危险品运输许可证编号"></p-column> -->
+            <p-column [style]="{'width':'110px'}">
+              <ng-template pTemplate="header">
+                到期时间
+                <gas-explanation tooltip="送气工证件到期时间" position="bottom"></gas-explanation>
+              </ng-template>
+              <ng-template let-rowData="rowData" pTemplate="body">
+                <span>{{rowData.expirationTime|date:"yyyy-MM-dd"}}</span>
+              </ng-template>
+            </p-column>
+
+            <ng-template pTemplate="emptymessage">
+              <div class="text-left">
+                未查询到数据
+              </div>
+            </ng-template>
+            <ng-template pTemplate="paginatorRight">
+              共 {{ dataTable.total || 0 }} 条记录
+            </ng-template>
+          </p-dataTable>
+        </div>
+        <p-overlayPanel #imgBox>
+          <img src="{{currentImgUrl}}" *ngIf="currentImgUrl" style="max-width: 262px" />
+        </p-overlayPanel>
+      </div>
+    </div>
+  </div>
+</div>

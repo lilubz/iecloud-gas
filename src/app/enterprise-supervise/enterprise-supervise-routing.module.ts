@@ -8,6 +8,7 @@ import { ReportComponent } from './report/report.component';
 import { SubmitComponent } from './report/submit/submit.component';
 import { RepricingRistComponent } from './repricing-rist/repricing-rist.component';
 import { TimeoutSearchComponent } from './timeout-search/timeout-search.component';
+import { CustomerEvaluationComponent } from './customer-evaluation/customer-evaluation.component';
 
 const routes: Routes = [
   {
@@ -88,6 +89,13 @@ const routes: Routes = [
         component: RepricingRistComponent,
         data: {
           title: '重瓶定价'
+        }
+      },
+      {
+        path: 'customer-evaluation',
+        component: CustomerEvaluationComponent,
+        data: {
+          title: '客户评价'
         }
       }
     ]

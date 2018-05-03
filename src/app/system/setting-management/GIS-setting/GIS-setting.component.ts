@@ -9,19 +9,24 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 export class GISSettingComponent implements OnInit, OnDestroy {
   selectedValue: 'shiliang' | 'yingxiang';
-  constructor(private _service: GISSettingService,
-    private messageService: MessageService, ) { }
+  defaultStations: string[];
+  constructor(
+    private _service: GISSettingService,
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit() {
     this.selectedValue = this._service.getMapSetting();
+    this.defaultStations = this._service.transformStationData(this._service.getMapStationSetting());
   }
   save() {
+    console.log(this.defaultStations);
     this._service.setMapSetting(this.selectedValue);
-    if (this._service.getMapSetting() === 'shiliang') {
-      this.messageService.add({ severity: 'success', summary: '响应消息', detail: '当前默认图层为矢量图' });
-    } else {
-      this.messageService.add({ severity: 'success', summary: '响应消息', detail: '当前默认图层为影像图' });
-    }
+    this._service.setMapStationSetting({
+      fillingStation: this.defaultStations.indexOf('fillingStation') !== -1 ? true : false,
+      supplyStation: this.defaultStations.indexOf('supplyStation') !== -1 ? true : false,
+    });
+    this.messageService.add({ severity: 'success', summary: '响应消息', detail: '设置成功' });
   }
 
   ngOnDestroy() {

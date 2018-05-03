@@ -158,11 +158,17 @@ export class CustomerDetailComponent implements OnInit {
               summary: '查询结果',
               detail: '未查询到用户卡号信息'
             });
-          } else {
+          } else if (this.typeList === 'phone') {
             this.messageService.add({
               severity: 'warn',
               summary: '查询结果',
               detail: '未查询到联系电话信息'
+            });
+          } else if (this.typeList === 'userNumber') {
+            this.messageService.add({
+              severity: 'warn',
+              summary: '查询结果',
+              detail: '未查询到用户ID信息'
             });
           }
 

@@ -35,13 +35,15 @@ export class MapService {
   distributionStationLayer; // 储配站图层
   dispatcherPathLayer; // 送气工轨迹图层
   dispatcherPathPointLayer; // 送气工轨迹点图层
-  sellingCarPathLayer; // 送气工轨迹图层
-  sellingCarPathPointLayer; // 送气工轨迹点图层
+  dispatcherLocationLayer; // 送气工实时位置图层
+  sellingCarPathLayer; // 直销车轨迹图层
+  sellingCarPathPointLayer; // 直销车轨迹点图层
   basemapGallery; // 图层切换按钮
 
   supplyStationSymbol; // 供应站/供应站 符号
   distributionStationSymbol; // 储配站符号
   dispatcherPathPointSymbol; // 送气工位置标记符号
+  dispatcherLocationPointSymbol; // 送气工实时位置标记符号
   dispatcherPathSymbol;  // 送气工路径线条符号
   sellingCarPathPointSymbol; // 直销车位置标记符号
   sellingCarPathSymbol;  // 直销车路径线条符号
@@ -157,6 +159,11 @@ export class MapService {
           new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([15, 137, 245, 1]), 6)
         );
         this.sellingCarPathPointSymbol = this.dispatcherPathPointSymbol;
+        this.dispatcherLocationPointSymbol = new SimpleMarkerSymbol(
+          SimpleMarkerSymbol.STYLE_CIRCLE,
+          6,
+          new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([103, 58, 183, 1]), 6)
+        );
 
         this.dispatcherPathSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([243, 66, 52]), 2);
         this.sellingCarPathSymbol = this.dispatcherPathSymbol;
@@ -205,6 +212,7 @@ export class MapService {
         this.distributionStationLayer = new GraphicsLayer({ id: 'distributionStationLayer', visible: false });
         this.dispatcherPathLayer = new GraphicsLayer({ id: 'dispatcherPathLayer', visible: true });
         this.dispatcherPathPointLayer = new GraphicsLayer({ id: 'dispatcherPathPointLayer', visible: true });
+        this.dispatcherLocationLayer = new GraphicsLayer({ id: 'dispatcherLocationLayer', visible: true });
         this.sellingCarPathLayer = new GraphicsLayer({ id: 'sellingCarPathLayer', visible: true });
         this.sellingCarPathPointLayer = new GraphicsLayer({ id: 'sellingCarPathPointLayer', visible: true });
 
@@ -249,16 +257,16 @@ export class MapService {
     });
   }
 
-  loadWebMap(mapEl: ElementRef) {
-    this.load({
+  loadWebMap(mapEl: ElementRef): Promise<any> {
+    return this.load({
       url: this.arcgis_js_url
     }).then((loadModules) => {
-      loadModules([
+      return loadModules([
         'esri/geometry/Point',
       ]).then(([
         Point,
       ]) => {
-        this.initMap(mapEl).then(() => {
+        return this.initMap(mapEl).then(() => {
           if (this.gisSettingService.getMapSetting() === 'shiliang') {
             this.map.addLayer(this.shiliangLayer);
             this.basemapGallery.select('shiliang');
@@ -278,6 +286,7 @@ export class MapService {
           this.map.addLayer(this.distributionStationLayer);
           this.map.addLayer(this.dispatcherPathLayer);
           this.map.addLayer(this.dispatcherPathPointLayer);
+          this.map.addLayer(this.dispatcherLocationLayer);
           this.map.addLayer(this.sellingCarPathLayer);
           this.map.addLayer(this.sellingCarPathPointLayer);
 
@@ -285,6 +294,7 @@ export class MapService {
           this.supplyStationLayer.setInfoTemplate(this.supplyStationInfoTemplate);
           this.distributionStationLayer.setInfoTemplate(this.fillingStationInfoTemplate);
           this.dispatcherPathPointLayer.setInfoTemplate(this.dispatcherPathPointTemplate);
+          this.dispatcherLocationLayer.setInfoTemplate(this.dispatcherPathPointTemplate);
           this.sellingCarPathPointLayer.setInfoTemplate(this.sellingCarPathPointTemplate);
 
           this.getStationLocation();
@@ -338,14 +348,10 @@ export class MapService {
         Graphic,
         SpatialReference
       ]) => {
-        this.dispatcherPathLayer.clear();
-        this.dispatcherPathPointLayer.clear();
-        this.sellingCarPathLayer.clear();
-        this.sellingCarPathPointLayer.clear();
+        this.clearPathAndPoint();
         const coordinates = point.map(item => {
           return proj4(this.proj4SpatialReferenceStr, [item.longitude, item.latitude]);
         });
-        console.log(point);
         const pointCount = coordinates.length;
         const interval = 5000 / pointCount;
         for (let i = 0; i < pointCount; i++) {
@@ -420,14 +426,10 @@ export class MapService {
         Graphic,
         SpatialReference
       ]) => {
-        this.dispatcherPathLayer.clear();
-        this.dispatcherPathPointLayer.clear();
-        this.sellingCarPathLayer.clear();
-        this.sellingCarPathPointLayer.clear();
+        this.clearPathAndPoint();
         const coordinates = point.map(item => {
           return proj4(this.proj4SpatialReferenceStr, [item.longitude, item.latitude]);
         });
-        console.log(point);
         const pointCount = coordinates.length;
         const interval = 5000 / pointCount;
         for (let i = 0; i < pointCount; i++) {
@@ -450,6 +452,63 @@ export class MapService {
         const centerPoint = new Point(center[0], center[1], this.wenzhouSpatialReference);
         this.map.centerAndZoom(centerPoint, 8);
 
+      });
+    });
+  }
+
+  /**
+   * 显示送气工实时位置
+   * 2018-05-02 11:37:05
+   * @author hzb
+   * @param {{
+   *     accountId: number,
+   *     employeeName: string,
+   *     jobNumber: number,
+   *     phone: string,
+   *     enterpriseName: string,
+   *     longitude: number,
+   *     latitude: number,
+   *     time: number
+   *   }[]} point
+   * @memberof MapService
+   */
+  showDispatcherLocation(point: {
+    accountId: number,
+    dispatcherName: string,
+    jobNumber: number,
+    phone: string,
+    enterpriseName: string,
+    longitude: number,
+    latitude: number,
+    time: number
+  }[]) {
+    this.load({
+      url: this.arcgis_js_url
+    }).then((loadModules) => {
+      loadModules([
+        'esri/geometry/Polyline',
+        'esri/geometry/Point',
+        'esri/graphic',
+        'esri/SpatialReference',
+      ]).then(([
+        Polyline,
+        Point,
+        Graphic,
+        SpatialReference
+      ]) => {
+        this.clearLocation();
+        const coordinates = point.map(item => {
+          return proj4(this.proj4SpatialReferenceStr, [item.longitude, item.latitude]);
+        });
+        const pointCount = coordinates.length;
+        for (let i = 0; i < pointCount; i++) {
+          const dispatcherLocationPoint = new Graphic(
+            new Point(coordinates[i][0], coordinates[i][1], this.wenzhouSpatialReference),
+            this.dispatcherLocationPointSymbol,
+            point[i]
+          );
+          this.dispatcherLocationLayer.add(dispatcherLocationPoint);
+        }
       });
     });
   }
@@ -511,6 +570,7 @@ export class MapService {
    * @memberof MapService
    */
   toggleSupplyStation(visible: boolean) {
+    console.log(2);
     this.supplyStationLayer.setVisibility(visible);
   }
 
@@ -523,6 +583,29 @@ export class MapService {
    */
   toggleDistributionStation(visible: boolean) {
     this.distributionStationLayer.setVisibility(visible);
+  }
+
+  /**
+   * 清除所有轨迹和轨迹点
+   * 2018-05-02 11:52:28
+   * @author hzb
+   * @memberof MapService
+   */
+  clearPathAndPoint() {
+    this.dispatcherPathLayer.clear();
+    this.dispatcherPathPointLayer.clear();
+    this.sellingCarPathLayer.clear();
+    this.sellingCarPathPointLayer.clear();
+  }
+
+  /**
+   * 清除所有送气工实时位置
+   *
+   * @author hzb
+   * @memberof MapService
+   */
+  clearLocation() {
+    this.dispatcherLocationLayer.clear();
   }
 
   /**
@@ -617,5 +700,8 @@ export class MapService {
   getThePathByAccountId(params: { accountId: string, beginTime: Date, endTime: Date, accountTypeId: string }): Promise<any> {
     return this.httpService
       .getRequest(API.getThePathByAccountId, params);
+  }
+  getRealTimeLocation(params: { regionId: string, enterpriseNumber?: string }): Promise<any> {
+    return this.httpService.getRequest(API.getRealTimeLocation, params);
   }
 }

@@ -6,6 +6,7 @@ import { VisualizationComponent } from './visualization.component';
 import { VideoMonitoringComponent } from './video-monitoring/video-monitoring.component';
 import { BigScreenComponent } from './big-screen/big-screen.component';
 import { SingleSoliderComponent } from './single-solider/single-solider.component';
+import { TalkDispatchComponent } from './talk-dispatch/talk-dispatch.component';
 const routes: Routes = [
   {
     path: '',
@@ -37,6 +38,13 @@ const routes: Routes = [
         component: SingleSoliderComponent,
         data: {
           title: '单兵执法'
+        }
+      },
+      {
+        path: 'talk-dispatch',
+        component: TalkDispatchComponent,
+        data: {
+          title: '可视化对讲调度'
         }
       },
     ]

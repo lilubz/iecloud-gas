@@ -22,6 +22,7 @@ export const API = {
   'listLocationInfo': URL + 'basicInformation/corpCarInfo/listCorpLocationInfo.do', // 获取站点位置信息
   'getThePathByAccountId': URL + 'corpBusiness/dispatchOrder/getThePathByAccountId.do', // 获取送气工轨迹
   'listMobileCorpSupplyStationInfoVO': URL + 'basicInformation/corpSupplyStation/listMobileCorpSupplyStationInfoVO.do', // 获取移动或固定供应站
+  'getRealTimeLocation': URL + 'corpBusiness/dispatchOrder/getRealTimeLocation.do', // 获取送气工实时位置
 
   // 气瓶档案
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',
@@ -88,6 +89,10 @@ export const API = {
   'getDropdownForCorpInfoInRegion': URL + 'basicInformation/corpInfo/listCorpInfoInRegion.do',
   'deleteGcUser': URL + 'basicInformation/gcUserInfo/deleteGcUser.do',
   'updateGcUser': URL + 'basicInformation/gcUserInfo/updateGcUser.do',
+
+  // 订单评价
+  'listOrderEvaluate': URL + 'order/listOrderEvaluate.do',
+  'avgOrderEvaluate': URL + 'order/avgOrderEvaluate.do',
 
 
   /**
@@ -199,7 +204,11 @@ export const API = {
   'reportCommit': URL + 'corpBusiness/reportManagementController/reportCommit.do', // 4.报表提交
   'reportStatistics': URL + 'corpBusiness/reportManagementController/reportStatistics.do', // 5.获取报表统计列表
   'reportCommitDetail': URL + 'corpBusiness/reportManagementController/reportCommitDetail.do', // 6.查询某次报表提交祥情列表。
-  'deleteReport': URL + 'corpBusiness/reportManagementController/deleteReport.do', // 6.查询某次报表提交祥情列表。
+  'deleteReport': URL + 'corpBusiness/reportManagementController/deleteReport.do',
+  'loadTaskList': URL + 'corpBusiness/reportManagementController/loadTaskList.do', // 温州市加快管道燃气用户发展任务清单
+  'loadNewPipelineGasUsers': URL + 'corpBusiness/reportManagementController/loadNewPipelineGasUsers.do',
+  'loadRegulatoryStatistics': URL + 'corpBusiness/reportManagementController/loadRegulatoryStatistics.do',
+  'loadInformationSupervisionStatisticsByWeek': URL + 'corpBusiness/reportManagementController/loadInformationSupervisionStatisticsByWeek.do',
 
   // 气瓶存量预警
   'listGcThresholdCurrentWarning': URL + 'corpBusiness/gcStockMonitor/listGcThresholdCurrentWarning.do',
@@ -251,9 +260,14 @@ export const API = {
   // 大屏展示
   'getBigScreenData': URL + 'visualization/getBigScreenData.do',
 
-  //公众服务
+  // 公共服务
+  // 安全宣传
+  'listSecurityPublicityArticle': URL + 'publicService/securityPublicity/listSecurityPublicityArticle.do',
+  'deleteSecurityPublicityArticle': URL + 'publicService/securityPublicity/deleteSecurityPublicityArticle.do',
+  'uploadSecurityPublicityArticle': URL + 'publicService/securityPublicity/uploadSecurityPublicityArticle.do',
+  // 公众服务
     // 问卷调查
-  'uploadNewQuestionnaire':   URL + 'publicService/questionnaire/uploadNewQuestionnaire.do',// 上传一份新的调查问卷
+  'uploadNewQuestionnaire':   URL + 'publicService/questionnaire/uploadNewQuestionnaire.do', // 上传一份新的调查问卷
   'listQuestionnaire': URL + 'publicService/questionnaire/listQuestionnaire.do', // 获取所有问卷列表
   'listQuestions': URL + 'publicService/questionnaire/listQuestions.do', // 获取某个问卷中问题列表
   'listCurrentQuestions': URL + 'publicService/questionnaire/listCurrentQuestions.do', // 获取当前最新问卷调查中的所有问题
@@ -261,7 +275,7 @@ export const API = {
   // 储气罐档案
   'listFillingGasTank': URL + 'gcFillingSupervise/listFillingGasTank.do',
 
-  //系统用户管理
+  // 系统用户管理
   'addUser': URL + 'sysUserPermissions/user/addUser.do', // 新增系统用户
   'getGovSysUsers': URL + 'sysUserPermissions/user/getGovSysUsers.do', // 查询
   'getGovOrganzations': URL + 'sysUserPermissions/user/getGovOrganzations.do', // 组织ID
@@ -278,5 +292,7 @@ export const API = {
   'listBalanceLockRecord': URL + 'gcFillingSupervise/listBalanceLockRecord.do', // 查询锁秤记录
   'setRuleForFillingSupervise': URL + 'gcFillingSupervise/setRuleForFillingSupervise.do', // 设置充装监管规则
   'getRuleForFillingSupervise': URL + 'gcFillingSupervise/getRuleForFillingSupervise.do', // 获取充装监管规则
+  'setBalanceInnerLockStatus': URL + 'gcFillingSupervise/setBalanceInnerLockStatus.do', // 设置某个秤的联锁状态
+  'setBalanceLockStatus': URL + 'gcFillingSupervise/setBalanceLockStatus.do', // 设置某个秤的锁状态
 
 };

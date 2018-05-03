@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { QuestionListService } from '../questionnaire-list/question-list.service';
-
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
@@ -44,7 +43,6 @@ export class QuestionnaireDetailsComponent implements OnInit {
 
         return Promise.resolve(params.get('id'));
       }).subscribe(id => {
-
         this._service.listQuestions({ questionnaireId: id }).then(data => {
           if (data.status === 0) {
             this.datas = data.data;

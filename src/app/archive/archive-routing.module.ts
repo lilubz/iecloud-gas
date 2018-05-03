@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CylinderComponent } from './cylinder/cylinder.component';
-import { EmployeeComponent } from './employee/employee.component';
 import { ArchiveComponent } from './archive.component';
 import { CylinderDetailComponent } from './cylinder/cylinder-detail/cylinder-detail.component';
 import { CylinderListComponent } from './cylinder/cylinder-list/cylinder-list.component';
@@ -19,8 +18,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { EnterpriseComponent } from './enterprise/enterprise.component';
 import { EnterpriseDetailComponent } from './enterprise/enterprise-detail/enterprise-detail.component';
 import { CarComponent } from './car/car.component';
-import { SearchComponent } from './car/search/search.component';
-import { DispatcherComponent } from './employee/dispatcher/dispatcher.component';
+import { DispatcherComponent } from './employee/dispatcher.component';
 import { GasHolderComponent } from './gasHolder/gasHolder.component';
 import { FillingScaleListComponent } from './filling-scale-list/filling-scale-list.component';
 const routes: Routes = [
@@ -157,42 +155,14 @@ const routes: Routes = [
         component: CarComponent,
         data: {
           title: '车辆信息'
-        },
-        children: [
-          {
-            path: '',
-            redirectTo: 'search',
-            pathMatch: 'full'
-          },
-          {
-            path: 'search',
-            component: SearchComponent,
-            data: {
-              title: '搜索车辆'
-            }
-          },
-        ]
+        }
       },
       {
         path: 'employee',
-        component: EmployeeComponent,
+        component: DispatcherComponent,
         data: {
           title: '送气工信息'
-        },
-        children: [
-          {
-            path: '',
-            redirectTo: 'dispatcher',
-            pathMatch: 'full'
-          },
-          {
-            path: 'dispatcher',
-            component: DispatcherComponent,
-            data: {
-              title: '送气工查询'
-            }
-          },
-        ]
+        }
       },
       {
         path: 'gasHolder',

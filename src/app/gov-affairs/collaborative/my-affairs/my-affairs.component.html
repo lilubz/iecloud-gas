@@ -92,17 +92,17 @@
       </p-column> -->
       <p-column [style]="{'width':'95px'}" header="是否超期" field="">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <span>否</span>
+          <span>{{rowData.boolIsOverdue? '是' : '否'}}</span>
         </ng-template>
       </p-column>
       <p-column header="发起时间">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <span>{{rowData.createTime|date:"yyyy-MM-dd"}}</span>
+          <span>{{rowData.createTime|date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </ng-template>
       </p-column>
       <p-column header="最后处理时间">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <span>{{rowData.updateTime|date:"yyyy-MM-dd"}}</span>
+          <span>{{rowData.updateTime|date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </ng-template>
       </p-column>
       <ng-template pTemplate="emptymessage">
