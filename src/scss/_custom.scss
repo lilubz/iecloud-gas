@@ -2,341 +2,341 @@
 //
 html,
 body {
-    font-size: 14px;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%; // min-height: 576px;
-    // min-width: 1024px;
-    // min-width: 1024px;
-    background: $html-bg-color; // overflow: auto;
-    font-family: "Microsoft YaHei", "Arial", "黑体", "宋体", "Roboto", "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%; // min-height: 576px;
+  // min-width: 1024px;
+  // min-width: 1024px;
+  background: $html-bg-color; // overflow: auto;
+  font-family: "Microsoft YaHei", "Arial", "黑体", "宋体", "Roboto", "Trebuchet MS", "Arial", "Helvetica", sans-serif;
 }
 
 /* 全局CSS样式 */
 
 .text-left {
-    text-align: left;
+  text-align: left;
 }
 
 .text-right {
-    text-align: right;
+  text-align: right;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .search-label {
-    width: 90px;
-    display: inline-block;
-    color: rgb(102, 102, 102);
+  width: 90px;
+  display: inline-block;
+  color: rgb(102, 102, 102);
 }
 
 /* datatable */
 
 .ui-datatable {
-    margin-bottom: 40px;
-    font-family: "Microsoft YaHei";
-    .ui-datatable-thead>tr>th {
-        background: $theme-color;
-        color: #fff; // font-weight: bolder;
-    }
-    .ui-datatable-tfoot>tr>td {
-        background: #3186DC;
-        color: #fff;
-    }
-    .ui-datatable-thead>tr>th,
-    .ui-datatable-tfoot>tr>td,
-    .ui-datatable-data>tr>td {
-        text-align: center; // border-color: #797979;
-        word-wrap: break-word;
-    }
+  margin-bottom: 40px;
+  font-family: "Microsoft YaHei";
+  .ui-datatable-thead>tr>th {
+    background: $theme-color;
+    color: #fff; // font-weight: bolder;
+  }
+  .ui-datatable-tfoot>tr>td {
+    background: #3186DC;
+    color: #fff;
+  }
+  .ui-datatable-thead>tr>th,
+  .ui-datatable-tfoot>tr>td,
+  .ui-datatable-data>tr>td {
+    text-align: center; // border-color: #797979;
+    word-wrap: break-word;
+  }
 }
 
 input {
-    width: 100%; // max-width: 200px;
+  width: 100%; // max-width: 200px;
 }
 
 /* 布局页面 */
 
 .layout {
-    .header,
-    .slidebar,
-    .main,
-    .menu,
-    .breadcrumb {
-        position: fixed;
+  .header,
+  .slidebar,
+  .main,
+  .menu,
+  .breadcrumb {
+    position: fixed;
+  }
+  /* 头部*/
+  .header {
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 70px;
+    line-height: 70px;
+    height: $header-height;
+    background: $header-bg-color;
+    white-space: nowrap;
+    z-index: 99999;
+    .logo {
+      margin: 5px 20px;
     }
-    /* 头部*/
-    .header {
-        left: 0;
-        top: 0;
-        right: 0;
-        height: 70px;
-        line-height: 70px;
-        height: $header-height;
-        background: $header-bg-color;
-        white-space: nowrap;
-        z-index: 99999;
-        .logo {
-            margin: 5px 20px;
-        }
-        span {
-            // font-size: 24px;
-            height: 70px;
-            width: 534px; // width: 100%;
-            line-height: 70px; // font-weight: 700;
-            // color: #fff;
-            background: url(../assets/img/headerLogo.png) no-repeat center; // background-size: 100% 100%;
-            position: absolute;
-        }
-        .shortcut {
-            float: right;
-            height: 40px;
-            line-height: 70px;
-            margin: 12px 46px;
-            .shortcut-left {
-                height: 36px;
-                width: 36px;
-                margin-right: 46px;
-                cursor: pointer;
-                &:focus {
-                    outline: -webkit-focus-ring-color auto 0px;
-                }
-            }
-            .shortcut-right {
-                height: 32px;
-                width: 32px;
-                cursor: pointer;
-                &:focus {
-                    outline: -webkit-focus-ring-color auto 0px;
-                }
-            }
-        }
+    span {
+      // font-size: 24px;
+      height: 70px;
+      width: 534px; // width: 100%;
+      line-height: 70px; // font-weight: 700;
+      // color: #fff;
+      background: url(../assets/img/headerLogo.png) no-repeat center; // background-size: 100% 100%;
+      position: absolute;
     }
-    /*面包屑*/
-    .breadcrumb {
-        left: $menu-width;
-        top: $header-height;
-        right: 0;
-        height: $breadcrumb-height;
-        background: #fff;
-        box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.2);
-        color: #337ab7;
-        font-weight: bold;
-        padding: 0 20px;
-        font-size: $breadcrumb-font-size;
-        white-space: nowrap;
-        .breadcrumb-item {
-            display: inline-block;
-            color: #666;
-            a {
-                color: #666;
-                text-decoration: none;
-                line-height: $breadcrumb-height;
-                &:hover {
-                    text-decoration: initial;
-                }
-            }
-            span {
-                line-height: $breadcrumb-height;
-            }
-            +.breadcrumb-item::before {
-                display: inline-block;
-                padding-right: 4px;
-                padding-left: 4px;
-                color: #536c79;
-                content: "/";
-            }
+    .shortcut {
+      float: right;
+      height: 40px;
+      line-height: 70px;
+      margin: 12px 46px;
+      .shortcut-left {
+        height: 36px;
+        width: 36px;
+        margin-right: 46px;
+        cursor: pointer;
+        &:focus {
+          outline: -webkit-focus-ring-color auto 0px;
         }
-        .breadcrumb-item.active {
-            color: #aaa;
+      }
+      .shortcut-right {
+        height: 32px;
+        width: 32px;
+        cursor: pointer;
+        &:focus {
+          outline: -webkit-focus-ring-color auto 0px;
         }
+      }
     }
-    /* 侧边栏 */
-    .sidebar {
-        position: fixed;
-        left: $menu-width;
-        top: $header-height + $breadcrumb-height;
-        bottom: 0;
-        width: 200px;
-        border-radius: 4px;
-        margin: 20px;
-        font-size: 16px;
-        overflow-y: auto;
-        .sidebar-container {
-            max-height: 100%;
-            width: 100%; // background: #fff;
-            // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-            overflow: auto;
+  }
+  /*面包屑*/
+  .breadcrumb {
+    left: $menu-width;
+    top: $header-height;
+    right: 0;
+    height: $breadcrumb-height;
+    background: #fff;
+    box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.2);
+    color: #337ab7;
+    font-weight: bold;
+    padding: 0 20px;
+    font-size: $breadcrumb-font-size;
+    white-space: nowrap;
+    .breadcrumb-item {
+      display: inline-block;
+      color: #666;
+      a {
+        color: #666;
+        text-decoration: none;
+        line-height: $breadcrumb-height;
+        &:hover {
+          text-decoration: initial;
         }
-        .ui-widget-header .ui-button,
-        .ui-widget-content .ui-button,
-        .ui-widget.ui-button,
-        .ui-button {
-            border: 1px solid #3186dc;
-            background: #3186dc;
-            width: 100%;
-            font-size: 14px;
-        }
-        .ui-button.link-active {
-            background: #186ba0;
-            border: 1px solid #186ba0;
-        } // display: none;
-        // background:#fff;
-        .group {
-            margin-bottom: 20px;
-            background: #fff;
-            border-radius: 4px;
-            border: 1px solid transparent;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-        }
-        .ui-g-12 {
-            padding: 10px 5px;
-        }
-        h3 {
-            margin: 10px 0;
-        }
+      }
+      span {
+        line-height: $breadcrumb-height;
+      }
+      +.breadcrumb-item::before {
+        display: inline-block;
+        padding-right: 4px;
+        padding-left: 4px;
+        color: #536c79;
+        content: "/";
+      }
     }
-    /*菜单栏*/
-    .menu {
-        left: 0;
-        top: $header-height;
-        bottom: 0;
-        width: $menu-width; // overflow: hidden;
-        z-index: 9999;
-        background: #3D464D;
-        .ui-menuitem.ui-menuitem-active>.ui-menuitem-link {
-            background-color: #31383e !important;
+    .breadcrumb-item.active {
+      color: #aaa;
+    }
+  }
+  /* 侧边栏 */
+  .sidebar {
+    position: fixed;
+    left: $menu-width;
+    top: $header-height + $breadcrumb-height;
+    bottom: 0;
+    width: 200px;
+    border-radius: 4px;
+    margin: 20px;
+    font-size: 16px;
+    overflow-y: auto;
+    .sidebar-container {
+      max-height: 100%;
+      width: 100%; // background: #fff;
+      // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+      overflow: auto;
+    }
+    .ui-widget-header .ui-button,
+    .ui-widget-content .ui-button,
+    .ui-widget.ui-button,
+    .ui-button {
+      border: 1px solid #3186dc;
+      background: #3186dc;
+      width: 100%;
+      font-size: 14px;
+    }
+    .ui-button.link-active {
+      background: #186ba0;
+      border: 1px solid #186ba0;
+    } // display: none;
+    // background:#fff;
+    .group {
+      margin-bottom: 20px;
+      background: #fff;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+    .ui-g-12 {
+      padding: 10px 5px;
+    }
+    h3 {
+      margin: 10px 0;
+    }
+  }
+  /*菜单栏*/
+  .menu {
+    left: 0;
+    top: $header-height;
+    bottom: 0;
+    width: $menu-width; // overflow: hidden;
+    z-index: 9999;
+    background: #3D464D;
+    .ui-menuitem.ui-menuitem-active>.ui-menuitem-link {
+      background-color: #31383e !important;
+    }
+    .ui-menu {
+      width: auto;
+      padding: 0;
+      .ui-menu-parent .ui-menu-child {
+        background: #51595f;
+      } // 菜单栏高度
+      .ui-menu-parent>a {
+        line-height: 46px;
+      }
+      a[href="#/verification"] {
+        line-height: 46px;
+      }
+      a[href="#/input"] {
+        line-height: 46px;
+      }
+      .ui-menu-list {
+        .ui-menuitem {
+          text-align: center;
+          border-top: 1px solid #51595f !important;
+          border-bottom: 1px solid #2D363E !important; // border-left: 5px solid #3399ff;
+          border-radius: 0 !important;
+          margin: 0;
+          .ui-menuitem-link:hover {
+            border-radius: 0 !important;
+            background-color: #31383e;
+          }
         }
-        .ui-menu {
-            width: auto;
-            padding: 0;
-            .ui-menu-parent .ui-menu-child {
-                background: #51595f;
-            } // 菜单栏高度
-            .ui-menu-parent>a {
-                line-height: 46px;
-            }
-            a[href="#/verification"] {
-                line-height: 46px;
-            }
-            a[href="#/input"] {
-                line-height: 46px;
-            }
-            .ui-menu-list {
-                .ui-menuitem {
-                    text-align: center;
-                    border-top: 1px solid #51595f !important;
-                    border-bottom: 1px solid #2D363E !important; // border-left: 5px solid #3399ff;
-                    border-radius: 0 !important;
-                    margin: 0;
-                    .ui-menuitem-link:hover {
-                        border-radius: 0 !important;
-                        background-color: #31383e;
-                    }
-                }
-            }
-            .ui-submenu {
-                .ui-menuitem {
-                    border-bottom: 0 !important;
-                    border-left: 0;
-                    position: relative;
-                }
-                .ui-menuitem-text {
-                    color: #f0f0f0;
-                    font-size: 14px;
-                }
-                .ui-state-active {
-                    background: #31383e !important;
-                }
-                .ui-menuitem-link {
-                    // height: 40px;
-                    padding: 10px 0;
-                }
-            }
-        }
-        .ui-tieredmenu {
-            background: #3D464D !important;
-            border: 0;
-            width: $menu-width;
+      }
+      .ui-submenu {
+        .ui-menuitem {
+          border-bottom: 0 !important;
+          border-left: 0;
+          position: relative;
         }
         .ui-menuitem-text {
-            color: #f0f0f0;
-            font-size: 16px;
-        }
-        .ui-submenu-icon {
-            display: none;
+          color: #f0f0f0;
+          font-size: 14px;
         }
         .ui-state-active {
-            background: #31383e !important;
+          background: #31383e !important;
         }
-        .warning-icon {
-            // 预警小红点
-            display: block;
+        .ui-menuitem-link {
+          // height: 40px;
+          padding: 10px 0;
         }
-        .warning-icon:after {
-            // 预警小红点
-            content: '';
-            position: absolute;
-            height: 10px;
-            width: 10px;
-            right: 5px;
-            top: 10px;
-            background-color: red;
-            border-radius: 50%;
-        } // 解决 当前预警菜单 文字不居中的问题。
-        a[href="#/statistic/current-warning"] .fa-fw {
-            width: 0;
-        }
+      }
     }
-    /*右侧内容区*/
-    .main {
-        position: absolute;
-        right: 20px !important;
-        left: $menu-width + $sidebar-width;
-        top: $header-height + $breadcrumb-height + 20px;
-        bottom: 20px;
-        .overview {
-            .title {
-                color: $theme-color;
-                text-align: center;
-                margin-top: 40px 0;
-            }
-        }
-        .card {
-            max-height: 100%;
-            width: 100%;
-            background: #fff;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-            overflow: auto;
-            box-sizing: border-box;
-            border-radius: 4px;
-        }
+    .ui-tieredmenu {
+      background: #3D464D !important;
+      border: 0;
+      width: $menu-width;
     }
+    .ui-menuitem-text {
+      color: #f0f0f0;
+      font-size: 16px;
+    }
+    .ui-submenu-icon {
+      display: none;
+    }
+    .ui-state-active {
+      background: #31383e !important;
+    }
+    .warning-icon {
+      // 预警小红点
+      display: block;
+    }
+    .warning-icon:after {
+      // 预警小红点
+      content: '';
+      position: absolute;
+      height: 10px;
+      width: 10px;
+      right: 5px;
+      top: 10px;
+      background-color: red;
+      border-radius: 50%;
+    } // 解决 当前预警菜单 文字不居中的问题。
+    a[href="#/statistic/current-warning"] .fa-fw {
+      width: 0;
+    }
+  }
+  /*右侧内容区*/
+  .main {
+    position: absolute;
+    right: 20px !important;
+    left: $menu-width + $sidebar-width;
+    top: $header-height + $breadcrumb-height + 20px;
+    bottom: 20px;
+    .overview {
+      .title {
+        color: $theme-color;
+        text-align: center;
+        margin-top: 40px 0;
+      }
+    }
+    .card {
+      max-height: 100%;
+      width: 100%;
+      background: #fff;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+      overflow: auto;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+  }
 }
 
 .ui-paginator .ui-paginator-right-content {
-    float: none;
-    display: inline-block;
+  float: none;
+  display: inline-block;
 }
 
-.ui-inputswitch{
+.ui-inputswitch {
   top: 0.4em;
 }
 
 a {
-    color: #3399ff;
+  color: #3399ff;
 }
 
 a.router-link {
-    color: #3399ff;
+  color: #3399ff;
 }
 
 a.router-link-active {
-    color: #3399ff;
+  color: #3399ff;
 }
 
 /* 菜单栏图标 */
@@ -383,64 +383,58 @@ a.router-link-active {
 
 // 统一修改样式
 .searchBtn {
-    border-radius: 4px;
-    width: 80px;
-    height: 36px;
-    font-size: 16px;
-    background: #3186dc;
+  border-radius: 4px;
+  width: 80px;
+  height: 36px;
+  font-size: 16px;
+  background: #3186dc;
 }
 
 .ui-togglebutton.ui-button.ui-state-active,
 .ui-selectbutton .ui-button.ui-state-active {
-    border: 1px solid #3186dc;
-    background: #3186dc;
+  border: 1px solid #3186dc;
+  background: #3186dc;
 }
 
 .ui-growl {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .ui-growl-item-container.ui-state-highlight.ui-growl-message-error {
-    background-color: #d32f2f;
-    border-color: #d32f2f;
+  background-color: #d32f2f;
+  border-color: #d32f2f;
 }
 
 .ui-growl-item-container.ui-state-highlight.ui-growl-message-warn {
-    background-color: #d32f2f;
-    border-color: #d32f2f;
+  background-color: #d32f2f;
+  border-color: #d32f2f;
 }
 
 .right {
-    float: right;
+  float: right;
 }
 
 .left {
-    float: left;
+  float: left;
 }
 
 /* Login */
 
 .login-body {
-    width: 100%;
-    height: 100%;
-    min-height: 476px;
-    font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    margin: 0;
-    background: url(./../assets/img/loginBackground.png) no-repeat center fixed; // background-image: linear-gradient(to top, #6b77a1, #737ea5 3%, #9599b3 15%, #b1b0bf 28%, #c7c1c8 41%, #d6cdcf 57%, #dfd5d3 74%, #e2d7d4);
-    // background-image: -ms-linear-gradient(bottom, #6B77A1 0%, #737EA5 3%, #9599B3 15%, #B1B0BF 28%, #C7C1C8 41%, #D6CDCF 57%, #DFD5D3 74%, #E2D7D4 100%);
-    // background-image: -moz-linear-gradient(bottom, #6B77A1 0%, #737EA5 3%, #9599B3 15%, #B1B0BF 28%, #C7C1C8 41%, #D6CDCF 57%, #DFD5D3 74%, #E2D7D4 100%);
-    // background-image: -o-linear-gradient(bottom, #6B77A1 0%, #737EA5 3%, #9599B3 15%, #B1B0BF 28%, #C7C1C8 41%, #D6CDCF 57%, #DFD5D3 74%, #E2D7D4 100%);
-    // background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #6B77A1), color-stop(3, #737EA5), color-stop(15, #9599B3), color-stop(28, #B1B0BF), color-stop(41, #C7C1C8), color-stop(57, #D6CDCF), color-stop(74, #DFD5D3), color-stop(100, #E2D7D4));
-    // background-image: -webkit-linear-gradient(bottom, #6B77A1 0%, #737EA5 3%, #9599B3 15%, #B1B0BF 28%, #C7C1C8 41%, #D6CDCF 57%, #DFD5D3 74%, #E2D7D4 100%);
-    // filter: progid:DXImageTransform.Microsoft.Gradient( startColorstr='#E2D7D4', endColorstr='#6B77A1', GradientType=0);
-    box-sizing: border-box;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  width: 100%;
+  height: 100%;
+  min-height: 476px;
+  font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  background: url(./../assets/img/loginBackground.jpg) no-repeat center fixed;
+  box-sizing: border-box;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 #BasemapToggle {
@@ -451,39 +445,39 @@ a.router-link-active {
 }
 
 div.esriBasemapGalleryNode {
-    margin: 5px 10px 0 10px;
-    width: auto;
+  margin: 5px 10px 0 10px;
+  width: auto;
 }
 
 img.esriBasemapGalleryThumbnail {
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 }
 
 div.esriBasemapGalleryLabelContainer {
-    display: none;
+  display: none;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal {
-    border-radius: 6px;
-    background: #888888;
+  border-radius: 6px;
+  background: #888888;
 }
 
 ::-webkit-scrollbar-button {
-    display: none;
+  display: none;
 }
 
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track-piece {
-    background: transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track-piece {
-    background: transparent;
+  background: transparent;
 }

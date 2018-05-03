@@ -47,7 +47,7 @@ export const AdminMenus: MenuItem[] = [
       { label: '大屏展示', routerLink: ['/visualization/big-screen'] },
       { label: '视频监控', routerLink: ['/visualization/video-monitor'] },
       { label: '单兵执法', routerLink: ['/visualization/single-solider'] },
-      // { label: '对讲调度', routerLink: ['/visualization/talk-dispatch'] },
+      { label: '对讲调度', routerLink: ['/visualization/talk-dispatch'] },
     ]
   },
   {
