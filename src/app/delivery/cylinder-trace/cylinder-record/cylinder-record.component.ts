@@ -1,4 +1,4 @@
-import { DispatcherService } from './../../../archive/employee/dispatcher/dispatcher.service';
+import { DispatcherService } from './../../../archive/employee/dispatcher.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { SelectItem, TableBody } from 'primeng/primeng';
@@ -131,11 +131,12 @@ export class CylinderRecordComponent implements OnInit {
     //   { label: '送气工', value: 3 },
     // ];
 
-    this.routerInfo.paramMap.switchMap((params) => {
-      return Promise.resolve(params);
-    }).subscribe((params) => {
+    this.routerInfo.paramMap.subscribe((params) => {
       this.init();
       this.selectedCylinderStatus = parseInt(params.get('type'), 10);
+      if (this.selectedCylinderStatus === 4) {
+        this.beginTime = new Date((new Date().getTime() - 180 * 24 * 60 * 60 * 1000));
+      }
     });
 
     this.routerInfo.queryParams.subscribe((queryParams) => {

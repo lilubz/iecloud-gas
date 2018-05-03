@@ -8,7 +8,6 @@ export const AdminMenus: MenuItem[] = [
   // },
   {
     label: '基础档案',
-    icon: 'menu-icon archive-icon',
     routerLink: ['/archive'],
     items: [
       { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
@@ -24,7 +23,6 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '监管查询',
-    icon: 'menu-icon distribution-icon',
     routerLink: ['/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
@@ -34,7 +32,6 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '监管事务',
-    icon: 'menu-icon supervise-icon',
     routerLink: ['/gov-affairs'],
     items: [
       // { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
@@ -47,18 +44,16 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '视频查看',
-    icon: 'menu-icon visualization-icon',
     routerLink: ['/visualization'],
     items: [
       { label: '大屏展示', routerLink: ['/visualization/big-screen'] },
       { label: '视频监控', routerLink: ['/visualization/video-monitor'] },
       { label: '单兵执法', routerLink: ['/visualization/single-solider'] },
-      // { label: '对讲调度', routerLink: ['/visualization/talk-dispatch'] },
+      { label: '对讲调度', routerLink: ['/visualization/talk-dispatch'] },
     ]
   },
   {
     label: '统计分析',
-    icon: 'menu-icon statistic-icon',
     routerLink: ['/statistic'],
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
@@ -73,11 +68,9 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '系统配置',
-    icon: 'menu-icon system-icon',
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '通知公告', routerLink: ['/system/message'] },
       { label: '企业管理', routerLink: ['/system/enterprise-management'] },
       { label: '供应站管理', routerLink: ['/system/bottle-library'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
@@ -87,16 +80,15 @@ export const AdminMenus: MenuItem[] = [
   },
   {
     label: '审核管理',
-    icon: 'menu-icon verification-icon',
     routerLink: ['/verification']
   },
   {
     label: '公众服务',
-    icon: 'menu-icon public-icon',
     routerLink: ['/pub-service'],
     items: [
       { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
-      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
+      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] },
+      { label: '通知公告', routerLink: ['/pub-service/message'] },
     ]
   }
 
@@ -113,7 +105,6 @@ export const GovernmentMenus: MenuItem[] = [
   // },
   {
     label: '基础档案',
-    icon: 'menu-icon archive-icon',
     routerLink: ['/archive'],
     items: [
       { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
@@ -122,12 +113,13 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '车辆信息', routerLink: ['/archive/car'] },
       { label: '送气工信息', routerLink: ['/archive/employee'] },
       { label: '储气罐档案', routerLink: ['/archive/gasHolder'] },
+      { label: '储配站档案', routerLink: ['/archive/gasHolderStation'] },
+      { label: '供应站档案', routerLink: ['/archive/supplyStation'] },
       { label: '充装秤档案', routerLink: ['/archive/filling-scale'] },
     ]
   },
   {
     label: '监管查询',
-    icon: 'menu-icon distribution-icon',
     routerLink: ['/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
@@ -137,7 +129,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '监管事务',
-    icon: 'menu-icon supervise-icon',
     routerLink: ['/gov-affairs'],
     items: [
       // { label: '气瓶全过程监管追溯查询', routerLink: ['/gov-affairs/cylinder-trace'] },
@@ -150,7 +141,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '视频查看',
-    icon: 'menu-icon visualization-icon',
     routerLink: ['/visualization'],
     items: [
       { label: '大屏展示', routerLink: ['/visualization/big-screen'] },
@@ -161,7 +151,6 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '统计分析',
-    icon: 'menu-icon statistic-icon',
     routerLink: ['/statistic'],
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
@@ -176,11 +165,9 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '系统配置',
-    icon: 'menu-icon system-icon',
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '通知公告', routerLink: ['/system/message'] },
       { label: '企业管理', routerLink: ['/system/enterprise-management'] },
       { label: '供应站管理', routerLink: ['/system/bottle-library'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
@@ -189,12 +176,10 @@ export const GovernmentMenus: MenuItem[] = [
   },
   {
     label: '审核管理',
-    icon: 'menu-icon verification-icon',
     routerLink: ['/verification']
   },
   {
     label: '公众服务',
-    icon: 'menu-icon public-icon',
     routerLink: ['/pub-service'],
     items: [
       { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
@@ -216,7 +201,6 @@ export const EnterpriseMenus: MenuItem[] = [
   // },
   {
     label: '基础档案',
-    icon: 'menu-icon archive-icon',
     routerLink: ['/archive'],
     items: [
       { label: '气瓶档案', routerLink: ['/archive/cylinder'] },
@@ -224,12 +208,13 @@ export const EnterpriseMenus: MenuItem[] = [
       { label: '车辆信息', routerLink: ['/archive/car'] },
       { label: '送气工信息', routerLink: ['/archive/employee'] },
       { label: '储气罐档案', routerLink: ['/archive/gasHolder'] },
+      { label: '储配站档案', routerLink: ['/archive/gasHolderStation'] },
+      { label: '供应站档案', routerLink: ['/archive/supplyStation'] },
       { label: '充装秤档案', routerLink: ['/archive/filling-scale'] },
     ]
   },
   {
     label: '监管查询',
-    icon: 'menu-icon distribution-icon',
     routerLink: ['/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
@@ -238,7 +223,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '统计分析',
-    icon: 'menu-icon statistic-icon',
     routerLink: ['/statistic'],
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
@@ -248,7 +232,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '系统配置',
-    icon: 'menu-icon system-icon',
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
@@ -257,7 +240,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '企业监管',
-    icon: 'menu-icon statistic-icon',
     routerLink: ['/enterprise-supervise'],
     items: [
       { label: '报表管理', routerLink: ['/enterprise-supervise/report'] },
@@ -268,7 +250,6 @@ export const EnterpriseMenus: MenuItem[] = [
   },
   {
     label: '信息录入',
-    icon: 'menu-icon input-icon',
     routerLink: ['/input']
   }
 ];

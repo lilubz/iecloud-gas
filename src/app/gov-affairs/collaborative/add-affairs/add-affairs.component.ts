@@ -126,7 +126,7 @@ export class AddAffairsComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择所属区域' });
       return false;
     } else if (!this.formModel.address.trim()) {
-      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写地地址信息' });
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请填写地址信息' });
       return false;
     } else if (this.formModel.affairType.length === 0) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择事务类型' });

@@ -1,13 +1,13 @@
 <div class="ui-g-12 content">
   <div style="min-width:550px">
     <div class="ui-g">
-      <h3>供应站气瓶统计</h3>
+      <h2>供应站气瓶统计</h2>
       <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
         <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
           <label for="" class="search-label">区域选择：</label>
           <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
         </ng-container>
-        <button pButton type="button" (click)="exportSupplyStationStatistic()" class="ui-button-info right" label="导出"></button>
+        <button pButton type="button" (click)="exportSupplyStationStatistic()" class=" right" label="导出"></button>
       </div>
     </div>
 
@@ -41,7 +41,7 @@
 
     <!-- 流通统计 -->
     <div class="ui-g">
-      <h3 class="ui-g-12">流通信息统计</h3>
+      <h2 class="ui-g-12">流通信息统计</h2>
       <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
         <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
           <div class="ui-g-12 ui-xl-4">
@@ -63,7 +63,7 @@
         <div class="ui-g-12 ui-lg-12">
           <button pButton class="searchBtn" type="button" label="查询" (click)="searchCylinderStorageCirculations()">
           </button>
-          <button pButton type="button" (click)="exportSupplyStationCirculationStatistic()" class="ui-button-info right" label="导出"></button>
+          <button pButton type="button" (click)="exportSupplyStationCirculationStatistic()" class=" right" label="导出"></button>
         </div>
       </div>
     </div>

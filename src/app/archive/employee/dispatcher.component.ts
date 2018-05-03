@@ -3,7 +3,7 @@ import { FormBuilder, AbstractControl, Validators, FormGroup } from '@angular/fo
 
 import { DispatcherService } from './dispatcher.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { validator } from '../../../common/validator';
+import { validator } from '../../common/validator';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

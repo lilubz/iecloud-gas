@@ -1,68 +1,67 @@
-
 .collaborative-detail {
-  padding:10px 10px 0 10px;
-  [class^='ui-g']{
-    padding:0;
-  }
-  .warn{
-    color:#f00;
-  }
-  form{
-    .has-multiSelect{
-      height:44px;
+    padding: 10px 10px 0 10px;
+    [class^='ui-g'] {
+        padding: 0;
     }
-  }
-  a{
-    color:#3399ff !important;
-  }
-  form,
-  .node-handle,
-  .node-reply{
-    padding:10px 0px !important;
-  }
-  .title{
-    background:#1a5687;
-    font-weight: bold;
-  }
-  .content{
-    border:1px solid #797979;
-    line-height: 35px;
-    height:40px;
-    text-align: center;
-    color:white;
-    word-break:break-all;
-    box-sizing: border-box;
-    overflow: auto;
-  }
-  .content:last-child{
-    color:black;
-  }
-  h2{
-    margin:5px 0;
-    font-size:18px;
-  }
-  .dashed-border{
-    margin-top:10px;
-    border:1px dashed #666;
-    padding:10px;
-    border-radius:10px;
-  }
-  .tree-node{
-    height:260px;
-    overflow: auto;
-    margin-bottom:10px;
-  }
-  .dialog-footer{
-    margin:20px auto;
-    >button{
-      margin:0 50px;
-      font-size:20px;
+    .warn {
+        color: #f00;
     }
-  }
-  .form-group{
-    margin-bottom:10px;
-  }
-  .padding0{
-    padding:0;
-  }
+    form {
+        .has-multiSelect {
+            height: 44px;
+        }
+    }
+    a {
+        color: #3399ff !important;
+    }
+    form,
+    .node-handle,
+    .node-reply {
+        padding: 10px 0px !important;
+    }
+    .title {
+        background: #f0f0f0;
+        font-weight: bold;
+    }
+    .content {
+        border: 1px solid #797979;
+        line-height: 35px;
+        height: 40px;
+        text-align: center;
+        // color: white;
+        word-break: break-all;
+        box-sizing: border-box;
+        overflow: auto;
+    }
+    .content:last-child {
+        color: black;
+    }
+    h2 {
+        margin: 5px 0;
+        font-size: 18px;
+    }
+    .dashed-border {
+        margin-top: 10px;
+        // border: 1px dashed #666;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .tree-node {
+        height: 260px;
+        overflow: auto;
+        margin-bottom: 10px;
+    }
+    .dialog-footer {
+        margin: 20px auto;
+        >button {
+            margin: 0 50px;
+            font-size: 20px;
+        }
+    }
+    .form-group {
+        margin-bottom: 10px;
+    }
+    .padding0 {
+        padding: 0;
+    }
 }

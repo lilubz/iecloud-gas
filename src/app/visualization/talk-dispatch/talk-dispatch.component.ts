@@ -9,7 +9,5 @@ export class TalkDispatchComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }

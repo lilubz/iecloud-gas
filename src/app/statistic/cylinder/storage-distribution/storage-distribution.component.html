@@ -1,12 +1,12 @@
 <div class="ui-g-12 content">
   <div style="min-width:500px">
-    <h3>储配站气瓶统计</h3>
+    <h2>储配站气瓶统计</h2>
     <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
       <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
         <label for="" class="search-label">区域选择：</label>
         <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'120px'}"></p-dropdown>
       </ng-container>
-      <button pButton type="button" (click)="exportFillingStationStatistic()" label="导出">
+      <button pButton type="button" (click)="exportFillingStationStatistic()" class="right" label="导出">
       </button>
     </div>
     <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="40" [rowsPerPageOptions]="[10,20,40,80]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
@@ -54,7 +54,7 @@
 
     <!-- 流通统计 -->
     <div class="ui-g">
-      <h3 class="ui-g-12">流通信息统计</h3>
+      <h2 class="ui-g-12">流通信息统计</h2>
       <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
         <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
           <div class="ui-g-12 ui-xl-4">
@@ -77,7 +77,7 @@
         <div class="ui-g-12">
           <button class="searchBtn" pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()">
           </button>
-          <button pButton type="button" (click)="exportFillingStationCirculationStatistic()" class="ui-button-info right" label="导出"></button>
+          <button pButton type="button" (click)="exportFillingStationCirculationStatistic()" class="right" label="导出"></button>
         </div>
       </div>
     </div>

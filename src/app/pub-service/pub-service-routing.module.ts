@@ -9,6 +9,7 @@ import { QuestionnaireDetailsComponent } from './questionnaire/questionnaire-det
 import { SurveyResultComponent } from './questionnaire/survey-result/survey-result.component';
 import { SecurityListComponent } from './security-publicity/security-list/security-list.component';
 import { AddSecurityComponent } from './security-publicity/add-security/add-security.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
   {
@@ -92,7 +93,14 @@ const routes: Routes = [
             },
           }
         ]
-      }
+      },
+      {
+        path: 'message',
+        component: MessagesComponent,
+        data: {
+          title: '通知公告'
+        },
+      },
     ]
   },
 ];

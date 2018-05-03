@@ -8,7 +8,7 @@ import { API } from '../../../common/api';
 export class EnterpriseDetailService {
   constructor(private HttpService: HttpService) { }
 
-  getlistCorp(params: any): Promise<any> {
+  listCorp(params: any): Promise<any> {
     return this.HttpService.getRequest(API.listCorp, params);
   }
 }

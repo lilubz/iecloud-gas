@@ -313,7 +313,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
         data => {
           if (data.status === 0) {
             this.changeBottleVisible = false;
-            this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
+            this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
             this.onSearch();
           } else {
             this.changeBottleVisible = false;

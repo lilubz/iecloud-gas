@@ -7,11 +7,27 @@
     </h3>
     <div class="ui-g-12 ui-g-nopad">
       <!-- <i class="fa fa-fw" aria-hidden="true"></i> -->
-      <p-checkbox name="station" value="fillingStation" [(ngModel)]="defaultStations" (onChange)="toggleDistributionStation($event)" label="储配站"></p-checkbox>
+      <p-checkbox name="station" value="fillingStation" [(ngModel)]="defaultStations" (onChange)="toggleDistributionStation($event)"
+        label="储配站"></p-checkbox>
     </div>
     <div class="ui-g-12 ui-g-nopad">
       <!-- <i class="fa fa-fw" aria-hidden="true"></i> -->
-      <p-checkbox name="station"  value="supplyStation" [(ngModel)]="defaultStations" (onChange)="toggleSupplyStation($event)" label="供应站"></p-checkbox>
+      <p-checkbox name="station" value="supplyStation" [(ngModel)]="defaultStations" (onChange)="toggleSupplyStation($event)" label="供应站"></p-checkbox>
+    </div>
+  </div>
+
+  <div class="ui-g-12 group">
+    <h3>
+      送气工实时位置
+    </h3>
+    <p-dropdown [options]="regionList" [style]="{'width':'200px','margin':'10px 10px 10px 0'}" (onChange)="listCorpInfoInRegion($event.value)"
+      [(ngModel)]="selectedDispatcherRegion"></p-dropdown>
+    <p-dropdown [options]="enterpriseList" [style]="{'width':'200px','margin':'10px 10px 10px 0'}" [filter]="true" [(ngModel)]="selectedDispatcherEnterprise"></p-dropdown>
+    <div class="ui-g-6">
+      <button pButton type="button" label="查询" (click)="searchDispatcherLocation()"></button>
+    </div>
+    <div class="ui-g-6">
+      <button pButton type="button" label="清除" (click)="clearLocation()"></button>
     </div>
   </div>
 

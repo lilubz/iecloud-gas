@@ -10,7 +10,7 @@ import {
   CheckboxModule,
   DataTableModule,
   DropdownModule,
-  DialogModule,
+  // DialogModule,
   FileUploadModule,
   GrowlModule,
   InputSwitchModule,
@@ -22,7 +22,6 @@ import {
   MultiSelectModule,
   PanelModule,
   PaginatorModule,
-  EditorModule,
   LightboxModule,
   SpinnerModule,
   TieredMenuModule,
@@ -49,6 +48,7 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
 import { HeaderComponent } from './header/header.component';
 import { DeliveryRegionCascadeComponent } from './delivery-region-cascade/delivery-region-cascade.component';
 import { ExplanationComponent } from './explanation/explanation.component';
+import { DialogModule } from './dialog/dialog';
 import { CalendarModule } from './calendar/calendar';
 
 @NgModule({
@@ -74,7 +74,6 @@ import { CalendarModule } from './calendar/calendar';
     InputMaskModule,
     MegaMenuModule,
     MenuModule,
-    EditorModule,
     MultiSelectModule,
     PanelModule,
     PaginatorModule,
@@ -132,7 +131,6 @@ import { CalendarModule } from './calendar/calendar';
     MenuModule,
     MultiSelectModule,
     PanelModule,
-    EditorModule,
     PaginatorModule,
     LightboxModule,
     SpinnerModule,

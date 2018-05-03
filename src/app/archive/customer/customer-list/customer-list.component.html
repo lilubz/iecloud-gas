@@ -44,15 +44,15 @@
           <span>{{index+1}}</span>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'150px'}" field="userIdentityCardNumber" header="用户卡号">
+      <p-column [style]="{'width':'150px'}" field="userIdentityCardNumber" header="用户卡号"></p-column>
+      <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户">
         <ng-template let-col let-user="rowData" pTemplate="body">
-          <a href="javascript:0;" [routerLink]="['../detail', {city:'330300',type:'userCardNumber',typeNumber:user.userIdentityCardNumber||''}]"
+          <a href="javascript:0;" [routerLink]="['../detail', {type:'userNumber',typeNumber:user.userNumber||''}]"
             title="点击查看用户祥情">
-            {{ user.userIdentityCardNumber }}
+            {{ user.userName }}
           </a>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户"></p-column>
       <p-column [style]="{'width':'120px'}" header="操作">
         <ng-template let-col let-rowData="rowData" pTemplate="body">
           <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/4']" [queryParams]="{liabilityName:rowData.userName,liabilityNumber:rowData.userNumber,liabilitySubjectType:4}"

@@ -277,7 +277,7 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
           if (data.status === 0) {
             this.changeBottleVisible = false;
             this.onSearch();
-            this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
+            this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
           } else {
             this.changeBottleVisible = false;
             this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });

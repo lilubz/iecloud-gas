@@ -1,6 +1,6 @@
 <div class="ui-g-12 content">
   <div style="min-width:750px">
-    <h3>送气工气瓶统计</h3>
+    <h2>送气工气瓶统计</h2>
     <form class="ui-g-12" (submit)="onSubmit();">
       <div class="ui-g-12 ui-lg-6 form-group" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
         <label for="" class="search-label">区域选择</label>
@@ -14,7 +14,7 @@
       </div>
       <div class="ui-g-12 form-group">
         <button pButton class="searchBtn" type="submit" label="搜索"></button>
-        <button pButton type="button" (click)="exportDispathcerStatistic()" class="ui-button-info right" label="导出"></button>
+        <button pButton type="button" (click)="exportDispathcerStatistic()" class=" right" label="导出"></button>
       </div>
       <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
         <div class="ui-g-6 form-group">
@@ -64,7 +64,7 @@
     </div>
 
     <!-- 流通统计 -->
-    <h3>送气工配送量波动情况</h3>
+    <h2>送气工配送量波动情况</h2>
     <div class="ui-g-12 ui-lg-6" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
       区域选择：
       <p-dropdown [options]="regionList" [(ngModel)]="selectedRegion" [style]="{'width':'210px'}"></p-dropdown>

@@ -1,54 +1,47 @@
 <div class="ui-g-12 enterprise-detail">
-  <div class="ui-g padding">
+  <form class="ui-g" (submit)="onSubmit()">
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="inputgroup">辖区</span>
-      <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
+      <span class="search-label">辖&#12288;&#12288;区</span>
+      <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.regionId" [style]="{'width':'180px'}" name="regionId"></p-dropdown>
     </div>
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="inputgroup">企业名称</span>
-      <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText placeholder="" style="width:180px">
+      <span class="search-label">企业名称</span>
+      <input type="text" [(ngModel)]="formModel.enterpriseName" maxlength="20" pInputText name="enterpriseName" style="width:180px">
     </div>
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="inputgroup">负责人</span>
-      <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="" style="width:180px">
+      <span class="search-label">负&nbsp;&nbsp;责&nbsp;&nbsp;人</span>
+      <input type="text" [(ngModel)]="formModel.person" maxlength="20" pInputText  style="width:180px" name="person">
     </div>
-    <!-- <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="inputgroup">账号状态</span>
-      <p-dropdown [options]="stateDrop" [(ngModel)]="searchParams.state" [style]="{'width':'180px'}"></p-dropdown>
-    </div> -->
-    <!-- <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="inputgroup">服务电话</span>
-      <input type="text" class="textInput" [(ngModel)]="searchParams.phone" maxlength="20" pInputText placeholder="" style="width:180px">
-    </div> -->
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="inputgroup">发证日期</span>
-      <p-calendar [locale]="cn" #start (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)" placeholder="2017-10-1"
-      [showButtonBar]="true" [maxDate]="end.value" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
-      [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}">
-    </p-calendar>
+      <span class="search-label">发证日期</span>
+      <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+        [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true" [style]="{'width':'180px','height':'35px'}"
+        name="startTime">
+      </p-calendar>
     <gas-explanation tooltip="选择时间段按发证日期的时间间隔查询" position="bottom"></gas-explanation>
 
     </div>
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="inputgroup">&#12288;&#12288;至&#12288;</span>
-      <p-calendar [locale]="cn" #end (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="start.value"
-        placeholder="2017-12-29" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
-        [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
+      <span class="search-label">&#12288;&#12288;至&#12288;</span>
+      <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+        [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true" [style]="{'width':'180px','height':'35px'}"
+        name="endTime">
+      </p-calendar>
     </div>
 
     <!-- 查询按钮 -->
     <div class="ui-g-12 ui-lg-12">
-      <button pButton type="button" label="查询" class="searchBtn" (click)="getEnterPrise()"></button>
+      <button pButton type="submit" class="searchBtn" label="查询"></button>
       <button pButton type="button" style="min-width:110px" label="新增企业" class="searchBtn" [routerLink]="['../../enterprise/enterpriseFound']"></button>
     </div>
-  </div>
+  </form>
 
 
 
   <div class="ui-g">
-    <p-dataTable [value]="enterpriseList" [lazy]="true" dataKey="title" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
-      scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
-      [(first)]="pages.first">
+    <p-dataTable [value]="dataTable.list" [lazy]="true" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+      scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+      [(first)]="dataTable.first" [loading]="loading">
       <p-column [style]="{'width':'80px'}" header="序号">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <span>{{index+1}}</span>
@@ -79,7 +72,7 @@
         </div>
       </ng-template>
       <ng-template pTemplate="paginatorRight">
-        共 {{ pages.total || 0 }} 条记录
+        共 {{ dataTable.total || 0 }} 条记录
       </ng-template>
     </p-dataTable>
   </div>

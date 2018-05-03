@@ -6,25 +6,26 @@
         <gas-explanation tooltip="政府发布最近的重要公告给各区域或企业，查看和下载" position="bottom"></gas-explanation>
       </h2>
       <div class="ui-g-12 annouce">
-        <div class="ui-g-12 padding-lr">
-          <div class="">
-            <h3 class="first">通知标题
-                <gas-explanation tooltip="对政府发布的重要公告的简要描述" position="bottom"></gas-explanation>
-            </h3>
-            <textarea rows="5" cols="50" [(ngModel)]="List.title" pInputTextarea autoResize="autoResize" maxlength="50"></textarea>
-          </div>
+        <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4 padding-lr">
+          <!-- <div class=""> -->
+          <h3 class="first">通知标题
+            <gas-explanation tooltip="对政府发布的重要公告的简要描述" position="bottom"></gas-explanation>
+          </h3>
+          <textarea rows="5" cols="50" [(ngModel)]="List.title" pInputTextarea autoResize="autoResize" maxlength="50"></textarea>
+          <!-- </div> -->
         </div>
-        <div class="ui-g-5 padding-lr">
+        <div class="ui-sm-12 ui-g-12 ui-md-12  ui-lg-6 padding-lr">
           <h3 class="first">公告文件
-              <gas-explanation tooltip="上传政府最近要发布的重要公告文件" position="bottom"></gas-explanation>
+            <gas-explanation tooltip="上传政府最近要发布的重要公告文件" position="bottom"></gas-explanation>
           </h3>
           <p-fileUpload #MessageFile [auto]="false" name="" mode="advanced" [multiple]="false" accept=".doc,.docx,.pdf" invalidFileSizeMessageSummary="{0}: 文件过大,"
             invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型," invalidFileTypeMessageDetail="允许的文件类型是: {0}."
             chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false" [showCancelButton]="false" previewWidth="50"
             [customUpload]="true"></p-fileUpload>
-          <div class="ui-g-6">
-            <button type="button" class="searchBtn" pButton label="发布" (click)="addConfirm(MessageFile)"></button>
-          </div>
+
+        </div>
+        <div class="ui-g-12">
+          <button type="button" class="searchBtn" pButton label="发布" (click)="addConfirm(MessageFile)"></button>
         </div>
 
       </div>

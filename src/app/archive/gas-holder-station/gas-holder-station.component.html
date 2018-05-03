@@ -6,37 +6,36 @@
     </h2>
     <div class="ui-g">
       <div class="ui-g-12">
-        <div class="ui-g-12">
-          <div class="ui-g-12 ui-lg-6 ui-lg-md-12">
-            <!-- <div class="inputgroup"> -->
-            <label for="" class="search-label">辖区</label>
-            <p-dropdown [options]="area" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
-            <!-- </div> -->
+        <div class="ui-g">
+          <div class="ui-g-12 ui-lg-6">
+            <div class="inputgroup">
+              <label for="" class="search-label">辖区</label>
+              <p-dropdown [options]="area" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
+            </div>
           </div>
-          <div class="ui-g-12 ui-lg-6 ui-lg-md-12" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
-            <!-- <div class="inputgroup"> -->
-            <label for="" class="search-label">所属企业</label>
-            <p-dropdown [options]="enterpriseDrop" appendTo="body" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'180px'}"></p-dropdown>
-            <!-- </div> -->
+          <div class="ui-g-12 ui-lg-6">
+            <div class="inputgroup">
+              <label for="" class="search-label">所属企业</label>
+              <p-dropdown [options]="enterpriseDrop" appendTo="body" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'180px'}"></p-dropdown>
+            </div>
           </div>
-          <div class="ui-g-12 ui-lg-6 ui-lg-md-12">
+          <div class="ui-g-12 ui-lg-6">
             <div class="inputgroup">
               <label for="" class="search-label">站点名称</label>
               <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText style="width:180px">
             </div>
           </div>
-          <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
+          <div class="ui-g-12 ui-lg-6">
             <span class="inputgroup">
               <label for="" class="search-label">负责人</label>
+              <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText style="width:180px">
             </span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="" style="width:180px">
           </div>
-          <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
+          <div class="ui-g-12 ui-lg-6">
             <span class="inputgroup">
               <label for="" class="search-label">许可证编号</label>
+              <input type="text" class="textInput" [(ngModel)]="searchParams.supplyLicenseNum" maxlength="20" pInputText style="width:180px">
             </span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.supplyLicenseNum" maxlength="20" pInputText placeholder=""
-              style="width:180px">
           </div>
           <!-- <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
             <span class="inputgroup">
@@ -62,7 +61,7 @@
     </div>
     <div class="ui-g-12">
 
-      <button pButton *gasPermissionRole="[RoleType.Government,RoleType.Admin]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
+      <button pButton *gasPermissionRole="[RoleType.Admin]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
 
       <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
     </div>
@@ -113,7 +112,7 @@
               <span>{{rowdata.effectiveTimeStart | date:'yyyy/MM/dd'}}-{{rowdata.effectiveTimeEnd | date:'yyyy/MM/dd'}}</span>
             </ng-template>
           </p-column> -->
-          <p-column [style]="{'width':'200px'}" header="操作">
+          <p-column [style]="{'width':'200px'}" header="操作" *gasPermissionRole="[RoleType.Admin]">
             <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
               <button pButton type="button" label="变更归属企业" style="width:120px" (click)="showChangeDialog(data)"></button>
             </ng-template>
@@ -268,7 +267,7 @@
           <input type="text" disabled="disabled" [(ngModel)]="change.supplyStationName" style="width:300px" pInputText placeholder="">
         </div>
       </div>
-      <div class="ui-g-12" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
+      <div class="ui-g-12" *gasPermissionRole="[RoleType.Admin]">
         <div class="inputgroup">
           <label for="" class="search-label">所属企业</label>
           <p-dropdown [options]="changeEnterpriseDrop" appendTo="body" [(ngModel)]="change.enterpriseNumber" [style]="{'width':'300px'}"></p-dropdown>

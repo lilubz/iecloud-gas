@@ -1,30 +1,31 @@
 .group {
-  border: 1px solid;
-  border-radius: 10px;
-  padding: 4px;
-  >span {
-    display: block;
-    width: 100%;
-    color: #868686; // font-weight: bolder;
-    line-height: 50px;
-    font-size: 16px;
-  }
-  a {
-    display: block;
-    width: 100%;
-    text-decoration: none;
-    color: #000;
-    line-height: 40px;
-    &.active {
-      color: #3399ff;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 4px;
+    >span {
+        display: block;
+        width: 100%;
+        color: #868686; // font-weight: bolder;
+        line-height: 50px;
+        font-size: 16px;
     }
-  }
+    a {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        color: #000;
+        line-height: 40px;
+        &.active {
+            color: #3399ff;
+        }
+    }
 }
+
 .searchBtn {
-  border-radius: 4px;
-  width: 96px;
-  height: 45px;
-  font-size: 1em;
-  background: #3186dc;
-  margin-left: 9px;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 36px;
+    width: 80px;
+    background: #3186dc;
+    margin-left: 9px;
 }

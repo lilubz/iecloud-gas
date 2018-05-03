@@ -1,4 +1,4 @@
-@mixin bg_color01($color01:#1a5687) {
+@mixin bg_color01($color01:#f0f0f0) {
   background-color: $color01;
 }
 
@@ -13,9 +13,10 @@
   float: left;
   border: 1px solid #797979;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden;
+  white-space: nowrap;
 }
-$whiteColor:white;
+// $whiteColor:white;
 
 .ta-c{
   text-align: center;
@@ -31,12 +32,12 @@ $whiteColor:white;
   }
   .bg_color01 {
     @include bg_color01();
-    color: $whiteColor;
+    // color: $whiteColor;
   }
   .span_gasleft {
     width: 30%;
     @include common();
-    @include bg_color01(#cccccc)
+    @include bg_color01(#f0f0f0)
   }
   .span_textleft {
     width: 70%;
@@ -45,7 +46,7 @@ $whiteColor:white;
   .span_gasright {
     width: 30%;
     @include common();
-    @include bg_color01(#cccccc)
+    @include bg_color01(#f0f0f0)
   }
   .span_textright {
     width: 70%;
@@ -53,7 +54,7 @@ $whiteColor:white;
   }
   .photo-head {
     width: 17.5%;
-    @include bg_color01(#cccccc);
+    @include bg_color01(#f0f0f0);
     @include common(center,90px,100px);
   }
   .photo-content{

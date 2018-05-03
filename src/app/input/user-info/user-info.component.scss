@@ -1,27 +1,27 @@
 .user-info {
-  span {
-    &.required {
-      color: red;
+    span {
+        &.required {
+            color: red;
+        }
     }
-  }
-  .tips {
-    .warning {
-      color: red;
+    .tips {
+        .warning {
+            color: red;
+        }
     }
-  }
-  hr {
-    border-top: none;
-    border-bottom: 1px dashed grey;
-  }
-  .ui-fileupload-choose {
-    color: red;
-  }
-  .searchBtn {
-      margin-left: 20px;
-      border-radius: 4px;
-      width: 96px;
-      height: 45px;
-      font-size: 1em;
-      background: #3186dc;
+    hr {
+        border-top: none;
+        border-bottom: 1px dashed grey;
+    }
+    .ui-fileupload-choose {
+        color: red;
+    }
+    .searchBtn {
+        margin-left: 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        height: 36px;
+        width: 80px;
+        background: #3186dc;
     }
 }

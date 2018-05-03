@@ -26,10 +26,12 @@ export class FillingScaleListComponent implements OnInit {
   settingScaleDialogVisible = false;
   selectedScaleStatus: {
     balanceId: number,
+    balanceNumber: any,
     boolIsSetInterLock: boolean,
     boolIsSetOuterLock: boolean,
   } = {
       balanceId: null,
+      balanceNumber: null,
       boolIsSetInterLock: null,
       boolIsSetOuterLock: null,
     };
@@ -63,7 +65,7 @@ export class FillingScaleListComponent implements OnInit {
       setTimeout(() => {
         this.getBalanceList();
       }, 0);
-    }
+    };
   }
 
   search() {
@@ -96,14 +98,15 @@ export class FillingScaleListComponent implements OnInit {
 
   showSettingScaleDialog(scale: ScaleVO) {
     // this.selectedScaleStatus = null;
+    this.selectedScaleStatus = Object.assign({}, this.selectedScaleStatus, { balanceNumber: scale.balanceNumber });
     this.fillingScaleService.getBalanceStatus({
       balanceId: scale.balanceId || ''
     }).then(data => {
       if (data.status === 0) {
         this.settingScaleDialogVisible = true;
-        this.selectedScaleStatus = data.data;
+        this.selectedScaleStatus = Object.assign({}, this.selectedScaleStatus, data.data);
       } else {
-        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
       }
     });
   }
@@ -129,7 +132,7 @@ export class FillingScaleListComponent implements OnInit {
           balanceId: this.selectedScaleStatus.balanceId || ''
         }).then(data => {
           if (data.status === 0) {
-            this.selectedScaleStatus = data.data;
+            this.selectedScaleStatus = Object.assign({}, this.selectedScaleStatus, data.data);
           } else {
             this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
           }
@@ -151,9 +154,9 @@ export class FillingScaleListComponent implements OnInit {
           balanceId: this.selectedScaleStatus.balanceId || ''
         }).then(data => {
           if (data.status === 0) {
-            this.selectedScaleStatus = data.data;
+            this.selectedScaleStatus = Object.assign({}, this.selectedScaleStatus, data.data);
           } else {
-            this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
+            this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
           }
         });
       }

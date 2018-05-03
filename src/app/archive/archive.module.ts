@@ -4,9 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ArchiveRoutingModule } from './archive-routing.module';
 
 import { CustomerModule } from './customer/customer.module';
-import { CarModule } from './car/car.module';
 import { CylinderModule } from './cylinder/cylinder.module';
-import { EmployeeModule } from './employee/employee.module';
 import { ArchiveComponent } from './archive.component';
 import { EnterpriseModule } from './enterprise/enterprise.module';
 import { CylinderOverviewService } from './cylinder/cylinder-overview/cylinder-overview.service';
@@ -17,6 +15,8 @@ import { GasHolderService } from './gasHolder/gasHolder.service';
 import { FillingScaleListComponent } from './filling-scale-list/filling-scale-list.component';
 import { GasHolderStationComponent } from './gas-holder-station/gas-holder-station.component';
 import { SupplyStationComponent } from './supply-station/supply-station.component';
+import { DispatcherComponent } from './employee/dispatcher.component';
+import { CarComponent } from './car/car.component';
 
 
 @NgModule({
@@ -25,14 +25,14 @@ import { SupplyStationComponent } from './supply-station/supply-station.componen
     ComponentsModule,
     CylinderModule,
     CustomerModule,
-    CarModule,
-    EmployeeModule,
     EnterpriseModule,
     ArchiveRoutingModule,
   ],
   declarations: [
     ArchiveComponent,
     GasHolderComponent,
+    DispatcherComponent,
+    CarComponent,
     FillingScaleListComponent,
     GasHolderStationComponent,
     SupplyStationComponent,

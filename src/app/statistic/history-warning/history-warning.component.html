@@ -247,7 +247,7 @@
     </div>
   </div>
   <div class="ui-g-12 dialog">
-    <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="800" [contentStyle]="{'padding':'10px','overflow':'visible','margin-bottom':'-40px'}"
+    <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="800" [contentStyle]="{'padding':'10px','overflow':'auto','margin-bottom':'-40px'}"
       [minWidth]="800" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
       <p-dataTable [value]="dataTableDetail.list" [paginator]="true" [rows]="dataTableDetail.option[0]" [scrollable]="false"
         [lazy]="true" [rowsPerPageOptions]="dataTableDetail.option" [totalRecords]="dataTableDetail.total" (onLazyLoad)="onPageChangeDetail($event)"
