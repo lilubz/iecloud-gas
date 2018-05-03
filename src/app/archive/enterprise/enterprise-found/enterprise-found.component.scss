@@ -2,15 +2,17 @@
     .title {
         color: #3186dc;
         text-align: center;
-        white-space:nowrap;
+        white-space: nowrap;
     }
     .container {
         min-width: 450px;
     }
-    .bottom{
-      border: 1px dashed black;
+    .search-label {
+        width: 130px;
     }
-    // .inputgroup {
+    .bottom {
+        border: 1px dashed black;
+    } // .inputgroup {
     //     // padding: 3px;
     //     width: 90px;
     // }
@@ -22,14 +24,14 @@
         background: #3186dc;
     }
     span {
-      color: rgb(102, 102, 102);
+        color: rgb(102, 102, 102);
     }
     .textInput {
         width: 210px;
     }
-    .save{
+    .save {
         display: flex;
-        button{
+        button {
             margin: auto;
         }
     }

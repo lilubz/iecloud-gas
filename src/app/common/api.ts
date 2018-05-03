@@ -136,6 +136,11 @@ export const API = {
   'createAccount': URL + 'basicInformation/corpSupplyStation/createAccount.do',
   'freezeAccount': URL + 'basicInformation/corpSupplyStation/freezeAccount.do',
   'updateCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/updateCorpSupplyStation.do',
+  'updateTheEnterpriseOfCorpSupplyStation': URL + 'basicInformation/corpSupplyStation/updateTheEnterpriseOfCorpSupplyStation.do',
+  // 储配站
+  'listCorpInflatableStations': URL + 'basicInformation/corpInflatableStation/listCorpInflatableStations.do',
+  'addInflatableStation': URL + 'basicInformation/corpInflatableStation/addInflatableStation.do',
+  'updateCorpInflatableStation': URL + 'basicInformation/corpInflatableStation/updateCorpInflatableStation.do',
   // 气瓶标签分配
   'listTagApplication': URL + 'basicInformation/gasCylinder/listTagApplication.do',
   'getUnboundGcLabelInfo': URL + 'basicInformation/gasCylinder/listUnboundGcLabelInfo.do',

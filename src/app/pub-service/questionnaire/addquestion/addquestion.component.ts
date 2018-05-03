@@ -53,7 +53,7 @@ export class AddquestionComponent implements OnInit {
               numberOfOptions: 3,
               defaultNumberAnswer: 3,
               optionsDescription: '满意;不满意;无所谓',
-            }
+            };
           })
         }
       )

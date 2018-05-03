@@ -1,16 +1,18 @@
 import { Component, OnInit, OnDestroy, NgZone, Inject } from '@angular/core';
-import { EnterpriseFoundService, } from './enterprise-found.service';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { CommonRequestService } from '../../../core/common-request.service';
+import { EnterpriseFoundsService } from './enterprise-found.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { CommonRequestService } from '../../../core/common-request.service';
 import { zh_CN } from '../../../common/date-localization';
 import { AddForm } from './addForm.model';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'gas-enterprise-found',
   templateUrl: './enterprise-found.component.html',
-  styleUrls: ['./enterprise-found.component.scss']
+  styleUrls: ['./enterprise-found.component.scss'],
+  providers: [EnterpriseFoundsService]
 })
 export class EnterpriseFoundComponent implements OnInit, OnDestroy {
   cn = zh_CN;
@@ -60,10 +62,11 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
   initSelectedUrbanDistrict: SelectItem[] = []; // 默认的市辖区后的区县
 
   constructor(
-    private _service: EnterpriseFoundService,
+    private _service: EnterpriseFoundsService,
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
     private zone: NgZone,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -232,6 +235,7 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
         if (data.status === 0) {
           this.addForm.businessArea = '';
           this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
+          this.router.navigate(['archive/enterprise/detail']);
         } else {
           this.addForm.businessArea = '';
           this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
@@ -265,6 +269,9 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
       return false;
     } else if (!this.addForm.legalRepresentative.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
+      return false;
+    } else if (!this.addForm.phoneNumber.trim()) {
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人手机号不能为空' });
       return false;
     } else if (!this.addForm.address.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '地址不能为空' });

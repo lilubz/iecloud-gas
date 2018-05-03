@@ -21,36 +21,36 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
       value: '',
     }
   ];
-  stateDrop: SelectItem[] = [
-    {
-      label: '全部',
-      value: '',
-    },
-    {
-      label: '启用',
-      value: 1,
-    },
-    {
-      label: '停用',
-      value: 2,
-    }
-  ];
+  // stateDrop: SelectItem[] = [
+  //   {
+  //     label: '全部',
+  //     value: '',
+  //   },
+  //   {
+  //     label: '启用',
+  //     value: '启用',
+  //   },
+  //   {
+  //     label: '停用',
+  //     value: '停用',
+  //   }
+  // ];
   enterpriseList: any[] = [];
   searchParams: {
     regionId?: string,
     enterpriseName?: string,
     person?: string,
-    state?: any,
-    // startTime?: string,
-    // endTime?: string,
+    // state?: any,
+    startTime?: string,
+    endTime?: string,
     // phone?: number,
   } = {
       regionId: '',
       enterpriseName: '',
       person: '',
-      state: '',
-      // startTime: '',
-      // endTime: '',
+      // state: '',
+      startTime: '',
+      endTime: '',
       // phone: null,
     };
   pages: {
@@ -102,10 +102,11 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
   getEnterPrise(pages?) {
     const params = {
       regionId: this.searchParams.regionId || '',
-      corpName: this.searchParams.state || '',
+      corpName: this.searchParams.enterpriseName || '',
       legalRepresentative: this.searchParams.person || '',
-      // releaseTimeStart: this.searchParams.startTime || '',
-      // releaseTimeEnd: this.searchParams.endTime || '',
+      // state: this.searchParams.state || '',
+      releaseTimeStart: this.searchParams.startTime || '',
+      releaseTimeEnd: this.searchParams.endTime || '',
       // serviceLine: this.searchParams.phone || '',
       pageSize: 40,
       pageNumber: 1
@@ -144,25 +145,22 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
     this.getEnterPrise(page);
   }
 
-  enterpriseAdded = () => {
-    // this.router.navigate(['/system/enterprise-management/enterprise-found']);
-  }
 
   /**
      * 时间转换
     */
-  // selectedStartTime(event) {
-  //   this.searchParams.startTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
-  // }
-  // selectedEndTime(event) {
-  //   this.searchParams.endTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
-  // }
-  // clearStartTime(event) {
-  //   this.searchParams.startTime = '';
-  // }
-  // clearEndTime(event) {
-  //   this.searchParams.endTime = '';
-  // }
+  selectedStartTime(event) {
+    this.searchParams.startTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
+  }
+  selectedEndTime(event) {
+    this.searchParams.endTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
+  }
+  clearStartTime(event) {
+    this.searchParams.startTime = '';
+  }
+  clearEndTime(event) {
+    this.searchParams.endTime = '';
+  }
   ngOnDestroy() {
   }
 }

@@ -5,7 +5,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { SecurityPublicityComponent } from './security-publicity/security-publicity.component';
 import { AddquestionComponent } from './questionnaire/addquestion/addquestion.component';
 import { QuestionnaireListComponent } from './questionnaire/questionnaire-list/questionnaire-list.component';
-import { QuestionnaireDetailsComponent } from './questionnaire/questionnaire-details/questionnaire-details.component'
+import { QuestionnaireDetailsComponent } from './questionnaire/questionnaire-details/questionnaire-details.component';
 import { SurveyResultComponent } from './questionnaire/survey-result/survey-result.component';
 import { SecurityListComponent } from './security-publicity/security-list/security-list.component';
 import { AddSecurityComponent } from './security-publicity/add-security/add-security.component';

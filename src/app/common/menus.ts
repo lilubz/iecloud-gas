@@ -17,6 +17,8 @@ export const AdminMenus: MenuItem[] = [
       { label: '车辆信息', routerLink: ['/archive/car'] },
       { label: '送气工信息', routerLink: ['/archive/employee'] },
       { label: '储气罐档案', routerLink: ['/archive/gasHolder'] },
+      { label: '储配站档案', routerLink: ['/archive/gasHolderStation'] },
+      { label: '供应站档案', routerLink: ['/archive/supplyStation'] },
       { label: '充装秤档案', routerLink: ['/archive/filling-scale'] },
     ]
   },

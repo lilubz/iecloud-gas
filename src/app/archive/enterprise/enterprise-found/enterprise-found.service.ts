@@ -4,7 +4,7 @@ import { HttpService } from '../../../core/http.service';
 import { API } from '../../../common/api';
 
 @Injectable()
-export class EnterpriseFoundService {
+export class EnterpriseFoundsService {
     constructor(private httpService: HttpService) { }
 
     AddCorpInfo(params: any): Promise<any> {

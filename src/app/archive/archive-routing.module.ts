@@ -23,6 +23,9 @@ import { SearchComponent } from './car/search/search.component';
 import { DispatcherComponent } from './employee/dispatcher/dispatcher.component';
 import { GasHolderComponent } from './gasHolder/gasHolder.component';
 import { FillingScaleListComponent } from './filling-scale-list/filling-scale-list.component';
+import { EnterpriseFoundComponent } from './enterprise/enterprise-found/enterprise-found.component';
+import { GasHolderStationComponent } from './gas-holder-station/gas-holder-station.component';
+import { SupplyStationComponent } from './supply-station/supply-station.component';
 const routes: Routes = [
   {
     path: '',
@@ -150,6 +153,13 @@ const routes: Routes = [
               title: '企业详情'
             },
           },
+          {
+            path: 'enterpriseFound',
+            component: EnterpriseFoundComponent,
+            data: {
+              title: '企业详情'
+            },
+          },
         ]
       },
       {
@@ -199,6 +209,20 @@ const routes: Routes = [
         component: GasHolderComponent,
         data: {
           title: '储气罐档案'
+        },
+      },
+      {
+        path: 'gasHolderStation',
+        component: GasHolderStationComponent,
+        data: {
+          title: '储配站档案'
+        },
+      },
+      {
+        path: 'supplyStation',
+        component: SupplyStationComponent,
+        data: {
+          title: '供应站档案'
         },
       },
       {
