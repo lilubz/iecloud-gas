@@ -34,17 +34,32 @@
     }
     .title {
         color: #3186dc;
-        font-size: 24px;
-        // font-weight: bold;
+        font-size: 24px; // font-weight: bold;
         display: inline-block;
         line-height: 35px;
         vertical-align: middle;
     }
 }
 
+// * {
+//     margin: 0;
+//     padding: 0;
+//     border: 0;
+//     font-size: 100%;
+//     vertical-align: baseline;
+//     box-sizing: border-box;
+//     -o-box-sizing: border-box;
+//     -ms-box-sizing: border-box;
+//     -icab-box-sizing: border-box;
+//     -khtml-box-sizing: border-box;
+//     -moz-box-sizing: border-box;
+//     -webkit-box-sizing: border-box;
+// }
+
 .redirectionPage {
     width: 100%;
     height: 100%;
+    min-height: 476px;
     .headline {
         position: absolute;
         top: 70px;
@@ -59,6 +74,8 @@
         height: calc(100% - 132px);
         position: absolute;
         top: 132px;
+        overflow: hidden;
+        min-height: 370px;
     }
     .changePage {
         width: 100%;

@@ -5,25 +5,16 @@
       <gas-explanation tooltip="该模块主要功能是供应站（瓶库）账号信息的新增，编辑，冻结启用账号等功能的管理" position="bottom"></gas-explanation>
     </h2>
     <div class="ui-g">
-      <div class="ui-g-12">
-        <div class="ui-g-12">
-          <div class="ui-g-12 ui-lg-6 ui-lg-md-12">
-            <div class="inputgroup">
-              <label for="" class="search-label">站点名称</label>
-              <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText>
-            </div>
-          </div>
-          <div class="ui-g-12 ui-lg-6 ui-lg-md-12" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
-            <div class="inputgroup">
-              <label for="" class="search-label">所属企业</label>
-              <p-dropdown [options]="enterpriseDrop" appendTo="body" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'calc(100% - 100px','max-width':'300px','min-width':'180px'}"></p-dropdown>
-            </div>
-          </div>
-        </div>
+      <div class="ui-g-12 ui-lg-6">
+        <label for="" class="search-label">站点名称</label>
+        <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText>
+      </div>
+      <div class="ui-g-12 ui-lg-6" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
+        <label for="" class="search-label">所属企业</label>
+        <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'calc(100% - 100px)','max-width':'300px','min-width':'180px'}"></p-dropdown>
       </div>
     </div>
     <div class="ui-g-12">
-
       <button pButton *gasPermissionRole="[RoleType.Government,RoleType.Admin]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
 
       <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
@@ -97,8 +88,8 @@
     </div>
   </div>
 
-  <p-dialog [visible]="editBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
-    [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
+  <p-dialog [visible]="editBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false"
+    [width]="800" [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
     <h3 class="dialogtitle">编辑供应站信息</h3>
     <div class="ui-g-12 " style="height:380px">
       <div class="ui-g-12 ui-md-6">

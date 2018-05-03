@@ -6,65 +6,65 @@
     <div class="ui-g-12">
       <div class="ui-g-12 padding-none">
         <div class="ui-g-6 padding-none">
-          <span class="span_gasleft bg_colorR">客户名称</span>
-          <span class="span_textleft">{{detailLists.userName}}</span>
+          <span class="span_gasleft bg_colorR" title="客户名称">客户名称</span>
+          <span class="span_textleft" [title]="detailLists.userName">{{detailLists.userName}}</span>
         </div>
         <div class="ui-g-6 padding-none">
-          <span class="span_gasright bg_colorR">性别</span>
-          <span class="span_textright">{{detailLists.gender}}</span>
+          <span class="span_gasright bg_colorR" title="性别">性别</span>
+          <span class="span_textright" [title]="detailLists.gender">{{detailLists.gender}}</span>
         </div>
       </div>
       <div class="ui-g-12 padding-none">
         <div class="ui-g-6 padding-none">
-          <span class="span_gasleft bg_colorR">证件类型</span>
-          <span class="span_textleft">{{detailLists.certificateName}}</span>
+          <span class="span_gasleft bg_colorR" title="证件类型">证件类型</span>
+          <span class="span_textleft" [title]="detailLists.certificateName">{{detailLists.certificateName}}</span>
         </div>
         <div class="ui-g-6 padding-none">
           <span class="span_gasright bg_colorR">证件号</span>
-          <span class="span_textright">{{detailLists.certificateId}}</span>
+          <span class="span_textright"[title]="detailLists.certificateId">{{detailLists.certificateId}}</span>
         </div>
       </div>
       <div class="ui-g-12 padding-none">
-        <span class="span_gasaddress bg_colorR">证件地址</span>
-        <span class="span_textaddress">{{detailLists.certificateAddress}}</span>
+        <span class="span_gasaddress bg_colorR" title="证件地址">证件地址</span>
+        <span class="span_textaddress"[title]="detailLists.certificateAddress">{{detailLists.certificateAddress}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR">用户类型
+        <span class="span_gasleft bg_colorR" title="用户类型">用户类型
           <gas-explanation tooltip="根据气瓶使用途径区别的客户类别（有个人，商业，工业三种）" position="bottom"></gas-explanation>
         </span>
-        <span class="span_textleft">{{detailLists.userTypeName}}</span>
+        <span class="span_textleft"[title]="detailLists.userTypeName">{{detailLists.userTypeName}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR">负责人
+        <span class="span_gasright bg_colorR" title="负责人">负责人
           <gas-explanation tooltip="用户证件上的名字，用来区分燃气用户名" position="bottom"></gas-explanation>
         </span>
-        <span class="span_textright">{{detailLists.principal}}</span>
+        <span class="span_textright"[title]="detailLists.principal">{{detailLists.principal}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR">联系人</span>
-        <span class="span_textleft">{{detailLists.linkman}}</span>
+        <span class="span_gasleft bg_colorR" title="联系人">联系人</span>
+        <span class="span_textleft"[title]="detailLists.linkman">{{detailLists.linkman}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR">联系电话</span>
-        <span class="span_textright">{{detailLists.phone}}</span>
+        <span class="span_gasright bg_colorR" title="联系电话">联系电话</span>
+        <span class="span_textright"[title]="detailLists.phone">{{detailLists.phone}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR">派送地址</span>
-        <span class="span_textleft">{{detailLists.deliveryAddress}}</span>
+        <span class="span_gasleft bg_colorR" title="派送地址">派送地址</span>
+        <span class="span_textleft"[title]="detailLists.deliveryAddress">{{detailLists.deliveryAddress}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR">配送工
+        <span class="span_gasright bg_colorR" title="配送工">配送工
           <gas-explanation tooltip="用户指定的配送气瓶的送气工（默认）" position="bottom"></gas-explanation>
         </span>
-        <span class="span_textright">{{ detailLists.dispatcherName }}</span>
+        <span class="span_textright"[title]="detailLists.dispatcherName">{{ detailLists.dispatcherName }}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR">登记时间</span>
-        <span class="span_textleft">{{detailLists.registrationTime | date: "y-MM-dd"}}</span>
+        <span class="span_gasleft bg_colorR" title="登记时间">登记时间</span>
+        <span class="span_textleft"[title]="detailLists.registrationTime | date: 'y-MM-dd'">{{detailLists.registrationTime | date: "y-MM-dd"}}</span>
       </div>
       <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR">登记人</span>
-        <span class="span_textright">{{detailLists.registrant}}</span>
+        <span class="span_gasright bg_colorR" title="登记人">登记人</span>
+        <span class="span_textright"[title]="detailLists.registrant">{{detailLists.registrant}}</span>
       </div>
       <div class="ui-g-12 padding-none">
         <div class="photo-container">
@@ -87,28 +87,28 @@
     </div>
     <div class="ui-g-12">
       <div class="ui-g-4 padding-none padding-none">
-        <span class="span_detail bg_color01">所属行政区域</span>
-        <span class="span_detail01">{{detailLists.regionName}}</span>
+        <span class="span_detail bg_color01" title="所属行政区域">所属行政区域</span>
+        <span class="span_detail01"[title]="detailLists.regionName">{{detailLists.regionName}}</span>
       </div>
       <div class="ui-g-4 padding-none ">
-        <span class="span_detail bg_color01">所属企业名称</span>
-        <span class="span_detail01">{{detailLists.corpName}}</span>
+        <span class="span_detail bg_color01" title="所属企业名称">所属企业名称</span>
+        <span class="span_detail01"[title]="detailLists.corpName">{{detailLists.corpName}}</span>
       </div>
       <div class="ui-g-4 padding-none">
-        <span class="span_detail bg_color01">站点</span>
-        <span class="span_detail01">{{detailLists.stationName}}</span>
+        <span class="span_detail bg_color01" title="站点">站点</span>
+        <span class="span_detail01"[title]="detailLists.stationName">{{detailLists.stationName}}</span>
       </div>
       <div class="ui-g-4 padding-none">
-        <span class="span_detail bg_color01"> 使用状态</span>
-        <span class="span_detail01">{{detailLists.status}}</span>
+        <span class="span_detail bg_color01" title="使用状态">使用状态</span>
+        <span class="span_detail01"[title]="detailLists.status">{{detailLists.status}}</span>
       </div>
       <div class="ui-g-4 padding-none">
-        <span class="span_detail bg_color01">用户编码</span>
-        <span class="span_detail01">{{detailLists.userNumber}}</span>
+        <span class="span_detail bg_color01" title="用户编码">用户编码</span>
+        <span class="span_detail01"[title]="detailLists.userNumber">{{detailLists.userNumber}}</span>
       </div>
       <div class="ui-g-4 padding-none">
-        <span class="span_detail bg_color01">在用气瓶数</span>
-        <span class="span_detail01">
+        <span class="span_detail bg_color01" title="在用气瓶数">在用气瓶数</span>
+        <span class="span_detail01" [title]="detailLists.gcCount">
           <a (click)="showDialog()" class="detail-href">{{detailLists.gcCount}}</a>
         </span>
       </div>
@@ -135,7 +135,7 @@
 </div>
 
 <p-dialog [visible]="cylinderVisible" header="用户在用气瓶详情" [responsive]="true" [showHeader]="true" [modal]="true" [closable]="false"
-  [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="130">
+  [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="90">
   <!-- <h3 class="title"></h3> -->
   <div class="ui-g">
     <p-dataTable [value]="dataTablelist" [style]="{'max-height':'450px'}" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true"
@@ -187,7 +187,7 @@
       </ng-template>
     </p-dataTable>
   </div>
-  <p-footer >
+  <p-footer>
 
     <button type="button" pButton (click)="cylinderVisible=false" label="关闭"></button>
   </p-footer>

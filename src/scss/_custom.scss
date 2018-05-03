@@ -97,15 +97,21 @@ input {
             line-height: 70px;
             margin: 12px 46px;
             .shortcut-left {
-                height: 40px;
-                width: 40px;
+                height: 36px;
+                width: 36px;
                 margin-right: 46px;
                 cursor: pointer;
+                &:focus {
+                    outline: -webkit-focus-ring-color auto 0px;
+                }
             }
             .shortcut-right {
-                height: 40px;
-                width: 40px;
+                height: 32px;
+                width: 32px;
                 cursor: pointer;
+                &:focus {
+                    outline: -webkit-focus-ring-color auto 0px;
+                }
             }
         }
     }
@@ -216,6 +222,9 @@ input {
             a[href="#/verification"] {
                 line-height: 46px;
             }
+            a[href="#/input"] {
+                line-height: 46px;
+            }
             .ui-menu-list {
                 .ui-menuitem {
                     text-align: center;
@@ -301,7 +310,7 @@ input {
             width: 100%;
             background: #fff;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-            overflow: auto; 
+            overflow: auto;
             box-sizing: border-box;
             border-radius: 4px;
         }
@@ -389,8 +398,13 @@ a.router-link-active {
 }
 
 .ui-growl-item-container.ui-state-highlight.ui-growl-message-error {
-    background-color: #D32F2F;
-    border-color: #D32F2F;
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-warn {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
 }
 
 .right {
@@ -406,7 +420,7 @@ a.router-link-active {
 .login-body {
     width: 100%;
     height: 100%;
-    min-height: 640px;
+    min-height: 476px;
     font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
     font-size: 16px;
     margin: 0;

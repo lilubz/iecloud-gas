@@ -11,7 +11,7 @@ import {
   CheckboxModule,
   DataTableModule,
   DropdownModule,
-  DialogModule,
+  // DialogModule,
   FileUploadModule,
   GrowlModule,
   InputSwitchModule,
@@ -49,7 +49,7 @@ import { AutoCompleteModule } from './autocomplete/autocomplete';
 import { HeaderComponent } from './header/header.component';
 import { DeliveryRegionCascadeComponent } from './delivery-region-cascade/delivery-region-cascade.component';
 import { ExplanationComponent } from './explanation/explanation.component';
-// import { DialogModule } from './dialog/dialog';
+import { DialogModule } from './dialog/dialog';
 
 @NgModule({
   imports: [

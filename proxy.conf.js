@@ -42,28 +42,28 @@ const PROXY_CONFIG = [
   //     "^/wenZhouGas": ""
   //   }
   // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //     "/dataImport",
-  //   ],
-  //   target: "http://192.168.1.141:8080",// 涛哥笔记本
-  //   secure: false,
-  //   "pathRewrite": {
-  //     // "^/wenZhouGas": ""
-  //   }
-  // },
   {
     context: [
       "/wenZhouGas",
-      "/upload",
+      "/dataImport",
     ],
-    target: "http://60.190.114.126", // 线上
+    target: "http://192.168.1.141:8080",// 涛哥笔记本
     secure: false,
-    // "pathRewrite": {
-    //   "^/wenZhouGas": ""
-    // }
+    "pathRewrite": {
+      // "^/wenZhouGas": ""
+    }
   },
+  // {
+  //   context: [
+  //     "/wenZhouGas",
+  //     "/upload",
+  //   ],
+  //   target: "http://60.190.114.126", // 线上
+  //   secure: false,
+  //   // "pathRewrite": {
+  //   //   "^/wenZhouGas": ""
+  //   // }
+  // },
 
 ];
 
