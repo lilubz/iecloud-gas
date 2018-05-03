@@ -11,7 +11,7 @@ export class BottleLibraryService {
   }
 
   onsearch(params: any): Promise<any> {
-    return this.httpService.getRequest(API.getCorpSupplyStation, params);
+    return this.httpService.getRequest(API.listSupplyStationUser, params);
   }
   addCorpSupplyStation(params: any): Promise<any> {
     return this.httpService.formDataPostRequest(API.addCorpSupplyStation, params);
@@ -27,5 +27,11 @@ export class BottleLibraryService {
   }
   deleteCorpSupplyStation(params: any): Promise<any> {
     return this.httpService.getRequest(API.deleteCorpSupplyStation, params);
+  }
+  listSupplyStationUser(params: any): Promise<any> {
+    return this.httpService.getRequest(API.listSupplyStationUser, params);
+  }
+  changeFreeze(params: any): Promise<any> {
+    return this.httpService.getRequest(API.changefreeze, params);
   }
 }

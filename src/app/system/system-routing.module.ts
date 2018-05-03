@@ -107,7 +107,7 @@ const routes: Routes = [
             path: 'user-opening',
             component: UserOpeningComponent,
             data: {
-              title: '政府账号开通'
+              title: '政府账号新增'
             },
           },
         ]

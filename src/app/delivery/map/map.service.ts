@@ -192,7 +192,7 @@ export class MapService {
         this.dispatcherPathPointTemplate = new InfoTemplate(
           '${dispatcherName} -- ${time}',
           '<b>名称：</b> ${dispatcherName} <br/>' +
-          '<b>工号：</b> <a href="./#/archive/employee/dispatcher;dispatcherNumber=${jobNumber}"> ${jobNumber}</a> <br/>' +
+          '<b>工号：</b> <a href="./#/archive/employee;dispatcherNumber=${jobNumber}"> ${jobNumber}</a> <br/>' +
           '<b>归属企业：</b> ${enterpriseName} <br/>' +
           '<b>联系方式：</b> ${phone} <br/>' +
           '<b>记录时间：</b> ${time} <br/>'

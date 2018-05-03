@@ -18,6 +18,7 @@ export const API = {
   'listLiabilitySubjectType': URL + 'basicInformation/gasCylinder/listLiabilitySubjectType.do', // 获取气瓶责任主体类型列表
   'getDispatchers': URL + 'basicInformation/corpInfo/getDispatchers.do', // 获取当前企业下的所有配送工
   'listCorpSupplyStationVO': URL + 'corpBusiness/applyManagement/listCorpSupplyStationVO.do', // 获取供应站列表
+  'listSupplyStationUser': URL + '/basicInformation/corpSupplyStation/listSupplyStationUser.do', // 获取供应站账号列表
   'listCorpInflatableStation': URL + 'basicInformation/corpInflatableStation/listCorpInflatableStation.do', // 获取储配站列表
   'listLocationInfo': URL + 'basicInformation/corpCarInfo/listCorpLocationInfo.do', // 获取站点位置信息
   'getThePathByAccountId': URL + 'corpBusiness/dispatchOrder/getThePathByAccountId.do', // 获取送气工轨迹
@@ -271,8 +272,8 @@ export const API = {
   'deleteSecurityPublicityArticle': URL + 'publicService/securityPublicity/deleteSecurityPublicityArticle.do',
   'uploadSecurityPublicityArticle': URL + 'publicService/securityPublicity/uploadSecurityPublicityArticle.do',
   // 公众服务
-    // 问卷调查
-  'uploadNewQuestionnaire':   URL + 'publicService/questionnaire/uploadNewQuestionnaire.do', // 上传一份新的调查问卷
+  // 问卷调查
+  'uploadNewQuestionnaire': URL + 'publicService/questionnaire/uploadNewQuestionnaire.do', // 上传一份新的调查问卷
   'listQuestionnaire': URL + 'publicService/questionnaire/listQuestionnaire.do', // 获取所有问卷列表
   'listQuestions': URL + 'publicService/questionnaire/listQuestions.do', // 获取某个问卷中问题列表
   'listCurrentQuestions': URL + 'publicService/questionnaire/listCurrentQuestions.do', // 获取当前最新问卷调查中的所有问题

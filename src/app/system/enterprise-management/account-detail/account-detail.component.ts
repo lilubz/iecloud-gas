@@ -37,10 +37,14 @@ export class AccountDetailComponent implements OnInit, OnDestroy {
     regionId: number;
     licese: string;
     enterpriseName: string;
+    legalRepresentative: string;
+    username: string;
   } = {
       regionId: null,
       licese: '',
       enterpriseName: '',
+      legalRepresentative: '',
+      username: '',
     };
   changeStatusPage: any;
   constructor(
@@ -90,6 +94,8 @@ export class AccountDetailComponent implements OnInit, OnDestroy {
       regionId: this.searchParams.regionId || '',
       dangerousLicense: this.searchParams.licese || '',
       enterpriseName: this.searchParams.enterpriseName || '',
+      legalRepresentative: this.searchParams.legalRepresentative || '',
+      username: this.searchParams.username || '',
       pageNumber: 1,
       pageSize: 40,
     };

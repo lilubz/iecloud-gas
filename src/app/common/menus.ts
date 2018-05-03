@@ -71,10 +71,10 @@ export const AdminMenus: MenuItem[] = [
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '企业管理', routerLink: ['/system/enterprise-management'] },
-      { label: '供应站管理', routerLink: ['/system/bottle-library'] },
+      // { label: '企业管理', routerLink: ['/system/enterprise-management'] },
+      // { label: '供应站管理', routerLink: ['/system/bottle-library'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
-      { label: '政府用户管理', routerLink: ['/system/system-user'] },
+      { label: '账号管理', routerLink: ['/system/system-user'] },
       { label: '配置管理', routerLink: ['/system/setting'] },
     ]
   },
@@ -168,8 +168,6 @@ export const GovernmentMenus: MenuItem[] = [
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '企业管理', routerLink: ['/system/enterprise-management'] },
-      { label: '供应站管理', routerLink: ['/system/bottle-library'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
       { label: '配置管理', routerLink: ['/system/setting'] },
     ]
@@ -178,14 +176,6 @@ export const GovernmentMenus: MenuItem[] = [
     label: '审核管理',
     routerLink: ['/verification']
   },
-  {
-    label: '公众服务',
-    routerLink: ['/pub-service'],
-    items: [
-      { label: '调查问卷', routerLink: ['/pub-service/questionnaire'] },
-      { label: '安全宣传', routerLink: ['/pub-service/security-publicity'] }
-    ]
-  }
 ];
 
 
@@ -235,7 +225,6 @@ export const EnterpriseMenus: MenuItem[] = [
     routerLink: ['/system'],
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
-      { label: '供应站管理', routerLink: ['/system/bottle-library'] },
     ]
   },
   {

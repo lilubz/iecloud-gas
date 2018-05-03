@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, } from '@angular/core';
 import { AccountOpeningService, } from './account-opening.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { validator } from './validator';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
@@ -43,52 +44,62 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
     },
   ]; // 企业下拉框
 
+  legalRepresentative = '';
+  enterpriseName = '';
+  enterpriseNumber = '';
+  userName = '';
+  phoneNumber = '';
+  password = '';
+  confirmPassword = '';
 
-  constructor(private _service: AccountOpeningService,
+  constructor(
+    private _service: AccountOpeningService,
     private fb: FormBuilder,
-    private messageService: MessageService, ) { }
+    private messageService: MessageService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
     this.getEnterprise();
+    const queryParams = this.route.queryParams['value'];
+    // console.log(queryParams.legalRepresentative);
+    this.legalRepresentative = queryParams.legalRepresentative;
+    this.enterpriseName = queryParams.enterpriseName;
+    this.userName = queryParams.enterpriseName;
+    this.phoneNumber = queryParams.phoneNumber === 'null' ? '' : queryParams.phoneNumber;
+    this.enterpriseNumber = queryParams.enterpriseNumber;
   }
   addEnterpriseUser() {
-    if (this.formModel.valid) { // 通过了验证
-      // console.log(this.formModel.value);
-      const formData = new FormData();
-      for (const key in this.formModel.value) {
-        if (key) {
-          if (key === 'passwords') {
-            // formData.append(key, '');
-            for (const key1 in this.formModel.value[key]) {
-              if (key1 === 'password') {
-                formData.append(key1, this.formModel.value[key][key1]);
-              } else {
+    if (this.checkForm()) {
+      this._service.addEnterpriseUser({
+        username: this.userName,
+        password: this.password,
+        enterpriseNumber: this.enterpriseNumber,
+        legalRepresentative: this.legalRepresentative,
+        phoneNumber: this.phoneNumber,
 
-              }
-            }
-          } else {
-            formData.append(key, this.formModel.value[key]);
-          }
-        }
-      }
-      this._service.addEnterpriseUser(formData).then(data => {
+
+      }).then(data => {
         if (data.status === 0) {
           this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
         } else {
           this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
       });
-    } else { // 没有通过验证
-      for (const key in this.formModel.controls) {
-        if (this.formModel.controls[key].errors) {
-          const msg = this.formModel.controls[key].errors.msg;
-          this.messageService.add({ severity: 'warn', summary: '提示消息', detail: msg });
-          return;
-        }
-      }
     }
+  }
+  checkForm() {
+    if (!this.userName.trim()) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '用户名不能为空' });
+      return false;
+    } else if (!(this.password.length >= 6 && this.password.length <= 16)) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '密码长度为6-16位' });
+      return false;
+    } else if (this.password !== this.confirmPassword) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '密码和确认密码不一致' });
+      return false;
+    }
+    return true;
   }
   getEnterprise() {  // 获取企业列表
     this._service.getEnterpriseList({ regionId: '' }).then(data => {
@@ -109,10 +120,9 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
     });
   }
   reset() {
-    this.formModel.reset();
-    this.formModel.patchValue({
-      gender: ''
-    })
+    this.password = '';
+    this.confirmPassword = '';
+    this.userName = '';
   }
 
   ngOnDestroy() {

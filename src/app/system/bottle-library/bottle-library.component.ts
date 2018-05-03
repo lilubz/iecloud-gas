@@ -32,11 +32,16 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
       first: 0,
     };
   searchParams: {
+    regionId: string;
     supplyName: string;
     enterpriseName: string,
+    legalRepresentative: string,
   } = {
+      regionId: '',
       supplyName: '',
       enterpriseName: '',
+      legalRepresentative: '',
+
     };
   changeStatusPage: any;
   editBottleVisible = false;
@@ -130,8 +135,10 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
    */
   onSearch(page?) {
     const params = {
-      supplyName: this.searchParams.supplyName,
+      regionId: this.searchParams.regionId,
       enterpriseNumber: this.searchParams.enterpriseName,
+      supplyStationName: this.searchParams.supplyName,
+      legalRepresentative: this.searchParams.legalRepresentative,
       pageNumber: 1,
       pageSize: 40
     };
@@ -259,29 +266,21 @@ export class BottleLibraryComponent implements OnInit, OnDestroy {
    * 账号状态变化
    */
   changeStatus(status) {
-    if (!status.isfreezed) {
-      this._service.freezeAccount({ supplyStationNumber: status.supplyStationNumber }).then(data => {
-        if (data.status === 0) {
+    this._service.changeFreeze({ userid: status.userId }).then(data => {
+      if (data.status === 0) {
+        if (!status.isfreezed) {
+          this.onSearch();
           this.messageService.add({ severity: 'success', summary: '提示信息', detail: '冻结账号成功' });
-          this.onSearch(this.changeStatusPage);
         } else {
-          this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
-        }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
-      });
-    } else {
-      this._service.createAccount({ supplyStationNumber: status.supplyStationNumber }).then(data => {
-        if (data.status === 0) {
+          this.onSearch();
           this.messageService.add({ severity: 'success', summary: '提示信息', detail: '启用账号成功' });
-          this.onSearch(this.changeStatusPage);
-        } else {
-          this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
-      });
-    }
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
+      }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
+    });
   }
   /**
    * 验证信息是否填写

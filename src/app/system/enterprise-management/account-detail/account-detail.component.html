@@ -8,14 +8,29 @@
       <label for="" class="search-label">所在区域</label>
       <p-dropdown [options]="areaDrop" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
     </div>
-    <div class="ui-g-12 ui-lg-12 ui-xl-4">
+    <!-- <div class="ui-g-12 ui-lg-12 ui-xl-4">
       <label for="" class="search-label">许可证号</label>
       <input type="text" class="textInput" [(ngModel)]="searchParams.licese" maxlength="20" pInputText>
-    </div>
+    </div> -->
     <div class="ui-g-12 ui-lg-12 ui-xl-4">
-      <label for="" class="search-label">所属企业</label>
+      <label for="" class="search-label">企业名称</label>
       <input type="text" class="textInput" [(ngModel)]="searchParams.enterpriseName" maxlength="20" pInputText>
     </div>
+    <div class="ui-g-12 ui-lg-12 ui-xl-4">
+      <label for="" class="search-label">管理员账号</label>
+      <input type="text" class="textInput" [(ngModel)]="searchParams.username" maxlength="20" pInputText>
+    </div>
+    <div class="ui-g-12 ui-lg-12 ui-xl-4">
+      <label for="" class="search-label">负责人名称</label>
+      <input type="text" class="textInput" [(ngModel)]="searchParams.legalRepresentative" maxlength="20" pInputText>
+    </div>
+
+
+
+
+
+
+
     <div class="ui-g-12">
       <button pButton type="button" label="查询" class="searchBtn" (click)="searchAccount()"></button>
     </div>
@@ -30,12 +45,14 @@
           <span>{{index+1}}</span>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'150px'}" field="enterpriseName" header="所属企业"></p-column>
+      <p-column [style]="{'width':'150px'}" field="enterpriseName" header="企业名称"></p-column>
       <p-column [style]="{'width':'150px'}" field="dangerousLicense" header="许可证号"></p-column>
       <p-column [style]="{'width':'150px'}" field="regionName" header="所在区域"></p-column>
-      <p-column [style]="{'width':'150px'}" field="userName" header="管理员">
+      <p-column [style]="{'width':'150px'}" field="legalRepresentative" header="负责人"></p-column>
+      <p-column [style]="{'width':'150px'}" field="phoneNumber" header="联系方式"></p-column>
+      <p-column [style]="{'width':'150px'}" field="userName" header="管理员账号">
         <ng-template pTemplate="header">
-          管理员
+          管理员账号
           <gas-explanation tooltip="该企业账号的管理人员" position="bottom"></gas-explanation>
         </ng-template>
       </p-column>
@@ -46,7 +63,10 @@
       </p-column>
       <p-column [style]="{'width':'150px'}" header="操作">
         <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
-          <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
+          <div *ngIf="data.userName">
+            <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
+          </div>
+          <button pButton type="button" *ngIf="!data.userName" label="新增管理员账号" [routerLink]="['../account-open']" [queryParams]="{legalRepresentative:data.legalRepresentative,enterpriseName:data.enterpriseName,userName:data.userName,phoneNumber:data.phoneNumber,enterpriseNumber:data.enterpriseNumber}"></button>
         </ng-template>
       </p-column>
       <ng-template pTemplate="emptymessage">

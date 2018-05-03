@@ -12,6 +12,6 @@ export class AccountOpeningService {
   }
 
   addEnterpriseUser(params: any): Promise<any> {
-    return this.httpService.formDataPostRequest(API.addSystemCorpUser, params);
+    return this.httpService.formPostRequest(API.addSystemCorpUser, params);
   }
 }
