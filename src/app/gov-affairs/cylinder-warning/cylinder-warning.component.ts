@@ -124,7 +124,7 @@ export class CylinderWarningComponent implements OnInit {
     this.visible = true;
     this.formModelSet.fullCount = this.selectedRowData.gcThresholdFull;
     this.formModelSet.emptyCount = this.selectedRowData.gcThresholdEmpty;
-    this.formModelSet.describe = this.selectedRowData.settingReason;
+    this.formModelSet.describe = this.selectedRowData.settingReason || '';
   }
   getDataTableList(params?) {
     this.loading = true;
