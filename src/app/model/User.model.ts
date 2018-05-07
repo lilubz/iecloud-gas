@@ -14,4 +14,6 @@ export class User {
   userId?: string; // 用户id
   username?: string; // 用户名
   roleType?: number; // 用户角色类型
+  enterpriseName?: string; // 企业名称
+  enterpriseNumber?: number; // 企业编码
 }

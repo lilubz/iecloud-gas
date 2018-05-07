@@ -4,10 +4,14 @@ import {
   Injectable, Inject
 } from '@angular/core';
 import { Headers } from '@angular/http';
+import { UserStateService } from '../../core/userState.service';
+import { User } from '../../model/User.model';
 
 @Injectable()
 export class CylinderInfoService {
-  constructor(private HttpService: HttpService) { }
+  constructor(private HttpService: HttpService,
+    private userStateService: UserStateService, ) { }
+  private user: User
   // 验证气瓶编码是否存在
   // querySingle(params: any): Promise<any> {
   //   return this.HttpService.formPostRequest(this.API.queryCustomerDetail, params)
@@ -58,6 +62,12 @@ export class CylinderInfoService {
   addInformation(params: any): Promise<any> {
     return this.HttpService
       .formDataPostRequest(API.insertGCInfoBasic, params);
+  }
+  // 获取后三位企业编码
+  transformEnterpriseNumber() {
+    this.user = this.userStateService.getUser();
+    const len = this.user.enterpriseNumber.toString().length;
+    return this.user.enterpriseNumber.toString().substring(len - 3, len);
   }
 
   private handleError(error: any): Promise<any> {
