@@ -239,7 +239,7 @@ export const API = {
   'supplyStationSendAndReceiveCount':
     URL + 'statisticalQuery/gasCylinders/supplyStationSendAndReceiveCount.do',
   'dispatcherHas': URL + 'statisticalQuery/gasCylinders/dispatcherHas.do',
-  'dispatcherStatisyical': URL + 'statisticalQuery/gasCylinders/dispatcherStatisyical.do',
+  'dispatcherStatistical': URL + 'statisticalQuery/gasCylinders/dispatcherStatistical.do',
   'gcUserHas': URL + 'statisticalQuery/gasCylinders/gcUserHas.do',
   'countTransaction': URL + 'corpBusiness/collaborative/countTransaction.do',
   'BusinessInformation': URL + 'statisticalQuery/corp/statistical.do',

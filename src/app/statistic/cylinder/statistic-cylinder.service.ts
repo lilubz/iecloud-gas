@@ -91,7 +91,7 @@ export class StatisticCylinderService {
    * @param params
    */
   getDeliveryStatistic(params: { regionId: string, range: string, resultType?: string }): Promise<any> {
-    return this.httpService.getRequest(API.dispatcherStatisyical, params);
+    return this.httpService.getRequest(API.dispatcherStatistical, params);
   }
 
   listGcNewAddCount(params: { type: string, regionId?: string, beginTime: string, endTime: string, resultType?: string }): Promise<any> {
