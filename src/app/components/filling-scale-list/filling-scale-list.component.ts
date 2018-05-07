@@ -62,9 +62,7 @@ export class FillingScaleListComponent implements OnInit {
     this.onPageChange = (event) => {
       this.pageSize = event.rows;
       this.pageNumber = event.first / event.rows + 1;
-      setTimeout(() => {
-        this.getBalanceList();
-      }, 0);
+      this.getBalanceList();
     };
   }
 

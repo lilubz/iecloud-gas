@@ -7,6 +7,5 @@ export class ScaleVO {
   balanceNumber;
   specification;
   remark;
-  createTime;
-  updateTime;
+  balanceEquipmentManufacturer;
 }

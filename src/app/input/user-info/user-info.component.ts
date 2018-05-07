@@ -1,6 +1,6 @@
 import { DashboardService } from './../../delivery/dashboard/dashboard.service';
 import { API } from './../../common/api';
-import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,6 +21,7 @@ import * as moment from 'moment';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
+  @ViewChild('OtherImageUpload') OtherImageUpload: ElementRef;
   zh = zh_CN;
   importGcUserInfoUrl = API.importGcUserInfo;
 
@@ -46,7 +47,8 @@ export class UserInfoComponent implements OnInit {
   certificateAddress = ''; // 证件地址
   certificateDetailAddress = ''; // 证件详细地址
   deliveryRegionId; // 配送区域id
-
+  constractBeginTime: Date;
+  constractEndTime: Date;
   constructor(
     private userStateService: UserStateService,
     private userInfoService: UserInfoService,
@@ -73,23 +75,26 @@ export class UserInfoComponent implements OnInit {
     this.certificateAddress = '';
     this.certificateDetailAddress = '';
     this.deliveryRegionId = '';
+    this.constractBeginTime = null;
+    this.constractEndTime = null;
   }
 
   selectCustomerType() {
     this.customer.certificateName = this.customer.userTypeId === this.customerTypes[0].value ? '身份证' : '营业执照';
   }
 
-  save(IDImageUpload: any, OtherImageUpload: any) {
+  save(IDImageUpload: any) {
+    console.log(this.OtherImageUpload.nativeElement.files[0]);
     this.customer.gcCorpUserName = this.customer.userName; // 企业用户名称等于输入的用户名
     this.customer.identity = IDImageUpload.files;
-    this.customer.others = OtherImageUpload.files;
+    this.customer.others = this.OtherImageUpload.nativeElement.files[0] || '';
     this.customer.certificateAddress = this.certificateAddress + this.certificateDetailAddress;
     this.customer.deliveryRegionId = this.deliveryRegionId;
     if (this.checkForm()) {
       const formData = new FormData();
       for (const key in this.customer) {
         if (key) {
-          if (key === 'identity' || key === 'others') {
+          if (key === 'identity') {
             for (const file of this.customer[key]) {
               formData.append(key, file);
             }
@@ -104,7 +109,7 @@ export class UserInfoComponent implements OnInit {
           this.showMessage('success', '保存成功', data.msg);
           this.formInit();
           IDImageUpload.clear();
-          OtherImageUpload.clear();
+          this.OtherImageUpload.nativeElement.value = null;
         } else {
           this.showMessage('warn', '保存失败', data.msg);
         }
@@ -119,29 +124,29 @@ export class UserInfoComponent implements OnInit {
   checkForm(): boolean {
     console.log(this.customer);
     console.log(this.deliveryRegionId);
-    if (this.customer.userName.trim() === '') {
+    if (!this.customer.userName) {
       this.showMessage('warn', '', '请填写客户姓名！');
       return false;
-    } else if (this.customer.principal.trim() === '') {
+    } else if (!this.customer.principal) {
       this.showMessage('warn', '', '请填写姓名！');
       return false;
-    } else if (this.customer.certificateId.trim() === '') {
+    } else if (!this.customer.certificateId) {
       this.showMessage('warn', '', '请填写证件号码！');
       return false;
-    } else if (this.certificateAddress.trim() === '' || this.certificateDetailAddress.trim() === '') {
+    } else if (!this.certificateAddress || !this.certificateDetailAddress) {
       this.showMessage('warn', '', '请填写完整的证件地址信息！');
       return false;
-    } else if (this.customer.deliveryAddress.trim() === '' || this.deliveryRegionId.trim() === '') {
+    } else if (!this.customer.deliveryAddress || !this.deliveryRegionId) {
       this.showMessage('warn', '', '请填写完整的居住地址信息！');
       return false;
-    } else if (this.customer.phone.trim() === '') {
+    } else if (!this.customer.phone) {
       this.showMessage('warn', '', '请填写联系电话！');
       return false;
-    } else if (this.customer.identity.length <= 0) {
+    } else if (this.customer.identity.length == 0) {
       this.showMessage('warn', '', '请选择证件图片！');
       return false;
-    } else if (this.customer.identity.length > 2 || this.customer.others.length > 2) {
-      this.showMessage('warn', '', '最多上传文件两张图片！');
+    } else if (this.customer.identity.length > 2) {
+      this.showMessage('warn', '', '证件信息最多上传文件两张图片！');
       return false;
     }
 

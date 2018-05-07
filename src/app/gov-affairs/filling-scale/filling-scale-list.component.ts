@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: 'filling-scale-list',
-  templateUrl: './filling-scale-list.component.html',
-  styleUrls: ['./filling-scale-list.component.scss'],
+  template: '<gas-filling-scale-list></gas-filling-scale-list>'
 })
 export class FillingScaleListComponent implements OnInit {
 

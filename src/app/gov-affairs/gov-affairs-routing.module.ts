@@ -16,7 +16,7 @@ import { TimeoutSearchComponent } from './collaborative/timeout-search/timeout-s
 import { MassesReportComponent } from './collaborative/masses-report/masses-report.component';
 import { AnalysisComponent } from './report/analysis/analysis.component';
 import { FillingScaleComponent } from './filling-scale/filling-scale.component';
-import { FillingScaleListComponent } from './filling-scale/filling-scale-list/filling-scale-list.component';
+import { FillingScaleListComponent } from './filling-scale/filling-scale-list.component';
 import { LockScaleHistoryComponent } from './filling-scale/lock-scale-history/lock-scale-history.component';
 import { SetScaleRuleComponent } from './filling-scale/set-scale-rule/set-scale-rule.component';
 

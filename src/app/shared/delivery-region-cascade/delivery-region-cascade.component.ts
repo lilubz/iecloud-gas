@@ -10,14 +10,21 @@ import { SelectItem } from 'primeng/primeng';
 export class DeliveryRegionCascadeComponent implements OnInit {
   // 第一步：获取用户设置的街道id，并解析出区域id
   @Input() set deliveryRegionId(regionId: string) {
-    if (regionId && this.selectedStreetRegionId != regionId) {
-      this.selectedStreetRegionId = regionId.toString();
-      this.selectedCountyRegionId = '330' + this.selectedStreetRegionId.substring(0, 3);
-      // 鹿城区、龙湾区、瓯海区属于市辖区
-      if (this.selectedCountyRegionId == '330302' || this.selectedCountyRegionId == '330303' ||
-        this.selectedCountyRegionId == '330304') {
-        this.selectedUrbanDistrict = this.selectedCountyRegionId;
-        this.selectedCountyRegionId = '330301';
+    regionId = regionId || '';
+    if (this.selectedStreetRegionId != regionId) {
+      if (regionId) {
+        this.selectedStreetRegionId = regionId.toString();
+        this.selectedCountyRegionId = '330' + this.selectedStreetRegionId.substring(0, 3);
+        // 鹿城区、龙湾区、瓯海区属于市辖区
+        if (this.selectedCountyRegionId == '330302' || this.selectedCountyRegionId == '330303' ||
+          this.selectedCountyRegionId == '330304') {
+          this.selectedUrbanDistrict = this.selectedCountyRegionId;
+          this.selectedCountyRegionId = '330301';
+        }
+      } else {
+        this.selectedCountyRegionId = '';
+        this.selectedUrbanDistrict = '';
+        this.selectedStreetRegionId = '';
       }
       this.init();
     }

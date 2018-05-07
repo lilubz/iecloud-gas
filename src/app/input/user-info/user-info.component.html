@@ -23,7 +23,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input type="text" [(ngModel)]="customer.userName" pInputText placeholder="客户名称" maxlength="50" required>
+              <input type="text" [(ngModel)]="customer.userName" pInputText placeholder="客户名称" maxlength="50">
             </div>
           </div>
           <div class="ui-g-12">
@@ -43,7 +43,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input type="text" [(ngModel)]="customer.principal" pInputText placeholder="姓名" maxlength="50" required>
+              <input type="text" [(ngModel)]="customer.principal" pInputText placeholder="姓名" maxlength="50">
             </div>
           </div>
           <div class="ui-g-12">
@@ -53,7 +53,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input type="text" [(ngModel)]="customer.certificateId" pInputText placeholder="证件号码" maxlength="20" required>
+              <input type="text" [(ngModel)]="customer.certificateId" pInputText placeholder="证件号码" maxlength="20">
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@
             [county]="customer.certificateId.substring(0,6)" (onSelect)="selectIDAddress($event)"></gas-districts>
         </div>
         <div class="ui-g-10 ui-xl-6 ui-g-offset-2">
-          <input type="text" [(ngModel)]="certificateDetailAddress" pInputText placeholder="证件地址" maxlength="50" required>
+          <input type="text" [(ngModel)]="certificateDetailAddress" pInputText placeholder="证件地址" maxlength="50">
         </div>
       </div>
       <hr>
@@ -126,17 +126,17 @@
         </div>
         <div class="ui-g-10 ui-g-nopad">
           <div class="ui-g-3 ui-xl-2">
-            <input type="text" pInputText placeholder="浙江省" disabled style="width:100p;">
+            <input type="text" pInputText value="浙江省" disabled style="width:100px;">
           </div>
           <div class="ui-g-3 ui-xl-2">
-            <input type="text" pInputText placeholder="温州市" disabled>
+            <input type="text" pInputText value="温州市" disabled>
           </div>
           <div class="ui-g-6">
             <gas-delivery-region-cascade [(deliveryRegionId)]="deliveryRegionId"></gas-delivery-region-cascade>
           </div>
         </div>
         <div class="ui-g-10 ui-xl-6">
-          <input [(ngModel)]="customer.deliveryAddress" type="text" pInputText placeholder="详细地址" maxlength="50" required>
+          <input [(ngModel)]="customer.deliveryAddress" type="text" pInputText placeholder="详细地址" maxlength="50">
         </div>
       </div>
       <!-- <div class="ui-g-6 ui-g-nopad">
@@ -159,7 +159,7 @@
             </span>
           </div>
           <div class="ui-g-9 ui-g-nopad">
-            <input type="text" [(ngModel)]="customer.phone" pattern="[0-9]{7,11}" placeholder="联系电话" pInputText maxlength="11" required>
+            <input type="text" [(ngModel)]="customer.phone" pattern="[0-9]{7,11}" placeholder="联系电话" pInputText maxlength="11">
           </div>
         </div>
       </div>
@@ -181,7 +181,7 @@
             <span>合同编号</span>
           </div>
           <div class="ui-g-9 ui-g-nopad">
-            <input type="text" [(ngModel)]="customer.contractNo" pattern="[0-9]*" placeholder="合同编号" pInputText maxlength="10" required>
+            <input type="text" [(ngModel)]="customer.contractNo" pattern="[0-9]*" placeholder="合同编号" pInputText maxlength="10">
           </div>
         </div>
       </div>
@@ -191,9 +191,9 @@
             <span>合同开始日期</span>
           </div>
           <div class="ui-g-9 ui-g-nopad">
-            <p-calendar #contractBeginDate [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+            <p-calendar [(ngModel)]="constractBeginTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
               [showButtonBar]="true" (onSelect)="selectConstractBeginDate($event)" (onClearClick)="clearBeginDate($event)"
-              dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="contractEndDate.value" readonlyInput="true"></p-calendar>
+              dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="constractEndTime" readonlyInput="true"></p-calendar>
           </div>
         </div>
         <div class="ui-g-6">
@@ -201,9 +201,9 @@
             <span>合同截止日期</span>
           </div>
           <div class="ui-g-9 ui-g-nopad">
-            <p-calendar #contractEndDate [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+            <p-calendar [(ngModel)]="constractEndTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
               [showButtonBar]="true" (onSelect)="selectConstractEndDate($event)" (onClearClick)="clearEndDate($event)" dateFormat="yy-mm-dd"
-              [locale]="zh" [showIcon]="false" [minDate]="contractBeginDate.value" readonlyInput="true"></p-calendar>
+              [locale]="zh" [showIcon]="false" [minDate]="constractBeginTime" readonlyInput="true"></p-calendar>
           </div>
         </div>
       </div>
@@ -230,15 +230,16 @@
             <span>用户安全供气协议书</span>
           </div>
           <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
-            <p-fileUpload #OtherImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
+            <input #OtherImageUpload type="file" accept="image/*">
+            <!-- <p-fileUpload  #OtherImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
               invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
               invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
               [showCancelButton]="false" previewWidth="50" [customUpload]="true">
-            </p-fileUpload>
+            </p-fileUpload> -->
           </div>
         </div>
       </div>
-      <button pButton type="submit" class="searchBtn" label="保存" (click)="save(IDImageUpload,OtherImageUpload)"></button>
+      <button pButton type="submit" class="searchBtn" label="保存" (click)="save(IDImageUpload)"></button>
     </div>
     <div class="ui-g-4 ui-g-nopad">
       <div class="ui-g-12">

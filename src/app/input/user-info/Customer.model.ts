@@ -16,7 +16,7 @@ export class Customer {
   contractEffectiveDate?= ''; // 合同开始日期
   contractDeadline?= ''; // 合同结束日期
   identity?: File[] = []; // 证件信息图片
-  others?: File[] = []; // 其它附件图片
+  others?: File; // 其它附件图片
   dispatcherNumber?= ''; // 配送工
   userIdentityCardNumber?= ''; // 用户卡编号
   // id?= ''; // 客户编码；客户唯一id

@@ -29,16 +29,7 @@
     <p-column field="enterpriseName" [style]="{'width':'15%'}" header="企业名称"></p-column>
     <p-column field="inflatableName" [style]="{'width':'15%'}" header="充装站点名称"></p-column>
     <p-column field="specification" header="规格说明"></p-column>
-    <p-column header="创建时间">
-      <ng-template let-rowData="rowData" pTemplate="body">
-        <span>{{rowData.createTime|date:"yyyy-MM-dd"}}</span>
-      </ng-template>
-    </p-column>
-    <p-column header="更新时间">
-      <ng-template let-rowData="rowData" pTemplate="body">
-        <span>{{rowData.updateTime|date:"yyyy-MM-dd"}}</span>
-      </ng-template>
-    </p-column>
+    <p-column field="balanceEquipmentManufacturer" header="生产厂家"></p-column>
     <p-column field="remark" header="备注"></p-column>
     <p-column header="操作" *ngIf="isShowOperation">
       <ng-template let-rowData="rowData" pTemplate="body">
