@@ -1,17 +1,18 @@
 import { Component, OnInit, OnDestroy, } from '@angular/core';
-import { AccountOpeningService, } from './account-opening.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { validator } from './validator';
+import { validator } from '../../enterprise-management/account-opening/validator';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { UserStateService } from '../../../core/userState.service';
- @Component({
-  selector: 'gas-account-opening',
-  templateUrl: './account-opening.component.html',
-  styleUrls: ['./account-opening.component.scss']
+import { BottleLibraryService } from '../bottle-library.service';
+import { AccountOpeningService } from '../../enterprise-management/account-opening/account-opening.service';
+@Component({
+  selector: 'gas-bottle-open',
+  templateUrl: './bottle-open.component.html',
+  styleUrls: ['./bottle-open.component.scss']
 })
-export class AccountOpeningComponent implements OnInit, OnDestroy {
+export class BottleOpenComponent implements OnInit, OnDestroy {
   formModel = this.fb.group({
     realname: ['', [validator.realname]],
     username: ['', [validator.username]],
@@ -25,57 +26,42 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
     isfreezed: ['', [validator.isfreezed]],
     gender: [''],
   });
-  category: SelectItem[] = [  // 证件类别
-    {
-      label: '请选择',
-      value: ''
-    },
-    {
-      label: '身份证',
-      value: '身份证'
-    },
-  ];
-  enterpriseDrop: SelectItem[] = [
-    {
-      label: '请选择',
-      value: ''
-    },
-  ]; // 企业下拉框
-
   legalRepresentative = '';
   enterpriseName = '';
-  // enterpriseNumber = '';
+  enterpriseNumber = '';
+  supplyStationName = '';
   userName = '';
   phoneNumber = '';
   password = '';
   confirmPassword = '';
-
+  supplyStationNumber = '';
   constructor(
-    private _service: AccountOpeningService,
+    private _service: BottleLibraryService,
+    private accountOpeningService: AccountOpeningService,
     private fb: FormBuilder,
     private messageService: MessageService,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.getEnterprise();
     const queryParams = this.route.queryParams['value'];
     this.legalRepresentative = queryParams.legalRepresentative;
-    this.enterpriseName = queryParams.enterpriseName;
-    this.userName = queryParams.enterpriseName;
+    this.enterpriseName = queryParams.enterpriseName === 'null' ? '' : queryParams.enterpriseName;
+    this.userName = queryParams.supplyStationName;
     this.phoneNumber = queryParams.phoneNumber === 'null' ? '' : queryParams.phoneNumber;
-    // this.enterpriseNumber = queryParams.enterpriseNumber;
+    this.enterpriseNumber = queryParams.enterpriseNumber;
+    this.supplyStationName = queryParams.supplyStationName;
+    this.supplyStationNumber = queryParams.supplyStationNumber;
   }
   addEnterpriseUser() {
     if (this.checkForm()) {
-      this._service.addEnterpriseUser({
+      this._service.createAccount({
         username: this.userName,
         password: this.password,
-        // enterpriseNumber: this.enterpriseNumber,
         legalRepresentative: this.legalRepresentative,
         phoneNumber: this.phoneNumber,
-
-
+        enterpriseNumber: this.enterpriseNumber === 'null' ? '' : this.enterpriseNumber,
+        supplyStationNumber: this.supplyStationNumber,
       }).then(data => {
         if (data.status === 0) {
           this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
@@ -98,24 +84,7 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
     }
     return true;
   }
-  getEnterprise() {  // 获取企业列表
-    this._service.getEnterpriseList({ regionId: '' }).then(data => {
-      if (data.status === 0) {
-        const list = data.data.map((item) => {
-          return {
-            label: item.enterpriseName,
-            value: item.enterpriseNumber
-          };
-        });
-        this.enterpriseDrop = this.enterpriseDrop.concat(list);
-      } else {
-        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
-      }
 
-    }).catch(error => {
-      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
-    });
-  }
   reset() {
     this.password = '';
     this.confirmPassword = '';
@@ -125,3 +94,4 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 }
+

@@ -38,6 +38,9 @@ export class AddquestionComponent implements OnInit {
   }
   addQuestionNaireData() {
     this.getQuestionnaire = this.questionnaire;
+    if ( !this.questionnaire) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入问卷名称' });
+    }
 
   }
 

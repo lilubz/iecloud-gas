@@ -20,7 +20,7 @@ export class BottleLibraryService {
     return this.httpService.formDataPostRequest(API.updateCorpSupplyStation, params);
   }
   createAccount(params: any): Promise<any> {
-    return this.httpService.getRequest(API.createAccount, params);
+    return this.httpService.formPostRequest(API.createAccount, params);
   }
   freezeAccount(params: any): Promise<any> {
     return this.httpService.getRequest(API.freezeAccount, params);

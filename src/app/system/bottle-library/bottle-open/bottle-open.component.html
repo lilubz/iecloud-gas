@@ -2,16 +2,21 @@
   <div style="min-width: 450px;">
     <div class="ui-g-8">
       <h2 class="title">
-        企业管理账号创建
+        供应站账号创建
       </h2>
     </div>
     <form (submit)="addEnterpriseUser()" (reset)="reset()">
       <div class="ui-g-8">
-        <!-- 用户归属企业 -->
+          <div class="ui-g-12 ui-g-offset-3">
+              <div class="inputgroup">
+                <label for="" class="search-label">站点名称
+                </label>
+                <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="supplyStationName" name="supplyStationName" disabled>
+              </div>
+            </div>
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
             <label for="" class="search-label">归属企业
-              <!-- <b style="color:red;">*</b> -->
             </label>
             <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="enterpriseName" name="enterpriseName" disabled>
           </div>
@@ -19,7 +24,6 @@
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
             <label for="" class="search-label">负责人
-              <!-- <b style="color:red;">*</b> -->
             </label>
             <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="legalRepresentative" name="legalRepresentative"
               disabled>
@@ -29,16 +33,14 @@
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
             <label for="" class="search-label">用户名
-              <!-- <b style="color:red;">*</b> -->
             </label>
             <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="userName" name="userName">
-            <gas-explanation tooltip="用户名即登录系统的账号名称" position="bottom"></gas-explanation>
+            <gas-explanation tooltip="用户名默认站点名称，可修改" position="bottom"></gas-explanation>
           </div>
         </div>
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
-            <label for="" class="search-label">负责人手机
-              <!-- <b style="color:red;">*</b> -->
+            <label for="" class="search-label">联系方式
             </label>
             <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="phoneNumber" name="phoneNumber" disabled>
           </div>

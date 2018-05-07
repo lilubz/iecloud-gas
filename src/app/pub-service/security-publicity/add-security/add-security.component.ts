@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AddsecurityService } from './add-security.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
-
-
 @Component({
   selector: 'gas-add-security',
   templateUrl: './add-security.component.html',
@@ -28,6 +26,12 @@ export class AddSecurityComponent implements OnInit {
   ngOnInit() {
   }
   Addsecurity = () => {
+    if (!this.articleTitle) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '宣传标题不能为空' });
+    }
+    if (!this.articleDescription) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '宣传内容不能为空' });
+    }
     if (this.articleTitle && this.articleDescription) {
       this.AddsecurityService.uploadSecurityPublicityArticle({
         articleTitle: this.articleTitle,
@@ -37,6 +41,8 @@ export class AddSecurityComponent implements OnInit {
           if (data.status === 0) {
             this.messageService.add({ severity: 'success', summary: '', detail: data.data });
             this.router.navigate(['pub-service/security-publicity/security-list']);
+          } else {
+            this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
           }
         }
       ).catch(
@@ -45,5 +51,6 @@ export class AddSecurityComponent implements OnInit {
         }
       );
     }
+
   }
 }

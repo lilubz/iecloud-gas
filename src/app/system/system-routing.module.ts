@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SystemComponent } from './system.component';
 import { UserComponent } from './user/user.component';
 import { BottleLibraryComponent } from './bottle-library/bottle-library.component';
@@ -15,6 +14,8 @@ import { UserSearchComponent } from './system-user/user-search/user-search.compo
 import { UserOpeningComponent } from './system-user/user-opening/user-opening.component';
 import { SettingManagementComponent } from './setting-management/setting-management.component';
 import { GISSettingComponent } from './setting-management/GIS-setting/GIS-setting.component';
+import { BottleOpenComponent } from './bottle-library/bottle-open/bottle-open.component';
+import { BottleListComponent } from './bottle-library/bottle-list/bottle-list.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,7 @@ const routes: Routes = [
         path: 'enterprise-management',
         component: EnterpriseManagementComponent,
         data: {
-          title: '企业管理'
+          title: '账号管理'
         },
         children: [
           {
@@ -51,7 +52,7 @@ const routes: Routes = [
             path: 'account-detail',
             component: AccountDetailComponent,
             data: {
-              title: '账号概览'
+              title: '企业账号概览'
             },
           },
           {
@@ -74,8 +75,29 @@ const routes: Routes = [
         path: 'bottle-library',
         component: BottleLibraryComponent,
         data: {
-          title: '供应站管理'
+          title: '账号管理'
         },
+        children: [
+          {
+            path: '',
+            redirectTo: 'bottle-list',
+            pathMatch: 'full'
+          },
+          {
+            path: 'bottle-open',
+            component: BottleOpenComponent,
+            data: {
+              title: '供应站账号开通'
+            },
+          },
+            {
+            path: 'bottle-list',
+            component: BottleListComponent,
+            data: {
+              title: '供应站账号概览'
+            },
+          }
+        ]
       },
       {
         path: 'gas-business-license',
@@ -88,7 +110,7 @@ const routes: Routes = [
         path: 'system-user',
         component: SystemUserComponent,
         data: {
-          title: '政府用户管理'
+          title: '账号管理'
         },
         children: [
           {
@@ -100,7 +122,7 @@ const routes: Routes = [
             path: 'user-search',
             component: UserSearchComponent,
             data: {
-              title: '账号概览'
+              title: '政府账号概览'
             },
           },
           {

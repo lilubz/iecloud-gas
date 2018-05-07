@@ -13,6 +13,8 @@ import { BottleLibraryService } from './bottle-library/bottle-library.service';
 import { GasBusinessLicenseComponent } from './gas-business-license/gas-business-license.component';
 import { SystemUserModule } from './system-user/system-user.module';
 import { SettingManagementModule } from './setting-management/setting-management.module';
+import { BottleOpenComponent } from './bottle-library/bottle-open/bottle-open.component';
+import { BottleListComponent } from './bottle-library/bottle-list/bottle-list.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,8 +28,9 @@ import { SettingManagementModule } from './setting-management/setting-management
     SystemComponent,
     UserComponent,
     BottleLibraryComponent,
-    GasBusinessLicenseComponent
-
+    GasBusinessLicenseComponent,
+    BottleOpenComponent,
+    BottleListComponent
   ],
   providers: [
     UserService,

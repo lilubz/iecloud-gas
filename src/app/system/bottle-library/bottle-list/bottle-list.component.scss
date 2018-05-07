@@ -1,0 +1,41 @@
+
+  .title {
+      color: #3186dc;
+      text-align: center;
+      white-space: nowrap;
+  }
+  .textInput {
+      // width: 40%;
+      width: calc(100% - 100px);
+      max-width: 300px;
+      min-width: 180px;
+  } // .searchBtn {
+  //   margin-top: 10px;
+  //   margin-left: 15px;
+  //   height: 45px;
+  //   width: 96px;
+  //   font-size: 1em;
+  //   border-radius: 4px;
+  //   background: #3186dc;
+  //   border: 1px solid #3186dc;
+  // }
+  .searchBtn {
+      margin-top: 10px;
+      margin-left: 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      height: 36px;
+      width: 80px;
+      background: #3186dc;
+  }
+  .dialogtitle {
+      background: #3399ff;
+      margin: 0;
+      color: white;
+      padding: 10px;
+  }
+
+
+.main {
+  left: 350px;
+}

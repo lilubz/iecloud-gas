@@ -1,23 +1,19 @@
-import { RoleType } from './../../common/RoleType';
+import { RoleType } from './../../../common/RoleType';
 import { Component, OnInit, OnDestroy, Inject, } from '@angular/core';
-import { SupplyStionService, } from './supply-station.service';
+import { BottleLibraryService, } from '.././bottle-library.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { CommonRequestService } from '../../core/common-request.service';
+import { CommonRequestService } from '../../../core/common-request.service';
 import { SelectItem } from 'primeng/components/common/api';
-import { zh_CN } from '../../common/date-localization';
-import { AddBottle } from './addBottle.model';
-import { EditBottle } from './editBottle.model';
+import { zh_CN } from '../../../common/date-localization';
+import { AddBottle } from '.././addBottle.model';
+import { EditBottle } from '.././editBottle.model';
 import * as moment from 'moment';
-
-
 @Component({
-  selector: 'gas-supply-station',
-  templateUrl: './supply-station.component.html',
-  styleUrls: ['./supply-station.component.scss'],
-  providers: [SupplyStionService]
+  selector: 'gas-bottle-list',
+  templateUrl: './bottle-list.component.html',
+  styleUrls: ['./bottle-list.component.scss']
 })
-export class SupplyStationComponent implements OnInit, OnDestroy {
-
+export class BottleListComponent implements OnInit, OnDestroy {
   RoleType = RoleType;
   cn = zh_CN;
   bottleLibraryList: any[] = [];
@@ -35,31 +31,20 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       first: 0,
     };
   searchParams: {
-    regionId: string,
+    regionId: string;
+    supplyName: string;
     enterpriseName: string,
-    supplyName: string,
-    person: string,
-    supplyLicenseNum: string,
-    startTime?: string,
-    endTime?: string,
+    legalRepresentative: string,
   } = {
       regionId: '',
-      enterpriseName: '',
       supplyName: '',
-      person: '',
-      supplyLicenseNum: '',
-      startTime: '',
-      endTime: '',
+      enterpriseName: '',
+      legalRepresentative: '',
+
     };
   changeStatusPage: any;
   editBottleVisible = false;
   addBottleVisible = false;
-  changeBottleVisible = false;
-  change = {
-    supplyStationName: '',
-    enterpriseNumber: '',
-    supplyStationNumber: '',
-  };
   showBtn = true;
   areaDrop: SelectItem[] = [
     {
@@ -68,18 +53,6 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     }
   ];
   enterpriseDrop: SelectItem[] = [
-    {
-      label: '全部',
-      value: '',
-    }
-  ];
-  changeEnterpriseDrop: SelectItem[] = [
-    {
-      label: '请点击选择',
-      value: '',
-    }
-  ];
-  area: SelectItem[] = [
     {
       label: '全部',
       value: '',
@@ -97,7 +70,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
   createAccountShow = true;
   today = new Date();
   constructor(
-    private _service: SupplyStionService,
+    private _service: BottleLibraryService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
   ) { }
@@ -106,7 +79,6 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this.addForm = new AddBottle();
     this.getEnterprises();
     this.getRegions();
-    this.getAreaList();
   }
 
   getRegions() {
@@ -132,31 +104,13 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this._service.getCylinderSearchOpt({}).then(data => {
       if (data.status === 0) {
         this.enterpriseDrop = this.enterpriseDrop.concat(data.data.enterpriseName);
-        this.changeEnterpriseDrop = this.changeEnterpriseDrop.concat(data.data.enterpriseName);
       } else {
         this.enterpriseDrop = this.enterpriseDrop.concat(this.default);
-        this.changeEnterpriseDrop = this.changeEnterpriseDrop.concat(this.default);
         this.messageService.add({ severity: 'warn', summary: '错误提示', detail: data.msg });
       }
     }).catch(error => {
       this.enterpriseDrop = this.enterpriseDrop.concat(this.default);
-      this.changeEnterpriseDrop = this.changeEnterpriseDrop.concat(this.default);
       this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
-    });
-  }
-  getAreaList() {
-    this.commonRequestService.getRegions().then(data => {
-      if (data.status === 0) {
-        const list = data.data.map((item) => {
-          return {
-            label: item.regionName,
-            value: item.regionId
-          };
-        });
-        this.area = this.area.concat(list);
-      } else {
-
-      }
     });
   }
   /**
@@ -182,11 +136,8 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     const params = {
       regionId: this.searchParams.regionId,
       enterpriseNumber: this.searchParams.enterpriseName,
-      supplyName: this.searchParams.supplyName,
-      principal: this.searchParams.person,
-      supplyLicenseNum: this.searchParams.supplyLicenseNum,
-      releaseTimeStart: this.searchParams.startTime || '',
-      releaseTimeEnd: this.searchParams.endTime || '',
+      supplyStationName: this.searchParams.supplyName,
+      legalRepresentative: this.searchParams.legalRepresentative,
       pageNumber: 1,
       pageSize: 40
     };
@@ -225,12 +176,6 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
   }
   showAddDialog() {
     this.addBottleVisible = true;
-  }
-  showChangeDialog = (data) => {
-    console.log(data);
-    this.changeBottleVisible = true;
-    this.change.supplyStationName = data.supplyStationName;
-    this.change.supplyStationNumber = data.supplyStationNumber;
   }
   AddCorpSupplyStation() {
     if (this.checkForm2()) {
@@ -304,70 +249,38 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
 
     }
   }
-  changeEnterpriseNumber = () => {
-    if (this.change.enterpriseNumber) {
-      this._service.updateTheEnterpriseOfCorpSupplyStation({
-        supplyStationNumber: this.change.supplyStationNumber,
-        enterpriseNumber: this.change.enterpriseNumber,
-      }).then(
-        data => {
-          if (data.status === 0) {
-            this.changeBottleVisible = false;
-            this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
-            this.onSearch();
-          } else {
-            this.changeBottleVisible = false;
-            this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
-          }
-        }
-      );
-    } else {
-      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '请选择企业' });
-    }
+  createAccount(param) {
+    this._service.createAccount({ supplyStationNumber: param.supplyStationNumber }).then(data => {
+      if (data.status === 0) {
+        this.onSearch(this.changeStatusPage);
+        this.messageService.add({ severity: 'success', summary: '提示信息', detail: '分配账号成功' });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
+      }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
+    });
   }
-  /**
-   * 分配账号
-   */
-  // createAccount(param) {
-  //   this._service.createAccount({ supplyStationNumber: param.supplyStationNumber }).then(data => {
-  //     if (data.status === 0) {
-  //       this.onSearch(this.changeStatusPage);
-  //       this.messageService.add({ severity: 'success', summary: '提示信息', detail: '分配账号成功' });
-  //     } else {
-  //       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
-  //     }
-  //   }).catch(error => {
-  //     this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
-  //   });
-  // }
   /**
    * 账号状态变化
    */
-  // changeStatus(status) {
-  //   if (!status.isfreezed) {
-  //     this._service.freezeAccount({ supplyStationNumber: status.supplyStationNumber }).then(data => {
-  //       if (data.status === 0) {
-  //         this.messageService.add({ severity: 'success', summary: '提示信息', detail: '冻结账号成功' });
-  //         this.onSearch(this.changeStatusPage);
-  //       } else {
-  //         this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
-  //       }
-  //     }).catch(error => {
-  //       this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
-  //     });
-  //   } else {
-  //     this._service.createAccount({ supplyStationNumber: status.supplyStationNumber }).then(data => {
-  //       if (data.status === 0) {
-  //         this.messageService.add({ severity: 'success', summary: '提示信息', detail: '启用账号成功' });
-  //         this.onSearch(this.changeStatusPage);
-  //       } else {
-  //         this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
-  //       }
-  //     }).catch(error => {
-  //       this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
-  //     });
-  //   }
-  // }
+  changeStatus(status) {
+    this._service.changeFreeze({ userid: status.userId }).then(data => {
+      if (data.status === 0) {
+        if (!status.isfreezed) {
+          this.onSearch();
+          this.messageService.add({ severity: 'success', summary: '提示信息', detail: '冻结账号成功' });
+        } else {
+          this.onSearch();
+          this.messageService.add({ severity: 'success', summary: '提示信息', detail: '启用账号成功' });
+        }
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
+      }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
+    });
+  }
   /**
    * 验证信息是否填写
    */
@@ -386,7 +299,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
       return false;
     } else if (!this.editForm.supplyLicenseNum.trim()) {
-      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '供应许可证编号不能为空' });
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '许可证编号不能为空' });
       return false;
     } else if (!this.editForm.issuingUnit.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '核发单位不能为空' });
@@ -417,7 +330,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
       return false;
     } else if (!this.addForm.supplyLicenseNum.trim()) {
-      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '供应许可证编号不能为空' });
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '许可证编号不能为空' });
       return false;
     } else if (!this.addForm.issuingUnit.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '核发单位不能为空' });
@@ -435,22 +348,6 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  /**
-   * 时间转换
-  */
-  selectedStartTime(event) {
-    this.searchParams.startTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
-  }
-  selectedEndTime(event) {
-    this.searchParams.endTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
-  }
-  clearStartTime(event) {
-    this.searchParams.startTime = '';
-  }
-  clearEndTime(event) {
-    this.searchParams.endTime = '';
-  }
   ngOnDestroy() {
   }
-
 }
