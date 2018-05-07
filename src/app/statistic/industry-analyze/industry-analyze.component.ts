@@ -101,7 +101,9 @@ export class IndustryAnalyzeComponent implements OnInit {
       ],
       yAxis: [
         {
-          type: 'value'
+          type: 'value',
+          name: '充装量（瓶）',
+          nameLocation: 'end'
         }
       ],
       series: [
@@ -160,8 +162,10 @@ export class IndustryAnalyzeComponent implements OnInit {
           const currentMonth = new Date().getMonth() + 1;
           for (let i = 1; i <= currentMonth; i++) {
             const target = data.data.find((item, index) => item.number === (i + ''));
-            xData.push(ordinalArr[i] + '月');
-            yData.push(target.fillingCount);
+            if (target) {
+              xData.push(ordinalArr[i] + '月');
+              yData.push(target.fillingCount);
+            }
           }
         } else if (this.formModel.range === 'month') { // 查询的是月
           data.data.forEach((item, i) => {

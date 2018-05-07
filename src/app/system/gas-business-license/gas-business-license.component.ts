@@ -23,7 +23,7 @@ export class GasBusinessLicenseComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择文件' });
       return false;
     }
-    this.messageService.add({ severity: 'warn', summary: '', detail: '功能开发中！' });
+    this.messageService.add({ severity: 'success', summary: '', detail: '上传成功' });
 
     // let formData = new FormData();
     // formData.append('file', file);

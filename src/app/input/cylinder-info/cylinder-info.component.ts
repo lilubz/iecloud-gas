@@ -10,6 +10,7 @@ import { strictEqual } from 'assert';
 import { Message } from 'primeng/components/common/api';
 import { API } from '../../common/api';
 import * as moment from 'moment';
+import { User } from '../../model/User.model';
 
 @Component({
   selector: 'gas-cylinder-info',
@@ -30,8 +31,13 @@ export class CylinderInfoComponent implements OnInit {
   equipmentVarieties: SelectItem[] = [];
   fillingMedia: SelectItem[] = [];
   model: SelectItem[] = [];
-  lastTestUnit: SelectItem[] = [];
+  lastTestUnit: SelectItem[] = [{ label: "请选择", value: '' }];
   msgs: Message[] = [];
+  dropdown = {
+    default: [
+      { label: "请选择", value: '' }
+    ],
+  }
   // 气瓶录入数据
   cylinderInfo: {
     gasLabelNumber?: string;
@@ -82,10 +88,8 @@ export class CylinderInfoComponent implements OnInit {
       cylinderImage: [],
       innerDiameter: '1',
     };
-
   constructor(
     private _service: CylinderInfoService,
-    private userStateService: UserStateService,
   ) { }
 
   ngOnInit() {
@@ -98,8 +102,7 @@ export class CylinderInfoComponent implements OnInit {
     this.getlistGcSpecification();
     this.getlistInspection();
     this.getGcSpecification();
-    // this.selectedIntoStationDate(event);
-
+    this.cylinderInfo.gasLabelNumber = this._service.transformEnterpriseNumber();
   }
   searchCylinder(param?) {
     const params = {
@@ -196,14 +199,15 @@ export class CylinderInfoComponent implements OnInit {
   getlistInspection() {
     this._service.getListInspection('').then(data => {
       if (data.status === 0) {
-        const list = data.data.map((item) => {
+        this.lastTestUnit = this.dropdown.default.concat(data.data.map((item) => {
           return {
             label: item.inspectionOrganizationName,
             value: item.inspectionOrganizationNumber,
           };
-        });
-        this.lastTestUnit = list;
-        this.cylinderInfo.inspectionOrganizationName = this.lastTestUnit[0].value;
+        }));
+        // this.cylinderInfo.inspectionOrganizationName = this.lastTestUnit[0].value
+      } else {
+        this.lastTestUnit = this.dropdown.default;
       }
     });
   }
@@ -254,12 +258,9 @@ export class CylinderInfoComponent implements OnInit {
   clearNextTestDate(event) {
     this.cylinderInfo.nextInspectionTime = '';
   }
-  // onclear(event) {
-  //   event.files = [];
-  // }
+
   save(CylinderImage: any) {
     this.cylinderInfo.cylinderImage = CylinderImage.files;
-    // console.log(CylinderImage);
     if (this.checkForm()) {
       const formData = new FormData();
       // formData.append()
@@ -280,9 +281,7 @@ export class CylinderInfoComponent implements OnInit {
       }
       this._service.addInformation(formData).then((data) => {
         if (data.status === 0) {
-          this.showMessage('success', '添加成功', '继续');
-          // this.cylinderInfo = {};
-          this.ngOnInit();
+          this.showMessage('success', '提示信息', '添加成功');
           this.clearInfo();
           CylinderImage.clear();
 
@@ -301,27 +300,32 @@ export class CylinderInfoComponent implements OnInit {
     }
   }
   clearInfo() {
-    this.cylinderInfo.gasLabelNumber = '';
+    this.cylinderInfo.gasLabelNumber = this._service.transformEnterpriseNumber();
     this.cylinderInfo.serialNumber = '';
-    this.cylinderInfo.enterpriseCylinderCode = '';
     this.cylinderInfo.inspectionNumber = '';
   }
 
   checkForm(): boolean {
     // console.log(this.cylinderInfo);
-    if (!this.cylinderInfo.gasLabelNumber) {
+    if (!this.cylinderInfo.gasLabelNumber.trim()) {
       this.showMessage('warn', '提示信息', '气瓶条码不能为空');
       return false;
-    } else if (!this.cylinderInfo.serialNumber) {
+    } else if (!/^\d{10}$/.test(this.cylinderInfo.gasLabelNumber)) {
+      this.showMessage('warn', '提示信息', '请输入十位完整的气瓶条码');
+      return false;
+    } else if (!this.cylinderInfo.serialNumber.trim()) {
       this.showMessage('warn', '提示信息', '气瓶出厂编号不能为空');
       return false;
-    } else if (!this.cylinderInfo.enterpriseCylinderCode) {
+    }else if(!/^\d+$/.test(this.cylinderInfo.serialNumber)){
+      this.showMessage('warn', '提示信息', '气瓶出厂编号为纯数字');
+      return false;
+    } else if (!this.cylinderInfo.enterpriseCylinderCode.trim()) {
       this.showMessage('warn', '提示信息', '企业自有编号不能为空');
       return false;
-    } else if (!this.cylinderInfo.productNature) {
+    } else if (!this.cylinderInfo.productNature.trim()) {
       this.showMessage('warn', '提示信息', '产权性质不能为空');
       return false;
-    } else if (!this.cylinderInfo.enterpriseName) {
+    } else if (!this.cylinderInfo.enterpriseName.trim()) {
       this.showMessage('warn', '提示信息', '产权单位不能为空');
       return false;
     } else if (!this.cylinderInfo.manufacturingOrganizationName) {
