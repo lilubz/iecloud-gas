@@ -278,6 +278,7 @@ export const API = {
   'listQuestions': URL + 'publicService/questionnaire/listQuestions.do', // 获取某个问卷中问题列表
   'listCurrentQuestions': URL + 'publicService/questionnaire/listCurrentQuestions.do', // 获取当前最新问卷调查中的所有问题
   'listQuestionnaireResult': URL + 'publicService/questionnaire/listQuestionnaireResult.do', // 获取某个问卷的调查结果
+  'deleteQuestionnaire': URL + 'publicService/questionnaire/deleteQuestionnaire.do', // 删除调查问卷
   // 储气罐档案
   'listFillingGasTank': URL + 'gcFillingSupervise/listFillingGasTank.do',
 

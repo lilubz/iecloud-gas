@@ -13,6 +13,7 @@ import { PermissionGuard } from './permission-guard.service';
 import { FullScreenService } from './full-screen.service';
 import { CookieService } from './cookie.service';
 import { RedirectionPageService } from '../redirectionPage/redirectionPage.service';
+import { ConfirmationService } from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { RedirectionPageService } from '../redirectionPage/redirectionPage.servi
     AuthGuard,
     PermissionGuard,
     CommonRequestService,
+    ConfirmationService,
     HttpService,
     LoginService,
     MessageService,

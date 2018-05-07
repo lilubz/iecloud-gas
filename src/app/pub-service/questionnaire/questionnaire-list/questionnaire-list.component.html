@@ -30,10 +30,12 @@
         <ng-template let-col let-rowData="rowData" pTemplate="body">
           <!-- <a href="javascript:void(0);" (click)="viewStatistics()">查看统计</a> -->
           <button pButton type="button" label="查看问卷详情" [routerLink]="['../questionnaire-details', rowData.questionnaireId]"></button>
-          <button pButton type="button" label="查看统计结果" class="ui-button-secondary" [routerLink]="['../survey-result']" [queryParams]="{id:rowData.questionnaireId}"
-            style="margin-top: 10px;"></button>
+          <button pButton type="button" label="查看统计结果" class="ui-button-secondary" [routerLink]="['../survey-result']" [queryParams]="{id:rowData.questionnaireId}"></button>
+          <button pButton type="button" label="删除" class="ui-button-warning" (click)="confirmDelete(rowData.questionnaireId,rowData.questionnaireTitle)"></button>
         </ng-template>
       </p-column>
     </p-dataTable>
   </div>
 </div>
+
+<p-confirmDialog></p-confirmDialog>

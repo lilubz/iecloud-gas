@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { QuestionListService } from './question-list.service';
+import { ConfirmationService } from 'primeng/primeng';
 @Component({
   selector: 'gas-questionnaire-list',
   templateUrl: './questionnaire-list.component.html',
@@ -25,6 +26,7 @@ export class QuestionnaireListComponent implements OnInit {
   datas: any = [];
   constructor(
     private messageService: MessageService,
+    private confirmationService: ConfirmationService,
     private _service: QuestionListService,
   ) { }
 
@@ -55,8 +57,27 @@ export class QuestionnaireListComponent implements OnInit {
     })
   }
 
+  confirmDelete(questionnaireId, title) {
+    this.confirmationService.confirm({
+      message: `确认删除调查问卷 <b>${title}</b> ？`,
+      header: '删除问卷',
+      accept: () => {
+        this.deleteQuestionnaire(questionnaireId);
+      },
+      reject: () => {
 
+      }
+    });
+  }
 
-
-
+  deleteQuestionnaire(questionnaireId: number) {
+    this._service.deleteQuestionnaire({ questionnaireId: questionnaireId }).then(data => {
+      if (data.status === 0) {
+        this.query();
+        this.messageService.add({ severity: 'success', summary: '删除成功', detail: '' });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
+      }
+    });
+  }
 }

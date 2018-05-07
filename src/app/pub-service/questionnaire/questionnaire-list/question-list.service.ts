@@ -21,7 +21,8 @@ export class QuestionListService {
     return this.HttpService.getRequest(API.listQuestionnaireResult, params);
   }
 
+  deleteQuestionnaire(params?: { questionnaireId: number }): Promise<any> {
+    return this.HttpService.getRequest(API.deleteQuestionnaire, params);
+  }
+
 }
-
-
-
