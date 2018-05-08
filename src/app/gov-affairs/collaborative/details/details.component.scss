@@ -28,10 +28,11 @@
         line-height: 35px;
         height: 40px;
         text-align: center;
-        // color: white;
         word-break: break-all;
         box-sizing: border-box;
-        overflow: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .content:last-child {
         color: black;
