@@ -10,6 +10,6 @@
     <textarea [rows]="5" [cols]="30" [(ngModel)]="articleDescription" style="min-width:478px" pInputTextarea autoResize="autoResize" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></textarea>
     <br>
     <button pButton type="button" label="清空内容" (click)="articleDescription=null" class="float" style="margin-left:5px;"></button>
-    <button pButton type="button" label="提交" (click)="Addsecurity()" class="float"></button>
+    <button pButton type="button" label="提交" [disabled]="securitySubmit" (click)="Addsecurity()" class="float"></button>
   </div>
 </div>
