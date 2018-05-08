@@ -10,7 +10,6 @@ import { strictEqual } from 'assert';
 import { Message } from 'primeng/components/common/api';
 import { API } from '../../common/api';
 import * as moment from 'moment';
-import { User } from '../../model/User.model';
 
 @Component({
   selector: 'gas-cylinder-info',

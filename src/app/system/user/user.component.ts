@@ -1,9 +1,9 @@
 import { OrganizationType } from './../../common/OrganizationType';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { User } from './../../model/User.model';
 import { UserService } from './user.service';
 import { UserStateService } from './../../core/userState.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../common/User.model';
 
 @Component({
   selector: 'gas-user',
