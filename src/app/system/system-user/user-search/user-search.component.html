@@ -60,8 +60,11 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" header="操作">
           <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
-              <button pButton type="button" [label]="data.isfreezed?'启用账号':'冻结账号'" style="width:120px;margin-bottom:5px;" [ngClass]="{'ui-button-secondary':!data.isfreezed}"
-              (click)="changeStatus(data)"></button>
+              <!-- <button pButton type="button" [label]="data.isfreezed?'启用':'冻结'" style="width:60px;margin-bottom:5px;" [ngClass]="{'ui-button-secondary':data.isfreezed}"
+              (click)="changeStatus(data)"></button> -->
+              <div *ngIf="data.userName">
+                  <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
+                </div>
           </ng-template>
         </p-column>
         <ng-template pTemplate="emptymessage">

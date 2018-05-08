@@ -37,7 +37,7 @@
             <p-dropdown [options]="dropdown.status" [(ngModel)]="formModel.status" [style]="{'width':'180px'}" name="status"></p-dropdown>
           </div>
         </div>
-        <button class="searchBtn ui-g-12" pButton type="submit" class="searchBtn" label="搜索" style="margin-bottom:10px;"></button>
+        <button class="searchBtn ui-g-12" pButton type="submit" class="searchBtn" label="查询" style="margin-bottom:10px;"></button>
       </form>
       <div class="ui-g-12">
         <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"

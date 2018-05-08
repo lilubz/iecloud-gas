@@ -8,28 +8,28 @@
       <div class="ui-g-12">
         <div class="ui-g">
           <div class="ui-g-12 ui-lg-6">
-            <!-- <div class="inputgroup"> -->
-            <label for="" class="search-label">辖区</label>
-            <p-dropdown [options]="area" [(ngModel)]="searchParams.regionId" [style]="{'width':'180px'}"></p-dropdown>
-            <!-- </div> -->
+            <span class="inputgroup">
+              <label for="" class="search-label">辖区</label>
+            </span>
+            <p-dropdown [options]="area" [(ngModel)]="searchParams.regionId" [style]="{'width':'280px'}"></p-dropdown>
           </div>
           <div class="ui-g-12 ui-lg-6" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
-            <!-- <div class="inputgroup"> -->
-            <label for="" class="search-label">所属企业</label>
-            <p-dropdown [options]="enterpriseDrop" appendTo="body" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'180px'}"></p-dropdown>
-            <!-- </div> -->
+            <span class="inputgroup">
+              <label for="" class="search-label">所属企业</label>
+            </span>
+            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'280px'}"></p-dropdown>
           </div>
           <div class="ui-g-12 ui-lg-6">
-            <div class="inputgroup">
+            <span class="inputgroup">
               <label for="" class="search-label">站点名称</label>
-              <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText style="width:180px">
-            </div>
+            </span>
+            <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText style="width:280px">
           </div>
           <div class="ui-g-12 ui-lg-6">
             <span class="inputgroup">
               <label for="" class="search-label">负责人</label>
             </span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="" style="width:180px">
+            <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="" style="width:280px">
           </div>
           <div class="ui-g-12 ui-lg-6">
             <span class="inputgroup">
@@ -37,7 +37,7 @@
             </span>
             <p-calendar [locale]="cn" #start (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)" placeholder="2017-10-1"
               [showButtonBar]="true" [maxDate]="end.value" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
-              [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}">
+              [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'280px','display':'inline-block'}">
             </p-calendar>
             <gas-explanation tooltip="选择时间段按发证日期的时间间隔查询" position="bottom"></gas-explanation>
 
@@ -48,23 +48,23 @@
             </span>
             <p-calendar [locale]="cn" #end (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="start.value"
               placeholder="2017-12-29" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
-              [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
+              [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'280px','display':'inline-block'}"></p-calendar>
           </div>
           <div class="ui-g-12 ui-lg-6">
             <span class="inputgroup">
               <label for="" class="search-label">许可证编号</label>
             </span>
             <input type="text" class="textInput" [(ngModel)]="searchParams.supplyLicenseNum" maxlength="20" pInputText placeholder=""
-              style="width:180px">
+              style="width:280px">
           </div>
         </div>
       </div>
     </div>
     <div class="ui-g-12">
+      <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
 
       <button pButton *gasPermissionRole="[RoleType.Admin]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
 
-      <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
     </div>
 
     <div class="ui-g-12">
@@ -136,10 +136,10 @@
     </div>
   </div>
 
-  <p-dialog [visible]="editBottleVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
+  <p-dialog [visible]="editBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
     [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
     <h3 class="dialogtitle" style="text-align:center">编辑供应站信息</h3>
-    <div class="ui-g-12 " style="height:380px">
+    <div class="ui-g-12 " style="height:330px">
       <div class="ui-g-12 ui-md-6">
         <div class="inputgroup">
           <label for="" class="search-label">站点名称
@@ -153,7 +153,7 @@
           <label for="" class="search-label">所属区域
             <b style="color:red;">*</b>
           </label>
-          <p-dropdown [options]="areaDrop" [(ngModel)]="editForm.regionId" appendTo="body" [style]="{'width':'180px'}"></p-dropdown>
+          <p-dropdown [options]="areaDrop" [(ngModel)]="editForm.regionId" [style]="{'width':'180px'}"></p-dropdown>
         </div>
       </div>
       <div class="ui-g-6">
@@ -167,7 +167,7 @@
           <label for="" class="search-label">归属企业
             <b style="color:red;">*</b>
           </label>
-          <p-dropdown [options]="enterpriseDrop" [(ngModel)]="editForm.enterpriseNumber" appendTo="body" [style]="{'width':'180px'}"></p-dropdown>
+          <p-dropdown [options]="enterpriseDrop" [(ngModel)]="editForm.enterpriseNumber" [style]="{'width':'180px'}"></p-dropdown>
         </div>
       </div>
       <div class="ui-g-6">
@@ -257,7 +257,7 @@
   <p-dialog [visible]="addBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false
                   " [width]="800 " [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
     <h3 class="dialogtitle" style="text-align:center">新增供应站信息</h3>
-    <div class="ui-g-12 " style="height:400px">
+    <div class="ui-g-12 " style="height:330px">
       <div class="ui-g-12 ui-g-nopad">
         <div class="ui-g-12 ui-md-6">
           <div class="inputgroup">
@@ -272,7 +272,7 @@
             <label for="" class="search-label">所属区域
               <b style="color:red;">*</b>
             </label>
-            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" appendTo="body" [style]="{'width':'180px'}"></p-dropdown>
+            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" [style]="{'width':'180px'}"></p-dropdown>
           </div>
         </div>
         <div class="ui-g-12 ui-md-6">
@@ -286,7 +286,7 @@
             <label for="" class="search-label">归属企业
               <b style="color:red;">*</b>
             </label>
-            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="addForm.enterpriseNumber" appendTo="body" [style]="{'width':'180px'}"></p-dropdown>
+            <p-dropdown [options]="enterpriseDrop" [(ngModel)]="addForm.enterpriseNumber" [style]="{'width':'180px'}"></p-dropdown>
           </div>
         </div>
       </div>
@@ -376,7 +376,7 @@
       <button type="button" pButton (click)="addBottleVisible=false " label="关闭 "></button>
     </p-footer>
   </p-dialog>
-  <p-dialog [visible]="changeBottleVisible" [positionTop]="200" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
+  <p-dialog [visible]="changeBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
     [width]="400" [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
     <h3 style="text-align:center">变更归属企业</h3>
     <div class="ui-g-12 " style="height:200px">

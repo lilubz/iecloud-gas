@@ -54,6 +54,17 @@ body {
   }
 }
 
+.ui-widget-header .ui-button,
+.ui-widget-content .ui-button,
+.ui-widget.ui-button,
+.ui-button {
+  color: #FFFFFF;
+  border: 1px solid #3186dc;
+  background: #3186dc;
+  font-size: 14px;
+  font-family: "Microsoft YaHei";
+}
+
 input {
   width: 100%; // max-width: 200px;
 }
@@ -175,6 +186,7 @@ input {
     .ui-widget-content .ui-button,
     .ui-widget.ui-button,
     .ui-button {
+      color: #FFFFFF;
       border: 1px solid #3186dc;
       background: #3186dc;
       width: 100%;
@@ -387,7 +399,11 @@ a.router-link-active {
   width: 80px;
   height: 36px;
   font-size: 16px;
-  background: #3186dc;
+  color: #FFFFFF;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+  border: 1px solid #3186dc !important;
+  background: #3186dc !important;
 }
 
 .ui-togglebutton.ui-button.ui-state-active,

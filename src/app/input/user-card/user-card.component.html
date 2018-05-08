@@ -4,8 +4,8 @@
       <h3>用户身份认证卡</h3>
       <div class="ui-g-12 ui-g-nopad">
         <div class="ui-g-9">
-          <button pButton type="button" (click)="showBindCardDialog()" label="绑定" class="bind"></button>
-          <button pButton type="button" (click)="applyCardVisible=true" label="认证卡申请" class="ui-button-secondary"></button>
+          <button pButton type="button" class="searchBtn" (click)="showBindCardDialog()" label="绑定"></button>
+          <button pButton type="button" class="searchBtn" style="min-width: 130px;" (click)="applyCardVisible=true" label="认证卡申请"></button>
         </div>
         <!-- <div class="ui-g-3">
         <button pButton type="button" label="查看绑定记录"></button>
@@ -28,7 +28,7 @@
             </ng-template>
           </p-column>
           <ng-template pTemplate="paginatorRight">
-              共 {{total || 0 }} 条记录
+            共 {{total || 0 }} 条记录
           </ng-template>
         </p-dataTable>
       </div>
@@ -64,7 +64,7 @@
   </div>
   <p-footer>
     <button type="button" pButton icon="fa-check" (click)="applyCard()" label="申请"></button>
-    <button type="button" pButton icon="fa-close" (click)="applyCardVisible=false" label="取消" class="ui-button-secondary"></button>
+    <button type="button" pButton icon="fa-close" (click)="applyCardVisible=false" label="取消" class=""></button>
   </p-footer>
 </p-dialog>
 
@@ -144,6 +144,6 @@
   </div>
   <p-footer>
     <button type="button" pButton icon="fa-check" (click)="bind()" label="绑定"></button>
-    <button type="button" pButton icon="fa-close" (click)="bindCardVisible=false" label="取消" class="ui-button-secondary"></button>
+    <button type="button" pButton icon="fa-close" (click)="bindCardVisible=false" label="取消" ></button>
   </p-footer>
 </p-dialog>
