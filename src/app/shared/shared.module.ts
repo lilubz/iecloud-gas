@@ -53,6 +53,7 @@ import { CalendarModule } from './calendar/calendar';
 import { FillingScaleListComponent } from './filling-scale-list/filling-scale-list.component';
 import { CylinderOverviewTableComponent } from './cylinder-overview-table/cylinder-overview-table.component';
 import { BackComponent } from './back/back.component';
+import { InputFilterDirective } from './input-filter.directive';
 
 @NgModule({
   imports: [
@@ -109,7 +110,8 @@ import { BackComponent } from './back/back.component';
     ExplanationComponent,
     FillingScaleListComponent,
     CylinderOverviewTableComponent,
-    BackComponent
+    BackComponent,
+    InputFilterDirective
   ],
 
   exports: [
@@ -166,7 +168,8 @@ import { BackComponent } from './back/back.component';
     ExplanationComponent,
     FillingScaleListComponent,
     CylinderOverviewTableComponent,
-    BackComponent
+    BackComponent,
+    InputFilterDirective
   ]
 })
 export class SharedModule { }
