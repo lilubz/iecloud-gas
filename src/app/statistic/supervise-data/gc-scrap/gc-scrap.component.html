@@ -29,14 +29,9 @@
           <span>{{first.productionDate|date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'110px'}" header="上次检验时间">
-        <ng-template let-end="rowData" pTemplate="body">
-          <span>{{end.lastInspectionTime|date:"yyyy-MM-dd"}}</span>
-        </ng-template>
-      </p-column>
-      <p-column [style]="{'width':'110px'}" header="下次检验时间">
+      <p-column [style]="{'width':'110px'}" header="预计报废时间">
         <ng-template let-next="rowData" pTemplate="body">
-          <span>{{next.nextInspectionTime|date:"yyyy-MM-dd"}}</span>
+          <span>{{next.expectedScrapTime|date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'100px'}" field="scrapDays" header="到期天数">
