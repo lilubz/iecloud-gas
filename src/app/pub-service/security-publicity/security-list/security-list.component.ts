@@ -46,10 +46,10 @@ export class SecurityListComponent implements OnInit {
     }).then(
       data => {
         if (data.status === 0) {
-          this.messageService.add({ severity: 'success', summary: '成功', detail: data.msg });
+          this.messageService.add({ severity: 'success', summary: '删除成功', detail: data.msg });
           this.listSecurityPublicityArticle();
         } else {
-          this.messageService.add({ severity: 'warn', summary: '获取登记统计信息失败', detail: data.msg });
+          this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
         }
         this.deleteDetailVisible = false;
       }

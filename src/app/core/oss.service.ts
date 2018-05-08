@@ -1,6 +1,5 @@
 import { error } from 'selenium-webdriver';
 import { Injectable } from '@angular/core';
-import { OSSClientOptions } from '../model/OSSOptions.model';
 
 declare const OSS;
 

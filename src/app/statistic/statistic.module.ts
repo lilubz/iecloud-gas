@@ -16,7 +16,6 @@ import { StorageDistributionComponent } from './cylinder/storage-distribution/st
 import { CustomerComponent } from './cylinder/customer/customer.component';
 import { CurrentWarningComponent } from './current-warning/current-warning.component';
 import { HistoryWarningComponent } from './history-warning/history-warning.component';
-import { ComponentsModule } from '../components/components.module';
 import { SuperviseDataComponent } from './supervise-data/supervise-data.component';
 import { LicenseComponent } from './supervise-data/license/license.component';
 import { GcDetectionComponent } from './supervise-data/gc-detection/gc-detection.component';
@@ -27,7 +26,6 @@ import { SafetyCheckComponent } from './safety-check/safety-check.component';
 @NgModule({
   imports: [
     CommonModule,
-    ComponentsModule,
     SharedModule,
     StatisticRoutingModule
   ],

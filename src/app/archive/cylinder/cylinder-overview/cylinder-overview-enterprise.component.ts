@@ -8,7 +8,7 @@ import { CylinderOverviewService } from './cylinder-overview.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../../../core/userState.service';
 import { Util } from './../../../core/util';
-import { CylinderOverviewVO } from '../../../components/cylinder-overview-table/cylinder-overview.model';
+import { CylinderOverviewVO } from '../../../shared/cylinder-overview-table/cylinder-overview.model';
 
 @Component({
   selector: 'gas-cylinder-overview-enterprise',

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 
-import { User } from './../model/User.model';
+import { User } from './../common/User.model';
 import { RoleType } from '../common/RoleType';
 import { OrganizationType } from '../common/OrganizationType';
 import { PermissionTable, GovernmentPermissionTable, EnterprisePermissionTable } from '../common/PermissionTable';

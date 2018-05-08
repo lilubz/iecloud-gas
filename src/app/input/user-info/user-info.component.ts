@@ -8,12 +8,12 @@ import { UserInfoService } from './user-info.service';
 import { CommonRequestService } from './../../core/common-request.service';
 import { Customer } from './Customer.model';
 import { zh_CN } from './../../common/date-localization';
-import { User } from './../../model/User.model';
 import { UserStateService } from './../../core/userState.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { Message } from 'primeng/components/common/api';
 import * as moment from 'moment';
+import { User } from '../../common/User.model';
 
 @Component({
   selector: 'gas-user-info',

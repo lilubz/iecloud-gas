@@ -4,7 +4,7 @@ import { CylinderOverviewService } from './cylinder-overview.service';
 import { LoadingComponent } from './../../../shared/loading/loading.component';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { UserStateService } from './../../../core/userState.service';
-import { CylinderOverviewVO } from '../../../components/cylinder-overview-table/cylinder-overview.model';
+import { CylinderOverviewVO } from '../../../shared/cylinder-overview-table/cylinder-overview.model';
 @Component({
   selector: 'gas-cylinder-overview-county',
   templateUrl: './cylinder-overview-county.component.html'

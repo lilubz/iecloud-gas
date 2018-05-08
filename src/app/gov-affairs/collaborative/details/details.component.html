@@ -1,54 +1,54 @@
 <div class="collaborative-detail ui-g-12">
   <div class="ui-g-12">
     <div class="ui-g-4">
-      <span class="ui-g-6 content title">操作</span>
+      <span class="ui-g-6 content title" title="操作">操作</span>
       <span class="ui-g-6 content">&nbsp;
-        <button pButton type="button" label="撤消" class="ui-button-danger" (click)="onDestroy()" *ngIf="details.boolIsRelate"></button>
+        <button pButton type="button" title="撤消" label="撤消" class="ui-button-danger" (click)="onDestroy()" *ngIf="details.boolIsRelate"></button>
       </span>
     </div>
     <div class="ui-g-4 ">
-      <span class="ui-g-6 content title">事件编号</span>
+      <span class="ui-g-6 content title" title="事件编号">事件编号</span>
       <span class="ui-g-6 content" title="{{details.transactionBasicNumber}}">{{details.transactionBasicNumber}}</span>
     </div>
     <div class="ui-g-4">
-      <span class="ui-g-6 content title">巡查时间</span>
-      <span class="ui-g-6 content">{{details.transactionPatrolTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
+      <span class="ui-g-6 content title" title="巡查时间">巡查时间</span>
+      <span class="ui-g-6 content" title="{{details.transactionPatrolTime | date:'yyyy-MM-dd HH:mm:ss'}}">{{details.transactionPatrolTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
     </div>
     <div class="ui-g-4">
-      <span class="ui-g-6 content title">描述</span>
+      <span class="ui-g-6 content title" title="描述">描述</span>
       <span class="ui-g-6 content" title="{{details.description}}">{{details.description}}</span>
     </div>
     <div class="ui-g-4">
-      <span class="ui-g-6 content title">地点</span>
+      <span class="ui-g-6 content title" title="地点">地点</span>
       <span class="ui-g-6 content" title="{{details.transactionAddress}}">{{details.transactionAddress}}</span>
     </div>
     <div class="ui-g-4">
-      <span class="ui-g-6 content title">事务处理对象</span>
+      <span class="ui-g-6 content title" title="事务处理对象">事务处理对象</span>
       <span class="ui-g-6 content" title="{{details.transactionHandleName}}">{{details.transactionHandleName}}</span>
     </div>
     <div class="ui-g-4">
-      <span class="ui-g-6 content title">发起时间</span>
-      <span class="ui-g-6 content">{{details.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
+      <span class="ui-g-6 content title" title="发起时间">发起时间</span>
+      <span class="ui-g-6 content" title="{{details.createTime | date:'yyyy-MM-dd HH:mm:ss'}}">{{details.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
     </div>
     <div class="ui-g-4">
-      <span class="ui-g-6 content title">发起部门</span>
+      <span class="ui-g-6 content title" title="发起部门">发起部门</span>
       <span class="ui-g-6 content" title="{{details.transactionOrganizationName}}">{{details.transactionOrganizationName}}</span>
     </div>
     <div class="ui-g-4">
-      <span class="ui-g-6 content title">发起人</span>
+      <span class="ui-g-6 content title" title="发起人">发起人</span>
       <span class="ui-g-6 content" title="{{details.transactionUserName}}">{{details.transactionUserName}}</span>
     </div>
     <div class="ui-g-12">
-      <span class="ui-g-2 content title">附件</span>
+      <span class="ui-g-2 content title" title="附件">附件</span>
       <span class="ui-g-10 content" *ngIf="details.url" [title]="details.url">
         <a [href]="details.url || ''" target="_blank">点击预览</a>
       </span>
-      <span class="ui-g-10 content" *ngIf="!details.url">
+      <span class="ui-g-10 content" *ngIf="!details.url" title="没有附件">
         没有附件
       </span>
     </div>
     <div class="ui-g-12">
-      <span class="ui-g-2 content title">事务类别</span>
+      <span class="ui-g-2 content title" title="事务类别">事务类别</span>
       <span class="ui-g-10 content" title="{{details.transactionTypeList}}">
         <span>{{details.transactionTypeList}}</span>
       </span>
@@ -60,12 +60,12 @@
     </div>
     <div class="ui-g-12">
       <div class="ui-g-3">
-        <span class="ui-g-4 content title">处理情况</span>
-        <span class="ui-g-8 content" title="{{details.boolIsHandle}}">{{details.boolIsHandle?'正在处理':'处理完成'}}</span>
+        <span class="ui-g-4 content title" title="处理情况">处理情况</span>
+        <span class="ui-g-8 content" title="{{details.boolIsHandle?'正在处理':'处理完成'}}">{{details.boolIsHandle?'正在处理':'处理完成'}}</span>
       </div>
       <div class="ui-g-3">
-        <span class="ui-g-4 content title">紧急程度</span>
-        <span class="ui-g-8 content" title="{{details.emergencyDegree}}">{{getAffairLevel(details.emergencyDegree)}}</span>
+        <span class="ui-g-4 content title" title="紧急程度">紧急程度</span>
+        <span class="ui-g-8 content" title="{{getAffairLevel(details.emergencyDegree)}}">{{getAffairLevel(details.emergencyDegree)}}</span>
       </div>
     </div>
 
@@ -77,35 +77,35 @@
       </div>
       <div class="ui-g-10">
         <div class="ui-g-4">
-          <span class="ui-g-6 content title">来源部门</span>
-          <span class="ui-g-6 content">{{treeNode.needHandle?.parentEventHandleOrganizationName}}</span>
+          <span class="ui-g-6 content title" title="来源部门">来源部门</span>
+          <span class="ui-g-6 content" title="{{treeNode.needHandle?.parentEventHandleOrganizationName}}">{{treeNode.needHandle?.parentEventHandleOrganizationName}}</span>
         </div>
         <div class="ui-g-4">
-          <span class="ui-g-6 content title">处理时间</span>
-          <span class="ui-g-6 content">{{treeNode.needHandle?.parentEndTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
+          <span class="ui-g-6 content title" title="处理时间">处理时间</span>
+          <span class="ui-g-6 content" title="{{treeNode.needHandle?.parentEndTime | date:'yyyy-MM-dd HH:mm:ss'}}">{{treeNode.needHandle?.parentEndTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </div>
         <div class="ui-g-4">
-          <span class="ui-g-6 content title">截止时间</span>
-          <span class="ui-g-6 content">{{treeNode.needHandle?.expirationDate | date:"yyyy-MM-dd HH:mm:ss"}}</span>
+          <span class="ui-g-6 content title" title="截止时间">截止时间</span>
+          <span class="ui-g-6 content" title="{{treeNode.needHandle?.expirationDate | date:'yyyy-MM-dd HH:mm:ss'}}">{{treeNode.needHandle?.expirationDate | date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </div>
         <div class="ui-g-12">
           <div class="ui-g-4">
-            <span class="ui-g-6 content title">描述</span>
-            <span class="ui-g-6 content">
+            <span class="ui-g-6 content title" title="描述">描述</span>
+            <span class="ui-g-6 content" title="{{treeNode.needHandle?.parentDescription}}">
               {{treeNode.needHandle?.parentDescription}}
             </span>
           </div>
           <div class="ui-g-4">
-            <span class="ui-g-6 content title">处理人</span>
-            <span class="ui-g-6 content">
+            <span class="ui-g-6 content title" title="处理人">处理人</span>
+            <span class="ui-g-6 content" title="{{treeNode.needHandle?.parentEventHandleName}}">
               {{treeNode.needHandle?.parentEventHandleName}}
             </span>
           </div>
           <div class="ui-g-4">
-            <span class="ui-g-6 content title">附件</span>
+            <span class="ui-g-6 content title" title="附件">附件</span>
             <span class="ui-g-6 content">
-              <span *ngIf="!treeNode.needHandle?.parentUrl">没有附件</span>
-              <a href="{{treeNode.needHandle?.parentUrl}}" *ngIf="treeNode.needHandle?.parentUrl">点击预览</a>
+              <span *ngIf="!treeNode.needHandle?.parentUrl" title="没有附件">没有附件</span>
+              <a href="{{treeNode.needHandle?.parentUrl}}" *ngIf="treeNode.needHandle?.parentUrl" title="点击预览">点击预览</a>
             </span>
           </div>
         </div>
@@ -167,40 +167,40 @@
       </div>
       <div class="ui-g-12 node-reply" *ngFor="let item of treeNode.replyInfo">
         <div class="ui-g-3">
-          <span class="ui-g-6 content title">部门</span>
+          <span class="ui-g-6 content title" title="部门">部门</span>
           <span class="ui-g-6 content" title="{{item.eventHandleOrganizationName}}">{{item.eventHandleOrganizationName}}</span>
         </div>
         <div class="ui-g-3">
-          <span class="ui-g-6 content title">截止时间</span>
+          <span class="ui-g-6 content title" title="截止时间">截止时间</span>
           <span class="ui-g-6 content" title="{{item.expirationDate| date:'yyyy-MM-dd HH:mm:ss'}}">{{item.expirationDate| date:"yyyy-MM-dd HH:mm:ss"}}</span>
         </div>
         <div class="ui-g-3">
-          <span class="ui-g-6 content title">处理人</span>
+          <span class="ui-g-6 content title" title="处理人">处理人</span>
           <span class="ui-g-6 content" title="{{item.eventHandleName}}">{{item.eventHandleName}}</span>
         </div>
         <div class="ui-g-3">
-          <span class="ui-g-6 content title">处理情况</span>
+          <span class="ui-g-6 content title" title="处理情况">处理情况</span>
           <span class="ui-g-6 content">
-            <span *ngIf="item.boolIsHandle===2">已超期</span>
-            <span *ngIf="item.boolIsHandle===0">已回复</span>
-            <span *ngIf="item.boolIsHandle===1">未回复</span>
+            <span *ngIf="item.boolIsHandle===2" title="已超期">已超期</span>
+            <span *ngIf="item.boolIsHandle===0" title="已回复">已回复</span>
+            <span *ngIf="item.boolIsHandle===1" title="未回复">未回复</span>
           </span>
         </div>
         <div class="ui-g-6">
-          <span class="ui-g-3 content title">描述</span>
+          <span class="ui-g-3 content title" title="描述">描述</span>
           <span class="ui-g-9 content" title="{{item.description}}">{{item.description}}</span>
         </div>
         <div class="ui-g-3">
-          <span class="ui-g-6 content title">附件</span>
-          <a href="{{item.url}}" class="ui-g-6 content" target="_blank" *ngIf="item.url">
+          <span class="ui-g-6 content title" title="附件">附件</span>
+          <a href="{{item.url}}" class="ui-g-6 content" title="点击预览" target="_blank" *ngIf="item.url">
             点击预览
           </a>
           <span *ngIf="!item.url" class="ui-g-6 content"></span>
         </div>
         <div class="ui-g-3">
-          <span class="ui-g-6 content title">操作</span>
+          <span class="ui-g-6 content title" title="操作">操作</span>
           <span class="ui-g-6 content">
-            <a *ngIf="item.boolIsHide===0" href="javascript:void(0);" (click)="onOpenDialog(item)">重新指派</a>
+            <a *ngIf="item.boolIsHide===0" title="重新指派" href="javascript:void(0);" (click)="onOpenDialog(item)">重新指派</a>
             <a *ngIf="item.boolIsHide===1" href="javascript:void(0);"></a>
           </span>
         </div>

@@ -50,6 +50,9 @@ import { DeliveryRegionCascadeComponent } from './delivery-region-cascade/delive
 import { ExplanationComponent } from './explanation/explanation.component';
 import { DialogModule } from './dialog/dialog';
 import { CalendarModule } from './calendar/calendar';
+import { FillingScaleListComponent } from './filling-scale-list/filling-scale-list.component';
+import { CylinderOverviewTableComponent } from './cylinder-overview-table/cylinder-overview-table.component';
+import { BackComponent } from './back/back.component';
 
 @NgModule({
   imports: [
@@ -104,6 +107,9 @@ import { CalendarModule } from './calendar/calendar';
     HeaderComponent,
     DeliveryRegionCascadeComponent,
     ExplanationComponent,
+    FillingScaleListComponent,
+    CylinderOverviewTableComponent,
+    BackComponent
   ],
 
   exports: [
@@ -158,6 +164,9 @@ import { CalendarModule } from './calendar/calendar';
     HeaderComponent,
     DeliveryRegionCascadeComponent,
     ExplanationComponent,
+    FillingScaleListComponent,
+    CylinderOverviewTableComponent,
+    BackComponent
   ]
 })
 export class SharedModule { }

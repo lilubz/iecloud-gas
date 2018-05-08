@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AddSecurityComponent implements OnInit {
   articleDescription: string;
   articleTitle: string;
+  securitySubmit = false;
   // disabled = false;
 
   // toggleDisabled() {
@@ -33,6 +34,7 @@ export class AddSecurityComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '', detail: '宣传内容不能为空' });
     }
     if (this.articleTitle && this.articleDescription) {
+      this.securitySubmit = true;
       this.AddsecurityService.uploadSecurityPublicityArticle({
         articleTitle: this.articleTitle,
         articleDescription: this.articleDescription
@@ -41,15 +43,20 @@ export class AddSecurityComponent implements OnInit {
           if (data.status === 0) {
             this.messageService.add({ severity: 'success', summary: '', detail: data.data });
             this.router.navigate(['pub-service/security-publicity/security-list']);
+            this.securitySubmit = false;
           } else {
             this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
+            this.securitySubmit = false;
           }
         }
       ).catch(
         data => {
           this.messageService.add({ severity: 'warn', summary: '', detail: data.data });
+          this.securitySubmit = false;
         }
       );
+    } else {
+      this.messageService.add({ severity: 'warn', summary: '请补全内容' });
     }
 
   }

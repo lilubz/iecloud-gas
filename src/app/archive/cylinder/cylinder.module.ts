@@ -8,11 +8,9 @@ import { CylinderDetailComponent } from './cylinder-detail/cylinder-detail.compo
 import { CylinderOverviewEnterpriseComponent } from './cylinder-overview/cylinder-overview-enterprise.component';
 import { CylinderOverviewCountyComponent } from './cylinder-overview/cylinder-overview-county.component';
 
-import { ComponentsModule } from '../../components/components.module';
 @NgModule({
   imports: [
     SharedModule,
-    ComponentsModule
   ],
   declarations: [
     CylinderComponent,
