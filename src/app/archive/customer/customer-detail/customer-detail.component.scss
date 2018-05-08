@@ -72,6 +72,9 @@
     .photo-container {
         width: 50%;
         @include common(left, 1, 120px);
+        a{
+          text-decoration: none;
+        }
         .photo-view {
             width: 80px;
             height: 80px;
