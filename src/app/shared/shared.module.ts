@@ -52,6 +52,7 @@ import { DialogModule } from './dialog/dialog';
 import { CalendarModule } from './calendar/calendar';
 import { FillingScaleListComponent } from './filling-scale-list/filling-scale-list.component';
 import { CylinderOverviewTableComponent } from './cylinder-overview-table/cylinder-overview-table.component';
+import { BackComponent } from './back/back.component';
 
 @NgModule({
   imports: [
@@ -107,7 +108,8 @@ import { CylinderOverviewTableComponent } from './cylinder-overview-table/cylind
     DeliveryRegionCascadeComponent,
     ExplanationComponent,
     FillingScaleListComponent,
-    CylinderOverviewTableComponent
+    CylinderOverviewTableComponent,
+    BackComponent
   ],
 
   exports: [
@@ -163,7 +165,8 @@ import { CylinderOverviewTableComponent } from './cylinder-overview-table/cylind
     DeliveryRegionCascadeComponent,
     ExplanationComponent,
     FillingScaleListComponent,
-    CylinderOverviewTableComponent
+    CylinderOverviewTableComponent,
+    BackComponent
   ]
 })
 export class SharedModule { }

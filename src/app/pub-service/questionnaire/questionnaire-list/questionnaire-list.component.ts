@@ -24,6 +24,7 @@ export class QuestionnaireListComponent implements OnInit {
       first: 0,
     };
   datas: any = [];
+  loading = false;
   constructor(
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -31,15 +32,19 @@ export class QuestionnaireListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-  }
-
-  onPageChange(event) {
-    this.pages.pageNumber = event.first / event.rows + 1;
-    this.pages.pageSize = event.rows;
     this.query();
   }
 
+  onPageChange(event) {
+    this.onPageChange = (event) => {
+      this.pages.pageNumber = event.first / event.rows + 1;
+      this.pages.pageSize = event.rows;
+      this.query();
+    }
+  }
+
   query() {
+    this.loading = true;
     this._service.listQuestionnaire({
       pageSize: this.pages.pageSize,
       pageNumber: this.pages.pageNumber,
@@ -53,7 +58,7 @@ export class QuestionnaireListComponent implements OnInit {
         this.pages.first = 0;
         this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
       }
-
+      this.loading = false;
     })
   }
 

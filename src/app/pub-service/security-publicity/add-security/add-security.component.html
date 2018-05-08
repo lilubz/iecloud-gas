@@ -1,15 +1,19 @@
 <div class="ui-g-12">
-  <div class="ui-g-4"></div>
-  <div class="ui-g-4">
-    <span class="ui-float-label">
-      <input id="float-input" [(ngModel)]="articleTitle" type="text" size="30" pInputText style="width:478px" maxlength="50" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
-      <label for="float-input">标题</label>
-    </span>
-    <br>
-    <!-- <p-editor [(ngModel)]="articleDescription" [style]="{'height':'320px'}"></p-editor> -->
-    <textarea [rows]="5" [cols]="30" [(ngModel)]="articleDescription" style="min-width:478px" pInputTextarea autoResize="autoResize" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></textarea>
-    <br>
-    <button pButton type="button" label="清空内容" (click)="articleDescription=null" class="float" style="margin-left:5px;"></button>
-    <button pButton type="button" label="提交" [disabled]="securitySubmit" (click)="Addsecurity()" class="float"></button>
+
+  <gas-back></gas-back>
+  <div class="ui-g-12">
+    <div class="ui-g-4 ui-g-offset-4">
+      <span class="ui-float-label">
+        <input id="float-input" [(ngModel)]="articleTitle" type="text" size="30" pInputText maxlength="50" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
+        <label for="float-input">标题</label>
+      </span>
+      <br>
+      <!-- <p-editor [(ngModel)]="articleDescription" [style]="{'height':'320px'}"></p-editor> -->
+      <textarea [rows]="6" [(ngModel)]="articleDescription" maxlength="2000" pInputTextarea autoResize="autoResize" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></textarea>
+      <br>
+      <button pButton type="button" label="清空内容" class="right" (click)="articleDescription=null"></button>
+      <button pButton type="button" label="提交" [disabled]="securitySubmit" (click)="Addsecurity()"></button>
+    </div>
   </div>
+
 </div>

@@ -1,7 +1,11 @@
 <div class="ui-g-12">
+  <gas-back></gas-back>
   <h1 class="center">统计结果</h1>
-  <h2 class="center"><label>问卷名称:&nbsp;&nbsp;&nbsp;</label>{{questionnaireTitle}}</h2>
-  <h2 class="float-r"><label>问卷参与人数:{{numberOfParticipant}}</label></h2>
+  <h2 class="center">
+    <label>问卷名称:&nbsp;&nbsp;&nbsp;</label>{{questionnaireTitle}}</h2>
+  <h2 class="float-r">
+    <label>问卷参与人数:{{numberOfParticipant}}</label>
+  </h2>
   <div class="ui-g-12 ui-g-nopad">
     <p-dataTable [value]="questionlist" emptyMessage="未查询到数据" [paginator]="true" [rows]="20" [scrollable]="false" [lazy]="false"
       [rowsPerPageOptions]="[10,20,40,80]">
@@ -12,11 +16,11 @@
       </p-column>
       <p-column field="questionTitle" header="问题名称"></p-column>
       <p-column header="答案/人数">
-          <ng-template pTemplate="body" let-rowData="rowData">
-              <div *ngFor="let countOfChoiceVO of rowData.countOfChoiceVOList">
-                <div>{{countOfChoiceVO.numberOfAnswer}}/{{countOfChoiceVO.countOfChoice}}</div>
-              </div>
-            </ng-template>
+        <ng-template pTemplate="body" let-rowData="rowData">
+          <div *ngFor="let countOfChoiceVO of rowData.countOfChoiceVOList">
+            <div>{{countOfChoiceVO.numberOfAnswer}}/{{countOfChoiceVO.countOfChoice}}</div>
+          </div>
+        </ng-template>
       </p-column>
     </p-dataTable>
   </div>
