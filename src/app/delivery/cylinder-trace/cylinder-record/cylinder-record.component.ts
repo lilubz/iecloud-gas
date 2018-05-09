@@ -375,8 +375,8 @@ export class CylinderRecordComponent implements OnInit {
       liabilitySubjectType: this.selectedCylinderStatus,
       liabilitySubjectId,
       searchType,
-      beginTime: this.beginTime,
-      endTime: this.endTime,
+      beginTime: moment(moment(this.beginTime).format('YYYY-MM-DD') + ' 00:00:00'),
+      endTime: moment(moment(this.endTime).format('YYYY-MM-DD') + ' 23:59:59'),
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
     }).then(data => {

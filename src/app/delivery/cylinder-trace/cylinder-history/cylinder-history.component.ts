@@ -76,8 +76,8 @@ export class CylinderHistoryComponent implements OnInit {
       pageSize: this.pageSizeHistory,
       pageNumber: this.pageNumberHistory,
       gasLabelNumber: this.cylinderNumber,
-      beginTime: this.beginTime,
-      endTime: this.endTime
+      beginTime: moment(moment(this.beginTime).format('YYYY-MM-DD') + ' 00:00:00'),
+      endTime: moment(moment(this.endTime).format('YYYY-MM-DD') + ' 23:59:59')
     }).then(data => {
       if (data.status === 0) {
         this.loading = false;
