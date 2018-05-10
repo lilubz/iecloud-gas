@@ -54,6 +54,7 @@ import { FillingScaleListComponent } from './filling-scale-list/filling-scale-li
 import { CylinderOverviewTableComponent } from './cylinder-overview-table/cylinder-overview-table.component';
 import { BackComponent } from './back/back.component';
 import { InputFilterDirective } from './input-filter.directive';
+import { LicenseWarningComponent } from './license-warning/license-warning.component';
 
 @NgModule({
   imports: [
@@ -111,7 +112,8 @@ import { InputFilterDirective } from './input-filter.directive';
     FillingScaleListComponent,
     CylinderOverviewTableComponent,
     BackComponent,
-    InputFilterDirective
+    InputFilterDirective,
+    LicenseWarningComponent
   ],
 
   exports: [
@@ -169,7 +171,8 @@ import { InputFilterDirective } from './input-filter.directive';
     FillingScaleListComponent,
     CylinderOverviewTableComponent,
     BackComponent,
-    InputFilterDirective
+    InputFilterDirective,
+    LicenseWarningComponent
   ]
 })
 export class SharedModule { }

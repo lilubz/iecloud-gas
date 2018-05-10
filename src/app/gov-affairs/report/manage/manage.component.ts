@@ -78,11 +78,11 @@ export class ManageComponent implements OnInit {
   onSubmit(file) {
     if (this.checkForm(file)) {
       const formData = new FormData();
-      formData.set('reportName', this.formModel.name);
-      formData.set('attachmentUrl', file.files[0]);
-      formData.set('reportCommitIntervalTime', this.formModel.interval);
-      formData.set('useObject', this.formModel.target);
-      formData.set('reportCommitInitialDate', moment(this.formModel.initTime).format('YYYY-MM-DD HH:mm:ss'));
+      formData.append('reportName', this.formModel.name);
+      formData.append('attachmentUrl', file.files[0]);
+      formData.append('reportCommitIntervalTime', this.formModel.interval);
+      formData.append('useObject', this.formModel.target);
+      formData.append('reportCommitInitialDate', moment(this.formModel.initTime).format('YYYY-MM-DD HH:mm:ss'));
       this.sendForm(formData);
     }
   }

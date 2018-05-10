@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { SuperviseDataService } from '../supervise-data.service';
+import { WarningService } from '../warning.service';
 
 @Component({
-  selector: 'gas-license',
-  templateUrl: './license.component.html',
-  styleUrls: ['./license.component.scss'],
-  providers: [SuperviseDataService]
+  selector: 'gas-gc-excess',
+  templateUrl: './gc-excess.component.html',
+  styleUrls: ['./gc-excess.component.scss']
 })
-export class LicenseComponent implements OnInit {
-  loading = false;
+export class GcExcessComponent implements OnInit {
+
+  loading = true;
   dropdown = {
     default: [
       {
@@ -17,11 +17,51 @@ export class LicenseComponent implements OnInit {
         value: ''
       }
     ],
+    type: [
+      {
+        label: '全部',
+        value: ''
+      },
+      {
+        label: '储配站',
+        value: '1'
+      },
+      {
+        label: '供应站',
+        value: '2'
+      },
+      {
+        label: '送气工',
+        value: '3'
+      },
+      {
+        label: '燃气用户',
+        value: '4'
+      },
+      {
+        label: '直销车',
+        value: '5'
+      },
+    ],
     region: [
       {
         label: '全部',
         value: ''
       }
+    ],
+    state: [
+      {
+        label: '全部',
+        value: ''
+      },
+      {
+        label: '空瓶',
+        value: '0'
+      },
+      {
+        label: '重瓶',
+        value: '1'
+      },
     ]
   };
   dataTable = {
@@ -33,13 +73,17 @@ export class LicenseComponent implements OnInit {
     pageNumber: 1
   };
   formModel = {
+    type: '',
     region: '',
+    state: ''
   };
   pageParams = {
+    type: '',
     region: '',
+    state: ''
   };
   constructor(
-    private _service: SuperviseDataService,
+    private _service: WarningService,
     private messageService: MessageService,
   ) { }
 
@@ -47,26 +91,17 @@ export class LicenseComponent implements OnInit {
     this.getDropdownRegion();
   }
   onSubmit() {
+    this.loading = true;
     this.dataTable.pageNumber = 1;
     this.dataTable.first = 0;
     Object.assign(this.pageParams, this.formModel);
-    this.getDataTableList({
-      regionId: this.formModel.region,
-      pageSize: this.dataTable.pageSize,
-      pageNumber: this.dataTable.pageNumber
-    });
+    this.getDataTableList();
   }
-  onPageChange($event) {
-    this.dataTable.list = [];
-    this.onPageChange = event => {
-      this.dataTable.pageNumber = event.first / event.rows + 1;
-      this.dataTable.pageSize = event.rows;
-      this.getDataTableList({
-        regionId: this.pageParams.region,
-        pageNumber: this.dataTable.pageNumber,
-        pageSize: this.dataTable.pageSize,
-      });
-    };
+  onPageChange(event) {
+    this.loading = true;
+    this.dataTable.pageNumber = event.first / event.rows + 1;
+    this.dataTable.pageSize = event.rows;
+    this.getDataTableList();
   }
   getDropdownRegion(params?) {
     this._service.listRegionInfo(params)
@@ -83,9 +118,14 @@ export class LicenseComponent implements OnInit {
         }
       });
   }
-  getDataTableList(params?) {
-    this.loading = true;
-    this._service.listLicenseExpire(params)
+  getDataTableList() {
+    this._service.listGcThresholdCurrentWarning({
+      boolIsFull: this.pageParams.state,
+      liabilityTypeId: this.pageParams.type,
+      regionId: this.pageParams.region,
+      pageNumber: this.dataTable.pageNumber,
+      pageSize: this.dataTable.pageSize,
+    })
       .then(data => {
         this.loading = false;
         if (data.status === 0) {
@@ -99,4 +139,5 @@ export class LicenseComponent implements OnInit {
         }
       });
   }
+
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CurrentWarningComponent } from './current-warning.component';
+import { ThresholdComponent } from './threshold.component';
 
-describe('CurrentWarningComponent', () => {
-  let component: CurrentWarningComponent;
-  let fixture: ComponentFixture<CurrentWarningComponent>;
+describe('ThresholdComponent', () => {
+  let component: ThresholdComponent;
+  let fixture: ComponentFixture<ThresholdComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CurrentWarningComponent ]
+      declarations: [ ThresholdComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CurrentWarningComponent);
+    fixture = TestBed.createComponent(ThresholdComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

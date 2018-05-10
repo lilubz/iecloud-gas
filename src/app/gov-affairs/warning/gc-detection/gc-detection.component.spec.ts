@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LicenseComponent } from './license.component';
+import { GcDetectionComponent } from './gc-detection.component';
 
-describe('LicenseComponent', () => {
-  let component: LicenseComponent;
-  let fixture: ComponentFixture<LicenseComponent>;
+describe('GcDetectionComponent', () => {
+  let component: GcDetectionComponent;
+  let fixture: ComponentFixture<GcDetectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LicenseComponent ]
+      declarations: [ GcDetectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LicenseComponent);
+    fixture = TestBed.createComponent(GcDetectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

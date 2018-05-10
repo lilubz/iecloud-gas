@@ -9,7 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 // import { CylinderFillingService } from './cylinder-filling/cylinder-filling.service';
 import { CollaborativeModule } from './collaborative/collaborative.module';
 import { ReportModule } from './report/report.module';
-import { CylinderWarningComponent } from './cylinder-warning/cylinder-warning.component';
+import { WarningModule } from './warning/warning.module';
 import { FillingScaleModule } from './filling-scale/filling-scale.module';
 
 @NgModule({
@@ -17,13 +17,13 @@ import { FillingScaleModule } from './filling-scale/filling-scale.module';
     CommonModule,
     SharedModule,
     ReportModule,
+    WarningModule,
     CollaborativeModule,
     FillingScaleModule,
     GovAffairsRoutingModule,
   ],
   declarations: [
     GovAffairsComponent,
-    CylinderWarningComponent,
     // CylinderTraceComponent,
     // CylinderFillingComponent
   ],

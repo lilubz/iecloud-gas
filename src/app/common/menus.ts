@@ -38,7 +38,7 @@ export const AdminMenus: MenuItem[] = [
       // { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
       { label: '报表管理', routerLink: ['/gov-affairs/report'] },
       { label: '协同管理', routerLink: ['/gov-affairs/collaborative'] },
-      { label: '设置气瓶阈值', routerLink: ['/gov-affairs/cylinder-warning'] },
+      { label: '预警管理', routerLink: ['/gov-affairs/warning'] },
       { label: '充装监管', routerLink: ['/gov-affairs/filling-scale'] },
     ]
   },
@@ -59,9 +59,6 @@ export const AdminMenus: MenuItem[] = [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
       { label: '企业', routerLink: ['/statistic/enterprise'] },
       { label: '执法', routerLink: ['/statistic/affair'] },
-      { label: '实时预警', routerLink: ['/statistic/current-warning'] },
-      { label: '历史预警', routerLink: ['/statistic/history-warning'] },
-      { label: '监管数据', routerLink: ['/statistic/supervise-data'] },
       { label: '入户安检统计', routerLink: ['/statistic/safety-check'] },
       { label: '行业分析', routerLink: ['/statistic/industry-analyze'] },
     ]
@@ -135,7 +132,7 @@ export const GovernmentMenus: MenuItem[] = [
       // { label: '充装记录', routerLink: ['/gov-affairs/cylinder-filling'] }
       { label: '报表管理', routerLink: ['/gov-affairs/report'] },
       { label: '协同管理', routerLink: ['/gov-affairs/collaborative'] },
-      { label: '设置气瓶阈值', routerLink: ['/gov-affairs/cylinder-warning'] },
+      { label: '预警管理', routerLink: ['/gov-affairs/warning'] },
       { label: '充装监管', routerLink: ['/gov-affairs/filling-scale'] },
     ]
   },
@@ -156,9 +153,6 @@ export const GovernmentMenus: MenuItem[] = [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
       { label: '企业', routerLink: ['/statistic/enterprise'] },
       { label: '执法', routerLink: ['/statistic/affair'] },
-      { label: '实时预警', routerLink: ['/statistic/current-warning'] },
-      { label: '历史预警', routerLink: ['/statistic/history-warning'] },
-      { label: '监管数据', routerLink: ['/statistic/supervise-data'] },
       { label: '入户安检统计', routerLink: ['/statistic/safety-check'] },
       { label: '行业分析', routerLink: ['/statistic/industry-analyze'] },
     ]
@@ -217,7 +211,7 @@ export const EnterpriseMenus: MenuItem[] = [
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
       { label: '企业', routerLink: ['/statistic/enterprise'] },
-      { label: '经营许可证到期预警', routerLink: ['/statistic/supervise-data/license'] },
+      { label: '经营许可证到期预警', routerLink: ['/statistic/license-warning'] },
     ]
   },
   {

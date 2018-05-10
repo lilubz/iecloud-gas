@@ -14,14 +14,9 @@ import { EnterpriseComponent as CylinderEnterpriseComponent } from './cylinder/e
 import { CylinderStorageComponent } from './cylinder/cylinder-storage/cylinder-storage.component';
 import { StorageDistributionComponent } from './cylinder/storage-distribution/storage-distribution.component';
 import { CustomerComponent } from './cylinder/customer/customer.component';
-import { CurrentWarningComponent } from './current-warning/current-warning.component';
-import { HistoryWarningComponent } from './history-warning/history-warning.component';
-import { SuperviseDataComponent } from './supervise-data/supervise-data.component';
-import { LicenseComponent } from './supervise-data/license/license.component';
-import { GcDetectionComponent } from './supervise-data/gc-detection/gc-detection.component';
-import { GcScrapComponent } from './supervise-data/gc-scrap/gc-scrap.component';
 import { IndustryAnalyzeComponent } from './industry-analyze/industry-analyze.component';
 import { SafetyCheckComponent } from './safety-check/safety-check.component';
+import { LicenseWarningComponent } from './license-warning/license-warning.component';
 
 @NgModule({
   imports: [
@@ -38,14 +33,9 @@ import { SafetyCheckComponent } from './safety-check/safety-check.component';
     CylinderStorageComponent,
     StorageDistributionComponent,
     CustomerComponent,
-    CurrentWarningComponent,
-    HistoryWarningComponent,
-    SuperviseDataComponent,
-    LicenseComponent,
-    GcDetectionComponent,
-    GcScrapComponent,
     IndustryAnalyzeComponent,
     SafetyCheckComponent,
+    LicenseWarningComponent,
   ],
   providers: [
 
