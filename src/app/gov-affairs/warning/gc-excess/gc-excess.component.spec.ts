@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuperviseDataComponent } from './supervise-data.component';
+import { GcExcessComponent } from './gc-excess.component';
 
-describe('SuperviseDataComponent', () => {
-  let component: SuperviseDataComponent;
-  let fixture: ComponentFixture<SuperviseDataComponent>;
+describe('GcExcessComponent', () => {
+  let component: GcExcessComponent;
+  let fixture: ComponentFixture<GcExcessComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SuperviseDataComponent ]
+      declarations: [ GcExcessComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SuperviseDataComponent);
+    fixture = TestBed.createComponent(GcExcessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

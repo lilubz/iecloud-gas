@@ -379,7 +379,7 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
       //   this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '联系电话不能为空' });
       //   return false;
     } else if (!this.addForm.inflatableStationAddress.trim()) {
-      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '经营许可证不能为空' });
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '许可证不能为空' });
       return false;
     }
     return true;

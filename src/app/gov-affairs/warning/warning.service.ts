@@ -3,9 +3,24 @@ import { HttpService } from '../../core/http.service';
 import { API } from '../../common/api';
 
 @Injectable()
-export class SuperviseDataService {
+export class WarningService {
 
   constructor(private httpService: HttpService) { }
+
+  listRegionInfo(params?: any): Promise<any> {
+    return this.httpService.getRequest(API.listRegionInfo, params);
+  }
+
+  listGcThresholdCurrentWarning(params?: any): Promise<any> {
+    return this.httpService.getRequest(API.listGcThresholdCurrentWarning, params);
+  }
+
+  listGcThreshold(params?: any): Promise<any> {
+    return this.httpService.getRequest(API.listGcThreshold, params);
+  }
+  addGcThreshold(params?: any): Promise<any> {
+    return this.httpService.formPostRequest(API.addGcThreshold, params);
+  }
 
   listLicenseExpire(params?: any): Promise<any> {
     return this.httpService.getRequest(API.listLicenseExpire, params);
@@ -21,10 +36,6 @@ export class SuperviseDataService {
 
   searchGasCylinder(params?: any): Promise<any> {
     return this.httpService.formPostRequest(API.getCylinders, params);
-  }
-
-  listRegionInfo(params?: any): Promise<any> {
-    return this.httpService.getRequest(API.listRegionInfo, params);
   }
 
   cylinderSelectOpt(params?: any): Promise<any> {

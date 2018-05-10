@@ -11,7 +11,6 @@ import { StatisticsComponent } from './report/statistics/statistics.component';
 import { SubmitComponent } from './report/submit/submit.component';
 import { DetailsComponent } from './collaborative/details/details.component';
 import { DetailsComponent as ReportDetailsComponent } from './report/details/details.component';
-import { CylinderWarningComponent } from './cylinder-warning/cylinder-warning.component';
 import { TimeoutSearchComponent } from './collaborative/timeout-search/timeout-search.component';
 import { MassesReportComponent } from './collaborative/masses-report/masses-report.component';
 import { AnalysisComponent } from './report/analysis/analysis.component';
@@ -20,6 +19,13 @@ import { FillingScaleListComponent } from './filling-scale/filling-scale-list.co
 import { LockScaleHistoryComponent } from './filling-scale/lock-scale-history/lock-scale-history.component';
 import { SetScaleRuleComponent } from './filling-scale/set-scale-rule/set-scale-rule.component';
 
+// 预警模块
+import { WarningComponent } from './warning/warning.component';
+import { GcExcessComponent } from './warning/gc-excess/gc-excess.component';
+import { ThresholdComponent } from './warning/threshold/threshold.component';
+import { GcDetectionComponent } from './warning/gc-detection/gc-detection.component';
+import { GcScrapComponent } from './warning/gc-scrap/gc-scrap.component';
+import { LicenseComponent } from './warning/license/license.component';
 const routes: Routes = [
   {
     path: '',
@@ -143,11 +149,63 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'cylinder-warning/:type',
-        component: CylinderWarningComponent,
+        path: 'warning',
+        component: WarningComponent,
         data: {
-          title: '设置气瓶阈值'
-        }
+          title: '预警管理'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'gc-count',
+            pathMatch: 'full'
+          },
+          {
+            path: 'gc-count',
+            children: [
+              {
+                path: '',
+                redirectTo: 'gc-excess',
+                pathMatch: 'full'
+              },
+              {
+                path: 'gc-excess',
+                component: GcExcessComponent,
+                data: {
+                  title: '气瓶超量预警'
+                },
+              },
+              {
+                path: 'threshold',
+                component: ThresholdComponent,
+                data: {
+                  title: '气瓶阈值设置'
+                },
+              },
+            ]
+          },
+          {
+            path: 'gc-detection',
+            component: GcDetectionComponent,
+            data: {
+              title: '气瓶检测超期预警'
+            },
+          },
+          {
+            path: 'gc-scrap',
+            component: GcScrapComponent,
+            data: {
+              title: '气瓶报废预警'
+            },
+          },
+          {
+            path: 'license',
+            component: LicenseComponent,
+            data: {
+              title: '许可证超期预警'
+            },
+          },
+        ]
       },
       {
         path: 'filling-scale',

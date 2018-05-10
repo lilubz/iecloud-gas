@@ -49,7 +49,7 @@ export class LayoutComponent implements OnInit {
         setTimeout(() => {
           this.getWarningInfo(delay);
         }, delay);
-        const targetLabel = ['统计分析', '实时预警']; // 需要加报警图标的菜单
+        const targetLabel = ['监管事务', '预警管理']; // 需要加报警图标的菜单
         let hasWarning = false;
         if (data.status === 0) {
           hasWarning = data.data.list.length > 0 ? true : false;

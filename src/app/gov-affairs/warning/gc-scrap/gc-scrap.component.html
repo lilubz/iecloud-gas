@@ -1,4 +1,4 @@
-<div class="ui-g-12 license">
+<div class="ui-g-12">
   <form class="ui-g-12" (submit)="onSubmit()">
 
     <div class="ui-g-12 ui-lg-6">
@@ -24,17 +24,17 @@
       <p-column field="gasLabelNumber" header="气瓶条码"></p-column>
       <p-column field="regionName" header="所属行政区"></p-column>
       <p-column [style]="{'width':'30%'}" field="enterpriseName" header=" 企业名称"></p-column>
-      <p-column [style]="{'width':'110px'}" header="制造年月">
+      <p-column [style]="{'width':'100px'}" header="制造年月">
         <ng-template let-first="rowData" pTemplate="body">
           <span>{{first.productionDate|date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'110px'}" header="预计报废时间">
+      <p-column [style]="{'width':'100px'}" header="预计报废时间">
         <ng-template let-next="rowData" pTemplate="body">
           <span>{{next.expectedScrapTime|date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
-      <p-column [style]="{'width':'100px'}" field="scrapDays" header="到期天数">
+      <p-column [style]="{'width':'60px'}" field="scrapDays" header="到期天数">
         <ng-template let-rowData="rowData" pTemplate="body">
           <span *ngIf="rowData.scrapDays > 0">{{rowData.scrapDays}}</span>
           <span *ngIf="rowData.scrapDays <= 0" style="color:red;">已到期</span>
