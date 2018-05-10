@@ -69,12 +69,12 @@ export class AffairDetailsComponent implements OnInit {
   onSubmit(file) {
     if (this.formModel.explain.trim()) {
       const formData: any = new FormData();
-      formData.set('transactionBasicId', this.todo.eventId);
-      formData.set('description', this.formModel.explain);
-      formData.set('boolIsApproved', false);
-      formData.set('boolIsReject', false);
-      formData.set('collaborativeOrganizationInfoTOS', null);
-      formData.set('cylinderImage', file.files[0] ? file.files[0] : '');
+      formData.append('transactionBasicId', this.todo.eventId);
+      formData.append('description', this.formModel.explain);
+      formData.append('boolIsApproved', false);
+      formData.append('boolIsReject', false);
+      formData.append('collaborativeOrganizationInfoTOS', null);
+      formData.append('cylinderImage', file.files[0] ? file.files[0] : '');
       this.sendForm(formData);
     } else {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写回复内容' });

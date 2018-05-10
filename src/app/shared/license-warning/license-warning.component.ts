@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { SuperviseDataService } from '../supervise-data.service';
+import { WarningService } from '../../gov-affairs/warning/warning.service';
 
 @Component({
-  selector: 'gas-gc-scrap',
-  templateUrl: './gc-scrap.component.html',
-  styleUrls: ['./gc-scrap.component.scss'],
-  providers: [SuperviseDataService]
+  selector: 'gas-license-warning',
+  templateUrl: './license-warning.component.html',
+  providers: [WarningService]
 })
-export class GcScrapComponent implements OnInit {
+export class LicenseWarningComponent implements OnInit {
   loading = false;
   dropdown = {
     default: [
@@ -17,12 +16,7 @@ export class GcScrapComponent implements OnInit {
         value: ''
       }
     ],
-    company: [
-      {
-        label: '全部',
-        value: ''
-      }
-    ]
+    region: []
   };
   dataTable = {
     list: [],
@@ -33,55 +27,54 @@ export class GcScrapComponent implements OnInit {
     pageNumber: 1
   };
   formModel = {
-    company: '',
+    region: '',
   };
   pageParams = {
-    company: '',
+    region: '',
   };
   constructor(
-    private _service: SuperviseDataService,
+    private _service: WarningService,
     private messageService: MessageService,
   ) { }
 
   ngOnInit() {
-    this.getDropdownCompany();
+    this.getDropdownRegion();
   }
   onSubmit() {
     this.dataTable.pageNumber = 1;
     this.dataTable.first = 0;
     Object.assign(this.pageParams, this.formModel);
-    this.getDataTableList({
-      enterpriseNumber: this.formModel.company,
-      pageSize: this.dataTable.pageSize,
-      pageNumber: this.dataTable.pageNumber
-    });
+    this.getDataTableList();
   }
   onPageChange($event) {
     this.dataTable.list = [];
     this.onPageChange = event => {
       this.dataTable.pageNumber = event.first / event.rows + 1;
       this.dataTable.pageSize = event.rows;
-      this.getDataTableList({
-        enterpriseNumber: this.pageParams.company,
-        pageNumber: this.dataTable.pageNumber,
-        pageSize: this.dataTable.pageSize,
-      });
+      this.getDataTableList();
     };
   }
-
-  getDropdownCompany(params?) {
-    this._service.cylinderSelectOpt({}).then(data => {
-      if (data.status === 0) {
-        this.dropdown.company = this.dropdown.default.concat(data.data.enterpriseName);
-      } else {
-        this.dropdown.company = this.dropdown.default;
-      }
-    });
+  getDropdownRegion(params?) {
+    this._service.listRegionInfo(params)
+      .then(data => {
+        if (data.status === 0) {
+          this.dropdown.region = this.dropdown.default.concat(data.data.map(item => ({
+            label: item.regionName,
+            value: item.regionId
+          })));
+        } else {
+          this.dropdown.region = this.dropdown.default.concat([]);
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        }
+      });
   }
-
-  getDataTableList(params?) {
+  getDataTableList() {
     this.loading = true;
-    this._service.listGasScrap(params)
+    this._service.listLicenseExpire({
+      regionId: this.pageParams.region,
+      pageNumber: this.dataTable.pageNumber,
+      pageSize: this.dataTable.pageSize,
+    })
       .then(data => {
         this.loading = false;
         if (data.status === 0) {

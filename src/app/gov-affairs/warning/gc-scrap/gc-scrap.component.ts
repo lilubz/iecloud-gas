@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { SuperviseDataService } from '../supervise-data.service';
+import { WarningService } from '../warning.service';
 
 @Component({
-  selector: 'gas-gc-detection',
-  templateUrl: './gc-detection.component.html',
-  styleUrls: ['./gc-detection.component.scss'],
-  providers: [SuperviseDataService]
+  selector: 'gas-gc-scrap',
+  templateUrl: './gc-scrap.component.html',
+  styleUrls: ['./gc-scrap.component.scss']
 })
-export class GcDetectionComponent implements OnInit {
+export class GcScrapComponent implements OnInit {
   loading = false;
   dropdown = {
     default: [
@@ -17,12 +16,7 @@ export class GcDetectionComponent implements OnInit {
         value: ''
       }
     ],
-    company: [
-      {
-        label: '全部',
-        value: ''
-      }
-    ]
+    company: []
   };
   dataTable = {
     list: [],
@@ -39,33 +33,26 @@ export class GcDetectionComponent implements OnInit {
     company: '',
   };
   constructor(
-    private _service: SuperviseDataService,
+    private _service: WarningService,
     private messageService: MessageService,
   ) { }
 
   ngOnInit() {
     this.getDropdownCompany();
   }
+
   onSubmit() {
     this.dataTable.pageNumber = 1;
     this.dataTable.first = 0;
     Object.assign(this.pageParams, this.formModel);
-    this.getDataTableList({
-      enterpriseNumber: this.formModel.company,
-      pageSize: this.dataTable.pageSize,
-      pageNumber: this.dataTable.pageNumber
-    });
+    this.getDataTableList();
   }
   onPageChange($event) {
     this.dataTable.list = [];
     this.onPageChange = event => {
       this.dataTable.pageNumber = event.first / event.rows + 1;
       this.dataTable.pageSize = event.rows;
-      this.getDataTableList({
-        enterpriseNumber: this.pageParams.company,
-        pageNumber: this.dataTable.pageNumber,
-        pageSize: this.dataTable.pageSize,
-      });
+      this.getDataTableList();
     };
   }
 
@@ -74,14 +61,18 @@ export class GcDetectionComponent implements OnInit {
       if (data.status === 0) {
         this.dropdown.company = this.dropdown.default.concat(data.data.enterpriseName);
       } else {
-        this.dropdown.company = this.dropdown.default;
+        this.dropdown.company = this.dropdown.default.concat([]);
       }
     });
   }
 
-  getDataTableList(params?) {
+  getDataTableList() {
     this.loading = true;
-    this._service.listGasInspection(params)
+    this._service.listGasScrap({
+      enterpriseNumber: this.pageParams.company,
+      pageNumber: this.dataTable.pageNumber,
+      pageSize: this.dataTable.pageSize,
+    })
       .then(data => {
         this.loading = false;
         if (data.status === 0) {

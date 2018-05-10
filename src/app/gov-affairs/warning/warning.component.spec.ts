@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HistoryWarningComponent } from './history-warning.component';
+import { WarningComponent } from './warning.component';
 
-describe('HistoryWarningComponent', () => {
-  let component: HistoryWarningComponent;
-  let fixture: ComponentFixture<HistoryWarningComponent>;
+describe('WarningComponent', () => {
+  let component: WarningComponent;
+  let fixture: ComponentFixture<WarningComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HistoryWarningComponent ]
+      declarations: [ WarningComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HistoryWarningComponent);
+    fixture = TestBed.createComponent(WarningComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

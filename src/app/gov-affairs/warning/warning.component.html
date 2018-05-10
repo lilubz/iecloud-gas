@@ -1,0 +1,31 @@
+<!-- 左侧二级菜单 -->
+<div class="sidebar">
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12">
+      <h3>预警</h3>
+    </div>
+
+    <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
+      <div class="ui-g-12">
+        <button pButton type="button" label="气瓶超量预警" [routerLink]="['gc-count']" routerLinkActive="link-active"></button>
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="button" label="气瓶检测超期预警" [routerLink]="['gc-detection']" routerLinkActive="link-active"></button>
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="button" label="气瓶报废预警" [routerLink]="['gc-scrap']" routerLinkActive="link-active"></button>
+      </div>
+    </ng-container>
+
+    <div class="ui-g-12">
+      <button pButton type="button" label="许可证超期预警" [routerLink]="['license']" routerLinkActive="link-active"></button>
+    </div>
+  </div>
+</div>
+
+<!-- 右侧内容区 -->
+<div class="main">
+  <div class="card">
+    <router-outlet></router-outlet>
+  </div>
+</div>

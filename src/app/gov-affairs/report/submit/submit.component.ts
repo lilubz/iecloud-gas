@@ -36,8 +36,8 @@ export class SubmitComponent implements OnInit {
     const files = document.getElementById('file' + index)['files'];
     if (files.length > 0) {
       const formData = new FormData();
-      formData.set('multipartFile', files[0] );
-      formData.set('corpReportCommitId', this.dataTable.list[index]['corpReportCommitId'] );
+      formData.append('multipartFile', files[0] );
+      formData.append('corpReportCommitId', this.dataTable.list[index]['corpReportCommitId'] );
       this.sendForm(formData);
     } else {
       this.messageService.add({severity: 'warn', summary: '', detail: '请选择要上传的报表文件'});

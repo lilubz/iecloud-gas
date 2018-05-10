@@ -181,18 +181,18 @@ export class AddAffairsComponent implements OnInit {
       });
 
       const formData = new FormData();
-      formData.set('transactionHandleType', this.formModel.objType);
+      formData.append('transactionHandleType', this.formModel.objType);
       // tslint:disable-next-line:max-line-length
-      formData.set('transactionHandleNumber', this.formModel.objValue[this.config.autoComplete[this.formModel.objType].idName]);
-      formData.set('transactionPatrolTime', moment(this.formModel.time).format('YYYY-MM-DD HH:mm:ss'));
-      formData.set('transactionRegionId', this.formModel.regionId);
-      formData.set('transactionAddress', this.formModel.address);
-      formData.set('transactionTypeId', this.formModel.affairType);
-      formData.set('description', this.formModel.describe);
-      formData.set('cylinderImage', file.files[0] || '');
-      formData.set('collaborativeOrganizationInfoTOS', JSON.stringify(helpList));
-      formData.set('emergencyDegree', this.formModel.level);
-      formData.set('transactionSource', this.formModel.originId);
+      formData.append('transactionHandleNumber', this.formModel.objValue[this.config.autoComplete[this.formModel.objType].idName]);
+      formData.append('transactionPatrolTime', moment(this.formModel.time).format('YYYY-MM-DD HH:mm:ss'));
+      formData.append('transactionRegionId', this.formModel.regionId);
+      formData.append('transactionAddress', this.formModel.address);
+      formData.append('transactionTypeId', this.formModel.affairType);
+      formData.append('description', this.formModel.describe);
+      formData.append('cylinderImage', file.files[0] || '');
+      formData.append('collaborativeOrganizationInfoTOS', JSON.stringify(helpList));
+      formData.append('emergencyDegree', this.formModel.level);
+      formData.append('transactionSource', this.formModel.originId);
       this.sendFormModel(formData);
     }
   }
