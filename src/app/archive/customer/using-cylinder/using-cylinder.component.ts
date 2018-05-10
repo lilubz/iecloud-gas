@@ -13,7 +13,7 @@ export class UsingCylinderComponent implements OnInit, OnDestroy {
   dataTablelist: any[] = [];
   pageNumber = 1;
   pageSize = 40;
-  pageOption = [1,5, 10, 20, 30, 40];
+  pageOption = [10, 20, 40, 80];
   total = 0;
   first = 0;
   pageData = {};
