@@ -1,0 +1,58 @@
+<div class="using-cylinder">
+  <gas-back></gas-back>
+  <h2 style="text-align: center">
+    在用气瓶详情
+  </h2>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="dataTablelist" [style]="{'max-height':'450px'}" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true"
+        [rows]="pageSize" [scrollable]="false" [rowsPerPageOptions]="pageOption" scrollHeight="360px" [totalRecords]="total"
+        (onLazyLoad)="onPageChange($event)" [(first)]="first">
+        <p-column [style]="{'width':'100px'}" header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'150px'}" field="gasLabelNumber" header="条码">
+          <ng-template let-col let-cylinder="rowData" pTemplate="body">
+            {{ cylinder.gasLabelNumber }}
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'80px'}" field="regionName" header="所属行政区"></p-column>
+        <p-column [style]="{'width':'150px'}" field="enterpriseName" header="经营企业"></p-column>
+        <p-column [style]="{'width':'100px'}" field="type" header="气瓶规格"></p-column>
+        <p-column [style]="{'width':'100px'}" field="fillingMedium" header="充装介质"></p-column>
+        <p-column [style]="{'width':'80px'}" field="serviceCondition" header="状态"></p-column>
+        <p-column [style]="{'width':'100px'}" header="制造年月">
+          <ng-template let-first="rowData" pTemplate="body">
+            <span>{{first.productionDate|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" header="末检日期">
+          <ng-template let-end="rowData" pTemplate="body">
+            <span>{{end.endCheckDate|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" header="下检日期">
+          <ng-template let-next="rowData" pTemplate="body">
+            <span>{{next.nextCheckDate|date:"yyyy-MM-dd"}}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'100px'}" field="serialNumber" header="出厂编号"></p-column>
+        <p-column [style]="{'width':'100px'}" field="enterpriseCylinderCode" header="自有编号"></p-column>
+        <p-column [style]="{'width':'100px'}" field="electronNumber" header="电子编号（预留）"></p-column>
+        <p-column [style]="{'width':'100px'}" field="area13" header="登记时间"></p-column>
+        <p-column [style]="{'width':'100px'}" field="productionUnit" header="制造单位"></p-column>
+
+        <ng-template pTemplate="emptymessage">
+          <div class="text-left">
+            未查询到数据
+          </div>
+        </ng-template>
+        <ng-template pTemplate="paginatorRight">
+          共 {{ total || 0 }} 条记录
+        </ng-template>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

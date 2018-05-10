@@ -47,7 +47,7 @@
       <p-column [style]="{'width':'150px'}" field="userIdentityCardNumber" header="用户卡号"></p-column>
       <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户">
         <ng-template let-col let-user="rowData" pTemplate="body">
-          <a href="javascript:0;" [routerLink]="['../detail', {type:'userNumber',typeNumber:user.userNumber||''}]"
+          <a href="javascript:0;" [routerLink]="['../detail/customerDetail', {type:'userNumber',typeNumber:user.userNumber||''}]"
             title="点击查看用户祥情">
             {{ user.userName }}
           </a>

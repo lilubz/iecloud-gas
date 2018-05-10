@@ -24,6 +24,7 @@ import { FillingScaleListComponent } from './filling-scale-list/filling-scale-li
 import { EnterpriseFoundComponent } from './enterprise/enterprise-found/enterprise-found.component';
 import { GasHolderStationComponent } from './gas-holder-station/gas-holder-station.component';
 import { SupplyStationComponent } from './supply-station/supply-station.component';
+import { UsingCylinderComponent } from './customer/using-cylinder/using-cylinder.component';
 const routes: Routes = [
   {
     path: '',
@@ -98,10 +99,31 @@ const routes: Routes = [
           },
           {
             path: 'detail',
-            component: CustomerDetailComponent,
-            data: {
-              title: '用户详情'
-            },
+            // data: {
+            //   title: '用户详情'
+            // },
+            children: [
+              {
+                path: '',
+                redirectTo: 'detail',
+                pathMatch: 'full'
+              },
+              {
+                path: 'customerDetail',
+                component: CustomerDetailComponent,
+                data: {
+                  title: '用户详情'
+                }
+              },
+              {
+                path: 'usingCylinder',
+                component: UsingCylinderComponent,
+                data: {
+                  title: '在用气瓶详情'
+                },
+              },
+            ]
+
           },
           {
             path: 'list',

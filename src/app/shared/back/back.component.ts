@@ -7,11 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BackComponent implements OnInit {
   @Input() title: string = '返回';
-  @Input() link: string = '../';
+  // @Input() link: string = '../';
 
   constructor() { }
-
   ngOnInit() {
+  }
+
+  back() {
+    history.back();
   }
 
 }

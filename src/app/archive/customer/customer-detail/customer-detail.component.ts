@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, Params, ParamMap, NavigationExtras } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
 import { CustomerDetailService } from './customer-detail.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { usingCylinderModel } from './using-cylinder.model';
 @Component({
   selector: 'gas-customer-detail',
   templateUrl: './customer-detail.component.html',
@@ -13,55 +14,11 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 
 export class CustomerDetailComponent implements OnInit {
-  detailList: Array<{
-    userName: string,
-    gender: string,
-    certificateName: string,
-    certificateId: string,
-    certificateAddress: string,
-    userTypeName: string,
-    principal: string,
-    linkman: string,
-    phone: string,
-    deliveryAddress: string,
-    dispatcherName: string,
-    registrationTime: string,
-    registrant: string,
-    certificateAppendixUrl: string,
-    contractAppendixUrl: string,
-    regionName: string,
-    corpName: string,
-    stationName: string,
-    status: string,
-    userNumber: string,
-    gcCount: string,
-  }> = [{
-    userName: '',
-    gender: '',
-    certificateName: '',
-    certificateId: '',
-    certificateAddress: '',
-    userTypeName: '',
-    principal: '',
-    linkman: '',
-    phone: '',
-    deliveryAddress: '',
-    dispatcherName: '',
-    registrationTime: '',
-    registrant: '',
-    certificateAppendixUrl: '',
-    contractAppendixUrl: '',
-    regionName: '',
-    corpName: '',
-    stationName: '',
-    status: '',
-    userNumber: '',
-    gcCount: '',
-  }];
+ detailList: usingCylinderModel[]=[];
+
   detailLists: any;
   loading: any;
   typeList = '';
-
   cylinderVisible = false;
   dataTablelist: any[] = [];
   pageNumber = 1;
@@ -91,37 +48,10 @@ export class CustomerDetailComponent implements OnInit {
 
   ngOnInit() {
     this.queryDetail();
-    this.initDetailList();
+    this.detailLists = {};
     this.loading = '';
   }
-  initDetailList() {
-    this.detailList = [
-      {
-        userName: '',
-        gender: '',
-        certificateName: '',
-        certificateId: '',
-        certificateAddress: '',
-        userTypeName: '',
-        principal: '',
-        linkman: '',
-        phone: '',
-        deliveryAddress: '',
-        dispatcherName: '',
-        registrationTime: '',
-        registrant: '',
-        certificateAppendixUrl: '',
-        contractAppendixUrl: '',
-        regionName: '',
-        corpName: '',
-        stationName: '',
-        status: '',
-        userNumber: '',
-        gcCount: '',
-      }
-    ];
-    this.detailLists = {};
-  }
+  
   /**
   * 查询用户详情信息
   */
@@ -196,7 +126,14 @@ export class CustomerDetailComponent implements OnInit {
    */
   showDialog(id) {
     this.cylinderVisible = true;
-    this.searchUserCy();
+    let navigationExtras: NavigationExtras = {
+      queryParams: { 'userNumber':  this.detailLists.userNumber},
+      relativeTo:this.route
+    };
+
+    // Navigate to the login page with extras
+    this.router.navigate(['../usingCylinder'], navigationExtras);
+    // this.searchUserCy();
   }
 
   onPageChange(event) {

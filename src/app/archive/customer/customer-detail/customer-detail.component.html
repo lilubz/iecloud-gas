@@ -108,7 +108,7 @@
       </div>
       <div class="ui-g-4 padding-none">
         <span class="span_detail bg_color01" title="在用气瓶数">在用气瓶数</span>
-        <span class="span_detail01" [title]="detailLists.gcCount">
+        <span class="span_detail01" title="查看在用气瓶详情">
           <a (click)="showDialog()" class="detail-href">{{detailLists.gcCount}}</a>
         </span>
       </div>
@@ -123,20 +123,19 @@
       <div *ngIf="detailList.length">
         <div class="ui-g-8 padding-none" style="cursor: pointer;" (click)="ondetail(i)" *ngFor="let DetailList of detailList,let i=index">
           <div class="ui-g-1 user-result">{{i+1}}</div>
-          <div class="ui-g-3 user-result">{{DetailList.certificateId?DetailList.certificateId:'无'}}</div>
-          <div class="ui-g-2 user-result">{{DetailList.userName?DetailList.userName:'无'}}</div>
-          <div class="ui-g-2 user-result">{{DetailList.deliveryAddress?DetailList.deliveryAddress:'无'}}</div>
-          <div class="ui-g-2 user-result">{{DetailList.userNumber?DetailList.userNumber:'无'}}</div>
-          <div class="ui-g-2 user-result">{{DetailList.phone?DetailList.phone:'无'}}</div>
+          <div class="ui-g-3 user-result" [title]="DetailList.certificateId?DetailList.certificateId:'无'">{{DetailList.certificateId?DetailList.certificateId:'无'}}</div>
+          <div class="ui-g-2 user-result" [title]="DetailList.userName?DetailList.userName:'无'">{{DetailList.userName?DetailList.userName:'无'}}</div>
+          <div class="ui-g-2 user-result" [title]="DetailList.deliveryAddress?DetailList.deliveryAddress:'无'">{{DetailList.deliveryAddress?DetailList.deliveryAddress:'无'}}</div>
+          <div class="ui-g-2 user-result" [title]="DetailList.userNumber?DetailList.userNumber:'无'">{{DetailList.userNumber?DetailList.userNumber:'无'}}</div>
+          <div class="ui-g-2 user-result" [title]="(DetailList.phone.trim()!='')?DetailList.phone:'无'">{{(DetailList.phone.trim()!="")?DetailList.phone:'无'}}</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<p-dialog [visible]="cylinderVisible" header="用户在用气瓶详情" [responsive]="true" [showHeader]="true" [modal]="true" [closable]="false"
-  [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="90">
-  <!-- <h3 class="title"></h3> -->
+<!-- <p-dialog [visible]="cylinderVisible" header="用户在用气瓶详情" [responsive]="true" [showHeader]="true" [modal]="true" [closable]="false"
+  [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="90"
   <div class="ui-g">
     <p-dataTable [value]="dataTablelist" [style]="{'max-height':'450px'}" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true"
       [rows]="pageSize" [scrollable]="false" [rowsPerPageOptions]="pageOption" scrollHeight="360px" [totalRecords]="total"
@@ -191,4 +190,4 @@
 
     <button type="button" pButton (click)="cylinderVisible=false" label="关闭"></button>
   </p-footer>
-</p-dialog>
+</p-dialog> -->
