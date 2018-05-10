@@ -1,25 +1,24 @@
-import { MessageService } from 'primeng/components/common/messageservice';
-import { CustomerService } from './customer.service';
-import { CommonRequestService } from './../../core/common-request.service';
-import { SelectItem } from 'primeng/components/common/selectitem';
 import { Component, OnInit } from '@angular/core';
+import { CommonRequestService } from '../../core/common-request.service';
+import { AddCustomerStatisticService } from './add-customer.service';
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Customer } from '../../input/user-info/Customer.model';
+import { SelectItem } from 'primeng/primeng';
 
 @Component({
-  selector: 'gas-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.scss']
+  selector: 'gas-add-customer',
+  templateUrl: './add-customer.component.html',
+  styleUrls: ['./add-customer.component.scss'],
+  providers: [AddCustomerStatisticService]
 })
-export class CustomerComponent implements OnInit {
+export class AddCustomerComponent implements OnInit {
   // 企业统计分页参数
   statisticPageSize = 40;
   statisticPageNumber = 1;
   statisticTotal = 0;
   statisticFirst = 0;
   // 用户登记记录分页参数
-  recordPageSize = 10;
-  recordPageNumber = 1;
-  recordTotal = 0;
+  loading = false;
 
   // 区域下拉列表
   regions: SelectItem[] = [];
@@ -35,15 +34,9 @@ export class CustomerComponent implements OnInit {
     count: string,
   }[] = [];
 
-  enterpriseRegisterCustomer: Customer = new Customer();
-
-  // 某企业某日的用户登记记录
-  customerRegisterRecords: Customer[] = [];
-
-  detailVisible = false;
   constructor(
     private commonRequestService: CommonRequestService,
-    private customerService: CustomerService,
+    private addCustomerService: AddCustomerStatisticService,
     private messageService: MessageService) { }
 
   ngOnInit() {
@@ -62,17 +55,15 @@ export class CustomerComponent implements OnInit {
     this.statisticPageSize = event.rows;
     this.getEnterpriseStatistic();
   }
-  onRecordPageChange(event) {
-    this.recordPageNumber = event.first / event.rows + 1;
-    this.recordPageSize = event.rows;
-    this.getEnterpriseRegisterDetail();
-  }
+
   getEnterpriseStatistic() {
-    this.customerService.getUserCountRecentlyRegister({
+    this.loading = true;
+    this.addCustomerService.getUserCountRecentlyRegister({
       regionId: this.selectedRegionId,
       pageNumber: this.statisticPageNumber,
       pageSize: this.statisticPageSize
     }).then(data => {
+      this.loading = false;
       if (data.status === 0) {
         this.enterpriseRegisterStatistic = data.data.list;
         this.statisticTotal = data.data.total;
@@ -82,34 +73,6 @@ export class CustomerComponent implements OnInit {
         this.statisticTotal = 0;
       }
     });
-  }
-
-  getEnterpriseRegisterDetail() {
-    if (!this.selectedEnterpriseId) {
-      return false;
-    }
-    this.customerService.listUserInfoRecentlyRegister({
-      enterpriseId: this.selectedEnterpriseId,
-      pageNumber: this.recordPageNumber,
-      pageSize: this.recordPageSize
-    }).then(data => {
-      if (data.status === 0) {
-        this.customerRegisterRecords = data.data.list;
-        this.recordTotal = data.data.total;
-      } else {
-        this.customerRegisterRecords = [];
-        this.recordTotal = 0;
-        this.messageService.add({ severity: 'warn', summary: '获取详情信息失败', detail: data.msg });
-      }
-    });
-  }
-
-  showDetail(record) {
-    this.detailVisible = true;
-    this.customerRegisterRecords = [];
-    this.recordTotal = 0;
-    this.selectedEnterpriseId = record.enterpriseNumber;
-    this.getEnterpriseRegisterDetail();
   }
 
   search() {

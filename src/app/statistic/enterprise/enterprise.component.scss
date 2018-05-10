@@ -2,7 +2,6 @@
   border: 1px solid;
   border-radius: 10px;
   padding: 4px;
- 
   >span {
     display: block;
     width: 100%;
@@ -11,8 +10,8 @@
     font-size: 16px;
     text-align: center;
   }
-  .bold{
-    font-weight:700;
+  .bold {
+    font-weight: 700;
     font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
     font-size: 18px;
   }
@@ -26,8 +25,12 @@
       color: #3399ff;
     }
   }
- 
 }
+
+.main {
+  left: 120px;
+}
+
 // .ui-datatable-tablewrapper{
 //   position: absolute!important;
 //   top: 82%!important;

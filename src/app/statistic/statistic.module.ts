@@ -22,6 +22,8 @@ import { GcDetectionComponent } from './supervise-data/gc-detection/gc-detection
 import { GcScrapComponent } from './supervise-data/gc-scrap/gc-scrap.component';
 import { IndustryAnalyzeComponent } from './industry-analyze/industry-analyze.component';
 import { SafetyCheckComponent } from './safety-check/safety-check.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { DetailComponent } from './add-customer/detail/detail.component';
 
 @NgModule({
   imports: [
@@ -46,6 +48,8 @@ import { SafetyCheckComponent } from './safety-check/safety-check.component';
     GcScrapComponent,
     IndustryAnalyzeComponent,
     SafetyCheckComponent,
+    AddCustomerComponent,
+    DetailComponent,
   ],
   providers: [
 

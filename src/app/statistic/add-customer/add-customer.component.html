@@ -1,0 +1,34 @@
+<div class="main">
+  <div class="card">
+    <div class="ui-g-12 customer">
+      <div style="min-width: 550px;">
+        <div class="ui-g-12">
+          <label for="" class="search-label">所在区</label>
+          <p-dropdown [options]="regions" [(ngModel)]="selectedRegionId" [style]="{'width':'100px'}" (onChange)="search()"></p-dropdown>
+        </div>
+        <div class="ui-g-12">
+          <p-dataTable [value]="enterpriseRegisterStatistic" emptyMessage="未查询到数据" [paginator]="true" [rows]="statisticPageSize" [lazy]="true" [loading]="loading"
+            [(first)]="statisticFirst" (onLazyLoad)="onStatisticPageChange($event)" [scrollable]="false" [totalRecords]="statisticTotal"
+            [rowsPerPageOptions]="[10,20,40,80]">
+            <p-column header="序号" [style]="{'width':'50px'}">
+              <ng-template pTemplate="body" let-index="rowIndex">
+                {{index + 1}}
+              </ng-template>
+            </p-column>
+            <p-column field="regionName" header="所在区" [style]="{'width':'30%'}"></p-column>
+            <p-column field="enterpriseName" header="登记企业"></p-column>
+            <p-column field="count" header="登记数量"></p-column>
+            <p-column header="操作" [style]="{'width':'100px'}">
+              <ng-template let-record="rowData" pTemplate="body">
+                <a href="javascript:void(0);" [routerLink]="['../detail',record.enterpriseNumber]">查看详情</a>
+              </ng-template>
+            </p-column>
+            <ng-template pTemplate="paginatorRight">
+              共 {{ statisticTotal || 0 }} 条记录
+            </ng-template>
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
