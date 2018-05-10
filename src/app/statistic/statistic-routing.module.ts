@@ -12,6 +12,8 @@ import { StorageDistributionComponent } from './cylinder/storage-distribution/st
 import { CustomerComponent } from './cylinder/customer/customer.component';
 import { IndustryAnalyzeComponent } from './industry-analyze/industry-analyze.component';
 import { SafetyCheckComponent } from './safety-check/safety-check.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { DetailComponent } from './add-customer/detail/detail.component';
 import { LicenseWarningComponent } from './license-warning/license-warning.component';
 
 const routes: Routes = [
@@ -78,6 +80,33 @@ const routes: Routes = [
         data: {
           title: '企业统计'
         }
+      },
+      {
+        path: 'customer',
+        data: {
+          title: '新增用户统计'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'add-customer',
+            pathMatch: 'full'
+          },
+          {
+            path: 'add-customer',
+            component: AddCustomerComponent,
+            data: {
+              title: '区域新增用户统计'
+            }
+          },
+          {
+            path: 'detail/:enterpriseId',
+            component: DetailComponent,
+            data: {
+              title: '企业新增用户详情'
+            }
+          },
+        ]
       },
       {
         path: 'affair',

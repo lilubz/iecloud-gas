@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VerificationComponent } from './verification.component';
-import { CustomerComponent } from './customer/customer.component';
 import { UserCardComponent } from './user-card/user-card.component';
 const routes: Routes = [
   {
@@ -15,15 +14,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'customer',
+        redirectTo: 'user-card',
         pathMatch: 'full'
-      },
-      {
-        path: 'customer',
-        component: CustomerComponent,
-        data: {
-          title: '用户信息'
-        }
       },
       {
         path: 'user-card',

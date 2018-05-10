@@ -16,6 +16,8 @@ import { StorageDistributionComponent } from './cylinder/storage-distribution/st
 import { CustomerComponent } from './cylinder/customer/customer.component';
 import { IndustryAnalyzeComponent } from './industry-analyze/industry-analyze.component';
 import { SafetyCheckComponent } from './safety-check/safety-check.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { DetailComponent } from './add-customer/detail/detail.component';
 import { LicenseWarningComponent } from './license-warning/license-warning.component';
 
 @NgModule({
@@ -35,6 +37,8 @@ import { LicenseWarningComponent } from './license-warning/license-warning.compo
     CustomerComponent,
     IndustryAnalyzeComponent,
     SafetyCheckComponent,
+    AddCustomerComponent,
+    DetailComponent,
     LicenseWarningComponent,
   ],
   providers: [

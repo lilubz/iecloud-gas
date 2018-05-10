@@ -119,7 +119,7 @@ export class CylinderStorageComponent implements OnInit {
         this.cylinderStorages = data.data;
         this.cylinderStorageFilters = this.cylinderStorages;
       } else {
-        this.messageService.add({ severity: 'warn', summary: '获取储配站气瓶统计数据失败', detail: data.msg });
+        this.messageService.add({ severity: 'warn', summary: '获取供应站气瓶统计数据失败', detail: data.msg });
       }
       this.cylinderLoading = false;
     }).catch(error => {
@@ -137,7 +137,7 @@ export class CylinderStorageComponent implements OnInit {
           this.cylinderStorageCirculations = data.data;
           this.selectCirculationRegion(this.selectedCirculationRegion);
         } else {
-          this.messageService.add({ severity: 'warn', summary: '获取储配站气瓶流通统计数据失败', detail: data.msg });
+          this.messageService.add({ severity: 'warn', summary: '获取供应站气瓶流通统计数据失败', detail: data.msg });
         }
         this.circulationLoading = false;
       }).catch(error => {

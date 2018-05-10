@@ -27,8 +27,8 @@ export class BreadcrumbComponent implements DoCheck {
   ) {
     this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event) => {
       this.breadcrumbs = [];
-      let currentRoute = this.route.root,
-        url = '';
+      let currentRoute = this.route.root;
+      let url = '';
       do {
         const childrenRoutes = currentRoute.children;
         currentRoute = null;

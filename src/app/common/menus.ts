@@ -58,6 +58,7 @@ export const AdminMenus: MenuItem[] = [
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
       { label: '企业', routerLink: ['/statistic/enterprise'] },
+      { label: '新增用户统计', routerLink: ['/statistic/customer'] },
       { label: '执法', routerLink: ['/statistic/affair'] },
       { label: '入户安检统计', routerLink: ['/statistic/safety-check'] },
       { label: '行业分析', routerLink: ['/statistic/industry-analyze'] },
@@ -152,6 +153,7 @@ export const GovernmentMenus: MenuItem[] = [
     items: [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
       { label: '企业', routerLink: ['/statistic/enterprise'] },
+      { label: '新增用户统计', routerLink: ['/statistic/customer'] },
       { label: '执法', routerLink: ['/statistic/affair'] },
       { label: '入户安检统计', routerLink: ['/statistic/safety-check'] },
       { label: '行业分析', routerLink: ['/statistic/industry-analyze'] },
