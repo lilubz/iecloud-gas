@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { CylinderTraceService } from '../cylinder-trace.service';
 import { zh_CN } from '../../../common/date-localization';
+import { SortMeta } from 'primeng/primeng';
 
 @Component({
   selector: 'gas-cylinder-history',
@@ -15,17 +16,23 @@ export class CylinderHistoryComponent implements OnInit {
   loading = false;
   zh = zh_CN;
   cylinderHistoryList: Array<{
-    createTime?: Date,
+    createTime?: number,
     gcStatusTypeName?: string,
-    boolIsDispatch?: string,
+    boolIsDispatch?: boolean,
     beforeLiabilityTypeName?: string,
     beforeLiabilityName?: string,
+    beforeLiabilityTypeId?: number,
+    beforeLiabilityNumber?: number,
     beforeLiabilityContact?: string,
     beforeLiabilityAddress?: string,
     afterLiabilityTypeName?: string,
     afterLiabilityName?: string,
+    afterLiabilityTypeId?: number,
+    afterLiabilityNumber?: number,
     afterLiabilityContact?: string,
-    afterLiabilityAddress?: string
+    afterLiabilityAddress?: string,
+    gasLabelNumber?: string,
+    statusTransformId?: number
   }> = [];
   cylinderFillingHistoryList: Array<any> = [];
 
@@ -39,7 +46,10 @@ export class CylinderHistoryComponent implements OnInit {
   endTime: Date = new Date();
   cylinderNumber = '';
   firstTime = true;
-
+  multiSortMeta: SortMeta[] = [
+    { field: 'createTime', order: -1 },
+    { field: 'statusTransformId', order: -1 },
+  ]
   constructor(
     private commonRequestService: CommonRequestService,
     private cylinderTraceService: CylinderTraceService,
