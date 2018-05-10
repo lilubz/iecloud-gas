@@ -6,9 +6,9 @@
         <h3 class="text-center">新增用户详情查看</h3>
       </div>
       <div class="ui-g-12">
-        <p-dataTable [value]="customerRegisterRecords" [loading]="loading" emptyMessage="未查询到数据" [style]="{'max-height':'450px'}"
-          [paginator]="true" [rows]="recordPageSize" [lazy]="true" scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)"
-          [scrollable]="false" [totalRecords]="recordTotal" [rowsPerPageOptions]="[10,20,40,80]">
+        <p-dataTable [value]="customerRegisterRecords" [loading]="loading" emptyMessage="未查询到数据" [paginator]="true" [rows]="recordPageSize"
+          [lazy]="true" scrollHeight="360px" (onLazyLoad)="onRecordPageChange($event)" [scrollable]="false" [totalRecords]="recordTotal"
+          [rowsPerPageOptions]="[10,20,40,80]">
           <p-column [style]="{'width':'100px'}" field="regionName" header="所在区"></p-column>
           <p-column [style]="{'width':'100px'}" field="userName" header="用户名称"></p-column>
           <p-column [style]="{'width':'100px'}" field="userType" header="客户类型"></p-column>
