@@ -56,7 +56,7 @@ export class TransportCarComponent implements OnInit {
     if (this.formModel.type === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择车辆类型' });
       return false;
-    } else if (this.formModel.number.length < 6) {
+    } else if (this.formModel.number.length < 6 || this.formModel.number.length > 8) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入正确的车牌号' });
       return false;
     } else if (!this.formModel.company.trim()) {

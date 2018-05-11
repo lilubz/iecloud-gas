@@ -10,7 +10,6 @@ import * as echarts from 'echarts';
   providers: [IndustryAnalyzeService]
 })
 export class IndustryAnalyzeComponent implements OnInit {
-  hidden = true;
   charts = {
     option: null,
     element: null,
@@ -62,9 +61,9 @@ export class IndustryAnalyzeComponent implements OnInit {
     this.charts.element = document.getElementById('charts');
     this.charts.instance = echarts.init(this.charts.element);
     this.drawingCharts([], []);
+    this.charts.element.style.display = 'none';
   }
   onSubmit() {
-    this.hidden = false;
     this.charts.instance.showLoading();
     this.getChartsData({
       regionId: this.formModel.regionId,
@@ -117,7 +116,7 @@ export class IndustryAnalyzeComponent implements OnInit {
       ]
     };
     this.charts.instance.setOption(this.charts.option);
-    this.hidden = xData.length <= 0;
+    this.charts.element.style.display = xData.length <= 0 ? 'none' : 'block';
   }
   onChangeAreaID(event) {
     this.dropdown.corp = this.dropdown.default;
@@ -153,6 +152,7 @@ export class IndustryAnalyzeComponent implements OnInit {
   }
 
   getChartsData(params?) {
+    this.charts.element.style.display = 'block';
     this._service.fillingFluctuations(params).then(data => {
       if (data.status === 0) {
         const xData = [];

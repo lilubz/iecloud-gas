@@ -212,45 +212,14 @@
     <div class="ui-g-12 dashed-border tree-node">
       <p-tree [value]="treeNode.data" layout="horizontal" selectionMode="single" [(selection)]="treeNode.selectObj" icon="fa-folder"></p-tree>
     </div>
-    <!-- <div class="ui-g-12 bottom">
-      <div class="ui-g-12">
-        <div class="ui-g-3">
-          <span class="ui-g-4 content title">部门</span>
-          <span class="ui-g-8 content" title="{{treeNode.selectInfo.eventHandleOrganizationName}}">{{treeNode.selectInfo.eventHandleOrganizationName}}</span>
-        </div>
-        <div class="ui-g-3">
-          <span class="ui-g-4 content title">处理时间</span>
-          <span class="ui-g-8 content">{{treeNode.selectInfo.endTime|date:'yyyy-MM-dd'}}</span>
-        </div>
-        <div class="ui-g-3">
-          <span class="ui-g-4 content title">处理人</span>
-          <span class="ui-g-8 content">{{treeNode.selectInfo.eventHandleName?treeNode.selectInfo.eventHandleName:'-'}}</span>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-6">
-          <span class="ui-g-2 content title">描述</span>
-          <span class="ui-g-10 content">{{treeNode.selectInfo.description?treeNode.selectInfo.description:'-'}}</span>
-        </div>
-        <div class="ui-g-3">
-          <span class="ui-g-4 content title">附件</span>
-          <span class="ui-g-8 content">
-            <span *ngIf="treeNode.selectInfo.url!=='/wenZhouGas/null'">
-              <a href="javascript:void(0);" (click)="window.location.href=treeNode.selectInfo.url">点击预览</a>
-            </span>
-            <span *ngIf="treeNode.selectInfo.url==='/wenZhouGas/null'">
-              没有附件
-            </span>
-          </span>
-        </div>
-      </div>
-    </div> -->
+
   </div>
 
   <p-confirmDialog header="请确认！" icon="fa fa-question-circle" width="425" acceptLabel="确认" rejectLabel="取消">
   </p-confirmDialog>
-  <p-dialog [visible]="visible" [showHeader]="false" [modal]="true" [closable]="false" [width]="310" [height]="440" [contentStyle]="{'padding':'2px'}"
+  <p-dialog [visible]="visible" [showHeader]="false" [modal]="true" [closable]="false" [width]="242" [height]="430" [contentStyle]="{'padding':'2px'}"
     [style]="{'border':'none'}">
+    <h3 class="text-center">重新指派截止时间</h3>
     <p-calendar [(ngModel)]="formModel.nextSubmitTime" [locale]="zh" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
       [yearNavigator]="true" yearRange="2018:2050" readonlyInput="true" [inline]="true" [showTime]="true" [minDate]="currentDate"></p-calendar>
     <div class="text-center" style="margin-top:10px">
