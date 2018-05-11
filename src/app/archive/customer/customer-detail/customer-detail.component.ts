@@ -14,20 +14,11 @@ import { usingCylinderModel } from './using-cylinder.model';
 })
 
 export class CustomerDetailComponent implements OnInit {
- detailList: usingCylinderModel[]=[];
+  detailList: usingCylinderModel[] = [];
 
   detailLists: any;
   loading: any;
   typeList = '';
-  cylinderVisible = false;
-  dataTablelist: any[] = [];
-  pageNumber = 1;
-  pageSize = 40;
-  pageOption = [5, 10, 20, 30, 40];
-  total = 0;
-  first = 0;
-  pageData = {};
-  firstStatus = false;
   certificateAppendixImages: {
     source: string,
     thumbnail: string,
@@ -51,7 +42,7 @@ export class CustomerDetailComponent implements OnInit {
     this.detailLists = {};
     this.loading = '';
   }
-  
+
   /**
   * 查询用户详情信息
   */
@@ -77,38 +68,18 @@ export class CustomerDetailComponent implements OnInit {
           }
         } else {
           if (this.typeList === 'idNumber') {
-            this.messageService.add({
-              severity: 'warn',
-              summary: '查询结果',
-              detail: '未查询到证件编号信息'
-            });
+            this.messageService.add({ severity: 'warn', summary: '查询结果', detail: '未查询到证件编号信息' });
           } else if (this.typeList === 'userCardNumber') {
-            this.messageService.add({
-              severity: 'warn',
-              summary: '查询结果',
-              detail: '未查询到用户卡号信息'
-            });
+            this.messageService.add({ severity: 'warn', summary: '查询结果', detail: '未查询到用户卡号信息' });
           } else if (this.typeList === 'phone') {
-            this.messageService.add({
-              severity: 'warn',
-              summary: '查询结果',
-              detail: '未查询到联系电话信息'
-            });
+            this.messageService.add({ severity: 'warn', summary: '查询结果', detail: '未查询到联系电话信息' });
           } else if (this.typeList === 'userNumber') {
-            this.messageService.add({
-              severity: 'warn',
-              summary: '查询结果',
-              detail: '未查询到用户ID信息'
-            });
+            this.messageService.add({ severity: 'warn', summary: '查询结果', detail: '未查询到用户ID信息' });
           }
 
         }
       }, error => {
-        this.messageService.add({
-          severity: 'error',
-          summary: '获取信息异常',
-          detail: error
-        });
+        this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
       });
   }
   /**
@@ -121,74 +92,15 @@ export class CustomerDetailComponent implements OnInit {
     this.contractAppendixImages = this.detailLists.contractAppendixUrl ? this.detailLists.contractAppendixUrl.split(',')
       .map(item => ({ source: item, thumbnail: item, title: '' })) : [];
   }
-  /**
-   * 弹出框
-   */
-  showDialog(id) {
-    this.cylinderVisible = true;
+
+  showUsedCylinderDetail(id) {
     let navigationExtras: NavigationExtras = {
-      queryParams: { 'userNumber':  this.detailLists.userNumber},
-      relativeTo:this.route
+      queryParams: { 'userNumber': this.detailLists.userNumber },
+      relativeTo: this.route
     };
 
     // Navigate to the login page with extras
     this.router.navigate(['../usingCylinder'], navigationExtras);
     // this.searchUserCy();
-  }
-
-  onPageChange(event) {
-    const page: {
-      pageSize: number,
-      pageNumber: number
-    } = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
-    this.pageData = page;
-    this.searchUserCy(this.pageData);
-    // console.log(event);
-  }
-
-  /**
-  * 查询用户在用气瓶详情
-  */
-  searchUserCy(page?) {
-    const params = {
-      userNumber: this.detailLists.userNumber || '',
-      pageNumber: 1,
-      pageSize: 40,
-    };
-    if (page) {
-      params['pageNumber'] = page.pageNumber;
-      params['pageSize'] = page.pageSize;
-    } else {
-      this.first = 0;
-    }
-    // 第一次 page查询时调接口
-    if (!this.firstStatus) {
-      this.firstStatus = true;
-    } else {
-      this.CustomerDetailService.listUserHasGc(params).then(data => {
-        if (data.status === 0) {
-          this.dataTablelist = data.data.list;
-          this.total = data.data.size;
-        } else {
-          this.dataTablelist = [];
-          this.total = 0;
-          this.messageService.add({
-            severity: 'warn',
-            summary: '提示信息',
-            detail: data.msg
-          });
-        }
-
-      }).catch(error => {
-        this.dataTablelist = [];
-        this.total = 0;
-        this.messageService.add({
-          severity: 'error', summary: '服务器错误，错误码：', detail: error.status
-        });
-      });
-    }
   }
 }
