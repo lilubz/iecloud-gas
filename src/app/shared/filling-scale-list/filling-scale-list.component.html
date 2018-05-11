@@ -54,12 +54,12 @@
   <div class="ui-g-12 text-center">
     充装秤编号：{{ selectedScaleStatus?.balanceNumber }}
     <div class="ui-g-12 ui-g-nopad">
-      是否设置联锁：
-      <p-inputSwitch onLabel="是" offLabel="否" [(ngModel)]="selectedScaleStatus.boolIsSetInterLock" (onChange)="setInnerLock($event.checked)"></p-inputSwitch>
+      设置联锁：
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetInterLock" (onChange)="setInnerLock($event.checked)"></p-inputSwitch>
     </div>
     <div class="ui-g-12 ui-g-nopad">
-      是否设置锁：
-      <p-inputSwitch onLabel="是" offLabel="否" [(ngModel)]="selectedScaleStatus.boolIsSetOuterLock" (onChange)="setLock($event.checked)"></p-inputSwitch>
+      设置锁：
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetOuterLock" (onChange)="setLock($event.checked)"></p-inputSwitch>
     </div>
   </div>
   <p-footer>
