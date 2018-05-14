@@ -9,7 +9,7 @@
               <span class="">所在区域</span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input type="text" [(ngModel)]="user.regionName" pInputText disabled>
+              <input type="text" [(ngModel)]="user.regionName" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText disabled>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input type="text" [(ngModel)]="customer.userName" pInputText placeholder="客户名称" maxlength="50">
+              <input type="text" [(ngModel)]="customer.userName" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="客户名称" maxlength="50">
             </div>
           </div>
           <div class="ui-g-12">
@@ -33,7 +33,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-                <input type="text" [(ngModel)]="customer.certificateName" pInputText disabled>
+              <input type="text" [(ngModel)]="customer.certificateName" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText disabled>
             </div>
           </div>
           <div class="ui-g-12">
@@ -43,7 +43,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input type="text" [(ngModel)]="customer.principal" pInputText placeholder="姓名" maxlength="50">
+              <input type="text" [(ngModel)]="customer.principal" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="姓名" maxlength="50">
             </div>
           </div>
           <div class="ui-g-12">
@@ -53,7 +53,7 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input type="text" [(ngModel)]="customer.certificateId" pInputText placeholder="证件号码" maxlength="20">
+              <input type="text" [(ngModel)]="customer.certificateId" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="证件号码" maxlength="20">
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
                 </span>
               </div>
               <div class="ui-g-9 ui-g-nopad">
-                <input type="text" [(ngModel)]="customer.enterpriseOrganizationCode" pInputText placeholder="营业执照" maxlength="50">
+                <input type="text" [(ngModel)]="customer.enterpriseOrganizationCode" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="营业执照" maxlength="50">
               </div>
             </div>
             <div class="ui-g-12">
@@ -86,7 +86,7 @@
                 </span>
               </div>
               <div class="ui-g-9 ui-g-nopad">
-                <input type="text" [(ngModel)]="customer.address" pInputText placeholder="注册地址" maxlength="50">
+                <input type="text" [(ngModel)]="customer.address" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="注册地址" maxlength="50">
               </div>
             </div>
             <div class="ui-g-12">
@@ -96,7 +96,7 @@
                 </span>
               </div>
               <div class="ui-g-9 ui-g-nopad">
-                <input type="text" [(ngModel)]="customer.legalRepresentative" pInputText placeholder="法定代表人" maxlength="50">
+                <input type="text" [(ngModel)]="customer.legalRepresentative" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="法定代表人" maxlength="50">
               </div>
             </div>
           </div>
@@ -113,7 +113,8 @@
             [county]="customer.certificateId.substring(0,6)" (onSelect)="selectIDAddress($event)"></gas-districts>
         </div>
         <div class="ui-g-10 ui-xl-6 ui-g-offset-2">
-          <input type="text" [(ngModel)]="certificateDetailAddress" pInputText placeholder="证件地址" maxlength="50">
+          <input type="text" [(ngModel)]="certificateDetailAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="证件地址"
+            maxlength="50">
         </div>
       </div>
       <hr>
@@ -136,7 +137,8 @@
           </div>
         </div>
         <div class="ui-g-10 ui-xl-6">
-          <input [(ngModel)]="customer.deliveryAddress" type="text" pInputText placeholder="详细地址" maxlength="50">
+          <input [(ngModel)]="customer.deliveryAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" type="text" pInputText placeholder="详细地址"
+            maxlength="50">
         </div>
       </div>
       <!-- <div class="ui-g-6 ui-g-nopad">
@@ -159,7 +161,7 @@
             </span>
           </div>
           <div class="ui-g-9 ui-g-nopad">
-            <input type="text" [(ngModel)]="customer.phone" pattern="[0-9]{7,11}" placeholder="联系电话" pInputText maxlength="11">
+            <input type="text" [(ngModel)]="customer.phone" gasInputFilter="[0-9]*" placeholder="联系电话" pInputText maxlength="11">
           </div>
         </div>
       </div>
@@ -181,7 +183,7 @@
             <span>合同编号</span>
           </div>
           <div class="ui-g-9 ui-g-nopad">
-            <input type="text" [(ngModel)]="customer.contractNo" pattern="[0-9]*" placeholder="合同编号" pInputText maxlength="10">
+            <input type="text" [(ngModel)]="customer.contractNo" gasInputFilter="[0-9]*" placeholder="合同编号" pInputText maxlength="10">
           </div>
         </div>
       </div>
