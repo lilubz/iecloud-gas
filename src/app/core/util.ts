@@ -100,4 +100,15 @@ export class Util {
     }
     return version > 0;
   }
+
+  /**
+   * 获取路由地址
+   * 2018-05-14 17:05:24
+   * @author hzb
+   * @returns {string}
+   * @memberof Util
+   */
+  getRouterUrl(): string {
+    return location.hash.split('#')[1].split(/[?;]/)[0];
+  }
 }

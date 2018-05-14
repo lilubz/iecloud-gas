@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Util } from './../../../core/util';
+import { QueryParamsService } from './../../../core/query-params.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -12,7 +14,7 @@ import { SortMeta } from 'primeng/primeng';
   templateUrl: './cylinder-history.component.html',
   styleUrls: ['./cylinder-history.component.css']
 })
-export class CylinderHistoryComponent implements OnInit {
+export class CylinderHistoryComponent implements OnInit, OnDestroy {
   loading = false;
   zh = zh_CN;
   cylinderHistoryList: Array<{
@@ -49,13 +51,16 @@ export class CylinderHistoryComponent implements OnInit {
   multiSortMeta: SortMeta[] = [
     { field: 'createTime', order: -1 },
     { field: 'statusTransformId', order: -1 },
-  ]
+  ];
+  routerUrl;
   constructor(
     private commonRequestService: CommonRequestService,
     private cylinderTraceService: CylinderTraceService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private queryParamsService: QueryParamsService,
+    private util: Util,
   ) { }
 
   ngOnInit() {
@@ -68,6 +73,26 @@ export class CylinderHistoryComponent implements OnInit {
       this.endTime = queryParams.endTime ? new Date(parseInt(queryParams.endTime, 10)) : this.endTime;
       this.getCylinderHistoryStatus();
     }
+
+    let params = this.queryParamsService.getQueryParams();
+    if (params) {
+      this.pageSizeHistory = params.pageSizeHistory || this.pageSizeHistory;
+      this.pageNumberHistory = params.pageNumberHistory || this.pageNumberHistory;
+      this.cylinderNumber = params.cylinderNumber || this.cylinderNumber;
+      this.beginTime = params.beginTime || this.beginTime;
+      this.endTime = params.endTime || this.endTime;
+    }
+    this.routerUrl = this.util.getRouterUrl();
+  }
+
+  ngOnDestroy() {
+    this.queryParamsService.setQueryParams(this.routerUrl, {
+      pageSizeHistory: this.pageSizeHistory,
+      pageNumberHistory: this.pageNumberHistory,
+      cylinderNumber: this.cylinderNumber,
+      beginTime: this.beginTime,
+      endTime: this.endTime
+    });
   }
 
   getCylinderHistoryStatus() {
