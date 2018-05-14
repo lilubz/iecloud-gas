@@ -1,9 +1,14 @@
 <div class="main">
   <div class="container card">
-    <div class="ui-g-12">
-      <iframe src="./assets/talk-dispatch.html" frameborder="0" id="richtalk">
-        您的浏览器不支持iframe
-      </iframe>
-    </div>
+    <ng-container *ngIf="isIE()">
+      <div class="ui-g-12">
+        <iframe src="./assets/talk-dispatch.html" frameborder="0" id="richtalk">
+          您的浏览器不支持iframe
+        </iframe>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!isIE()">
+      <h3>您的浏览器不支持该控件，请在IE9或IE10浏览器中打开！</h3>
+    </ng-container>
   </div>
 </div>
