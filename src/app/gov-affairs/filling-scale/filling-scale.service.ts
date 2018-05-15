@@ -22,6 +22,15 @@ export class FillingScaleService {
   setRuleForFillingSupervise(params?: any): Promise<any> {
     return this.HttpService.withCredentialsPostRequest(API.setRuleForFillingSupervise, params);
   }
+  setBalanceCycleRule(params?: any): Promise<any> {
+    return this.HttpService.withCredentialsPostRequest(API.setBalanceCycleRule, params);
+  }
+  setBalanceCountRule(params?: any): Promise<any> {
+    return this.HttpService.withCredentialsPostRequest(API.setBalanceCountRule, params);
+  }
+  setStatusChangeRule(params?: any): Promise<any> {
+    return this.HttpService.withCredentialsPostRequest(API.setStatusChangeRule, params);
+  }
 
   getRuleForFillingSupervise(params?: any): Promise<any> {
     return this.HttpService.getRequest(API.getRuleForFillingSupervise, params);

@@ -294,6 +294,8 @@ export const API = {
   'listLicenseExpire': URL + 'corpBusiness/gcStockMonitor/listLicenseExpire.do', // 1.燃气经营许可证到期预警
   'listGasInspection': URL + 'corpBusiness/gcStockMonitor/listGasInspection.do', // 2.气瓶检验预警
   'listGasScrap': URL + 'corpBusiness/gcStockMonitor/listGasScrap.do', // 3.气瓶报废预警
+
+  // 充装监管子系统
   'getBalanceStatus': URL + 'gcFillingSupervise/getBalanceStatus.do', // 查询充装秤的状态
   'listBalanceInfo': URL + 'gcFillingSupervise/listBalanceInfo.do', // 获取某个企业、充装站的所有秤信息
   'listBalanceLockRecord': URL + 'gcFillingSupervise/listBalanceLockRecord.do', // 查询锁秤记录
@@ -301,5 +303,8 @@ export const API = {
   'getRuleForFillingSupervise': URL + 'gcFillingSupervise/getRuleForFillingSupervise.do', // 获取充装监管规则
   'setBalanceInnerLockStatus': URL + 'gcFillingSupervise/setBalanceInnerLockStatus.do', // 设置某个秤的联锁状态
   'setBalanceLockStatus': URL + 'gcFillingSupervise/setBalanceLockStatus.do', // 设置某个秤的锁状态
+  'setBalanceCycleRule': URL + 'gcFillingSupervise/setBalanceCycleRule.do', // 设置充装周期充装规则
+  'setBalanceCountRule': URL + 'gcFillingSupervise/setBalanceCountRule.do', // 设置充装数量充装规则
+  'setStatusChangeRule': URL + 'gcFillingSupervise/setStatusChangeRule.do', // 设置流转状态是否完整充装规则
 
 };

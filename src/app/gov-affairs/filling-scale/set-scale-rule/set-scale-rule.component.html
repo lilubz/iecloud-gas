@@ -1,18 +1,45 @@
 <div class="ui-g-12">
-  <h2>充装监管规则设置</h2>
-  <div class="ui-g-6 text-right">
-    没有标签的气瓶不合法
+  <h2 class="text-center">充装监管规则设置</h2>
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">
+      没有标签的气瓶不合法：
+    </div>
+    <div class="ui-g-6 ui-g-nopad">
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="boolIsValidForGcNoGasLabelNumber" (onChange)="setRuleForFillingSupervise()"></p-inputSwitch>
+    </div>
   </div>
-  <div class="ui-g-6">
-    <p-checkbox [(ngModel)]="boolIsValidForGcNoGasLabelNumber" binary="true"></p-checkbox>
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">
+      企业编码与标签不一致的气瓶不合法：
+    </div>
+    <div class="ui-g-6 ui-g-nopad">
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="boolIsValidForGcNotAccordWithCorpNumber" (onChange)="setRuleForFillingSupervise()"></p-inputSwitch>
+    </div>
   </div>
-  <div class="ui-g-6 text-right">
-    企业编码与标签不一致的气瓶不合法
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">
+      单瓶充装周期检验：
+    </div>
+    <div class="ui-g-6 ui-g-nopad">
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="balanceCycleRule.boolIsOpenBalanceCycleRule" (onChange)="setBalanceCycleRule()"></p-inputSwitch>
+      <input type="text" [(ngModel)]="balanceCycleRule.balanceCycle" gasInputFilter="[0-9]*" pInputText>天
+    </div>
   </div>
-  <div class="ui-g-6">
-    <p-checkbox [(ngModel)]="boolIsValidForGcNotAccordWithCorpNumber" binary="true"></p-checkbox>
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">
+      当日充装次数检验：
+    </div>
+    <div class="ui-g-6 ui-g-nopad">
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="balanceCountRule.boolIsOpenBalanceCountRule" (onChange)="setBalanceCountRule()"></p-inputSwitch>
+      <input type="text" [(ngModel)]="balanceCountRule.balanceCount" gasInputFilter="[0-9]*" pInputText>次
+    </div>
   </div>
-  <div class="ui-g-6 text-right">
-    <button pButton type="submit" (click)="save()" label="保存" class="searchBtn"></button>
+  <div class="ui-g-12">
+    <div class="ui-g-6 text-right">
+      流转状态不完全：
+    </div>
+    <div class="ui-g-6 ui-g-nopad">
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="statusChangeRule.boolIsOpenStatusChangeRule" (onChange)="setStatusChangeRule()"></p-inputSwitch>
+    </div>
   </div>
 </div>
