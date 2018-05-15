@@ -10,13 +10,13 @@
           <div class="ui-g-12 ui-lg-6">
             <div class="inputgroup">
               <label for="" class="search-label">辖区</label>
-              <p-dropdown [options]="area" [(ngModel)]="searchParams.regionId" [style]="{'width':'280px'}"></p-dropdown>
+              <p-dropdown [options]="area" [(ngModel)]="searchParams.regionId" [style]="{'width':'280px'}" (onChange)="onChangeAreaID($event)"></p-dropdown>
             </div>
           </div>
           <div class="ui-g-12 ui-lg-6">
             <div class="inputgroup">
               <label for="" class="search-label">所属企业</label>
-              <p-dropdown [options]="enterpriseDrop" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'280px'}"></p-dropdown>
+              <p-dropdown [options]="enterpriseDrop" [filter]="true" [(ngModel)]="searchParams.enterpriseName" [style]="{'width':'280px'}"></p-dropdown>
             </div>
           </div>
           <div class="ui-g-12 ui-lg-6">
@@ -153,7 +153,7 @@
             <label for="" class="search-label">所属区域
               <b style="color:red;">*</b>
             </label>
-            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" appendTo="body" [style]="{'width':'180px'}"></p-dropdown>
+            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" appendTo="body" [style]="{'width':'180px'}" (onChange)="onChangeAreaID($event)"></p-dropdown>
           </div>
         </div>
         <div class="ui-g-12 ui-md-6">
@@ -254,7 +254,7 @@
     </div>
     <p-footer>
       <button type="button" pButton label="确认新增" (click)="AddCorpSupplyStation()"></button>
-      <button type="button" pButton (click)="addBottleVisible=false " label="关闭 "></button>
+      <button type="button" pButton (click)="closeAddCorpSupplyStation() " label="关闭 "></button>
     </p-footer>
   </p-dialog>
   <p-dialog [visible]="changeBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"

@@ -157,6 +157,35 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onChangeAreaID(event) {
+    this.enterpriseDrop = [
+      {
+        label: '全部',
+        value: '',
+      }
+    ];
+    if (event.value) {
+      this._service.getDropdownForCorpInfoInRegion({
+        regionId: event.value
+      }).then(
+        data => {
+          if (data.status === 0) {
+            this.enterpriseDrop = this.enterpriseDrop.concat(data.data.map((item) => ({
+              label: item.enterpriseName,
+              value: item.enterpriseNumber,
+            })));
+          } else {
+            this.enterpriseDrop = this.enterpriseDrop;
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+          }
+        }
+      ).catch(
+        data => { }
+      );
+    } else {
+      this.getEnterprises();
+    }
+  }
   /**
    * 页面变化,初始化会执行一次
    * @param event
@@ -209,20 +238,41 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
     });
   }
-  // showEditDialog(data) {
-  //   this.editBottleVisible = true;
-  //   for (const key in this.editForm) {
-  //     if (key) {
-  //       if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
-  //         this.editForm[key] = new Date(data[key]);
-  //       } else {
-  //         this.editForm[key] = data[key];
-  //       }
-  //     }
-  //   }
-  // }
   showAddDialog() {
     this.addBottleVisible = true;
+    this.addForm = new AddBottle();
+    this.enterpriseDrop = [
+      {
+        label: '全部',
+        value: '',
+      }
+    ];
+    this.changeEnterpriseDrop = [
+      {
+        label: '全部',
+        value: '',
+      }
+    ];
+    this.areaDrop = [
+      {
+        label: '全部',
+        value: '',
+      }
+    ];
+    this.getRegions();
+    this.getEnterprises();
+  }
+  closeAddCorpSupplyStation = () => {
+    this.addBottleVisible = false;
+    this.searchParams = {
+      regionId: '',
+      enterpriseName: '',
+      supplyName: '',
+      person: '',
+      supplyLicenseNum: '',
+      startTime: '',
+      endTime: '',
+    };
   }
   showChangeDialog = (data) => {
     console.log(data);
@@ -288,77 +338,6 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '请选择企业' });
     }
   }
-  // editCorpSupplyStation() {
-  //   if (this.checkForm()) {
-  //     const formData = new FormData();
-  //     for (const key in this.editForm) {
-  //       if (key) {
-  //         if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
-  //           if (this.editForm[key]) {
-  //             const datas = moment(this.editForm[key]).format('YYYY-MM-DD HH:mm:ss');
-  //             formData.append(key, datas);
-  //           }
-  //         } else {
-  //           if (!this.editForm[key]) {
-  //             this.editForm[key] = '';
-  //             formData.append(key, this.editForm[key]);
-  //           } else {
-  //             formData.append(key, this.editForm[key]);
-  //           }
-  //         }
-  //       }
-  //     }
-  //     this._service.updateCorpSupplyStation(formData).then(data => {
-  //       if (data.status === 0) {
-  //         this.editBottleVisible = false;
-  //         this.onSearch(this.changeStatusPage);
-  //         this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
-  //       } else {
-  //         this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
-  //       }
-  //     }).catch(error => {
-  //       this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
-  //     });
-  //   } else {
-
-  //   }
-  // }
-
-  /**
- * 验证信息是否填写
- */
-
-  // checkForm(): boolean {
-  //   if (!this.editForm.regionId) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '所属区域不能为空' });
-  //     return false;
-  //   } else if (!this.editForm.enterpriseNumber) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '归属企业不能为空' });
-  //     return false;
-  //   } else if (!this.editForm.supplyStationName.trim()) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '站点名称不能为空' });
-  //     return false;
-  //   } else if (!this.editForm.principal.trim()) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
-  //     return false;
-  //   } else if (!this.editForm.supplyLicenseNum.trim()) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '供应许可证编号不能为空' });
-  //     return false;
-  //   } else if (!this.editForm.issuingUnit.trim()) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '核发单位不能为空' });
-  //     return false;
-  //   } else if (!this.editForm.releaseTime) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '发证日期不能为空' });
-  //     return false;
-  //   } else if (!this.editForm.effectiveTimeStart) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '有效期起始时间不能为空' });
-  //     return false;
-  //   } else if (!this.editForm.effectiveTimeEnd) {
-  //     this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '有效期结束时间不能为空' });
-  //     return false;
-  //   }
-  //   return true;
-  // }
   checkForm2(): boolean {
     if (!this.addForm.regionId) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '所属区域不能为空' });
@@ -367,18 +346,12 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '归属企业不能为空' });
       return false;
     } else if (!this.addForm.inflatableName.trim()) {
-      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '储配站点名称不能为空' });
+      this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '站点名称不能为空' });
       return false;
     } else if (!this.addForm.responsiblePerson.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '负责人不能为空' });
       return false;
-      // } else if (!this.addForm.contactPerson.trim()) {
-      //   this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '联系人不能为空' });
-      //   return false;
-      // } else if (!this.addForm.phoneNumber.trim()) {
-      //   this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '联系电话不能为空' });
-      //   return false;
-    } else if (!this.addForm.inflatableStationAddress.trim()) {
+    } else if (!this.addForm.licenseNumber.trim()) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '许可证不能为空' });
       return false;
     }

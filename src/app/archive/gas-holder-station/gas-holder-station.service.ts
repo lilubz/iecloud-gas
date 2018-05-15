@@ -9,6 +9,9 @@ export class GsaHolderStationService {
     return this.httpService
       .formPostRequest(API.cylinderSelectOpt, params);
   }
+  getDropdownForCorpInfoInRegion(params: any): Promise<any> {
+    return this.httpService.getRequest(API.getDropdownForCorpInfoInRegion, params);
+  }
 
   onsearch(params: any): Promise<any> {
     return this.httpService.getRequest(API.listCorpInflatableStations, params);
