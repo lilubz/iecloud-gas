@@ -20,4 +20,13 @@ export class CylinderListService {
       .withCredentialsPostRequest(this.API.getCylinders, params);
   }
 
+  getDropdownForCorpInfoInRegion(params: any): Promise<any> {
+    return this.httpService
+      .getRequest(this.API.getDropdownForCorpInfoInRegion, params);
+  }
+
+  getDropdownForRegionSysUser(params: any): Promise<any> {
+    return this.httpService
+      .getRequest(this.API.getDropdownForRegionSysUser, params);
+  }
 }

@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 export class CylinderListComponent implements OnInit {
   loading = false;
   dropdown = {
+    region: [],
     company: [
       {
         label: '全部 ',
@@ -82,7 +83,7 @@ export class CylinderListComponent implements OnInit {
 
   constructor(
     private routerInfo: ActivatedRoute,
-    private cylinderListService: CylinderListService,
+    private _service: CylinderListService,
     private messageService: MessageService,
     private fb: FormBuilder
   ) { }
@@ -105,6 +106,44 @@ export class CylinderListComponent implements OnInit {
     }
   }
 
+  onChangeRegionID(event) {
+    this.getDropdownCompany({ regionId: event.value });
+  }
+
+  getDropdownCompany(params?) {
+    this._service.getDropdownForCorpInfoInRegion(params).then(data => {
+      if (data.status === 0) {
+        this.dropdown.company = data.data.map((item) => ({
+          label: item.enterpriseName,
+          value: item.enterpriseNumber,
+        }));
+        if (params.regionId === '') { // 如果regionId===''表示区域选择的是【全部】，那么企业下拉框中会默认【全部】选项。
+          this.dropdown.company.unshift(this.dropdown.default[0]);
+        }
+      } else {
+        this.dropdown.company = [];
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+      }
+      this.formModel.patchValue({
+        enterpriseNumber: this.dropdown.company[0] ? this.dropdown.company[0].value : ''
+      });
+    });
+  }
+
+  getDropdownRegion() {
+    this._service.getDropdownForRegionSysUser({}).then(data => {
+      if (data.status === 0) {
+        this.dropdown.region = this.dropdown.default.concat(data.data.map((item) => ({
+          label: item.regionName,
+          value: item.regionId
+        })));
+      } else {
+        this.dropdown.region = this.dropdown.default.concat([]);
+        this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+      }
+    });
+  }
+
   onPageChange($event) {
     this.dataTable.list = [];
     this.onPageChange = (event) => {
@@ -118,6 +157,7 @@ export class CylinderListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getDropdownRegion();
     this.getCylinderSearchOpt();
     const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
     if (typeof enterpriseID !== 'undefined') {
@@ -129,7 +169,7 @@ export class CylinderListComponent implements OnInit {
   }
 
   getCylinderSearchOpt() {
-    this.cylinderListService.getCylinderSearchOpt({}).then(data => {
+    this._service.getCylinderSearchOpt({}).then(data => {
       if (data.status === 0) {
         this.dropdown.company = this.dropdown.default.concat(data.data.enterpriseName);
         this.dropdown.make = this.dropdown.default.concat(data.data.productionUnit.map((item) => ({
@@ -146,7 +186,7 @@ export class CylinderListComponent implements OnInit {
 
   getCylinders(params?) {
     this.loading = true;
-    this.cylinderListService.getCylinders(params)
+    this._service.getCylinders(params)
       .then(data => {
         this.loading = false;
         if (data.status === 0) {

@@ -259,7 +259,7 @@ export class CustomerListComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入修改的派送地址' });
       return false;
     }
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('userNumber', this.willEditCustomer.userNumber);
     formData.append('userName', this.willEditCustomer.userName.trim());
     formData.append('deliveryAddress', this.willEditCustomer.deliveryAddress.trim());
