@@ -44,7 +44,7 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
 
   legalRepresentative = '';
   enterpriseName = '';
-  // enterpriseNumber = '';
+  enterpriseNumber = '';
   userName = '';
   phoneNumber = '';
   password = '';
@@ -64,14 +64,14 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
     this.enterpriseName = queryParams.enterpriseName;
     this.userName = queryParams.enterpriseName;
     this.phoneNumber = queryParams.phoneNumber === 'null' ? '' : queryParams.phoneNumber;
-    // this.enterpriseNumber = queryParams.enterpriseNumber;
+    this.enterpriseNumber = queryParams.enterpriseNumber;
   }
   addEnterpriseUser() {
     if (this.checkForm()) {
       this._service.addEnterpriseUser({
         username: this.userName,
         password: this.password,
-        // enterpriseNumber: this.enterpriseNumber,
+        enterpriseNumber: this.enterpriseNumber,
         legalRepresentative: this.legalRepresentative,
         phoneNumber: this.phoneNumber,
 

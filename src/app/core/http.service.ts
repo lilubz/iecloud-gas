@@ -9,6 +9,10 @@ import { UserStateService } from './userState.service';
 export class HttpService {
   private formHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
   private formDataHeaders = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8' });
+  private head = new Headers({
+    'contentType': 'false',
+    'processData': 'false',
+  })
 
   constructor(
     private http: Http,
@@ -18,7 +22,7 @@ export class HttpService {
 
   // 重封装get请求
   getRequest = (url, data) => {
-    return this.http.get(url + '?' + this.transformRequest(data))
+    return this.http.get(url + '?' + this.transformRequest(data) + "&" + "t=" + new Date().getTime())
       .toPromise()
       .then(res => this.httpStatusFilter(res))
       .catch(error => this.handleError(error));

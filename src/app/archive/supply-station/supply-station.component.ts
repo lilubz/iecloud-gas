@@ -42,15 +42,15 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     supplyLicenseNum: string,
     startTime?: string,
     endTime?: string,
-  } = {
-      regionId: '',
-      enterpriseName: '',
-      supplyName: '',
-      person: '',
-      supplyLicenseNum: '',
-      startTime: '',
-      endTime: '',
-    };
+  }= {
+    regionId: '',
+    enterpriseName: '',
+    supplyName: '',
+    person: '',
+    supplyLicenseNum: '',
+    startTime: '',
+    endTime: '',
+  }; 
   changeStatusPage: any;
   editBottleVisible = false;
   addBottleVisible = false;
@@ -215,10 +215,15 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this.editBottleVisible = true;
     for (const key in this.editForm) {
       if (key) {
-        if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
-          this.editForm[key] = new Date(data[key]);
-        } else {
-          this.editForm[key] = data[key];
+        if (data[key]) {
+          if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
+            this.editForm[key] = new Date(data[key]);
+          } else {
+            this.editForm[key] = data[key];
+          }
+        }
+        else {
+          this.editForm[key]=null;
         }
       }
     }
@@ -227,7 +232,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this.addBottleVisible = true;
   }
   showChangeDialog = (data) => {
-    console.log(data);
+    // console.log(data);
     this.changeBottleVisible = true;
     this.change.supplyStationName = data.supplyStationName;
     this.change.supplyStationNumber = data.supplyStationNumber;

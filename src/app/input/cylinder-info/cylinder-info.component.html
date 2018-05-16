@@ -48,7 +48,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>产权单位&#12288;&#12288;</span>
-              <input type="text" class="textInput" required pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName" [disabled]="this.selectedProperty">
+              <input type="text" class="textInput" maxlength="50" required pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName" [disabled]="this.selectedProperty">
             </div>
           </div>
         </div>
@@ -64,10 +64,10 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>进站日期&#12288;&#12288;</span>
-              <p-calendar [locale]="cn" #intoStationDate (onClearClick)="clearIntoStationDate($event)" (onSelect)="selectedIntoStationDate($event)"
-                [maxDate]="expectedScrapTime.value" [minDate]="timeManufacture.value" placeholder="2017-10-1" [showButtonBar]="true"
-                dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
-                yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+              <p-calendar [locale]="cn" [(ngModel)]="intoStationDateInit" (onClearClick)="clearIntoStationDate($event)" (onSelect)="selectedIntoStationDate($event)"
+                [minDate]="timeManufactureInit" [maxDate]="expectedScrapTimeInit" placeholder="2017-10-1"
+                [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
+                [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
         </div>
@@ -76,20 +76,20 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>制造日期&#12288;&#12288;</span>
-              <p-calendar [locale]="cn" #timeManufacture (onClearClick)="clearTimeManufacture($event)" (onSelect)="selectedTimeManufacture($event)"
-                [maxDate]="intoStationDate.value" readonlyInput="true" [showButtonBar]="true" placeholder="2017-08-08" dateFormat="yy-mm-dd"
-                showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
-                [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+              <p-calendar [locale]="cn" [(ngModel)]="timeManufactureInit" (onClearClick)="clearTimeManufacture($event)" (onSelect)="selectedTimeManufacture($event)"
+                [maxDate]="intoStationDateInit" readonlyInput="true" [showButtonBar]="true" placeholder="2017-08-08"
+                dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
+                yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>报废日期&#12288;&#12288;</span>
-              <p-calendar [locale]="cn" #expectedScrapTime (onClearClick)="clearExpectedScrapTime($event)" (onSelect)="selectedExpectedScrapTime($event)"
-                readonlyInput="true" dateFormat="yy-mm-dd" [minDate]="intoStationDate.value" [showButtonBar]="true" placeholder="2021-01-01"
-                showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
-                [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+              <p-calendar [locale]="cn" [(ngModel)]="expectedScrapTimeInit" (onClearClick)="clearExpectedScrapTime($event)" (onSelect)="selectedExpectedScrapTime($event)"
+                readonlyInput="true" dateFormat="yy-mm-dd" [minDate]="timeManufactureInit" [showButtonBar]="true"
+                placeholder="2021-01-01" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
+                yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;检验编号&#12288;&#12288;</span>
-              <input type="text" class="textInput" [(ngModel)]="cylinderInfo.inspectionNumber" pInputText placeholder="">
+              <input type="text" class="textInput" maxlength="30" [(ngModel)]="cylinderInfo.inspectionNumber" pInputText placeholder="">
             </div>
           </div>
         </div>
@@ -170,8 +170,8 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;上次检测日期</span>
-              <p-calendar [locale]="cn" #lastTestDate (onClearClick)="clearLastTestDate($event)" (onSelect)="selectedLastTestDate($event)"
-                [maxDate]="nextTestDate.value" [showButtonBar]="true" readonlyInput="true" placeholder="2017-10-1" dateFormat="yy-mm-dd"
+              <p-calendar [locale]="cn"  [(ngModel)]="lastTestDateInit" (onClearClick)="clearLastTestDate($event)" (onSelect)="selectedLastTestDate($event)"
+                [maxDate]="nextTestDateInit" [showButtonBar]="true" readonlyInput="true" placeholder="2017-10-1" dateFormat="yy-mm-dd"
                 showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
                 [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
@@ -179,8 +179,8 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;下次检测日期</span>
-              <p-calendar [locale]="cn" #nextTestDate (onClearClick)="clearNextTestDate($event)" (onSelect)="selectedNextTestDate($event)"
-                [showButtonBar]="true" placeholder="2018-10-01" [minDate]="lastTestDate.value" readonlyInput="true" dateFormat="yy-mm-dd"
+              <p-calendar [locale]="cn" [(ngModel)]="nextTestDateInit" (onClearClick)="clearNextTestDate($event)" (onSelect)="selectedNextTestDate($event)"
+                [showButtonBar]="true" placeholder="2018-10-01" [minDate]="lastTestDateInit" readonlyInput="true" dateFormat="yy-mm-dd"
                 showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
                 [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>

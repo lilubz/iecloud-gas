@@ -87,6 +87,11 @@ export class CylinderInfoComponent implements OnInit {
       cylinderImage: [],
       innerDiameter: '1',
     };
+  intoStationDateInit: Date;
+  expectedScrapTimeInit: Date;
+  timeManufactureInit: Date;
+  lastTestDateInit: Date;
+  nextTestDateInit: Date;
   constructor(
     private _service: CylinderInfoService,
   ) { }
@@ -294,14 +299,17 @@ export class CylinderInfoComponent implements OnInit {
         this.showMessage('error', '服务器错误', error);
       });
 
-    } else {
-      // this.showMessage('failed', '失败', '输入有误');
     }
   }
   clearInfo() {
     this.cylinderInfo.gasLabelNumber = this._service.transformEnterpriseNumber();
     this.cylinderInfo.serialNumber = '';
     this.cylinderInfo.inspectionNumber = '';
+    this.timeManufactureInit = null;
+    this.intoStationDateInit = null;
+    this.expectedScrapTimeInit = null;
+    this.lastTestDateInit = null;
+    this.nextTestDateInit = null;
   }
 
   checkForm(): boolean {
@@ -312,10 +320,13 @@ export class CylinderInfoComponent implements OnInit {
     } else if (!/^\d{10}$/.test(this.cylinderInfo.gasLabelNumber)) {
       this.showMessage('warn', '提示信息', '请输入十位完整的气瓶条码');
       return false;
+    } else if (this.cylinderInfo.gasLabelNumber.substring(0, 3) !== this._service.transformEnterpriseNumber()) {
+      this.showMessage('warn', '提示信息', '前三位编码不是默认值请重新输入');
+      return false;
     } else if (!this.cylinderInfo.serialNumber.trim()) {
       this.showMessage('warn', '提示信息', '气瓶出厂编号不能为空');
       return false;
-    }else if(!/^\d+$/.test(this.cylinderInfo.serialNumber)){
+    } else if (!/^\d+$/.test(this.cylinderInfo.serialNumber)) {
       this.showMessage('warn', '提示信息', '气瓶出厂编号为纯数字');
       return false;
     } else if (!this.cylinderInfo.enterpriseCylinderCode.trim()) {
