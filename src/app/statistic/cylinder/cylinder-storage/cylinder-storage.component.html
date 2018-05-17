@@ -105,7 +105,7 @@
 
     <p-dialog [visible]="storageVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
       [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
-      <div class="ui-g-12">
+      <div class="ui-g ui-g-12">
         <p-dataTable [value]="dialogDataTable.list" dataKey="gasLabelNumber" [paginator]="true" [rows]="dialogDataTable.options[0]"
           [scrollable]="false" [rowsPerPageOptions]="dialogDataTable.options" [totalRecords]="dialogDataTable.total" [lazy]="true"
           (onLazyLoad)="onPageChange($event)" [(first)]="dialogDataTable.first">

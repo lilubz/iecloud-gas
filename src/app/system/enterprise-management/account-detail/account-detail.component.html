@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div class="ui-g-12">
+  <div class="ui-g ui-g-12">
     <p-dataTable [value]="accountList" [lazy]="true" dataKey="enterprise" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
       scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
       [(first)]="pages.first">

@@ -5,7 +5,7 @@
   </h2>
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="dataTablelist" [style]="{'max-height':'450px'}" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true"
+      <p-dataTable [value]="dataTablelist" [lazy]="true" dataKey="gasLabelNumber" [paginator]="true"
         [rows]="pageSize" [scrollable]="false" [rowsPerPageOptions]="pageOption" scrollHeight="360px" [totalRecords]="total"
         (onLazyLoad)="onPageChange($event)" [(first)]="first">
         <p-column [style]="{'width':'100px'}" header="序号">
