@@ -1,14 +1,8 @@
 <div class="main">
   <div class="container card">
-    <ng-container *ngIf="isIE()">
-      <div class="ui-g-12" style="height: 100%;">
-        <iframe src="./assets/talk-dispatch.html" frameborder="0" id="richtalk">
-          您的浏览器不支持iframe
-        </iframe>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="!isIE()">
-      <h3>您的浏览器不支持该控件，请在IE9或IE10浏览器中打开！</h3>
-    </ng-container>
+    <div class="text-center">
+      <h3> 本功能只能在IE兼容模式中打开，请在IE兼容模式下查看下面按钮链接的页面！</h3>
+      <a type="button" href="./assets/talk-dispatch.html" pButton label="打开对讲调度平台" target="_blank"></a>
+    </div>
   </div>
 </div>
