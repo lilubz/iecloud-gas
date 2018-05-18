@@ -22,7 +22,7 @@
     </div>
     <div class="ui-g-6 ui-g-nopad">
       <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="balanceCycleRule.boolIsOpenBalanceCycleRule" (onChange)="setBalanceCycleRule()"></p-inputSwitch>
-      <input type="text" [(ngModel)]="balanceCycleRule.balanceCycle" gasInputFilter="[0-9]*" pInputText>天
+      <input maxlength="250" type="text" [(ngModel)]="balanceCycleRule.balanceCycle" gasInputFilter="[0-9]*" pInputText>天
     </div>
   </div>
   <div class="ui-g-12">
@@ -31,7 +31,7 @@
     </div>
     <div class="ui-g-6 ui-g-nopad">
       <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="balanceCountRule.boolIsOpenBalanceCountRule" (onChange)="setBalanceCountRule()"></p-inputSwitch>
-      <input type="text" [(ngModel)]="balanceCountRule.balanceCount" gasInputFilter="[0-9]*" pInputText>次
+      <input maxlength="250" type="text" [(ngModel)]="balanceCountRule.balanceCount" gasInputFilter="[0-9]*" pInputText>次
     </div>
   </div>
   <div class="ui-g-12">

@@ -119,7 +119,7 @@
           <span class="warn">*</span>事务地点：
         </label>
         <div class="ui-g-10">
-          <input type="text" pInputText [(ngModel)]="formModel.address" name="address" />
+          <input maxlength="250" type="text" pInputText [(ngModel)]="formModel.address" name="address" />
           <gas-explanation tooltip="该事件发生的地点位置" position="bottom"></gas-explanation>
         </div>
       </div>
@@ -146,7 +146,7 @@
           <span class="warn">*</span>描述：
         </label>
         <div class="ui-g-10">
-          <input type="text" pInputText [(ngModel)]="formModel.describe" name="describe" />
+          <input maxlength="250" type="text" pInputText [(ngModel)]="formModel.describe" name="describe" />
           <gas-explanation tooltip="对该事件的发生原因的说明" position="bottom"></gas-explanation>
         </div>
       </div>
@@ -156,7 +156,7 @@
         <label for="inputEmail3" class="ui-g-2 control-label" style="width:130px;display:inline-block">
           &nbsp;&nbsp;附件：</label>
         <div class="ui-g-10">
-          <input type="file" #file name="file">
+          <input maxlength="250" type="file" #file name="file">
         </div>
       </div>
     </div>

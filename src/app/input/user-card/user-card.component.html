@@ -59,7 +59,7 @@
       申请说明
     </div>
     <div class="ui-g-8">
-      <input type="text" [(ngModel)]="applyCardParams.detail" pInputText placeholder="申请说明">
+      <input maxlength="250" type="text" [(ngModel)]="applyCardParams.detail" pInputText placeholder="申请说明">
     </div>
   </div>
   <p-footer>
@@ -88,27 +88,27 @@
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-2 disabled"> 用户名称 </div>
       <div class="ui-g-4">
-        <input type="text" [ngModel]="selectedCustomer?.userName" pInputText placeholder="用户名称" [disabled]="true">
+        <input maxlength="250" type="text" [ngModel]="selectedCustomer?.userName" pInputText placeholder="用户名称" [disabled]="true">
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-2 disabled"> 证件名称 </div>
       <div class="ui-g-4">
-        <input type="text" [ngModel]="selectedCustomer?.certificateName" pInputText placeholder="证件名称" [disabled]="true">
+        <input maxlength="250" type="text" [ngModel]="selectedCustomer?.certificateName" pInputText placeholder="证件名称" [disabled]="true">
       </div>
       <div class="ui-g-2 disabled"> 证件编号 </div>
       <div class="ui-g-4">
-        <input type="text" [ngModel]="selectedCustomer?.certificateId" pInputText placeholder="证件编号" [disabled]="true">
+        <input maxlength="250" type="text" [ngModel]="selectedCustomer?.certificateId" pInputText placeholder="证件编号" [disabled]="true">
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-2 disabled"> 居住地址 </div>
       <div class="ui-g-4">
-        <input type="text" [ngModel]="selectedCustomer?.deliveryAddress" pInputText placeholder="居住地址" [disabled]="true">
+        <input maxlength="250" type="text" [ngModel]="selectedCustomer?.deliveryAddress" pInputText placeholder="居住地址" [disabled]="true">
       </div>
       <div class="ui-g-2 disabled"> 用户状态 </div>
       <div class="ui-g-4">
-        <input type="text" [ngModel]="selectedCustomer?.userStatus" pInputText placeholder="用户状态" [disabled]="true">
+        <input maxlength="250" type="text" [ngModel]="selectedCustomer?.userStatus" pInputText placeholder="用户状态" [disabled]="true">
       </div>
     </div>
     <hr>
@@ -131,7 +131,7 @@
     <div class="ui-g-12 ui-g-nopad">
       <div class="ui-g-4 disabled"> 供气企业 </div>
       <div class="ui-g-5">
-        <input type="text" [ngModel]="selectedCustomerCard.enterpriseName" pInputText placeholder="供气企业" [disabled]="true">
+        <input maxlength="250" type="text" [ngModel]="selectedCustomerCard.enterpriseName" pInputText placeholder="供气企业" [disabled]="true">
       </div>
     </div>
     <div class="ui-g-12 ui-g-nopad">

@@ -27,19 +27,19 @@
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 气瓶条码</span>
-        <input type="text" class="textInput" formControlName="cylinderCode" pInputText maxlength="10">
+        <input maxlength="10" type="text" class="textInput" formControlName="cylinderCode" pInputText>
         <gas-explanation tooltip="企业将购买的气瓶统一分配具有唯一性的标签" position="bottom"></gas-explanation>
       </div>
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 自有编号</span>
-        <input type="text" class="textInput" formControlName="ownNumber" pInputText>
+        <input maxlength="250" type="text" class="textInput" formControlName="ownNumber" pInputText>
         <gas-explanation tooltip="钢瓶本身序列号" position="bottom"></gas-explanation>
       </div>
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 出厂编号</span>
-        <input type="text" class="textInput" formControlName="serialNumber" pInputText>
+        <input maxlength="250" type="text" class="textInput" formControlName="serialNumber" pInputText>
         <gas-explanation tooltip="带有制造厂商编号参数" position="bottom"></gas-explanation>
       </div>
 

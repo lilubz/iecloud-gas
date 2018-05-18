@@ -73,7 +73,7 @@
     <h3>
       车辆轨迹
     </h3>
-    <input type="text" pInputText [(ngModel)]="cardNumber" placeholder="请输入车牌号" maxlength="16">
+    <input maxlength="16" type="text" pInputText [(ngModel)]="cardNumber" placeholder="请输入车牌号">
     <p-dropdown appendTo="body" [options]="dateRange" [style]="{'width':'200px','margin':'10px 10px 10px 0'}" [(ngModel)]="selectedDateRangeCar"></p-dropdown>
     <br>
 

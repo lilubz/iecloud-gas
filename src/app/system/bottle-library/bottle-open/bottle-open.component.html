@@ -11,21 +11,21 @@
               <div class="inputgroup">
                 <label for="" class="search-label">站点名称
                 </label>
-                <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="supplyStationName" name="supplyStationName" disabled>
+                <input maxlength="250" type="text" class="textInput" pInputText placeholder="" [(ngModel)]="supplyStationName" name="supplyStationName" disabled>
               </div>
             </div>
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
             <label for="" class="search-label">归属企业
             </label>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="enterpriseName" name="enterpriseName" disabled>
+            <input maxlength="250" type="text" class="textInput" pInputText placeholder="" [(ngModel)]="enterpriseName" name="enterpriseName" disabled>
           </div>
         </div>
         <div class="ui-g-12 ui-g-offset-3">
           <div class="inputgroup">
             <label for="" class="search-label">负责人
             </label>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="legalRepresentative" name="legalRepresentative"
+            <input maxlength="250" type="text" class="textInput" pInputText placeholder="" [(ngModel)]="legalRepresentative" name="legalRepresentative"
               disabled>
             <gas-explanation tooltip="负责人姓名" position="bottom"></gas-explanation>
           </div>
@@ -34,7 +34,7 @@
           <div class="inputgroup">
             <label for="" class="search-label">用户名
             </label>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="userName" name="userName">
+            <input maxlength="250" type="text" class="textInput" pInputText placeholder="" [(ngModel)]="userName" name="userName">
             <gas-explanation tooltip="用户名默认站点名称，可修改" position="bottom"></gas-explanation>
           </div>
         </div>
@@ -42,7 +42,7 @@
           <div class="inputgroup">
             <label for="" class="search-label">联系方式
             </label>
-            <input type="text" class="textInput" pInputText placeholder="" [(ngModel)]="phoneNumber" name="phoneNumber" disabled>
+            <input maxlength="250" type="text" class="textInput" pInputText placeholder="" [(ngModel)]="phoneNumber" name="phoneNumber" disabled>
           </div>
         </div>
         <div class="ui-g-12 ui-g-nopad">
@@ -50,14 +50,14 @@
             <div class="inputgroup">
               <label for="" class="search-label">登录密码
               </label>
-              <input type="password" class="textInput" pInputText placeholder="" [(ngModel)]="password" name="password">
+              <input maxlength="250" type="password" class="textInput" pInputText placeholder="" [(ngModel)]="password" name="password">
             </div>
           </div>
           <div class="ui-g-12 ui-g-offset-3">
             <div class="inputgroup">
               <label for="" class="search-label">确认密码
               </label>
-              <input type="password" class="textInput" pInputText placeholder="" [(ngModel)]="confirmPassword" name="confirmPassword">
+              <input maxlength="250" type="password" class="textInput" pInputText placeholder="" [(ngModel)]="confirmPassword" name="confirmPassword">
             </div>
           </div>
         </div>

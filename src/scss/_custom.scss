@@ -299,8 +299,11 @@ input {
       top: 10px;
       background-color: red;
       border-radius: 50%;
-    } // 解决 当前预警菜单 文字不居中的问题。
-    a[href="#/statistic/current-warning"] .fa-fw {
+    }
+
+    // 解决 有小红点的菜单 在某些情况下文字不居中的问题。
+    a[href="#/gov-affairs"] .fa-fw,
+    a[href="#/gov-affairs/warning"] .fa-fw{
       width: 0;
     }
   }

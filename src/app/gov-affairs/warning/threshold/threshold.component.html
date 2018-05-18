@@ -302,7 +302,7 @@
             <label for="">空瓶阈值：</label>
           </div>
           <div class="ui-g-7">
-            <input type="number" pInputText style="width:208px" min="0" name="emptyCount" [(ngModel)]="formModelSet.emptyCount">
+            <input maxlength="250" type="number" pInputText style="width:208px" min="0" name="emptyCount" [(ngModel)]="formModelSet.emptyCount">
           </div>
         </div>
   
@@ -312,7 +312,7 @@
             <label for="">重瓶阈值：</label>
           </div>
           <div class="ui-g-7">
-            <input type="number" pInputText style="width:208px" min="0" name="fullCount" [(ngModel)]="formModelSet.fullCount">
+            <input maxlength="250" type="number" pInputText style="width:208px" min="0" name="fullCount" [(ngModel)]="formModelSet.fullCount">
           </div>
         </div>
   
@@ -322,7 +322,7 @@
             <label for="">设置依据：</label>
           </div>
           <div class="ui-g-7">
-            <textarea rows="3" cols="20" pInputTextarea style="resize:none;width:208px" [(ngModel)]="formModelSet.describe" name="describe"></textarea>
+            <textarea maxlength="250" rows="3" cols="20" pInputTextarea style="resize:none;width:208px" [(ngModel)]="formModelSet.describe" name="describe"></textarea>
           </div>
         </div>
   

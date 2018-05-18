@@ -69,7 +69,7 @@
       </div>
       <div class="ui-g-10">
         <div class="ui-g-6 ui-g-nopad">
-          <input type="text" [(ngModel)]="newOrder.linkMan" pInputText placeholder="联系人" maxlength="20">
+          <input maxlength="20" type="text" [(ngModel)]="newOrder.linkMan" pInputText placeholder="联系人">
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@
       </div>
       <div class="ui-g-10">
         <div class="ui-g-6 ui-g-nopad">
-          <input type="text" [(ngModel)]="newOrder.userIdentityCardNumber" pInputText placeholder="用户卡编号" maxlength="20">
+          <input maxlength="20" type="text" [(ngModel)]="newOrder.userIdentityCardNumber" pInputText placeholder="用户卡编号">
         </div>
       </div>
     </div>
@@ -92,10 +92,10 @@
       </div>
       <div class="ui-g-10">
         <div class="ui-g-3 ui-xl-2">
-          <input type="text" pInputText placeholder="浙江省" disabled style="width:100p;">
+          <input maxlength="250" type="text" pInputText placeholder="浙江省" disabled style="width:100p;">
         </div>
         <div class="ui-g-3 ui-xl-2">
-          <input type="text" pInputText placeholder="温州市" disabled>
+          <input maxlength="250" type="text" pInputText placeholder="温州市" disabled>
         </div>
         <div class="ui-g-3">
           <p-dropdown [options]="deliveryRegionList" (onChange)="deliveryCountyChange($event.value)" [(ngModel)]="selectedDeliveryAreaId"
@@ -109,7 +109,7 @@
           <p-dropdown [options]="deliveryStreetList" (onChange)="getDispatcher()" [(ngModel)]="selectedDeliveryStreetId" [style]="{'width':'110px'}"></p-dropdown>
         </div>
         <div class="ui-g-6" style="margin-left:20px;">
-          <input type="text" [(ngModel)]="newOrder.linkAddress" pInputText placeholder="详细地址">
+          <input maxlength="250" type="text" [(ngModel)]="newOrder.linkAddress" pInputText placeholder="详细地址">
         </div>
       </div>
     </div>

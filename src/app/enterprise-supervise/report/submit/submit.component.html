@@ -40,7 +40,7 @@
             <p-column [style]="{'width':'210px'}" header="选择文件">
               <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
                 <div *ngIf="!rowData.boolIsCommit">
-                  <input type="file" id="{{'file'+ index}}">
+                  <input maxlength="250" type="file" id="{{'file'+ index}}">
                 </div>
                 <div *ngIf="rowData.boolIsCommit">
                   本次已提交

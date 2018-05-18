@@ -13,11 +13,11 @@
       </div>
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label">用户名称：</span>
-        <input class="textInput" type="text" pInputText formControlName="userName">
+        <input maxlength="250" class="textInput" type="text" pInputText formControlName="userName">
       </div>
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label">地&#12288;&#12288;址：</span>
-        <input class="textInput" type="text" pInputText formControlName="address">
+        <input maxlength="250" class="textInput" type="text" pInputText formControlName="address">
       </div>
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 客户类别：
@@ -127,7 +127,7 @@
             <span class="warn">*</span>燃气用户：</label>
           <div class="ui-g-4 ui-g-nopad">
             <!-- <div>{{ willEditCustomer?.userName }}</div> -->
-            <input type="text" pInputText [(ngModel)]="willEditCustomer.userName" name="userName" />
+            <input maxlength="250" type="text" pInputText [(ngModel)]="willEditCustomer.userName" name="userName" />
           </div>
         </div>
 
@@ -135,7 +135,7 @@
           <label for="inputEmail3" class="ui-g-4 text-right ui-g-nopad">
             <span class="warn">*</span>联系电话：</label>
           <div class="ui-g-4 ui-g-nopad">
-            <input type="text" pInputText [(ngModel)]="willEditCustomer.phone" name="phone" />
+            <input maxlength="250" type="text" pInputText [(ngModel)]="willEditCustomer.phone" name="phone" />
           </div>
         </div>
 
@@ -143,7 +143,7 @@
           <label for="inputEmail3" class="ui-g-4 text-right ui-g-nopad">
             <span class="warn" *ngIf="!willEditCustomer.userIdentityCardNumberIsEmpty">*</span>用户卡编号：</label>
           <div class="ui-g-4 ui-g-nopad">
-            <input type="number" pInputText [(ngModel)]="willEditCustomer.userIdentityCardNumber" name="userIdentityCardNumber" />
+            <input maxlength="250" type="number" pInputText [(ngModel)]="willEditCustomer.userIdentityCardNumber" name="userIdentityCardNumber" />
           </div>
         </div>
 
@@ -174,14 +174,14 @@
           <label for="inputEmail3" class="ui-g-4 text-right ui-g-nopad">
             <span class="warn">*</span>派送地址：</label>
           <div class="ui-g-4 ui-g-nopad">
-            <input type="text" pInputText [(ngModel)]="willEditCustomer.deliveryAddress" name="deliveryAddress" />
+            <input maxlength="250" type="text" pInputText [(ngModel)]="willEditCustomer.deliveryAddress" name="deliveryAddress" />
           </div>
         </div>
 
         <div class="form-group ui-g-12" [style.display]="willEditCustomer.certificateName!='营业执照'?'none':'block'">
           <label for="inputEmail3" class="ui-g-4 text-right ui-g-nopad"> 合同照片：</label>
           <div class="ui-g-4 ui-g-nopad">
-            <input type="file" #contractPhotoFile name="contractPhotoFile" accept="image/*" />
+            <input maxlength="250" type="file" #contractPhotoFile name="contractPhotoFile" accept="image/*" />
           </div>
         </div>
 

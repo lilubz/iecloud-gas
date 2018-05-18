@@ -123,7 +123,7 @@
               </div>
             </div>
             <div class="ui-g-4" [hidden]="formModel.boolIsReject">
-              <input type="file" #file name="file">
+              <input maxlength="250" type="file" #file name="file">
             </div>
             <div class="ui-g-3 form-group" [hidden]="formModel.boolIsReject">
               <div class="ui-g-12" *ngIf="multiSelectOptions.length>0">
@@ -148,7 +148,7 @@
               <label for="inputEmail3" class="ui-g-3 control-label">
                 <span class="warn">*</span>描述：</label>
               <div class="ui-g-9">
-                <input type="text" pInputText [(ngModel)]="formModel.explain" name="address" />
+                <input maxlength="250" type="text" pInputText [(ngModel)]="formModel.explain" name="address" />
               </div>
             </div>
           </div>

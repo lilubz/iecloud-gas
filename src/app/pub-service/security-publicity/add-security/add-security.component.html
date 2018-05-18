@@ -4,7 +4,7 @@
   <div class="ui-g-12">
     <div class="ui-g-4 ui-g-offset-4">
       <span class="ui-float-label">
-        <input id="float-input" [(ngModel)]="articleTitle" type="text" size="30" pInputText maxlength="50" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
+        <input maxlength="50" id="float-input" [(ngModel)]="articleTitle" type="text" size="30" pInputText onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
         <label for="float-input">标题</label>
       </span>
       <br>

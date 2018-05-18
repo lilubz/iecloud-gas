@@ -12,7 +12,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>气瓶条码&#12288;&#12288;</span>
-              <input type="text" required maxlength="10" [(ngModel)]="cylinderInfo.gasLabelNumber" class="textInput" pInputText placeholder="气瓶条码">
+              <input maxlength="10" type="text" required [(ngModel)]="cylinderInfo.gasLabelNumber" class="textInput" pInputText placeholder="气瓶条码">
             </div>
           </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>气瓶出厂编号</span>
-              <input type="text" required maxlength="15" [(ngModel)]="cylinderInfo.serialNumber" class="textInput" pInputText placeholder="气瓶出厂编号">
+              <input maxlength="15" type="text" required [(ngModel)]="cylinderInfo.serialNumber" class="textInput" pInputText placeholder="气瓶出厂编号">
 
             </div>
           </div>
@@ -29,7 +29,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>企业自有编号</span>
-              <input type="text" class="textInput" maxlength="20" required (blur)="searchCylinder(cylinderInfo.enterpriseCylinderCode)"
+              <input maxlength="20" type="text" class="textInput" required (blur)="searchCylinder(cylinderInfo.enterpriseCylinderCode)"
                 [(ngModel)]="cylinderInfo.enterpriseCylinderCode" pInputText placeholder="CYJ118778">
             </div>
           </div>
@@ -48,7 +48,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>产权单位&#12288;&#12288;</span>
-              <input type="text" class="textInput" maxlength="50" required pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName" [disabled]="this.selectedProperty">
+              <input maxlength="50" type="text" class="textInput" required pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName" [disabled]="this.selectedProperty">
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;容积&#12288;&#12288;&#12288;&#12288;</span>
-              <input type="text" [(ngModel)]="cylinderInfo.volume" class="textInput" pInputText placeholder="" disabled>
+              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.volume" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
         </div>
@@ -128,13 +128,13 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;瓶体原始重量</span>
-              <input type="text" [(ngModel)]="cylinderInfo.weight" class="textInput" pInputText placeholder="" disabled>
+              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.weight" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;设计壁厚&#12288;&#12288;</span>
-              <input type="text" [(ngModel)]="cylinderInfo.designWallThickness" class="textInput" pInputText placeholder="" disabled>
+              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.designWallThickness" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
         </div>
@@ -142,13 +142,13 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;水压试验压力</span>
-              <input type="text" [(ngModel)]="cylinderInfo.waterPressureTest" class="textInput" pInputText placeholder="" disabled>
+              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.waterPressureTest" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;公称工作压力</span>
-              <input type="text" [(ngModel)]="cylinderInfo.nominalWorkingPressure" class="textInput" pInputText placeholder="" disabled>
+              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.nominalWorkingPressure" class="textInput" pInputText placeholder="" disabled>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;检验编号&#12288;&#12288;</span>
-              <input type="text" class="textInput" maxlength="30" [(ngModel)]="cylinderInfo.inspectionNumber" pInputText placeholder="">
+              <input maxlength="30" type="text" class="textInput" [(ngModel)]="cylinderInfo.inspectionNumber" pInputText placeholder="">
             </div>
           </div>
         </div>

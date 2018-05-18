@@ -23,13 +23,13 @@
             <span class="inputgroup">
               <label for="" class="search-label">站点名称</label>
             </span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.supplyName" maxlength="20" pInputText style="width:280px">
+            <input maxlength="20" type="text" class="textInput" [(ngModel)]="searchParams.supplyName" pInputText style="width:280px">
           </div>
           <div class="ui-g-12 ui-lg-6">
             <span class="inputgroup">
               <label for="" class="search-label">负责人</label>
             </span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.person" maxlength="20" pInputText placeholder="" style="width:280px">
+            <input maxlength="20" type="text" class="textInput" [(ngModel)]="searchParams.person" pInputText placeholder="" style="width:280px">
           </div>
           <div class="ui-g-12 ui-lg-6">
             <span class="inputgroup">
@@ -54,7 +54,7 @@
             <span class="inputgroup">
               <label for="" class="search-label">许可证编号</label>
             </span>
-            <input type="text" class="textInput" [(ngModel)]="searchParams.supplyLicenseNum" maxlength="20" pInputText placeholder=""
+            <input maxlength="20" type="text" class="textInput" [(ngModel)]="searchParams.supplyLicenseNum" pInputText placeholder=""
               style="width:280px">
           </div>
         </div>
@@ -145,7 +145,7 @@
           <label for="" class="search-label">站点名称
             <b style="color:red;">*</b>
           </label>
-          <input type="text" [(ngModel)]="editForm.supplyStationName" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.supplyStationName" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
@@ -159,7 +159,7 @@
       <div class="ui-g-6">
         <div class="inputgroup">
           <label for="" class="search-label">站点地址</label>
-          <input type="text" [(ngModel)]="editForm.supplyStationAddress" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.supplyStationAddress" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
@@ -175,19 +175,19 @@
           <label for="" class="search-label">负责人
             <b style="color:red;">*</b>
           </label>
-          <input type="text" [(ngModel)]="editForm.principal" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.principal" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-6">
         <div class="inputgroup">
           <label for="" class="search-label">联系人</label>
-          <input type="text" [(ngModel)]="editForm.contactPerson" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.contactPerson" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-6">
         <div class="inputgroup">
           <label for="" class="search-label">联系方式</label>
-          <input type="text" [(ngModel)]="editForm.supplyStationContact" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.supplyStationContact" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-6">
@@ -195,7 +195,7 @@
           <label for="" class="search-label">许可证编号
             <b style="color:red;">*</b>
           </label>
-          <input type="text" [(ngModel)]="editForm.supplyLicenseNum" style="width:180px" pInputText placeholder=" ">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.supplyLicenseNum" style="width:180px" pInputText placeholder=" ">
         </div>
       </div>
       <div class="ui-g-6 ">
@@ -203,7 +203,7 @@
           <label for="" class="search-label">核发单位
             <b style="color:red;">*</b>
           </label>
-          <input type="text" [(ngModel)]="editForm.issuingUnit" style="width:180px" pInputText placeholder=" ">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.issuingUnit" style="width:180px" pInputText placeholder=" ">
         </div>
       </div>
       <div class="ui-g-6 ">
@@ -239,13 +239,13 @@
       <div class="ui-g-6">
         <div class="inputgroup">
           <label for="" class="search-label">经营区域</label>
-          <input type="text" [(ngModel)]="editForm.businessArea" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.businessArea" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-6">
         <div class="inputgroup">
           <label for="" class="search-label">经营类别</label>
-          <input type="text" [(ngModel)]="editForm.businessCategory" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="editForm.businessCategory" style="width:180px" pInputText placeholder="">
         </div>
       </div>
     </div>
@@ -264,7 +264,7 @@
             <label for="" class="search-label">站点名称
               <b style="color:red;">*</b>
             </label>
-            <input type="text" [(ngModel)]="addForm.supplyStationName" style="width:180px" pInputText placeholder="">
+            <input maxlength="250" type="text" [(ngModel)]="addForm.supplyStationName" style="width:180px" pInputText placeholder="">
           </div>
         </div>
         <div class="ui-g-6">
@@ -278,7 +278,7 @@
         <div class="ui-g-12 ui-md-6">
           <div class="inputgroup">
             <label for="" class="search-label">站点地址</label>
-            <input type="text" [(ngModel)]="addForm.supplyStationAddress" style="width:180px" pInputText placeholder="">
+            <input maxlength="250" type="text" [(ngModel)]="addForm.supplyStationAddress" style="width:180px" pInputText placeholder="">
           </div>
         </div>
         <div class="ui-g-6">
@@ -295,19 +295,19 @@
           <label for="" class="search-label">负责人
             <b style="color:red;">*</b>
           </label>
-          <input type="text" [(ngModel)]="addForm.principal" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="addForm.principal" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
         <div class="inputgroup">
           <label for="" class="search-label">联系人</label>
-          <input type="text" [(ngModel)]="addForm.contactPerson" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="addForm.contactPerson" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
         <div class="inputgroup">
           <label for="" class="search-label">联系方式</label>
-          <input type="text" [(ngModel)]="addForm.supplyStationContact" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="addForm.supplyStationContact" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
@@ -315,7 +315,7 @@
           <label for="" class="search-label">许可证编号
             <b style="color:red;">*</b>
           </label>
-          <input type="text" [(ngModel)]="addForm.supplyLicenseNum" style="width:180px" pInputText placeholder=" ">
+          <input maxlength="250" type="text" [(ngModel)]="addForm.supplyLicenseNum" style="width:180px" pInputText placeholder=" ">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
@@ -323,7 +323,7 @@
           <label for="" class="search-label">核发单位
             <b style="color:red;">*</b>
           </label>
-          <input type="text" [(ngModel)]="addForm.issuingUnit" style="width:180px" pInputText placeholder=" ">
+          <input maxlength="250" type="text" [(ngModel)]="addForm.issuingUnit" style="width:180px" pInputText placeholder=" ">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
@@ -360,14 +360,14 @@
         <div class="inputgroup">
           <label for="" class="search-label">经营区域
           </label>
-          <input type="text" [(ngModel)]="addForm.businessArea" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="addForm.businessArea" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
         <div class="inputgroup">
           <label for="" class="search-label">经营类别
           </label>
-          <input type="text" [(ngModel)]="addForm.businessCategory" style="width:180px" pInputText placeholder="">
+          <input maxlength="250" type="text" [(ngModel)]="addForm.businessCategory" style="width:180px" pInputText placeholder="">
         </div>
       </div>
     </div>
@@ -383,7 +383,7 @@
       <div class="ui-g-12">
         <div class="inputgroup">
           <label for="" class="search-label">站点名称</label>
-          <input type="text" disabled="disabled" [(ngModel)]="change.supplyStationName" style="width:300px" pInputText placeholder="">
+          <input maxlength="250" type="text" disabled="disabled" [(ngModel)]="change.supplyStationName" style="width:300px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">

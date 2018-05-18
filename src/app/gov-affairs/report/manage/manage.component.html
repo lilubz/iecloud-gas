@@ -71,7 +71,7 @@
               <label for="inputEmail3" class="ui-g-4 control-label text-right">
                 <span class="warn">*</span>报表名称：</label>
               <div class="ui-g-8">
-                <input type="text" pInputText [(ngModel)]="formModel.name" name="name" />
+                <input maxlength="250" type="text" pInputText [(ngModel)]="formModel.name" name="name" />
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@
                 <gas-explanation tooltip="按照上级指定的报表模板填写完整信息的文件（仅限Word和Excel）" position="bottom"></gas-explanation>
               </label>
               <div class="ui-g-8">
-                <input type="file" #file id="file" name="file" accept=".doc,.xls,.docx,.xlsx" />
+                <input maxlength="250" type="file" #file id="file" name="file" accept=".doc,.xls,.docx,.xlsx" />
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@
             <label for="inputEmail3" class="ui-g-4 control-label text-right">
               <span class="warn">*</span>提交间隔：</label>
             <div class="ui-g-8">
-              <input class="interval ui-g-11" type="number" pInputText [(ngModel)]="formModel.interval" name="interval" min="1" step="1"
+              <input maxlength="250" class="interval ui-g-11" type="number" pInputText [(ngModel)]="formModel.interval" name="interval" min="1" step="1"
               />
               <span>天</span>
             </div>

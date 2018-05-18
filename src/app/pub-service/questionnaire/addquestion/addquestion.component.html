@@ -20,7 +20,7 @@
 
   <div class="ui-g-12">
     <div class="ui-g-12">
-      <input type="text" pInputText placeholder="请输入问卷名称" [(ngModel)]="questionnaire" maxlength="50" style="width: 400px;
+      <input maxlength="50" type="text" pInputText placeholder="请输入问卷名称" [(ngModel)]="questionnaire" style="width: 400px;
       height: 36px;" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
       <button pButton type="button" label="确定" (click)="addQuestionNaireData()"></button>
       <p>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="ui-g-12">
-      <input type="text" pInputText placeholder="请输入题目名称" [(ngModel)]="question" maxlength="50" style="width: 400px;
+      <input maxlength="50" type="text" pInputText placeholder="请输入题目名称" [(ngModel)]="question" style="width: 400px;
       height: 36px;" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
       <button pButton type="button" label="增加" (click)="addQuestionData()"></button>
     </div>
