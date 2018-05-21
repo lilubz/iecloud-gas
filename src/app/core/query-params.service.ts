@@ -21,9 +21,8 @@ export class QueryParamsService {
    * @returns {*}
    * @memberof Util
    */
-  getQueryParams(): any {
-    console.log(this._paramsMap);
-    this._paramsMap.get(this.util.getRouterUrl());
+  getQueryParams(routerUrl: string): any {
+    return this._paramsMap.get(routerUrl);
   }
 
   /**
@@ -36,6 +35,5 @@ export class QueryParamsService {
   setQueryParams(routerUrl: string, params: any): void {
     // console.log(this.activeRoute);
     this._paramsMap.set(routerUrl, params);
-    console.log(this._paramsMap);
   }
 }

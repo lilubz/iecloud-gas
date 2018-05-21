@@ -74,15 +74,16 @@ export class CylinderHistoryComponent implements OnInit, OnDestroy {
       this.getCylinderHistoryStatus();
     }
 
-    let params = this.queryParamsService.getQueryParams();
+    this.routerUrl = this.util.getRouterUrl();
+    let params = this.queryParamsService.getQueryParams(this.routerUrl);
     if (params) {
       this.pageSizeHistory = params.pageSizeHistory || this.pageSizeHistory;
       this.pageNumberHistory = params.pageNumberHistory || this.pageNumberHistory;
       this.cylinderNumber = params.cylinderNumber || this.cylinderNumber;
       this.beginTime = params.beginTime || this.beginTime;
       this.endTime = params.endTime || this.endTime;
+      this.getCylinderHistoryStatus();
     }
-    this.routerUrl = this.util.getRouterUrl();
   }
 
   ngOnDestroy() {
