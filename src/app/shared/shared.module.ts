@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import {
   ButtonModule,
   CheckboxModule,
+  CarouselModule,
   DataTableModule,
   DropdownModule,
   // DialogModule,
@@ -64,6 +65,7 @@ import { LicenseWarningComponent } from './license-warning/license-warning.compo
     // BrowserModule,
     CalendarModule,
     CheckboxModule,
+    CarouselModule,
     CommonModule,
     DropdownModule,
     DataTableModule,
@@ -124,6 +126,7 @@ import { LicenseWarningComponent } from './license-warning/license-warning.compo
     CalendarModule,
     CheckboxModule,
     CommonModule,
+    CarouselModule,
     DataTableModule,
     DropdownModule,
     DialogModule,

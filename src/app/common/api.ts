@@ -179,6 +179,8 @@ export const API = {
   'listGcPricingByCorp': URL + 'basicInformation/gcPricing/listGcPricingByCorp.do', // 获取企业定价列表
   'updateOrAddPricing': URL + 'basicInformation/gcPricing/updateOrAddPricing.do', // 新增/更新定价
   'deletePricing': URL + 'basicInformation/gcPricing/deletePricing.do', // 删除定价
+  // 安检信息查询
+  'securityCheckInquiries': URL + 'statisticalQuery/security/securityCheckInquiries.do', // 安检综合查询
 
   // 协同管理
   'listCorpInflatableStationInfo': URL + 'corpBusiness/collaborative/listCorpInflatableStationInfo.do', // 2.模糊搜索充装站信息
