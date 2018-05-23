@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, } from '@angular/core';
 import { UserSearchService, } from './user-search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-
+import { ConfirmationService } from 'primeng/primeng';
 
 @Component({
   selector: 's-user-search',
@@ -52,7 +52,9 @@ export class UserSearchComponent implements OnInit, OnDestroy {
   loading = false;
   constructor(
     private _service: UserSearchService,
-    private messageService: MessageService, ) { }
+    private messageService: MessageService, 
+    private confirmationService: ConfirmationService,
+  ) { }
 
   ngOnInit() {
     this.getGovOrganzationsDrop();
@@ -152,6 +154,34 @@ export class UserSearchComponent implements OnInit, OnDestroy {
     })
 
   }
+
+  confirmReset(userId) {
+    console.log(userId);
+    this.confirmationService.confirm({
+      message: `确定重置密码`,
+      header: '重置密码',
+      accept: () => {
+        this.resetPassword(userId);
+      },
+      reject: () => {
+
+      }
+    });
+  }
+
+  resetPassword(userId) {
+    console.log(userId);
+    this._service.resetPassword({ userId: userId }).then(data => {
+      if (data.status === 0) {
+        // this.query();
+        this.messageService.add({ severity: 'success', summary: '重置成功', detail: '' });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '获取信息失败', detail: data.msg });
+      }
+    });
+  }
+
+
 
   ngOnDestroy() {
   }

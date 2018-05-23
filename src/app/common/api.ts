@@ -63,6 +63,7 @@ export const API = {
   // 企业管理
   'getlistCorpUser': URL + 'basicInformation/corpInfo/listCorpUser.do',
   'changefreeze': URL + 'sysUserPermissions/user/freeze.do',
+  'resetPassword': URL + 'sysUserPermissions/user/resetPassword.do',
   'addSystemCorpUser': URL + 'basicInformation/corpInfo/addSystemCorpUser.do',
   'addCorpInfo': URL + 'basicInformation/corpInfo/addCorpInfo.do',
 

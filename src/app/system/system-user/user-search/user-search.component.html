@@ -6,17 +6,18 @@
   <div class="ui-g">
     <div class="ui-g-12 ui-lg-6">
       <span class="search-label"> 组织名称</span>
-      <p-dropdown [options]="dropdown.organzation" [(ngModel)]="searchParams.organization" (onChange)="onChangeOrganzation($event)" [style]="{'width':'280px'}"></p-dropdown>
+      <p-dropdown [options]="dropdown.organzation" [(ngModel)]="searchParams.organization" (onChange)="onChangeOrganzation($event)"
+        [style]="{'width':'280px'}"></p-dropdown>
       <gas-explanation tooltip="根据组织名称（即账号属于哪个部门）来选择角色名" position="bottom"></gas-explanation>
     </div>
     <div class="ui-g-12 ui-lg-6">
       <span class="search-label"> 角色名</span>
-      <p-dropdown [options]="dropdown.role" [(ngModel)]="searchParams.role"  [style]="{'width':'280px'}"></p-dropdown>
+      <p-dropdown [options]="dropdown.role" [(ngModel)]="searchParams.role" [style]="{'width':'280px'}"></p-dropdown>
       <gas-explanation tooltip="根据选择的角色名称，系统会分配权限等级，不同角色拥有的权限也不同" position="bottom"></gas-explanation>
     </div>
     <div class="ui-g-12 ui-lg-6">
       <span class="search-label"> 用户名</span>
-      <input maxlength="250" type="text" class="textInput" [(ngModel)]="searchParams.userName"  pInputText>
+      <input maxlength="250" type="text" class="textInput" [(ngModel)]="searchParams.userName" pInputText>
       <gas-explanation tooltip="账号的登陆名称" position="bottom"></gas-explanation>
     </div>
     <div class="ui-g-12">
@@ -27,15 +28,15 @@
 
   <div class="ui-g-12">
     <div class="ui-g">
-      <p-dataTable [value]="systemUserList" [loading]="loading" [lazy]="true" dataKey="" [paginator]="true" [rows]="pages.pageSize" [scrollable]="false"
-        scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
+      <p-dataTable [value]="systemUserList" [loading]="loading" [lazy]="true" dataKey="" [paginator]="true" [rows]="pages.pageSize"
+        [scrollable]="false" scrollHeight="510px" [rowsPerPageOptions]="pages.pageOption" [totalRecords]="pages.total" (onLazyLoad)="onPageChange($event)"
         [(first)]="pages.first">
         <p-column [style]="{'width':'80px'}" header="编号">
           <ng-template let-index="rowIndex" pTemplate="body">
             <span>{{index+1}}</span>
           </ng-template>
         </p-column>
-        <p-column [style]="{'width':'150px'}" field="userName"  header="用户名"></p-column>
+        <p-column [style]="{'width':'150px'}" field="userName" header="用户名"></p-column>
         <p-column [style]="{'width':'150px'}" field="organizationName" header="组织名称"></p-column>
         <p-column [style]="{'width':'150px'}" field="roleName" header="角色名">
           <ng-template pTemplate="header">
@@ -44,7 +45,7 @@
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'150px'}" header="创建时间">
-          <ng-template let-rowdata="rowData"  pTemplate="body">
+          <ng-template let-rowdata="rowData" pTemplate="body">
             <span>{{rowdata.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</span>
           </ng-template>
         </p-column>
@@ -60,11 +61,13 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" header="操作">
           <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
-              <!-- <button pButton type="button" [label]="data.isfreezed?'启用':'冻结'" style="width:60px;margin-bottom:5px;" [ngClass]="{'ui-button-secondary':data.isfreezed}"
+            <!-- <button pButton type="button" [label]="data.isfreezed?'启用':'冻结'" style="width:60px;margin-bottom:5px;" [ngClass]="{'ui-button-secondary':data.isfreezed}"
               (click)="changeStatus(data)"></button> -->
-              <div *ngIf="data.userName">
-                  <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
-                </div>
+            <div *ngIf="data.userName">
+              <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)" [style]="{'width':'84px'}"></p-toggleButton>
+            </div>
+            <button pButton type="button" label="重置密码" class="ui-button-secondary" (click)="
+                confirmReset(data.userId)"></button>
           </ng-template>
         </p-column>
         <ng-template pTemplate="emptymessage">
@@ -79,5 +82,5 @@
     </div>
   </div>
 
-
 </div>
+<p-confirmDialog acceptLabel="是" rejectLabel="否"></p-confirmDialog>

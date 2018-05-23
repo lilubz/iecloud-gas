@@ -18,4 +18,9 @@ export class UserSearchService {
   freezeAccount(params: any): Promise<any> {
     return this.httpService.getRequest(API.changefreeze, params);
   }
+  resetPassword(params?: { userId: number }): Promise<any> {
+    return this.httpService.getRequest(API.resetPassword, params);
+  }
+
+
 }

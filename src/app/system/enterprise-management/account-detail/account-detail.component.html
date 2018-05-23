@@ -64,9 +64,11 @@
       <p-column [style]="{'width':'150px'}" header="操作">
         <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
           <div *ngIf="data.userName">
-            <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)"></p-toggleButton>
+            <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)" [style]="{'width':'84px'}"></p-toggleButton>
           </div>
           <button pButton type="button" *ngIf="!data.userName" label="新增管理员账号" [routerLink]="['../account-open']" [queryParams]="{legalRepresentative:data.legalRepresentative,enterpriseName:data.enterpriseName,userName:data.userName,phoneNumber:data.phoneNumber,enterpriseNumber:data.enterpriseNumber}"></button>
+          <button pButton type="button" label="重置密码" class="ui-button-secondary" (click)="
+                confirmReset(data.userId)"></button>
         </ng-template>
       </p-column>
       <ng-template pTemplate="emptymessage">
@@ -83,3 +85,4 @@
 
 
 </div>
+<p-confirmDialog acceptLabel="是" rejectLabel="否"></p-confirmDialog>
