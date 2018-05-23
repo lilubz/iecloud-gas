@@ -1,0 +1,106 @@
+
+<div class="main" style="left:120px">
+  <div class="card">
+    <div class="ui-g-12 security-query">
+      <form class="ui-g" (submit)="onSubmit()">
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">辖&#12288;&#12288;区</span>
+          <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.region" [style]="{'width':'280px'}" name="regionId" (onChange)="onRegionChange()"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">企业名称</span>
+          <p-dropdown filter="true" [options]="dropdown.enterprise" [(ngModel)]="formModel.enterprise" [style]="{'width':'280px'}" name="enterprise"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">附&#12288;&#12288;件</span>
+          <p-dropdown [options]="dropdown.enclosures" [(ngModel)]="formModel.enclosures" [style]="{'width':'280px'}" name="enclosures"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">安检结果</span>
+          <p-dropdown [options]="dropdown.checkState" [(ngModel)]="formModel.checkState" [style]="{'width':'280px'}" name="checkState"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">开始时间</span>
+          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true" [style]="{'width':'280px','height':'35px'}"
+            name="startTime">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <span class="search-label">结束时间</span>
+          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+            [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true" [style]="{'width':'280px','height':'35px'}"
+            name="endTime">
+          </p-calendar>
+        </div>
+
+        <!-- 查询按钮 -->
+        <div class="ui-g-12 ui-lg-12">
+          <button pButton type="submit" class="searchBtn" label="查询"></button>
+        </div>
+      </form>
+
+      <div class="ui-g">
+        <p-dataTable [value]="dataTable.list" [lazy]="true" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
+          scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
+          [(first)]="dataTable.first" [loading]="loading">
+          <p-column [style]="{'width':'80px'}" header="序号">
+            <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+              <span>{{index+1}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="regionName" header="区域名称"></p-column>
+          <p-column field="enterpriseName" header="企业名称"></p-column>
+          <p-column field="dispatcherName" header="送气工姓名"></p-column>
+          <p-column field="userName" header="用户姓名"></p-column>
+          <p-column [style]="{'width':'150px'}" field="description" header="安检情况描述"></p-column>
+          <p-column [style]="{'width':'103px'}" field="imageUrl" header="图片附件">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <button pButton (click)="showImg(rowData.imageUrl);" label="查看图片" *ngIf="rowData.imageUrl"></button>
+              <button pButton label="无附件" *ngIf="!rowData.imageUrl" disabled></button>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'71px'}" field="voiceUrl" header="声音附件">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <a href="{{rowData.voiceUrl}}" *ngIf="rowData.voiceUrl">点击下载</a>
+              <span *ngIf="!rowData.voiceUrl">没有附件</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'93px'}" header="安检时间">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <span>{{rowData.securityCheckTime | date:"yyyy-MM-dd"}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="checkResult" header="安检结论"></p-column>
+          <ng-template pTemplate="emptymessage">
+            <div class="text-left">
+              未查询到数据
+            </div>
+          </ng-template>
+          <ng-template pTemplate="paginatorRight">
+            共 {{ dataTable.total || 0 }} 条记录
+          </ng-template>
+        </p-dataTable>
+      </div>
+
+      <!-- 对话框 + 轮播图 -->
+      <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="400" [contentStyle]="{'padding':'0','overflow':'visible'}"
+        [minWidth]="400" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+
+        <p-carousel *ngIf="visible" headerText="图片附件查看" [value]="imgArray" numVisible="1" (onPage)="onPage($event);" [firstVisible]="0">
+          <ng-template let-car pTemplate="item">
+            <div class="text-center">
+              <img src="{{car.url}}" alt="" style="width:400px">
+            </div>
+          </ng-template>
+        </p-carousel>
+
+        <p-footer>
+          <button type="button" pButton icon="fa-check" (click)="visible=false" label="确定"></button>
+        </p-footer>
+
+      </p-dialog>
+
+    </div>
+  </div>
+</div>

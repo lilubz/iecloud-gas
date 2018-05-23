@@ -27,6 +27,7 @@ export const AdminMenus: MenuItem[] = [
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
       { label: '地图轨迹', routerLink: ['/delivery/map'] },
+      { label: '安检信息查询', routerLink: ['/delivery/security-query'] },
       // { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
     ]
   },
@@ -122,6 +123,7 @@ export const GovernmentMenus: MenuItem[] = [
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
       { label: '地图轨迹', routerLink: ['/delivery/map'] },
+      { label: '安检信息查询', routerLink: ['/delivery/security-query'] },
       // { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
     ]
   },

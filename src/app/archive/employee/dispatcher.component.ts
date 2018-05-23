@@ -75,8 +75,8 @@ export class DispatcherComponent implements OnInit {
     const el = overlaypanel.container;
     setTimeout(() => {
       this.currentImgUrl = url;
-      el.style.top = parseFloat(el.style.top) - 150 + 'px';
-      el.style.left = parseFloat(el.style.left) - 350 + 'px';
+      el.style.top = parseFloat(el.style.top) - 120 + 'px';
+      el.style.left = parseFloat(el.style.left) - 120 + 'px';
       el.style.maxWidth = '300px';
     }, 0);
   }

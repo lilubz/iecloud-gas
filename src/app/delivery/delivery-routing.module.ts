@@ -9,6 +9,7 @@ import { CylinderTraceComponent } from './cylinder-trace/cylinder-trace.componen
 import { CylinderRecordComponent } from './cylinder-trace/cylinder-record/cylinder-record.component';
 import { CylinderFillingComponent } from './cylinder-trace/cylinder-filling/cylinder-filling.component';
 import { MapComponent } from './map/map.component';
+import { SecurityQueryComponent } from './security-query/security-query.component';
 const routes: Routes = [
   {
     path: '',
@@ -73,6 +74,13 @@ const routes: Routes = [
         component: MapComponent,
         data: {
           title: '地图轨迹'
+        }
+      },
+      {
+        path: 'security-query',
+        component: SecurityQueryComponent,
+        data: {
+          title: '安检信息查询'
         }
       },
       {

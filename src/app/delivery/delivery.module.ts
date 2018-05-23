@@ -14,6 +14,7 @@ import { DashboardService } from './dashboard/dashboard.service';
 import { CylinderFillingComponent } from './cylinder-trace/cylinder-filling/cylinder-filling.component';
 import { MapComponent } from './map/map.component';
 import { GISSettingService } from '../system/setting-management/GIS-setting/GIS-setting.service';
+import { SecurityQueryComponent } from './security-query/security-query.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { GISSettingService } from '../system/setting-management/GIS-setting/GIS-
     CylinderRecordComponent,
     CylinderHistoryComponent,
     CylinderFillingComponent,
-    MapComponent
+    MapComponent,
+    SecurityQueryComponent
   ],
   providers: [
     DashboardService,
