@@ -4,22 +4,22 @@ const PROXY_CONFIG = [
   //     "/wenZhouGas",
   //     // "/upload",
   //   ],
-  //   target: "http://192.168.1.55:8080",// 褚俊杰
+  //   target: "http://192.168.1.247:8080",// 褚俊杰
   //   secure: false,
   //   "pathRewrite": {
   //     "^/wenZhouGas": ""
   //   }
   // },
-  {
-    context: [
-      "/wenZhouGas",
-    ],
-    target: "http://192.168.1.26:8080",// 费峰
-    secure: false,
-    "pathRewrite": {
-      "^/wenZhouGas": ""
-    }
-  },
+  // {
+  //   context: [
+  //     "/wenZhouGas",
+  //   ],
+  //   target: "http://192.168.1.26:8080",// 费峰
+  //   secure: false,
+  //   "pathRewrite": {
+  //     "^/wenZhouGas": ""
+  //   }
+  // },
   // {
   //   context: [
   //     "/wenZhouGas",
@@ -30,28 +30,17 @@ const PROXY_CONFIG = [
   //     "^/wenZhouGas": ""
   //   }
   // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //     "/dataImport",
-  //   ],
-  //   target: "http://192.168.1.141:8080", // 本地测试
-  //   secure: false,
-  //   // "pathRewrite": {
-  //   //   "^/wenZhouGas": ""
-  //   // }
-  // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //     "/dataImport",
-  //   ],
-  //   target: "http://192.168.1.135:8080", // 铁军台式
-  //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
-  //   }
-  // },
+  {
+    context: [
+      "/wenZhouGas",
+      "/dataImport",
+    ],
+    target: "http://192.168.1.141:8080", // 本地测试
+    secure: false,
+    // "pathRewrite": {
+    //   "^/wenZhouGas": ""
+    // }
+  },
   // {
   //   context: [
   //     "/wenZhouGas",
@@ -61,17 +50,6 @@ const PROXY_CONFIG = [
   //   secure: false,
   //   "pathRewrite": {
   //     "^/wenZhouGas": ""
-  //   }
-  // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //     "/dataImport",
-  //   ],
-  //   target: "http://192.168.1.141:8080",// 涛哥笔记本
-  //   secure: false,
-  //   "pathRewrite": {
-  //     // "^/wenZhouGas": ""
   //   }
   // },
   // {

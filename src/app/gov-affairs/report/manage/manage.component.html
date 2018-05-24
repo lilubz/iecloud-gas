@@ -117,16 +117,16 @@
               <div class="ui-g-8">
                 <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
                 [locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false" placeholder="初始提交时间" [minDate]="currentDate"
-                [showButtonBar]="true" [style]="{'width':'90%'}"></p-calendar>
+                [showButtonBar]="true" [style]="{'width':'91%'}"></p-calendar>
                 <gas-explanation tooltip="指定第一次提交的时间" position="bottom"></gas-explanation>
               </div>
             </div>
           </div>
         </div>
         <div class="ui-g">
-          <div class="ui-g-12 text-center">
-            <button pButton type="submit" class="ui-button-primery searchBtn" label="确认"></button>
-            <button (click)="onCancel();" pButton type="button" class="ui-button-secondary" label="取消"></button>
+          <div class="ui-g-12 text-center" style="padding-bottom:20px;">
+            <button pButton type="submit" label="确认" class="searchBtn"></button>
+            <button (click)="onCancel();" pButton type="button" class="searchBtn" label="取消"></button>
           </div>
         </div>
       </form>
