@@ -21,6 +21,8 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
   RoleType = RoleType;
   cn = zh_CN;
   bottleLibraryList: any[] = [];
+  endTimeinit: Date;
+  startTimeinit: Date;
   pages: {
     pageNumber?: number;
     pageSize?: number;
@@ -42,15 +44,15 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     supplyLicenseNum: string,
     startTime?: string,
     endTime?: string,
-  }= {
-    regionId: '',
-    enterpriseName: '',
-    supplyName: '',
-    person: '',
-    supplyLicenseNum: '',
-    startTime: '',
-    endTime: '',
-  }; 
+  } = {
+      regionId: '',
+      enterpriseName: '',
+      supplyName: '',
+      person: '',
+      supplyLicenseNum: '',
+      startTime: '',
+      endTime: '',
+    };
   changeStatusPage: any;
   editBottleVisible = false;
   addBottleVisible = false;
@@ -223,7 +225,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
           }
         }
         else {
-          this.editForm[key]=null;
+          this.editForm[key] = null;
         }
       }
     }
@@ -232,7 +234,6 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this.addBottleVisible = true;
   }
   showChangeDialog = (data) => {
-    // console.log(data);
     this.changeBottleVisible = true;
     this.change.supplyStationName = data.supplyStationName;
     this.change.supplyStationNumber = data.supplyStationNumber;

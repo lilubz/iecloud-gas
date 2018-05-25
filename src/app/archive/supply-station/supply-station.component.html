@@ -35,8 +35,8 @@
             <span class="inputgroup">
               <label for="" class="search-label">发证日期</label>
             </span>
-            <p-calendar [locale]="cn" [(ngModel)]="searchParams.startTime"  (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)"
-              [showButtonBar]="true" [maxDate]="searchParams.endTime" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
+            <p-calendar [locale]="cn" [(ngModel)]="startTimeinit"  (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)"
+              [showButtonBar]="true" [maxDate]="endTimeinit" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
               [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'280px','display':'inline-block'}">
             </p-calendar>
             <gas-explanation tooltip="选择时间段按发证日期的时间间隔查询" position="bottom"></gas-explanation>
@@ -46,7 +46,7 @@
             <span class="inputgroup">
               <label for="" class="search-label">至</label>
             </span>
-            <p-calendar [locale]="cn" [(ngModel)]="searchParams.endTime"  (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="searchParams.startTime"
+            <p-calendar [locale]="cn" [(ngModel)]="endTimeinit"  (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="startTimeinit"
               [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
               [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'280px','display':'inline-block'}"></p-calendar>
           </div>
