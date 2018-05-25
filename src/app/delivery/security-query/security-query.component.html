@@ -87,10 +87,10 @@
       <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="400" [contentStyle]="{'padding':'0','overflow':'visible'}"
         [minWidth]="400" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
 
-        <p-carousel *ngIf="visible" headerText="图片附件查看" [value]="imgArray" numVisible="1" (onPage)="onPage($event);" [firstVisible]="0">
+        <p-carousel *ngIf="visible" headerText="图片附件查看" [value]="imgArray" numVisible="1" [firstVisible]="0">
           <ng-template let-car pTemplate="item">
             <div class="text-center">
-              <img src="{{car.url}}" alt="" style="width:400px">
+              <img src="{{car.url}}" alt="" style="max-width:400px; max-height:400px;">
             </div>
           </ng-template>
         </p-carousel>
