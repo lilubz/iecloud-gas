@@ -162,27 +162,12 @@ export class OverviewComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.getDataTableList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      startTime: this.utilService.formatTime(this.formModel.startTime, 'start'),
+      endTime: this.utilService.formatTime(this.formModel.endTime, 'end'),
       regionId: this.formModel.regionId,
     });
     Object.assign(this.pageParams, this.formModel);
     this.dataTable.first = 0;
-  }
-
-  onPageChange($event) {
-    this.dataTable.list = [];
-    this.onPageChange = event => {
-      const page = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
-      this.getDataTableList({
-        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
-        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
-        regionId: this.formModel.regionId,
-      });
-    };
   }
 
   getDataTableList(params?) {
@@ -202,8 +187,8 @@ export class OverviewComponent implements OnInit {
   // 导出送气工统计
   exportDispathcerStatistic() {
     this.statisticCylinderService.corpDispatcherSendAndReceiveList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      startTime: this.utilService.formatTime(this.formModel.startTime, 'start'),
+      endTime: this.utilService.formatTime(this.formModel.endTime, 'end'),
       regionId: this.formModel.regionId,
       resultType: 'excel'
     }).then(data => {

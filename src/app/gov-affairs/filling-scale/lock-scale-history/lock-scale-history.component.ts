@@ -6,6 +6,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { SelectItem } from 'primeng/primeng';
 import * as moment from 'moment'
 import { CommonRequestService } from '../../../core/common-request.service';
+import { Util } from '../../../core/util';
 @Component({
   selector: 'gas-lock-scale-history',
   templateUrl: './lock-scale-history.component.html',
@@ -28,7 +29,8 @@ export class LockScaleHistoryComponent implements OnInit {
   constructor(
     private commonRequestService: CommonRequestService,
     private fillingScaleService: FillingScaleService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -53,14 +55,14 @@ export class LockScaleHistoryComponent implements OnInit {
     // }]
   }
 
-  onPageChange(event) {
+  onPageChange($event) {
     this.onPageChange = (event) => {
       this.pageSize = event.rows;
       this.pageNumber = event.first / event.rows + 1;
       setTimeout(() => {
         this.listBalanceLockRecord();
       }, 0);
-    }
+    };
   }
 
   search() {
@@ -77,8 +79,8 @@ export class LockScaleHistoryComponent implements OnInit {
         pageNumber: this.pageNumber,
         enterpriseNumber: this.enterpriseNumber,
         balanceNumber: this.balanceNumber,
-        startDate: moment(moment(this.beginTime).format('YYYY-MM-DD') + ' 00:00:00'),
-        endDate: moment(moment(this.endTime).format('YYYY-MM-DD') + ' 23:59:59')
+        startDate: this.util.formatTime(this.beginTime, 'start'),
+        endDate: this.util.formatTime(this.endTime, 'end'),
       }).then(data => {
         this.loading = false;
         if (data.status === 0) {

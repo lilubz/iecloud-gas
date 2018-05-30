@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { HistoryRecordService } from './history.service';
 import { API } from '../../../common/api';
+import { Util } from '../../../core/util';
 
 @Component({
   selector: 'gas-history',
@@ -24,6 +25,7 @@ export class HistoryComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private historyRecordService: HistoryRecordService,
+    private util: Util
   ) {}
 
   ngOnInit() {}
@@ -34,8 +36,8 @@ export class HistoryComponent implements OnInit {
       return false;
     } else {
       this.getHistoryRecord({
-        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD HH:mm:ss'), // 日期格式调整
-        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD HH:mm:ss'),
+        startTime: this.util.formatTime(this.circulationBeginTime, 'start'), // 日期格式调整
+        endTime: this.util.formatTime(this.circulationEndTime, 'end'),
         pageNumber: this.pageNumber,
         pageSize: this.pageSize
       });
@@ -71,8 +73,8 @@ export class HistoryComponent implements OnInit {
       this.pageNumber = page.pageNumber;
       this.pageSize = page.pageSize;
       this.getHistoryRecord({
-        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD HH:mm:ss'), // 日期格式调整
-        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD HH:mm:ss'),
+        startTime: this.util.formatTime(this.circulationBeginTime, 'start'), // 日期格式调整
+        endTime: this.util.formatTime(this.circulationEndTime, 'end'),
         pageNumber: page.pageNumber,
         pageSize: page.pageSize,
       });

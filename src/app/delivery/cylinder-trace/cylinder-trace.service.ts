@@ -15,7 +15,7 @@ export class CylinderTraceService {
   }
 
   getCylinderHistoryByDispatcher(params?: any): Promise<any> {
-    return this.HttpService.getRequest(API.getDispachterDistributions, params);
+    return this.HttpService.getRequest(API.getDispatcherDistributions, params);
   }
 
   listGasReceiveAndDispatch(params?: any): Promise<any> {

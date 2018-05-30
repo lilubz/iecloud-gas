@@ -5,6 +5,7 @@ import { zh_CN } from '../../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { Util } from '../../../core/util';
 
 @Component({
   selector: 'gas-enterprise',
@@ -54,6 +55,7 @@ export class EnterpriseDetailComponent implements OnInit {
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
     private router: Router,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -97,8 +99,8 @@ export class EnterpriseDetailComponent implements OnInit {
       regionId: this.pageParams.regionId,
       corpName: this.pageParams.enterpriseName,
       legalRepresentative: this.pageParams.person,
-      releaseTimeStart: moment(this.pageParams.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-      releaseTimeEnd: moment(this.pageParams.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      releaseTimeStart: this.util.formatTime(this.pageParams.startTime, 'start'),
+      releaseTimeEnd: this.util.formatTime(this.pageParams.endTime, 'end'),
       // serviceLine: this.pageParams.phone,
       pageSize: this.dataTable.pageSize,
       pageNumber: this.dataTable.pageNumber

@@ -170,19 +170,19 @@ export class EnterpriseComponent implements OnInit {
     let endTime;
     if (dateRange === 2) {
       const week = new Date((new Date().getTime() - 6 * 24 * 60 * 60 * 1000));
-      beginTime = moment(week).format('YYYY-MM-DD') + ' 00:00:00';
-      endTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+      beginTime = this.util.formatTime(week, 'start');
+      endTime = this.util.formatTime(new Date(), 'end');
     } else if (dateRange === 3) {
-      beginTime = moment(new Date((new Date().getTime() - 29 * 24 * 60 * 60 * 1000))).format('YYYY-MM-DD') + ' 00:00:00';
-      endTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+      beginTime = this.util.formatTime(moment().subtract(29, 'days'), 'start');
+      endTime = this.util.formatTime(new Date(), 'end');
     } else if (dateRange === 4) {
-      beginTime = moment(selectedBeginTime).format('YYYY-MM-DD') + ' 00:00:00';
-      endTime = moment(selectedEndTime).format('YYYY-MM-DD') + ' 23:59:59';
+      beginTime = this.util.formatTime(selectedBeginTime, 'start');
+      endTime = this.util.formatTime(selectedEndTime, 'end');
     }
     return { beginTime, endTime };
   }
 
-  //获取持有气瓶统计信息
+  // 获取持有气瓶统计信息
   getCountiesOverview(params?: { beginTime: string, endTime: string }): Promise<any[]> {
     return this.cylinderOverviewService.getCountiesOverview(params).then(data => {
       this.loading = false;

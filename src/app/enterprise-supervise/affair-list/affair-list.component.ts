@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../common/date-localization';
 import { AffairListService } from './affair-list.service';
 import * as moment from 'moment';
+import { Util } from '../../core/util';
 
 @Component({
   selector: 'gas-affair-list',
@@ -17,6 +18,7 @@ export class AffairListComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     public _service: AffairListService,
+    public util: Util
   ) { }
   dropdown = {
     status: [
@@ -35,7 +37,8 @@ export class AffairListComponent implements OnInit {
     option: [10, 20, 40, 80],
     total: 0,
     first: 0,
-    pageSize: 40
+    pageSize: 40,
+    pageNumber: 1
   };
   formModel = {
     startTime: moment().subtract(365, 'days')['_d'],
@@ -52,36 +55,29 @@ export class AffairListComponent implements OnInit {
   }
 
   onSubmit() {
-    this.getDataTableList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
-      boolIsHandle: this.formModel.status,
-      pageNumber: 1,
-      pageSize: this.dataTable.pageSize,
-    });
-    Object.assign(this.pageParams, this.formModel);
     this.dataTable.first = 0;
+    this.dataTable.pageNumber = 1;
+    Object.assign(this.pageParams, this.formModel);
+    this.getDataTableList();
   }
 
   onPageChange($event) {
     this.dataTable.list = [];
     this.onPageChange = event => {
-      const page = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
-      this.getDataTableList({
-        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
-        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
-        boolIsHandle: this.pageParams.status,
-        pageNumber: page.pageNumber,
-        pageSize: page.pageSize,
-      });
+      this.dataTable.pageNumber = event.first / event.rows + 1;
+      this.dataTable.pageSize = event.rows;
+      this.getDataTableList();
     };
   }
 
-  getDataTableList(params?) {
-    this._service.listCorpTransactionInfo(params)
+  getDataTableList() {
+    this._service.listCorpTransactionInfo({
+      startTime: this.util.formatTime(this.pageParams.startTime, 'start'),
+      endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
+      boolIsHandle: this.pageParams.status,
+      pageNumber: this.dataTable.pageNumber,
+      pageSize: this.dataTable.pageSize,
+    })
       .then(data => {
         if (data.status === 0) {
           this.dataTable.list = data.data.list;

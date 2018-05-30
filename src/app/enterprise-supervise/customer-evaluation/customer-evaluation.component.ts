@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../common/date-localization';
 import * as moment from 'moment';
 import { CustomerEvaluationService } from './customer-evaluation.service';
+import { Util } from '../../core/util';
 
 @Component({
   selector: 'gas-customer-evaluation',
@@ -60,14 +61,15 @@ export class CustomerEvaluationComponent implements OnInit {
   constructor(
     public _service: CustomerEvaluationService,
     private messageService: MessageService,
+    private util: Util
   ) { }
 
   ngOnInit() {
   }
   onSubmit() {
     this.getDataTableList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      startTime: this.util.formatTime(this.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.formModel.endTime, 'end'),
       rank: this.formModel.status,
       pageNumber: 1,
       pageSize: this.dataTable.pageSize,
@@ -84,8 +86,8 @@ export class CustomerEvaluationComponent implements OnInit {
         pageNumber: event.first / event.rows + 1
       };
       this.getDataTableList({
-        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+        startTime: this.util.formatTime(this.pageParams.startTime, 'start'),
+        endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
         rank: this.formModel.status,
         pageNumber: page.pageNumber,
         pageSize: page.pageSize,
@@ -110,8 +112,8 @@ export class CustomerEvaluationComponent implements OnInit {
   }
   getDataAverage = () => {
     this._service.avgOrderEvaluate({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      startTime: this.util.formatTime(this.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.formModel.endTime, 'end'),
     }).then(data => {
       this.transactionType = data.data;
       this.average = true;

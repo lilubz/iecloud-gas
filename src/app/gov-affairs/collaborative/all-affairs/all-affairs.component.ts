@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../../common/date-localization';
 import * as moment from 'moment';
 import { CollaborativeService } from '../collaborative.service';
+import { Util } from '../../../core/util';
 
 @Component({
   selector: 'gas-collaborative-all-list',
@@ -46,6 +47,7 @@ zh = zh_CN;
   };
 
   constructor(
+    private util: Util,
     private messageService: MessageService,
     private _service: CollaborativeService,
   ) { }
@@ -57,8 +59,8 @@ zh = zh_CN;
 
   onSearch() {
     this.getDataTableList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      startTime: this.util.formatTime(this.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.formModel.endTime, 'end'),
       transactionType: this.formModel.affairType,
       transactionUserId: this.formModel.department,
       pageNumber: 1,
@@ -77,8 +79,8 @@ zh = zh_CN;
       };
       this.dataTable.pageSize = page.pageSize;
       this.getDataTableList({
-        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
-        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
+        startTime: this.util.formatTime(this.pageParams.startTime, 'start'),
+        endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
         transactionType: this.pageParams.affairType,
         transactionUserId: this.pageParams.department,
         pageNumber: page.pageNumber,

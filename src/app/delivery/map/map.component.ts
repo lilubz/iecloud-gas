@@ -10,6 +10,7 @@ import { zh_CN } from './../../common/date-localization';
 import * as moment from 'moment';
 import { CommonRequestService } from '../../core/common-request.service';
 import { GISSettingService } from '../../system/setting-management/GIS-setting/GIS-setting.service';
+import { Util } from '../../core/util';
 
 @Component({
   selector: 'gas-map',
@@ -61,7 +62,8 @@ export class MapComponent implements OnInit, OnDestroy {
     private mapService: MapService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
-    private gisSettingService: GISSettingService
+    private gisSettingService: GISSettingService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -203,8 +205,8 @@ export class MapComponent implements OnInit, OnDestroy {
     const dateRange = this.getSelectedTime(this.selectedDateRange, this.beginTime, this.endTime);
 
     this.mapService.getThePathByAccountId({
-      beginTime: dateRange.beginTime,
-      endTime: dateRange.endTime,
+      beginTime: this.util.formatTime(dateRange.beginTime, 'start'),
+      endTime: this.util.formatTime(dateRange.endTime, 'end'),
       accountId: this.selectedDispatcherNumber,
       accountTypeId: '0'
     }).then(data => {
@@ -220,6 +222,7 @@ export class MapComponent implements OnInit, OnDestroy {
             });
           })
         );
+        alert('abc');
       } else {
         this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
       }

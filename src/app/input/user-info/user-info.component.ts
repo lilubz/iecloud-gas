@@ -14,6 +14,7 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 import { Message } from 'primeng/components/common/api';
 import * as moment from 'moment';
 import { User } from '../../common/User.model';
+import { Util } from '../../core/util';
 
 @Component({
   selector: 'gas-user-info',
@@ -50,6 +51,7 @@ export class UserInfoComponent implements OnInit {
   constractBeginTime: Date;
   constractEndTime: Date;
   constructor(
+    private util: Util,
     private userStateService: UserStateService,
     private userInfoService: UserInfoService,
     private route: ActivatedRoute,
@@ -84,7 +86,6 @@ export class UserInfoComponent implements OnInit {
   }
 
   save(IDImageUpload: any) {
-    console.log(this.OtherImageUpload.nativeElement.files[0]);
     this.customer.gcCorpUserName = this.customer.userName; // 企业用户名称等于输入的用户名
     this.customer.identity = IDImageUpload.files;
     this.customer.others = this.OtherImageUpload.nativeElement.files[0] || '';
@@ -122,8 +123,6 @@ export class UserInfoComponent implements OnInit {
   }
 
   checkForm(): boolean {
-    console.log(this.customer);
-    console.log(this.deliveryRegionId);
     if (!this.customer.userName) {
       this.showMessage('warn', '', '请填写客户姓名！');
       return false;
@@ -142,7 +141,7 @@ export class UserInfoComponent implements OnInit {
     } else if (!this.customer.phone) {
       this.showMessage('warn', '', '请填写联系电话！');
       return false;
-    } else if (this.customer.identity.length == 0) {
+    } else if (this.customer.identity.length === 0) {
       this.showMessage('warn', '', '请选择证件图片！');
       return false;
     } else if (this.customer.identity.length > 2) {
@@ -169,11 +168,11 @@ export class UserInfoComponent implements OnInit {
   }
 
   selectConstractBeginDate(event) {
-    this.customer.contractEffectiveDate = moment(event).format('YYYY-MM-DD HH:mm:ss');
+    this.customer.contractEffectiveDate = this.util.formatTime(event, 'start');
   }
 
   selectConstractEndDate(event) {
-    this.customer.contractDeadline = moment(event).format('YYYY-MM-DD HH:mm:ss');
+    this.customer.contractDeadline = this.util.formatTime(event, 'end');
   }
 
   clearBeginDate(event) {

@@ -102,8 +102,8 @@ export class StorageDistributionComponent implements OnInit {
   searchStorageDistributionCirculations() {
     if (this.checkForm()) {
       this.statisticCylinderService.getStorageDistributionCirculation({
-        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
-        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00'
+        startTime: this.util.formatTime(this.circulationBeginTime, 'start'),
+        endTime: this.util.formatTime(this.circulationEndTime, 'end')
       }).then(data => {
         if (data.status === 0) {
           this.storageDistributionCirculations = data.data;
@@ -134,8 +134,8 @@ export class StorageDistributionComponent implements OnInit {
   exportFillingStationCirculationStatistic = () => {
     if (this.checkForm()) {
       this.statisticCylinderService.getStorageDistributionCirculation({
-        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
-        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00',
+        startTime: this.util.formatTime(this.circulationBeginTime, 'start'),
+        endTime: this.util.formatTime(this.circulationEndTime, 'end'),
         resultType: 'excel'
       }).then(data => {
         if (data.status === 0) {

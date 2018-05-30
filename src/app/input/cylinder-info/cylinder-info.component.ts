@@ -30,13 +30,13 @@ export class CylinderInfoComponent implements OnInit {
   equipmentVarieties: SelectItem[] = [];
   fillingMedia: SelectItem[] = [];
   model: SelectItem[] = [];
-  lastTestUnit: SelectItem[] = [{ label: "请选择", value: '' }];
+  lastTestUnit: SelectItem[] = [{ label: '请选择', value: '' }];
   msgs: Message[] = [];
   dropdown = {
     default: [
-      { label: "请选择", value: '' }
+      { label: '请选择', value: '' }
     ],
-  }
+  };
   // 气瓶录入数据
   cylinderInfo: {
     gasLabelNumber?: string;

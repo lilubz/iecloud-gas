@@ -62,7 +62,7 @@ export class BigScreenComponent implements OnInit, OnDestroy {
     this.scrollInterval = setInterval(this.move, 3000);
 
     // 当前时间
-    this.timeInterval = setInterval(() => { this.currentTime = moment().format('YYYY-MM-DD HH:mm:ss') }, 1000);
+    this.timeInterval = setInterval(() => { this.currentTime = moment().format('YYYY-MM-DD HH:mm:ss'); }, 1000);
 
     // 监听f11全屏事件
     this.fullscreenListener = this.renderer.listen('window', 'keydown', (event => {

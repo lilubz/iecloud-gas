@@ -163,7 +163,7 @@ export const API = {
   'importUser': URL + 'dataImport/gcUser/importGcUserCertInfo.do',
   'importGc': URL + 'dataImport/gasCylinder/importGasLableInfo.do',
   'importCard': URL + 'dataImport/gcUser/importGcUserCertInfoUnbound.do',
-  'importTag': URL + 'dataImport/gasCylinder/importGasCylinderUnboundLable.do',
+  'importTag': URL + 'dataImport/gasCylinder/importGasCylinderUnboundLabel.do',
   'importGcUserInfo': URL + 'dataImport/gcUser/importGcUserInfo.do',
 
   // 监管事务
@@ -174,7 +174,7 @@ export const API = {
     'basicInformation/gasCylinder/listGasInfoSearchByLiabilitySubjectId.do',
   // 气瓶充装记录
   'listFillingInfo': URL + 'corpBusiness/applyManagement/listFillingInfo.do',
-  'getDispachterDistributions': URL + 'corpBusiness/applyManagement/getDispachterDistributions.do',
+  'getDispatcherDistributions': URL + 'corpBusiness/applyManagement/getDispatcherDistributions.do',
   'listGasReceiveAndDispatch': URL + 'basicInformation/gasCylinder/listGasReceiveAndDispatch.do',
   // 重瓶定价
   'listGcPricingByCorp': URL + 'basicInformation/gcPricing/listGcPricingByCorp.do', // 获取企业定价列表

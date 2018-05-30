@@ -75,7 +75,7 @@ export class CylinderHistoryComponent implements OnInit, OnDestroy {
     }
 
     this.routerUrl = this.util.getRouterUrl();
-    let params = this.queryParamsService.getQueryParams(this.routerUrl);
+    const params = this.queryParamsService.getQueryParams(this.routerUrl);
     if (params) {
       this.pageSizeHistory = params.pageSizeHistory || this.pageSizeHistory;
       this.pageNumberHistory = params.pageNumberHistory || this.pageNumberHistory;
@@ -112,8 +112,8 @@ export class CylinderHistoryComponent implements OnInit, OnDestroy {
       pageSize: this.pageSizeHistory,
       pageNumber: this.pageNumberHistory,
       gasLabelNumber: this.cylinderNumber,
-      beginTime: moment(moment(this.beginTime).format('YYYY-MM-DD') + ' 00:00:00'),
-      endTime: moment(moment(this.endTime).format('YYYY-MM-DD') + ' 23:59:59')
+      beginTime: this.util.formatTime(this.beginTime, 'start'),
+      endTime: this.util.formatTime(this.endTime, 'end')
     }).then(data => {
       if (data.status === 0) {
         this.loading = false;

@@ -130,8 +130,8 @@ export class CylinderStorageComponent implements OnInit {
   searchCylinderStorageCirculations() {
     if (this.checkCirculationParams()) {
       this.statisticCylinderService.getCylinderStorageCirculation({
-        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
-        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00'
+        startTime: this.util.formatTime(this.circulationBeginTime, 'start'),
+        endTime: this.util.formatTime(this.circulationEndTime, 'end')
       }).then(data => {
         if (data.status === 0) {
           this.cylinderStorageCirculations = data.data;
@@ -174,8 +174,8 @@ export class CylinderStorageComponent implements OnInit {
   exportSupplyStationCirculationStatistic() {
     if (this.checkCirculationParams()) {
       this.statisticCylinderService.getCylinderStorageCirculation({
-        startTime: moment(this.circulationBeginTime).format('YYYY-MM-DD') + ' 00:00:00',
-        endTime: moment(this.circulationEndTime).format('YYYY-MM-DD') + ' 00:00:00',
+        startTime: this.util.formatTime(this.circulationBeginTime, 'start'),
+        endTime: this.util.formatTime(this.circulationEndTime, 'end'),
         resultType: 'excel'
       }).then(data => {
         if (data.status === 0) {

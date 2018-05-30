@@ -697,7 +697,7 @@ export class MapService {
    * @returns {Promise<any>}
    * @memberof MapService
    */
-  getThePathByAccountId(params: { accountId: string, beginTime: Date, endTime: Date, accountTypeId: string }): Promise<any> {
+  getThePathByAccountId(params: { accountId: string, beginTime: string, endTime: string, accountTypeId: string }): Promise<any> {
     return this.httpService
       .getRequest(API.getThePathByAccountId, params);
   }

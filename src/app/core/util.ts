@@ -111,4 +111,26 @@ export class Util {
   getRouterUrl(): string {
     return location.hash.split('#')[1].split(/[?;]/)[0];
   }
+
+  /**
+   * 时间格式化
+   *
+   * @param {any} [date=new Date()] 接受 Date 类型或者 Moment 类型
+   * @param {string} [target='default']
+   * @param {string} [format='YYYY-MM-DD HH:mm:ss']
+   * @returns {string}
+   * @memberof Util
+   */
+  formatTime(date: any, target: string = 'default', format: string = 'YYYY-MM-DD HH:mm:ss'): string {
+    const momentDate = moment.isDate(date) ? moment(date) : date;
+    switch (target) {
+      case 'begin':
+      case 'start':
+        return moment(momentDate.format('YYYY-MM-DD'), 'YYYY-MM-DD').format(format);
+      case 'end':
+        return moment(momentDate.add(1, 'days').format('YYYY-MM-DD'), 'YYYY-MM-DD').format(format);
+      default:
+        return momentDate.format(format);
+    }
+  }
 }

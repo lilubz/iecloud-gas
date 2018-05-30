@@ -3,6 +3,7 @@ import { zh_CN } from './../../../common/date-localization';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { CylinderTraceService } from '../cylinder-trace.service';
+import { Util } from '../../../core/util';
 
 @Component({
   selector: 'gas-cylinder-filling',
@@ -27,7 +28,8 @@ export class CylinderFillingComponent implements OnInit {
 
   constructor(
     private cylinderTraceService: CylinderTraceService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public util: Util
   ) { }
 
   ngOnInit() {
@@ -45,8 +47,8 @@ export class CylinderFillingComponent implements OnInit {
       name: this.inflator,
       cylinderNumber: this.cylinderNumber,
       stationName: this.stationName,
-      beginTime: moment(this.beginTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      beginTime: this.util.formatTime(this.beginTime, 'start'),
+      endTime: this.util.formatTime(this.endTime, 'end'),
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
     }).then(data => {

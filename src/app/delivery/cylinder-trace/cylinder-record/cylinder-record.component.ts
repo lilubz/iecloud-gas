@@ -10,6 +10,7 @@ import { UserStateService } from './../../../core/userState.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
+import { Util } from '../../../core/util';
 
 @Component({
   selector: 'gas-cylinder-record',
@@ -120,6 +121,7 @@ export class CylinderRecordComponent implements OnInit {
     private messageService: MessageService,
     private dispatcherService: DispatcherService,
     private userStateService: UserStateService,
+    private util: Util
   ) {
 
   }
@@ -375,8 +377,8 @@ export class CylinderRecordComponent implements OnInit {
       liabilitySubjectType: this.selectedCylinderStatus,
       liabilitySubjectId,
       searchType,
-      beginTime: moment(moment(this.beginTime).format('YYYY-MM-DD') + ' 00:00:00'),
-      endTime: moment(moment(this.endTime).format('YYYY-MM-DD') + ' 23:59:59'),
+      beginTime: this.util.formatTime(this.beginTime, 'start'),
+      endTime: this.util.formatTime(this.endTime, 'end'),
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
     }).then(data => {

@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { SafetyCheckService } from './safety-check.service';
 import * as moment from 'moment';
 import { zh_CN } from './../../common/date-localization';
+import { Util } from '../../core/util';
 @Component({
   selector: 'gas-safety-check',
   templateUrl: './safety-check.component.html',
@@ -72,6 +73,7 @@ export class SafetyCheckComponent implements OnInit {
   constructor(
     private _service: SafetyCheckService,
     private messageService: MessageService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -83,32 +85,32 @@ export class SafetyCheckComponent implements OnInit {
     this.getDataTableList({
       type: 1,
       regionId: this.result.formModel.regionId,
-      startTime: moment(this.result.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.result.formModel.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      startTime: this.util.formatTime(this.result.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.result.formModel.endTime, 'end'),
     });
   }
   onAttrSubmit() {
     this.getDataTableList({
       type: 3,
       regionId: this.attr.formModel.regionId,
-      startTime: moment(this.attr.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.attr.formModel.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      startTime: this.util.formatTime(this.attr.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.attr.formModel.endTime, 'end'),
     });
   }
   onOpenResultDialog(rowData) {
     this.getDataTableList({
       type: 2,
       regionId: rowData.regionId,
-      startTime: moment(this.result.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.result.formModel.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      startTime: this.util.formatTime(this.result.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.result.formModel.endTime, 'end'),
     });
   }
   onOpenAttrDialog(rowData) {
     this.getDataTableList({
       type: 4,
       regionId: rowData.regionId,
-      startTime: moment(this.attr.formModel.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.attr.formModel.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      startTime: this.util.formatTime(this.attr.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.attr.formModel.endTime, 'end'),
     });
   }
   getDropdownRegion() {

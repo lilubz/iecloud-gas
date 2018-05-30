@@ -5,6 +5,7 @@ import { CommonRequestService } from '../../core/common-request.service';
 
 import * as moment from 'moment';
 import { SecurityQueryService } from './security-query.service';
+import { Util } from '../../core/util';
 
 @Component({
   selector: 'gas-security-query',
@@ -84,6 +85,7 @@ export class SecurityQueryComponent implements OnInit {
     private _service: SecurityQueryService,
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -154,8 +156,8 @@ export class SecurityQueryComponent implements OnInit {
       enterpriseNumber: this.pageParams.enterprise,
       haveEnclosures: this.pageParams.enclosures,
       securityCheckState: this.pageParams.checkState,
-      beginTime: moment(this.pageParams.startTime).format('YYYY-MM-DD') + ' 00:00:00',
-      endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD') + ' 23:59:59',
+      beginTime: this.util.formatTime(this.pageParams.startTime, 'start'),
+      endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
       pageSize: this.dataTable.pageSize,
       pageNumber: this.dataTable.pageNumber
     }).then(data => {

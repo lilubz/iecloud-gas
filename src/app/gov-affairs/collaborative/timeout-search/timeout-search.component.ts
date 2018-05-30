@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../../common/date-localization';
 import * as moment from 'moment';
 import { CollaborativeService } from '../collaborative.service';
+import { Util } from '../../../core/util';
 
 @Component({
   selector: 'gas-timeout-search',
@@ -37,6 +38,7 @@ export class TimeoutSearchComponent implements OnInit {
     option: [10, 20, 40, 80]
   };
   constructor(
+    private util: Util,
     private _service: CollaborativeService,
     private messageService: MessageService
   ) { }
@@ -61,8 +63,8 @@ export class TimeoutSearchComponent implements OnInit {
   }
   onSearch() {
     this.getDataTableList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      startTime: this.util.formatTime(this.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.formModel.endTime, 'end'),
       searchType: this.formModel.type,
       userId: this.formModel.id['userId'],
       organizationId: this.formModel.id['organizationId'],
@@ -78,8 +80,8 @@ export class TimeoutSearchComponent implements OnInit {
       this.dataTable.pageSize = event.rows;
       this.dataTable.pageNumber = event.first / event.rows + 1;
       this.getDataTableList({
-        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
-        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
+        startTime: this.util.formatTime(this.pageParams.startTime, 'start'),
+        endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
         searchType: this.formModel.type,
         userId: this.formModel.id['userId'],
         organizationId: this.formModel.id['organizationId'],

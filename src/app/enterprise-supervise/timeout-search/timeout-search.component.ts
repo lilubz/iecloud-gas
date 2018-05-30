@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { zh_CN } from './../../common/date-localization';
 import * as moment from 'moment';
 import { CollaborativeService } from '../../gov-affairs/collaborative/collaborative.service';
+import { Util } from '../../core/util';
 
 @Component({
   selector: 'gas-timeout-search',
@@ -31,37 +32,34 @@ export class TimeoutSearchComponent implements OnInit {
   };
   constructor(
     private _service: CollaborativeService,
-    private messageService: MessageService
+    private util: Util,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {
   }
 
   onSearch() {
-    this.getDataTableList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
-      pageNumber: 1,
-      pageSize: this.dataTable.pageSize,
-    });
-    Object.assign(this.pageParams, this.formModel);
+    this.dataTable.pageSize = 1;
     this.dataTable.first = 0;
+    Object.assign(this.pageParams, this.formModel);
+    this.getDataTableList();
   }
   onPageChange($event) {
     this.dataTable.list = [];
     this.onPageChange = event => {
       this.dataTable.pageSize = event.rows;
       this.dataTable.pageNumber = event.first / event.rows + 1;
-      this.getDataTableList({
-        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
-        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
-        pageNumber: this.dataTable.pageNumber,
-        pageSize: this.dataTable.pageSize,
-      });
+      this.getDataTableList();
     };
   }
-  getDataTableList(params?) {
-    this._service.listCorpTransactionOverdueHistory(params)
+  getDataTableList() {
+    this._service.listCorpTransactionOverdueHistory({
+      startTime: this.util.formatTime(this.pageParams.startTime, 'start'),
+      endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
+      pageNumber: this.dataTable.pageNumber,
+      pageSize: this.dataTable.pageSize,
+    })
       .then(data => {
         if (data.status === 0) {
           this.dataTable.list = data.data.list;

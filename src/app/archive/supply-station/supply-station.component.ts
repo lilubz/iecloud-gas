@@ -8,6 +8,7 @@ import { zh_CN } from '../../common/date-localization';
 import { AddBottle } from './addBottle.model';
 import { EditBottle } from './editBottle.model';
 import * as moment from 'moment';
+import { Util } from '../../core/util';
 
 
 @Component({
@@ -102,6 +103,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     private _service: SupplyStionService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -223,8 +225,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
           } else {
             this.editForm[key] = data[key];
           }
-        }
-        else {
+        } else {
           this.editForm[key] = null;
         }
       }
@@ -445,10 +446,10 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
    * 时间转换
   */
   selectedStartTime(event) {
-    this.searchParams.startTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
+    this.searchParams.startTime = this.util.formatTime(event, 'start');
   }
   selectedEndTime(event) {
-    this.searchParams.endTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
+    this.searchParams.endTime = this.util.formatTime(event, 'end');
   }
   clearStartTime(event) {
     this.searchParams.startTime = '';

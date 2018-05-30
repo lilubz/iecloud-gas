@@ -129,8 +129,8 @@ export class DispatcherDetailsComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.getDataTableList({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      startTime: this.util.formatTime(this.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.formModel.endTime, 'end'),
       enterpriseNumber: this.id,
     });
     Object.assign(this.pageParams, this.formModel);
@@ -143,8 +143,8 @@ export class DispatcherDetailsComponent implements OnInit {
         pageNumber: event.first / event.rows + 1
       };
       this.getDataTableList({
-        startTime: moment(this.pageParams.startTime).format('YYYY-MM-DD HH:mm:ss'),
-        endTime: moment(this.pageParams.endTime).format('YYYY-MM-DD HH:mm:ss'),
+        startTime: this.util.formatTime(this.pageParams.startTime, 'start'),
+        endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
       });
     };
   }
@@ -184,8 +184,8 @@ export class DispatcherDetailsComponent implements OnInit {
 
   exportDispathcerStatistic = () => {
     this._service.dispatcherSendAndReceiveCount({
-      startTime: moment(this.formModel.startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endTime: moment(this.formModel.endTime).format('YYYY-MM-DD HH:mm:ss'),
+      startTime: this.util.formatTime(this.formModel.startTime, 'start'),
+      endTime: this.util.formatTime(this.formModel.endTime, 'end'),
       enterpriseNumber: this.id,
       resultType: 'excel'
     }).then(data => {

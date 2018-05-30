@@ -7,6 +7,7 @@ import { SelectItem } from 'primeng/components/common/api';
 import { zh_CN } from '../../common/date-localization';
 import { AddBottle } from './addBottle.model';
 import * as moment from 'moment';
+import { Util } from '../../core/util';
 
 @Component({
   selector: 'gas-gas-holder-station',
@@ -98,6 +99,7 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
     private _service: GsaHolderStationService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -362,10 +364,10 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
    * 时间转换
   */
   selectedStartTime(event) {
-    this.searchParams.startTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
+    this.searchParams.startTime = this.util.formatTime(event, 'start');
   }
   selectedEndTime(event) {
-    this.searchParams.endTime = moment(event).format('YYYY-MM-DD HH:mm:ss');
+    this.searchParams.endTime = this.util.formatTime(event, 'end');
   }
   clearStartTime(event) {
     this.searchParams.startTime = '';

@@ -35,7 +35,7 @@
     </form>
     <div class="ui-g-12">
       <p-dataTable [value]="dataTable.list" dataKey="transactionBasicNumber" [paginator]="true" [rows]="40" [rowsPerPageOptions]="[10,20,40,80]"
-        [scrollable]="false" [loading]="loading" scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" (onPageChange)="onPageChange($event)"
+        [scrollable]="false" [loading]="loading" scrollHeight="510px" [rowsPerPageOptions]="dataTable.option"
         [(first)]="dataTable.first">
         <p-column [style]="{'width':'100px'}" header="序号">
           <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
