@@ -222,7 +222,6 @@ export class MapComponent implements OnInit, OnDestroy {
             });
           })
         );
-        alert('abc');
       } else {
         this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
       }

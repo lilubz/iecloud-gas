@@ -21,15 +21,11 @@ export class CylinderOverviewService implements CanActivate {
   }
 
   getCountiesOverview(params: any): Promise<any> {
-    alert(';');
-    console.log(params);
     return this.httpService
       .getRequest(API.getCylinderCountiesOverview, params);
   }
 
   exportCountiesOverview(): Promise<any> {
-    alert(';');
-    console.log();
     return this.httpService
       .getRequest(API.getCylinderCountiesOverview, { resultType: 'excel' });
   }
