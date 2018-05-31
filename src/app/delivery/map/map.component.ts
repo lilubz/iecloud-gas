@@ -205,8 +205,8 @@ export class MapComponent implements OnInit, OnDestroy {
     const dateRange = this.getSelectedTime(this.selectedDateRange, this.beginTime, this.endTime);
 
     this.mapService.getThePathByAccountId({
-      beginTime: this.util.formatTime(dateRange.beginTime, 'start'),
-      endTime: this.util.formatTime(dateRange.endTime, 'end'),
+      beginTime: dateRange.beginTime,
+      endTime: dateRange.endTime,
       accountId: this.selectedDispatcherNumber,
       accountTypeId: '0'
     }).then(data => {
@@ -284,18 +284,18 @@ export class MapComponent implements OnInit, OnDestroy {
     let beginTime;
     let endTime;
     if (dateRange === 1) {
-      beginTime = moment(moment(new Date()).format('YYYY-MM-DD') + ' 00:00:00');
-      endTime = moment(new Date());
+      beginTime = moment(new Date()).format('YYYY-MM-DD') + ' 00:00:00';
+      endTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
     } else if (dateRange === 2) {
       const yesterday = new Date((new Date().getTime() - 24 * 60 * 60 * 1000));
-      beginTime = moment(moment(yesterday).format('YYYY-MM-DD') + ' 00:00:00');
-      endTime = moment(moment(yesterday).format('YYYY-MM-DD') + ' 23:59:59');
+      beginTime = moment(yesterday).format('YYYY-MM-DD') + ' 00:00:00';
+      endTime = moment(yesterday).format('YYYY-MM-DD') + ' 23:59:59';
     } else if (dateRange === 3) {
-      beginTime = moment(moment(new Date((new Date().getTime() - 2 * 24 * 60 * 60 * 1000))).format('YYYY-MM-DD') + ' 00:00:00');
-      endTime = moment(new Date());
+      beginTime = moment(new Date((new Date().getTime() - 2 * 24 * 60 * 60 * 1000))).format('YYYY-MM-DD') + ' 00:00:00';
+      endTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
     } else if (dateRange === 4) {
-      beginTime = moment(moment(selectedBeginTime).format('YYYY-MM-DD HH:mm:ss'));
-      endTime = moment(selectedEndTime);
+      beginTime = moment(selectedBeginTime).format('YYYY-MM-DD HH:mm:ss');
+      endTime = moment(selectedEndTime).format('YYYY-MM-DD HH:mm:ss');
     }
     return { beginTime, endTime };
   }
