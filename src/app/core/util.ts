@@ -128,7 +128,7 @@ export class Util {
       case 'start':
         return moment(momentDate.format('YYYY-MM-DD'), 'YYYY-MM-DD').format(format);
       case 'end':
-        return moment(momentDate.add(1, 'days').format('YYYY-MM-DD'), 'YYYY-MM-DD').format(format);
+        return moment(momentDate).format('YYYY-MM-DD') + ' 23:59:59';
       default:
         return momentDate.format(format);
     }
