@@ -71,7 +71,11 @@
               <span>{{rowData.securityCheckTime | date:"yyyy-MM-dd"}}</span>
             </ng-template>
           </p-column>
-          <p-column field="checkResult" header="安检结论"></p-column>
+          <p-column field="checkResult" header="安检结果">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <span>{{rowData.checkResult === '1' ? '正常' : '异常'}}</span>
+            </ng-template>
+          </p-column>
           <ng-template pTemplate="emptymessage">
             <div class="text-left">
               未查询到数据

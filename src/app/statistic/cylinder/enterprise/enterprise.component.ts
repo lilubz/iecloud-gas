@@ -107,7 +107,7 @@ export class EnterpriseComponent implements OnInit {
    */
   searchGcAddCount() {
     this.addStatisticRegionId = '';
-    this.addStatisticType = 'region'
+    this.addStatisticType = 'region';
     this.addCountyCylinders = [];
     this.addLoading = true;
     this.listGcNewAddCount({
@@ -124,7 +124,7 @@ export class EnterpriseComponent implements OnInit {
   // 获取企业新增气瓶统计
   searchGcAddCountDetail(regionId) {
     this.addStatisticRegionId = regionId;
-    this.addStatisticType = 'corp'
+    this.addStatisticType = 'corp';
     this.addCountyCylinders = [];
     this.addLoading = true;
     this.listGcNewAddCount({
@@ -169,12 +169,11 @@ export class EnterpriseComponent implements OnInit {
     let beginTime;
     let endTime;
     if (dateRange === 2) {
-      const week = new Date((new Date().getTime() - 6 * 24 * 60 * 60 * 1000));
-      beginTime = this.util.formatTime(week, 'start');
-      endTime = this.util.formatTime(new Date(), 'end');
+      beginTime = this.util.formatTime(moment().subtract(1, 'weeks'));
+      endTime = this.util.formatTime(new Date());
     } else if (dateRange === 3) {
-      beginTime = this.util.formatTime(moment().subtract(29, 'days'), 'start');
-      endTime = this.util.formatTime(new Date(), 'end');
+      beginTime = this.util.formatTime(moment().subtract(1, 'months'));
+      endTime = this.util.formatTime(new Date());
     } else if (dateRange === 4) {
       beginTime = this.util.formatTime(selectedBeginTime, 'start');
       endTime = this.util.formatTime(selectedEndTime, 'end');
