@@ -60,7 +60,8 @@ const routes: Routes = [
             path: 'list',
             component: CylinderListComponent,
             data: {
-              title: '气瓶列表'
+              title: '气瓶列表',
+              keep: true
             },
           },
           {
@@ -129,7 +130,8 @@ const routes: Routes = [
             path: 'list',
             component: CustomerListComponent,
             data: {
-              title: '用户列表'
+              title: '用户列表',
+              keep: true
             },
           },
           {
@@ -170,7 +172,8 @@ const routes: Routes = [
             path: 'detail',
             component: EnterpriseDetailComponent,
             data: {
-              title: '企业详情'
+              title: '企业详情',
+              keep: true
             },
           },
           {
@@ -186,42 +189,48 @@ const routes: Routes = [
         path: 'car',
         component: CarComponent,
         data: {
-          title: '车辆信息'
+          title: '车辆信息',
+          keep: true
         }
       },
       {
         path: 'employee',
         component: DispatcherComponent,
         data: {
-          title: '送气工信息'
+          title: '送气工信息',
+          keep: true
         }
       },
       {
         path: 'gasHolder',
         component: GasHolderComponent,
         data: {
-          title: '储气罐档案'
+          title: '储气罐档案',
+          keep: true
         },
       },
       {
         path: 'gasHolderStation',
         component: GasHolderStationComponent,
         data: {
-          title: '储配站档案'
+          title: '储配站档案',
+          keep: true
         },
       },
       {
         path: 'supplyStation',
         component: SupplyStationComponent,
         data: {
-          title: '供应站档案'
+          title: '供应站档案',
+          keep: true
         },
       },
       {
         path: 'filling-scale',
         component: FillingScaleListComponent,
         data: {
-          title: '充装秤档案'
+          title: '充装秤档案',
+          keep: true
         },
       },
     ]

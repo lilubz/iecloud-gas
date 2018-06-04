@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RedirectionPageComponent } from './redirectionPage/redirectionPage.component';
 import { LayoutComponent } from './layout/layout.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { AppRoutingCache  } from './app-routing.cache';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +31,7 @@ import { LayoutComponent } from './layout/layout.component';
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
+    { provide: RouteReuseStrategy, useClass: AppRoutingCache }
   ],
   bootstrap: [AppComponent]
 })
