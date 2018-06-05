@@ -30,7 +30,7 @@ export class AppRoutingCache  implements RouteReuseStrategy {
   /** 如果复用中有此组件，并且路由当中没有携带参数的话 才允许使用复用 */
   public shouldAttach(route: ActivatedRouteSnapshot): boolean {
     if (this.handlers.find(item => item.component === route.component)) {
-      return JSON.stringify(route.params) === '{}' ? true : false;
+      return JSON.stringify(route.params) === '{}' && JSON.stringify(route.queryParams) === '{}' ? true : false;
     }
   }
 

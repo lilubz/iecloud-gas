@@ -10,6 +10,11 @@
           </div>
 
           <div class="ui-g-12 ui-lg-6">
+            <label class="search-label">供应站</label>
+            <p-dropdown [filter]="true" [options]="dropdown.supplyStation" formControlName="supplyStationId" [style]="{'width':'280px'}"></p-dropdown>
+          </div>
+
+          <div class="ui-g-12 ui-lg-6">
             <label class="search-label">姓名</label>
             <input maxlength="250" class="textInput" type="text" pInputText formControlName="name" />
           </div>

@@ -66,6 +66,7 @@ export class DispatcherAutocompleteComponent implements OnInit {
   searchDispatcher(query): Promise<any[]> {
     return this.commonRequestService.getDispatcherInfo({
       enterpriseId: '',
+      supplyStationNumber: '',
       name: this.selectedDispatcherSearchField === 2 ? query : '',
       jobNumber: this.selectedDispatcherSearchField === 1 ? query : '',
       phone: '',
