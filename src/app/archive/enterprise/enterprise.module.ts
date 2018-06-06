@@ -2,15 +2,17 @@ import { NgModule, } from '@angular/core';
 import { EnterpriseComponent } from './enterprise.component';
 import { EnterpriseRoutingModule, } from './enterprise.routing';
 import { SharedModule } from '../../shared/shared.module';
-import { EnterpriseDetailComponent } from './enterprise-detail/enterprise-detail.component';
-import { EnterpriseDetailService } from './enterprise-detail/enterprise-detail.service';
+import { EnterpriseListComponent } from './enterprise-list/enterprise-list.component';
 import { EnterpriseFoundComponent } from './enterprise-found/enterprise-found.component';
+import { EnterpriseService } from './enterprise.service';
+import { EnterpriseDetailComponent } from './enterprise-detail/enterprise-detail.component';
 
 @NgModule({
   declarations: [
     EnterpriseComponent,
-    EnterpriseDetailComponent,
+    EnterpriseListComponent,
     EnterpriseFoundComponent,
+    EnterpriseDetailComponent,
     // TODO: add components
     // DemoComponent
   ],
@@ -19,7 +21,7 @@ import { EnterpriseFoundComponent } from './enterprise-found/enterprise-found.co
     // EnterpriseRoutingModule,
   ],
   providers: [
-    EnterpriseDetailService
+    EnterpriseService
     // TODO: and services
     // DemoService
   ]

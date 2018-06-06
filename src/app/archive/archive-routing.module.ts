@@ -25,6 +25,10 @@ import { EnterpriseFoundComponent } from './enterprise/enterprise-found/enterpri
 import { GasHolderStationComponent } from './gas-holder-station/gas-holder-station.component';
 import { SupplyStationComponent } from './supply-station/supply-station.component';
 import { UsingCylinderComponent } from './customer/using-cylinder/using-cylinder.component';
+import { EnterpriseListComponent } from './enterprise/enterprise-list/enterprise-list.component';
+import { GasHolderStationDetailComponent } from './gas-holder-station/gas-holder-station-detail/gas-holder-station-detail.component';
+import { DispatcherDetailComponent } from './employee/dispatcher-detail/dispatcher-detail.component';
+import { SupplyStationDetailComponent } from './supply-station/supply-station-detail/supply-station-detail.component';
 const routes: Routes = [
   {
     path: '',
@@ -165,15 +169,22 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: 'detail',
+            redirectTo: 'list',
             pathMatch: 'full'
+          },
+          {
+            path: 'list',
+            component: EnterpriseListComponent,
+            data: {
+              title: '企业列表',
+              keep: true
+            },
           },
           {
             path: 'detail',
             component: EnterpriseDetailComponent,
             data: {
               title: '企业详情',
-              keep: true
             },
           },
           {
@@ -195,11 +206,31 @@ const routes: Routes = [
       },
       {
         path: 'employee',
-        component: DispatcherComponent,
         data: {
           title: '送气工信息',
-          keep: true
-        }
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full'
+          },
+          {
+            path: 'list',
+            component: DispatcherComponent,
+            data: {
+              title: '送气工列表',
+              keep: true
+            },
+          },
+          {
+            path: 'detail',
+            component: DispatcherDetailComponent,
+            data: {
+              title: '送气工详情',
+            },
+          },
+        ]
       },
       {
         path: 'gasHolder',
@@ -211,19 +242,60 @@ const routes: Routes = [
       },
       {
         path: 'gasHolderStation',
-        component: GasHolderStationComponent,
         data: {
           title: '储配站档案',
-          keep: true
         },
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full'
+          },
+          {
+            path: 'list',
+            component: GasHolderStationComponent,
+            data: {
+              title: '储配站列表',
+              keep: true
+            },
+          },
+          {
+            path: 'detail',
+            component: GasHolderStationDetailComponent,
+            data: {
+              title: '储配站详情',
+            },
+          },
+        ],
       },
       {
         path: 'supplyStation',
-        component: SupplyStationComponent,
         data: {
           title: '供应站档案',
           keep: true
         },
+        children: [
+          {
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full'
+          },
+          {
+            path: 'list',
+            component: SupplyStationComponent,
+            data: {
+              title: '供应站列表',
+              keep: true
+            },
+          },
+          {
+            path: 'detail',
+            component: SupplyStationDetailComponent,
+            data: {
+              title: '供应站详情',
+            },
+          },
+        ],
       },
       {
         path: 'filling-scale',

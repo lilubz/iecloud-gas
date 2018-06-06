@@ -31,4 +31,8 @@ export class SupplyStionService {
   updateTheEnterpriseOfCorpSupplyStation(params: any): Promise<any> {
     return this.httpService.formPostRequest(API.updateTheEnterpriseOfCorpSupplyStation, params);
   }
+
+  getSupplyStationDetailInfo(params: any): Promise<any> {
+    return this.httpService.getRequest(API.getSupplyStationDetailInfo, params);
+  }
 }

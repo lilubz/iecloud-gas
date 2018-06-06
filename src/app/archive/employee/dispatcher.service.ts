@@ -10,7 +10,16 @@ export class DispatcherService {
   getDropdownForCorpInfoInRegion(params?: any): Promise<any> {
     return this.HttpService.getRequest(this.API.getDropdownForCorpInfoInRegion, params);
   }
+
   getDispatcherInfo(params?: any): Promise<any> {
     return this.HttpService.getRequest(this.API.getDispatcherInfo, params);
+  }
+
+  getDispatcherDetailInfo(params?: any): Promise<any> {
+    return this.HttpService.getRequest(this.API.getDispatcherDetailInfo, params);
+  }
+
+  resetPassword(params?: any): Promise<any> {
+    return this.HttpService.formPostRequest(this.API.resetPassword, params);
   }
 }

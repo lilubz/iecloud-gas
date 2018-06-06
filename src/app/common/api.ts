@@ -310,4 +310,9 @@ export const API = {
   'setBalanceCountRule': URL + 'gcFillingSupervise/setBalanceCountRule.do', // 设置充装数量充装规则
   'setStatusChangeRule': URL + 'gcFillingSupervise/setStatusChangeRule.do', // 设置流转状态是否完整充装规则
 
+  // 对象搜索 查看责任类型的详情
+  'getDispatcherDetailInfo': URL + 'basicInformation/corpInfo/getDispatcherInfo.do', // 送气工详情
+  'getSupplyStationDetailInfo': URL + 'basicInformation/corpSupplyStation/getSupplyStationInfo.do', // 供应站详情
+  'getInflatableStationDetailInfo': URL + 'basicInformation/corpInflatableStation/getInflatableStationInfo.do', // 储配站详情
+  'getCorpDetailInfo': URL + 'basicInformation/corpInfo/getCorpInfo.do', // 企业详情
 };

@@ -56,7 +56,8 @@ export class DispatcherComponent implements OnInit {
     pageNumber: 1
   };
   constructor(
-    private dispatcherService: DispatcherService, private messageService: MessageService,
+    private dispatcherService: DispatcherService,
+    private messageService: MessageService,
     private fb: FormBuilder,
     private routerInfo: ActivatedRoute,
     private commonRequest: CommonRequestService

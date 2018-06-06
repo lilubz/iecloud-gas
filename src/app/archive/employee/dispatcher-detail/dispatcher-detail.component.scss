@@ -1,14 +1,17 @@
-.enterprise-detail {
+.main{
+  left: 120px;
+}
+.gas-holder-station-detail {
   padding: 10px;
   [class^='ui-g'] {
-      padding: 0;
+    padding: 0;
   }
   a {
-      color: #3399ff;
+    color: #3399ff;
   }
   .title {
-      background: #f0f0f0;
-      font-weight: bold;
+    background: #f0f0f0;
+    font-weight: bold;
   }
   .content {
     border: 1px solid #797979;

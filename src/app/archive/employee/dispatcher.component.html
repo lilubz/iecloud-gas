@@ -50,6 +50,11 @@
                 <span>{{index+1}}</span>
               </ng-template>
             </p-column>
+            <p-column [style]="{'width':'80px'}" header="操作">
+              <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+                <a href="javascript:void(0)" [routerLink]="['../detail']" [queryParams]="{dispatcherNumber: rowData.dispatcherNumber}" >查看详情</a>
+              </ng-template>
+            </p-column>
             <p-column [style]="{'width':'100px'}" field="name" header="姓名">
               <ng-template let-rowData="rowData" pTemplate="body">
                 <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"

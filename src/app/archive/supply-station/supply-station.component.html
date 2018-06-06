@@ -77,6 +77,11 @@
               <span>{{index+1}}</span>
             </ng-template>
           </p-column>
+          <p-column [style]="{'width':'100px'}" header="操作">
+            <ng-template let-rowData="rowData" pTemplate="body">
+              <a href="javascript:void(0);" [routerLink]="['../detail']" [queryParams]="{id: rowData.supplyStationNumber}" >查看详情</a>
+            </ng-template>
+          </p-column>
           <p-column [style]="{'width':'150px'}" field="supplyStationName" header="站点名称">
             <ng-template pTemplate="header">
               站点名称

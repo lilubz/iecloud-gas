@@ -34,4 +34,7 @@ export class GsaHolderStationService {
   updateCorpInflatableStation(params: any): Promise<any> {
     return this.httpService.formPostRequest(API.updateCorpInflatableStation, params);
   }
+  getInflatableStationDetailInfo(params: any): Promise<any> {
+    return this.httpService.getRequest(API.getInflatableStationDetailInfo, params);
+  }
 }
