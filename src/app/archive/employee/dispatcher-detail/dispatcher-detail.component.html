@@ -8,43 +8,63 @@
       <div class="ui-g-12 group">
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="当前持有重瓶数量">当前持有重瓶数量</span>
-          <span class="ui-g-6 content" title="{{details?.haveFullCount}}">{{details?.haveFullCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details?.haveFullCount}}">{{details?.haveFullCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="接收重瓶数量">接收重瓶数量</span>
-          <span class="ui-g-6 content" title="{{details?.fullBottleReceiveCount}}">{{details?.fullBottleReceiveCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details?.fullBottleReceiveCount}}">{{details?.fullBottleReceiveCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="发放重瓶数量">发放重瓶数量</span>
-          <span class="ui-g-6 content" title="{{details?.fullBottleSendCount}}">{{details?.fullBottleSendCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details?.fullBottleSendCount}}">{{details?.fullBottleSendCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="当前持有空瓶数量">当前持有空瓶数量</span>
-          <span class="ui-g-6 content" title="{{details?.haveEmptyCount}}">{{details?.haveEmptyCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details?.haveEmptyCount}}">{{details?.haveEmptyCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="空瓶回收数量">空瓶回收数量</span>
-          <span class="ui-g-6 content" title="{{details?.emptyBottleReceiveCount}}">{{details?.emptyBottleReceiveCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details?.emptyBottleReceiveCount}}">{{details?.emptyBottleReceiveCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="发出空瓶数量">发出空瓶数量</span>
-          <span class="ui-g-6 content" title="{{details?.emptyBottleSendCount}}">{{details?.emptyBottleSendCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details?.emptyBottleSendCount}}">{{details?.emptyBottleSendCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="当月安检记录">当月安检记录</span>
-          <span class="ui-g-6 content" title="{{details?.securityCheckCount}}">{{details?.securityCheckCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details?.securityCheckCount}}">{{details?.securityCheckCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="新增用户数量">新增用户数量</span>
-          <span class="ui-g-6 content" title="{{details?.addUserCount}}">{{details?.addUserCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details?.addUserCount}}">{{details?.addUserCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="流转记录">流转记录</span>
-          <a href="javascript:void(0);" class="ui-g-6 content" title="查看详情">查看详情</a>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="查看详情">查看详情</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="操作">操作</span>
-          <a href="javascript:void(0);" class="ui-g-6 content" title="重置密码" (click)="confirmResetPassword();">重置密码</a>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="重置密码" (click)="confirmResetPassword();">重置密码</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title=" "> </span>
@@ -88,15 +108,17 @@
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="头像">头像</span>
-          <a href="javascript:void(0);" *ngIf="details?.dispatcherInfoVO.headPortraitUrl" class="ui-g-6 content" title="点击查看图像" 
-          (click)="showImg($event,details?.dispatcherInfoVO.headPortraitUrl,imgBox);">点击查看图像</a>
-          <span *ngIf="!details?.dispatcherInfoVO.headPortraitUrl" class="ui-g-6 content" title="没有头像">没有头像</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" *ngIf="details?.dispatcherInfoVO.headPortraitUrl" title="点击查看图像" (click)="showImg($event,details?.dispatcherInfoVO.headPortraitUrl,imgBox);">点击查看图像</a>
+            <span *ngIf="!details?.dispatcherInfoVO.headPortraitUrl" title="没有头像">没有头像</span>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="二维码">二维码</span>
-          <a href="javascript:void(0);" *ngIf="details?.dispatcherInfoVO.qrCodeUrl" class="ui-g-6 content" title="点击查看图像" 
-          (click)="showImg($event,details?.dispatcherInfoVO.qrCodeUrl,imgBox);">点击查看图像</a>
-          <span *ngIf="!details?.dispatcherInfoVO.qrCodeUrl" class="ui-g-6 content" title="没有二维码">没有二维码</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" *ngIf="details?.dispatcherInfoVO.qrCodeUrl" title="点击查看图像" (click)="showImg($event,details?.dispatcherInfoVO.qrCodeUrl,imgBox);">点击查看图像</a>
+            <span *ngIf="!details?.dispatcherInfoVO.qrCodeUrl" title="没有二维码">没有二维码</span>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="状态">状态</span>

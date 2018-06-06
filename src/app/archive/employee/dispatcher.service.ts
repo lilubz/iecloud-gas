@@ -20,6 +20,6 @@ export class DispatcherService {
   }
 
   resetPassword(params?: any): Promise<any> {
-    return this.HttpService.formPostRequest(this.API.resetPassword, params);
+    return this.HttpService.getRequest(this.API.resetPassword, params);
   }
 }

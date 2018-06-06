@@ -115,8 +115,8 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this.getAreaList();
     if (this.activatedRoute.queryParams['value']) {
       const queryParams = {
-        regionId: this.activatedRoute.queryParams['value'].regionId
-      }
+        regionId: this.activatedRoute.queryParams['value'].regionId || ''
+      };
       Object.assign(this.searchParams, queryParams);
       this.onSearch();
     }

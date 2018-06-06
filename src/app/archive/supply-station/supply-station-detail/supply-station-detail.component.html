@@ -9,35 +9,49 @@
 
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="持有重瓶数量">持有重瓶数量</span>
-          <span class="ui-g-6 content" title="{{details.haveFullCount}}">{{details.haveFullCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details.haveFullCount}}">{{details.haveFullCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="重瓶入库数量">重瓶入库数量</span>
-          <span class="ui-g-6 content" title="{{details.fullBottleReceiveCount}}">{{details.fullBottleReceiveCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details.fullBottleReceiveCount}}">{{details.fullBottleReceiveCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="重瓶出库数量">重瓶出库数量</span>
-          <span class="ui-g-6 content" title="{{details.fullBottleSendCount}}">{{details.fullBottleSendCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details.fullBottleSendCount}}">{{details.fullBottleSendCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="持有空瓶数量">持有空瓶数量</span>
-          <span class="ui-g-6 content" title="{{details.haveEmptyCount}}">{{details.haveEmptyCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details.haveEmptyCount}}">{{details.haveEmptyCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="空瓶入库数量">空瓶入库数量</span>
-          <span class="ui-g-6 content" title="{{details.emptyBottleReceiveCount}}">{{details.emptyBottleReceiveCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details.emptyBottleReceiveCount}}">{{details.emptyBottleReceiveCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="空瓶出库数量">空瓶出库数量</span>
-          <span class="ui-g-6 content" title="{{details.emptyBottleSendCount}}">{{details.emptyBottleSendCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details.emptyBottleSendCount}}">{{details.emptyBottleSendCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="送气工数量">送气工数量</span>
-          <span class="ui-g-6 content" title="{{details.dispatcherCount}}">{{details.dispatcherCount}}</span>
+          <span class="ui-g-6 content">
+            <a href="javascript:void(0);" title="{{details.dispatcherCount}}">{{details.dispatcherCount}}</a>
+          </span>
         </div>
         <div class="ui-g-4">
-          <span class="ui-g-6 content title" title="充装气瓶数量">充装气瓶数量</span>
-          <span class="ui-g-6 content" title="没有这个字段">没有这个字段</span>
+          <span class="ui-g-6 content title" title=" "> </span>
+          <span class="ui-g-6 content" title=" "> </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title=" "> </span>
@@ -81,7 +95,10 @@
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="证件有效期">证件有效期</span>
-          <span class="ui-g-6 content" title="需要拼接字符">需要拼接字符</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.effectiveTimeStart | date:'yyyy-MM-dd' + '至' + (details.inflatableStationVO.effectiveTimeEnd
+          | date:'yyyy-MM-dd')}}">
+            {{details.inflatableStationVO.effectiveTimeStart | date:'yyyy-MM-dd' + '至' + (details.inflatableStationVO.effectiveTimeEnd | date:'yyyy-MM-dd')}}
+          </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="负责人">负责人</span>
@@ -89,7 +106,7 @@
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="联系电话">联系电话</span>
-          <span class="ui-g-6 content" title="todo没有电话">todo没有电话</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.supplyStationContact}}">{{details.inflatableStationVO.supplyStationContact}}</span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="联系人">联系人</span>

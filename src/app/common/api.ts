@@ -27,7 +27,7 @@ export const API = {
 
   // 气瓶档案
   // 'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',弃用
-  'queryCustomerDetail': URL + 'basicInformation/gcUserInfo/getUserDetailInfo.do', //被修改
+  'queryCustomerDetail': URL + 'basicInformation/gcUserInfo/getUserDetailInfo.do', // 被修改
   // 气瓶录入
   'getListManufactureOrg': URL + 'basicInformation/commonInfo/listManufactureOrg.do',
   'getListGcType': URL + 'basicInformation/commonInfo/listGcType.do',
@@ -313,7 +313,6 @@ export const API = {
   'regionOverview': URL + 'statisticalQuery/regionOverview.do', // 分区概览
   'corpOverview': URL + 'statisticalQuery/corpOverview.do', // 全市概览
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcLableInfoOverveiw.do', // 新启用气瓶详情
-
 
   // 对象搜索 查看责任类型的详情
   'getDispatcherDetailInfo': URL + 'basicInformation/corpInfo/getDispatcherInfo.do', // 送气工详情
