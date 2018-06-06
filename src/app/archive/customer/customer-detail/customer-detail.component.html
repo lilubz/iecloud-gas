@@ -1,135 +1,143 @@
-<div class="ui-g-12 ta-c" *ngIf="loading!=0">
+<!-- <div class="main">
+  <div class="card"> -->
+<div class="ui-g-12 ta-c" *ngIf="loading">
   <h2>查不到此信息</h2>
 </div>
-<div *ngIf="loading===0" class="ui-g-12">
-  <div class="ui-g-12 cylinder-detail">
-    <div class="ui-g-12">
-      <div class="ui-g-12 padding-none">
-        <div class="ui-g-6 padding-none">
-          <span class="span_gasleft bg_colorR" title="客户名称">客户名称</span>
-          <span class="span_textleft" [title]="detailLists.userName">{{detailLists.userName}}</span>
-        </div>
-        <div class="ui-g-6 padding-none">
-          <span class="span_gasright bg_colorR" title="性别">性别</span>
-          <span class="span_textright" [title]="detailLists.gender">{{detailLists.gender}}</span>
-        </div>
-      </div>
-      <div class="ui-g-12 padding-none">
-        <div class="ui-g-6 padding-none">
-          <span class="span_gasleft bg_colorR" title="证件类型">证件类型</span>
-          <span class="span_textleft" [title]="detailLists.certificateName">{{detailLists.certificateName}}</span>
-        </div>
-        <div class="ui-g-6 padding-none">
-          <span class="span_gasright bg_colorR">证件号</span>
-          <span class="span_textright" [title]="detailLists.certificateId">{{detailLists.certificateId}}</span>
-        </div>
-      </div>
-      <div class="ui-g-12 padding-none">
-        <span class="span_gasaddress bg_colorR" title="证件地址">证件地址</span>
-        <span class="span_textaddress" [title]="detailLists.certificateAddress">{{detailLists.certificateAddress}}</span>
-      </div>
-      <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR" title="用户类型">用户类型
-          <gas-explanation tooltip="根据气瓶使用途径区别的客户类别（有个人，商业，工业三种）" position="bottom"></gas-explanation>
-        </span>
-        <span class="span_textleft" [title]="detailLists.userTypeName">{{detailLists.userTypeName}}</span>
-      </div>
-      <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR" title="负责人">负责人
-          <gas-explanation tooltip="用户证件上的名字，用来区分燃气用户名" position="bottom"></gas-explanation>
-        </span>
-        <span class="span_textright" [title]="detailLists.principal">{{detailLists.principal}}</span>
-      </div>
-      <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR" title="联系人">联系人</span>
-        <span class="span_textleft" [title]="detailLists.linkman">{{detailLists.linkman}}</span>
-      </div>
-      <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR" title="联系电话">联系电话</span>
-        <span class="span_textright" [title]="detailLists.phone">{{detailLists.phone}}</span>
-      </div>
-      <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR" title="派送地址">派送地址</span>
-        <span class="span_textleft" [title]="detailLists.deliveryAddress">{{detailLists.deliveryAddress}}</span>
-      </div>
-      <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR" title="配送工">配送工
-          <gas-explanation tooltip="用户指定的配送气瓶的送气工（默认）" position="bottom"></gas-explanation>
-        </span>
-        <span class="span_textright" [title]="detailLists.dispatcherName">{{ detailLists.dispatcherName }}</span>
-      </div>
-      <div class="ui-g-6 padding-none">
-        <span class="span_gasleft bg_colorR" title="登记时间">登记时间</span>
-        <span class="span_textleft" [title]="detailLists.registrationTime | date: 'y-MM-dd'">{{detailLists.registrationTime | date: "y-MM-dd"}}</span>
-      </div>
-      <div class="ui-g-6 padding-none">
-        <span class="span_gasright bg_colorR" title="登记人">登记人</span>
-        <span class="span_textright" [title]="detailLists.registrant">{{detailLists.registrant}}</span>
-      </div>
-      <div class="ui-g-12 padding-none">
-        <div class="photo-container">
-          <div class="ui-g-12" style="float: none;">证件(附件)</div>
-          <ng-container *ngFor="let image of certificateAppendixImages">
-            <a href="{{image.source}}" target="_blank" title="新标签页打开">
-              <img src="{{image.source}}" class="photo-view">
-            </a>
-          </ng-container>
-        </div>
-        <div class="photo-container">
-          <div class="ui-g-12" style="float: none;">合同(附件)</div>
-          <ng-container *ngFor="let image of contractAppendixImages">
-            <a href="{{image.source}}" target="_blank" title="新标签页打开">
-              <img src="{{image.source}}" class="photo-view">
-            </a>
-          </ng-container>
-        </div>
-      </div>
+<div class="customer-detail">
+  <div class="group ui-g-12">
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="所属区域">所属区域</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.regionName}}">{{customerDetailList.regionName}}</span>
     </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4 padding-none padding-none">
-        <span class="span_detail bg_color01" title="所属行政区域">所属行政区域</span>
-        <span class="span_detail01" [title]="detailLists.regionName">{{detailLists.regionName}}</span>
-      </div>
-      <div class="ui-g-4 padding-none ">
-        <span class="span_detail bg_color01" title="所属企业名称">所属企业名称</span>
-        <span class="span_detail01" [title]="detailLists.corpName">{{detailLists.corpName}}</span>
-      </div>
-      <div class="ui-g-4 padding-none">
-        <span class="span_detail bg_color01" title="站点">站点</span>
-        <span class="span_detail01" [title]="detailLists.stationName">{{detailLists.stationName}}</span>
-      </div>
-      <div class="ui-g-4 padding-none">
-        <span class="span_detail bg_color01" title="使用状态">使用状态</span>
-        <span class="span_detail01" [title]="detailLists.status">{{detailLists.status}}</span>
-      </div>
-      <div class="ui-g-4 padding-none">
-        <span class="span_detail bg_color01" title="用户编码">用户编码</span>
-        <span class="span_detail01" [title]="detailLists.userNumber">{{detailLists.userNumber}}</span>
-      </div>
-      <div class="ui-g-4 padding-none">
-        <span class="span_detail bg_color01" title="在用气瓶数">在用气瓶数</span>
-        <span class="span_detail01" title="查看在用气瓶详情">
-          <a (click)="showUsedCylinderDetail()" class="detail-href">{{detailLists.gcCount}}</a>
-        </span>
-      </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="查看区域详情">
+        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+          title="查看充装记录">查看充装记录</a> -->
+        查看区域详情</span>
+      <span class="ui-g-6 content title" title="所属企业">所属企业</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="长江能源">长江能源</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.corpName}}">{{customerDetailList.corpName}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="当前持有气瓶数量">当前持有气瓶数量</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.gcCount}}">{{customerDetailList.gcCount}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="查看气瓶详情">
+        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+          title="查看气瓶详情">查看气瓶详情</a> -->
+        查看气瓶详情</span>
+      <span class="ui-g-6 content title" title="流转记录">流转记录</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="查看流转详情">
+        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+          title="查看流转详情">查看流转详情</a> -->
+        查看流转详情</span>
+      <span class="ui-g-6 content" title=""></span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="上次安检时间">上次安检时间</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.lastCheckTime | date:'yyyy-MM-dd'}}">{{customerDetailList.lastCheckTime | date:"yyyy-MM-dd"}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="查看安检详情">
+        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+          title="查看安检详情">查看安检详情</a> -->
+        查看安检详情</span>
+      <span class="ui-g-6 content title" title="下次安检时间">下次安检时间</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="{{customerDetailList.lastCheckTime | date:'yyyy-MM-dd'}}">{{customerDetailList.lastCheckTime | date:"yyyy-MM-dd"}}</span>
+      <span class="ui-g-6 content" title="查看详情">查看详情</span>
     </div>
   </div>
-  <div>
-    <div class="ui-g-12">
-      <span>{{detailList.length?detailList.length:0}}</span>个查询结果：
+  <div class="group ui-g-12">
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="用户编号">用户编号</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.userIdentityCardNumber}}">{{customerDetailList.userIdentityCardNumber}}</span>
     </div>
-    <div class="ui-g-12 result-container">
-      <div *ngIf="!detailList.length">无查询结果</div>
-      <div *ngIf="detailList.length">
-        <div class="ui-g-8 padding-none" style="cursor: pointer;" (click)="ondetail(i)" *ngFor="let DetailList of detailList,let i=index">
-          <div class="ui-g-1 user-result">{{i+1}}</div>
-          <div class="ui-g-3 user-result" [title]="DetailList.certificateId?DetailList.certificateId:'无'">{{DetailList.certificateId?DetailList.certificateId:'无'}}</div>
-          <div class="ui-g-2 user-result" [title]="DetailList.userName?DetailList.userName:'无'">{{DetailList.userName?DetailList.userName:'无'}}</div>
-          <div class="ui-g-2 user-result" [title]="DetailList.deliveryAddress?DetailList.deliveryAddress:'无'">{{DetailList.deliveryAddress?DetailList.deliveryAddress:'无'}}</div>
-          <div class="ui-g-2 user-result" [title]="DetailList.userNumber?DetailList.userNumber:'无'">{{DetailList.userNumber?DetailList.userNumber:'无'}}</div>
-          <div class="ui-g-2 user-result" [title]="(DetailList.phone.trim()!='')?DetailList.phone:'无'">{{(DetailList.phone.trim()!="")?DetailList.phone:'无'}}</div>
-        </div>
-      </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="用户名称">用户名称</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.userName}}">{{customerDetailList.userName}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="用户类型">用户类型</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.userTypeName}}">{{customerDetailList.userTypeName}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="非居民用户类型">非居民用户类型</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.userType}}">{{customerDetailList.userType}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="非居民用户负责人">非居民用户负责人</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.principal}}">{{customerDetailList.principal}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="证件类型">证件类型</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.certificateName}}">{{customerDetailList.certificateName}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="证件号码">证件号码</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.certificateId}}">{{customerDetailList.certificateId}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="证件地址">证件地址</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.certificateAddress}}">{{customerDetailList.certificateAddress}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="证件附件">证件附件</span>
+      <span class="ui-g-6 content" title="查看证件附件">
+        <button pButton (click)="showImg(customerDetailList.certificateAppendixUrl);" label="查看图片" *ngIf="customerDetailList.certificateAppendixUrl"></button>
+        <button pButton label="无附件" *ngIf="!customerDetailList.certificateAppendixUrl" disabled></button>
+      </span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="联系电话">联系电话</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.phone}}">{{customerDetailList.phone}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="联系人">联系人</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.linkman}}">{{customerDetailList.linkman}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="合同附件">合同附件</span>
+      <span class="ui-g-6 content" title="查看合同附件">
+        <button pButton (click)="showImg(customerDetailList.contractAppendixUrl);" label="查看图片" *ngIf="customerDetailList.contractAppendixUrl"></button>
+        <button pButton label="无附件" *ngIf="!customerDetailList.contractAppendixUrl" disabled></button>
+      </span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="配送地址">配送地址</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.deliveryAddress}}">{{customerDetailList.deliveryAddress}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="登记时间">登记时间</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.registrationTime | date:'yyyy-MM-dd'}}">{{customerDetailList.registrationTime | date:'yyyy-MM-dd'}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="登记人">登记人</span>
+      <span class="ui-g-6 content" title="{{customerDetailList.registrant}}">{{customerDetailList.registrant}}</span>
     </div>
   </div>
 </div>
+<!-- </div>
+</div> -->
+<p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="400" [contentStyle]="{'padding':'0','overflow':'visible'}"
+  [minWidth]="400" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+
+  <p-carousel *ngIf="visible" headerText="图片附件查看" [value]="imgArray" numVisible="1" [firstVisible]="0">
+    <ng-template let-user pTemplate="item">
+      <div class="text-center">
+        <img src="{{user.url}}" alt="" style="max-width:400px; max-height:400px;">
+      </div>
+    </ng-template>
+  </p-carousel>
+
+  <p-footer>
+    <button type="button" pButton icon="fa-check" (click)="visible=false" label="确定"></button>
+  </p-footer>
+
+</p-dialog>

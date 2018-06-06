@@ -9,6 +9,7 @@ import { AddBottle } from './addBottle.model';
 import { EditBottle } from './editBottle.model';
 import * as moment from 'moment';
 import { Util } from '../../core/util';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -103,7 +104,8 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     private _service: SupplyStionService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
-    private util: Util
+    private util: Util,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -111,6 +113,13 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this.getEnterprises();
     this.getRegions();
     this.getAreaList();
+    if (this.activatedRoute.queryParams['value']) {
+      const queryParams = {
+        regionId: this.activatedRoute.queryParams['value'].regionId
+      }
+      Object.assign(this.searchParams, queryParams);
+      this.onSearch();
+    }
   }
 
   getRegions() {

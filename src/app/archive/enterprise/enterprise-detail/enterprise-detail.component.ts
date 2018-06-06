@@ -4,7 +4,7 @@ import { CommonRequestService } from '../../../core/common-request.service';
 import { zh_CN } from '../../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
 import * as moment from 'moment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Util } from '../../../core/util';
 
 @Component({
@@ -55,10 +55,15 @@ export class EnterpriseDetailComponent implements OnInit {
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private util: Util
   ) { }
 
   ngOnInit() {
+    if (this.activatedRoute.queryParams['value']) {
+      this.pageParams.regionId = this.activatedRoute.queryParams['value'].regionId;
+      this.getDataTableList();
+    }
     this.getDropdownRegion();
   }
   onSubmit() {

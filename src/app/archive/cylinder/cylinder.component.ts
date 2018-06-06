@@ -1,6 +1,6 @@
 import { OrganizationType } from './../../common/OrganizationType';
 import { UserStateService } from './../../core/userState.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
 
@@ -22,7 +22,8 @@ export class CylinderComponent implements OnInit {
   gasInput: any;
   constructor(
     private router: Router,
-    private userStateService: UserStateService
+    private userStateService: UserStateService,
+    private route: ActivatedRoute,
   ) {
     this.organizationType = this.userStateService.getUserOrganizationType();
   }
@@ -36,6 +37,9 @@ export class CylinderComponent implements OnInit {
   }
 
   onSearch() {
-    this.router.navigate(['/archive/cylinder/detail', this.gasInput || '']);
+    const queryParams={
+      gasLabelNumber:this.gasInput
+    }
+    this.router.navigate(['/archive/cylinder/detail'],{ relativeTo: this.route, queryParams });
   }
 }

@@ -50,7 +50,7 @@ const routes: Routes = [
             pathMatch: 'full'
           },
           {
-            path: 'detail/:id',
+            path: 'detail',
             component: CylinderDetailComponent,
             data: {
               title: '气瓶详情'

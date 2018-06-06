@@ -1,0 +1,74 @@
+<div class="main">
+  <div class="card">
+    <div class="ui-g-12">
+      <h3>分区概览</h3>
+      <p-dataTable [value]="dataTable" [loading]="loading" emptyMessage="未查询到数据">
+        <p-column header="序号">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="regionName" header="所属区域"></p-column>
+        <p-column field="corpCount" header="企业数量">
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" title="{{rowData.corpCount}}">{{rowData.corpCount}}</a>
+          </ng-template>
+        </p-column>
+        <p-column field="supplyStationCount" header="供应站数量">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+        <p-column field="inflatableStationCount" header="储配站数量">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+        <p-column field="dispatcherCount" header="送气工数量">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+        <p-column field="gcUserCount" header="用户数量">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+        <p-column field="alreadyCheckedUserCount" header="已安检用户数量">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+        <p-column field="noCheckedUserCount" header="未安检用户数量">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+        <p-column field="gcTotalCount" header="登记钢瓶数量">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+        <p-column field="gcCodeAbnormalCount" header="异常气瓶列表">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+        <p-column field="gcScrapCount" header="已报废气瓶">
+          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
+              title="点击查询流转记录">{{rowData.name}}</a>
+          </ng-template> -->
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

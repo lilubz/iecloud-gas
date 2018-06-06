@@ -6,7 +6,7 @@ import { API } from './../../../common/api';
 export class CylinderDetailService {
   constructor(private HttpService: HttpService) { }
 
-  querySingle(params: any): Promise<any> {
+  queryCylinderDetail(params: any): Promise<any> {
     return this.HttpService.getRequest(API.queryCylinderDetail, params)
       .catch(this.handleError);
   }

@@ -9,7 +9,7 @@ export class usingCylinderModel {
   linkman: string = '';
   phone: string = '';
   deliveryAddress: string = '';
-  dispatcherName: string = '';
+  // dispatcherName: string = '';
   registrationTime: string = '';
   registrant: string = '';
   certificateAppendixUrl: string = '';
@@ -18,6 +18,10 @@ export class usingCylinderModel {
   corpName: string = '';
   stationName: string = '';
   status: string = '';
-  userNumber: string = '';
+  userNumber: string = '';// 主键
+  userIdentityCardNumber:string=''; //编号
   gcCount: string = '';
+  lastCheckTime: string = '';
+  nextCheckTime: string = '';
+  userType: string = '';
 }

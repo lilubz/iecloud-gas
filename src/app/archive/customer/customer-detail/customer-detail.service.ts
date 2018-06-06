@@ -6,10 +6,7 @@ import { API } from './../../../common/api';
 export class CustomerDetailService {
   constructor(private HttpService: HttpService) { }
 
-  querySingle(params: any): Promise<any> {
+  queryCustomerDetail(params: any): Promise<any> {
     return this.HttpService.getRequest(API.queryCustomerDetail, params);
-  }
-  listUserHasGc(params: any): Promise<any> {
-    return this.HttpService.getRequest(API.listUserHasGc, params);
   }
 }

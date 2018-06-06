@@ -19,6 +19,8 @@ import { SafetyCheckComponent } from './safety-check/safety-check.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { DetailComponent } from './add-customer/detail/detail.component';
 import { LicenseWarningComponent } from './license-warning/license-warning.component';
+import { CityOverviewComponent } from './city-overview/city-overview.component';
+import { PartitionOverviewComponent } from './partition-overview/partition-overview.component';
 
 @NgModule({
   imports: [
@@ -40,6 +42,8 @@ import { LicenseWarningComponent } from './license-warning/license-warning.compo
     AddCustomerComponent,
     DetailComponent,
     LicenseWarningComponent,
+    CityOverviewComponent,
+    PartitionOverviewComponent,
   ],
   providers: [
 

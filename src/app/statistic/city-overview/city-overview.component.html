@@ -1,0 +1,88 @@
+<div class="main">
+  <div class="card">
+
+    <div class="ui-g-12 city-overview">
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="所属区域">所属区域</span>
+        <span class="ui-g-6 content" title="{{cityReview.regionName}}">全市</span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="区域数量">区域数量</span>
+        <span class="ui-g-6 content" title="{{cityReview.regionCount}}">
+          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+            title="查看分区概览">{{cityReview.regionCount}}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="企业数量">企业数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['/archive/enterprise/detail']" [queryParams]="{regionId:''}"
+            title="查看企业数量">{{ cityReview.regionOverviewVO.corpCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="供应站数量">供应站数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['/archive/supplyStation']" [queryParams]="{regionId:''}"
+            title="查看供应站数量">{{ cityReview.regionOverviewVO.supplyStationCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="储配站数量">储配站数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['/archive/gasHolderStation']" [queryParams]="{regionId:''}"
+            title="查看储配站数量">{{ cityReview.regionOverviewVO.inflatableStationCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="送气工数量">送气工数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['/archive/employee']" [queryParams]="{regionId:''}"
+            title="查看送气工数量">{{ cityReview.regionOverviewVO.inflatableStationCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="用户数量">用户数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{regionId:''}"
+            title="查看用户数量">{{ cityReview.regionOverviewVO.gcUserCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="已安检用户数量">已安检用户数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+            title="查看已安检用户数量">{{ cityReview.regionOverviewVO.alreadyCheckedUserCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="未安检用户数量">未安检用户数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+            title="查看未安检用户数量">{{ cityReview.regionOverviewVO.noCheckedUserCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="登记钢瓶数量">登记钢瓶数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+            title="查看登记钢瓶数量">{{ cityReview.regionOverviewVO.gcTotalCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="异常气瓶数量">异常气瓶数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+            title="查看异常气瓶数量">{{ cityReview.regionOverviewVO.gcCodeAbnormalCount }}</a>
+        </span>
+      </div>
+      <div class="ui-g-4 ">
+        <span class="ui-g-6 content title" title="已报废气瓶数量">已报废气瓶数量</span>
+        <span class="ui-g-6 content" title="全市">
+          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+            title="查看已报废气瓶数量">{{ cityReview.regionOverviewVO.gcScrapCount }}</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

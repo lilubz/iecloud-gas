@@ -26,8 +26,8 @@ export const API = {
   'getRealTimeLocation': URL + 'corpBusiness/dispatchOrder/getRealTimeLocation.do', // 获取送气工实时位置
 
   // 气瓶档案
-  'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',
-  'queryCustomerDetail': URL + 'basicInformation/gcUserInfo/getUserDetailInfo.do',
+  // 'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcInfoByCylinderCode.do',弃用
+  'queryCustomerDetail': URL + 'basicInformation/gcUserInfo/getUserDetailInfo.do', //被修改
   // 气瓶录入
   'getListManufactureOrg': URL + 'basicInformation/commonInfo/listManufactureOrg.do',
   'getListGcType': URL + 'basicInformation/commonInfo/listGcType.do',
@@ -309,5 +309,10 @@ export const API = {
   'setBalanceCycleRule': URL + 'gcFillingSupervise/setBalanceCycleRule.do', // 设置充装周期充装规则
   'setBalanceCountRule': URL + 'gcFillingSupervise/setBalanceCountRule.do', // 设置充装数量充装规则
   'setStatusChangeRule': URL + 'gcFillingSupervise/setStatusChangeRule.do', // 设置流转状态是否完整充装规则
+  // 对象搜索
+  'regionOverview': URL + 'statisticalQuery/regionOverview.do', // 分区概览
+  'corpOverview': URL + 'statisticalQuery/corpOverview.do', // 全市概览
+  'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcLableInfoOverveiw.do', // 新启用气瓶详情
+
 
 };

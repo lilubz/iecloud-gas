@@ -15,6 +15,8 @@ import { SafetyCheckComponent } from './safety-check/safety-check.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { DetailComponent } from './add-customer/detail/detail.component';
 import { LicenseWarningComponent } from './license-warning/license-warning.component';
+import { CityOverviewComponent } from './city-overview/city-overview.component';
+import { PartitionOverviewComponent } from './partition-overview/partition-overview.component';
 
 const routes: Routes = [
   {
@@ -128,6 +130,33 @@ const routes: Routes = [
         data: {
           title: '行业分析'
         }
+      },
+      {
+        path: 'search-overview',
+        data: {
+          title: '区域概览'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'city-overview',
+            pathMatch: 'full'
+          },
+          {
+            path: 'city-overview',
+            component: CityOverviewComponent,
+            data: {
+              title: '全市概览'
+            }
+          },
+          {
+            path: 'partition-overview',
+            component: PartitionOverviewComponent,
+            data: {
+              title: '分区概览'
+            }
+          },
+        ]
       },
       {
         path: 'license-warning',

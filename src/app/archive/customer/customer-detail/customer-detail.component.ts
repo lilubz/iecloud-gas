@@ -14,7 +14,7 @@ import { usingCylinderModel } from './using-cylinder.model';
 })
 
 export class CustomerDetailComponent implements OnInit {
-  detailList: usingCylinderModel[] = [];
+  customerDetailList: usingCylinderModel = new usingCylinderModel();
 
   detailLists: any;
   loading: any;
@@ -29,78 +29,50 @@ export class CustomerDetailComponent implements OnInit {
     thumbnail: string,
     title: string,
   }[] = [];
-
+  visible = false;
+  imgArray = [];
   constructor(
     private route: ActivatedRoute,
-    private CustomerDetailService: CustomerDetailService,
+    private _service: CustomerDetailService,
     private router: Router,
     private messageService: MessageService
   ) { }
 
   ngOnInit() {
-    this.queryDetail();
-    this.detailLists = {};
-    this.loading = '';
+    this.route.queryParams.subscribe((queryParams) => {
+      this.queryDetail(queryParams);
+    })
   }
 
   /**
   * 查询用户详情信息
   */
-  queryDetail() {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        this.typeList = params.get('type');
-        return this.CustomerDetailService.querySingle(
-          { 'type': params.get('type'), 'typeNumber': params.get('typeNumber') });
-      }).subscribe((data) => {
-        this.loading = data.status;
-        if (data.status === 0) {
-          this.detailList = data.data;
-          this.ondetail(0);
-          for (let i = 0; i < this.detailList.length; i++) {
-            if (this.detailList[i].gender === '0') {
-              this.detailList[i].gender = '男';
-            } else if (this.detailList[i].gender === '1') {
-              this.detailList[i].gender = '女';
-            } else {
-              this.detailList[i].gender = '';
-            }
-          }
+  queryDetail(queryParams) {
+    this._service.queryCustomerDetail(queryParams).then(data => {
+      if (data.status === 0) {
+        this.customerDetailList = data.data;
+        console.log(this.customerDetailList);
+        if (this.customerDetailList.gender === '0') {
+          this.customerDetailList.gender = '男';
+        } else if (this.customerDetailList.gender === '1') {
+          this.customerDetailList.gender = '女';
         } else {
-          if (this.typeList === 'idNumber') {
-            this.messageService.add({ severity: 'warn', summary: '查询结果', detail: '未查询到证件编号信息' });
-          } else if (this.typeList === 'userCardNumber') {
-            this.messageService.add({ severity: 'warn', summary: '查询结果', detail: '未查询到用户卡号信息' });
-          } else if (this.typeList === 'phone') {
-            this.messageService.add({ severity: 'warn', summary: '查询结果', detail: '未查询到联系电话信息' });
-          } else if (this.typeList === 'userNumber') {
-            this.messageService.add({ severity: 'warn', summary: '查询结果', detail: '未查询到用户ID信息' });
-          }
-
+          this.customerDetailList.gender = '';
         }
-      }, error => {
-        this.messageService.add({ severity: 'error', summary: '获取信息异常', detail: error });
-      });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '响应信息', detail: data.msg });
+
+      }
+    });
+  }
+  showImg(imageUrl) {
+    this.visible = true;
+    this.imgArray = imageUrl.split(',');
+    this.imgArray = this.imgArray.map(item => ({
+      url: item
+    }));
   }
   /**
    * 查询结果点击切换详情的，用于特殊情况出现多条数据暂未看到
    */
-  ondetail(data) {
-    this.detailLists = this.detailList[data];
-    this.certificateAppendixImages = this.detailLists.certificateAppendixUrl ? this.detailLists.certificateAppendixUrl
-      .split(',').map(item => ({ source: item, thumbnail: item, title: '' })) : [];
-    this.contractAppendixImages = this.detailLists.contractAppendixUrl ? this.detailLists.contractAppendixUrl.split(',')
-      .map(item => ({ source: item, thumbnail: item, title: '' })) : [];
-  }
-
-  showUsedCylinderDetail(id) {
-    let navigationExtras: NavigationExtras = {
-      queryParams: { 'userNumber': this.detailLists.userNumber },
-      relativeTo: this.route
-    };
-
-    // Navigate to the login page with extras
-    this.router.navigate(['../usingCylinder'], navigationExtras);
-    // this.searchUserCy();
-  }
 }

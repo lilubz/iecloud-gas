@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-// import { detailList } from './detail';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CylinderDetailService } from './cylinder-detail.service';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/map';
 import { CylinderList } from './cylinder.model';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'gas-cylinder-detail',
@@ -21,42 +18,42 @@ export class CylinderDetailComponent implements OnInit {
   // data: any;
 
   detailList: CylinderList = new CylinderList();
-  photoList: Array<{
-    pictureUrl: string;
-  }>;
-
+  currentImgUrl = '';
   constructor(
-    private CylinderDetailService: CylinderDetailService,
+    private _service: CylinderDetailService,
     private route: ActivatedRoute,
     private router: Router,
     private messageService: MessageService
   ) { }
 
   ngOnInit() {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        return this.CylinderDetailService.querySingle({ cylinderCode: params.get('id') });
-      }).subscribe((data) => {
-        // console.log(data);
-        this.loading = data.status;
+    this.route.queryParams.subscribe((queryParams) => {
+      this._service.queryCylinderDetail({ gasLabelNumber: queryParams.gasLabelNumber }).then(data => {
         if (data.status === 0) {
+          this.loading = false;
           this.detailList = data.data;
-          // console.log(this.detailList);
         } else {
-          this.messageService.add({
-            severity: 'warn',
-            summary: '查询结果',
-            detail: '请输入正确的气瓶条码'
-          });
+          this.loading = true;
+          this.detailList = new CylinderList();
         }
-      }, error => {
-        this.messageService.add({
-          severity: 'warn',
-          summary: '查询结果',
-          detail: '请输入正确的气瓶条码'
-        });
-      });
-    this.detailList = new CylinderList();
-    this.loading = '';
+      })
+    });
+
+  }
+  showImg(event, url, overlaypanel) {
+    this.currentImgUrl = '';
+    overlaypanel.toggle(event);
+    const el = overlaypanel.container;
+    setTimeout(() => {
+      this.currentImgUrl = url;
+      let left=$('.main').css('left');
+      let top=$('.main').css('top');
+      console.log(left);
+      console.log(top);
+      
+      el.style.top = parseFloat(el.style.top) - parseFloat(top) + 'px';
+      el.style.left = parseFloat(el.style.left) - parseFloat(left) + 'px';
+      el.style.maxWidth = '300px';
+    }, 0);
   }
 }

@@ -1,7 +1,5 @@
-.customer-detail{
-  .group {
-    padding: 30px 10px;
-  }
+.city-overview {
+  padding: 40px 10px;
   [class^='ui-g'] {
     padding: 0;
   }
@@ -23,4 +21,8 @@
   a {
     color: #3399ff;
   }
+}
+
+.main {
+  left: 120px;
 }

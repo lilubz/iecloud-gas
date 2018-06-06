@@ -1,165 +1,137 @@
-<div class="ta-c ui-g-12" *ngIf="loading!=0">
+<div class="ta-c ui-g-12" *ngIf="loading">
   <h2>查不到此信息</h2>
 </div>
 
-<div class="cylinder-detail ui-g-12" *ngIf="loading===0">
-  <div class="ui-g-12">
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="所属行政区域">所属行政区域</span>
-      <span class="span_detail01" [title]="detailList.regionName">{{detailList.regionName}}</span>
+<div class="cylinder-detail" *ngIf="!loading">
+  <div class="group ui-g-12">
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="气瓶充装状态">气瓶充装状态</span>
+      <span class="ui-g-6 content" title="{{detailList.fillingState}}">{{detailList.fillingState}}</span>
     </div>
-    <div class="ui-g-4 ui-g-nopad ">
-      <span class="span_detail bg_color01" title="所属企业名称">所属企业名称</span>
-      <span class="span_detail01" [title]="detailList.enterpriseName">{{detailList.enterpriseName}}</span>
-    </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="使用情况">使用情况</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="充装状态">充装状态</span>
-      <span class="span_detail01" [title]="detailList.fillingState">{{detailList.fillingState}}</span>
-    </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="流转状态">流转状态</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="当前库位">当前库位</span>
-      <span class="span_detail01" [title]="detailList.liabilityAddress">{{detailList.liabilityAddress}}</span>
-    </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="当前流转环节">当前流转环节</span>
-      <span class="span_detail01"></span>
-    </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="当前持有者身份">当前持有者身份</span>
-      <span class="span_detail01" [title]="detailList.liabilityName">{{detailList.liabilityName}}</span>
-    </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="起始时间">起始时间
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="查看充装记录">
+        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+          title="查看充装记录">查看充装记录</a> -->
+        查看充装记录
       </span>
-      <span class="span_detail01" [title]="detailList.createTime | date: 'y-MM-dd'">{{detailList.createTime | date: "y-MM-dd"}}</span>
+      <span class="ui-g-6 content title" title="当前气瓶持有者">当前气瓶持有者</span>
     </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="登记人姓名">登记人姓名</span>
-      <span class="span_detail01" [title]="detailList.gcLabelInfo?.registrationPerson">{{detailList.gcLabelInfo?.registrationPerson}}</span>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="{{detailList.liabilityName}}">{{detailList.liabilityName}}</span>
+      <span class="ui-g-6 content" title="查看充装记录">
+        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+          title="查看充装记录">查看充装记录</a> -->
+        查看充装记录</span>
     </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01" title="登记时间">登记时间</span>
-      <span class="span_detail01" [title]="detailList.gcLabelInfo?.registrationDate | date: 'y-MM-dd'">{{detailList.gcLabelInfo?.registrationDate | date: "y-MM-dd"}}</span>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="所属企业">所属企业</span>
+      <span class="ui-g-6 content" title="{{detailList.enterpriseName}}">{{detailList.enterpriseName}}</span>
     </div>
-    <div class="ui-g-4 ui-g-nopad">
-      <span class="span_detail bg_color01"></span>
-      <span class="span_detail01"></span>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="查看详情">
+        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+          title="查看详情">查看详情</a> -->
+        查看详情</span>
+      <span class="ui-g-6 content title" title="所属辖区">所属辖区</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content" title="{{detailList.regionName}}">{{detailList.regionName}}</span>
+      <span class="ui-g-6 content" title="查看详情">
+        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
+        title="查看详情">查看详情</a> -->
+        查看详情</span>
     </div>
   </div>
-  <div class="ui-g-12">
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="气瓶条码">气瓶条码
-        <gas-explanation tooltip="企业将购买的气瓶统一分配具有唯一性的标签" position="bottom"></gas-explanation>
+  <div class="group ui-g-12">
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="气瓶条码">气瓶条码</span>
+      <span class="ui-g-6 content" title="{{detailList.gasLabelNumber}}">{{detailList.gasLabelNumber}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="充装介质">充装介质</span>
+      <span class="ui-g-6 content" title="{{detailList.fillingMedia}}">{{detailList.fillingMedia}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="出厂编号">出厂编号</span>
+      <span class="ui-g-6 content" title="{{detailList.serialNumber}}">{{detailList.serialNumber}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="自有编号">自有编号</span>
+      <span class="ui-g-6 content" title="{{detailList.enterpriseCylinderCode}}">{{detailList.enterpriseCylinderCode}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="电子编号（预留）">电子编号（预留）</span>
+      <span class="ui-g-6 content" title=""></span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="型号">型号</span>
+      <span class="ui-g-6 content" title="{{detailList.typeName}}">{{detailList.typeName}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="规格">规格</span>
+      <span class="ui-g-6 content" title="{{detailList.specificationId}}">{{detailList.specificationId}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="瓶体重量">瓶体重量</span>
+      <span class="ui-g-6 content" title="{{detailList.weight}}">{{detailList.weight}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="容积">容积</span>
+      <span class="ui-g-6 content" title="{{detailList.volume}}">{{detailList.volume}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="设计壁厚">设计壁厚</span>
+      <span class="ui-g-6 content" title="{{detailList.designWallThickness}}">{{detailList.designWallThickness}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="水压试验压力">水压试验压力</span>
+      <span class="ui-g-6 content" title="{{detailList.waterPressureTest}}">{{detailList.waterPressureTest}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="公称工作压力">公称工作压力</span>
+      <span class="ui-g-6 content" title="{{detailList.nominalWorkingPressure}}">{{detailList.nominalWorkingPressure}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="制造单位">制造单位</span>
+      <span class="ui-g-6 content" title="{{detailList.manufactureName}}">{{detailList.manufactureName}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="生产日期">生产日期</span>
+      <span class="ui-g-6 content" title="{{detailList.timeManufacture}}">{{detailList.timeManufacture | date:"yyyy-MM-dd"}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="报废日期">报废日期</span>
+      <span class="ui-g-6 content" title="{{detailList.expectedScrapTime}}">{{detailList.expectedScrapTime | date:"yyyy-MM-dd"}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="报废处理情况">报废处理情况</span>
+      <span class="ui-g-6 content" title=""></span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="报废处理日期">报废处理日期</span>
+      <span class="ui-g-6 content" title=""></span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="上次检测日期">上次检测日期</span>
+      <span class="ui-g-6 content" title="{{detailList.lastInspectionTime}}">{{detailList.lastInspectionTime | date:"yyyy-MM-dd"}}</span>
+    </div>
+
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="下次检测日期">下次检测日期</span>
+      <span class="ui-g-6 content" title="{{detailList.nextInspectionTime}}">{{detailList.nextInspectionTime | date:"yyyy-MM-dd"}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="上次检测单位名称">上次检测单位名称</span>
+      <span class="ui-g-6 content" title="{{detailList.inspectionOrganizationNumber}}">{{detailList.inspectionOrganizationNumber}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="照片">照片</span>
+      <span class="ui-g-6 content" title="">
+        <button type="button" pButton (click)="showImg($event,detailList.gcBasicUrl,imgBox);" *ngIf="detailList.gcBasicUrl" label="查看二维码"></button>
       </span>
-      <span class="span_textleft" [title]="detailList.gasLabelNumber">{{detailList.gasLabelNumber}}</span>
     </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="充装介质">充装介质
-        <gas-explanation tooltip="气瓶充装的燃气种类，该系统只有液化石油气" position="bottom"></gas-explanation>
-      </span>
-      <span class="span_textright" [title]="detailList.gcSpecification?.fillingMedia">{{detailList.gcSpecification?.fillingMedia}}</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="出厂编号">出厂编号
-        <gas-explanation tooltip="带有制造厂商编号参数" position="bottom"></gas-explanation>
-      </span>
-      <span class="span_textleft" [title]="detailList.gcLabelInfo?.serialNumber">{{detailList.gcLabelInfo?.serialNumber}}</span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="瓶体重量">瓶体重量</span>
-      <span class="span_textright" [title]="detailList.gcSpecification?.weight?detailList.gcSpecification?.weight:0">{{detailList.gcSpecification?.weight?detailList.gcSpecification?.weight:0}}kg</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="自有编号">自有编号
-        <gas-explanation tooltip="钢瓶本身序列号" position="bottom"></gas-explanation>
-      </span>
-      <span class="span_textleft" [title]="detailList.gcLabelInfo?.enterpriseCylinderCode">{{detailList.gcLabelInfo?.enterpriseCylinderCode}}</span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="容积">容积</span>
-      <span class="span_textright" [title]="detailList.gcSpecification?.volume?detailList.gcSpecification?.volume:0">{{detailList.gcSpecification?.volume?detailList.gcSpecification?.volume:0}}L</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="电子编号（预留）">电子编号（预留）</span>
-      <span class="span_textleft"></span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="设计壁厚">设计壁厚</span>
-      <span class="span_textright" [title]="detailList.gcSpecification?.designWallThickness?detailList.gcSpecification?.designWallThickness:0">{{detailList.gcSpecification?.designWallThickness?detailList.gcSpecification?.designWallThickness:0}}mm</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="型号">型号</span>
-      <span class="span_textleft"></span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="水压试验压力">水压试验压力</span>
-      <span class="span_textright" [title]="detailList.gcSpecification?.waterPressureTest">{{detailList.gcSpecification?.waterPressureTest?detailList.gcSpecification?.waterPressureTest:0}}MPa</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="规格">规格</span>
-      <span class="span_textleft" [title]="detailList.gcSpecification?.specificationId">{{detailList.gcSpecification?.specificationId}}</span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="公称工作压力">公称工作压力</span>
-      <span class="span_textright" [title]="detailList.gcSpecification?.nominalWorkingPressure?detailList.gcSpecification?.nominalWorkingPressure:0">{{detailList.gcSpecification?.nominalWorkingPressure?detailList.gcSpecification?.nominalWorkingPressure:0}}MPa</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="制造单位">制造单位
-        <gas-explanation tooltip="生产气瓶的厂商" position="bottom"></gas-explanation>
-      </span>
-      <span class="span_textleft" [title]="detailList.manufactureName">{{detailList.manufactureName}}</span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="报废日期">报废日期</span>
-      <span class="span_textright" [title]="detailList.scrapDate | date: 'y-MM-dd'">{{detailList.scrapDate | date: "y-MM-dd"}}</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="生产日期">生产日期</span>
-      <span class="span_textleft" [title]="detailList.gcLabelInfo?.timeManufacture | date: 'y-MM-dd'">{{detailList.gcLabelInfo?.timeManufacture | date: "y-MM-dd"}}</span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="报废处理情况">报废处理情况</span>
-      <span class="span_textright" [title]="detailList.scrapDisposalSituation">{{detailList.scrapDisposalSituation}}</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="下次检测日期">下次检测日期</span>
-      <span class="span_textleft" [title]="detailList.gcLabelInfo?.nextInspectionTime | date: 'y-MM-dd'">{{detailList.gcLabelInfo?.nextInspectionTime | date: "y-MM-dd"}}</span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR" title="报废处理日期">报废处理日期</span>
-      <span class="span_textright" [title]="detailList.scrapDisposalDate | date: 'y-MM-dd'">{{detailList.scrapDisposalDate | date: "y-MM-dd"}}</span>
-    </div>
-    <div class="ui-g-7 ui-g-nopad">
-      <span class="span_gasleft bg_colorR" title="上次检测单位名称">上次检测单位名称 </span>
-      <span class="span_textleft"></span>
-
-    </div>
-    <div class="ui-g-5 ui-g-nopad">
-      <span class="span_gasright bg_colorR"></span>
-      <span class="span_textright"></span>
-    </div>
-
-    <div class=" bg_colorR photo-head" title="照片">照片</div>
-    <div class="photo-content">
-      <!-- <img src="" alt="png" class="photo-view">  -->
-      <!-- ng-src -->
-      <!-- <img src="/assets/img/u44.png" class="photo-view" > -->
-    </div>
+    <p-overlayPanel #imgBox>
+      <img src="http://121.43.155.201/gas/upload/image/201607/895cf92d86b24e849b635952e7a7e888.jpg" *ngIf="detailList.gcBasicUrl" style="max-width: 262px" />
+    </p-overlayPanel>
   </div>
 </div>

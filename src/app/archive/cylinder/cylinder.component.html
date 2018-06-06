@@ -17,7 +17,7 @@
       <input maxlength="250" type="text" pInputText [(ngModel)]="gasInput" (keyup.enter)="onSearch()" placeholder="请输入气瓶条码">
     </div>
     <div class="ui-g-12">
-      <button pButton type="button" label="查询" [routerLink]="['./detail',gasInput||'']"></button>
+      <button pButton type="button" label="查询" [routerLink]="['./detail']" [queryParams]="{gasLabelNumber:gasInput}"></button>
     </div>
   </div>
 </div>
