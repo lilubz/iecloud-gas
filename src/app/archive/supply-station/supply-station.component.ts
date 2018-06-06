@@ -172,6 +172,64 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onChangeAreaID(event) {
+    this.enterpriseDrop = [
+      {
+        label: '全部',
+        value: '',
+      }
+    ];
+    if (event.value) {
+      this._service.getDropdownForCorpInfoInRegion({
+        regionId: event.value
+      }).then(
+        data => {
+          if (data.status === 0) {
+            this.enterpriseDrop = this.enterpriseDrop.concat(data.data.map((item) => ({
+              label: item.enterpriseName,
+              value: item.enterpriseNumber,
+            })));
+          } else {
+            this.enterpriseDrop = this.enterpriseDrop;
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+          }
+        }
+      ).catch(
+        data => { }
+      );
+    } else {
+      this.getEnterprises();
+    }
+  }
+  editEnterprise() {
+    if (this.editForm.regionId) {
+      this.enterpriseDrop = [
+        {
+          label: '全部',
+          value: '',
+        }
+      ];
+      this._service.getDropdownForCorpInfoInRegion({
+        regionId: this.editForm.regionId
+      }).then(
+        data => {
+          if (data.status === 0) {
+            this.enterpriseDrop = this.enterpriseDrop.concat(data.data.map((item) => ({
+              label: item.enterpriseName,
+              value: item.enterpriseNumber,
+            })));
+          } else {
+            this.enterpriseDrop = this.enterpriseDrop;
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+          }
+        }
+      ).catch(
+        data => { }
+      );
+    } else {
+      this.getEnterprises();
+    }
+  }
   /**
    * 页面变化,初始化会执行一次
    * @param event
@@ -239,9 +297,17 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
         }
       }
     }
+    this.editEnterprise();
   }
   showAddDialog() {
     this.addBottleVisible = true;
+    this.enterpriseDrop = [
+      {
+        label: '全部',
+        value: '',
+      }
+    ];
+    this.getEnterprises();
   }
   showChangeDialog = (data) => {
     this.changeBottleVisible = true;

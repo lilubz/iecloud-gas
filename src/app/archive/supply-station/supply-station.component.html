@@ -11,7 +11,7 @@
             <span class="inputgroup">
               <label for="" class="search-label">辖区</label>
             </span>
-            <p-dropdown [options]="area" [(ngModel)]="searchParams.regionId" [style]="{'width':'280px'}"></p-dropdown>
+            <p-dropdown [options]="area" [(ngModel)]="searchParams.regionId" [style]="{'width':'280px'}" (onChange)="onChangeAreaID($event)"></p-dropdown>
           </div>
           <div class="ui-g-12 ui-lg-6" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
             <span class="inputgroup">
@@ -158,7 +158,7 @@
           <label for="" class="search-label">所属区域
             <b style="color:red;">*</b>
           </label>
-          <p-dropdown [options]="areaDrop" [(ngModel)]="editForm.regionId" [style]="{'width':'180px'}"></p-dropdown>
+          <p-dropdown [options]="areaDrop" [(ngModel)]="editForm.regionId" [style]="{'width':'180px'}" (onChange)="onChangeAreaID($event)"></p-dropdown>
         </div>
       </div>
       <div class="ui-g-6">
@@ -277,7 +277,7 @@
             <label for="" class="search-label">所属区域
               <b style="color:red;">*</b>
             </label>
-            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" [style]="{'width':'180px'}"></p-dropdown>
+            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" [style]="{'width':'180px'}" (onChange)="onChangeAreaID($event)"></p-dropdown>
           </div>
         </div>
         <div class="ui-g-12 ui-md-6">
