@@ -14,7 +14,6 @@ import { FullScreenService } from './full-screen.service';
 import { CookieService } from './cookie.service';
 import { RedirectionPageService } from '../redirectionPage/redirectionPage.service';
 import { ConfirmationService } from 'primeng/primeng';
-import { QueryParamsService } from './query-params.service';
 
 @NgModule({
   imports: [
@@ -34,7 +33,6 @@ import { QueryParamsService } from './query-params.service';
     FullScreenService,
     CookieService,
     RedirectionPageService,
-    QueryParamsService
   ]
 })
 export class CoreModule {

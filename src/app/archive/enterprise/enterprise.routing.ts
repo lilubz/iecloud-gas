@@ -1,6 +1,7 @@
 import { NgModule, } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EnterpriseComponent, } from './enterprise.component';
+import { EnterpriseListComponent } from './enterprise-list/enterprise-list.component';
 import { EnterpriseDetailComponent } from './enterprise-detail/enterprise-detail.component';
 
 // TODO: import components
@@ -9,7 +10,7 @@ import { EnterpriseDetailComponent } from './enterprise-detail/enterprise-detail
 const routes: Routes = [
   {
     path: 'enterprise',
-    redirectTo: 'enterprise/detail',
+    redirectTo: 'enterprise/list',
     pathMatch: 'full'
   },
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       title: '企业详情'
     },
     children: [
+      {
+        path: 'list',
+        component: EnterpriseListComponent
+      },
       {
         path: 'detail',
         component: EnterpriseDetailComponent

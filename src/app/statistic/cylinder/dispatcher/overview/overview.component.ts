@@ -162,8 +162,8 @@ export class OverviewComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.getDataTableList({
-      startTime: this.utilService.formatTime(this.formModel.startTime, 'start'),
-      endTime: this.utilService.formatTime(this.formModel.endTime, 'end'),
+      startTime: this.utilService.formatTime(this.formModel.startTime),
+      endTime: this.utilService.formatTime(this.formModel.endTime),
       regionId: this.formModel.regionId,
     });
     Object.assign(this.pageParams, this.formModel);
@@ -187,8 +187,8 @@ export class OverviewComponent implements OnInit {
   // 导出送气工统计
   exportDispathcerStatistic() {
     this.statisticCylinderService.corpDispatcherSendAndReceiveList({
-      startTime: this.utilService.formatTime(this.formModel.startTime, 'start'),
-      endTime: this.utilService.formatTime(this.formModel.endTime, 'end'),
+      startTime: this.utilService.formatTime(this.formModel.startTime),
+      endTime: this.utilService.formatTime(this.formModel.endTime),
       regionId: this.formModel.regionId,
       resultType: 'excel'
     }).then(data => {

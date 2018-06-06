@@ -16,6 +16,9 @@ import { GasHolderStationComponent } from './gas-holder-station/gas-holder-stati
 import { SupplyStationComponent } from './supply-station/supply-station.component';
 import { DispatcherComponent } from './employee/dispatcher.component';
 import { CarComponent } from './car/car.component';
+import { GasHolderStationDetailComponent } from './gas-holder-station/gas-holder-station-detail/gas-holder-station-detail.component';
+import { DispatcherDetailComponent } from './employee/dispatcher-detail/dispatcher-detail.component';
+import { SupplyStationDetailComponent } from './supply-station/supply-station-detail/supply-station-detail.component';
 
 
 @NgModule({
@@ -34,6 +37,9 @@ import { CarComponent } from './car/car.component';
     FillingScaleListComponent,
     GasHolderStationComponent,
     SupplyStationComponent,
+    GasHolderStationDetailComponent,
+    DispatcherDetailComponent,
+    SupplyStationDetailComponent,
   ],
   providers: [
     CylinderOverviewService,

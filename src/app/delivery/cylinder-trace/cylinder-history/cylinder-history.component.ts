@@ -1,5 +1,4 @@
 import { Util } from './../../../core/util';
-import { QueryParamsService } from './../../../core/query-params.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -14,7 +13,7 @@ import { SortMeta } from 'primeng/primeng';
   templateUrl: './cylinder-history.component.html',
   styleUrls: ['./cylinder-history.component.css']
 })
-export class CylinderHistoryComponent implements OnInit, OnDestroy {
+export class CylinderHistoryComponent implements OnInit {
   loading = false;
   zh = zh_CN;
   cylinderHistoryList: Array<{
@@ -59,7 +58,6 @@ export class CylinderHistoryComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
-    private queryParamsService: QueryParamsService,
     private util: Util,
   ) { }
 
@@ -74,27 +72,8 @@ export class CylinderHistoryComponent implements OnInit, OnDestroy {
       this.getCylinderHistoryStatus();
     }
 
-    this.routerUrl = this.util.getRouterUrl();
-    const params = this.queryParamsService.getQueryParams(this.routerUrl);
-    if (params) {
-      this.pageSizeHistory = params.pageSizeHistory || this.pageSizeHistory;
-      this.pageNumberHistory = params.pageNumberHistory || this.pageNumberHistory;
-      this.cylinderNumber = params.cylinderNumber || this.cylinderNumber;
-      this.beginTime = params.beginTime || this.beginTime;
-      this.endTime = params.endTime || this.endTime;
-      this.getCylinderHistoryStatus();
-    }
   }
 
-  ngOnDestroy() {
-    this.queryParamsService.setQueryParams(this.routerUrl, {
-      pageSizeHistory: this.pageSizeHistory,
-      pageNumberHistory: this.pageNumberHistory,
-      cylinderNumber: this.cylinderNumber,
-      beginTime: this.beginTime,
-      endTime: this.endTime
-    });
-  }
 
   getCylinderHistoryStatus() {
     // if (this.firstTime) {

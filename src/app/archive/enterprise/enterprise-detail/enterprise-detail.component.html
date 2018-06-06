@@ -1,79 +1,88 @@
-<div class="ui-g-12 enterprise-detail">
-  <form class="ui-g" (submit)="onSubmit()">
-    <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="search-label">辖&#12288;&#12288;区</span>
-      <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.regionId" [style]="{'width':'180px'}" name="regionId"></p-dropdown>
+<div class="enterprise-detail ui-g-12">
+  <h2 class="text-center" *ngIf="!details">
+    <span *ngIf="!loading">没有查到数据</span>
+    <span *ngIf="loading">正查询中，请稍等。</span>
+  </h2>
+  <div *ngIf="details" class="ui-g-12 group">
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="旗下供应站数量">旗下供应站数量</span>
+      <span class="ui-g-6 content" title="{{details.supplyStationCount}}">{{details.supplyStationCount}}</span>
     </div>
-    <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="search-label">企业名称</span>
-      <input maxlength="20" type="text" [(ngModel)]="formModel.enterpriseName" pInputText name="enterpriseName" style="width:180px">
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="旗下储备站数量">旗下储备站数量</span>
+      <span class="ui-g-6 content" title="{{details.inflatableStationCount}}">{{details.inflatableStationCount}}</span>
     </div>
-    <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="search-label">负&nbsp;&nbsp;责&nbsp;&nbsp;人</span>
-      <input maxlength="20" type="text" [(ngModel)]="formModel.person" pInputText  style="width:180px" name="person">
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="旗下送气工数量">旗下送气工数量</span>
+      <span class="ui-g-6 content" title="{{details.dispatcherCount}}">{{details.dispatcherCount}}</span>
     </div>
-    <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="search-label">发证日期</span>
-      <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
-        [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true" [style]="{'width':'180px','height':'35px'}"
-        name="startTime">
-      </p-calendar>
-    <gas-explanation tooltip="选择时间段按发证日期的时间间隔查询" position="bottom"></gas-explanation>
-
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="旗下用户数量">旗下用户数量</span>
+      <span class="ui-g-6 content" title="{{details.gcUserCount}}">{{details.gcUserCount}}</span>
     </div>
-    <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
-      <span class="search-label">&#12288;&#12288;至&#12288;</span>
-      <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
-        [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true" [style]="{'width':'180px','height':'35px'}"
-        name="endTime">
-      </p-calendar>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="已安检用户数量">已安检用户数量</span>
+      <span class="ui-g-6 content" title="{{details.alreadyCheckedUserCount}}">{{details.alreadyCheckedUserCount}}</span>
     </div>
-
-    <!-- 查询按钮 -->
-    <div class="ui-g-12 ui-lg-12">
-      <button pButton type="submit" class="searchBtn" label="查询"></button>
-      <button pButton type="button" style="margin-left: 20px" label="新增" class="searchBtn" [routerLink]="['../../enterprise/enterpriseFound']"></button>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="未安检用户数量">未安检用户数量</span>
+      <span class="ui-g-6 content" title="{{details.noCheckedUserCount}}">{{details.noCheckedUserCount}}</span>
     </div>
-  </form>
-
-
-
-  <div class="ui-g">
-    <p-dataTable [value]="dataTable.list" [lazy]="true" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
-      scrollHeight="510px" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
-      [(first)]="dataTable.first" [loading]="loading">
-      <p-column [style]="{'width':'80px'}" header="序号">
-        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
-          <span>{{index+1}}</span>
-        </ng-template>
-      </p-column>
-      <p-column [style]="{'width':'150px'}" field="enterpriseName" header="企业名称"></p-column>
-      <p-column [style]="{'width':'150px'}" field="regionName" header="辖区"></p-column>
-      <p-column [style]="{'width':'150px'}" field="businessArea" header="经营区域"></p-column>
-      <p-column [style]="{'width':'150px'}" field="dangerousLicense" header="许可证号"></p-column>
-      <p-column [style]="{'width':'150px'}" header="发证日期">
-        <ng-template let-dates="rowData" pTemplate="body">
-          <span>{{dates.releaseTime | date:"yyyy-MM-dd"}}</span>
-        </ng-template>
-      </p-column>
-      <p-column [style]="{'width':'150px'}" header="证件到期日期">
-        <ng-template let-dates="rowData" pTemplate="body">
-          <span>{{dates.effectiveTimeEnd | date:"yyyy-MM-dd"}}</span>
-        </ng-template>
-      </p-column>
-      <p-column [style]="{'width':'150px'}" field="issuingUnit" header="发证机关"></p-column>
-      <p-column [style]="{'width':'150px'}" field="address" header="地址"></p-column>
-      <p-column [style]="{'width':'150px'}" field="serviceLine" header="联系方式"></p-column>
-      <p-column [style]="{'width':'150px'}" field="legalRepresentative" header="负责人"></p-column>
-      <!-- <p-column [style]="{'width':'150px'}" field="legalRepresentative" header="账号状态?"></p-column> -->
-      <ng-template pTemplate="emptymessage">
-        <div class="text-left">
-          未查询到数据
-        </div>
-      </ng-template>
-      <ng-template pTemplate="paginatorRight">
-        共 {{ dataTable.total || 0 }} 条记录
-      </ng-template>
-    </p-dataTable>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="登记钢瓶数量">登记钢瓶数量</span>
+      <span class="ui-g-6 content" title="{{details.gcTotalCount}}">{{details.gcTotalCount}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="异常钢瓶数量">异常钢瓶数量</span>
+      <span class="ui-g-6 content" title="{{details.gcCodeAbnormalCount}}">{{details.gcCodeAbnormalCount}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title=" "> </span>
+      <span class="ui-g-6 content" title=" "> </span>
+    </div>
   </div>
+
+  <div *ngIf="details" class="ui-g-12 group">
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="企业名称">企业名称</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.enterpriseName}}">{{details.corpInfoVO.enterpriseName}}</span>
+    </div>
+    <div class="ui-g-4 ">
+      <span class="ui-g-6 content title" title="所属辖区">所属辖区</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.regionName}}">{{details.corpInfoVO.regionName}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="经营区域">经营区域</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.businessArea}}">{{details.corpInfoVO.businessArea}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="许可证号">许可证号</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.dangerousLicense}}">{{details.corpInfoVO.dangerousLicense}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="发证日期">发证日期</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.releaseTime}}">{{details.corpInfoVO.releaseTime}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="证件到期日期">证件到期日期</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.effectiveTimeEnd}}">{{details.corpInfoVO.effectiveTimeEnd}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="发证机关">发证机关</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.issuingUnit}}">{{details.corpInfoVO.issuingUnit}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="联系电话">联系电话</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.serviceLine}}">{{details.corpInfoVO.serviceLine}}</span>
+    </div>
+    <div class="ui-g-4">
+      <span class="ui-g-6 content title" title="联系人">联系人</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.legalRepresentative}}">{{details.corpInfoVO.legalRepresentative}}</span>
+    </div>
+    <div class="ui-g-12">
+      <span class="ui-g-2 content title" title="企业地址">企业地址</span>
+      <span class="ui-g-10 content" title="{{details.corpInfoVO.address}}">{{details.corpInfoVO.address}}</span>
+    </div>
+  </div>
+
 </div>

@@ -1,0 +1,107 @@
+<div class="main">
+  <div class="card">
+    <h2 class="text-center" *ngIf="!details">
+      <span *ngIf="!loading">没有查到数据</span>
+      <span *ngIf="loading">正查询中，请稍等。</span>
+    </h2>
+    <div  *ngIf="details" class="gas-holder-station-detail ui-g-12">
+      <div class="ui-g-12 group">
+
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="持有重瓶数量">持有重瓶数量</span>
+          <span class="ui-g-6 content" title="{{details.haveFullCount}}">{{details.haveFullCount}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="重瓶入库数量">重瓶入库数量</span>
+          <span class="ui-g-6 content" title="{{details.fullBottleReceiveCount}}">{{details.fullBottleReceiveCount}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="重瓶出库数量">重瓶出库数量</span>
+          <span class="ui-g-6 content" title="{{details.fullBottleSendCount}}">{{details.fullBottleSendCount}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="持有空瓶数量">持有空瓶数量</span>
+          <span class="ui-g-6 content" title="{{details.haveEmptyCount}}">{{details.haveEmptyCount}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="空瓶入库数量">空瓶入库数量</span>
+          <span class="ui-g-6 content" title="{{details.emptyBottleReceiveCount}}">{{details.emptyBottleReceiveCount}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="空瓶出库数量">空瓶出库数量</span>
+          <span class="ui-g-6 content" title="{{details.emptyBottleSendCount}}">{{details.emptyBottleSendCount}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="送气工数量">送气工数量</span>
+          <span class="ui-g-6 content" title="{{details.dispatcherCount}}">{{details.dispatcherCount}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="充装气瓶数量">充装气瓶数量</span>
+          <span class="ui-g-6 content" title="没有这个字段">没有这个字段</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title=" "> </span>
+          <span class="ui-g-6 content" title=" "> </span>
+        </div>
+
+      </div>
+
+      <div class="ui-g-12 group">
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="供应站名称">供应站名称</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.supplyStationAddress}}">{{details.inflatableStationVO.supplyStationAddress}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="所属区域">所属区域</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.regionName}}">{{details.inflatableStationVO.regionName}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="所属企业">所属企业</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.enterpriseName}}">{{details.inflatableStationVO.enterpriseName}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="经营区域">经营区域</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.businessArea}}">{{details.inflatableStationVO.businessArea}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="经营级别">经营级别</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.businessCategory}}">{{details.inflatableStationVO.businessCategory}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="许可证号">许可证号</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.supplyLicenseNum}}">{{details.inflatableStationVO.supplyLicenseNum}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="发证机关">发证机关</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.issuingUnit}}">{{details.inflatableStationVO.issuingUnit}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="发证日期">发证日期</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.releaseTime}}">{{details.inflatableStationVO.releaseTime}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="证件有效期">证件有效期</span>
+          <span class="ui-g-6 content" title="需要拼接字符">需要拼接字符</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="负责人">负责人</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.principal}}">{{details.inflatableStationVO.principal}}</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="联系电话">联系电话</span>
+          <span class="ui-g-6 content" title="todo没有电话">todo没有电话</span>
+        </div>
+        <div class="ui-g-4">
+          <span class="ui-g-6 content title" title="联系人">联系人</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.contactPerson}}">{{details.inflatableStationVO.contactPerson}}</span>
+        </div>
+        <div class="ui-g-12">
+          <span class="ui-g-2 content title" title="供应站地址">供应站地址</span>
+          <span class="ui-g-10 content" title="{{details.inflatableStationVO.supplyStationAddress}}">{{details.inflatableStationVO.supplyStationAddress}}</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

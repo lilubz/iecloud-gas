@@ -1,35 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { GsaHolderStationService } from '../gas-holder-station.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ActivatedRoute } from '@angular/router';
-import { EnterpriseService } from '../enterprise.service';
 
 @Component({
-  selector: 'gas-enterprise-detail',
-  templateUrl: './enterprise-detail.component.html',
-  styleUrls: ['./enterprise-detail.component.scss'],
-  providers: [EnterpriseService]
+  selector: 'gas-gas-holder-station-detail',
+  templateUrl: './gas-holder-station-detail.component.html',
+  styleUrls: ['./gas-holder-station-detail.component.scss'],
+  providers: [GsaHolderStationService]
 })
-export class EnterpriseDetailComponent implements OnInit {
+export class GasHolderStationDetailComponent implements OnInit {
   details: any = null;
   id = '';
   loading = false;
-
   constructor(
-    private _service: EnterpriseService,
+    private _service: GsaHolderStationService,
     private messageService: MessageService,
     private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    console.log(this.activatedRoute);
     this.id = this.activatedRoute.queryParams['value'].id;
     if (typeof this.id === 'string' && this.id !== '') {
-      this.getDetails({ enterpriseNumber: this.id });
+      this.getDetails({ inflatableStationNumber: this.id });
     }
   }
 
   getDetails(params?) {
     this.loading = true;
-    this._service.getCorpDetailInfo(params)
+    this._service.getInflatableStationDetailInfo(params)
       .then(data => {
         if (data.status === 0) {
           this.details = data.data;

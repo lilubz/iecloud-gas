@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ActivatedRoute } from '@angular/router';
-import { EnterpriseService } from '../enterprise.service';
+import { SupplyStionService } from '../supply-station.service';
 
 @Component({
-  selector: 'gas-enterprise-detail',
-  templateUrl: './enterprise-detail.component.html',
-  styleUrls: ['./enterprise-detail.component.scss'],
-  providers: [EnterpriseService]
+  selector: 'gas-supply-station-detail',
+  templateUrl: './supply-station-detail.component.html',
+  styleUrls: ['./supply-station-detail.component.scss'],
+  providers: [SupplyStionService]
 })
-export class EnterpriseDetailComponent implements OnInit {
+export class SupplyStationDetailComponent implements OnInit {
   details: any = null;
   id = '';
   loading = false;
-
+  currentImgUrl = '';
   constructor(
-    private _service: EnterpriseService,
+    private _service: SupplyStionService,
     private messageService: MessageService,
     private activatedRoute: ActivatedRoute,
   ) { }
@@ -23,13 +23,13 @@ export class EnterpriseDetailComponent implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.queryParams['value'].id;
     if (typeof this.id === 'string' && this.id !== '') {
-      this.getDetails({ enterpriseNumber: this.id });
+      this.getDetails({ supplyStationNumber: this.id });
     }
   }
 
   getDetails(params?) {
     this.loading = true;
-    this._service.getCorpDetailInfo(params)
+    this._service.getSupplyStationDetailInfo(params)
       .then(data => {
         if (data.status === 0) {
           this.details = data.data;

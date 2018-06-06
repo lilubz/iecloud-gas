@@ -5,6 +5,7 @@ import { DispatcherService } from './dispatcher.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { validator } from '../../common/validator';
 import { ActivatedRoute } from '@angular/router';
+import { CommonRequestService } from '../../core/common-request.service';
 
 @Component({
   selector: 'gas-dispatcher',
@@ -22,6 +23,7 @@ export class DispatcherComponent implements OnInit {
         value: ''
       }
     ],
+    supplyStation: [],
     default: [
       {
         label: '全部',
@@ -37,6 +39,7 @@ export class DispatcherComponent implements OnInit {
   };
   formModel: any = this.fb.group({
     enterpriseId: '',
+    supplyStationId: '',
     name: ['', validator.minLength(2, '姓名')],
     jobNumber: '',
     phone: ['', validator.phone],
@@ -44,6 +47,7 @@ export class DispatcherComponent implements OnInit {
   });
   pageParams = {
     enterpriseId: '',
+    supplyStationId: '',
     name: '',
     jobNumber: '',
     phone: '',
@@ -52,13 +56,16 @@ export class DispatcherComponent implements OnInit {
     pageNumber: 1
   };
   constructor(
-    private dispatcherService: DispatcherService, private messageService: MessageService,
+    private dispatcherService: DispatcherService,
+    private messageService: MessageService,
     private fb: FormBuilder,
-    private routerInfo: ActivatedRoute
+    private routerInfo: ActivatedRoute,
+    private commonRequest: CommonRequestService
   ) { }
 
   ngOnInit() {
     this.cylinderSelectOpt();
+    this.getDropdownSupplyStation();
     this.routerInfo.paramMap.switchMap((params) => {
       return Promise.resolve(params);
     }).subscribe((params) => {
@@ -81,12 +88,11 @@ export class DispatcherComponent implements OnInit {
     }, 0);
   }
   onSearch() {
-    let params = {};
     if (this.formModel.valid) { // 通过了验证
-      params = Object.assign({ pageNumber: 1, pageSize: this.pageParams.pageSize }, this.formModel.value);
+      this.pageParams.pageNumber = 1;
       this.dataTable.first = 0;
-      Object.assign(this.pageParams, params);
-      this.getDispatcherInfo(params);
+      Object.assign(this.pageParams, this.formModel.value);
+      this.getDispatcherInfo();
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {
         if (this.formModel.controls[key].errors) {
@@ -98,25 +104,25 @@ export class DispatcherComponent implements OnInit {
     }
   }
 
-  onPageChange(event) {
+  onPageChange($event) {
     this.onPageChange = (event) => {
-      const page = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
-      this.formModel.setValue({
-        enterpriseId: this.pageParams.enterpriseId,
-        name: this.pageParams.name,
-        jobNumber: this.pageParams.jobNumber,
-        phone: this.pageParams.phone,
-        idNumber: this.pageParams.idNumber
-      });
-      this.getDispatcherInfo(Object.assign({}, this.pageParams, page));
-    }
+      this.pageParams.pageSize = event.rows;
+      this.pageParams.pageNumber = event.first / event.rows + 1;
+      this.getDispatcherInfo();
+    };
   }
 
   getDispatcherInfo(params?) {
-    this.dispatcherService.getDispatcherInfo(params)
+    this.dispatcherService.getDispatcherInfo({
+      enterpriseId: this.pageParams.enterpriseId,
+      supplyStationNumber: this.pageParams.supplyStationId,
+      name: this.pageParams.name,
+      jobNumber: this.pageParams.jobNumber,
+      phone: this.pageParams.phone,
+      idNumber: this.pageParams.idNumber,
+      pageSize: this.pageParams.pageSize,
+      pageNumber: this.pageParams.pageNumber
+    })
       .then(data => {
         if (data.status === 0) {
           this.dataTable.list = data.data.list;
@@ -126,6 +132,14 @@ export class DispatcherComponent implements OnInit {
           this.dataTable.total = 0;
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
+        this.formModel.setValue({
+          enterpriseId: this.pageParams.enterpriseId,
+          supplyStationId: this.pageParams.supplyStationId,
+          name: this.pageParams.name,
+          jobNumber: this.pageParams.jobNumber,
+          phone: this.pageParams.phone,
+          idNumber: this.pageParams.idNumber
+        });
       });
   }
 
@@ -139,6 +153,21 @@ export class DispatcherComponent implements OnInit {
           })));
         } else {
           this.dropdown.companyOpt = this.dropdown.default;
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        }
+      });
+  }
+
+  getDropdownSupplyStation() {
+    this.commonRequest.listCorpSupplyStation()
+      .then(data => {
+        if (data.status === 0) {
+          this.dropdown.supplyStation = this.dropdown.default.concat(data.data.map((item) => ({
+            label: item.supplyStationName,
+            value: item.supplyStationNumber
+          })));
+        } else {
+          this.dropdown.supplyStation = this.dropdown.default.concat([]);
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       });

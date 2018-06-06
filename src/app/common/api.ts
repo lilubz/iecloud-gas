@@ -315,4 +315,9 @@ export const API = {
   'queryCylinderDetail': URL + 'basicInformation/gasCylinder/getGcLableInfoOverveiw.do', // 新启用气瓶详情
 
 
+  // 对象搜索 查看责任类型的详情
+  'getDispatcherDetailInfo': URL + 'basicInformation/corpInfo/getDispatcherInfo.do', // 送气工详情
+  'getSupplyStationDetailInfo': URL + 'basicInformation/corpSupplyStation/getSupplyStationInfo.do', // 供应站详情
+  'getInflatableStationDetailInfo': URL + 'basicInformation/corpInflatableStation/getInflatableStationInfo.do', // 储配站详情
+  'getCorpDetailInfo': URL + 'basicInformation/corpInfo/getCorpInfo.do', // 企业详情
 };
