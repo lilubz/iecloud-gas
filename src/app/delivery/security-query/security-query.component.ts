@@ -96,7 +96,7 @@ export class SecurityQueryComponent implements OnInit {
   ngOnInit() {
     this.getDropdownRegion();
     this.getDropdownEnterprise();
-    this.activatedRoute.queryParams.subscribe((queryParams) => {
+    const queryParams = this.activatedRoute.queryParams['value'];
       if (JSON.stringify(queryParams) !== '{}') {
         this.formModel.region = queryParams.regionId || '';
         this.pageParams.userNumber = queryParams.userNumber || '';
@@ -114,7 +114,6 @@ export class SecurityQueryComponent implements OnInit {
         
         this.getDataTableList();
       }
-    });
   }
 
   getDropdownRegion() {

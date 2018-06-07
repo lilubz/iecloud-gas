@@ -34,7 +34,7 @@
       <span class="ui-g-6 content" title="查看气瓶详情">
         <a href="javascript:void(0);" *ngIf="customerDetailList.gcCount !==0" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectType:4,liabilitySubjectId:customerDetailList.userNumber}"
           title="查看气瓶详情">查看气瓶详情</a>
-        <a href="javascript:void(0);" *ngIf="customerDetailList.gcCount==0" title="无气瓶详情">无气瓶详情</a>
+        <span *ngIf="customerDetailList.gcCount==0" title="暂无气瓶">暂无气瓶</span>
       </span>
       <span class="ui-g-6 content title" title="流转记录">流转记录</span>
     </div>

@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 
 import { CylinderListService } from './cylinder-list.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import 'rxjs/add/operator/debounceTime';
 @Component({
   selector: 'gas-cylinder-list',
   templateUrl: './cylinder-list.component.html',
@@ -96,7 +97,7 @@ export class CylinderListComponent implements OnInit {
   ngOnInit() {
     this.getDropdownRegion();
     this.getCylinderSearchOpt();
-    this.routerInfo.queryParams.subscribe((queryParams) => {
+    const queryParams = this.routerInfo.queryParams['value'];
       if (JSON.stringify(queryParams) !== '{}') {
         this.formModel.patchValue({
           enterpriseNumber: queryParams.enterpriseID || '',
@@ -110,7 +111,6 @@ export class CylinderListComponent implements OnInit {
         Object.assign(this.pageParams, this.formModel.value);
         this.getCylinders();
       }
-    });
   }
 
   onSearch() {

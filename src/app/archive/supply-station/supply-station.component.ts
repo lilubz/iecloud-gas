@@ -113,10 +113,11 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this.getEnterprises();
     this.getRegions();
     this.getAreaList();
-    this.activatedRoute.queryParams.subscribe((queryParams) => {
+    const queryParams = this.activatedRoute.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
       Object.assign(this.searchParams, queryParams);
       this.onSearch();
-    });
+    }
   }
 
   getRegions() {

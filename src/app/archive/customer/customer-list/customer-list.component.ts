@@ -171,20 +171,19 @@ export class CustomerListComponent implements OnInit {
     this.getDropdownForCorpInfoInRegion({
       regionId: ''
     });
-    this.activatedRoute.queryParams.subscribe((queryParams) => {
-      if (JSON.stringify(queryParams) !== '{}') {
-        this.formModel.patchValue({
-          enterpriseNumber: queryParams.enterpriseID || '',
-          regionId: queryParams.regionId || '',
-          userName: queryParams.userName || '',
-        });
-        this.pageParams.boolIsChecked = queryParams.boolIsChecked || '';
-        this.pageParams.jobNumber = queryParams.jobNumber || '';
-        this.pageParams.phoneNumber = queryParams.phoneNumber || '';
-        Object.assign(this.pageParams, this.formModel.value);
-        this.getCustomerList();
-      }
-    });
+    const queryParams = this.activatedRoute.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
+      this.formModel.patchValue({
+        enterpriseNumber: queryParams.enterpriseID || '',
+        regionId: queryParams.regionId || '',
+        userName: queryParams.userName || '',
+      });
+      this.pageParams.boolIsChecked = queryParams.boolIsChecked || '';
+      this.pageParams.jobNumber = queryParams.jobNumber || '';
+      this.pageParams.phoneNumber = queryParams.phoneNumber || '';
+      Object.assign(this.pageParams, this.formModel.value);
+      this.getCustomerList();
+    }
   }
 
   getSuggestions(event?) {
