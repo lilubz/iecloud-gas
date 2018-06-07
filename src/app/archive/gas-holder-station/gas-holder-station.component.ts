@@ -166,6 +166,7 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
         value: '',
       }
     ];
+    this.searchParams.enterpriseName = '';
     if (event.value) {
       this._service.getDropdownForCorpInfoInRegion({
         regionId: event.value
@@ -277,7 +278,6 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
     };
   }
   showChangeDialog = (data) => {
-    console.log(data);
     this.changeBottleVisible = true;
     this.change.supplyStationName = data.inflatableName;
     this.change.supplyStationNumber = data.inflatableStationNumber;

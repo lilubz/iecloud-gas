@@ -256,7 +256,7 @@
     </div>
     <p-footer>
       <button type="button " pButton label="确认编辑" (click)="editCorpSupplyStation()"></button>
-      <button type="button " pButton (click)="editBottleVisible=false " label="关闭 "></button>
+      <button type="button " pButton (click)="closeDialog()" label="关闭 "></button>
     </p-footer>
   </p-dialog>
   <p-dialog [visible]="addBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false
@@ -378,7 +378,7 @@
     </div>
     <p-footer>
       <button type="button" pButton label="确认新增" (click)="AddCorpSupplyStation()"></button>
-      <button type="button" pButton (click)="addBottleVisible=false " label="关闭 "></button>
+      <button type="button" pButton (click)="closeDialog()" label="关闭 "></button>
     </p-footer>
   </p-dialog>
   <p-dialog [visible]="changeBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
@@ -400,7 +400,7 @@
     </div>
     <p-footer>
       <button type="button " pButton label="确认更改" (click)="changeEnterpriseNumber()"></button>
-      <button type="button " pButton (click)="changeBottleVisible=false " label="关闭 "></button>
+      <button type="button " pButton (click)="closeDialog()" label="关闭 "></button>
     </p-footer>
   </p-dialog>
 </div>

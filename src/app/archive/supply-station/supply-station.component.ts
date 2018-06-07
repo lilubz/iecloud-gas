@@ -179,6 +179,9 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
         value: '',
       }
     ];
+    this.searchParams.enterpriseName = '';
+    this.addForm.enterpriseNumber = '';
+    this.editForm.enterpriseNumber = '';
     if (event.value) {
       this._service.getDropdownForCorpInfoInRegion({
         regionId: event.value
@@ -405,6 +408,38 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       );
     } else {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '请选择企业' });
+    }
+  }
+  closeDialog = () => {
+    this.editBottleVisible = false;
+    this.addBottleVisible = false;
+    this.changeBottleVisible = false;
+    this.enterpriseDrop = [
+      {
+        label: '全部',
+        value: '',
+      }
+    ];
+    if (this.searchParams.regionId) {
+      this._service.getDropdownForCorpInfoInRegion({
+        regionId: this.searchParams.regionId
+      }).then(
+        data => {
+          if (data.status === 0) {
+            this.enterpriseDrop = this.enterpriseDrop.concat(data.data.map((item) => ({
+              label: item.enterpriseName,
+              value: item.enterpriseNumber,
+            })));
+          } else {
+            this.enterpriseDrop = this.enterpriseDrop;
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+          }
+        }
+      ).catch(
+        data => { }
+      );
+    } else {
+      this.getEnterprises();
     }
   }
   /**
