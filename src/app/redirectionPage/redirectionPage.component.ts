@@ -133,7 +133,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
       this.router.navigate(['/statistic/search-overview/city-overview']);
       // this.router.navigate(['../1'], { relativeTo: this.route, queryParams });
     } else {
-      this.router.navigate(['/statistic/search-overview/partition-overview']);
+      this.router.navigate(['/statistic/search-overview/partition-overview'], { relativeTo: this.route, queryParams });
       // this.router.navigate(['../1'], { relativeTo: this.route, queryParams });
     }
     // this.router.navigate(['../usingCylinder'], navigationExtras);
@@ -147,14 +147,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
     this.returnPH(this.objValue.value)
   }
   returnPH(data) {
-    const queryParams = {
-      // cylinderCode: '',
-      // userCode: '',
-      // gasStation: '',
-      // supplyStation: '',
-      // enterpriseName: '',
-      // employee: '',
-    }
+    const queryParams = {};
     switch (data) {
       case '1':
         if (!/^\d{8,11}$/.test(this.searchValue)) {
@@ -163,7 +156,8 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
           return false;
         }
         queryParams['cylinderCode'] = this.searchValue;
-      // TODO this.router.navigate(['../1'], { relativeTo: this.route, queryParams })
+        this.router.navigate(['/archive/cylinder/list'], { relativeTo: this.route, queryParams });
+        break;
       case '2':
         // 正则判断是否是姓名还是手机号并跳转
         if (/^[\u4E00-\u9FA5]+$/.test(this.searchValue)) { // 验证是否全为汉字
@@ -173,6 +167,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
             return false;
           }
           queryParams['userCode'] = this.searchValue;
+          this.router.navigate(['/archive/customer/list'], { relativeTo: this.route, queryParams });
         } else {
           if (!/^(\d{8}|\d{11})$/.test(this.searchValue)) {
             this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '姓名至少两位中文字符或,8位或11位手机号' });
@@ -180,6 +175,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
             return false;
           }
           queryParams['userCode'] = this.searchValue;
+          this.router.navigate(['/archive/customer/list'], { relativeTo: this.route, queryParams });
         }
         break;
       case '3':

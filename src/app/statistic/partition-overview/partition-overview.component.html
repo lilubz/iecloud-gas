@@ -11,62 +11,59 @@
         <p-column field="regionName" header="所属区域"></p-column>
         <p-column field="corpCount" header="企业数量">
           <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" title="{{rowData.corpCount}}">{{rowData.corpCount}}</a>
+            <a href="javascript:void(0);" title="查看企业详情" [routerLink]="['/archive/enterprise']" [queryParams]="{regionId:rowData.regionId}">{{rowData.corpCount}}</a>
           </ng-template>
         </p-column>
         <p-column field="supplyStationCount" header="供应站数量">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/supplyStation/list']" [queryParams]="{regionId:rowData.regionId}"
+              title="查看供应站详情">{{rowData.supplyStationCount}}</a>
+          </ng-template>
         </p-column>
         <p-column field="inflatableStationCount" header="储配站数量">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/gasHolderStation/list']" [queryParams]="{regionId:rowData.regionId}"
+              title="查看储配站详情">{{rowData.inflatableStationCount}}</a>
+          </ng-template>
         </p-column>
         <p-column field="dispatcherCount" header="送气工数量">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/employee']" [queryParams]="{regionId:rowData.regionId}" title="查看送气工详情">{{rowData.dispatcherCount}}</a>
+          </ng-template>
         </p-column>
         <p-column field="gcUserCount" header="用户数量">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{regionId:rowData.regionId}" title="查看用户详情">{{rowData.gcUserCount}}</a>
+          </ng-template>
         </p-column>
         <p-column field="alreadyCheckedUserCount" header="已安检用户数量">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{regionId:rowData.regionId,boolIsChecked:true}"
+              title="查看已安检用户详情">{{rowData.alreadyCheckedUserCount}}</a>
+          </ng-template>
         </p-column>
         <p-column field="noCheckedUserCount" header="未安检用户数量">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{regionId:rowData.regionId,boolIsChecked:false}"
+              title="查看未安检用户详情">{{rowData.noCheckedUserCount}}</a>
+          </ng-template>
         </p-column>
         <p-column field="gcTotalCount" header="登记钢瓶数量">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:rowData.regionId}" title="查看登记钢瓶详情">{{rowData.gcTotalCount}}</a>
+          </ng-template>
         </p-column>
         <p-column field="gcCodeAbnormalCount" header="异常气瓶列表">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:rowData.regionId,state:3}"
+              title="查看异常气瓶详情">{{rowData.gcCodeAbnormalCount}}</a>
+          </ng-template>
         </p-column>
         <p-column field="gcScrapCount" header="已报废气瓶">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/3']" [queryParams]="{liabilityName:rowData.name,liabilityNumber:rowData.dispatcherNumber,liabilitySubjectType:3}"
-              title="点击查询流转记录">{{rowData.name}}</a>
-          </ng-template> -->
+          <ng-template let-rowData="rowData" pTemplate="body">
+            <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:rowData.regionId,state:2}"
+              title="查看已报废气瓶详情">{{rowData.gcScrapCount}}</a>
+          </ng-template>
         </p-column>
       </p-dataTable>
     </div>

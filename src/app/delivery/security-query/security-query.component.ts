@@ -141,7 +141,7 @@ export class SecurityQueryComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(param = {}) {
     this.dataTable.pageNumber = 1;
     this.dataTable.first = 0;
     Object.assign(this.pageParams, this.formModel);
@@ -173,7 +173,7 @@ export class SecurityQueryComponent implements OnInit {
     }));
   }
 
-  getDataTableList() {
+  getDataTableList(param?) {
     this.loading = true;
     this._service.securityCheckInquiries({
       regionId: this.pageParams.region,

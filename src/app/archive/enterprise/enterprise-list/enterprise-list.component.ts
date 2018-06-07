@@ -65,6 +65,7 @@ export class EnterpriseListComponent implements OnInit {
     const queryParams = this.activatedRoute.queryParams['value'];
     if (JSON.stringify(queryParams) !== '{}') {
       this.formModel.enterpriseName = queryParams.enterpriseName || '';
+      this.formModel.regionId = queryParams.regionId || '';
     }
     this.onSubmit();
   }

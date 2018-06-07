@@ -62,19 +62,19 @@
       <div class="ui-g-4 ">
         <span class="ui-g-6 content title" title="登记钢瓶数量">登记钢瓶数量</span>
         <span class="ui-g-6 content" title="全市">
-          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}" title="查看登记钢瓶数量">{{ cityReview.regionOverviewVO.gcTotalCount }}</a>
+          <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:''}" title="查看登记钢瓶数量">{{ cityReview.regionOverviewVO.gcTotalCount }}</a>
         </span>
       </div>
       <div class="ui-g-4 ">
         <span class="ui-g-6 content title" title="异常气瓶数量">异常气瓶数量</span>
         <span class="ui-g-6 content" title="全市">
-          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}" title="查看异常气瓶数量">{{ cityReview.regionOverviewVO.gcCodeAbnormalCount }}</a>
+          <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{state:3}" title="查看异常气瓶数量">{{ cityReview.regionOverviewVO.gcCodeAbnormalCount }}</a>
         </span>
       </div>
       <div class="ui-g-4 ">
         <span class="ui-g-6 content title" title="已报废气瓶数量">已报废气瓶数量</span>
         <span class="ui-g-6 content" title="全市">
-          <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}" title="查看已报废气瓶数量">{{ cityReview.regionOverviewVO.gcScrapCount }}</a>
+          <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{state:2}" title="查看已报废气瓶数量">{{ cityReview.regionOverviewVO.gcScrapCount }}</a>
         </span>
       </div>
     </div>

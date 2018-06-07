@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PartitionOverviewService } from './partition-overview.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'gas-partition-overview',
@@ -12,21 +13,23 @@ export class PartitionOverviewComponent implements OnInit {
   dataTable = [];
   loading = false;
   constructor(
-    private _service: PartitionOverviewService
+    private _service: PartitionOverviewService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.loading = true;
-    this._service.regionOverview({}).then(data => {
-      this.loading = false
-      if (data.status === 0) {
-        console.log(data.data);
-        this.dataTable = data.data;
-      } else {
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      this.loading = true;
+      this._service.regionOverview(queryParams).then(data => {
+        this.loading = false
+        if (data.status === 0) {
+          console.log(data.data);
+          this.dataTable = data.data;
+        } else {
 
-      }
-    });
-
+        }
+      });
+    })
   }
 
 }

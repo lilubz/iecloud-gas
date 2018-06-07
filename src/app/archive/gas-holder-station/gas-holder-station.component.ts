@@ -112,6 +112,7 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
     const queryParams = this.activatedRoute.queryParams['value'];
     if (JSON.stringify(queryParams) !== '{}') {
       this.searchParams.supplyName = queryParams.supplyName || '';
+      this.searchParams.regionId = queryParams.regionId || '';
     }
     this.onSearch();
   }
