@@ -152,7 +152,7 @@ export class CustomerListComponent implements OnInit {
   // 提示消息
   msgs: Message[] = [];
   constructor(
-    private routerInfo: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private customerListService: CustomerListService,
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
@@ -165,12 +165,12 @@ export class CustomerListComponent implements OnInit {
     this.getDropdownForCorpInfoInRegion({
       regionId: ''
     });
-    const enterpriseNumber = this.routerInfo.snapshot.params['enterpriseID'];
-    if (typeof enterpriseNumber !== 'undefined') {
+
+    const queryParams = this.activatedRoute.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
       this.formModel.patchValue({
-        enterpriseNumber: enterpriseNumber
+        enterpriseNumber: queryParams.enterpriseID || ''
       });
-      this.formModel.enterpriseNumber = enterpriseNumber;
       this.onSearch();
     }
   }

@@ -63,6 +63,7 @@ export class CylinderListComponent implements OnInit {
     first: 0
   };
   formModel: any = this.fb.group({
+    regionId: '',
     enterpriseNumber: '',
     productionUnit: '',
     state: '',
@@ -71,6 +72,7 @@ export class CylinderListComponent implements OnInit {
     ownNumber: ''
   });
   pageParams = {
+    regionId: '',
     enterpriseNumber: '',
     productionUnit: '',
     state: '',
@@ -113,13 +115,10 @@ export class CylinderListComponent implements OnInit {
   getDropdownCompany(params?) {
     this._service.getDropdownForCorpInfoInRegion(params).then(data => {
       if (data.status === 0) {
-        this.dropdown.company = data.data.map((item) => ({
+        this.dropdown.company = this.dropdown.default.concat(data.data.map((item) => ({
           label: item.enterpriseName,
           value: item.enterpriseNumber,
-        }));
-        if (params.regionId === '') { // 如果regionId===''表示区域选择的是【全部】，那么企业下拉框中会默认【全部】选项。
-          this.dropdown.company.unshift(this.dropdown.default[0]);
-        }
+        })));
       } else {
         this.dropdown.company = [];
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });

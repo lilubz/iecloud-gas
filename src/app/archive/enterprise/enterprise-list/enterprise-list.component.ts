@@ -3,6 +3,7 @@ import { EnterpriseService, } from '../enterprise.service';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { zh_CN } from '../../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { Util } from '../../../core/util';
@@ -55,11 +56,17 @@ export class EnterpriseListComponent implements OnInit {
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
     private router: Router,
-    private util: Util
+    private util: Util,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.getDropdownRegion();
+    const queryParams = this.activatedRoute.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
+      this.formModel.enterpriseName = queryParams.enterpriseName;
+    }
+    this.onSubmit();
   }
   onSubmit() {
     this.dataTable.pageNumber = 1;

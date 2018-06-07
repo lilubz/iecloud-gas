@@ -4,7 +4,7 @@
 
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 所在区域</span>
-        <p-dropdown [options]="dropdown.region" [style]="{'width':'280px'}" (onChange)="onChangeRegionID($event)"></p-dropdown>
+        <p-dropdown [options]="dropdown.region" [style]="{'width':'280px'}" formControlName="regionId" (onChange)="onChangeRegionID($event)"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-lg-6">

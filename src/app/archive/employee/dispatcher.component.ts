@@ -66,6 +66,7 @@ export class DispatcherComponent implements OnInit {
   ngOnInit() {
     this.cylinderSelectOpt();
     this.getDropdownSupplyStation();
+
     this.routerInfo.paramMap.switchMap((params) => {
       return Promise.resolve(params);
     }).subscribe((params) => {
@@ -73,7 +74,13 @@ export class DispatcherComponent implements OnInit {
         this.formModel.patchValue({ jobNumber: params.get('dispatcherNumber') });
         this.onSearch();
       }
-    });
+      });
+
+    const queryParams = this.routerInfo.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
+      this.formModel.patchValue({ jobNumber: queryParams.dispatcherNumber });
+    }
+    this.onSearch();
   }
 
   showImg(event, url, overlaypanel) {

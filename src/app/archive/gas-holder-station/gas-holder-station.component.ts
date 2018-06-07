@@ -1,5 +1,6 @@
 import { RoleType } from './../../common/RoleType';
 import { Component, OnInit, OnDestroy, Inject, } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { GsaHolderStationService } from './gas-holder-station.service';
 import { CommonRequestService } from '../../core/common-request.service';
@@ -99,7 +100,8 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
     private _service: GsaHolderStationService,
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
-    private util: Util
+    private util: Util,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -107,6 +109,11 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
     this.getEnterprises();
     this.getRegions();
     this.getAreaList();
+    const queryParams = this.activatedRoute.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
+      this.searchParams.supplyName = queryParams.supplyName || '';
+    }
+    this.onSearch();
   }
 
   getRegions() {
@@ -193,16 +200,19 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
    * 页面变化,初始化会执行一次
    * @param event
    */
-  onPageChange(event) {
-    const page: {
-      pageSize: Number,
-      pageNumber: Number
-    } = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
-    this.onSearch(page);
-    this.changeStatusPage = page;
+  onPageChange($event) {
+    this.bottleLibraryList = [];
+    this.onPageChange = (event) => {
+      const page: {
+        pageSize: Number,
+        pageNumber: Number
+      } = {
+          pageSize: event.rows,
+          pageNumber: event.first / event.rows + 1
+        };
+      this.onSearch(page);
+      this.changeStatusPage = page;
+    };
   }
   /**
    * 查询
