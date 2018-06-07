@@ -177,6 +177,7 @@ export class CustomerListComponent implements OnInit {
         });
         this.pageParams.boolIsChecked = queryParams.boolIsChecked || '';
         this.pageParams.jobNumber = queryParams.jobNumber || '';
+        Object.assign(this.pageParams, this.formModel.value);
         this.getCustomerList();
       }
     });

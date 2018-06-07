@@ -10,43 +10,45 @@
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="持有重瓶数量">持有重瓶数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.haveFullCount}}">{{details.haveFullCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectType: 2,liabilitySubjectId:details?.inflatableStationVO.supplyStationNumber,boolIsFull:
+            true}">{{details.haveFullCount}}</a>
           </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="重瓶入库数量">重瓶入库数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.fullBottleReceiveCount}}">{{details.fullBottleReceiveCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/delivery/cylinder-trace/cylinder-record/2']" [queryParams]="{liabilitySubjectType: 2,liabilityNumber:details?.inflatableStationVO.supplyStationNumber,type:'重入'}">{{details.fullBottleReceiveCount}}</a>
           </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="重瓶出库数量">重瓶出库数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.fullBottleSendCount}}">{{details.fullBottleSendCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/delivery/cylinder-trace/cylinder-record/2']" [queryParams]="{liabilitySubjectType: 2,liabilityNumber:details?.inflatableStationVO.supplyStationNumber,type:'重出'}">{{details.fullBottleSendCount}}</a>
           </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="持有空瓶数量">持有空瓶数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.haveEmptyCount}}">{{details.haveEmptyCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectType: 2,liabilitySubjectId:details?.inflatableStationVO.supplyStationNumber,boolIsFull:
+            false}">{{details.haveEmptyCount}}</a>
           </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="空瓶入库数量">空瓶入库数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.emptyBottleReceiveCount}}">{{details.emptyBottleReceiveCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/delivery/cylinder-trace/cylinder-record/2']" [queryParams]="{liabilitySubjectType: 2,liabilityNumber:details?.inflatableStationVO.supplyStationNumber,type:'空入'}">{{details.emptyBottleReceiveCount}}</a>
           </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="空瓶出库数量">空瓶出库数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.emptyBottleSendCount}}">{{details.emptyBottleSendCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/delivery/cylinder-trace/cylinder-record/2']" [queryParams]="{liabilitySubjectType: 2,liabilityNumber:details?.inflatableStationVO.supplyStationNumber,type:'空出'}">{{details.emptyBottleSendCount}}</a>
           </span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="送气工数量">送气工数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.dispatcherCount}}">{{details.dispatcherCount}}</a>
+            <a href="javascript:void(0);" title="{{details.dispatcherCount}}" [routerLink]="['/archive/employee']" [queryParams]="{supplyStationNumber: details?.inflatableStationVO.supplyStationNumber}">{{details.dispatcherCount}}</a>
           </span>
         </div>
         <div class="ui-g-4">
@@ -63,7 +65,7 @@
       <div class="ui-g-12 group">
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="供应站名称">供应站名称</span>
-          <span class="ui-g-6 content" title="{{details.inflatableStationVO.supplyStationAddress}}">{{details.inflatableStationVO.supplyStationAddress}}</span>
+          <span class="ui-g-6 content" title="{{details.inflatableStationVO.supplyStationName}}">{{details.inflatableStationVO.supplyStationName}}</span>
         </div>
         <div class="ui-g-4">
           <span class="ui-g-6 content title" title="所属区域">所属区域</span>

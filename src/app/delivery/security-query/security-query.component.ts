@@ -100,6 +100,7 @@ export class SecurityQueryComponent implements OnInit {
       if (JSON.stringify(queryParams) !== '{}') {
         this.formModel.region = queryParams.regionId || '';
         this.pageParams.userNumber = queryParams.userNumber || '';
+        this.pageParams.enterprise = queryParams.enterpriseNumber || '';
         if (typeof queryParams.dispatcherNumber === 'string') { // 如果有这个参数， 那么只查询当月的数据。
           this.pageParams.dispatcherNumber = queryParams.dispatcherNumber || '';
           this.formModel.startTime = this.pageParams.startTime = moment().set({
@@ -110,6 +111,7 @@ export class SecurityQueryComponent implements OnInit {
             millisecond: 0
           })['_d'];
         }
+        
         this.getDataTableList();
       }
     });

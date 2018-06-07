@@ -100,11 +100,13 @@ export class CylinderListComponent implements OnInit {
       if (JSON.stringify(queryParams) !== '{}') {
         this.formModel.patchValue({
           enterpriseNumber: queryParams.enterpriseID || '',
-          regionId: queryParams.regionId || ''
+          regionId: queryParams.regionId || '',
+          state: queryParams.state || ''
         });
         this.pageParams.liabilitySubjectType = queryParams.liabilitySubjectType || '';
         this.pageParams.liabilitySubjectId = queryParams.liabilitySubjectId || '';
         this.pageParams.boolIsFull = queryParams.boolIsFull || '';
+        Object.assign(this.pageParams, this.formModel.value);
         this.getCylinders();
       }
     });

@@ -9,37 +9,43 @@
         <div class="ui-g-6">
           <span class="ui-g-6 content title" title="持有重瓶数量">持有重瓶数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.haveFullCount}}">{{details.haveFullCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectType: 1,liabilitySubjectId:details?.inflatableStationVO.inflatableStationNumber,boolIsFull:
+            true}">{{details.haveFullCount}}</a>
           </span>
         </div>
         <div class="ui-g-6">
           <span class="ui-g-6 content title" title="重瓶出库记录">重瓶出库记录</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.fullBottleSendCount}}">{{details.fullBottleSendCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilitySubjectType: 1,liabilityNumber:details?.inflatableStationVO.inflatableStationNumber,
+            type:'重出'}">{{details.fullBottleSendCount}}</a>
           </span>
         </div>
         <div class="ui-g-6">
           <span class="ui-g-6 content title" title="持有空瓶数量">持有空瓶数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.haveEmptyCount}}">{{details.haveEmptyCount}}</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectType: 1,liabilitySubjectId:details?.inflatableStationVO.inflatableStationNumber,boolIsFull:
+            false}">{{details.haveEmptyCount}}</a>
           </span>
         </div>
         <div class="ui-g-6">
-          <span class="ui-g-6 content title" title="空瓶出库记录">空瓶出库记录</span>
+          <span class="ui-g-6 content title" title="空瓶出库记录">空瓶入库记录</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="todo没有空瓶出库">todo没有空瓶出库</a>
+            <a href="javascript:void(0);" title="查看气瓶信息" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilitySubjectType: 1,liabilityNumber:details?.inflatableStationVO.inflatableStationNumber,
+            type:'空入'}">{{details.emptyBottleReceiveCount}}</a>
           </span>
         </div>
         <div class="ui-g-6">
           <span class="ui-g-6 content title" title="流转记录">流转记录</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="查看详情">查看详情</a>
+            <a href="javascript:void(0);" title="查看流转记录" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilitySubjectType: 1,liabilityNumber:details?.inflatableStationVO.inflatableStationNumber,
+            type:' '}">查看详情</a>
           </span>
         </div>
         <div class="ui-g-6">
           <span class="ui-g-6 content title" title="充装气瓶数量">充装气瓶数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.fillingCount}}">{{details.fillingCount}}</a>
+            <a href="javascript:void(0);" title="{{details.fillingCount}}" [routerLink]="['/delivery/cylinder-trace/cylinder-filling']" 
+            [queryParams]="{stationName: details.inflatableStationVO.inflatableName}">{{details.fillingCount}}</a>
           </span>
         </div>
         

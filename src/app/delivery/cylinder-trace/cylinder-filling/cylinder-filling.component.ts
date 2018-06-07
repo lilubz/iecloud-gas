@@ -35,8 +35,10 @@ export class CylinderFillingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (JSON.stringify(this.activatedRoute.queryParams['value']) !== '{}') {
-      this.cylinderNumber = this.activatedRoute.queryParams['value'].cylinderNumber || ''
+    const queryParams = this.activatedRoute.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
+      this.cylinderNumber = queryParams.cylinderNumber || '';
+      this.stationName = queryParams.stationName || '';
     }
   }
 

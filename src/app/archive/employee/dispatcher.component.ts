@@ -78,9 +78,14 @@ export class DispatcherComponent implements OnInit {
 
     const queryParams = this.routerInfo.queryParams['value'];
     if (JSON.stringify(queryParams) !== '{}') {
-      this.formModel.patchValue({ jobNumber: queryParams.dispatcherNumber });
+      this.formModel.patchValue({
+        jobNumber: queryParams.dispatcherNumber || '',
+        supplyStationId: queryParams.supplyStationNumber || '',
+        enterpriseId: queryParams.enterpriseNumber || '',
+      });
     }
-    this.onSearch();
+    Object.assign(this.pageParams, this.formModel.value);
+    this.getDispatcherInfo();
   }
 
   showImg(event, url, overlaypanel) {

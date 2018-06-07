@@ -36,6 +36,8 @@ export class AppRoutingCache  implements RouteReuseStrategy {
 
   /** 从复用中获取快照，若无则返回null */
   public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
+    if (!route.routeConfig) { return null; }
+    if (route.routeConfig.loadChildren) { return null; }
     const needObj = this.handlers.find(item => item.component === route.component);
     return needObj ? needObj.handle : null;
   }
