@@ -131,7 +131,7 @@ export class CustomerListComponent implements OnInit {
       userTypeId: '',
       userNatureId: '',
       pageSize: this.dataTable.option[2],
-      pageNumber: 1
+      pageNumber: 1,
     };
   willDeleteCustomer;
   willEditCustomer = {
@@ -165,14 +165,19 @@ export class CustomerListComponent implements OnInit {
     this.getDropdownForCorpInfoInRegion({
       regionId: ''
     });
-
-    const queryParams = this.activatedRoute.queryParams['value'];
-    if (JSON.stringify(queryParams) !== '{}') {
-      this.formModel.patchValue({
-        enterpriseNumber: queryParams.enterpriseID || ''
-      });
-      this.onSearch();
-    }
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      if (JSON.stringify(queryParams) !== '{}') {
+        this.formModel.patchValue({
+          enterpriseNumber: queryParams.enterpriseID || '',
+          regionId: queryParams.regionId || ''
+        });
+        const data = {
+          boolIsChecked: queryParams.boolIsChecked || '',
+          jobNumber: queryParams.jobNumber || ''
+        }
+        this.onSearch(data);
+      }
+    });
   }
 
   getSuggestions(event?) {
@@ -188,13 +193,13 @@ export class CustomerListComponent implements OnInit {
       });
   }
 
-  onSearch() {
+  onSearch(data={}) {
     let params = {};
     if (this.formModel.valid) { // 通过了验证
       params = Object.assign({ pageNumber: 1, pageSize: this.pageParams.pageSize }, this.formModel.value);
       this.dataTable.first = 0;
       Object.assign(this.pageParams, params);
-      this.getCustomerList(params);
+      this.getCustomerList(Object.assign(params,data));
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {
         if (this.formModel.controls[key].errors) {

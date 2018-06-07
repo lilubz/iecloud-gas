@@ -1,8 +1,11 @@
-<div class="ta-c ui-g-12" *ngIf="loading">
-  <h2>查不到此信息</h2>
+<div class="ta-c ui-g-12" *ngIf="!detailList.isTrue">
+  <h2>
+    <span *ngIf="!loading">没有查到数据</span>
+    <span *ngIf="loading">正查询中，请稍等</span>
+  </h2>
 </div>
 
-<div class="cylinder-detail" *ngIf="!loading">
+<div class="cylinder-detail" *ngIf="detailList.isTrue">
   <div class="group ui-g-12">
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="气瓶充装状态">气瓶充装状态</span>
@@ -10,18 +13,17 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看充装记录">
-        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
-          title="查看充装记录">查看充装记录</a> -->
-        查看充装记录
+        <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-filling']" [queryParams]="{cylinderNumber:detailList.gasLabelNumber}"
+          title="查看充装记录">查看充装记录</a>
       </span>
       <span class="ui-g-6 content title" title="当前气瓶持有者">当前气瓶持有者</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="{{detailList.liabilityName}}">{{detailList.liabilityName}}</span>
-      <span class="ui-g-6 content" title="查看充装记录">
-        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
-          title="查看充装记录">查看充装记录</a> -->
-        查看充装记录</span>
+      <span class="ui-g-6 content" title="查看流转记录">
+        <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-history']" [queryParams]="{cylinderNumber:detailList.gasLabelNumber}"
+          title="查看流转记录">查看流转记录</a>
+      </span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="所属企业">所属企业</span>
@@ -29,17 +31,16 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看详情">
-        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
-          title="查看详情">查看详情</a> -->
-        查看详情</span>
+        <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{enterpriseID:detailList.enterpriseNumber}"
+          title="查看详情">查看详情</a>
+      </span>
       <span class="ui-g-6 content title" title="所属辖区">所属辖区</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="{{detailList.regionName}}">{{detailList.regionName}}</span>
       <span class="ui-g-6 content" title="查看详情">
-        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
-        title="查看详情">查看详情</a> -->
-        查看详情</span>
+        <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:detailList.regionId}" title="查看详情">查看详情</a>
+      </span>
     </div>
   </div>
   <div class="group ui-g-12">
@@ -73,23 +74,23 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="瓶体重量">瓶体重量</span>
-      <span class="ui-g-6 content" title="{{detailList.weight}}">{{detailList.weight}}</span>
+      <span class="ui-g-6 content" title="{{detailList.weight?detailList.weight+'kg':''}}">{{detailList.weight?detailList.weight+'kg':''}}</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="容积">容积</span>
-      <span class="ui-g-6 content" title="{{detailList.volume}}">{{detailList.volume}}</span>
+      <span class="ui-g-6 content" title="{{detailList.volume?detailList.volume+'L':''}}">{{detailList.volume?detailList.volume+'L':''}}</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="设计壁厚">设计壁厚</span>
-      <span class="ui-g-6 content" title="{{detailList.designWallThickness}}">{{detailList.designWallThickness}}</span>
+      <span class="ui-g-6 content" title="{{detailList.designWallThickness?detailList.designWallThickness+'mm':''}}">{{detailList.designWallThickness?detailList.designWallThickness+'mm':''}}</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="水压试验压力">水压试验压力</span>
-      <span class="ui-g-6 content" title="{{detailList.waterPressureTest}}">{{detailList.waterPressureTest}}</span>
+      <span class="ui-g-6 content" title="{{detailList.waterPressureTest?detailList.waterPressureTest+'MPa':''}}">{{detailList.waterPressureTest?detailList.waterPressureTest+'MPa':''}}</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="公称工作压力">公称工作压力</span>
-      <span class="ui-g-6 content" title="{{detailList.nominalWorkingPressure}}">{{detailList.nominalWorkingPressure}}</span>
+      <span class="ui-g-6 content" title="{{detailList.nominalWorkingPressure?detailList.nominalWorkingPressure+'MPa':''}}">{{detailList.nominalWorkingPressure?detailList.nominalWorkingPressure+"MPa":''}}</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="制造单位">制造单位</span>
@@ -97,11 +98,11 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="生产日期">生产日期</span>
-      <span class="ui-g-6 content" title="{{detailList.timeManufacture}}">{{detailList.timeManufacture | date:"yyyy-MM-dd"}}</span>
+      <span class="ui-g-6 content" title="{{detailList.timeManufacture | date:'yyyy-MM-dd'}}">{{detailList.timeManufacture | date:"yyyy-MM-dd"}}</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="报废日期">报废日期</span>
-      <span class="ui-g-6 content" title="{{detailList.expectedScrapTime}}">{{detailList.expectedScrapTime | date:"yyyy-MM-dd"}}</span>
+      <span class="ui-g-6 content" title="{{detailList.expectedScrapTime | date:'yyyy-MM-dd'}}">{{detailList.expectedScrapTime | date:"yyyy-MM-dd"}}</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="报废处理情况">报废处理情况</span>
@@ -113,12 +114,12 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="上次检测日期">上次检测日期</span>
-      <span class="ui-g-6 content" title="{{detailList.lastInspectionTime}}">{{detailList.lastInspectionTime | date:"yyyy-MM-dd"}}</span>
+      <span class="ui-g-6 content" title="{{detailList.lastInspectionTime | date:'yyyy-MM-dd'}}">{{detailList.lastInspectionTime | date:"yyyy-MM-dd"}}</span>
     </div>
 
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="下次检测日期">下次检测日期</span>
-      <span class="ui-g-6 content" title="{{detailList.nextInspectionTime}}">{{detailList.nextInspectionTime | date:"yyyy-MM-dd"}}</span>
+      <span class="ui-g-6 content" title="{{detailList.nextInspectionTime | date:'yyyy-MM-dd'}}">{{detailList.nextInspectionTime | date:"yyyy-MM-dd"}}</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="上次检测单位名称">上次检测单位名称</span>
@@ -131,7 +132,8 @@
       </span>
     </div>
     <p-overlayPanel #imgBox>
-      <img src="http://121.43.155.201/gas/upload/image/201607/895cf92d86b24e849b635952e7a7e888.jpg" *ngIf="detailList.gcBasicUrl" style="max-width: 262px" />
+      <img src="http://121.43.155.201/gas/upload/image/201607/895cf92d86b24e849b635952e7a7e888.jpg" *ngIf="detailList.gcBasicUrl"
+        style="max-width: 262px" />
     </p-overlayPanel>
   </div>
 </div>

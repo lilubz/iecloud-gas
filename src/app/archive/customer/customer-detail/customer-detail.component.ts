@@ -48,10 +48,11 @@ export class CustomerDetailComponent implements OnInit {
   * 查询用户详情信息
   */
   queryDetail(queryParams) {
+    this.loading = true;
     this._service.queryCustomerDetail(queryParams).then(data => {
       if (data.status === 0) {
         this.customerDetailList = data.data;
-        console.log(this.customerDetailList);
+        this.customerDetailList['isTrue'] = true;
         if (this.customerDetailList.gender === '0') {
           this.customerDetailList.gender = '男';
         } else if (this.customerDetailList.gender === '1') {
@@ -61,8 +62,8 @@ export class CustomerDetailComponent implements OnInit {
         }
       } else {
         this.messageService.add({ severity: 'warn', summary: '响应信息', detail: data.msg });
-
       }
+      this.loading = false;
     });
   }
   showImg(imageUrl) {

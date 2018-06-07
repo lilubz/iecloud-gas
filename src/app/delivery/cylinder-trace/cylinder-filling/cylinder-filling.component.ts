@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { CylinderTraceService } from '../cylinder-trace.service';
 import { Util } from '../../../core/util';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'gas-cylinder-filling',
@@ -29,11 +30,14 @@ export class CylinderFillingComponent implements OnInit {
   constructor(
     private cylinderTraceService: CylinderTraceService,
     private messageService: MessageService,
-    public util: Util
+    public util: Util,
+    public activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    // this.listFillingInfo();
+    if (JSON.stringify(this.activatedRoute.queryParams['value']) !== '{}') {
+      this.cylinderNumber = this.activatedRoute.queryParams['value'].cylinderNumber || ''
+    }
   }
 
   onFillingHistoryPageChange(event) {

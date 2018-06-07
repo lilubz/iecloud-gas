@@ -69,7 +69,7 @@ export class CylinderListComponent implements OnInit {
     state: '',
     cylinderCode: '',
     serialNumber: '',
-    ownNumber: ''
+    ownNumber: '',
   });
   pageParams = {
     regionId: '',
@@ -90,13 +90,13 @@ export class CylinderListComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
-  onSearch(page?) {
+  onSearch(data={}) {
     let params = {};
     if (this.formModel.valid) { // 通过了验证
       params = Object.assign({ pageNumber: 1, pageSize: this.pageParams.pageSize }, this.formModel.value);
       this.dataTable.first = 0;
       Object.assign(this.pageParams, params);
-      this.getCylinders(params);
+      this.getCylinders( Object.assign(data,params));
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {
         if (this.formModel.controls[key].errors) {
@@ -120,7 +120,7 @@ export class CylinderListComponent implements OnInit {
           value: item.enterpriseNumber,
         })));
       } else {
-        this.dropdown.company = [];
+        this.dropdown.company = this.dropdown.default.concat([]);
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
       this.formModel.patchValue({
@@ -158,13 +158,20 @@ export class CylinderListComponent implements OnInit {
   ngOnInit() {
     this.getDropdownRegion();
     this.getCylinderSearchOpt();
-    const enterpriseID = this.routerInfo.snapshot.params['enterpriseID'];
-    if (typeof enterpriseID !== 'undefined') {
-      this.formModel.patchValue({
-        enterpriseNumber: enterpriseID
-      });
-      this.onSearch();
-    }
+    this.routerInfo.queryParams.subscribe((queryParams) => {
+      if (JSON.stringify(queryParams) !== '{}') {
+        this.formModel.patchValue({
+          enterpriseNumber: queryParams.enterpriseID || '',
+          regionId: queryParams.regionId || ''
+        });
+        const dataSearch = {
+          liabilitySubjectType: queryParams.liabilitySubjectType || '',
+          liabilitySubjectId: queryParams.liabilitySubjectId || '',
+          boolIsFull: queryParams.boolIsFull || '',
+        }
+        this.onSearch(dataSearch)
+      }
+    });
   }
 
   getCylinderSearchOpt() {

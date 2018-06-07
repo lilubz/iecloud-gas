@@ -6,6 +6,7 @@ import { CommonRequestService } from '../../core/common-request.service';
 import * as moment from 'moment';
 import { SecurityQueryService } from './security-query.service';
 import { Util } from '../../core/util';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'gas-security-query',
@@ -70,6 +71,7 @@ export class SecurityQueryComponent implements OnInit {
     enterprise: '',
     enclosures: '',
     checkState: '',
+    userNumber: '',
     startTime: moment().subtract(1, 'years')['_d'],
     endTime: moment()['_d'],
   };
@@ -85,12 +87,22 @@ export class SecurityQueryComponent implements OnInit {
     private _service: SecurityQueryService,
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
-    private util: Util
+    private util: Util,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.getDropdownRegion();
     this.getDropdownEnterprise();
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      if (JSON.stringify(queryParams) !== '{}') {
+        this.formModel.region=queryParams.regionId || '';
+        const data = {
+          userNumber: queryParams.userNumber || '',
+        }
+        this.onSubmit(data);
+      }
+    });
   }
 
   getDropdownRegion() {
@@ -107,7 +119,7 @@ export class SecurityQueryComponent implements OnInit {
   }
 
   getDropdownEnterprise() {
-    this.commonRequestService.listCorpInfoInRegion({ regionId: this.formModel.region}).then(data => {
+    this.commonRequestService.listCorpInfoInRegion({ regionId: this.formModel.region }).then(data => {
       if (data.status === 0) {
         this.dropdown.enterprise = this.dropdown.default.concat(data.data.map(item => ({
           label: item.enterpriseName,
@@ -119,11 +131,11 @@ export class SecurityQueryComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(param = {}) {
     this.dataTable.pageNumber = 1;
     this.dataTable.first = 0;
     Object.assign(this.pageParams, this.formModel);
-    this.getDataTableList();
+    this.getDataTableList(Object.assign(this.formModel, param));
   }
 
   onRegionChange() {
@@ -149,7 +161,7 @@ export class SecurityQueryComponent implements OnInit {
     }));
   }
 
-  getDataTableList() {
+  getDataTableList(param?) {
     this.loading = true;
     this._service.securityCheckInquiries({
       regionId: this.pageParams.region,
@@ -158,6 +170,7 @@ export class SecurityQueryComponent implements OnInit {
       securityCheckState: this.pageParams.checkState,
       beginTime: this.util.formatTime(this.pageParams.startTime, 'start'),
       endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
+      userNumber: param.userNumber,
       pageSize: this.dataTable.pageSize,
       pageNumber: this.dataTable.pageNumber
     }).then(data => {

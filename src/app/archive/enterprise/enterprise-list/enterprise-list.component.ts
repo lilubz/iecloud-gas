@@ -64,7 +64,7 @@ export class EnterpriseListComponent implements OnInit {
     this.getDropdownRegion();
     const queryParams = this.activatedRoute.queryParams['value'];
     if (JSON.stringify(queryParams) !== '{}') {
-      this.formModel.enterpriseName = queryParams.enterpriseName;
+      this.formModel.enterpriseName = queryParams.enterpriseName || '';
     }
     this.onSubmit();
   }

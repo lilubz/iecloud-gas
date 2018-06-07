@@ -1,9 +1,12 @@
 <!-- <div class="main">
   <div class="card"> -->
-<div class="ui-g-12 ta-c" *ngIf="loading">
-  <h2>查不到此信息</h2>
+<div class="ui-g-12 ta-c" *ngIf="!customerDetailList.isTrue">
+  <h2>
+    <span *ngIf="!loading">没有查到数据</span>
+    <span *ngIf="loading">正查询中，请稍等</span>
+  </h2>
 </div>
-<div class="customer-detail">
+<div class="customer-detail" *ngIf="customerDetailList.isTrue">
   <div class="group ui-g-12">
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="所属区域">所属区域</span>
@@ -11,14 +14,17 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看区域详情">
-        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
-          title="查看充装记录">查看充装记录</a> -->
-        查看区域详情</span>
+        <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{regionId:customerDetailList.regionId}"
+          title="查看区域详情">查看区域详情</a>
+      </span>
       <span class="ui-g-6 content title" title="所属企业">所属企业</span>
     </div>
     <div class="ui-g-4 ">
-      <span class="ui-g-6 content" title="长江能源">长江能源</span>
       <span class="ui-g-6 content" title="{{customerDetailList.corpName}}">{{customerDetailList.corpName}}</span>
+      <span class="ui-g-6 content" title="查看详情">
+        <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{enterpriseID:customerDetailList.enterpriseNumber}"
+          title="查看详情">查看详情</a>
+      </span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="当前持有气瓶数量">当前持有气瓶数量</span>
@@ -26,16 +32,17 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看气瓶详情">
-        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
-          title="查看气瓶详情">查看气瓶详情</a> -->
-        查看气瓶详情</span>
+        <a href="javascript:void(0);" *ngIf="customerDetailList.gcCount !==0" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectType:4,liabilitySubjectId:customerDetailList.userNumber}"
+          title="查看气瓶详情">查看气瓶详情</a>
+        <a href="javascript:void(0);" *ngIf="customerDetailList.gcCount==0" title="无气瓶详情">无气瓶详情</a>
+      </span>
       <span class="ui-g-6 content title" title="流转记录">流转记录</span>
     </div>
     <div class="ui-g-4 ">
-      <span class="ui-g-6 content" title="查看流转详情">
-        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
-          title="查看流转详情">查看流转详情</a> -->
-        查看流转详情</span>
+      <span class="ui-g-6 content" title="查看流转记录">
+        <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/4']" [queryParams]="{liabilitySubjectType:4,liabilityNumber:customerDetailList.userNumber,liabilityName:customerDetailList.userName}"
+          title="查看流转记录">查看流转记录</a>
+      </span>
       <span class="ui-g-6 content" title=""></span>
     </div>
     <div class="ui-g-4 ">
@@ -44,14 +51,13 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看安检详情">
-        <!-- <a href="javascript:void(0);" [routerLink]="['../partition-overview']" [queryParams]="{regionId:''}"
-          title="查看安检详情">查看安检详情</a> -->
-        查看安检详情</span>
+        <a href="javascript:void(0);" [routerLink]="['/delivery/security-query']" [queryParams]="{userNumber:customerDetailList.userNumber}" title="查看安检详情">查看安检详情</a>
+      </span>
       <span class="ui-g-6 content title" title="下次安检时间">下次安检时间</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="{{customerDetailList.lastCheckTime | date:'yyyy-MM-dd'}}">{{customerDetailList.lastCheckTime | date:"yyyy-MM-dd"}}</span>
-      <span class="ui-g-6 content" title="查看详情">查看详情</span>
+      <span class="ui-g-6 content" title=""></span>
     </div>
   </div>
   <div class="group ui-g-12">
