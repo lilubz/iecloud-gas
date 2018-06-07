@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PermissionGuard } from './core/permission-guard.service';
 import { RedirectionPageComponent } from './redirectionPage/redirectionPage.component';
 import { LayoutComponent } from './layout/layout.component';
-import {PubServiceModule} from './pub-service/pub-service.module';
+import { PubServiceModule } from './pub-service/pub-service.module';
 
 const routes: Routes = [
   {

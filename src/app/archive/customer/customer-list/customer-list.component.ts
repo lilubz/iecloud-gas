@@ -123,7 +123,8 @@ export class CustomerListComponent implements OnInit {
     pageSize: number,
     pageNumber: number,
     boolIsChecked: string,
-    jobNumber: string
+    jobNumber: string,
+    phoneNumber: string,
   } = {
       regionId: '',
       enterpriseNumber: '',
@@ -135,7 +136,8 @@ export class CustomerListComponent implements OnInit {
       pageSize: this.dataTable.option[2],
       pageNumber: 1,
       boolIsChecked: '',
-      jobNumber: ''
+      jobNumber: '',
+      phoneNumber: ''
     };
   willDeleteCustomer;
   willEditCustomer = {
@@ -173,10 +175,12 @@ export class CustomerListComponent implements OnInit {
       if (JSON.stringify(queryParams) !== '{}') {
         this.formModel.patchValue({
           enterpriseNumber: queryParams.enterpriseID || '',
-          regionId: queryParams.regionId || ''
+          regionId: queryParams.regionId || '',
+          userName: queryParams.userName || '',
         });
         this.pageParams.boolIsChecked = queryParams.boolIsChecked || '';
         this.pageParams.jobNumber = queryParams.jobNumber || '';
+        this.pageParams.phoneNumber = queryParams.phoneNumber || '';
         Object.assign(this.pageParams, this.formModel.value);
         this.getCustomerList();
       }
@@ -203,6 +207,7 @@ export class CustomerListComponent implements OnInit {
       Object.assign(this.pageParams, this.formModel.value);
       this.pageParams.boolIsChecked = '';
       this.pageParams.jobNumber = '';
+      this.pageParams.phoneNumber = '';
       this.getCustomerList();
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {

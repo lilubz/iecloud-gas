@@ -101,7 +101,8 @@ export class CylinderListComponent implements OnInit {
         this.formModel.patchValue({
           enterpriseNumber: queryParams.enterpriseID || '',
           regionId: queryParams.regionId || '',
-          state: queryParams.state || ''
+          cylinderCode: queryParams.cylinderCode || '',
+          state: queryParams.state || '',
         });
         this.pageParams.liabilitySubjectType = queryParams.liabilitySubjectType || '';
         this.pageParams.liabilitySubjectId = queryParams.liabilitySubjectId || '';

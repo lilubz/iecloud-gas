@@ -66,6 +66,7 @@ export class EnterpriseListComponent implements OnInit {
     if (JSON.stringify(queryParams) !== '{}') {
       this.formModel.enterpriseName = queryParams.enterpriseName || '';
       this.formModel.regionId = queryParams.regionId || '';
+      this.formModel.startTime = new Date(0);
     }
     this.onSubmit();
   }

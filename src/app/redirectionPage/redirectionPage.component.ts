@@ -79,12 +79,11 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
       this.Admin = true; //admin权限
       this.unable = false;
     } else if (this.userStateService.getUserRoleType() === RoleType.Government) {
-      this.Admin = false;//非admin权限
-      this.unable = false;
+      this.Admin = false;//非admin
     } else {
       this.unable = true;
     }
-    this.getDropdownRegion();
+    // this.getDropdownRegion();
   }
   getDropdownRegion() {
     this.commonRequestService.getRegions().then(data => {
@@ -121,22 +120,15 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
    * @memberof RedirectionPageComponent
    */
   searchRegion() {
-    // let navigationExtras: NavigationExtras = {
-    //   queryParams: { 'regionId': this.Region.value },
-    //   relativeTo: this.route
-    // };
 
     const queryParams = {
       'regionId': this.Region ? this.Region.value : ''
     }
     if (queryParams.regionId === '') {
       this.router.navigate(['/statistic/search-overview/city-overview']);
-      // this.router.navigate(['../1'], { relativeTo: this.route, queryParams });
     } else {
       this.router.navigate(['/statistic/search-overview/partition-overview'], { relativeTo: this.route, queryParams });
-      // this.router.navigate(['../1'], { relativeTo: this.route, queryParams });
     }
-    // this.router.navigate(['../usingCylinder'], navigationExtras);
   }
   /**
    *对象跳转
@@ -166,7 +158,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
             // this.searchValue = '';
             return false;
           }
-          queryParams['userCode'] = this.searchValue;
+          queryParams['userName'] = this.searchValue;
           this.router.navigate(['/archive/customer/list'], { relativeTo: this.route, queryParams });
         } else {
           if (!/^(\d{8}|\d{11})$/.test(this.searchValue)) {
@@ -174,7 +166,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
             this.searchValue = '';
             return false;
           }
-          queryParams['userCode'] = this.searchValue;
+          queryParams['phoneNumber'] = this.searchValue;
           this.router.navigate(['/archive/customer/list'], { relativeTo: this.route, queryParams });
         }
         break;
@@ -184,8 +176,8 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
           // this.searchValue = '';
           return false;
         }
-        queryParams['gasStation'] = this.searchValue;
-        console.log(queryParams);
+        queryParams['supplyName'] = this.searchValue;
+        this.router.navigate(['/archive/gasHolderStation/list'], { relativeTo: this.route, queryParams });
         break;
       case '4':
         if (!/^[\u4E00-\u9FA5]{2,}$/.test(this.searchValue)) { // 验证至少2个汉字
@@ -193,8 +185,8 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
           // this.searchValue = '';
           return false;
         }
-        queryParams['supplyStation'] = this.searchValue;
-        console.log(queryParams);
+        queryParams['supplyName'] = this.searchValue;
+        this.router.navigate(['/archive/supplyStation/list'], { relativeTo: this.route, queryParams });
         break;
       case '5':
         if (!/^[\u4E00-\u9FA5]{2,}$/.test(this.searchValue)) { // 验证至少2个汉字
@@ -203,7 +195,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
           return false;
         }
         queryParams['enterpriseName'] = this.searchValue;
-        console.log(queryParams);
+        this.router.navigate(['/archive/enterprise/list'], { relativeTo: this.route, queryParams });
         break;
       case '6':
         if (/^[\u4E00-\u9FA5]+$/.test(this.searchValue)) { // 验证是否全为汉字
@@ -213,19 +205,18 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
             return false;
           }
           queryParams['employee'] = this.searchValue;
-          console.log(queryParams);
-          // TODO
+          this.router.navigate(['//archive/employee/list'], { relativeTo: this.route, queryParams });
         } else {
           if (!/^[a-zA-Z0-9]+$/.test(this.searchValue)) {
             this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '送气工证号（字母+数字），或姓名（至少两位中文字符，全模糊）' });
             this.searchValue = '';
             return false;
           }
-          queryParams['employee'] = this.searchValue;
-          console.log(queryParams);
-
+          queryParams['idNumber'] = this.searchValue;
+          this.router.navigate(['/archive/employee/list'], { relativeTo: this.route, queryParams });
         }
         break;
+
       default:
         break;
     }
