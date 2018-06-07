@@ -80,7 +80,10 @@ export class CylinderListComponent implements OnInit {
     serialNumber: '',
     ownNumber: '',
     pageSize: this.dataTable.option[2],
-    pageNumber: 1
+    pageNumber: 1,
+    liabilitySubjectType: '',
+    liabilitySubjectId: '',
+    boolIsFull: ''
   };
 
   constructor(
@@ -90,13 +93,33 @@ export class CylinderListComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
-  onSearch(data={}) {
+  ngOnInit() {
+    this.getDropdownRegion();
+    this.getCylinderSearchOpt();
+    this.routerInfo.queryParams.subscribe((queryParams) => {
+      if (JSON.stringify(queryParams) !== '{}') {
+        this.formModel.patchValue({
+          enterpriseNumber: queryParams.enterpriseID || '',
+          regionId: queryParams.regionId || ''
+        });
+        this.pageParams.liabilitySubjectType = queryParams.liabilitySubjectType || '';
+        this.pageParams.liabilitySubjectId = queryParams.liabilitySubjectId || '';
+        this.pageParams.boolIsFull = queryParams.boolIsFull || '';
+        this.getCylinders();
+      }
+    });
+  }
+
+  onSearch() {
     let params = {};
     if (this.formModel.valid) { // 通过了验证
       params = Object.assign({ pageNumber: 1, pageSize: this.pageParams.pageSize }, this.formModel.value);
       this.dataTable.first = 0;
       Object.assign(this.pageParams, params);
-      this.getCylinders( Object.assign(data,params));
+      this.pageParams.liabilitySubjectType = '';
+      this.pageParams.liabilitySubjectId = '';
+      this.pageParams.boolIsFull = '';
+      this.getCylinders();
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {
         if (this.formModel.controls[key].errors) {
@@ -146,33 +169,12 @@ export class CylinderListComponent implements OnInit {
   onPageChange($event) {
     this.dataTable.list = [];
     this.onPageChange = (event) => {
-      const page = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
-      this.pageParams.pageSize = page.pageSize;
-      this.getCylinders(Object.assign({}, this.pageParams, page));
+      this.pageParams.pageSize = event.rows;
+      this.pageParams.pageNumber = event.first / event.rows + 1;
+      this.getCylinders();
     };
   }
 
-  ngOnInit() {
-    this.getDropdownRegion();
-    this.getCylinderSearchOpt();
-    this.routerInfo.queryParams.subscribe((queryParams) => {
-      if (JSON.stringify(queryParams) !== '{}') {
-        this.formModel.patchValue({
-          enterpriseNumber: queryParams.enterpriseID || '',
-          regionId: queryParams.regionId || ''
-        });
-        const dataSearch = {
-          liabilitySubjectType: queryParams.liabilitySubjectType || '',
-          liabilitySubjectId: queryParams.liabilitySubjectId || '',
-          boolIsFull: queryParams.boolIsFull || '',
-        }
-        this.onSearch(dataSearch)
-      }
-    });
-  }
 
   getCylinderSearchOpt() {
     this._service.getCylinderSearchOpt({}).then(data => {
@@ -190,9 +192,9 @@ export class CylinderListComponent implements OnInit {
     });
   }
 
-  getCylinders(params?) {
+  getCylinders() {
     this.loading = true;
-    this._service.getCylinders(params)
+    this._service.getCylinders(this.pageParams)
       .then(data => {
         this.loading = false;
         if (data.status === 0) {

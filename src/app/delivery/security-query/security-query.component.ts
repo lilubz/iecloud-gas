@@ -82,6 +82,8 @@ export class SecurityQueryComponent implements OnInit {
     checkState: '',
     startTime: moment().subtract(3, 'years')['_d'],
     endTime: moment()['_d'],
+    dispatcherNumber: '',
+    userNumber: ''
   };
   constructor(
     private _service: SecurityQueryService,
@@ -96,11 +98,19 @@ export class SecurityQueryComponent implements OnInit {
     this.getDropdownEnterprise();
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       if (JSON.stringify(queryParams) !== '{}') {
-        this.formModel.region=queryParams.regionId || '';
-        const data = {
-          userNumber: queryParams.userNumber || '',
+        this.formModel.region = queryParams.regionId || '';
+        this.pageParams.userNumber = queryParams.userNumber || '';
+        if (typeof queryParams.dispatcherNumber === 'string') { // 如果有这个参数， 那么只查询当月的数据。
+          this.pageParams.dispatcherNumber = queryParams.dispatcherNumber || '';
+          this.formModel.startTime = this.pageParams.startTime = moment().set({
+            date: 1,
+            hour: 0,
+            minute: 0,
+            second: 0,
+            millisecond: 0
+          })['_d'];
         }
-        this.onSubmit(data);
+        this.getDataTableList();
       }
     });
   }
@@ -131,11 +141,13 @@ export class SecurityQueryComponent implements OnInit {
     });
   }
 
-  onSubmit(param = {}) {
+  onSubmit() {
     this.dataTable.pageNumber = 1;
     this.dataTable.first = 0;
     Object.assign(this.pageParams, this.formModel);
-    this.getDataTableList(Object.assign(this.formModel, param));
+    this.pageParams.userNumber = '';
+    this.pageParams.dispatcherNumber = '';
+    this.getDataTableList();
   }
 
   onRegionChange() {
@@ -161,7 +173,7 @@ export class SecurityQueryComponent implements OnInit {
     }));
   }
 
-  getDataTableList(param?) {
+  getDataTableList() {
     this.loading = true;
     this._service.securityCheckInquiries({
       regionId: this.pageParams.region,
@@ -170,7 +182,8 @@ export class SecurityQueryComponent implements OnInit {
       securityCheckState: this.pageParams.checkState,
       beginTime: this.util.formatTime(this.pageParams.startTime, 'start'),
       endTime: this.util.formatTime(this.pageParams.endTime, 'end'),
-      userNumber: param.userNumber,
+      userNumber: this.pageParams.userNumber,
+      dispatcherNumber: this.pageParams.dispatcherNumber,
       pageSize: this.dataTable.pageSize,
       pageNumber: this.dataTable.pageNumber
     }).then(data => {

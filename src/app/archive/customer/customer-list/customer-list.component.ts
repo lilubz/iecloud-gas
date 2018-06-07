@@ -121,7 +121,9 @@ export class CustomerListComponent implements OnInit {
     userTypeId?: string;
     userNatureId?: string;
     pageSize: number,
-    pageNumber: number
+    pageNumber: number,
+    boolIsChecked: string,
+    jobNumber: string
   } = {
       regionId: '',
       enterpriseNumber: '',
@@ -132,6 +134,8 @@ export class CustomerListComponent implements OnInit {
       userNatureId: '',
       pageSize: this.dataTable.option[2],
       pageNumber: 1,
+      boolIsChecked: '',
+      jobNumber: ''
     };
   willDeleteCustomer;
   willEditCustomer = {
@@ -171,11 +175,9 @@ export class CustomerListComponent implements OnInit {
           enterpriseNumber: queryParams.enterpriseID || '',
           regionId: queryParams.regionId || ''
         });
-        const data = {
-          boolIsChecked: queryParams.boolIsChecked || '',
-          jobNumber: queryParams.jobNumber || ''
-        }
-        this.onSearch(data);
+        this.pageParams.boolIsChecked = queryParams.boolIsChecked || '';
+        this.pageParams.jobNumber = queryParams.jobNumber || '';
+        this.getCustomerList();
       }
     });
   }
@@ -193,13 +195,14 @@ export class CustomerListComponent implements OnInit {
       });
   }
 
-  onSearch(data={}) {
-    let params = {};
+  onSearch() {
     if (this.formModel.valid) { // 通过了验证
-      params = Object.assign({ pageNumber: 1, pageSize: this.pageParams.pageSize }, this.formModel.value);
       this.dataTable.first = 0;
-      Object.assign(this.pageParams, params);
-      this.getCustomerList(Object.assign(params,data));
+      this.pageParams.pageNumber = 1;
+      Object.assign(this.pageParams, this.formModel.value);
+      this.pageParams.boolIsChecked = '';
+      this.pageParams.jobNumber = '';
+      this.getCustomerList();
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {
         if (this.formModel.controls[key].errors) {
@@ -303,18 +306,15 @@ export class CustomerListComponent implements OnInit {
   onPageChange($event) {
     this.dataTable.list = [];
     this.onPageChange = (event) => {
-      const page = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
-      this.pageParams.pageSize = page.pageSize;
-      this.getCustomerList(Object.assign({}, this.pageParams, page));
+      this.pageParams.pageSize = event.rows;
+      this.pageParams.pageNumber = event.first / event.rows + 1;
+      this.getCustomerList();
     };
   }
 
-  getCustomerList(params?) {
+  getCustomerList() {
     this.loading = true;
-    this.customerListService.getCustomerList(params)
+    this.customerListService.getCustomerList(this.pageParams)
       .then(data => {
         this.loading = false;
         if (data.status === 0) {
