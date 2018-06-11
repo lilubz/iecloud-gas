@@ -33,33 +33,35 @@
       </h3> -->
       <span class="title">用户登录</span>
       <div class="ui-g ui-fluid">
-        <div class="ui-g-12 ui-g-nopad">
-          <label for="" class="ui-g-4">用户名:</label>
-          <div class="ui-g-8">
-            <input maxlength="250" type="text" autocomplete="off" [(ngModel)]="userName" class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-              placeholder="用户名" maxlength="50" id="txtUserName" name="userName">
+        <form>
+          <div class="ui-g-12 ui-g-nopad">
+            <label for="" class="ui-g-4">用户名:</label>
+            <div class="ui-g-8">
+              <input maxlength="250" type="text" autocomplete="off" [(ngModel)]="userName" class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                placeholder="用户名" maxlength="50" id="txtUserName" name="userName">
+            </div>
           </div>
-        </div>
-        <div class="ui-g-12 ui-g-nopad">
-          <label for="" class="ui-g-4">密码:</label>
-          <div class="ui-g-8">
-            <input maxlength="250" type="password" autocomplete="off" [(ngModel)]="password" class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-              placeholder="密码" maxlength="50" (keyup.enter)="signIn()" id="txtUserPass" name="password">
+          <div class="ui-g-12 ui-g-nopad">
+            <label for="" class="ui-g-4">密码:</label>
+            <div class="ui-g-8">
+              <input maxlength="250" type="password" autocomplete="off" [(ngModel)]="password" class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                placeholder="密码" maxlength="50" (keyup.enter)="signIn()" id="txtUserPass" name="password">
+            </div>
           </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-          <span class="remember-me">是否记住账号和密码</span>
-          <input maxlength="250" type="checkbox" id="chkRememberPass" [(ngModel)]='chkRememberPass'>
-        </div>
-        <!--<div class="ui-g-12 ui-md-6 ui-g-offset-6 ui-g-nopad">-->
-        <!--<a href="#">忘记密码</a>-->
-        <!--</div>-->
-        <div class="ui-g-12">
-          <button (click)="signIn()" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
-            <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-person"></span>
-            <span class="ui-button-text ui-c">登录</span>
-          </button>
-        </div>
+          <div class="ui-g-12 ui-md-6">
+            <span class="remember-me">是否记住账号和密码</span>
+            <input maxlength="250" type="checkbox" id="chkRememberPass" [(ngModel)]='chkRememberPass' name="chkRememberPass">
+          </div>
+          <!--<div class="ui-g-12 ui-md-6 ui-g-offset-6 ui-g-nopad">-->
+          <!--<a href="#">忘记密码</a>-->
+          <!--</div>-->
+          <div class="ui-g-12">
+            <button (click)="signIn()" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+              <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-person"></span>
+              <span class="ui-button-text ui-c">登录</span>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

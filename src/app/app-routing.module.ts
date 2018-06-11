@@ -60,18 +60,22 @@ const routes: Routes = [
         path: 'input',
         loadChildren: './input/input.module#InputModule',
       },
+      {
+        path: 'home',
+        component: RedirectionPageComponent,
+        data: {
+          title: '导航页',
+          keep:true,
+        }
+      },
     ]
-  },
-  {
-    path: 'home',
-    component: RedirectionPageComponent,
-    data: {
-      title: '跳转页'
-    }
   },
   {
     path: 'login',
     component: LoginComponent,
+    data:{
+      clear:true
+    }
   },
   {
     path: '**',

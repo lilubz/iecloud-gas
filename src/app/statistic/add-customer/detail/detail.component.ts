@@ -26,10 +26,11 @@ export class DetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.selectedEnterpriseId = params.get('enterpriseId');
+    const queryParams = this.route.queryParams['value'];
+    if (JSON.stringify(queryParams) !== '{}') {
+      this.selectedEnterpriseId = queryParams.enterpriseId || '';
       this.getEnterpriseRegisterDetail();
-    });
+    }
   }
 
   onRecordPageChange(event) {

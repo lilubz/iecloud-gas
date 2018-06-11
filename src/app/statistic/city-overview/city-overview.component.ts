@@ -10,7 +10,7 @@ import { CityReviewList } from './cylinder.model';
   providers: [CityOverviewService]
 })
 export class CityOverviewComponent implements OnInit {
-  cityReview: CityReviewList = new CityReviewList();
+  cityReview: any = new CityReviewList();
   loading = false;
   constructor(
     private _service: CityOverviewService,
@@ -29,7 +29,7 @@ export class CityOverviewComponent implements OnInit {
         // this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
       this.loading = false;
-    })
+    });
   }
 
 }

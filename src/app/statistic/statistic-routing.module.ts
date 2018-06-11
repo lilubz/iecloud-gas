@@ -102,7 +102,7 @@ const routes: Routes = [
             }
           },
           {
-            path: 'detail/:enterpriseId',
+            path: 'detail',
             component: DetailComponent,
             data: {
               title: '企业新增用户详情'

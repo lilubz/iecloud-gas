@@ -15,7 +15,7 @@ import * as $ from 'jquery';
 export class CylinderDetailComponent implements OnInit {
   loading = false;
 
-  detailList: CylinderList = new CylinderList();
+  detailList: any = new CylinderList();
   currentImgUrl = '';
   constructor(
     private _service: CylinderDetailService,
@@ -30,13 +30,13 @@ export class CylinderDetailComponent implements OnInit {
       this._service.queryCylinderDetail({ gasLabelNumber: queryParams.gasLabelNumber }).then(data => {
         if (data.status === 0) {
           this.detailList = data.data;
-          this.detailList['isTrue']=true;
+          this.detailList['isTrue'] = true;
         } else {
           this.loading = true;
           this.detailList = new CylinderList();
         }
         this.loading = false;
-      })
+      });
     });
 
   }
@@ -46,10 +46,8 @@ export class CylinderDetailComponent implements OnInit {
     const el = overlaypanel.container;
     setTimeout(() => {
       this.currentImgUrl = url;
-      let left = $('.main').css('left');
-      let top = $('.main').css('top');
-      console.log(left);
-      console.log(top);
+      const left = $('.main').css('left');
+      const top = $('.main').css('top');
 
       el.style.top = parseFloat(el.style.top) - parseFloat(top) + 'px';
       el.style.left = parseFloat(el.style.left) - parseFloat(left) + 'px';

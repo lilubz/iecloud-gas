@@ -50,13 +50,13 @@
       <div class="ui-g-4 ">
         <span class="ui-g-6 content title" title="已安检用户数量">已安检用户数量</span>
         <span class="ui-g-6 content" title="全市">
-          <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{boolIsChecked:true}" title="查看已安检用户数量">{{ cityReview.regionOverviewVO.alreadyCheckedUserCount }}</a>
+          <a href="javascript:void(0);" [routerLink]="['/delivery/security-query']" [queryParams]="{regionId:''}" title="查看已安检用户数量">{{ cityReview.regionOverviewVO.alreadyCheckedUserCount }}</a>
         </span>
       </div>
       <div class="ui-g-4 ">
         <span class="ui-g-6 content title" title="未安检用户数量">未安检用户数量</span>
-        <span class="ui-g-6 content" title="全市">
-          <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{boolIsChecked:false}" title="查看未安检用户数量">{{ cityReview.regionOverviewVO.noCheckedUserCount }}</a>
+        <span class="ui-g-6 content" title="{{ cityReview.regionOverviewVO.noCheckedUserCount }}">
+          {{ cityReview.regionOverviewVO.noCheckedUserCount }}
         </span>
       </div>
       <div class="ui-g-4 ">

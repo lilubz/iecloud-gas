@@ -20,7 +20,7 @@
             <p-column field="count" header="登记数量"></p-column>
             <p-column header="操作" [style]="{'width':'100px'}">
               <ng-template let-record="rowData" pTemplate="body">
-                <a href="javascript:void(0);" [routerLink]="['../detail',record.enterpriseNumber]">查看详情</a>
+                <a href="javascript:void(0);" [routerLink]="['/statistic/customer/detail']" [queryParams]="{enterpriseId:record.enterpriseNumber}">查看详情</a>
               </ng-template>
             </p-column>
             <ng-template pTemplate="paginatorRight">

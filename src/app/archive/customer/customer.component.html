@@ -1,7 +1,7 @@
 <div class="sidebar">
   <div class="ui-g ui-g-nopad group">
     <div class="ui-g-12">
-      <button pButton type="button" label="用户信息概览" [routerLink]="organizationType == OrganizationType.Government?['./overview/county']:['./overview/enterprise']"
+      <button pButton type="button" label="用户信息概览" [routerLink]="organizationType == OrganizationType.Government?['./overview/county']:['./overview/enterprise',organizationId]"
         routerLinkActive="link-active"></button>
     </div>
     <div class="ui-g-12">

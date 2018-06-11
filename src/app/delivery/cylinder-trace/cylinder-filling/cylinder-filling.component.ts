@@ -39,6 +39,7 @@ export class CylinderFillingComponent implements OnInit {
     if (JSON.stringify(queryParams) !== '{}') {
       this.cylinderNumber = queryParams.cylinderNumber || '';
       this.stationName = queryParams.stationName || '';
+      this.beginTime = queryParams.startTime ? new Date(parseInt(queryParams.startTime, 10)) : new Date(0);
     }
   }
 

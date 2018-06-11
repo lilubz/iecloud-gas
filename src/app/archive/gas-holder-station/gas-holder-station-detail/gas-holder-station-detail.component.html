@@ -44,8 +44,8 @@
         <div class="ui-g-6">
           <span class="ui-g-6 content title" title="充装气瓶数量">充装气瓶数量</span>
           <span class="ui-g-6 content">
-            <a href="javascript:void(0);" title="{{details.fillingCount}}" [routerLink]="['/delivery/cylinder-trace/cylinder-filling']" 
-            [queryParams]="{stationName: details.inflatableStationVO.inflatableName}">{{details.fillingCount}}</a>
+            <a href="javascript:void(0);" title="查看充装数量" [routerLink]="['/delivery/cylinder-trace/cylinder-filling']" 
+            [queryParams]="{stationName: details.inflatableStationVO.inflatableName,startTime: 1}">{{details.fillingCount}}</a>
           </span>
         </div>
         

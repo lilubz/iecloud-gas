@@ -45,8 +45,8 @@ export class FillingScaleListComponent implements OnInit {
   ngOnInit() {
     this.routerInfo.queryParams.subscribe((queryParams) => {
       if (JSON.stringify(queryParams) !== '{}') { // 查询参数不为空
-        this.enterpriseNumber = queryParams.enterpriseNumber;
-        this.balanceNumber = queryParams.balanceNumber;
+        this.enterpriseNumber = queryParams.enterpriseNumber || '';
+        this.balanceNumber = queryParams.balanceNumber || '';
         this.getBalanceList();
       }
     });
@@ -73,7 +73,7 @@ export class FillingScaleListComponent implements OnInit {
   }
 
   getBalanceList() {
-    if (this.checkForm()) {
+    // if (this.checkForm()) {
       this.loading = true;
       this.fillingScaleService.listBalanceInfo({
         enterpriseNumber: this.enterpriseNumber,
@@ -91,7 +91,7 @@ export class FillingScaleListComponent implements OnInit {
           this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
         }
       });
-    }
+    // }
   }
 
   showSettingScaleDialog(scale: ScaleVO) {

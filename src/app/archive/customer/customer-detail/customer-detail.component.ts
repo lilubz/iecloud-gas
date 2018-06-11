@@ -14,7 +14,7 @@ import { usingCylinderModel } from './using-cylinder.model';
 })
 
 export class CustomerDetailComponent implements OnInit {
-  customerDetailList: usingCylinderModel = new usingCylinderModel();
+  customerDetailList: any = new usingCylinderModel();
 
   detailLists: any;
   loading: any;
@@ -41,7 +41,7 @@ export class CustomerDetailComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams) => {
       this.queryDetail(queryParams);
-    })
+    });
   }
 
   /**

@@ -39,7 +39,7 @@ export class EnterpriseListComponent implements OnInit {
     enterpriseName: '',
     person: '',
     // phone: '',
-    startTime: moment().subtract(3, 'years')['_d'],
+    startTime: moment('2012-01-01')['_d'],
     endTime: moment()['_d'],
   };
   pageParams = {
@@ -47,7 +47,7 @@ export class EnterpriseListComponent implements OnInit {
     enterpriseName: '',
     person: '',
     // phone: '',
-    startTime: moment().subtract(3, 'years')['_d'],
+    startTime: moment('2012-01-01')['_d'],
     endTime: moment()['_d'],
   };
 

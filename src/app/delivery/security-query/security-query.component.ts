@@ -71,7 +71,6 @@ export class SecurityQueryComponent implements OnInit {
     enterprise: '',
     enclosures: '',
     checkState: '',
-    userNumber: '',
     startTime: moment().subtract(1, 'years')['_d'],
     endTime: moment()['_d'],
   };
@@ -97,23 +96,24 @@ export class SecurityQueryComponent implements OnInit {
     this.getDropdownRegion();
     this.getDropdownEnterprise();
     const queryParams = this.activatedRoute.queryParams['value'];
-      if (JSON.stringify(queryParams) !== '{}') {
-        this.formModel.region = queryParams.regionId || '';
-        this.pageParams.userNumber = queryParams.userNumber || '';
-        this.pageParams.enterprise = queryParams.enterpriseNumber || '';
-        if (typeof queryParams.dispatcherNumber === 'string') { // 如果有这个参数， 那么只查询当月的数据。
-          this.pageParams.dispatcherNumber = queryParams.dispatcherNumber || '';
-          this.formModel.startTime = this.pageParams.startTime = moment().set({
-            date: 1,
-            hour: 0,
-            minute: 0,
-            second: 0,
-            millisecond: 0
-          })['_d'];
-        }
-        
-        this.getDataTableList();
+    if (JSON.stringify(queryParams) !== '{}') {
+      this.formModel.region = queryParams.regionId || '';
+      this.pageParams.userNumber = queryParams.userNumber || '';
+      this.pageParams.enterprise = queryParams.enterpriseNumber || '';
+      this.formModel.startTime = queryParams.startTime ? new Date(parseInt(queryParams.startTime, 10)) : new Date(0);
+      if (typeof queryParams.dispatcherNumber === 'string') { // 如果有这个参数， 那么只查询当月的数据。
+        this.pageParams.dispatcherNumber = queryParams.dispatcherNumber || '';
+        this.formModel.startTime = this.pageParams.startTime = moment().set({
+          date: 1,
+          hour: 0,
+          minute: 0,
+          second: 0,
+          millisecond: 0
+        })['_d'];
       }
+      Object.assign(this.pageParams, this.formModel);
+      this.getDataTableList();
+    }
   }
 
   getDropdownRegion() {

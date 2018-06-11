@@ -1,40 +1,42 @@
-<div class="redirectionPage" #redirection>
-  <div class="ui-g layout">
-    <gas-header></gas-header>
-  </div>
-  <div>
-    <div class="container">
-      <div class="ui-g-12 ui-g-nopad">
-        <div class="ui-g">
-          <div class="ui-g-offset-2">
-            <div class="h2">
-              统计查询
-            </div>
-          </div>
-          <div class="ui-g-12 padding">
-            <div class="ui-g ui-g-offset-4">
-              <div class="ui-g-12 ui-lg-12">
-                <span class="search-label">请选择查询区域</span>
-                <p-dropdown [options]="dropdown.region"  (onChange)="onChangeRegion($event)" [style]="{'width':'280px','font-size':'18px'}"></p-dropdown>
-                <button pButton type="button" label="查询" (click)="searchRegion()" [disabled]="unable" class="searchBtn"></button>
+<div class="main">
+  <div class="card">
+    <div class="redirectionPage">
+      <div class="container">
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g">
+            <div class="ui-g-offset-2">
+              <div class="h2">
+                统计查询
               </div>
             </div>
-          </div>
-          <div class="ui-g-offset-2">
-            <div class="search">
-              按条件查询
-            </div>
-          </div>
-          <div class="ui-g-12 padding">
-            <div class="ui-g ui-g-offset-4">
-              <div class="ui-g-12 ui-lg-12">
-                <span class="search-label">请选择查询对象</span>
-                <p-dropdown [options]="dropdown.objValue"  (onChange)="onChangeObj($event)" [style]="{'width':'280px','font-size':'18px'}"></p-dropdown>
+            <div class="ui-g-12 padding">
+              <div class="ui-g ui-g-offset-4">
+                <div class="ui-g-12 ui-lg-12">
+                  <span class="search-label">请选择查询区域</span>
+                  <p-dropdown [options]="dropdown.region" (onChange)="onChangeRegion($event)" [style]="{'width':'280px','font-size':'18px'}"></p-dropdown>
+                  <button pButton type="button" label="查询" (click)="searchRegion()" [disabled]="unable" class="searchBtn"></button>
+                </div>
               </div>
-              <div class="ui-g-12 ui-lg-12">
-                <span class="search-label">请输入查询文字</span>
-                <input maxlength="250" type="text" [(ngModel)]="searchValue" class="textInput" (keyup.enter)="searchObj()" [placeholder]="objValue?.placeholder" pInputText>
-                <button pButton type="button" label="查询" (click)="searchObj()"  class="searchBtn"></button>
+            </div>
+            <div class="ui-g-12 ui-g-nopad">
+              <div class="ui-g-offset-2">
+                <div class="search">
+                  按条件查询
+                </div>
+              </div>
+              <div class="ui-g-12 padding">
+                <div class="ui-g ui-g-offset-4">
+                  <div class="ui-g-12 ui-lg-12">
+                    <span class="search-label">请选择查询对象</span>
+                    <p-dropdown [options]="dropdown.objValue" (onChange)="onChangeObj($event)" [style]="{'width':'280px','font-size':'18px'}"></p-dropdown>
+                  </div>
+                  <div class="ui-g-12 ui-lg-12">
+                    <span class="search-label">请输入查询文字</span>
+                    <input maxlength="250" type="text" [(ngModel)]="searchValue" class="textInput" (keyup.enter)="searchObj()" [placeholder]="objValue?.placeholder"
+                      pInputText>
+                    <button pButton type="button" label="查询" (click)="searchObj()" class="searchBtn"></button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -42,5 +44,4 @@
       </div>
     </div>
   </div>
-
 </div>

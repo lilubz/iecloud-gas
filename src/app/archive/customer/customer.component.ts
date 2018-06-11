@@ -15,6 +15,7 @@ export class CustomerComponent implements OnInit {
   // ];
   OrganizationType = OrganizationType;
   organizationType: OrganizationType;
+  organizationId:string;
   // selectedCity = this.cities[0].value;
   constructor(
     private router: Router,
@@ -23,7 +24,8 @@ export class CustomerComponent implements OnInit {
   ) {
     this.organizationType = this.userStateService.getUserOrganizationType();
   }
-
+  
   ngOnInit() {
+    this.organizationId = this.userStateService.getUser().organizationId || '';
   }
 }

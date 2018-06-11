@@ -40,7 +40,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
       {
         label: '储配站',
         value: '3',
-        placeholder: '请输入储备站名称'
+        placeholder: '请输入储配站名称'
       },
       {
         label: '供应站',
@@ -55,7 +55,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
       {
         label: '送气工',
         value: '6',
-        placeholder: '请输入送气工证件编号或姓名'
+        placeholder: '请输入送气工工号或姓名'
       },
     ],
   };
@@ -76,14 +76,14 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.objValue = this.dropdown.objValue[0];
     if (this.userStateService.getUserRoleType() === RoleType.Admin) {
-      this.Admin = true; //admin权限
+      this.Admin = true; // admin 权限
       this.unable = false;
     } else if (this.userStateService.getUserRoleType() === RoleType.Government) {
-      this.Admin = false;//非admin
+      this.Admin = false; // 非admin
     } else {
       this.unable = true;
     }
-    // this.getDropdownRegion();
+    this.getDropdownRegion();
   }
   getDropdownRegion() {
     this.commonRequestService.getRegions().then(data => {
@@ -136,14 +136,14 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
    * @memberof RedirectionPageComponent
    */
   searchObj() {
-    this.returnPH(this.objValue.value)
+    this.returnPH(this.objValue.value);
   }
   returnPH(data) {
     const queryParams = {};
     switch (data) {
       case '1':
         if (!/^\d{8,11}$/.test(this.searchValue)) {
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入8-11为数字' });
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入8-11位数字气瓶条码' });
           this.searchValue = '';
           return false;
         }
@@ -200,7 +200,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
       case '6':
         if (/^[\u4E00-\u9FA5]+$/.test(this.searchValue)) { // 验证是否全为汉字
           if (!/^[\u4E00-\u9FA5]{2,}$/.test(this.searchValue)) { // 验证至少2个汉字
-            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '送气工证号（字母+数字），或姓名（至少两位中文字符，全模糊）' });
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '送气工工号（字母+数字），或姓名（至少两位中文字符，全模糊）' });
             // this.searchValue = '';
             return false;
           }
@@ -212,7 +212,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
             this.searchValue = '';
             return false;
           }
-          queryParams['idNumber'] = this.searchValue;
+          queryParams['dispatcherNumber'] = this.searchValue;
           this.router.navigate(['/archive/employee/list'], { relativeTo: this.route, queryParams });
         }
         break;

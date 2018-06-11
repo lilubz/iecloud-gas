@@ -146,16 +146,17 @@ export class CylinderRecordComponent implements OnInit {
       if (JSON.stringify(queryParams) !== '{}') { // 查询参数不为空
         this.selectedCylinderStatus = parseInt(queryParams.liabilitySubjectType, 10);
         this.loading = true;
-        this.beginTime = queryParams.beginTime ? new Date(parseInt(queryParams.beginTime, 10)) : this.beginTime;
+        this.beginTime = queryParams.beginTime ? new Date(parseInt(queryParams.beginTime, 10)) : new Date(0);
         this.endTime = queryParams.endTime ? new Date(parseInt(queryParams.endTime, 10)) : this.endTime;
         switch (this.selectedCylinderStatus) {
           case 1:
             this.selectedDistributionStation = queryParams.liabilityNumber;
-            console.log(this.selectedDistributionStation);
+            this.selectedDistributionStationType = queryParams.type ? queryParams.type : this.selectedDistributionStationType;
             this.search();
             break;
           case 2:
             this.selectedCylinderStorage = queryParams.liabilityNumber;
+            this.selectedCylinderStorageType = queryParams.type ? queryParams.type : this.selectedCylinderStorageType;
             this.search();
             break;
           case 3:

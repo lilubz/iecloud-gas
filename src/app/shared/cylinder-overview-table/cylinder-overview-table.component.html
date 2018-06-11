@@ -13,7 +13,7 @@
   </p-column>
   <p-column *ngIf="type==='enterprise'" field="enterpriseName" header="企业名称" [style]="{'width':'30%'}">
     <ng-template *ngIf="isShowRouterLink" let-col let-cylinderStatistic="rowData" pTemplate="body">
-      <a href="javascript:void(0);" [routerLink]="['../../../list', {enterpriseID:cylinderStatistic.enterpriseNumber||''}]" class="router-link">{{cylinderStatistic.enterpriseName}}</a>
+      <a href="javascript:void(0);" [routerLink]="['../../../list']" [queryParams]="{enterpriseID:cylinderStatistic.enterpriseNumber||''}" class="router-link">{{cylinderStatistic.enterpriseName}}</a>
     </ng-template>
   </p-column>
   <p-column field="totalCount" header="气瓶数">

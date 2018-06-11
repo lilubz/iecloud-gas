@@ -22,9 +22,10 @@ export class AppRoutingCache  implements RouteReuseStrategy {
         handle: handle
       });
       if (this.handlers.length > this.maxCacheLength) {
-        this.handlers.shift();
+        this.handlers.pop();
       }
     }
+    
   }
 
   /** 如果复用中有此组件，并且路由当中没有携带参数的话 才允许使用复用 */
@@ -44,6 +45,9 @@ export class AppRoutingCache  implements RouteReuseStrategy {
 
   /** 进入路由触发，判断是否同一路由 */
   public shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+    if(future.data.clear){
+      this.handlers = [];
+    }
     return future.component === curr.component;
   }
 }

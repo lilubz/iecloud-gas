@@ -67,7 +67,7 @@ export class CylinderHistoryComponent implements OnInit {
     if (JSON.stringify(queryParams) !== '{}') {
       this.loading = true;
       this.cylinderNumber = queryParams.cylinderNumber;
-      this.beginTime = queryParams.beginTime ? new Date(parseInt(queryParams.beginTime, 10)) : this.beginTime;
+      this.beginTime = queryParams.beginTime ? new Date(parseInt(queryParams.beginTime, 10)) : new Date(0);
       this.endTime = queryParams.endTime ? new Date(parseInt(queryParams.endTime, 10)) : this.endTime;
       this.getCylinderHistoryStatus();
     }
