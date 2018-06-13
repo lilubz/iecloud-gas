@@ -320,4 +320,7 @@ export const API = {
   'getSupplyStationDetailInfo': URL + 'basicInformation/corpSupplyStation/getSupplyStationInfo.do', // 供应站详情
   'getInflatableStationDetailInfo': URL + 'basicInformation/corpInflatableStation/getInflatableStationInfo.do', // 储配站详情
   'getCorpDetailInfo': URL + 'basicInformation/corpInfo/getCorpInfo.do', // 企业详情
+
+  // 地图页面中供应站或储配站的详情
+  'listCorpStationDetailInfo': URL + 'basicInformation/corpCarInfo/listCorpStationDetailInfo.do', // 获取储配站/供应站的站点统计信息
 };
