@@ -56,7 +56,13 @@ export class SecurityQueryComponent implements OnInit {
         label: '异常',
         value: '0'
       }
-    ]
+    ],
+    supplyStation: [
+      {
+        label: '全部',
+        value: ''
+      }
+    ],
   };
   dataTable = {
     list: [],
@@ -69,6 +75,7 @@ export class SecurityQueryComponent implements OnInit {
   formModel = {
     region: '',
     enterprise: '',
+    supplyStationId: '',
     enclosures: '',
     checkState: '',
     startTime: moment().subtract(1, 'years')['_d'],
@@ -77,6 +84,7 @@ export class SecurityQueryComponent implements OnInit {
   pageParams = {
     region: '',
     enterprise: '',
+    supplyStationId: '',
     enclosures: '',
     checkState: '',
     startTime: moment().subtract(3, 'years')['_d'],
@@ -95,11 +103,14 @@ export class SecurityQueryComponent implements OnInit {
   ngOnInit() {
     this.getDropdownRegion();
     this.getDropdownEnterprise();
+    this.getDropdownSupplyStation();
     const queryParams = this.activatedRoute.queryParams['value'];
     if (JSON.stringify(queryParams) !== '{}') {
       this.formModel.region = queryParams.regionId || '';
       this.pageParams.userNumber = queryParams.userNumber || '';
-      this.pageParams.enterprise = queryParams.enterpriseNumber || '';
+      this.formModel.enterprise = queryParams.enterpriseNumber || '';
+      this.formModel.supplyStationId = queryParams.supplyStationNumber || '';
+      this.formModel.checkState = queryParams.checkState || '';
       this.formModel.startTime = queryParams.startTime ? new Date(parseInt(queryParams.startTime, 10)) : new Date(0);
       if (typeof queryParams.dispatcherNumber === 'string') { // 如果有这个参数， 那么只查询当月的数据。
         this.pageParams.dispatcherNumber = queryParams.dispatcherNumber || '';
@@ -142,6 +153,21 @@ export class SecurityQueryComponent implements OnInit {
     });
   }
 
+  getDropdownSupplyStation() {
+    this._service.listCorpSupplyStation()
+      .then(data => {
+        if (data.status === 0) {
+          this.dropdown.supplyStation = this.dropdown.default.concat(data.data.map((item) => ({
+            label: item.supplyStationName,
+            value: item.supplyStationNumber
+          })));
+        } else {
+          this.dropdown.supplyStation = this.dropdown.default.concat([]);
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+        }
+      });
+  }
+
   onSubmit(param = {}) {
     this.dataTable.pageNumber = 1;
     this.dataTable.first = 0;
@@ -153,8 +179,11 @@ export class SecurityQueryComponent implements OnInit {
 
   onRegionChange() {
     this.dropdown.enterprise = this.dropdown.enterprise.concat(this.dropdown.default);
+    this.dropdown.supplyStationId = this.dropdown.supplyStationId.concat(this.dropdown.default);
     this.formModel.enterprise = '';
+    this.formModel.supplyStationId = '';
     this.getDropdownEnterprise();
+    this.getDropdownSupplyStation();
   }
 
   onPageChange($event) {
@@ -179,6 +208,7 @@ export class SecurityQueryComponent implements OnInit {
     this._service.securityCheckInquiries({
       regionId: this.pageParams.region,
       enterpriseNumber: this.pageParams.enterprise,
+      supplyStationNumber: this.pageParams.supplyStationId,
       haveEnclosures: this.pageParams.enclosures,
       securityCheckState: this.pageParams.checkState,
       beginTime: this.util.formatTime(this.pageParams.startTime, 'start'),

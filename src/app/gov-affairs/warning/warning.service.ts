@@ -41,4 +41,12 @@ export class WarningService {
   cylinderSelectOpt(params?: any): Promise<any> {
     return this.httpService.withCredentialsPostRequest(API.cylinderSelectOpt, params);
   }
+
+  listCorpSupplyStation(): Promise<any> {
+    return this.httpService.getRequest(API.listCorpSupplyStationVO, {});
+  }
+
+  listSecurityCheckWarning(params?: any): Promise<any> {
+    return this.httpService.getRequest(API.listSecurityCheckWarning, params);
+  }
 }

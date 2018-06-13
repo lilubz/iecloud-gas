@@ -9,6 +9,7 @@ import { GcDetectionComponent } from './gc-detection/gc-detection.component';
 import { GcScrapComponent } from './gc-scrap/gc-scrap.component';
 import { LicenseComponent } from './license/license.component';
 import { WarningService } from './warning.service';
+import { WarningRecordComponent } from './warning-record/warning-record.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,6 +22,7 @@ import { WarningService } from './warning.service';
     GcDetectionComponent,
     GcScrapComponent,
     LicenseComponent,
+    WarningRecordComponent,
   ],
   providers: [
     WarningService

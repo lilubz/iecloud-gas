@@ -21,6 +21,7 @@ import { DetailComponent } from './add-customer/detail/detail.component';
 import { LicenseWarningComponent } from './license-warning/license-warning.component';
 import { CityOverviewComponent } from './city-overview/city-overview.component';
 import { PartitionOverviewComponent } from './partition-overview/partition-overview.component';
+import { WarningRecordComponent } from './warning-record/warning-record.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { PartitionOverviewComponent } from './partition-overview/partition-overv
     LicenseWarningComponent,
     CityOverviewComponent,
     PartitionOverviewComponent,
+    WarningRecordComponent,
   ],
   providers: [
 

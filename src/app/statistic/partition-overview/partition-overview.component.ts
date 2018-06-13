@@ -21,7 +21,7 @@ export class PartitionOverviewComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       this.loading = true;
       this._service.regionOverview(queryParams).then(data => {
-        this.loading = false
+        this.loading = false;
         if (data.status === 0) {
           console.log(data.data);
           this.dataTable = data.data;
@@ -29,7 +29,7 @@ export class PartitionOverviewComponent implements OnInit {
 
         }
       });
-    })
+    });
   }
 
 }

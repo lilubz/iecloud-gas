@@ -14,4 +14,8 @@ export class SecurityQueryService {
       .formPostRequest(API.securityCheckInquiries, params);
   }
 
+  listCorpSupplyStation(params?: any): Promise<any> {
+    return this.httpService.getRequest(API.listCorpSupplyStationVO, params);
+  }
+
 }
