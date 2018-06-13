@@ -63,7 +63,7 @@
     <div class="ui-g-12">
       <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
 
-      <button pButton *gasPermissionRole="[RoleType.Admin]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
+      <button pButton *gasPermissionRole="[RoleType.Admin, RoleType.Government]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
 
     </div>
 

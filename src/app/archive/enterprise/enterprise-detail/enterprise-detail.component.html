@@ -81,11 +81,11 @@
     </div>
     <div class="ui-g-4">
       <span class="ui-g-6 content title" title="发证日期">发证日期</span>
-      <span class="ui-g-6 content" title="{{details.corpInfoVO.releaseTime}}">{{details.corpInfoVO.releaseTime}}</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.releaseTime | date:'yyyy-MM-dd'}}">{{details.corpInfoVO.releaseTime | date:'yyyy-MM-dd'}}</span>
     </div>
     <div class="ui-g-4">
       <span class="ui-g-6 content title" title="证件到期日期">证件到期日期</span>
-      <span class="ui-g-6 content" title="{{details.corpInfoVO.effectiveTimeEnd}}">{{details.corpInfoVO.effectiveTimeEnd}}</span>
+      <span class="ui-g-6 content" title="{{details.corpInfoVO.effectiveTimeEnd | date:'yyyy-MM-dd'}}">{{details.corpInfoVO.effectiveTimeEnd | date:'yyyy-MM-dd'}}</span>
     </div>
     <div class="ui-g-4">
       <span class="ui-g-6 content title" title="发证机关">发证机关</span>
