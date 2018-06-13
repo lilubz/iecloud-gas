@@ -26,6 +26,7 @@ import { ThresholdComponent } from './warning/threshold/threshold.component';
 import { GcDetectionComponent } from './warning/gc-detection/gc-detection.component';
 import { GcScrapComponent } from './warning/gc-scrap/gc-scrap.component';
 import { LicenseComponent } from './warning/license/license.component';
+import { WarningRecordComponent } from './warning/warning-record/warning-record.component';
 const routes: Routes = [
   {
     path: '',
@@ -203,6 +204,13 @@ const routes: Routes = [
             component: LicenseComponent,
             data: {
               title: '许可证超期预警'
+            },
+          },
+          {
+            path: 'warning-record',
+            component: WarningRecordComponent,
+            data: {
+              title: '安检预警记录'
             },
           },
         ]

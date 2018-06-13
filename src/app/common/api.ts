@@ -297,6 +297,7 @@ export const API = {
   'listLicenseExpire': URL + 'corpBusiness/gcStockMonitor/listLicenseExpire.do', // 1.燃气经营许可证到期预警
   'listGasInspection': URL + 'corpBusiness/gcStockMonitor/listGasInspection.do', // 2.气瓶检验预警
   'listGasScrap': URL + 'corpBusiness/gcStockMonitor/listGasScrap.do', // 3.气瓶报废预警
+  'listSecurityCheckWarning': URL + '/statisticalQuery/security/listSecurityCheckWarning.do', // 3.企业安检预警处置记录
 
   // 充装监管子系统
   'getBalanceStatus': URL + 'gcFillingSupervise/getBalanceStatus.do', // 查询充装秤的状态

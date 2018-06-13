@@ -56,6 +56,7 @@ import { CylinderOverviewTableComponent } from './cylinder-overview-table/cylind
 import { BackComponent } from './back/back.component';
 import { InputFilterDirective } from './input-filter.directive';
 import { LicenseWarningComponent } from './license-warning/license-warning.component';
+import { WarningRecordPublicComponent } from './warning-record-public/warning-record-public.component';
 
 @NgModule({
   imports: [
@@ -115,7 +116,8 @@ import { LicenseWarningComponent } from './license-warning/license-warning.compo
     CylinderOverviewTableComponent,
     BackComponent,
     InputFilterDirective,
-    LicenseWarningComponent
+    LicenseWarningComponent,
+    WarningRecordPublicComponent
   ],
 
   exports: [
@@ -175,7 +177,8 @@ import { LicenseWarningComponent } from './license-warning/license-warning.compo
     CylinderOverviewTableComponent,
     BackComponent,
     InputFilterDirective,
-    LicenseWarningComponent
+    LicenseWarningComponent,
+    WarningRecordPublicComponent
   ]
 })
 export class SharedModule { }
