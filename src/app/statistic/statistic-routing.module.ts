@@ -170,7 +170,7 @@ const routes: Routes = [
         path: 'warning-record',
         component: WarningRecordComponent,
         data: {
-          title: '安检预警记录'
+          title: '安检预警处置记录'
         }
       }
     ]

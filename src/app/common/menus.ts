@@ -216,7 +216,7 @@ export const EnterpriseMenus: MenuItem[] = [
       { label: '气瓶', routerLink: ['/statistic/cylinder'] },
       { label: '企业', routerLink: ['/statistic/enterprise'] },
       { label: '经营许可证到期预警', routerLink: ['/statistic/license-warning'] },
-      { label: '安检预警记录', routerLink: ['/statistic/warning-record'] },
+      { label: '安检预警处置记录', routerLink: ['/statistic/warning-record'] },
     ]
   },
   {
