@@ -12,6 +12,10 @@
           <p-dropdown filter="true" [options]="dropdown.enterprise" [(ngModel)]="formModel.enterprise" [style]="{'width':'280px'}" name="enterprise"></p-dropdown>
         </div>
         <div class="ui-g-12 ui-lg-6">
+            <label class="search-label">供应站</label>
+            <p-dropdown filter="true" [options]="dropdown.supplyStation" [(ngModel)]="formModel.supplyStationId" name="supplyStationId" [style]="{'width':'280px'}"></p-dropdown>
+          </div>
+        <div class="ui-g-12 ui-lg-6">
           <span class="search-label">附&#12288;&#12288;件</span>
           <p-dropdown [options]="dropdown.enclosures" [(ngModel)]="formModel.enclosures" [style]="{'width':'280px'}" name="enclosures"></p-dropdown>
         </div>
