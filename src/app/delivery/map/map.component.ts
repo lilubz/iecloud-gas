@@ -9,6 +9,7 @@ import { SelectItem } from 'primeng/primeng';
 import { zh_CN } from './../../common/date-localization';
 import * as moment from 'moment';
 import { CommonRequestService } from '../../core/common-request.service';
+import { RoleType } from './../../common/RoleType';
 import { GISSettingService } from '../../system/setting-management/GIS-setting/GIS-setting.service';
 import { Util } from '../../core/util';
 
@@ -19,6 +20,7 @@ import { Util } from '../../core/util';
   providers: [MapService]
 })
 export class MapComponent implements OnInit, OnDestroy {
+  RoleType = RoleType;
   @ViewChild('map') mapEl: ElementRef;
   zh = zh_CN;
   dateRange: SelectItem[] = [
@@ -68,7 +70,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadMap().then(data => {
-      console.log(data);
       this.defaultStations = this.gisSettingService.transformStationData(this.gisSettingService.getMapStationSetting());
       if (this.defaultStations.indexOf('fillingStation') !== -1) {
         this.toggleDistributionStation(true);
@@ -100,7 +101,6 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   listCorpInfoInRegion(regionId) {
-    console.log(regionId);
     this.commonRequestService.listCorpInfoInRegion({ regionId }).then(data => {
       if (data.status === 0) {
         this.enterpriseList = data.data.map(item => ({ label: item.enterpriseName, value: item.enterpriseNumber }));
@@ -131,7 +131,7 @@ export class MapComponent implements OnInit, OnDestroy {
       } else {
         this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
       }
-    })
+    });
   }
 
   clearLocation() {
@@ -167,7 +167,6 @@ export class MapComponent implements OnInit, OnDestroy {
    * @memberof MapComponent
    */
   toggleSupplyStation(visible: boolean) {
-    console.log(1);
     this.mapService.toggleSupplyStation(visible);
   }
 

@@ -168,26 +168,26 @@ export class MapService {
         this.dispatcherPathSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([243, 66, 52]), 2);
         this.sellingCarPathSymbol = this.dispatcherPathSymbol;
 
-        this.supplyStationInfoTemplate = new InfoTemplate(
-          '${stationName}',
-          '<b>名称：</b> ${stationName} <br/>' +
-          '<b>所属公司：</b> ${enterpriseName} <br/>' +
-          '<b>气瓶数量：</b> ${gcCount} <br/>' +
-          '<b>送气工数量：</b> ${dispatcherCount} <br/>' +
-          '<b>今日配送气瓶数：</b> ${gcCountToday} <br/>' +
-          '<b>类型：</b> ${type} <br/>'
-        );
+        // this.supplyStationInfoTemplate = new InfoTemplate(
+        //   '${stationName}',
+        //   '<b>名称：</b> ${stationName} <br/>' +
+        //   '<b>所属公司：</b> ${enterpriseName} <br/>' +
+        //   '<b>气瓶数量：</b> ${gcCount} <br/>' +
+        //   '<b>送气工数量：</b> ${dispatcherCount} <br/>' +
+        //   '<b>今日配送气瓶数：</b> ${gcCountToday} <br/>' +
+        //   '<b>类型：</b> ${searchType} <br/>'
+        // );
 
-        this.fillingStationInfoTemplate = new InfoTemplate(
-          '${stationName}',
-          '<b>名称：</b> ${stationName} <br/>' +
-          '<b>所属公司：</b> ${enterpriseName} <br/>' +
-          '<b>气瓶数量：</b> ${gcCount} <br/>' +
-          '<b>送气工数量：</b> ${dispatcherCount} <br/>' +
-          '<b>今日配送气瓶数：</b> ${gcCountToday} <br/>' +
-          '<b>今日充装气瓶数：</b> ${fillingCountToday} <br/>' +
-          '<b>类型：</b> ${type} <br/>'
-        );
+        // this.fillingStationInfoTemplate = new InfoTemplate(
+        //   '${stationName}',
+        //   '<b>名称：</b> ${stationName} <br/>' +
+        //   '<b>所属公司：</b> ${enterpriseName} <br/>' +
+        //   '<b>气瓶数量：</b> ${gcCount} <br/>' +
+        //   '<b>送气工数量：</b> ${dispatcherCount} <br/>' +
+        //   '<b>今日配送气瓶数：</b> ${gcCountToday} <br/>' +
+        //   '<b>今日充装气瓶数：</b> ${fillingCountToday} <br/>' +
+        //   '<b>类型：</b> ${type} <br/>'
+        // );
 
         this.dispatcherPathPointTemplate = new InfoTemplate(
           '${dispatcherName} -- ${time}',
@@ -219,6 +219,65 @@ export class MapService {
         this.wenzhouSpatialReference = new SpatialReference({ 'wkt': this.wenzhouSpatialReferenceStr });
         // this.map.disablePan();
         // this.map.enableMapNavigation();
+
+        this.supplyStationLayer.onClick = event => {
+          event.stopPropagation();
+          event.preventDefault();
+          this.map.infoWindow.setTitle('加载中...');
+          this.map.infoWindow.setContent('请稍等...');
+          this.map.infoWindow.show(event.screenPoint, this.map.getInfoWindowAnchor(event.screenPoint));
+          this.listCorpStationDetailInfo({
+            searchType: event.graphic.attributes.searchType,
+            stationNumber: event.graphic.attributes.stationNumber
+          }).then(
+            res => {
+              if (res.status === 0) {
+                this.map.infoWindow.setTitle(res.data.stationName);
+                this.map.infoWindow.setContent(`
+                  <b>名称：</b> ${res.data.stationName} <br/>
+                  <b>所属公司：</b> ${res.data.enterpriseName || ''} <br/>
+                  <b>气瓶数量：</b> ${res.data.gcCount} <br/>
+                  <b>送气工数量：</b> ${res.data.dispatcherCount} <br/>
+                  <b>今日配送气瓶数：</b> ${res.data.gcCountToday} <br/>
+                  <b>类型：</b> ${res.data.type} <br/>
+                `);
+              } else {
+                this.map.infoWindow.setTitle('加载失败');
+                this.map.infoWindow.setContent(res.msg);
+              }
+            }
+          );
+        };
+
+        this.distributionStationLayer.onClick = event => {
+          event.stopPropagation();
+          event.preventDefault();
+          this.map.infoWindow.setTitle('加载中...');
+          this.map.infoWindow.setContent('请稍等...');
+          this.map.infoWindow.show(event.screenPoint, this.map.getInfoWindowAnchor(event.screenPoint));
+          this.listCorpStationDetailInfo({
+            searchType: event.graphic.attributes.searchType,
+            stationNumber: event.graphic.attributes.stationNumber
+          }).then(
+            res => {
+              if (res.status === 0) {
+                this.map.infoWindow.setTitle(res.data.stationName);
+                this.map.infoWindow.setContent(`
+                  <b>名称：</b> ${res.data.stationName} <br/>
+                  <b>所属公司：</b> ${res.data.enterpriseName} <br/>
+                  <b>气瓶数量：</b> ${res.data.gcCount} <br/>
+                  <b>送气工数量：</b> ${res.data.dispatcherCount} <br/>
+                  <b>今日配送气瓶数：</b> ${res.data.gcCountToday} <br/>
+                  <b>今日充装气瓶数：</b> ${res.data.fillingCountToday} <br/>
+                  <b>类型：</b> ${res.data.type} <br/>
+                `);
+              } else {
+                this.map.infoWindow.setTitle('加载失败');
+                this.map.infoWindow.setContent(res.msg);
+              }
+            }
+          );
+        };
 
         /**
          * 暂时解决在ie11下无法拖动的问题
@@ -291,8 +350,8 @@ export class MapService {
           this.map.addLayer(this.sellingCarPathPointLayer);
 
 
-          this.supplyStationLayer.setInfoTemplate(this.supplyStationInfoTemplate);
-          this.distributionStationLayer.setInfoTemplate(this.fillingStationInfoTemplate);
+          // this.supplyStationLayer.setInfoTemplate(this.supplyStationInfoTemplate);
+          // this.distributionStationLayer.setInfoTemplate(this.fillingStationInfoTemplate);
           this.dispatcherPathPointLayer.setInfoTemplate(this.dispatcherPathPointTemplate);
           this.dispatcherLocationLayer.setInfoTemplate(this.dispatcherPathPointTemplate);
           this.sellingCarPathPointLayer.setInfoTemplate(this.sellingCarPathPointTemplate);
@@ -536,14 +595,14 @@ export class MapService {
           if (data.status === 0) {
             data.data.forEach(marker => {
               const coordinates = proj4(this.proj4SpatialReferenceStr, [marker.longitude, marker.latitude]);
-              if (marker.type === '储配站') {
+              if (marker.searchType === '储配站') {
                 const graphic = new Graphic(
                   new Point(coordinates[0], coordinates[1], this.wenzhouSpatialReference),
                   this.distributionStationSymbol,
                   marker
                 );
                 this.distributionStationLayer.add(graphic);
-              } else if (marker.type === '供应站') {
+              } else if (marker.searchType === '供应站') {
                 const graphic = new Graphic(
                   new Point(coordinates[0], coordinates[1], this.wenzhouSpatialReference),
                   this.supplyStationSymbol,
@@ -570,7 +629,6 @@ export class MapService {
    * @memberof MapService
    */
   toggleSupplyStation(visible: boolean) {
-    console.log(2);
     this.supplyStationLayer.setVisibility(visible);
   }
 
@@ -703,5 +761,9 @@ export class MapService {
   }
   getRealTimeLocation(params: { regionId: string, enterpriseNumber?: string }): Promise<any> {
     return this.httpService.getRequest(API.getRealTimeLocation, params);
+  }
+  listCorpStationDetailInfo(params: { searchType: string, stationNumber: string }): Promise<any> {
+    return this.httpService
+      .getRequest(API.listCorpStationDetailInfo, params);
   }
 }
