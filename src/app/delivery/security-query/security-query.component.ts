@@ -75,7 +75,7 @@ export class SecurityQueryComponent implements OnInit {
   formModel = {
     region: '',
     enterprise: '',
-    supplyStationId: '',
+    supplyStation: '',
     enclosures: '',
     checkState: '',
     startTime: moment().subtract(1, 'years')['_d'],
@@ -84,7 +84,7 @@ export class SecurityQueryComponent implements OnInit {
   pageParams = {
     region: '',
     enterprise: '',
-    supplyStationId: '',
+    supplyStation: '',
     enclosures: '',
     checkState: '',
     startTime: moment().subtract(3, 'years')['_d'],
@@ -109,7 +109,7 @@ export class SecurityQueryComponent implements OnInit {
       this.formModel.region = queryParams.regionId || '';
       this.pageParams.userNumber = queryParams.userNumber || '';
       this.formModel.enterprise = queryParams.enterpriseNumber || '';
-      this.formModel.supplyStationId = queryParams.supplyStationNumber || '';
+      this.formModel.supplyStation = queryParams.supplyStationNumber || '';
       this.formModel.checkState = queryParams.checkState || '';
       this.formModel.startTime = queryParams.startTime ? new Date(parseInt(queryParams.startTime, 10)) : new Date(0);
       if (typeof queryParams.dispatcherNumber === 'string') { // 如果有这个参数， 那么只查询当月的数据。
@@ -154,7 +154,7 @@ export class SecurityQueryComponent implements OnInit {
   }
 
   getDropdownSupplyStation() {
-    this._service.listCorpSupplyStation()
+    this._service.listCorpSupplyStation({ regionId: this.formModel.region })
       .then(data => {
         if (data.status === 0) {
           this.dropdown.supplyStation = this.dropdown.default.concat(data.data.map((item) => ({
@@ -179,9 +179,9 @@ export class SecurityQueryComponent implements OnInit {
 
   onRegionChange() {
     this.dropdown.enterprise = this.dropdown.enterprise.concat(this.dropdown.default);
-    this.dropdown.supplyStationId = this.dropdown.supplyStationId.concat(this.dropdown.default);
+    this.dropdown.supplyStation = this.dropdown.supplyStation.concat(this.dropdown.supplyStation);
     this.formModel.enterprise = '';
-    this.formModel.supplyStationId = '';
+    this.formModel.supplyStation = '';
     this.getDropdownEnterprise();
     this.getDropdownSupplyStation();
   }
@@ -208,7 +208,7 @@ export class SecurityQueryComponent implements OnInit {
     this._service.securityCheckInquiries({
       regionId: this.pageParams.region,
       enterpriseNumber: this.pageParams.enterprise,
-      supplyStationNumber: this.pageParams.supplyStationId,
+      supplyStationNumber: this.pageParams.supplyStation,
       haveEnclosures: this.pageParams.enclosures,
       securityCheckState: this.pageParams.checkState,
       beginTime: this.util.formatTime(this.pageParams.startTime, 'start'),
