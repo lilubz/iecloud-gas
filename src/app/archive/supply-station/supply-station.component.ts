@@ -96,11 +96,11 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
   type: SelectItem[] = [
     {
       label: '供应站',
-      value: '1',
+      value: 1,
     },
     {
       label: '直销车',
-      value: '3',
+      value: 3,
     },
   ];
   searchType: SelectItem[] = [];
@@ -257,20 +257,19 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       pageSize: Number,
       pageNumber: Number
     } = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
+      pageSize: event.rows,
+      pageNumber: event.first / event.rows + 1
+    };
     this.onSearch(page);
     this.changeStatusPage = page;
-    
   }
   /**
    * 查询
    * @param page
    */
-  querySupplyStation(){
+  querySupplyStation() {
     // 清除隐藏参数后查询
-    this.searchParams.supplyStationNumber='';
+    this.searchParams.supplyStationNumber = '';
     this.onSearch();
   }
   onSearch(page?) {
@@ -342,27 +341,20 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
   }
   AddCorpSupplyStation() {
     if (this.addCheckForm()) {
-      const formData = new FormData();
+      if (this.addForm.stationType === 1) {
+        this.addForm.carNumber = '';
+      }
+      this.addForm.releaseTime = this.util.formatTime(this.addForm.releaseTime, 'start');
+      this.addForm.effectiveTimeStart = this.util.formatTime(this.addForm.effectiveTimeStart, 'start');
+      this.addForm.effectiveTimeEnd = this.util.formatTime(this.addForm.effectiveTimeEnd, 'end');;
       for (const key in this.addForm) {
         if (key) {
-          if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
-            if (this.addForm[key]) {
-              const datas = moment(this.addForm[key]).format('YYYY-MM-DD HH:mm:ss');
-              formData.append(key, datas);
-            } else {
-              return false;
-            }
-          } else {
-            if (!this.addForm[key]) {
-              this.addForm[key] = '';
-              formData.append(key, this.addForm[key]);
-            } else {
-              formData.append(key, this.addForm[key]);
-            }
+          if (!this.addForm[key]) {
+            this.addForm[key] = '';
           }
         }
       }
-      this._service.addCorpSupplyStation(formData).then(data => {
+      this._service.addCorpSupplyStation(this.addForm).then(data => {
         if (data.status === 0) {
           this.addBottleVisible = false;
           this.addForm = new AddBottle();
@@ -379,25 +371,38 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
   }
   editCorpSupplyStation() {
     if (this.editCheckForm()) {
-      const formData = new FormData();
+      if (this.editForm.stationType === 1) {
+        this.editForm.carNumber = '';
+      }
+      this.editForm.releaseTime = this.util.formatTime(this.editForm.releaseTime, 'start');
+      this.editForm.effectiveTimeStart = this.util.formatTime(this.editForm.effectiveTimeStart, 'start');
+      this.editForm.effectiveTimeEnd = this.util.formatTime(this.editForm.effectiveTimeEnd, 'end');
       for (const key in this.editForm) {
         if (key) {
-          if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
-            if (this.editForm[key]) {
-              const datas = moment(this.editForm[key]).format('YYYY-MM-DD HH:mm:ss');
-              formData.append(key, datas);
-            }
-          } else {
-            if (!this.editForm[key]) {
-              this.editForm[key] = '';
-              formData.append(key, this.editForm[key]);
-            } else {
-              formData.append(key, this.editForm[key]);
-            }
+          if (!this.editForm[key]) {
+            this.editForm[key] = '';
           }
         }
       }
-      this._service.updateCorpSupplyStation(formData).then(data => {
+      // const formData = new FormData();
+      // for (const key in this.editForm) {
+      //   if (key) {
+      //     if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
+      //       if (this.editForm[key]) {
+      //         this.editForm[key] = moment(this.editForm[key]).format('YYYY-MM-DD HH:mm:ss');
+      //         // formData.append(key, datas);
+      //       }
+      //     } else {
+      //       if (!this.editForm[key]) {
+      //         this.editForm[key] = '';
+      //         // formData.append(key, this.editForm[key]);
+      //       } else {
+      //         // formData.append(key, this.editForm[key]);
+      //       }
+      //     }
+      //   }
+      // }
+      this._service.updateCorpSupplyStation(this.editForm).then(data => {
         if (data.status === 0) {
           this.editBottleVisible = false;
           this.onSearch(this.changeStatusPage);
@@ -540,7 +545,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     } else if (!this.editForm.effectiveTimeEnd) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '有效期结束时间不能为空' });
       return false;
-    } else if (this.editForm.stationType !== '1') {
+    } else if (this.editForm.stationType === 3) {
       if (!this.editForm.carNumber.trim()) {
         this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '直销车车牌号不能为空' });
         return false;
@@ -576,7 +581,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     } else if (!this.addForm.effectiveTimeEnd) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '有效期结束时间不能为空' });
       return false;
-    } else if (this.addForm.stationType !== '1') {
+    } else if (this.addForm.stationType === 3) {
       if (!this.addForm.carNumber.trim()) {
         this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '直销车车牌号不能为空' });
         return false;

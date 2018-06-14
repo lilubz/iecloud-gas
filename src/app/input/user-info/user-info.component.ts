@@ -145,7 +145,7 @@ export class UserInfoComponent implements OnInit {
       this.showMessage('warn', '', '请选择证件图片！');
       return false;
     } else if (this.customer.identity.length > 2) {
-      this.showMessage('warn', '', '证件信息最多上传文件两张图片！');
+      this.showMessage('warn', '', '证件信息最多上传两张图片！');
       return false;
     }
 

@@ -21,7 +21,7 @@ export class CityOverviewComponent implements OnInit {
     this.loading = true;
     this._service.corpOverview({}).then(data => {
       if (data.status === 0) {
-        console.log(data.data);
+        // console.log(data.data);
         this.cityReview = data.data;
         this.cityReview['isTrue'] = true;
         // this.messageService.add({ severity: 'success', summary: '响应消息', detail: data.msg });

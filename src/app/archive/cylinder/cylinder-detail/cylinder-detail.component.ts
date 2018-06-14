@@ -14,7 +14,8 @@ import * as $ from 'jquery';
 
 export class CylinderDetailComponent implements OnInit {
   loading = false;
-
+  visible = false;
+  imgArray = [];
   detailList: any = new CylinderList();
   currentImgUrl = '';
   constructor(
@@ -30,6 +31,8 @@ export class CylinderDetailComponent implements OnInit {
       this._service.queryCylinderDetail({ gasLabelNumber: queryParams.gasLabelNumber }).then(data => {
         if (data.status === 0) {
           this.detailList = data.data;
+          console.log(Object.prototype.toString.call(this.detailList.fillingState));
+          
           this.detailList['isTrue'] = true;
         } else {
           this.loading = true;
@@ -40,18 +43,25 @@ export class CylinderDetailComponent implements OnInit {
     });
 
   }
-  showImg(event, url, overlaypanel) {
-    this.currentImgUrl = '';
-    overlaypanel.toggle(event);
-    const el = overlaypanel.container;
-    setTimeout(() => {
-      this.currentImgUrl = url;
-      const left = $('.main').css('left');
-      const top = $('.main').css('top');
-
-      el.style.top = parseFloat(el.style.top) - parseFloat(top) + 'px';
-      el.style.left = parseFloat(el.style.left) - parseFloat(left) + 'px';
-      el.style.maxWidth = '300px';
-    }, 0);
+  showImg(imageUrl) {
+    this.visible = true;
+    this.imgArray = imageUrl.split(',');
+    this.imgArray = this.imgArray.map(item => ({
+      url: item
+    }));
   }
+  // showImg(event, url, overlaypanel) {
+  //   this.currentImgUrl = '';
+  //   overlaypanel.toggle(event);
+  //   const el = overlaypanel.container;
+  //   setTimeout(() => {
+  //     this.currentImgUrl = url;
+  //     const left = $('.main').css('left');
+  //     const top = $('.main').css('top');
+
+  //     el.style.top = parseFloat(el.style.top) - parseFloat(top) + 'px';
+  //     el.style.left = parseFloat(el.style.left) - parseFloat(left) + 'px';
+  //     el.style.maxWidth = '300px';
+  //   }, 0);
+  // }
 }

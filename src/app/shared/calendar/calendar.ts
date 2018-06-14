@@ -1278,7 +1278,7 @@ export class Calendar implements AfterViewInit, AfterViewChecked, OnInit, OnDest
   }
 
   alignOverlay() {
-    console.log(this.appendTo);
+    // console.log(this.appendTo);
     if (this.appendTo) {
       this.domHandler.absolutePosition(this.overlayViewChild.nativeElement, this.inputfieldViewChild.nativeElement);
     } else {

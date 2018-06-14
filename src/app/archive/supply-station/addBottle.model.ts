@@ -15,7 +15,7 @@ export class AddBottle {
     effectiveTimeEnd?= ''; // 有效期结束时间
     businessCategory?= ''; // 	经营类别
     businessArea?= ''; // 经营区域
-    stationType?=''; // 1=瓶库；3=直销车 瓶库类型
+    stationType?=0; // 1=瓶库；3=直销车 瓶库类型
     remark?= ''; // 备注，补充送气工号
     carNumber?= ''; // 车牌号，直销车必须有
 }

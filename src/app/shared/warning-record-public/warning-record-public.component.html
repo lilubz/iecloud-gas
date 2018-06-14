@@ -33,7 +33,7 @@
       <p-column field="regionName" header="区域"></p-column>
       <p-column [style]="{'width':'30%'}" field="enterpriseName" header="企业名称"></p-column>
       <p-column [style]="{'width':'30%'}" field="supplyStationName" header="供应站"></p-column>
-      <p-column header="安检异常数量">
+      <p-column header="安检异常用户数量">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <a href="javascript:0;" [routerLink]="['/delivery/security-query']" title="查询安检信息" [queryParams]="{ 
             enterpriseNumber: rowData.enterpriseNumber,

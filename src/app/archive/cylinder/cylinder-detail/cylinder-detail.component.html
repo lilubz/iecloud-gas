@@ -13,16 +13,18 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看充装记录">
-        <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-filling']" [queryParams]="{cylinderNumber:detailList.gasLabelNumber}"
+        <a href="javascript:void(0);" *ngIf="detailList.fillingState!==null" [routerLink]="['/delivery/cylinder-trace/cylinder-filling']" [queryParams]="{cylinderNumber:detailList.gasLabelNumber}"
           title="查看充装记录">查看充装记录</a>
+        <span *ngIf="detailList.fillingState===null" title="暂无充装记录">暂无充装记录</span>
       </span>
       <span class="ui-g-6 content title" title="当前气瓶持有者">当前气瓶持有者</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="{{detailList.liabilityName}}">{{detailList.liabilityName}}</span>
       <span class="ui-g-6 content" title="查看流转记录">
-        <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-history']" [queryParams]="{cylinderNumber:detailList.gasLabelNumber}"
+        <a href="javascript:void(0);"  *ngIf="detailList.liabilityName!==null" [routerLink]="['/delivery/cylinder-trace/cylinder-history']" [queryParams]="{cylinderNumber:detailList.gasLabelNumber}"
           title="查看流转记录">查看流转记录</a>
+          <span *ngIf="detailList.liabilityName===null" title="暂无流转记录">暂无流转记录</span>
       </span>
     </div>
     <div class="ui-g-4 ">
@@ -128,12 +130,29 @@
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="照片">照片</span>
       <span class="ui-g-6 content" title="">
-        <button type="button" pButton (click)="showImg($event,detailList.gcBasicUrl,imgBox);" *ngIf="detailList.gcBasicUrl" label="查看二维码"></button>
+        <button pButton (click)="showImg(detailList.gcBasicUrl);" label="查看照片" *ngIf="detailList.gcBasicUrl"></button>
+        <button pButton label="无附件" *ngIf="!detailList.gcBasicUrl" disabled></button>
       </span>
     </div>
-    <p-overlayPanel #imgBox>
-      <img src="http://121.43.155.201/gas/upload/image/201607/895cf92d86b24e849b635952e7a7e888.jpg" *ngIf="detailList.gcBasicUrl"
+    <!-- <p-overlayPanel #imgBox>
+      <img src="" *ngIf="detailList.gcBasicUrl"
         style="max-width: 262px" />
-    </p-overlayPanel>
+    </p-overlayPanel> -->
+    <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="400" [contentStyle]="{'padding':'0','overflow':'visible'}"
+      [minWidth]="400" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+
+      <p-carousel *ngIf="visible" headerText="图片附件查看" [value]="imgArray" numVisible="1" [firstVisible]="0">
+        <ng-template let-cylinder pTemplate="item">
+          <div class="text-center">
+            <img src="{{cylinder.url}}" alt="" style="max-width:400px; max-height:400px;">
+          </div>
+        </ng-template>
+      </p-carousel>
+
+      <p-footer>
+        <button type="button" pButton icon="fa-check" (click)="visible=false" label="确定"></button>
+      </p-footer>
+
+    </p-dialog>
   </div>
 </div>

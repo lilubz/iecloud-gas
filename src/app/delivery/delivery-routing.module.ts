@@ -45,7 +45,8 @@ const routes: Routes = [
             path: 'cylinder-filling',
             component: CylinderFillingComponent,
             data: {
-              title: '充装记录'
+              title: '充装记录',
+              keep:true
             }
           },
           {
@@ -53,14 +54,16 @@ const routes: Routes = [
             component: CylinderRecordComponent,
             data: {
               title: '流转记录',
-              keep: true
+              keep: true,
+              extra:true
             }
           },
           {
             path: 'cylinder-history',
             component: CylinderHistoryComponent,
             data: {
-              title: '按条码查询'
+              title: '按条码查询',
+              keep:true
             }
           },
           // {

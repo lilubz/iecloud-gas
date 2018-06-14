@@ -14,17 +14,18 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看区域详情">
-        <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{regionId:customerDetailList.regionId}"
+        <a href="javascript:void(0);" *ngIf="customerDetailList.regionId" [routerLink]="['/archive/customer/list']" [queryParams]="{regionId:customerDetailList.regionId}"
           title="查看区域详情">查看区域详情</a>
+        <span *ngIf="!customerDetailList.regionId" title="暂无区域详情">暂无区域详情</span>
       </span>
       <span class="ui-g-6 content title" title="所属企业">所属企业</span>
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="{{customerDetailList.corpName}}">{{customerDetailList.corpName}}</span>
       <span class="ui-g-6 content" title="查看详情">
-        <a href="javascript:void(0);" *ngIf="customerDetailList.enterpriseNumber"  [routerLink]="['/archive/customer/list']" [queryParams]="{enterpriseID:customerDetailList.enterpriseNumber}"
+        <a href="javascript:void(0);" *ngIf="customerDetailList.enterpriseNumber" [routerLink]="['/archive/customer/list']" [queryParams]="{enterpriseID:customerDetailList.enterpriseNumber}"
           title="查看详情">查看详情</a>
-          <span *ngIf="!customerDetailList.enterpriseNumber" title="暂无详情">暂无详情</span>
+        <span *ngIf="!customerDetailList.enterpriseNumber" title="暂无企业详情">暂无企业详情</span>
       </span>
     </div>
     <div class="ui-g-4 ">
@@ -52,7 +53,8 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看安检详情">
-        <a href="javascript:void(0);" [routerLink]="['/delivery/security-query']" [queryParams]="{userNumber:customerDetailList.userNumber}" title="查看安检详情">查看安检详情</a>
+        <a href="javascript:void(0);" [routerLink]="['/delivery/security-query']" [queryParams]="{userNumber:customerDetailList.userNumber}"
+          title="查看安检详情">查看安检详情</a>
       </span>
       <span class="ui-g-6 content title" title="下次安检时间">下次安检时间</span>
     </div>

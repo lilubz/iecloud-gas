@@ -20,7 +20,6 @@ export class GISSettingComponent implements OnInit, OnDestroy {
     this.defaultStations = this._service.transformStationData(this._service.getMapStationSetting());
   }
   save() {
-    console.log(this.defaultStations);
     this._service.setMapSetting(this.selectedValue);
     this._service.setMapStationSetting({
       fillingStation: this.defaultStations.indexOf('fillingStation') !== -1 ? true : false,

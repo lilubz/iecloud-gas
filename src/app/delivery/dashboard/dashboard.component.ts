@@ -153,7 +153,6 @@ export class DashboardComponent implements OnInit {
   }
 
   showDispatchDialog(order) {
-    console.log(order);
     this.dispatchVisiable = true;
     this.dispatchOrderForm.orderId = order.orderId;
     this.getDispatcher(order.regionId || this.userStateService.getUser().regionId);
@@ -183,7 +182,6 @@ export class DashboardComponent implements OnInit {
   save() {
     // this.addOrderVisiable = false;
     this.newOrder.regionId = this.selectedDeliveryStreetId || this.selectedDeliveryAreaId || '';
-    console.log(this.newOrder);
     if (this.checkOrderForm()) {
       this.dashboardService.addOrder({
         linkPhone: this.newOrder.linkPhone,
@@ -278,7 +276,6 @@ export class DashboardComponent implements OnInit {
   }
 
   selectSuggestedCustomer(event) {
-    console.log(event);
     this.newOrder.linkPhone = event.phone;
     // this.newOrder.linkAddress = event.address;
     this.newOrder.linkMan = event.principal;

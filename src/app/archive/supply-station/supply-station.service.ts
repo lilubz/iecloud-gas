@@ -17,10 +17,10 @@ export class SupplyStionService {
     return this.httpService.getRequest(API.getCorpSupplyStation, params);
   }
   addCorpSupplyStation(params: any): Promise<any> {
-    return this.httpService.formDataPostRequest(API.addCorpSupplyStation, params);
+    return this.httpService.formPostRequest(API.addCorpSupplyStation, params);
   }
   updateCorpSupplyStation(params: any): Promise<any> {
-    return this.httpService.formDataPostRequest(API.updateCorpSupplyStation, params);
+    return this.httpService.formPostRequest(API.updateCorpSupplyStation, params);
   }
   createAccount(params: any): Promise<any> {
     return this.httpService.getRequest(API.createAccount, params);

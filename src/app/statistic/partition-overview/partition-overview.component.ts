@@ -23,7 +23,6 @@ export class PartitionOverviewComponent implements OnInit {
       this._service.regionOverview(queryParams).then(data => {
         this.loading = false;
         if (data.status === 0) {
-          console.log(data.data);
           this.dataTable = data.data;
         } else {
 

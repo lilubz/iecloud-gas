@@ -360,7 +360,7 @@ export class CylinderInfoComponent implements OnInit {
       this.showMessage('warn', '提示信息', '型号规格不能为空');
       return false;
     } else if (this.cylinderInfo.cylinderImage.length > 3) {
-      this.showMessage('warn', '提示信息', '最多上传文件三张图片！');
+      this.showMessage('warn', '提示信息', '最多上传三张图片！');
       return false;
     }
     return true;

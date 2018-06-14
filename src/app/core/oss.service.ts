@@ -27,10 +27,10 @@ export class OssService {
         return;
       }
       try {
-        console.log(JSON.parse(response));
+        // console.log(JSON.parse(response));
         return JSON.parse(response);
       } catch (e) {
-        console.error('parse sts response info error: ' + e.message);
+        // console.error('parse sts response info error: ' + e.message);
         return;
       }
       // console.log(result)

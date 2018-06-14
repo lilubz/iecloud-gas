@@ -49,8 +49,6 @@ export class SetScaleRuleComponent implements OnInit {
   getRuleForFillingSupervise() {
     this.fillingScaleService.getRuleForFillingSupervise().then(data => {
       if (data.status === 0) {
-        console.log(data.data);
-        
         this.ruleGcLabelNumberValidVO = data.data.ruleGcLabelNumberValidVO || {};
         this.balanceCycleRule = data.data.ruleFillingCycleVO  || {};
         this.balanceCountRule = data.data.ruleFillingCountOneDayVO  || {};

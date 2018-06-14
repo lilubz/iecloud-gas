@@ -34,6 +34,9 @@ export class AppRoutingCache implements RouteReuseStrategy {
     if (!route.routeConfig) return false;
     if (route.routeConfig.loadChildren) return false;
     if (this.handlers.find(item => item.component === route.component)) {
+      if(route.data.extra && JSON.stringify(route.queryParams) === '{}'){
+        return true;
+      }
       return JSON.stringify(route.params) === '{}' && JSON.stringify(route.queryParams) === '{}' ? true : false;
     }
   }

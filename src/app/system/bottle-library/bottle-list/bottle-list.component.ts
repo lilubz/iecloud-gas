@@ -353,7 +353,6 @@ export class BottleListComponent implements OnInit, OnDestroy {
   }
 
   confirmReset(userId) {
-    console.log(userId);
     this.confirmationService.confirm({
       message: `确定重置密码`,
       header: '重置密码',
@@ -367,7 +366,6 @@ export class BottleListComponent implements OnInit, OnDestroy {
   }
 
   resetPassword(userId) {
-    console.log(userId);
     this._service.resetPassword({ userId: userId }).then(data => {
       if (data.status === 0) {
         // this.query();
