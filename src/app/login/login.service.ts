@@ -27,7 +27,7 @@ export class LoginService {
           //   this.router.navigate(['/enterprise']);//企业账号
           // } else if (this.userStateService.getUserOrganizationType() === OrganizationType.Government) {
           // }
-          this.router.navigate(['/home',],{queryParams:{v:'0.1'}});//政府账号
+          this.router.navigate(['/home',],{queryParams:{v:'0.3'}});//政府账号
           return true;
 
         } else if (data.status === 4) {// 已经登录
@@ -39,7 +39,7 @@ export class LoginService {
           // } else if (this.userStateService.getUserOrganizationType() === OrganizationType.Government) {
           //   this.router.navigate(['/government']);
           // }
-          this.router.navigate(['/home',],{queryParams:{v:'0.1'}});
+          this.router.navigate(['/home',],{queryParams:{v:'0.3'}});
           return true;
         } else {
           this.messageService.add({ severity: 'error', summary: '登录失败', detail: data.msg });

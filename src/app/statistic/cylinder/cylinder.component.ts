@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticCylinderService } from './statistic-cylinder.service';
+import {RoleType} from '../../common/RoleType';
 
 @Component({
   selector: 'gas-cylinder',
@@ -8,6 +9,7 @@ import { StatisticCylinderService } from './statistic-cylinder.service';
   providers: [StatisticCylinderService]
 })
 export class CylinderComponent implements OnInit {
+  RoleType = RoleType;
   constructor() { }
 
   ngOnInit() {

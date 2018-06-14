@@ -22,9 +22,13 @@
         <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
       </ng-template> -->
       </p-column>
-      <p-column field="totalCount" header="气瓶数">
+      <p-column field="gcCount" header="气瓶数">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.gcCount || 0 }}
+          <span *ngIf="countyCylinder.gcCount<=0">
+              {{ countyCylinder.gcCount || 0 }}
+          </span>
+          <a href="javascript:void(0);" *ngIf="countyCylinder.gcCount>0" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectId:countyCylinder.stationNumber ||'',liabilitySubjectType:1}"
+            class="router-link">{{ countyCylinder.gcCount || 0 }}</a>
         </ng-template>
       </p-column>
       <!-- <p-column field="normalCount" header="正常">
@@ -98,12 +102,14 @@
     </p-column> -->
       <p-column field="fullBottleSendCount" header="重瓶出库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.fullBottleSendCount || 0 }}
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:1,type:'重出'}"
+            class="router-link">{{ countyCylinder.fullBottleSendCount || 0 }}</a>
         </ng-template>
       </p-column>
       <p-column field="emptyBottleReceiveCount" header="空瓶入库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.emptyBottleReceiveCount || 0 }}
+            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:1,type:'空入'}"
+            class="router-link">{{ countyCylinder.emptyBottleReceiveCount  || 0 }}</a>
         </ng-template>
       </p-column>
       <!-- <p-column field="emptyBottleSendCount" header="空瓶出库">

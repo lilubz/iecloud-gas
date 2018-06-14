@@ -8,32 +8,34 @@ import { MessageService } from 'primeng/components/common/messageservice';
   styleUrls: ['./set-scale-rule.component.scss']
 })
 export class SetScaleRuleComponent implements OnInit {
-  // 没有气瓶条码的气瓶充气是否合法
-  boolIsValidForGcNoGasLabelNumber: boolean = false;
-  // 气瓶条码与企业编码不一致的气瓶充气是否合法
-  boolIsValidForGcNotAccordWithCorpNumber: boolean = false;
+  // 气瓶合法性验证规则
+  ruleGcLabelNumberValidVO: {
+    boolIsCheckGcLabelNumberValid: boolean
+  } = {
+      boolIsCheckGcLabelNumberValid: false
+    }
   // 单瓶充装周期
   balanceCycleRule: {
-    boolIsOpenBalanceCycleRule: boolean,
-    balanceCycle: number
+    boolIsCheckFillingCycle: boolean,
+    fillingCycle: number
   } = {
-      boolIsOpenBalanceCycleRule: false,
-      balanceCycle: 0
+      boolIsCheckFillingCycle: false,
+      fillingCycle: 0
     };
 
   // 当日充装次数
   balanceCountRule: {
-    boolIsOpenBalanceCountRule: boolean,
-    balanceCount: number
+    boolIsCheckFillingCountOneDay: boolean,
+    fillingCountOneDay: number
   } = {
-      boolIsOpenBalanceCountRule: false,
-      balanceCount: 0
+      boolIsCheckFillingCountOneDay: false,
+      fillingCountOneDay: 0
     };
   // 流转状态不完全
   statusChangeRule: {
-    boolIsOpenStatusChangeRule: boolean
+    boolIsDispatchComplete: boolean
   } = {
-      boolIsOpenStatusChangeRule: false
+      boolIsDispatchComplete: false
     };
   constructor(
     private fillingScaleService: FillingScaleService,
@@ -47,11 +49,12 @@ export class SetScaleRuleComponent implements OnInit {
   getRuleForFillingSupervise() {
     this.fillingScaleService.getRuleForFillingSupervise().then(data => {
       if (data.status === 0) {
-        this.boolIsValidForGcNoGasLabelNumber = data.data.boolIsValidForGcNoGasLabelNumber;
-        this.boolIsValidForGcNotAccordWithCorpNumber = data.data.boolIsValidForGcNotAccordWithCorpNumber;
-        this.balanceCycleRule = data.data.balanceCycleRule;
-        this.balanceCountRule = data.data.balanceCountRule;
-        this.statusChangeRule = data.data.statusChangeRule;
+        console.log(data.data);
+        
+        this.ruleGcLabelNumberValidVO = data.data.ruleGcLabelNumberValidVO || {};
+        this.balanceCycleRule = data.data.ruleFillingCycleVO  || {};
+        this.balanceCountRule = data.data.ruleFillingCountOneDayVO  || {};
+        this.statusChangeRule = data.data.ruleGcDispatchCompleteVO  || {};
       } else {
         this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
       }
@@ -59,9 +62,8 @@ export class SetScaleRuleComponent implements OnInit {
   }
 
   setRuleForFillingSupervise() {
-    this.fillingScaleService.setRuleForFillingSupervise({
-      boolIsValidForGcNoGasLabelNumber: this.boolIsValidForGcNoGasLabelNumber,
-      boolIsValidForGcNotAccordWithCorpNumber: this.boolIsValidForGcNotAccordWithCorpNumber,
+    this.fillingScaleService.setRuleForCheckGcValid({
+      boolIsCheckGcLabelNumberValid: this.ruleGcLabelNumberValidVO.boolIsCheckGcLabelNumberValid,
     }).then(data => {
       if (data.status === 0) {
         this.messageService.add({ severity: 'success', summary: '', detail: data.msg });
@@ -71,8 +73,8 @@ export class SetScaleRuleComponent implements OnInit {
       }
     });
   }
-  setBalanceCountRule() {
-    this.fillingScaleService.setBalanceCountRule(this.balanceCountRule).then(data => {
+  setBalanceCycleRule() {
+    this.fillingScaleService.setRuleForCheckFillingCycle(this.balanceCycleRule).then(data => {
       if (data.status === 0) {
         this.messageService.add({ severity: 'success', summary: '', detail: data.msg });
       } else {
@@ -81,8 +83,8 @@ export class SetScaleRuleComponent implements OnInit {
       }
     });
   }
-  setBalanceCycleRule() {
-    this.fillingScaleService.setBalanceCycleRule(this.balanceCycleRule).then(data => {
+  setBalanceCountRule() {
+    this.fillingScaleService.setRuleForCheckFillingCountOneDay(this.balanceCountRule).then(data => {
       if (data.status === 0) {
         this.messageService.add({ severity: 'success', summary: '', detail: data.msg });
       } else {
@@ -92,7 +94,7 @@ export class SetScaleRuleComponent implements OnInit {
     });
   }
   setStatusChangeRule() {
-    this.fillingScaleService.setStatusChangeRule(this.statusChangeRule).then(data => {
+    this.fillingScaleService.setRuleForCheckGcDispatchComplete(this.statusChangeRule).then(data => {
       if (data.status === 0) {
         this.messageService.add({ severity: 'success', summary: '', detail: data.msg });
       } else {

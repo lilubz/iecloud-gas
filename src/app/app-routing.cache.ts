@@ -1,11 +1,13 @@
 import { RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
 
-export class AppRoutingCache  implements RouteReuseStrategy {
-  public maxCacheLength = 5;  // 最大复用页面的长度
+export class AppRoutingCache implements RouteReuseStrategy {
+  public maxCacheLength = 15;  // 最大复用页面的长度
   public handlers = [];  // 保存路由复用的数据。
 
   /** 是否对路由使用复用：只对路由配置中 keep 属性为true的启用复用 */
   public shouldDetach(route: ActivatedRouteSnapshot): boolean {
+    if (!route.routeConfig) return false;
+    if (route.routeConfig.loadChildren) return false;
     return route.data.keep ? true : false;
   }
 
@@ -25,11 +27,12 @@ export class AppRoutingCache  implements RouteReuseStrategy {
         this.handlers.pop();
       }
     }
-    
   }
 
   /** 如果复用中有此组件，并且路由当中没有携带参数的话 才允许使用复用 */
   public shouldAttach(route: ActivatedRouteSnapshot): boolean {
+    if (!route.routeConfig) return false;
+    if (route.routeConfig.loadChildren) return false;
     if (this.handlers.find(item => item.component === route.component)) {
       return JSON.stringify(route.params) === '{}' && JSON.stringify(route.queryParams) === '{}' ? true : false;
     }
@@ -40,12 +43,18 @@ export class AppRoutingCache  implements RouteReuseStrategy {
     if (!route.routeConfig) { return null; }
     if (route.routeConfig.loadChildren) { return null; }
     const needObj = this.handlers.find(item => item.component === route.component);
+    // console.log(needObj);
+    if (needObj) {
+      if (!needObj.component) {
+        return null;
+      }
+    }
     return needObj ? needObj.handle : null;
   }
 
   /** 进入路由触发，判断是否同一路由 */
   public shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
-    if(future.data.clear){
+    if (future.data.clear) {
       this.handlers = [];
     }
     return future.component === curr.component;

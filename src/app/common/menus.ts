@@ -206,6 +206,7 @@ export const EnterpriseMenus: MenuItem[] = [
     routerLink: ['/delivery'],
     items: [
       { label: '气瓶全过程监管追溯查询', routerLink: ['/delivery/cylinder-trace'] },
+      { label: '安检信息查询', routerLink: ['/delivery/security-query'] },
       { label: '地图轨迹', routerLink: ['/delivery/map'] },
       // { label: '充装记录', routerLink: ['/delivery/cylinder-filling'] }
     ]

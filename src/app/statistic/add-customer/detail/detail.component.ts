@@ -16,6 +16,7 @@ export class DetailComponent implements OnInit {
   recordPageNumber = 1;
   recordTotal = 0;
   selectedEnterpriseId;
+  regionId;
   // 某企业某日的用户登记记录
   customerRegisterRecords: Customer[] = [];
   loading = false;
@@ -29,6 +30,7 @@ export class DetailComponent implements OnInit {
     const queryParams = this.route.queryParams['value'];
     if (JSON.stringify(queryParams) !== '{}') {
       this.selectedEnterpriseId = queryParams.enterpriseId || '';
+      this.regionId = queryParams.regionId || '';
       this.getEnterpriseRegisterDetail();
     }
   }
@@ -45,6 +47,7 @@ export class DetailComponent implements OnInit {
     this.loading = true;
     this.addCustomerService.listUserInfoRecentlyRegister({
       enterpriseId: this.selectedEnterpriseId,
+      regionId: this.regionId,
       pageNumber: this.recordPageNumber,
       pageSize: this.recordPageSize
     }).then(data => {

@@ -52,7 +52,8 @@ const routes: Routes = [
             path: 'cylinder-record/:type',
             component: CylinderRecordComponent,
             data: {
-              title: '流转记录'
+              title: '流转记录',
+              keep: true
             }
           },
           {

@@ -22,8 +22,9 @@
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="{{customerDetailList.corpName}}">{{customerDetailList.corpName}}</span>
       <span class="ui-g-6 content" title="查看详情">
-        <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{enterpriseID:customerDetailList.enterpriseNumber}"
+        <a href="javascript:void(0);" *ngIf="customerDetailList.enterpriseNumber"  [routerLink]="['/archive/customer/list']" [queryParams]="{enterpriseID:customerDetailList.enterpriseNumber}"
           title="查看详情">查看详情</a>
+          <span *ngIf="!customerDetailList.enterpriseNumber" title="暂无详情">暂无详情</span>
       </span>
     </div>
     <div class="ui-g-4 ">
@@ -32,9 +33,9 @@
     </div>
     <div class="ui-g-4 ">
       <span class="ui-g-6 content" title="查看气瓶详情">
-        <a href="javascript:void(0);" *ngIf="customerDetailList.gcCount !==0" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectType:4,liabilitySubjectId:customerDetailList.userNumber}"
+        <a href="javascript:void(0);" *ngIf="customerDetailList.gcCount" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectType:4,liabilitySubjectId:customerDetailList.userNumber}"
           title="查看气瓶详情">查看气瓶详情</a>
-        <span *ngIf="customerDetailList.gcCount==0" title="暂无气瓶">暂无气瓶</span>
+        <span *ngIf="!customerDetailList.gcCount" title="暂无气瓶">暂无气瓶</span>
       </span>
       <span class="ui-g-6 content title" title="流转记录">流转记录</span>
     </div>

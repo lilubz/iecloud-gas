@@ -42,6 +42,7 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
     supplyLicenseNum: string,
     startTime?: string,
     endTime?: string,
+    inflatableStationNumber?: string,
   } = {
       regionId: '',
       enterpriseName: '',
@@ -50,6 +51,7 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
       supplyLicenseNum: '',
       startTime: '',
       endTime: '',
+      inflatableStationNumber: '',
     };
   changeStatusPage: any;
   editBottleVisible = false;
@@ -114,8 +116,9 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
       this.searchParams.supplyName = queryParams.supplyName || '';
       this.searchParams.enterpriseName = queryParams.enterpriseNumber || '';
       this.searchParams.regionId = queryParams.regionId || '';
+      this.searchParams.inflatableStationNumber = queryParams.liabilityNumber || '';
+      this.onSearch();
     }
-    this.onSearch();
   }
 
   getRegions() {
@@ -220,6 +223,11 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
    * 查询
    * @param page
    */
+  queryGasStation() {
+    // 清除隐藏参数后查询
+    this.searchParams.inflatableStationNumber = '';
+    this.onSearch();
+  }
   onSearch(page?) {
     const params = {
       regionId: this.searchParams.regionId,
@@ -227,8 +235,7 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
       inflatableName: this.searchParams.supplyName,
       responsiblePerson: this.searchParams.person,
       licenseNumber: this.searchParams.supplyLicenseNum,
-      // releaseTimeStart: this.searchParams.startTime || '',
-      // releaseTimeEnd: this.searchParams.endTime || '',
+      inflatableStationNumber: this.searchParams.inflatableStationNumber,
       pageNumber: 1,
       pageSize: 40
     };

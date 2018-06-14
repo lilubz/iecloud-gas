@@ -20,7 +20,6 @@ export class GasHolderStationDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.activatedRoute);
     this.id = this.activatedRoute.queryParams['value'].id;
     if (typeof this.id === 'string' && this.id !== '') {
       this.getDetails({ inflatableStationNumber: this.id });

@@ -19,17 +19,17 @@ export class FillingScaleService {
     return this.HttpService.getRequest(API.listBalanceLockRecord, params);
   }
 
-  setRuleForFillingSupervise(params?: any): Promise<any> {
-    return this.HttpService.withCredentialsPostRequest(API.setRuleForFillingSupervise, params);
+  setRuleForCheckGcValid(params?: any): Promise<any> {
+    return this.HttpService.withCredentialsPostRequest(API.setRuleForCheckGcValid, params);
   }
-  setBalanceCycleRule(params?: any): Promise<any> {
-    return this.HttpService.withCredentialsPostRequest(API.setBalanceCycleRule, params);
+  setRuleForCheckFillingCycle(params?: any): Promise<any> {
+    return this.HttpService.withCredentialsPostRequest(API.setRuleForCheckFillingCycle, params);
   }
-  setBalanceCountRule(params?: any): Promise<any> {
-    return this.HttpService.withCredentialsPostRequest(API.setBalanceCountRule, params);
+  setRuleForCheckFillingCountOneDay(params?: any): Promise<any> {
+    return this.HttpService.withCredentialsPostRequest(API.setRuleForCheckFillingCountOneDay, params);
   }
-  setStatusChangeRule(params?: any): Promise<any> {
-    return this.HttpService.withCredentialsPostRequest(API.setStatusChangeRule, params);
+  setRuleForCheckGcDispatchComplete(params?: any): Promise<any> {
+    return this.HttpService.withCredentialsPostRequest(API.setRuleForCheckGcDispatchComplete, params);
   }
 
   getRuleForFillingSupervise(params?: any): Promise<any> {

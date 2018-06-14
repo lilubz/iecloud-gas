@@ -1,19 +1,19 @@
 <div class="ui-g-12">
   <h2 class="text-center">充装监管规则设置</h2>
-  <div class="ui-g-12">
+  <!-- <div class="ui-g-12">
     <div class="ui-g-6 text-right">
       没有标签的气瓶不合法：
     </div>
     <div class="ui-g-6 ui-g-nopad">
       <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="boolIsValidForGcNoGasLabelNumber" (onChange)="setRuleForFillingSupervise()"></p-inputSwitch>
     </div>
-  </div>
+  </div> -->
   <div class="ui-g-12">
     <div class="ui-g-6 text-right">
-      企业编码与标签不一致的气瓶不合法：
+        气瓶合法性验证<gas-explanation tooltip="气瓶有标签且与归属企业编码一致" style="display:inline-block" position="bottom"></gas-explanation>：
     </div>
     <div class="ui-g-6 ui-g-nopad">
-      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="boolIsValidForGcNotAccordWithCorpNumber" (onChange)="setRuleForFillingSupervise()"></p-inputSwitch>
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="ruleGcLabelNumberValidVO.boolIsCheckGcLabelNumberValid" (onChange)="setRuleForFillingSupervise()"></p-inputSwitch>
     </div>
   </div>
   <div class="ui-g-12">
@@ -21,8 +21,8 @@
       单瓶充装周期检验：
     </div>
     <div class="ui-g-6 ui-g-nopad">
-      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="balanceCycleRule.boolIsOpenBalanceCycleRule" (onChange)="setBalanceCycleRule()"></p-inputSwitch>
-      <input maxlength="250" type="text" [(ngModel)]="balanceCycleRule.balanceCycle" gasInputFilter="[0-9]*" pInputText>天
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="balanceCycleRule.boolIsCheckFillingCycle" (onChange)="setBalanceCycleRule()"></p-inputSwitch>
+      <input maxlength="250" type="text" [(ngModel)]="balanceCycleRule.fillingCycle" gasInputFilter="[0-9]*" pInputText>天
     </div>
   </div>
   <div class="ui-g-12">
@@ -30,8 +30,8 @@
       当日充装次数检验：
     </div>
     <div class="ui-g-6 ui-g-nopad">
-      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="balanceCountRule.boolIsOpenBalanceCountRule" (onChange)="setBalanceCountRule()"></p-inputSwitch>
-      <input maxlength="250" type="text" [(ngModel)]="balanceCountRule.balanceCount" gasInputFilter="[0-9]*" pInputText>次
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="balanceCountRule.boolIsCheckFillingCountOneDay" (onChange)="setBalanceCountRule()"></p-inputSwitch>
+      <input maxlength="250" type="text" [(ngModel)]="balanceCountRule.fillingCountOneDay" gasInputFilter="[0-9]*" pInputText>次
     </div>
   </div>
   <div class="ui-g-12">
@@ -39,7 +39,7 @@
       流转状态不完全：
     </div>
     <div class="ui-g-6 ui-g-nopad">
-      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="statusChangeRule.boolIsOpenStatusChangeRule" (onChange)="setStatusChangeRule()"></p-inputSwitch>
+      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="statusChangeRule.boolIsDispatchComplete" (onChange)="setStatusChangeRule()"></p-inputSwitch>
     </div>
   </div>
 </div>

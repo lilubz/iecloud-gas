@@ -24,11 +24,7 @@
         <a href="javascript:void(0);" [routerLink]="['../enterprise', countyCylinder.regionId || '']" class="area">{{countyCylinder[col.field]}}</a>
       </ng-template> -->
       </p-column>
-      <p-column field="totalCount" header="气瓶数">
-        <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.gcCount || 0 }}
-        </ng-template>
-      </p-column>
+      <p-column field="gcCount" header="气瓶数"></p-column>
 
       <!-- <p-footerColumnGroup>
       <p-row>

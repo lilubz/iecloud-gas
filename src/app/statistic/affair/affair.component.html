@@ -30,12 +30,12 @@
         </p-column>
         <p-column field="totalCount" header="重要事务">
           <ng-template let-countyCylinder="rowData" pTemplate="body">
-            {{ countyCylinder.emergencyDegreeSecond || 0 }}
+            {{ countyCylinder?.emergencyDegreeSecond || 0 }}
           </ng-template>
         </p-column>
         <p-column field="totalCount" header="紧急事务">
           <ng-template let-countyCylinder="rowData" pTemplate="body">
-            {{ countyCylinder.emergencyDegreeThird || 0 }}
+            {{ countyCylinder?.emergencyDegreeThird || 0 }}
           </ng-template>
         </p-column>
       </p-dataTable>

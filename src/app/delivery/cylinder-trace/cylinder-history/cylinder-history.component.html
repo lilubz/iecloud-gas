@@ -56,7 +56,7 @@
     <p-column field="beforeLiabilityTypeName"></p-column>
     <p-column field="beforeLiabilityName">
       <ng-template let-rowData="rowData" pTemplate="body">
-        <a *ngIf="rowData.beforeLiabilityTypeId<5" href="javascript:void(0);" (click)="link(rowData, 'before');" title="{{'点击查看' + rowData.beforeLiabilityName + '的流转信息'}}">{{rowData.beforeLiabilityName}}</a>
+        <a *ngIf="rowData.beforeLiabilityTypeId<5" href="javascript:void(0);" (click)="link(rowData, 'before');" title="{{'点击查看' + rowData.beforeLiabilityName + '的档案信息'}}">{{rowData.beforeLiabilityName}}</a>
         <span *ngIf="rowData.beforeLiabilityTypeId===5">{{rowData.beforeLiabilityName}}</span>
       </ng-template>
     </p-column>
@@ -65,7 +65,7 @@
     <p-column field="afterLiabilityTypeName"></p-column>
     <p-column field="afterLiabilityName">
       <ng-template let-rowData="rowData" pTemplate="body">
-        <a *ngIf="rowData.afterLiabilityTypeId<5" href="javascript:void(0);" (click)="link(rowData, 'after');" title="{{'点击查看' + rowData.afterLiabilityName + '的流转信息'}}">{{rowData.afterLiabilityName}}</a>
+        <a *ngIf="rowData.afterLiabilityTypeId<5" href="javascript:void(0);" (click)="link(rowData, 'after');" title="{{'点击查看' + rowData.afterLiabilityName + '的档案信息'}}">{{rowData.afterLiabilityName}}</a>
         <span *ngIf="rowData.afterLiabilityTypeId===5">{{rowData.afterLiabilityName}}</span>
       </ng-template>
     </p-column>

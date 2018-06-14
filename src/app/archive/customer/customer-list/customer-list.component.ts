@@ -125,6 +125,7 @@ export class CustomerListComponent implements OnInit {
     boolIsChecked: string,
     jobNumber: string,
     phoneNumber: string,
+    userNumber: string,
   } = {
       regionId: '',
       enterpriseNumber: '',
@@ -137,7 +138,8 @@ export class CustomerListComponent implements OnInit {
       pageNumber: 1,
       boolIsChecked: '',
       jobNumber: '',
-      phoneNumber: ''
+      phoneNumber: '',
+      userNumber:''
     };
   willDeleteCustomer;
   willEditCustomer = {
@@ -181,6 +183,7 @@ export class CustomerListComponent implements OnInit {
       this.pageParams.boolIsChecked = queryParams.boolIsChecked || '';
       this.pageParams.jobNumber = queryParams.jobNumber || '';
       this.pageParams.phoneNumber = queryParams.phoneNumber || '';
+      this.pageParams.userNumber = queryParams.liabilityNumber || '';
       Object.assign(this.pageParams, this.formModel.value);
       this.getCustomerList();
     }
@@ -207,6 +210,7 @@ export class CustomerListComponent implements OnInit {
       this.pageParams.boolIsChecked = '';
       this.pageParams.jobNumber = '';
       this.pageParams.phoneNumber = '';
+      this.pageParams.userNumber = '';
       this.getCustomerList();
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {

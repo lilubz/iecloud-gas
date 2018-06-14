@@ -46,6 +46,8 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     supplyLicenseNum: string,
     startTime?: string,
     endTime?: string,
+    typeId?: string,
+    supplyStationNumber?: string,
   } = {
       regionId: '',
       enterpriseName: '',
@@ -54,6 +56,8 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       supplyLicenseNum: '',
       startTime: '',
       endTime: '',
+      typeId: '',
+      supplyStationNumber: '',
     };
   changeStatusPage: any;
   editBottleVisible = false;
@@ -89,6 +93,17 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       value: '',
     }
   ];
+  type: SelectItem[] = [
+    {
+      label: '供应站',
+      value: '1',
+    },
+    {
+      label: '直销车',
+      value: '3',
+    },
+  ];
+  searchType: SelectItem[] = [];
   default: any[] = [
     {
       label: '全部',
@@ -109,6 +124,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.searchType = this.default.concat(this.type);
     this.addForm = new AddBottle();
     this.getEnterprises();
     this.getRegions();
@@ -116,6 +132,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     const queryParams = this.activatedRoute.queryParams['value'];
     if (JSON.stringify(queryParams) !== '{}') {
       Object.assign(this.searchParams, queryParams);
+      this.searchParams.supplyStationNumber = queryParams.liabilityNumber || '';
       this.onSearch();
     }
   }
@@ -245,11 +262,17 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       };
     this.onSearch(page);
     this.changeStatusPage = page;
+    
   }
   /**
    * 查询
    * @param page
    */
+  querySupplyStation(){
+    // 清除隐藏参数后查询
+    this.searchParams.supplyStationNumber='';
+    this.onSearch();
+  }
   onSearch(page?) {
     const params = {
       regionId: this.searchParams.regionId,
@@ -259,6 +282,8 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       supplyLicenseNum: this.searchParams.supplyLicenseNum,
       releaseTimeStart: this.searchParams.startTime || '',
       releaseTimeEnd: this.searchParams.endTime || '',
+      stationType: this.searchParams.typeId,
+      supplyStationNumber: this.searchParams.supplyStationNumber || '',
       pageNumber: 1,
       pageSize: 40
     };
@@ -316,7 +341,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     this.change.supplyStationNumber = data.supplyStationNumber;
   }
   AddCorpSupplyStation() {
-    if (this.checkForm2()) {
+    if (this.addCheckForm()) {
       const formData = new FormData();
       for (const key in this.addForm) {
         if (key) {
@@ -353,7 +378,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     }
   }
   editCorpSupplyStation() {
-    if (this.checkForm()) {
+    if (this.editCheckForm()) {
       const formData = new FormData();
       for (const key in this.editForm) {
         if (key) {
@@ -487,7 +512,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
    * 验证信息是否填写
    */
 
-  checkForm(): boolean {
+  editCheckForm(): boolean {
     if (!this.editForm.regionId) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '所属区域不能为空' });
       return false;
@@ -515,10 +540,15 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     } else if (!this.editForm.effectiveTimeEnd) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '有效期结束时间不能为空' });
       return false;
+    } else if (this.editForm.stationType !== '1') {
+      if (!this.editForm.carNumber.trim()) {
+        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '直销车车牌号不能为空' });
+        return false;
+      }
     }
     return true;
   }
-  checkForm2(): boolean {
+  addCheckForm(): boolean {
     if (!this.addForm.regionId) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '所属区域不能为空' });
       return false;
@@ -546,6 +576,11 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
     } else if (!this.addForm.effectiveTimeEnd) {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '有效期结束时间不能为空' });
       return false;
+    } else if (this.addForm.stationType !== '1') {
+      if (!this.addForm.carNumber.trim()) {
+        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '直销车车牌号不能为空' });
+        return false;
+      }
     }
     return true;
   }

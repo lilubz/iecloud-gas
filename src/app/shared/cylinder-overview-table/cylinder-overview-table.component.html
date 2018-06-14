@@ -13,17 +13,34 @@
   </p-column>
   <p-column *ngIf="type==='enterprise'" field="enterpriseName" header="企业名称" [style]="{'width':'30%'}">
     <ng-template *ngIf="isShowRouterLink" let-col let-cylinderStatistic="rowData" pTemplate="body">
-      <a href="javascript:void(0);" [routerLink]="['../../../list']" [queryParams]="{enterpriseID:cylinderStatistic.enterpriseNumber||''}" class="router-link">{{cylinderStatistic.enterpriseName}}</a>
+      <a href="javascript:void(0);" [routerLink]="['../../../list']" [queryParams]="{enterpriseID:cylinderStatistic.enterpriseNumber||''}"
+        class="router-link">{{cylinderStatistic.enterpriseName}}</a>
     </ng-template>
   </p-column>
   <p-column field="totalCount" header="气瓶数">
     <ng-template let-cylinderStatistic="rowData" pTemplate="body">
-      {{ cylinderStatistic.totalCount || 0 }}
+      <span *ngIf="cylinderStatistic.totalCount<=0">
+        {{cylinderStatistic.totalCount}}
+      </span>
+      <span *ngIf="cylinderStatistic.totalCount>0">
+        <a href="javascript:void(0);" *ngIf="type==='county'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:cylinderStatistic.regionId||''}"
+          class="router-link">{{ cylinderStatistic.totalCount || 0 }}</a>
+        <a href="javascript:void(0);" *ngIf="type==='enterprise'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{enterpriseID:cylinderStatistic.enterpriseNumber||''}"
+          class="router-link">{{ cylinderStatistic.totalCount || 0 }}</a>
+      </span>
     </ng-template>
   </p-column>
   <p-column field="normalCount" header="正常">
     <ng-template let-cylinderStatistic="rowData" pTemplate="body">
-      {{ cylinderStatistic.normalCount || 0 }}
+      <span *ngIf="cylinderStatistic.normalCount<=0">
+        {{cylinderStatistic.normalCount}}
+      </span>
+      <span *ngIf="cylinderStatistic.normalCount>0">
+        <a href="javascript:void(0);" *ngIf="type==='county'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:cylinderStatistic.regionId||'',state:0}"
+          class="router-link">{{ cylinderStatistic.normalCount || 0 }}</a>
+        <a href="javascript:void(0);" *ngIf="type==='enterprise'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{enterpriseID:cylinderStatistic.enterpriseNumber||'',state:0}"
+          class="router-link">{{ cylinderStatistic.normalCount || 0 }}</a>
+      </span>
     </ng-template>
   </p-column>
   <p-column field="expireCount" header="过期">
@@ -32,12 +49,28 @@
       <gas-explanation tooltip="检验气瓶时间超过下次检验时间" position="bottom"></gas-explanation>
     </ng-template>
     <ng-template let-cylinderStatistic="rowData" pTemplate="body">
-      {{ cylinderStatistic.expireCount || 0 }}
+      <span *ngIf="cylinderStatistic.expireCount<=0">
+        {{cylinderStatistic.expireCount}}
+      </span>
+      <span *ngIf="cylinderStatistic.expireCount>0">
+        <a href="javascript:void(0);" *ngIf="type==='county'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:cylinderStatistic.regionId||'',state:1}"
+          class="router-link">{{ cylinderStatistic.expireCount || 0 }}</a>
+        <a href="javascript:void(0);" *ngIf="type==='enterprise'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{enterpriseID:cylinderStatistic.enterpriseNumber||'',state:1}"
+          class="router-link">{{ cylinderStatistic.expireCount || 0 }}</a>
+      </span>
     </ng-template>
   </p-column>
   <p-column field="scrapCount" header="报废">
     <ng-template let-cylinderStatistic="rowData" pTemplate="body">
-      {{ cylinderStatistic.scrapCount || 0 }}
+      <span *ngIf="cylinderStatistic.scrapCount<=0">
+        {{cylinderStatistic.scrapCount}}
+      </span>
+      <span *ngIf="cylinderStatistic.scrapCount>0">
+        <a href="javascript:void(0);" *ngIf="type==='county'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:cylinderStatistic.regionId||'',state:2}"
+          class="router-link">{{ cylinderStatistic.scrapCount || 0 }}</a>
+        <a href="javascript:void(0);" *ngIf="type==='enterprise'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{enterpriseID:cylinderStatistic.enterpriseNumber||'',state:2}"
+          class="router-link">{{ cylinderStatistic.scrapCount || 0 }}</a>
+      </span>
     </ng-template>
   </p-column>
   <p-column field="scrapCount" header="标签异常">
@@ -46,7 +79,15 @@
       <gas-explanation tooltip="气瓶不归属于该企业，却挂在该企业下" position="bottom"></gas-explanation>
     </ng-template>
     <ng-template let-cylinderStatistic="rowData" pTemplate="body">
-      {{ cylinderStatistic.codeAbnormalCount || 0 }}
+      <span *ngIf="cylinderStatistic.codeAbnormalCount<=0">
+        {{cylinderStatistic.codeAbnormalCount}}
+      </span>
+      <span *ngIf="cylinderStatistic.codeAbnormalCount>0">
+        <a href="javascript:void(0);" *ngIf="type==='county'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{regionId:cylinderStatistic.regionId||'',state:3}"
+          class="router-link">{{ cylinderStatistic.codeAbnormalCount || 0 }}</a>
+        <a href="javascript:void(0);" *ngIf="type==='enterprise'" [routerLink]="['/archive/cylinder/list']" [queryParams]="{enterpriseID:cylinderStatistic.enterpriseNumber||'',state:3}"
+          class="router-link">{{ cylinderStatistic.codeAbnormalCount || 0 }}</a>
+      </span>
     </ng-template>
   </p-column>
 

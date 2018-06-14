@@ -35,7 +35,7 @@
             <span class="inputgroup">
               <label for="" class="search-label">发证日期</label>
             </span>
-            <p-calendar [locale]="cn" [(ngModel)]="startTimeinit"  (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)"
+            <p-calendar [locale]="cn" [(ngModel)]="startTimeinit" (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)"
               [showButtonBar]="true" [maxDate]="endTimeinit" dateFormat="yy-mm-dd" [selectOtherMonths]="true" [monthNavigator]="true"
               [yearNavigator]="true" [showIcon]="false" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'280px','display':'inline-block'}">
             </p-calendar>
@@ -46,8 +46,8 @@
             <span class="inputgroup">
               <label for="" class="search-label">至</label>
             </span>
-            <p-calendar [locale]="cn" [(ngModel)]="endTimeinit"  (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="startTimeinit"
-              [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
+            <p-calendar [locale]="cn" [(ngModel)]="endTimeinit" (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)"
+              [minDate]="startTimeinit" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
               [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'280px','display':'inline-block'}"></p-calendar>
           </div>
           <div class="ui-g-12 ui-lg-6">
@@ -57,11 +57,17 @@
             <input maxlength="20" type="text" class="textInput" [(ngModel)]="searchParams.supplyLicenseNum" pInputText placeholder=""
               style="width:280px">
           </div>
+          <div class="ui-g-12 ui-lg-6">
+            <span class="inputgroup">
+              <label for="" class="search-label">类型</label>
+            </span>
+            <p-dropdown [options]="searchType" [(ngModel)]="searchParams.typeId" [style]="{'width':'280px'}"></p-dropdown>
+          </div>
         </div>
       </div>
     </div>
     <div class="ui-g-12">
-      <button pButton type="button" label="查询" class="searchBtn" (click)="onSearch()"></button>
+      <button pButton type="button" label="查询" class="searchBtn" (click)="querySupplyStation()"></button>
 
       <button pButton *gasPermissionRole="[RoleType.Admin, RoleType.Government]" type="button" label="新增" class="searchBtn" (click)="showAddDialog()"></button>
 
@@ -79,7 +85,7 @@
           </p-column>
           <p-column [style]="{'width':'100px'}" header="操作">
             <ng-template let-rowData="rowData" pTemplate="body">
-              <a href="javascript:void(0);" [routerLink]="['../detail']" [queryParams]="{id: rowData.supplyStationNumber}" >查看详情</a>
+              <a href="javascript:void(0);" [routerLink]="['../detail']" [queryParams]="{id: rowData.supplyStationNumber}">查看详情</a>
             </ng-template>
           </p-column>
           <p-column [style]="{'width':'150px'}" field="supplyStationName" header="站点名称">
@@ -88,15 +94,15 @@
               <gas-explanation tooltip="供应站的站点名称" position="bottom"></gas-explanation>
             </ng-template>
           </p-column>
-          <p-column [style]="{'width':'150px'}" field="regionName" header="所属区域"></p-column>
+          <p-column [style]="{'width':'100px'}" field="regionName" header="所属区域"></p-column>
           <p-column [style]="{'width':'150px'}" field="enterpriseName" header="所属企业"></p-column>
-          <p-column [style]="{'width':'150px'}" field="principal" header="负责人">
+          <p-column [style]="{'width':'100px'}" field="principal" header="负责人">
             <ng-template pTemplate="header">
               负责人
               <gas-explanation tooltip="供应站的主要负责人" position="bottom"></gas-explanation>
             </ng-template>
           </p-column>
-          <p-column [style]="{'width':'150px'}" field="contactPerson" header="联系人"></p-column>
+          <p-column [style]="{'width':'100px'}" field="contactPerson" header="联系人"></p-column>
           <p-column [style]="{'width':'150px'}" field="supplyStationContact" header="联系方式"></p-column>
           <p-column [style]="{'width':'150px'}" field="supplyStationAddress" header="站点地址"></p-column>
           <p-column [style]="{'width':'150px'}" field="supplyLicenseNum" header="许可证编号"></p-column>
@@ -107,7 +113,7 @@
             </ng-template>
           </p-column>
           <p-column [style]="{'width':'150px'}" field="businessCategory" header="经营类别"></p-column>
-          <p-column [style]="{'width':'150px'}" field="businessArea" header="经营区域"></p-column>
+          <p-column [style]="{'width':'100px'}" field="businessArea" header="经营区域"></p-column>
           <p-column [style]="{'width':'150px'}" header="发证日期">
             <ng-template let-rowdata="rowData" pTemplate="body">
               <span>{{rowdata.releaseTime | date:'yyyy/MM/dd'}}</span>
@@ -118,16 +124,18 @@
               <span>{{rowdata.effectiveTimeStart | date:'yyyy/MM/dd'}}-{{rowdata.effectiveTimeEnd | date:'yyyy/MM/dd'}}</span>
             </ng-template>
           </p-column>
-          <p-column [style]="{'width':'200px'}" header="操作" *gasPermissionRole="[RoleType.Admin]">
+          <p-column [style]="{'width':'140px'}" header="操作" *gasPermissionRole="[RoleType.Admin]">
             <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
               <button pButton type="button" label="变更归属企业" style="width:120px" (click)="showChangeDialog(data)"></button>
             </ng-template>
           </p-column>
-          <p-column [style]="{'width':'200px'}" header="修改/编辑" *gasPermissionRole="[RoleType.Admin]">
+          <p-column [style]="{'width':'140px'}" header="编辑" *gasPermissionRole="[RoleType.Admin]">
             <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
               <button pButton type="button" label="编辑" style="width:120px" (click)="showEditDialog(data)"></button>
             </ng-template>
           </p-column>
+          <p-column [style]="{'width':'100px'}" field="remark" header="备注"></p-column>
+          <p-column [style]="{'width':'100px'}" field="carNumber" header="车牌号"></p-column>
           <ng-template pTemplate="emptymessage">
             <div class="text-left">
               未查询到数据
@@ -141,10 +149,10 @@
     </div>
   </div>
 
-  <p-dialog [visible]="editBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
-    [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
+  <p-dialog [visible]="editBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false"
+    [width]="800" [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
     <h3 class="dialogtitle" style="text-align:center">编辑供应站信息</h3>
-    <div class="ui-g-12 " style="height:330px">
+    <div class="ui-g-12 " style="height:365px">
       <div class="ui-g-12 ui-md-6">
         <div class="inputgroup">
           <label for="" class="search-label">站点名称
@@ -253,16 +261,39 @@
           <input maxlength="250" type="text" [(ngModel)]="editForm.businessCategory" style="width:180px" pInputText placeholder="">
         </div>
       </div>
+      <div class="ui-g-6 ui-md-6">
+        <div class="inputgroup">
+          <label for="" class="search-label">站点类型
+            <b style="color:red;">*</b>
+          </label>
+          <p-dropdown [options]="type" [(ngModel)]="editForm.stationType" appendTo="body" [style]="{'width':'180px'}"></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="inputgroup">
+          <label for="" class="search-label">备注
+          </label>
+          <input maxlength="250" type="text" [(ngModel)]="editForm.remark" style="width:180px" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-12" *ngIf="editForm.stationType==='3'">
+        <div class="inputgroup">
+          <label for="" class="search-label">车牌号
+            <b style="color:red;">*</b>
+          </label>
+          <input maxlength="250" type="text" [(ngModel)]="editForm.carNumber" style="width:180px" pInputText placeholder="">
+        </div>
+      </div>
     </div>
     <p-footer>
       <button type="button " pButton label="确认编辑" (click)="editCorpSupplyStation()"></button>
       <button type="button " pButton (click)="closeDialog()" label="关闭 "></button>
     </p-footer>
   </p-dialog>
-  <p-dialog [visible]="addBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false
-                  " [width]="800 " [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
+  <p-dialog [visible]="addBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
+    [width]="800 " [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
     <h3 class="dialogtitle" style="text-align:center">新增供应站信息</h3>
-    <div class="ui-g-12 " style="height:330px">
+    <div class="ui-g-12 " style="height:365px">
       <div class="ui-g-12 ui-g-nopad">
         <div class="ui-g-12 ui-md-6">
           <div class="inputgroup">
@@ -375,6 +406,29 @@
           <input maxlength="250" type="text" [(ngModel)]="addForm.businessCategory" style="width:180px" pInputText placeholder="">
         </div>
       </div>
+      <div class="ui-g-6 ui-md-6">
+        <div class="inputgroup">
+          <label for="" class="search-label">站点类型
+            <b style="color:red;">*</b>
+          </label>
+          <p-dropdown [options]="type" [(ngModel)]="addForm.stationType" appendTo="body" [style]="{'width':'180px'}"></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="inputgroup">
+          <label for="" class="search-label">备注
+          </label>
+          <input maxlength="250" type="text" [(ngModel)]="addForm.remark" style="width:180px" pInputText placeholder="">
+        </div>
+      </div>
+      <div class="ui-g-12" *ngIf="addForm.stationType==='3'">
+        <div class="inputgroup">
+          <label for="" class="search-label">车牌号
+            <b style="color:red;">*</b>
+          </label>
+          <input maxlength="250" type="text" [(ngModel)]="addForm.carNumber" style="width:180px" pInputText placeholder="">
+        </div>
+      </div>
     </div>
     <p-footer>
       <button type="button" pButton label="确认新增" (click)="AddCorpSupplyStation()"></button>
@@ -388,7 +442,8 @@
       <div class="ui-g-12">
         <div class="inputgroup">
           <label for="" class="search-label">站点名称</label>
-          <input maxlength="250" type="text" disabled="disabled" [(ngModel)]="change.supplyStationName" style="width:300px" pInputText placeholder="">
+          <input maxlength="250" type="text" disabled="disabled" [(ngModel)]="change.supplyStationName" style="width:300px" pInputText
+            placeholder="">
         </div>
       </div>
       <div class="ui-g-12" *gasPermissionRole="[RoleType.Government,RoleType.Admin]">

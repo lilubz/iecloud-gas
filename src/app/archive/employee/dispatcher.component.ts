@@ -54,7 +54,8 @@ export class DispatcherComponent implements OnInit {
     idNumber: '',
     regionId: '',
     pageSize: this.dataTable.option[2],
-    pageNumber: 1
+    pageNumber: 1,
+    dispatcherNumber : '',    
   };
   constructor(
     private dispatcherService: DispatcherService,
@@ -87,6 +88,7 @@ export class DispatcherComponent implements OnInit {
         enterpriseId: queryParams.enterpriseNumber || '',
       });
       this.pageParams.regionId = queryParams.regionId || '';
+      this.pageParams.dispatcherNumber = queryParams.liabilityNumber || '';
     }
     Object.assign(this.pageParams, this.formModel.value);
     this.getDispatcherInfo();
@@ -109,6 +111,7 @@ export class DispatcherComponent implements OnInit {
       this.dataTable.first = 0;
       Object.assign(this.pageParams, this.formModel.value);
       this.pageParams.regionId = '';
+      this.pageParams.dispatcherNumber = '';
       this.getDispatcherInfo();
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {
@@ -131,7 +134,7 @@ export class DispatcherComponent implements OnInit {
 
   getDispatcherInfo(params?) {
     this.dispatcherService.getDispatcherInfo({
-      enterpriseId: this.pageParams.enterpriseId,
+      enterpriseNumber: this.pageParams.enterpriseId,
       supplyStationNumber: this.pageParams.supplyStationId,
       name: this.pageParams.name,
       jobNumber: this.pageParams.jobNumber,
@@ -139,7 +142,8 @@ export class DispatcherComponent implements OnInit {
       idNumber: this.pageParams.idNumber,
       pageSize: this.pageParams.pageSize,
       pageNumber: this.pageParams.pageNumber,
-      regionId : this.pageParams.regionId
+      regionId : this.pageParams.regionId,
+      dispatcherNumber : this.pageParams.dispatcherNumber,
     })
       .then(data => {
         if (data.status === 0) {

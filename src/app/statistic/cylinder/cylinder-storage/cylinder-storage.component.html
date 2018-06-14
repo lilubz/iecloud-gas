@@ -7,7 +7,7 @@
           <label for="" class="search-label">区域选择：</label>
           <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'150px'}"></p-dropdown>
         </ng-container>
-        <button pButton type="button" (click)="exportSupplyStationStatistic()" class=" right" label="导出"></button>
+        <button pButton type="button" (click)="exportSupplyStationStatistic()" class="right" label="导出"></button>
       </div>
     </div>
 
@@ -29,8 +29,9 @@
           <span *ngIf="countyCylinder.gcCount<=0">
             {{ countyCylinder.gcCount || 0 }}
           </span>
-          <a href="javascript:void(0);" *ngIf="countyCylinder.gcCount>0" (click)="onOpenDialog(countyCylinder.stationNumber)">
-            {{ countyCylinder.gcCount || 0 }}
+          <a href="javascript:void(0);" *ngIf="countyCylinder.gcCount>0">
+            <a href="javascript:void(0);" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectId:countyCylinder.stationNumber ||'',liabilitySubjectType:2}"
+              class="router-link">{{ countyCylinder.gcCount || 0 }}</a>
           </a>
         </ng-template>
       </p-column>
@@ -79,22 +80,38 @@
       </p-column>
       <p-column field="fullBottleReceiveCount" header="重瓶入库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.fullBottleReceiveCount || 0 }}
+          <span *ngIf="countyCylinder.fullBottleReceiveCount<=0">
+            {{ countyCylinder.fullBottleReceiveCount || 0 }}
+          </span>
+          <a href="javascript:void(0);" *ngIf="countyCylinder.fullBottleReceiveCount>0" [routerLink]="['/delivery/cylinder-trace/cylinder-record/2']"
+            [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:2,type:'重入'}" class="router-link">{{ countyCylinder.fullBottleReceiveCount || 0 }}</a>
         </ng-template>
       </p-column>
       <p-column field="fullBottleSendCount" header="重瓶出库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.fullBottleSendCount || 0 }}
+          <span *ngIf="countyCylinder.fullBottleSendCount<=0">
+            {{ countyCylinder.fullBottleSendCount || 0 }}
+          </span>
+          <a href="javascript:void(0);" *ngIf="countyCylinder.fullBottleSendCount>0" [routerLink]="['/delivery/cylinder-trace/cylinder-record/2']"
+            [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:2,type:'重出'}" class="router-link">{{ countyCylinder.fullBottleSendCount || 0 }}</a>
         </ng-template>
       </p-column>
       <p-column field="emptyBottleReceiveCount" header="空瓶入库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.emptyBottleReceiveCount || 0 }}
+          <span *ngIf="countyCylinder.emptyBottleReceiveCount<=0">
+            {{ countyCylinder.emptyBottleReceiveCount || 0 }}
+          </span>
+          <a href="javascript:void(0);" *ngIf="countyCylinder.emptyBottleReceiveCount>0" [routerLink]="['/delivery/cylinder-trace/cylinder-record/2']"
+            [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:2,type:'空入'}" class="router-link">{{ countyCylinder.emptyBottleReceiveCount || 0 }}</a>
         </ng-template>
       </p-column>
       <p-column field="emptyBottleSendCount" header="空瓶出库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-          {{ countyCylinder.emptyBottleSendCount || 0 }}
+          <span *ngIf="countyCylinder.emptyBottleSendCount<=0">
+            {{ countyCylinder.emptyBottleSendCount || 0 }}
+          </span>
+          <a href="javascript:void(0);" *ngIf="countyCylinder.emptyBottleSendCount>0" [routerLink]="['/delivery/cylinder-trace/cylinder-record/2']"
+            [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:2,type:'空出'}" class="router-link">{{ countyCylinder.emptyBottleSendCount || 0 }}</a>
         </ng-template>
 
       </p-column>
@@ -103,7 +120,7 @@
       </ng-template>
     </p-dataTable>
 
-    <p-dialog [visible]="storageVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
+    <!-- <p-dialog [visible]="storageVisible" [responsive]="true" [showHeader]="false" [modal]="true" [closable]="false" [width]="800"
       [contentStyle]="{'padding':'0'}" [style]="{'border':'none'}">
       <div class="ui-g ui-g-12">
         <p-dataTable [value]="dialogDataTable.list" dataKey="gasLabelNumber" [paginator]="true" [rows]="dialogDataTable.options[0]"
@@ -158,6 +175,6 @@
       <p-footer>
         <button type="button" pButton icon="fa-close" (click)="storageVisible=false" label="关闭"></button>
       </p-footer>
-    </p-dialog>
+    </p-dialog> -->
   </div>
 </div>

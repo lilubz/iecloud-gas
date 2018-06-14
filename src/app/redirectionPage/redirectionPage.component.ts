@@ -35,7 +35,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
       {
         label: '燃气用户',
         value: '2',
-        placeholder: '请输入用户姓名或手机号'
+        placeholder: '请输入用户姓名或联系电话'
       },
       {
         label: '储配站',
@@ -143,7 +143,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
     switch (data) {
       case '1':
         if (!/^\d{8,11}$/.test(this.searchValue)) {
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入8-11位数字气瓶条码' });
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入气瓶条码（8-11位数字）' });
           this.searchValue = '';
           return false;
         }
@@ -154,7 +154,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
         // 正则判断是否是姓名还是手机号并跳转
         if (/^[\u4E00-\u9FA5]+$/.test(this.searchValue)) { // 验证是否全为汉字
           if (!/^[\u4E00-\u9FA5]{2,}$/.test(this.searchValue)) { // 验证至少2个汉字
-            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '姓名至少两位全中文字符或,8位或11位手机号' });
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入姓名（至少两位全中文字符）或联系电话（8位或11位）' });
             // this.searchValue = '';
             return false;
           }
@@ -162,7 +162,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
           this.router.navigate(['/archive/customer/list'], { relativeTo: this.route, queryParams });
         } else {
           if (!/^(\d{8}|\d{11})$/.test(this.searchValue)) {
-            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '姓名至少两位中文字符或,8位或11位手机号' });
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入姓名（至少两位全中文字符）或联系电话（8位或11位）' });
             this.searchValue = '';
             return false;
           }
@@ -172,7 +172,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
         break;
       case '3':
         if (!/^[\u4E00-\u9FA5]{2,}$/.test(this.searchValue)) { // 验证至少2个汉字
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '储配站名称全中文字符至少两位' });
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入储配站名称（全中文字符至少两位）' });
           // this.searchValue = '';
           return false;
         }
@@ -181,7 +181,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
         break;
       case '4':
         if (!/^[\u4E00-\u9FA5]{2,}$/.test(this.searchValue)) { // 验证至少2个汉字
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '供应站名称全中文字符至少两位' });
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入供应站名称（全中文字符至少两位）' });
           // this.searchValue = '';
           return false;
         }
@@ -190,7 +190,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
         break;
       case '5':
         if (!/^[\u4E00-\u9FA5]{2,}$/.test(this.searchValue)) { // 验证至少2个汉字
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '企业名称全中文字符至少两位' });
+          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入企业名称（全中文字符至少两位）' });
           // this.searchValue = '';
           return false;
         }
@@ -200,7 +200,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
       case '6':
         if (/^[\u4E00-\u9FA5]+$/.test(this.searchValue)) { // 验证是否全为汉字
           if (!/^[\u4E00-\u9FA5]{2,}$/.test(this.searchValue)) { // 验证至少2个汉字
-            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '送气工工号（字母+数字），或姓名（至少两位中文字符，全模糊）' });
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入送气工工号（字母+数字）或姓名（至少两位中文字符）' });
             // this.searchValue = '';
             return false;
           }
@@ -208,7 +208,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
           this.router.navigate(['//archive/employee/list'], { relativeTo: this.route, queryParams });
         } else {
           if (!/^[a-zA-Z0-9]+$/.test(this.searchValue)) {
-            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '送气工证号（字母+数字），或姓名（至少两位中文字符，全模糊）' });
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入送气工工号（字母+数字）或姓名（至少两位中文字符）' });
             this.searchValue = '';
             return false;
           }

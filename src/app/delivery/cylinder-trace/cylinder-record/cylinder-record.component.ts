@@ -216,31 +216,25 @@ export class CylinderRecordComponent implements OnInit {
   link(rowData, status) {
     const typeId = rowData[status + 'LiabilityTypeId'];
     const queryParams = {
-      beginTime: this.beginTime.getTime(),
-      endTime: this.endTime.getTime(),
-      hash: Math.random(),
       liabilityNumber: '',
-      liabilitySubjectType: typeId
     };
     this.init();
     switch (typeId) {
       case 1:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        this.router.navigate(['../1'], { relativeTo: this.routerInfo, queryParams });
+        this.router.navigate(['/archive/gasHolderStation/list'], { relativeTo: this.routerInfo, queryParams });
         break;
       case 2:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        this.router.navigate(['../2'], { relativeTo: this.routerInfo, queryParams });
+        this.router.navigate(['/archive/supplyStation/list'], { relativeTo: this.routerInfo, queryParams });
         break;
       case 3:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
-        this.router.navigate(['../3'], { relativeTo: this.routerInfo, queryParams });
+        this.router.navigate(['/archive/employee/list'], { relativeTo: this.routerInfo, queryParams });
         break;
       case 4:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
-        this.router.navigate(['../4'], { relativeTo: this.routerInfo, queryParams });
+        this.router.navigate(['/archive/customer/list'], { relativeTo: this.routerInfo, queryParams });
         break;
       default:
         break;
@@ -256,12 +250,13 @@ export class CylinderRecordComponent implements OnInit {
 
   searchDispatcher(query, autoSearch = false) {
     this.dispatcherService.getDispatcherInfo({
-      enterpriseId: '',
+      enterpriseNumber: '',
       supplyStationNumber: '',
       name: this.selectedDispatcherSearchField === 2 ? query : '',
       jobNumber: this.selectedDispatcherSearchField === 1 ? query : '',
       phone: '',
       idNumber: '',
+      dispatcherNumber: '',
       pageSize: 99,
       pageNumber: 1
     }).then(data => {
@@ -375,6 +370,7 @@ export class CylinderRecordComponent implements OnInit {
       return;
     }
 
+    // this.loading = true;
     this.cylinderTraceService.listGcSendOrReceive({
       liabilitySubjectType: this.selectedCylinderStatus,
       liabilitySubjectId,
@@ -394,7 +390,6 @@ export class CylinderRecordComponent implements OnInit {
           this.total = 0;
         }
       } else {
-        this.loading = false;
         this.cylinderList = [];
         this.messageService.add({ severity: 'warn', summary: '获取信息失败！', detail: data.msg });
       }

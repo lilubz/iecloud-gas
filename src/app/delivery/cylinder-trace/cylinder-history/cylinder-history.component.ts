@@ -117,34 +117,41 @@ export class CylinderHistoryComponent implements OnInit {
 
   link(rowData, status) {
     const typeId = rowData[status + 'LiabilityTypeId'];
+    console.log(typeof (typeId));
+
     const queryParams = {
-      beginTime: this.beginTime.getTime(),
-      endTime: this.endTime.getTime(),
-      hash: Math.random(),
+      // beginTime: this.beginTime.getTime(),
+      // endTime: this.endTime.getTime(),
+      // hash: Math.random(),
       liabilityNumber: '',
-      liabilitySubjectType: typeId
+      // liabilitySubjectType: typeId
     };
     switch (typeId) {
+      //1 储配站
       case 1:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        this.router.navigate(['../cylinder-record/1'], { relativeTo: this.route, queryParams });
+        this.router.navigate(['/archive/gasHolderStation/list'], { relativeTo: this.route, queryParams });
         break;
+      //2 瓶库
       case 2:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        this.router.navigate(['../cylinder-record/2'], { relativeTo: this.route, queryParams });
+        this.router.navigate(['/archive/supplyStation/list'], { relativeTo: this.route, queryParams });
         break;
+      //3 送气工
       case 3:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
-        this.router.navigate(['../cylinder-record/3'], { relativeTo: this.route, queryParams });
+        // queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
+        this.router.navigate(['/archive/employee/list'], { relativeTo: this.route, queryParams });
         break;
+      //4 燃气用户
       case 4:
         queryParams.liabilityNumber = rowData[status + 'LiabilityNumber'];
-        queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
-        this.router.navigate(['../cylinder-record/4'], { relativeTo: this.route, queryParams });
+        // queryParams['liabilityName'] = rowData[status + 'LiabilityName'];
+        this.router.navigate(['/archive/customer/list'], { relativeTo: this.route, queryParams });
         break;
       default:
         break;
+      //  气瓶运送员5
     }
   }
 

@@ -1,14 +1,14 @@
 <div class="ui-g-12 content">
   <div style="min-width: 820px;">
-    <h2>企业气瓶统计</h2>
-    <div class="ui-g-12 ui-g-nopad clearfloat">
-      <button pButton type="button" (click)="exportStatistic()" class=" right" label="导出"></button>
-    </div>
-    <div style="clear: both"></div>
-    <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
+    <!-- <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
       <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false"></gas-cylinder-overview-table>
-    </ng-container>
+    </ng-container> -->
     <ng-container *gasPermissionRole="[RoleType.Enterprise]">
+      <h2>企业气瓶统计</h2>
+      <div class="ui-g-12 ui-g-nopad clearfloat">
+        <button pButton type="button" (click)="exportStatistic()" class=" right" label="导出"></button>
+      </div>
+      <div style="clear: both"></div>
       <gas-cylinder-overview-table [cylinderStatistics]="countyCylinders" [loading]="loading" [isShowRouterLink]="false" type="enterprise"></gas-cylinder-overview-table>
     </ng-container>
 
@@ -22,15 +22,13 @@
         <ng-container class="ui-g-12 ui-lg-8" *ngIf="selectedDateRange === 4">
           <div class="ui-g-12 ui-lg-4 no-left-pad">
             开始时间：
-            <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
-              [(ngModel)]="beginTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [style]="{'width': '150px'}" [maxDate]="today"
-              readonlyInput="true"></p-calendar>
+            <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="beginTime"
+              dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [style]="{'width': '150px'}" [maxDate]="today" readonlyInput="true"></p-calendar>
           </div>
           <div class="ui-g-12 ui-lg-4 no-left-pad">
             结束时间：
-            <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
-              [(ngModel)]="endTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [style]="{'width': '150px'}" [maxDate]="today"
-              readonlyInput="true"></p-calendar>
+            <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="endTime"
+              dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [style]="{'width': '150px'}" [maxDate]="today" readonlyInput="true"></p-calendar>
           </div>
         </ng-container>
         <div class="ui-g-12">
