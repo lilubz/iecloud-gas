@@ -14,6 +14,7 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 import { Message } from 'primeng/components/common/api';
 import * as moment from 'moment';
 import { User } from '../../common/User.model';
+import * as $ from 'jquery';
 import { Util } from '../../core/util';
 
 @Component({
@@ -23,6 +24,12 @@ import { Util } from '../../core/util';
 })
 export class UserInfoComponent implements OnInit {
   @ViewChild('OtherImageUpload') OtherImageUpload: ElementRef;
+  @ViewChild('hidden') hidden: ElementRef;
+  @ViewChild('IEform') IEform: ElementRef;
+  @ViewChild('FIle') FIle: ElementRef;
+  @ViewChild('BeginTime') BeginTime: ElementRef;
+  @ViewChild('EndTime') EndTime: ElementRef;
+  
   zh = zh_CN;
   importGcUserInfoUrl = API.importGcUserInfo;
 
@@ -48,8 +55,12 @@ export class UserInfoComponent implements OnInit {
   certificateAddress = ''; // 证件地址
   certificateDetailAddress = ''; // 证件详细地址
   deliveryRegionId; // 配送区域id
-  constractBeginTime: Date;
-  constractEndTime: Date;
+  constractBeginTime: any;
+  constractEndTime: any;
+  IE9: boolean;
+  redirectUrl: string;
+  FileUrl: string;
+  IDImageUpload?: File[]
   constructor(
     private util: Util,
     private userStateService: UserStateService,
@@ -69,6 +80,9 @@ export class UserInfoComponent implements OnInit {
       });
 
     this.getDispatcher();
+    this.IE9 = this.util.isIE9();
+    this.redirectUrl = this.util.getReturnUrl(API.addCustomer);
+    this.FileUrl = this.util.getReturnUrl(API.importGcUserInfo);
   }
 
   formInit() {
@@ -86,6 +100,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   save(IDImageUpload: any) {
+    // console.log(this.OtherImageUpload.nativeElement.files[0]);
     this.customer.gcCorpUserName = this.customer.userName; // 企业用户名称等于输入的用户名
     this.customer.identity = IDImageUpload.files;
     this.customer.others = this.OtherImageUpload.nativeElement.files[0] || '';
@@ -104,7 +119,6 @@ export class UserInfoComponent implements OnInit {
           }
         }
       }
-      // console.log(formData)
       this.userInfoService.addCustomer(formData).then((data) => {
         if (data.status === 0) {
           this.showMessage('success', '保存成功', data.msg);
@@ -163,6 +177,43 @@ export class UserInfoComponent implements OnInit {
     }
     return true;
   }
+
+  IEcheckForm(): boolean {
+    if (!this.customer.userName) {
+      this.showMessage('warn', '', '请填写客户姓名！');
+      return false;
+    } else if (!this.customer.principal) {
+      this.showMessage('warn', '', '请填写姓名！');
+      return false;
+    } else if (!this.customer.certificateId) {
+      this.showMessage('warn', '', '请填写证件号码！');
+      return false;
+    } else if (!this.certificateAddress || !this.certificateDetailAddress) {
+      this.showMessage('warn', '', '请填写完整的证件地址信息！');
+      return false;
+    } else if (!this.customer.deliveryAddress || !this.deliveryRegionId) {
+      this.showMessage('warn', '', '请填写完整的居住地址信息！');
+      return false;
+    } else if (!this.customer.phone) {
+      this.showMessage('warn', '', '请填写联系电话！');
+      return false;
+    }
+    if (this.customer.userTypeId.toString() !== '0') {
+      if (this.customer.enterpriseOrganizationCode === '') {
+        this.showMessage('warn', '', '请填写营业执照！');
+        return false;
+      } else if (this.customer.address === '') {
+        this.showMessage('warn', '', '请填写注册地址！');
+        return false;
+      } else if (this.customer.legalRepresentative === '') {
+        this.showMessage('warn', '', '请填写法定代表人！');
+        return false;
+      }
+    }
+    return true;
+  }
+
+
   selectIDAddress(event) {
     this.certificateAddress = event.province.name + event.city.name + event.county.name;
   }
@@ -199,7 +250,33 @@ export class UserInfoComponent implements OnInit {
       this.showMessage('warn', '上传失败', JSON.parse(event.xhr.responseText).msg);
     }
   }
-
+  // 新增IE上传函数
+  IESubmit(form) {
+    if (this.IEcheckForm()) {
+      this.BeginTime.nativeElement.value = moment(this.constractBeginTime).format('YYYY-MM-DD') + ' 00:00:00';
+      this.EndTime.nativeElement.value = moment(this.constractEndTime).format('YYYY-MM-DD') + ' 00:00:00';
+      this.hidden.nativeElement.value = this.deliveryRegionId;
+      this.IEform.nativeElement.submit();
+    }
+  }
+  SubmitFile(form) {
+    if (!$("#gcUserExcel").val()) {
+      this.showMessage('warn', '提示信息', '请上传文件！');
+    } else {
+      this.FIle.nativeElement.submit();
+    }
+  }
+  // IMG(): boolean {
+  //   if (this.IE9) {
+  //     return true;
+  //   } else {
+  //     if (this.customer.identity.length > 3) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   }
+  // }
   getDispatcher(regionId?) {
     this.commonRequestService.getDispatchers().then(data => {
       if (data.status === 0) {

@@ -41,20 +41,40 @@
         </p-column>
         <p-column [style]="{'width':'210px'}" header="选择文件">
           <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
-            <div *ngIf="!rowData.boolIsCommit">
-              <input maxlength="250" type="file" id="{{'file'+ index}}">
+            <div *ngIf="!IE9">
+              <div *ngIf="!rowData.boolIsCommit">
+                <input type="file" id="{{'file'+ index}}">
+              </div>
+              <div *ngIf="rowData.boolIsCommit">
+                本次已提交
+              </div>
             </div>
-            <div *ngIf="rowData.boolIsCommit">
-              本次已提交
+            <div *ngIf="IE9">
+              <form id="form"  action="{{redirectUrl}}" method="POST" enctype="multipart/form-data" ngNoForm>
+                <div *ngIf="!rowData.boolIsCommit">
+                  <input type="file" id="{{'file'+ index}}" name="multipartFile">
+                  <input type="hidden" name="corpReportCommitId" value="{{rowData.corpReportCommitId}}">
+                </div>
+                <div *ngIf="rowData.boolIsCommit">
+                  本次已提交
+                </div>
+              </form>
             </div>
           </ng-template>
         </p-column>
         <p-column [style]="{'width':'100px'}" header="操作">
           <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
-            <button pButton type="button" label="提交" *ngIf="!rowData.boolIsCommit" (click)="onSubmit(index);"></button>
+            <button pButton type="button" label="提交" *ngIf="!rowData.boolIsCommit" (click)="SubmitAll(index);"></button>
             <button pButton type="button" label="已提交" disabled="true" *ngIf="rowData.boolIsCommit"></button>
           </ng-template>
         </p-column>
+        
+        <!-- <p-column [style]="{'width':'100px'}" header="操作">
+          <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+            <button pButton type="button" label="提交" *ngIf="!rowData.boolIsCommit" (click)="IESubmit(index);"></button>
+            <button pButton type="button" label="已提交" disabled="true" *ngIf="rowData.boolIsCommit"></button>
+          </ng-template>
+        </p-column> -->
         <ng-template pTemplate="emptymessage">
           <div class="text-left">
             未查询到数据

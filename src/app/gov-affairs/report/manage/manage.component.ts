@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { ManageService } from './manage.service';
@@ -8,7 +8,8 @@ import { API } from '../../../../app/common/api';
 import * as moment from 'moment';
 import { ConfirmationService } from 'primeng/primeng';
 import { Util } from '../../../core/util';
-
+import * as $ from 'jquery';
+import { retry } from 'rxjs/operator/retry';
 @Component({
   selector: 'gas-manage',
   templateUrl: './manage.component.html',
@@ -16,6 +17,7 @@ import { Util } from '../../../core/util';
   providers: [ManageService, ConfirmationService]
 })
 export class ManageComponent implements OnInit {
+  actionUrl: string;
   zh = zh_CN;
   loading = false;
   document: any = document;
@@ -38,6 +40,8 @@ export class ManageComponent implements OnInit {
     target: '',
     initTime: null,
   };
+  IE9: boolean;
+  @ViewChild('form') formElem: ElementRef;
   constructor(
     private _service: ManageService,
     private messageService: MessageService,
@@ -46,7 +50,13 @@ export class ManageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.actionUrl = this.util.getReturnUrl(API.addReportInfo);
   }
+  showDialog() {
+    this.visible = true;
+    this.IE9 = this.util.isIE9();
+  }
+
   checkForm(file): boolean {
     if (!this.formModel.name.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请输入报表名称' });
@@ -159,4 +169,48 @@ export class ManageComponent implements OnInit {
         }
       });
   }
+  // IE9下新增报表
+  submit(form, file) {
+    if (!this.formModel.name.trim()) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入报表名称' });
+      return false;
+    } else if (!form.attachmentUrl.value) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请上传一个附件' });
+      return false;
+    } else if (this.FileType()) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请上传Excel格式文件' });
+      return false;
+    } else if (!/^[1-9]\d*$/.test(this.formModel.interval + '')) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入提交间隔' });
+      return false;
+    } else if (this.formModel.target === '') {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请选择使用对象' });
+      return false;
+    } else if (this.formModel.initTime === null) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请输入初始提交时间' });
+      return false;
+    } else {
+      const dateTrans = moment(this.formModel.initTime).format('YYYY-MM-DD HH:mm:ss');
+      $("input[name='reportCommitInitialDate']").val(dateTrans);
+      this.formElem.nativeElement.submit();
+
+    }
+
+  }
+  FileType(): boolean {
+    const filePath = $("#file").val();
+    if ("" != filePath) {
+      var fileType = this.util.getFileType(filePath);
+      //判断上传的附件是否为图片  
+      if ("xls" != fileType && "xlsx" != fileType) {
+        const file = $("#file");
+        file.after(file.clone());
+        file.remove();
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+
 }

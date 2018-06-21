@@ -10,7 +10,7 @@ export class AddForm {
   issuingUnit?= ''; // 发证机关
   businessCategory?= ''; // 经营类别
   businessArea?= ''; // 经营区域
-  releaseTime?= ''; // 发证时间
-  effectiveTimeStart?= ''; // 有效期开始时间
-  effectiveTimeEnd?= ''; // 有效期结束时间
+  releaseTime?= null; // 发证时间
+  effectiveTimeStart?= null; // 有效期开始时间
+  effectiveTimeEnd?= null; // 有效期结束时间
 }

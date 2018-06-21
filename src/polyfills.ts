@@ -84,7 +84,7 @@ import './assets/js/polyfills/intl/locale-data/jsonp/zh';
 import './assets/js/polyfills/typedarray';
 import './assets/js/polyfills/formdata';
 import './assets/js/polyfills/Blob';
-
+import 'console-polyfill';// IE9的console导致的加载问题
 /**
  *
  */

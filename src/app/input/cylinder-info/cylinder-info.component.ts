@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 
 import { CylinderInfoService, } from './cylinder-info.service';
 import { UserStateService } from './../../core/userState.service';
@@ -10,7 +10,8 @@ import { strictEqual } from 'assert';
 import { Message } from 'primeng/components/common/api';
 import { API } from '../../common/api';
 import * as moment from 'moment';
-
+import { Util } from '../../core/util';
+import * as $ from 'jquery';
 @Component({
   selector: 'gas-cylinder-info',
   templateUrl: './cylinder-info.component.html',
@@ -92,8 +93,20 @@ export class CylinderInfoComponent implements OnInit {
   timeManufactureInit: Date;
   lastTestDateInit: Date;
   nextTestDateInit: Date;
+  IE9: boolean;
+  redirectUrl: string;
+  FileUrl: string;
+  @ViewChild('intoStationDate') intoStationDate: ElementRef;
+  @ViewChild('timeManufacture') timeManufacture: ElementRef;
+  @ViewChild('expectedScrapTime') expectedScrapTime: ElementRef;
+  @ViewChild('lastInspectionTime') lastInspectionTime: ElementRef;
+  @ViewChild('nextInspectionTime') nextInspectionTime: ElementRef;
+  @ViewChild('IEform') IEform: ElementRef;
+  @ViewChild('FIle') FIle: ElementRef;
+
   constructor(
     private _service: CylinderInfoService,
+    private util: Util,
   ) { }
 
   ngOnInit() {
@@ -107,6 +120,9 @@ export class CylinderInfoComponent implements OnInit {
     this.getlistInspection();
     this.getGcSpecification();
     this.cylinderInfo.gasLabelNumber = this._service.transformEnterpriseNumber();
+    this.IE9 = this.util.isIE9();
+    this.redirectUrl = this.util.getReturnUrl(API.insertGCInfoBasic);
+    this.FileUrl = this.util.getReturnUrl(API.importGasCylinderInfoUnbound);
   }
   searchCylinder(param?) {
     const params = {
@@ -359,12 +375,43 @@ export class CylinderInfoComponent implements OnInit {
     } else if (!this.cylinderInfo.specificationId) {
       this.showMessage('warn', '提示信息', '型号规格不能为空');
       return false;
-    } else if (this.cylinderInfo.cylinderImage.length > 3) {
-      this.showMessage('warn', '提示信息', '最多上传三张图片！');
-      return false;
+    } else if (this.IMG()) {
+      this.showMessage('warn', '提示信息', '请上传文件1-3张图片！');
     }
     return true;
   }
+  IESubmit(form) {
+    if (this.checkForm()) {
+      this.intoStationDate.nativeElement.value = moment(this.intoStationDateInit).format('YYYY-MM-DD') + ' 00:00:00';
+      this.timeManufacture.nativeElement.value = moment(this.timeManufactureInit).format('YYYY-MM-DD') + ' 00:00:00';
+      this.expectedScrapTime.nativeElement.value = moment(this.expectedScrapTimeInit).format('YYYY-MM-DD') + ' 00:00:00';
+      this.lastInspectionTime.nativeElement.value = moment(this.lastTestDateInit).format('YYYY-MM-DD') + ' 00:00:00';
+      this.nextInspectionTime.nativeElement.value = moment(this.nextTestDateInit).format('YYYY-MM-DD') + ' 00:00:00';
+      this.IEform.nativeElement.submit();
+    }
+  }
+  SubmitFile(form) {
+    if (!$("#gasCylinderExcel").val()) {
+      this.showMessage('warn', '提示信息', '请上传文件！');
+    } else {
+      this.FIle.nativeElement.submit();
+    }
+
+  }
+  IMG(): boolean {
+    if (this.IE9) {
+
+    } else {
+      if (this.cylinderInfo.cylinderImage.length > 3) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+  }
+
+
 
   result(event) {
     const data = JSON.parse(event.xhr.responseText);

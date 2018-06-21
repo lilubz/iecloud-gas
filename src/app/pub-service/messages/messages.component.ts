@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, } from '@angular/core';
 import { MessagesService, } from './messages.service';
 import { ConfirmationService } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Message } from 'primeng/components/common/api';
 import { API } from '../../common/api';
-
-
+import * as $ from 'jquery';
+import { Util } from '../../core/util';
 @Component({
   selector: 'gas-message',
   templateUrl: './messages.component.html',
@@ -15,7 +15,6 @@ import { API } from '../../common/api';
 export class MessagesComponent implements OnInit, OnDestroy {
 
   messageList: any[] = [
-
   ];
   pageNumber = 1;
   pageSize = 40;
@@ -31,14 +30,19 @@ export class MessagesComponent implements OnInit, OnDestroy {
       title: '',
       file: [],
     };
-
+  ie9: boolean;
+  redirectUrl: string;
+  @ViewChild('form') formElem: ElementRef;
   constructor(private _service: MessagesService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
+    private util: Util
   ) { }
 
   ngOnInit() {
     this.getList();
+    this.ie9 = this.util.isIE9();
+    this.redirectUrl = this.util.getReturnUrl(API.addAnnouncement);
   }
   onPageChange(event) {
     const page: {
@@ -145,6 +149,22 @@ export class MessagesComponent implements OnInit, OnDestroy {
       detail: msg
     });
     setTimeout(() => this.msgs = [], 2000);
+  }
+  /**
+   * IE9下的发布公告
+   * 
+   * @param {any} form 表单验证
+   * @memberof MessagesComponent
+   */
+  submit(form) {
+    if (!form.title.value) {
+      this.showMessage('warn', '提示信息', '标题不能为空');
+    } else if (!form.file.value) {
+      this.showMessage('warn', '提示信息', '上传文件不能为空');
+    } else {
+      this.formElem.nativeElement.submit();
+
+    }
   }
   ngOnDestroy() {
   }

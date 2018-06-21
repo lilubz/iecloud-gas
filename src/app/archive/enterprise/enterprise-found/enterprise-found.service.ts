@@ -8,6 +8,6 @@ export class EnterpriseFoundsService {
     constructor(private httpService: HttpService) { }
 
     AddCorpInfo(params: any): Promise<any> {
-      return this.httpService.formDataPostRequest(API.addCorpInfo, params);
+      return this.httpService.formPostRequest(API.addCorpInfo, params);
     }
 }

@@ -7,7 +7,7 @@
       </h2>
     </div>
     <div class="ui-g-6 text-right">
-      <button (click)="visible = true" pButton type="button" class="searchBtn" label="新增"></button>
+      <button (click)="showDialog()" pButton type="button" class="searchBtn" label="新增"></button>
     </div>
   </div>
   <div class="ui-g">
@@ -59,7 +59,7 @@
   <div class="ui-g">
     <p-dialog [visible]="visible" [showHeader]="false" [closeOnEscape]="false" [width]="800" [contentStyle]="{'padding':'0','overflow':'visible'}"
       [minWidth]="800" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
-      <form class="dialog" (submit)="onSubmit(file);">
+      <form class="dialog" *ngIf="!IE9" (submit)="onSubmit(file);">
         <div class="ui-g ui-g-nopad">
           <div class="ui-g-12 ui-g-nopad">
             <h2 class="text-center">新增报表</h2>
@@ -82,7 +82,7 @@
                 <gas-explanation tooltip="按照上级指定的报表模板填写完整信息的文件（仅限Word和Excel）" position="bottom"></gas-explanation>
               </label>
               <div class="ui-g-8">
-                <input maxlength="250" type="file" #file id="file" name="file" accept=".doc,.xls,.docx,.xlsx" />
+                <input type="file" #file id="file" name="file" accept=".xls,.xlsx" />
               </div>
             </div>
           </div>
@@ -116,8 +116,8 @@
               </label>
               <div class="ui-g-8">
                 <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
-                [locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false" placeholder="初始提交时间" [minDate]="currentDate"
-                [showButtonBar]="true" [style]="{'width':'91%'}"></p-calendar>
+                  [locale]="zh" [showIcon]="false" name="time" [showOtherMonths]="false" placeholder="初始提交时间" [minDate]="currentDate"
+                  [showButtonBar]="true" [style]="{'width':'90%'}"></p-calendar>
                 <gas-explanation tooltip="指定第一次提交的时间" position="bottom"></gas-explanation>
               </div>
             </div>
@@ -127,6 +127,77 @@
           <div class="ui-g-12 text-center" style="padding-bottom:20px;">
             <button pButton type="submit" label="确认" class="searchBtn"></button>
             <button (click)="onCancel();" pButton type="button" class="searchBtn" label="取消"></button>
+          </div>
+        </div>
+      </form>
+      <form class="dialog" *ngIf="IE9" id="form" #form action="{{actionUrl}}" method="POST" enctype="multipart/form-data" ngNoForm>
+        <div class="ui-g ui-g-nopad">
+          <div class="ui-g-12 ui-g-nopad">
+            <h2 class="text-center">新增报表</h2>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-6">
+            <div class="form-group ui-g-12">
+              <label for="inputEmail3" class="ui-g-4 control-label text-right">
+                <span class="warn">*</span>报表名称：</label>
+              <div class="ui-g-8">
+                <input type="text"  [(ngModel)]="formModel.name" pInputText name="reportName" />
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-6">
+            <div class="form-group ui-g-12">
+              <label for="inputEmail3" class="ui-g-4 control-label text-right">
+                <span class="warn">*</span>附件：
+                <gas-explanation tooltip="按照上级指定的报表模板填写完整信息的文件（仅限Word和Excel）" position="bottom"></gas-explanation>
+              </label>
+              <div class="ui-g-8">
+                <input type="file" #file id="file" name="attachmentUrl" accept=".xls,.xlsx" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-6 form-group">
+            <label for="inputEmail3" class="ui-g-4 control-label text-right">
+              <span class="warn">*</span>提交间隔：</label>
+            <div class="ui-g-8">
+              <input class="interval ui-g-11" [(ngModel)]="formModel.interval"  type="number" pInputText name="reportCommitIntervalTime" min="1" step="1"
+              />
+              <span>天</span>
+            </div>
+          </div>
+          <div class="ui-g-6 form-group">
+            <label for="inputEmail3" class="ui-g-4 control-label text-right">
+              <span class="warn">*</span>使用对象：
+            </label>
+            <div class="ui-g-8">
+              <p-radioButton name="useObject" [(ngModel)]="formModel.target" value="1" label="执法部门" inputId="opt1"></p-radioButton>
+              <p-radioButton name="useObject" [(ngModel)]="formModel.target" value="2" label="企业" inputId="opt2"></p-radioButton>
+              <gas-explanation tooltip="选择需要提交报表的对象是部门或者企业" position="bottom"></gas-explanation>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-6">
+            <div class="ui-g-12 form-group">
+              <label for="inputEmail3" class="ui-g-4 control-label text-right">
+                <span class="warn">*</span>首次提交：
+              </label>
+              <div class="ui-g-8">
+                <p-calendar [(ngModel)]="formModel.initTime" [monthNavigator]="true" id="reportCommitInitialDate" [yearNavigator]="true" yearRange="1970:2050" dateFormat="yy-mm-dd"
+                  [locale]="zh" [showIcon]="false" name="reportCommitInitialDate" [showOtherMonths]="false" placeholder="初始提交时间" [minDate]="currentDate"
+                  [showButtonBar]="true" [style]="{'width':'90%'}"></p-calendar>
+                <gas-explanation tooltip="指定第一次提交的时间" position="bottom"></gas-explanation>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 text-center">
+            <button pButton type="button" (click)="submit(this.form,file)" class="ui-button-primery searchBtn" label="确认"></button>
+            <button (click)="onCancel();" pButton type="button" class="ui-button-secondary" label="取消"></button>
           </div>
         </div>
       </form>

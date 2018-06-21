@@ -1,4 +1,4 @@
-<div class="ui-g-12 user-info card">
+<div class="ui-g-12 user-info card" *ngIf="!IE9">
   <div style="min-width:1000px">
     <div class="ui-g-8">
       <h3>用户实名登记</h3>
@@ -269,3 +269,281 @@
 
 </div>
 <p-growl [value]="msgs"></p-growl>
+<!-- IE9 -->
+<div class="ui-g-12 user-info card" *ngIf="IE9">
+  <div style="min-width:1000px">
+    <div class="ui-g-8">
+      <!-- 已修改 -->
+      <form id="IEform" #IEform action="{{redirectUrl}}" method="POST" enctype="multipart/form-data" ngNoForm>
+        <h3>用户实名登记</h3>
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span class="">所在区域</span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <input type="text" [(ngModel)]="user.regionName" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span class="">客户名称
+                  <span class="required">*</span>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <input type="text" name="userName" [(ngModel)]="customer.userName" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText
+                  placeholder="客户名称" maxlength="50">
+              </div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span>证件名称
+                  <span class="required">*</span>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <input type="text" name="certificateName" [(ngModel)]="customer.certificateName" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*"
+                  pInputText>
+              </div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span>姓名
+                  <span class="required">*</span>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <input type="text" name="principal" [(ngModel)]="customer.principal" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText
+                  placeholder="姓名" maxlength="50">
+              </div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span>证件号码
+                  <span class="required">*</span>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <input type="text" name="certificateId" [(ngModel)]="customer.certificateId" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText
+                  placeholder="证件号码" maxlength="20">
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-6 ui-g-nopad">
+            <div class="ui-g-12">
+              <div class="ui-g-3 ui-g-nopad">
+                <span>客户类型
+                  <span class="required">*</span>
+                </span>
+              </div>
+              <div class="ui-g-9 ui-g-nopad">
+                <p-dropdown name="userTypeId" [options]="customerTypes" [(ngModel)]="customer.userTypeId" (ngModelChange)="selectCustomerType()"></p-dropdown>
+              </div>
+            </div>
+            <div *ngIf="customer.userTypeId!='0'">
+              <div class="ui-g-12">
+                <div class="ui-g-3 ui-g-nopad">
+                  <span>营业执照
+                    <span class="required">*</span>
+                  </span>
+                </div>
+                <div class="ui-g-9 ui-g-nopad">
+                  <input type="text" name="enterpriseOrganizationCode" [(ngModel)]="customer.enterpriseOrganizationCode" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*"
+                    pInputText placeholder="营业执照" maxlength="50">
+                </div>
+              </div>
+              <div class="ui-g-12">
+                <div class="ui-g-3 ui-g-nopad">
+                  <span>注册地址
+                    <span class="required">*</span>
+                  </span>
+                </div>
+                <div class="ui-g-9 ui-g-nopad">
+                  <input type="text" name="address" [(ngModel)]="customer.address" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="注册地址"
+                    maxlength="50">
+                </div>
+              </div>
+              <div class="ui-g-12">
+                <div class="ui-g-3 ui-g-nopad">
+                  <span>法定代表人
+                    <span class="required">*</span>
+                  </span>
+                </div>
+                <div class="ui-g-9 ui-g-nopad">
+                  <input type="text" name="legalRepresentative" [(ngModel)]="customer.legalRepresentative" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*"
+                    pInputText placeholder="法定代表人" maxlength="50">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-2">
+            <span>证件地址
+              <span class="required">*</span>
+            </span>
+          </div>
+          <div class="ui-g-10">
+            <gas-districts [disabledProvince]="false" [province]="customer.certificateId.substring(0,2)" [city]="customer.certificateId.substring(0,4)"
+              [county]="customer.certificateId.substring(0,6)" (onSelect)="selectIDAddress($event)"></gas-districts>
+          </div>
+          <div class="ui-g-10 ui-xl-6 ui-g-offset-2">
+            <input type="text" [(ngModel)]="certificateDetailAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="证件地址"
+              maxlength="50" name="certificateAddress">
+          </div>
+        </div>
+        <hr>
+        <h3>配送地址</h3>
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-2">
+            <span>居住地址
+              <span class="required">*</span>
+            </span>
+          </div>
+          <div class="ui-g-10 ui-g-nopad">
+            <div class="ui-g-3 ui-xl-2">
+              <input type="text" pInputText value="浙江省" disabled style="width:100px;">
+            </div>
+            <div class="ui-g-3 ui-xl-2">
+              <input type="text" pInputText value="温州市" disabled>
+            </div>
+            <div class="ui-g-6">
+              <input #hidden name="deliveryRegionId" style="display:none">
+              <gas-delivery-region-cascade [(deliveryRegionId)]="deliveryRegionId"></gas-delivery-region-cascade>
+            </div>
+          </div>
+          <div class="ui-g-10 ui-xl-6">
+            <input [(ngModel)]="customer.deliveryAddress" name="deliveryAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" type="text"
+              pInputText placeholder="详细地址" maxlength="50">
+          </div>
+        </div>
+        <!-- <div class="ui-g-6 ui-g-nopad">
+      <div class="ui-g-12">
+        <div class="ui-g-3 ui-g-nopad">
+          <span>联系人
+            <span class="required">*</span>
+          </span>
+        </div>
+        <div class="ui-g-9 ui-g-nopad">
+          <input type="text" [(ngModel)]="customer.contactPerson" pInputText>
+        </div>
+      </div>
+    </div> -->
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>联系电话
+                <span class="required">*</span>
+              </span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+              <input type="text" name="phone" [(ngModel)]="customer.phone" gasInputFilter="[0-9]*" placeholder="联系电话" pInputText maxlength="11">
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>配送工</span>
+            </div>
+            <div class="ui-g-9 ui-xl-6 ui-g-nopad">
+              <p-dropdown [options]="dispatcherList" name="dispatcherNumber" [(ngModel)]="customer.dispatcherNumber" [style]="{'width':'150px'}"
+                filter="true"></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h3>合同</h3>
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6">
+            <!-- <div class="ui-g-3 ui-g-nopad">
+              <span>合同编号</span>
+            </div> -->
+            <!-- <div class="ui-g-9 ui-g-nopad">
+              <input type="text" name="contractNo" [(ngModel)]="customer.contractNo" gasInputFilter="[0-9]*" placeholder="合同编号" pInputText maxlength="10">
+            </div> -->
+          </div>
+        </div>
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>合同开始日期</span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+              <input #BeginTime name="contractEffectiveDate" style="display:none">
+              <p-calendar [(ngModel)]="constractBeginTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+                [showButtonBar]="true" (onSelect)="selectConstractBeginDate($event)" (onClearClick)="clearBeginDate($event)"
+                dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="constractEndTime" readonlyInput="true"></p-calendar>
+            </div>
+          </div>
+          <div class="ui-g-6">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>合同截止日期</span>
+            </div>
+            <div class="ui-g-9 ui-g-nopad">
+              <input #EndTime name="contractDeadline" style="display:none">
+              <p-calendar [(ngModel)]="constractEndTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
+                [showButtonBar]="true" (onSelect)="selectConstractEndDate($event)" (onClearClick)="clearEndDate($event)" dateFormat="yy-mm-dd"
+                [locale]="zh" [showIcon]="false" [minDate]="constractBeginTime" readonlyInput="true"></p-calendar>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h3>附件</h3>
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-12">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>证件信息
+                <span class="required">*</span>
+                <gas-explanation tooltip="个体用户请上传身份证照片，工业和商业用户请上传营业执照和合同"></gas-explanation>
+              </span>
+            </div>
+            <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
+              <input name="identity" #IDImageUpload type="file" accept="image/*">
+              <!-- <p-fileUpload #IDImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
+                invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
+                invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
+                [showCancelButton]="false" previewWidth="50" [customUpload]="true">
+              </p-fileUpload> -->
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-3 ui-g-nopad">
+              <span>用户安全供气协议书</span>
+            </div>
+            <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
+              <input name="others" #OtherImageUpload type="file" accept="image/*">
+              <!-- <p-fileUpload  #OtherImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
+              invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
+              invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
+              [showCancelButton]="false" previewWidth="50" [customUpload]="true">
+            </p-fileUpload> -->
+            </div>
+          </div>
+        </div>
+        <!-- 已修改 -->
+        <button pButton type="button" class="searchBtn" label="保存" (click)="IESubmit(form)"></button>
+      </form>
+    </div>
+    <div class="ui-g-4 ui-g-nopad">
+      <form id="FIle" #FIle action="{{FileUrl}}" method="POST" enctype="multipart/form-data" ngNoForm>
+        <div class="ui-g-12">
+          <input type="file" name="gcUserExcel" id="gcUserExcel" #gcUserExcel>
+        </div>
+        <div class="ui-g-12">
+          <button pButton type="button" label="上传文件" class="Btn" (click)="SubmitFile(form)"></button>
+        </div>
+      </form>
+      <div class="ui-g-12">
+        <span>模板下载：</span>
+        <a href="http://122.228.28.0:16080/staticFile/excel/excel/未绑定用户实名登记导入文件模板.xlsx" target="_blank">未绑定用户实名登记模板.xls</a>
+      </div>
+    </div>
+  </div>
+</div>

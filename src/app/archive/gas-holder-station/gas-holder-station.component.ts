@@ -303,27 +303,26 @@ export class GasHolderStationComponent implements OnInit, OnDestroy {
   }
   AddCorpSupplyStation() {
     if (this.checkForm2()) {
-      const formData = new FormData();
       for (const key in this.addForm) {
         if (key) {
           if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
             if (this.addForm[key]) {
-              const datas = moment(this.addForm[key]).format('YYYY-MM-DD HH:mm:ss');
-              formData.append(key, datas);
+              this.addForm[key] = moment(this.addForm[key]).format('YYYY-MM-DD HH:mm:ss');
+              // formData.append(key, datas);
             } else {
               return false;
             }
           } else {
             if (!this.addForm[key]) {
               this.addForm[key] = '';
-              formData.append(key, this.addForm[key]);
+              // formData.append(key, this.addForm[key]);
             } else {
-              formData.append(key, this.addForm[key]);
+              // formData.append(key, this.addForm[key]);
             }
           }
         }
       }
-      this._service.addCorpSupplyStation(formData).then(data => {
+      this._service.addCorpSupplyStation(this.addForm).then(data => {
         if (data.status === 0) {
           this.addBottleVisible = false;
           this.addForm = new AddBottle();

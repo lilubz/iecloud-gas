@@ -93,15 +93,14 @@ export class UserOpeningComponent implements OnInit, OnDestroy {
   }
   addSystemUser() {
     if (this.formModel.valid) {
-
-      const formData = new FormData();
-      formData.append('roleId', this.formModel.value['role']);
-      formData.append('username', this.formModel.value['username']);
-      formData.append('password', this.formModel.value['passwords']['password']);
-      formData.append('realname', this.formModel.value['realname']);
-      formData.append('phone', this.formModel.value['phone']);
-
-      this._service.addUser(formData).then(data => {
+      const formModel = {
+        roleId: this.formModel.value['role'],
+        username: this.formModel.value['username'],
+        password: this.formModel.value['passwords']['password'],
+        realname: this.formModel.value['realname'],
+        phone: this.formModel.value['phone'],
+      }
+      this._service.addUser(formModel).then(data => {
         if (data.status === 0) {
           this.messageService.add({ severity: 'success', summary: '响应消息', detail: data.msg });
         } else {

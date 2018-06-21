@@ -1,0 +1,47 @@
+
+    .page {
+      height: 100vh;
+    }
+
+    .wrapper {
+    }
+
+    h1 {
+      margin: 0;
+      color: #4f565f;
+      font-size: 60px;
+      font-weight: bold;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .summary {
+      margin-top: 0;
+      margin-bottom: 40px;
+      color: #76808e;
+      font-size: 24px;
+    }
+
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      box-sizing: border-box;
+      cursor: pointer;
+      outline: none;
+      -webkit-transition: all .1s ease;
+      transition: all .1s ease;
+      border: 1px solid #323a45;
+      background-color: #323a45;
+      color: #fff;
+      font-size: 18px;
+      padding: 0 30px;
+      height: 48px;
+      line-height: 46px;
+    }
+
+    .button:hover {
+      background-color: #425063;
+      border: 1px solid #425063;
+    }

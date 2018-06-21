@@ -60,6 +60,8 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
   addUrbanDistrict = '';
   addStreet = '';
   initSelectedUrbanDistrict: SelectItem[] = []; // 默认的市辖区后的区县
+  effectiveTimeStartInit:any;
+  effectiveTimeEndInit:any;
 
   constructor(
     private _service: EnterpriseFoundsService,
@@ -216,22 +218,20 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
       }
     }
     if (this.checkForm()) {
-      const formData = new FormData();
+      // const formData = new FormData();
       for (const key in this.addForm) {
         if (key) {
           if (key === 'releaseTime' || key === 'effectiveTimeStart' || key === 'effectiveTimeEnd') {
             if (!this.addForm[key]) {
 
             } else {
-              const data = moment(this.addForm[key]).format('YYYY-MM-DD HH:mm:ss');
-              formData.append(key, data);
+              this.addForm[key] = moment(this.addForm[key]).format('YYYY-MM-DD HH:mm:ss');
+              // formData.append(key, data);
             }
-          } else {
-            formData.append(key, this.addForm[key]);
-          }
+          } 
         }
       }
-      this._service.AddCorpInfo(formData).then(data => {
+      this._service.AddCorpInfo(this.addForm).then(data => {
         if (data.status === 0) {
           this.addForm.businessArea = '';
           this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
@@ -305,6 +305,18 @@ export class EnterpriseFoundComponent implements OnInit, OnDestroy {
       return false;
     }
     return true;
+  }
+  selectedStartTime(event) {
+    this.addForm.effectiveTimeStart = moment(event).format('YYYY-MM-DD HH:mm:ss');
+  }
+  selectedEndTime(event) {
+    this.addForm.effectiveTimeEnd = moment(event).format('YYYY-MM-DD HH:mm:ss');
+  }
+  clearStartTime(event) {
+    this.addForm.effectiveTimeStart= '';
+  }
+  clearEndTime(event) {
+    this.addForm.effectiveTimeEnd = '';
   }
 
 

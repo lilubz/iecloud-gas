@@ -8,6 +8,8 @@ import { zh_CN } from '../../common/date-localization';
 import { AddBottle } from './addBottle.model';
 import { EditBottle } from './editBottle.model';
 import * as moment from 'moment';
+import * as $ from 'jquery';
+import { API } from '../../common/api';
 import { Util } from '../../core/util';
 import { ActivatedRoute } from '@angular/router';
 
@@ -362,13 +364,24 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
         } else {
           this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
         }
-      }).catch(error => {
-        this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
       });
-    } else {
-
+      // this.addService(formData);
     }
   }
+  addService(formData) {
+    this._service.addCorpSupplyStation(formData).then(data => {
+      if (data.status === 0) {
+        this.addBottleVisible = false;
+        this.addForm = new AddBottle();
+        this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
+      } else {
+        this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
+      }
+    }).catch(error => {
+      this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
+    });
+  }
+
   editCorpSupplyStation() {
     if (this.editCheckForm()) {
       if (this.editForm.stationType === 1) {

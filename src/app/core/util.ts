@@ -111,6 +111,66 @@ export class Util {
   getRouterUrl(): string {
     return location.hash.split('#')[1].split(/[?;]/)[0];
   }
+  /**
+   * IE9下获取当前ip地址和端口
+   * @returns {string} 
+   * @memberof Util
+   */
+  getReturnUrl(param): string {
+    // 获取location.origin的兼容性写法在IE9中无法获取
+    if (!window.location.origin) {
+      var originIE = window.location.protocol + "//"
+        + window.location.hostname
+        + (window.location.port ? ':' + window.location.port : '') + '/#/result';
+    } else {
+      originIE = location.origin + '/#/result';
+    }
+    const firstURl = encodeURIComponent(location.hash.replace(/#/g,''));
+    const secondUrl = originIE + '?url=' + firstURl;
+    return param + "?returnAddress=" + encodeURIComponent(secondUrl); // 二次编码结果
+  }
+  /**
+   * 限制只在IE9中显示
+   * 
+   * @returns {boolean} 
+   * @memberof Util
+   */
+  isIE9(): boolean {
+    const ua = window.navigator.userAgent.toLowerCase();
+    const regIE = new RegExp("msie (\\d+\\.\\d+);");
+    let result;
+    if (regIE.test(ua)) {
+      if (parseFloat(RegExp['$1']) == 9) {
+        result = true;
+      } else {
+        result = false;
+      }
+      return result;
+    } else {
+      return result = false;
+    }
+  }
+  /**
+   * IE9中获取文件格式类型名
+   * 
+   * @param {any} Path 
+   * @returns 
+   * @memberof Util
+   */
+  getFileType(Path): string {
+    const startIndex = Path.lastIndexOf(".");
+    if (startIndex != -1)
+      return Path.substring(startIndex + 1, Path.length).toLowerCase();
+    else return "";
+  }
+  /**
+   * 
+   * 
+   * @param {any} filePath 
+   * @returns {boolean} 
+   * @memberof Util
+   */
+
 
   /**
    * 时间格式化

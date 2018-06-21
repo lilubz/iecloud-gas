@@ -293,14 +293,14 @@
   <p-dialog [visible]="addBottleVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
     [width]="800 " [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
     <h3 class="dialogtitle" style="text-align:center">新增供应站信息</h3>
-    <div class="ui-g-12 " style="height:365px">
+    <div class="ui-g-12 " style="height:330px">
       <div class="ui-g-12 ui-g-nopad">
         <div class="ui-g-12 ui-md-6">
           <div class="inputgroup">
             <label for="" class="search-label">站点名称
               <b style="color:red;">*</b>
             </label>
-            <input maxlength="250" type="text" [(ngModel)]="addForm.supplyStationName" style="width:180px" pInputText placeholder="">
+            <input type="text" [(ngModel)]="addForm.supplyStationName" style="width:180px" pInputText placeholder="">
           </div>
         </div>
         <div class="ui-g-6">
@@ -308,13 +308,13 @@
             <label for="" class="search-label">所属区域
               <b style="color:red;">*</b>
             </label>
-            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" [style]="{'width':'180px'}" (onChange)="onChangeAreaID($event)"></p-dropdown>
+            <p-dropdown [options]="areaDrop" [(ngModel)]="addForm.regionId" [style]="{'width':'180px'}"></p-dropdown>
           </div>
         </div>
         <div class="ui-g-12 ui-md-6">
           <div class="inputgroup">
             <label for="" class="search-label">站点地址</label>
-            <input maxlength="250" type="text" [(ngModel)]="addForm.supplyStationAddress" style="width:180px" pInputText placeholder="">
+            <input type="text" [(ngModel)]="addForm.supplyStationAddress" style="width:180px" pInputText placeholder="">
           </div>
         </div>
         <div class="ui-g-6">
@@ -331,19 +331,19 @@
           <label for="" class="search-label">负责人
             <b style="color:red;">*</b>
           </label>
-          <input maxlength="250" type="text" [(ngModel)]="addForm.principal" style="width:180px" pInputText placeholder="">
+          <input type="text" [(ngModel)]="addForm.principal" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
         <div class="inputgroup">
           <label for="" class="search-label">联系人</label>
-          <input maxlength="250" type="text" [(ngModel)]="addForm.contactPerson" style="width:180px" pInputText placeholder="">
+          <input type="text" [(ngModel)]="addForm.contactPerson" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
         <div class="inputgroup">
           <label for="" class="search-label">联系方式</label>
-          <input maxlength="250" type="text" [(ngModel)]="addForm.supplyStationContact" style="width:180px" pInputText placeholder="">
+          <input type="text" [(ngModel)]="addForm.supplyStationContact" style="width:180px" pInputText placeholder="">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
@@ -351,7 +351,7 @@
           <label for="" class="search-label">许可证编号
             <b style="color:red;">*</b>
           </label>
-          <input maxlength="250" type="text" [(ngModel)]="addForm.supplyLicenseNum" style="width:180px" pInputText placeholder=" ">
+          <input type="text" [(ngModel)]="addForm.supplyLicenseNum" style="width:180px" pInputText placeholder=" ">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
@@ -359,7 +359,7 @@
           <label for="" class="search-label">核发单位
             <b style="color:red;">*</b>
           </label>
-          <input maxlength="250" type="text" [(ngModel)]="addForm.issuingUnit" style="width:180px" pInputText placeholder=" ">
+          <input type="text" [(ngModel)]="addForm.issuingUnit" style="width:180px" pInputText placeholder=" ">
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">

@@ -149,7 +149,7 @@
         <label for="" class="search-label">有效期
           <b style="color:red;">*</b>
         </label>
-        <p-calendar [locale]="cn" #startDate [maxDate]="addForm.effectiveTimeEnd" [(ngModel)]="addForm.effectiveTimeStart" [showButtonBar]="true"
+        <p-calendar [locale]="cn" (onSelect)="selectedStartTime($event)" (onClearClick)="clearStartTime($event)" [maxDate]="effectiveTimeEndInit" [(ngModel)]="effectiveTimeStartInit" [showButtonBar]="true"
           placeholder="" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
           [yearNavigator]="true" yearRange="1970:2050" [style]="{'min-width':'210px','max-width':'200px','display':'inline-block'}"></p-calendar>
         <!-- </div> -->
@@ -157,7 +157,7 @@
       <div class="ui-g-12 ui-md-12 ui-xl-4">
         <!-- <div class="inputgroup"> -->
         <label for="" class="search-label">至</label>
-        <p-calendar [locale]="cn" [minDate]="addForm.effectiveTimeStart" #endDate [(ngModel)]="addForm.effectiveTimeEnd" [showButtonBar]="true"
+        <p-calendar [locale]="cn" (onSelect)="selectedEndTime($event)" (onClearClick)="clearEndTime($event)" [minDate]="effectiveTimeStartInit" [(ngModel)]="effectiveTimeEndInit" [showButtonBar]="true"
           placeholder="" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
           [yearNavigator]="true" yearRange="1970:2050" [style]="{'min-width':'210px','max-width':'200px','display':'inline-block'}"></p-calendar>
         <!-- </div> -->

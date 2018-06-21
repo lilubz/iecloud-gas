@@ -8,11 +8,8 @@ import { UserStateService } from './userState.service';
 @Injectable()
 export class HttpService {
   private formHeaders = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charser=UTF-8' });
-  private formDataHeaders = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8' });
-  private head = new Headers({
-    'contentType': 'false',
-    'processData': 'false',
-  })
+  private formDataHeaders = new Headers({ 'Content-Type': 'multipart/form-data; charser=UTF-8','contentType': 'false',
+  'processData': 'false', });
 
   constructor(
     private http: Http,
@@ -104,6 +101,7 @@ export class HttpService {
 
   private handleError(error: any): Promise<any> {
     // this.httpStatusFilter(error);
+    console.log(error);
     return Promise.resolve({ status: -1, msg: '操作失败！' });
   }
 

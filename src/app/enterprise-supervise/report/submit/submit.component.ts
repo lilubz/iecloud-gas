@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SubmitService } from './submit.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { API } from '../../../common/api';
-
+import { Util } from '../../../core/util';
+import * as $ from 'jquery';
 @Component({
   selector: 'gas-submit',
   templateUrl: './submit.component.html',
@@ -20,9 +21,12 @@ export class SubmitComponent implements OnInit {
     pageSize: 40,
     pageNumber: 1
   };
+  IE9: boolean;
+  redirectUrl: string;
   constructor(
     private messageService: MessageService,
     public _service: SubmitService,
+    public util: Util,
   ) { }
   onPageChange(event) {
     const page = {
@@ -44,8 +48,9 @@ export class SubmitComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.IE9 = this.util.isIE9();
+    this.redirectUrl = this.util.getReturnUrl(API.reportCommit);
   }
-
   getDataTableList(params?) {
     this._service.listReportCommitInfo(params)
       .then(data => {
@@ -73,5 +78,37 @@ export class SubmitComponent implements OnInit {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       });
+  }
+  SubmitAll(index) {
+    if (this.IE9) {
+      this.IESubmit(index)
+    } else {
+      this.onSubmit(index);
+    }
+  }
+  IESubmit(index) {
+    if (!$("#file" + index).val()) {
+      this.messageService.add({ severity: 'warn', summary: '', detail: '请选择要上传的报表文件' });
+    } else
+      if (this.FileType(index)) {
+        this.messageService.add({ severity: 'warn', summary: '', detail: '请上传Excel格式文件' });
+      } else {
+        document.querySelectorAll('input[type=file]')[index]['form'].submit();
+      }
+  }
+  FileType(index): boolean {
+    const filePath = $("#file" + index).val();
+    if (filePath != "") {
+      var fileType = this.util.getFileType(filePath);
+      //判断上传的附件是否为图片  
+      if ("xls" != fileType && "xlsx" != fileType) {
+        const file = $("#file" + index);
+        file.after(file.clone());
+        file.remove();
+        return true
+      } else {
+        return false
+      }
+    }
   }
 }

@@ -167,6 +167,7 @@ export const GovernmentMenus: MenuItem[] = [
     items: [
       { label: '个人信息', routerLink: ['/system/user'] },
       { label: '燃气经营许可证管理', routerLink: ['/system/gas-business-license'] },
+      { label: '账号管理', routerLink: ['/system/system-user'] },
       { label: '配置管理', routerLink: ['/system/setting'] },
     ]
   },

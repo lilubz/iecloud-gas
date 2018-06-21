@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject ,ViewChild, ElementRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Util } from '../../../core/util';
+import * as $ from 'jquery';
 
 import { zh_CN } from './../../../common/date-localization';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -21,7 +23,15 @@ export class DetailsComponent implements OnInit {
   history = history;  // 返回按纽使用了，功能返回上一个页面。
   currentDate: Date = new Date();
   id = '';
-
+  IE9: boolean;
+  redirectUrl:string;
+  obj:any;
+  @ViewChild('IEform') IEform: ElementRef;
+  @ViewChild('transactionBasicId') transactionBasicId: ElementRef;
+  @ViewChild('boolIsReject') boolIsReject: ElementRef;
+  @ViewChild('boolIsApproved') boolIsApproved: ElementRef;
+  @ViewChild('description') description: ElementRef;
+  @ViewChild('collaborativeOrganizationInfoTOS') collaborativeOrganizationInfoTOS: ElementRef;
   formModel = {
     boolIsReject: false,
     needHelp: false,
@@ -61,7 +71,8 @@ export class DetailsComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private routerInfo: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -70,6 +81,8 @@ export class DetailsComponent implements OnInit {
       this.getTreeNode();
       this.getDetails({ transactionBasicNumber: this.id });
       this.getMultiSelectDepartment();
+      this.IE9 = this.util.isIE9();
+      this.redirectUrl = this.util.getReturnUrl(API.cooperativeOperation);
     }
   }
 
@@ -136,6 +149,29 @@ export class DetailsComponent implements OnInit {
     }
   }
 
+  IESubmit(form){
+    if(this.checkForm()){
+      if(this.formModel.boolIsReject){
+        this.collaborativeOrganizationInfoTOS.nativeElement.value ='';
+      }else{
+        const list = [];
+        this.formModel.shiftList.forEach(item => {
+          list.push({
+            organizationId: item.organizationId,
+            expirationDate: moment(item.time).format('YYYY-MM-DD HH:mm:ss'),
+            userId: item.userId
+          });
+        this.collaborativeOrganizationInfoTOS.nativeElement.value =JSON.stringify(list);
+        });
+      }
+      this.transactionBasicId.nativeElement.value = this.treeNode.needHandle.eventId;
+      this.boolIsReject.nativeElement.value = this.formModel.boolIsReject;
+      this.boolIsApproved.nativeElement.value = this.formModel.shiftList.length > 0 ? true : false;
+      this.description.nativeElement.value = this.formModel.explain;
+      this.IEform.nativeElement.submit();
+    }
+}
+
   getAffairLevel(number): string {
     switch (number) {
       case 1:
@@ -179,7 +215,9 @@ export class DetailsComponent implements OnInit {
         });
         // 填充需处理事务下面的信息
         const target = this.treeNode.needHandle;
-
+        if(!this.treeNode.needHandle || this.treeNode.needHandle.boolIsHide===2){
+          $('.node-handle').hide();
+        }
         if (target && target.lastEventId) {
           const parentNode = (() => {
             for (let i = 0; i < this.treeNode.replyInfo.length; i++) {

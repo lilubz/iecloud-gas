@@ -56,6 +56,8 @@ import { CylinderOverviewTableComponent } from './cylinder-overview-table/cylind
 import { BackComponent } from './back/back.component';
 import { InputFilterDirective } from './input-filter.directive';
 import { LicenseWarningComponent } from './license-warning/license-warning.component';
+import { SuccessComponent } from './success/success.component';
+import { FailComponent } from './fail/fail.component';
 import { WarningRecordPublicComponent } from './warning-record-public/warning-record-public.component';
 
 @NgModule({
@@ -74,7 +76,6 @@ import { WarningRecordPublicComponent } from './warning-record-public/warning-re
     FileUploadModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule,
     GrowlModule,
     InputSwitchModule,
     InputTextareaModule,
@@ -117,6 +118,8 @@ import { WarningRecordPublicComponent } from './warning-record-public/warning-re
     BackComponent,
     InputFilterDirective,
     LicenseWarningComponent,
+    SuccessComponent,
+    FailComponent,
     WarningRecordPublicComponent
   ],
 

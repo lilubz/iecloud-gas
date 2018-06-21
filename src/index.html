@@ -5,12 +5,11 @@
   <base href="/wenzhou/">
   <meta charset="utf-8">
   <title>温州市瓶装燃气信息化监管平台</title>
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/img/logo.ico">
-
   <style>
     img.loading {
       position: fixed;
@@ -34,22 +33,22 @@
           window.location.href = './update-browser.html';
         }
       }
-      // 避免console导致ie9首次无法加载
-      var emptyFn = function () {};
-      if (!window.console) {
-        window.console = {};
-      }
-      var consoleArr = ['log', 'info', 'warn', 'error', 'dir', 'time', 'timeEnd', 'trace', 'assert', 'Console',
-        'debug', 'dirxml', 'table', 'group', 'groupCollapsed', 'groupEnd', 'clear', 'count', 'markTimeline',
-        'profile', 'profileEnd', 'timeline', 'timelineEnd', 'timeStamp'
-      ];
-      var consoleLen = consoleArr.length;
-      while (consoleLen--) {
-        if (!window.console[consoleArr[consoleLen]]) {
-          window.console[consoleArr[consoleLen]] = emptyFn;
-        }
-      }
     })();
+    // const ieFormData = function ieFormData() {
+    //   if (window.FormData == undefined) {
+    //     this.processData = true;
+    //     this.contentType = 'application/x-www-form-urlencoded';
+    //     this.append = function (name, value) {
+    //       this[name] = value == undefined ? "" : value;
+    //       return true;
+    //     }
+    //   } else {
+    //     var formdata = new FormData();
+    //     formdata.processData = false;
+    //     formdata.contentType = false;
+    //     return formdata;
+    //   }
+    // }
 
   </script>
 

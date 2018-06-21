@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,ViewChild, ElementRef} from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -6,7 +6,9 @@ import { zh_CN } from './../../../common/date-localization';
 import { CollaborativeService } from './../collaborative.service';
 
 import * as moment from 'moment';
-
+import { Util } from '../../../core/util';
+import { API } from '../../../common/api';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'gas-add-affairs',
@@ -17,6 +19,7 @@ export class AddAffairsComponent implements OnInit {
   disabledSubmitBtn = false;
   zh = zh_CN;
   currentDate: Date = new Date();
+  transactionHandleNumber;
   dropdown = {
     region: [],
     origin: [],
@@ -84,7 +87,8 @@ export class AddAffairsComponent implements OnInit {
 
   constructor(
     private _service: CollaborativeService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private util: Util
   ) { }
   formModel: any = {
     objType: 1,
@@ -101,12 +105,22 @@ export class AddAffairsComponent implements OnInit {
     level: '1',
   };
   suggestions = [{}];
+  IE9: boolean;
+  redirectUrl:string;
+  obj:any;
+  @ViewChild('IEform') IEform: ElementRef;
+  @ViewChild('InspectionTime') InspectionTime: ElementRef;
+
+  @ViewChild('hidden') hidden: ElementRef;
+
   ngOnInit() {
     this.getMultiSelectCompany();
     this.getMultiSelectDepartment();
     this.getDropdownRegion();
     this.getDropdownOrigin();
     this.getDropdownAffairsType();
+    this.IE9 = this.util.isIE9();
+    this.redirectUrl = this.util.getReturnUrl(API.insertTransactionBasic);
   }
   checkForm(): boolean {
     const helpList = this.formModel.helpCompany.concat(this.formModel.helpDepartment);
@@ -134,10 +148,10 @@ export class AddAffairsComponent implements OnInit {
     } else if (!this.formModel.describe.trim()) {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请填写描述信息' });
       return false;
-    }else if (this.formModel.affairType === 2 && helpList.length < 1) { // 事务类别ID如果===2（交办）那么就必须选择协同对象
+    } else if (this.formModel.affairType === 2 && helpList.length < 1) { // 事务类别ID如果===2（交办）那么就必须选择协同对象
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择协同部门或企业' });
       return false;
-    }else if (this.formModel.level === '') {
+    } else if (this.formModel.level === '') {
       this.messageService.add({ severity: 'warn', summary: '', detail: '请选择紧急程度' });
       return false;
     }
@@ -220,6 +234,7 @@ export class AddAffairsComponent implements OnInit {
         this.formModel.objValue = null;
       }
     }
+    // this.obj= this.formModel.objValue[this.config.autoComplete[this.formModel.objType].idName];
   }
 
   // http 请求
@@ -322,5 +337,12 @@ export class AddAffairsComponent implements OnInit {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       });
-  }
+  }  
+  IESubmit(form){
+    if(this.checkForm()){
+      this.InspectionTime.nativeElement.value = moment(this.formModel.time).format('YYYY-MM-DD') + ' 00:00:00';
+      this.hidden.nativeElement.value = this.formModel.objValue.inflatableStationNumber;
+      this.IEform.nativeElement.submit();
+    }
+}
 }

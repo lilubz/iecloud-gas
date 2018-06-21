@@ -13,6 +13,6 @@ export class UserOpeningService {
     return this.httpService.getRequest(API.getRoles, params);
   }
   addUser(params: any): Promise<any> {
-    return this.httpService.formDataPostRequest(API.addUser, params);
+    return this.httpService.formPostRequest(API.addUser, params);
   }
 }
