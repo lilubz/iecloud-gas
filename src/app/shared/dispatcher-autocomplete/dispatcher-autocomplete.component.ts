@@ -72,7 +72,8 @@ export class DispatcherAutocompleteComponent implements OnInit {
       phone: '',
       idNumber: '',
       pageSize: 99,
-      pageNumber: 1
+      pageNumber: 1,
+      dispatcherNumber:''
     }).then(data => {
       if (data.status === 0) {
         return data.data.list;

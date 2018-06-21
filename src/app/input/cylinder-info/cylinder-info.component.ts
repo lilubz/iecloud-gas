@@ -376,7 +376,7 @@ export class CylinderInfoComponent implements OnInit {
       this.showMessage('warn', '提示信息', '型号规格不能为空');
       return false;
     } else if (this.IMG()) {
-      this.showMessage('warn', '提示信息', '请上传文件1-3张图片！');
+      this.showMessage('warn', '提示信息', '最多上传两张图片！');
     }
     return true;
   }
@@ -402,7 +402,7 @@ export class CylinderInfoComponent implements OnInit {
     if (this.IE9) {
 
     } else {
-      if (this.cylinderInfo.cylinderImage.length > 3) {
+      if (this.cylinderInfo.cylinderImage.length > 2) {
         return true;
       } else {
         return false;

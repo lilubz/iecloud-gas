@@ -10,9 +10,9 @@ export class AddBottle {
     supplyStationAddress?= ''; // 站点地址
     supplyLicenseNum?= ''; // 	供应许可证编号
     issuingUnit?= ''; // 	核发单位
-    releaseTime?= ''; // 发证日期
-    effectiveTimeStart?= ''; // 	有效期起始时间
-    effectiveTimeEnd?= ''; // 有效期结束时间
+    releaseTime?= null; // 发证日期
+    effectiveTimeStart?= null; // 	有效期起始时间
+    effectiveTimeEnd?= null; // 有效期结束时间
     businessCategory?= ''; // 	经营类别
     businessArea?= ''; // 经营区域
     stationType?=0; // 1=瓶库；3=直销车 瓶库类型

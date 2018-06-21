@@ -50,12 +50,15 @@ export class FillingScaleListComponent implements OnInit {
         this.getBalanceList();
       }
     });
-    this.commonRequestService.listCorpInfoInRegion().then(data => {
+    this.commonRequestService.listCorpInflatableStation().then(data => {
       if (data.status === 0) {
-        this.enterpriseList = data.data.map(item => ({ label: item.enterpriseName, value: item.enterpriseNumber }));
-        this.enterpriseList.unshift({ label: '全部', value: '' });
+        if (data.data.length > 0) {
+          this.enterpriseList = data.data.map(
+            item => ({ label: item.inflatableName, value: item.inflatableStationNumber })
+          )
+        }
       }
-    });
+    })
   }
 
   onPageChange(event) {
@@ -74,23 +77,23 @@ export class FillingScaleListComponent implements OnInit {
 
   getBalanceList() {
     // if (this.checkForm()) {
-      this.loading = true;
-      this.fillingScaleService.listBalanceInfo({
-        enterpriseNumber: this.enterpriseNumber,
-        balanceNumber: this.balanceNumber,
-        pageSize: this.pageSize,
-        pageNumber: this.pageNumber
-      }).then(data => {
-        this.loading = false;
-        if (data.status === 0) {
-          this.balanceList = data.data.list;
-          this.total = data.data.total;
-        } else {
-          this.balanceList = [];
-          this.total = 0;
-          this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
-        }
-      });
+    this.loading = true;
+    this.fillingScaleService.listBalanceInfo({
+      enterpriseNumber: this.enterpriseNumber,
+      balanceNumber: this.balanceNumber,
+      pageSize: this.pageSize,
+      pageNumber: this.pageNumber
+    }).then(data => {
+      this.loading = false;
+      if (data.status === 0) {
+        this.balanceList = data.data.list;
+        this.total = data.data.total;
+      } else {
+        this.balanceList = [];
+        this.total = 0;
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
+      }
+    });
     // }
   }
 

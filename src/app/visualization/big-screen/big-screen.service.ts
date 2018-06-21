@@ -195,7 +195,7 @@ export class BigScreenService {
           name: '执法',
           type: 'pie',
           radius: [50, 60],
-          center: ['50%', '35%'],
+          center: ['40%', '30%'],
           roseType: 'radius',
           selectedMode: 'single',
           data: [
@@ -334,9 +334,9 @@ export class BigScreenService {
         trigger: 'item',
         formatter: function (params) {
           if (typeof (params.value)[2] === 'undefined') {
-            return params.name + ' : ' + params.value;
+            return params.name + '未处理案件数量 : ' + params.value;
           } else {
-            return params.name + ' : ' + params.value[2];
+            return params.name + '未处理案件数量 : ' + params.value[2];
           }
         }
       },

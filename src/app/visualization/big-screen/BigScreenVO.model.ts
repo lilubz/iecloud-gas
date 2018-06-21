@@ -12,15 +12,15 @@ export class BigScreenCylinderVO {
   gcCountAddedCurrentMouth: number = 0;
   gcCountNeedInspectCurrentMonth: number = 0;
   gcCountNeedScrapCurrentMonth: number = 0;
-  completionRateGcNeedInspectCurrentMonth: number = 0;
-  completionRateGcNeedScrapCurrentMonth: number = 0
+  completionRateGcNeedInspectCurrentMonth:number = 0;
+  completionRateGcNeedScrapCurrentMonth: number = 0;
 }
 
 export class BigScreenDispatchVO {
   gcDispatchCountFullCurrentDay: number = 0;
   gcDispatchCountFullCurrentMonth: number = 0;
   growthGcDispatchCountYearOnYear: number = 0;
-  growthGcDispatchCountMonthOnMonth: number = 0
+  growthGcDispatchCountMonthOnMonth: number = 0;
 }
 
 export class BigScreenBasicInfoVO {

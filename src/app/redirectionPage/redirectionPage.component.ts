@@ -74,13 +74,16 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.objValue = this.dropdown.objValue[0];
     if (this.userStateService.getUserRoleType() === RoleType.Admin) {
+      this.objValue = this.dropdown.objValue[0];
       this.Admin = true; // admin 权限
       this.unable = false;
     } else if (this.userStateService.getUserRoleType() === RoleType.Government) {
+      this.objValue = this.dropdown.objValue[0];
       this.Admin = false; // 非admin
     } else {
+      this.objValue = this.dropdown.objValue.splice(4,1);
+      this.objValue = this.dropdown.objValue[0];
       this.unable = true;
     }
     this.getDropdownRegion();

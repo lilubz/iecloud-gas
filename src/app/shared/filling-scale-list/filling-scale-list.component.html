@@ -2,7 +2,7 @@
   <div class="ui-g-12">
     <div class="ui-g">
       <div class="ui-g-12 ui-lg-6">
-        <span class="search-label"> 经营企业 </span>
+        <span class="search-label"> 充装站 </span>
         <p-dropdown [options]="enterpriseList" [(ngModel)]="enterpriseNumber" [style]="{'width':'280px'}" [filter]="true"></p-dropdown>
       </div>
 
@@ -51,15 +51,25 @@
 
 <p-dialog [visible]="settingScaleDialogVisible" header="充装秤状态" [responsive]="true" [showHeader]="true" [modal]="true" [closable]="false"
   [width]="800" [contentStyle]="{'padding':'0','overflow':'auto','border':'none'}" positionTop="130">
-  <div class="ui-g-12 text-center">
-    充装秤编号：{{ selectedScaleStatus?.balanceNumber }}
-    <div class="ui-g-12 ui-g-nopad">
-      设置联锁：
-      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetInterLock" (onChange)="setInnerLock($event.checked)"></p-inputSwitch>
+  <div class="ui-g-12">
+    <div class="ui-g-12 text-center">
+      充装秤编号：{{ selectedScaleStatus?.balanceNumber }}
     </div>
-    <div class="ui-g-12 ui-g-nopad">
-      设置锁：
-      <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetOuterLock" (onChange)="setLock($event.checked)"></p-inputSwitch>
+    <div class="ui-g-12">
+      <div class="ui-g-6 text-right">
+        设置联锁：
+      </div>
+      <div class="ui-g-6 ui-g-nopad">
+        <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetInterLock" (onChange)="setInnerLock($event.checked)"></p-inputSwitch>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-6 text-right">
+        设置锁：
+      </div>
+      <div class="ui-g-6 ui-g-nopad">
+        <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetOuterLock" (onChange)="setLock($event.checked)"></p-inputSwitch>
+      </div>
     </div>
   </div>
   <p-footer>

@@ -57,15 +57,15 @@
           {{ dataList.partOfGc.gcCountNeedScrapCurrentMonth | number }}
           <span>瓶</span>
         </div>
-        <div class="water-chart" #needInspectRateLiquidFill>
-
+        <div class="water-chart  LiquidFill-left" #needInspectRateLiquidFill>
+          <span class="LiquidFill">{{ dataList.partOfGc.completionRateGcNeedInspectCurrentMonth || 0}}%</span>
         </div>
         <div class="title-chart">
           完成率
           <!-- <span class="testData">(测试)</span> -->
         </div>
-        <div class="water-chart-1" #needScrapRateLiquidFill>
-
+        <div class="water-chart-1 LiquidFill-right" #needScrapRateLiquidFill>
+          <span>{{ dataList.partOfGc.completionRateGcNeedScrapCurrentMonth || 0}}%</span>
         </div>
         <div class="title-chart-1">
           完成率
@@ -91,19 +91,21 @@
           {{ dataList.partOfDispatch.gcDispatchCountFullCurrentMonth | number }}
           <span>瓶</span>
         </div>
-        <div class="water2-chart" #yearOnYearLiquidFill>
-
+        <div class="water2-chart LiquidFill-left" #yearOnYearLiquidFill>
+          <span>
+            {{dataList.partOfDispatch.growthGcDispatchCountYearOnYear || 0}}%
+          </span>
         </div>
         <div class="title2-chart">
           本月同比
-          <!-- <span class="testData">(测试)</span> -->
         </div>
-        <div class="water2-chart-1" #monthOnMonthLiquidFill>
-
+        <div class="water2-chart-1 LiquidFill-right" #monthOnMonthLiquidFill>
+          <span>
+            {{dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth || 0}}%
+          </span>
         </div>
         <div class="title2-chart-1">
           本月环比
-          <!-- <span class="testData">(测试)</span> -->
         </div>
       </div>
       <!-- <div class="big-screen" style="width:50%; height:40%" #chart> </div> -->
@@ -201,7 +203,7 @@
         本月
       </div>
       <div class="pie" id="main3" #pie>
-        饼图
+        <!-- 饼图 -->
       </div>
       <div class="danger">
         <div class="title-word">预 警
@@ -211,22 +213,17 @@
       </div>
       <div class="carousel">
         <div style="height:40px;">
-
         </div>
         <div class="ul-container">
           <ul>
-            <li *ngFor="let item of List">
-              <!-- <div class="radius-con"> -->
-
-              <!-- </div> -->
-              <div class="content" [title]="item.content">
+            <li *ngFor="let item of titleList;let index=index">
+              <div class="content" title="{{item.regionName}}{{item.typeName}}为{{item.caseCount}}个">
                 <div class="radius">
-                  {{item.id}}
+                  {{index+1}}
                 </div>
-                {{item.content}}
+                {{item.regionName}}{{item.typeName}}为{{item.caseCount}}个
               </div>
             </li>
-
           </ul>
         </div>
       </div>

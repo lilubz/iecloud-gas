@@ -13,7 +13,7 @@
           [style]="{'width':'210px'}"></p-dropdown>
       </div>
       <div class="ui-g-12 form-group">
-        <button pButton class="searchBtn" type="submit" label="查询"></button>
+        <button pButton  type="submit" label="查询"></button>
         <button pButton type="button" (click)="exportDispathcerStatistic()" class=" right" label="导出"></button>
       </div>
       <div class="ui-g-8 ui-g-nopad" *ngIf="formModel.timeType===null">
@@ -76,7 +76,7 @@
       </p-dropdown>
     </div>
     <!-- <div class="ui-g-12"> -->
-    <button pButton class="searchBtn" type="button" label="查询" (click)="getDeliveryStatistic()"></button>
+    <button pButton type="button" label="查询" (click)="getDeliveryStatistic()"></button>
     <!-- </div> -->
     <div #dispatcherChart id="dispatcherChart" style="height:400px;" class="ui-g-12"></div>
   </div>

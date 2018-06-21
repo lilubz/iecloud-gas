@@ -362,6 +362,9 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
           this.addForm = new AddBottle();
           this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
         } else {
+          this.addForm.releaseTime = new Date(this.addForm.releaseTime);
+          this.addForm.effectiveTimeStart = new Date(this.addForm.effectiveTimeStart);
+          this.addForm.effectiveTimeEnd = new Date(this.addForm.effectiveTimeEnd);
           this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
         }
       });
@@ -421,6 +424,9 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
           this.onSearch(this.changeStatusPage);
           this.messageService.add({ severity: 'success', summary: '提示信息', detail: data.msg });
         } else {
+          this.editForm.releaseTime = new Date(this.editForm.releaseTime);
+          this.editForm.effectiveTimeStart = new Date(this.editForm.effectiveTimeStart);
+          this.editForm.effectiveTimeEnd = new Date(this.editForm.effectiveTimeEnd);
           this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
         }
       }).catch(error => {
@@ -559,7 +565,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '有效期结束时间不能为空' });
       return false;
     } else if (this.editForm.stationType === 3) {
-      if (!this.editForm.carNumber.trim()) {
+      if (!(this.editForm.carNumber + '').trim()) {
         this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '直销车车牌号不能为空' });
         return false;
       }
@@ -595,7 +601,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '有效期结束时间不能为空' });
       return false;
     } else if (this.addForm.stationType === 3) {
-      if (!this.addForm.carNumber.trim()) {
+      if (!(this.addForm.carNumber + '').trim()) {
         this.messageService.add({ severity: 'warn', summary: '提示信息', detail: '直销车车牌号不能为空' });
         return false;
       }

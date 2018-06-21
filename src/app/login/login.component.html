@@ -10,7 +10,7 @@
         通知
         <gas-explanation tooltip="政府最近发布的重要公告，供用户查看和下载" style="display:inline-block" position="bottom"></gas-explanation>
       </h2>
-      <div class="ui-g carousel">
+      <div class="ui-g ui-g-12 ui-g-nopad carousel">
         <ul>
           <li class="ui-g-12 ms-box " *ngFor="let item of messageList">
             <a [href]="item?.fileUrl" download="" target="_blank">
@@ -32,7 +32,7 @@
         用户登录
       </h3> -->
       <span class="title">用户登录</span>
-      <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-g-nopad ui-fluid">
         <form>
           <div class="ui-g-12 ui-g-nopad">
             <label for="" class="ui-g-4">用户名:</label>

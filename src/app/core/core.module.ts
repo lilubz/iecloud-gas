@@ -14,6 +14,7 @@ import { FullScreenService } from './full-screen.service';
 import { CookieService } from './cookie.service';
 import { RedirectionPageService } from '../redirectionPage/redirectionPage.service';
 import { ConfirmationService } from 'primeng/primeng';
+import { SystemSetGuard } from './systemSet-guard.service';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { ConfirmationService } from 'primeng/primeng';
     FullScreenService,
     CookieService,
     RedirectionPageService,
+    SystemSetGuard
   ]
 })
 export class CoreModule {

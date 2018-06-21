@@ -10,7 +10,7 @@ body {
   // min-width: 1024px;
   // min-width: 1024px;
   background: $html-bg-color; // overflow: auto;
-  font-family: "Microsoft YaHei", "Arial", "黑体", "宋体", "Roboto", "Trebuchet MS", "Arial", "Helvetica", sans-serif;
+  font-family: "Microsoft YaHei", "Arial", "黑体", "Roboto";
 }
 
 /* 全局CSS样式 */
@@ -238,6 +238,9 @@ input {
       a[href="#/input"] {
         line-height: 46px;
       }
+      li:nth-child(8) ul {
+        margin-top: -60px;
+      }
       .ui-menu-list {
         .ui-menuitem {
           text-align: center;
@@ -299,11 +302,9 @@ input {
       top: 10px;
       background-color: red;
       border-radius: 50%;
-    }
-
-    // 解决 有小红点的菜单 在某些情况下文字不居中的问题。
+    } // 解决 有小红点的菜单 在某些情况下文字不居中的问题。
     a[href="#/gov-affairs"] .fa-fw,
-    a[href="#/gov-affairs/warning"] .fa-fw{
+    a[href="#/gov-affairs/warning"] .fa-fw {
       width: 0;
     }
   }
@@ -403,6 +404,11 @@ a.router-link-active {
 
 .left {
   float: left;
+}
+
+.ui-widget {
+  font-family: "Microsoft YaHei", ;
+  font-size: 1em;
 }
 
 /* Login */

@@ -71,7 +71,7 @@
     </p-column>
     <p-column field="balanceNumber" header="充装枪号" [style]="{'width':'150px'}">
       <ng-template let-record="rowData" pTemplate="body">
-        <a href="javascript:0;" [routerLink]="['/archive/filling-scale']" [queryParams]="{balanceNumber:record.balanceNumber}" title="查看充装秤档案">
+        <a href="javascript:0;" [routerLink]="['/archive/filling-scale']" [queryParams]="{balanceNumber:record.balanceNumber,enterpriseNumber:record.inflatableStationNumber}" title="查看充装秤档案">
           {{ record.balanceNumber }}
         </a>
       </ng-template>

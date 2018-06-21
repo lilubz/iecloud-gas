@@ -8,7 +8,7 @@ import { BigScreenService, } from './big-screen.service';
 import { DOCUMENT } from '@angular/common';
 import * as $ from 'jquery';
 import { UserStateService } from '../../core/userState.service';
-import { WarningMockData } from './warningMockData';
+// import { WarningMockData } from './warningMockData';
 import { BigScreenVO, BigScreenCylinderCaseVO } from './BigScreenVO.model';
 import { Util } from '../../core/util';
 import * as moment from 'moment';
@@ -34,12 +34,12 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   @ViewChild('map') map: ElementRef;
   @ViewChild('pie') Pie: ElementRef;
   currentTime: any;
-  List: { id: number, content: string }[] = WarningMockData;
   selectedMapRegionid: number;
   dataList: BigScreenVO = new BigScreenVO();
   scrollInterval: any;
   timeInterval: any;
   requestInterval: any;
+  titleList: any = [];
 
   constructor(
     private bigScreenService: BigScreenService,
@@ -53,7 +53,6 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.messageService.add({ severity: 'success', summary: '', detail: '按F11全屏展示！' });
     this.getBigData();
-
     this.requestInterval = setInterval(() => {
       this.getBigData();
     }, 30 * 60 * 1000);
@@ -81,10 +80,14 @@ export class BigScreenComponent implements OnInit, OnDestroy {
 
     this.setScreen();
     // 地图
-    const pieChart = echarts.init(this.Pie.nativeElement);
-    pieChart.setOption(this.bigScreenService.getAffairPieOption(50, 20, 30));
-    this.setLiquidFill();
+    // this.setLiquidFill();
+    this.PieInit();
     this.mapInit();
+  }
+  PieInit() {
+    const pieChart = echarts.init(this.Pie.nativeElement);
+    pieChart.setOption(this.bigScreenService.getAffairPieOption(this.dataList.partOfCase.rateCompletionCase,
+      this.dataList.partOfCase.rateProcessingCase, this.dataList.partOfCase.rateOutOfDateCase));
   }
 
   mapInit() {
@@ -151,7 +154,15 @@ export class BigScreenComponent implements OnInit, OnDestroy {
       if (data.status === 0) {
         // console.log(data.data);
         this.dataList = data.data;
-        this.setLiquidFill();
+        this.dataList.partOfDispatch.growthGcDispatchCountYearOnYear = parseFloat(data.data.partOfDispatch.growthGcDispatchCountYearOnYear) * 10010/10;
+        this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth = parseFloat(data.data.partOfDispatch.growthGcDispatchCountMonthOnMonth) * 1000/10;
+        this.dataList.partOfGc.completionRateGcNeedInspectCurrentMonth = parseFloat(data.data.partOfGc.completionRateGcNeedInspectCurrentMonth) * 1000/10;
+        this.dataList.partOfGc.completionRateGcNeedScrapCurrentMonth = parseFloat(data.data.partOfGc.completionRateGcNeedScrapCurrentMonth) * 1000/10;
+        this.titleList = data.data.partOfWarning.titleWarning;
+        // console.log(data.data.partOfWarning.titleWarning);
+
+        // this.setLiquidFill();
+        this.PieInit();
         this.setMap(this.bigScreenService.transform(this.dataList.partOfCase.caseCountOutOfDateList));
       } else {
         // this.messageService.add({ severity: 'warn', summary: '提示信息', detail: data.msg });
@@ -172,17 +183,17 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   }
 
   // 画水滴图
-  setLiquidFill() {
-    const myChart = echarts.init(this.needInspectRateLiquidFillElem.nativeElement);
-    const myChart1 = echarts.init(this.needScrapRateLiquidFillElem.nativeElement);
-    const myChart2 = echarts.init(this.yearOnYearLiquidFillElem.nativeElement);
-    const myChart3 = echarts.init(this.monthOnMonthLiquidFillElem.nativeElement);
-    // 画图
-    myChart.setOption(this.bigScreenService.getBlueLiquidFillOption(this.dataList.partOfGc.completionRateGcNeedInspectCurrentMonth));
-    myChart1.setOption(this.bigScreenService.getOrangeLiquidFillOption(this.dataList.partOfDispatch.growthGcDispatchCountYearOnYear));
-    myChart2.setOption(this.bigScreenService.getBlueLiquidFillOption(this.dataList.partOfGc.completionRateGcNeedScrapCurrentMonth));
-    myChart3.setOption(this.bigScreenService.getOrangeLiquidFillOption(this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth));
-  }
+  // setLiquidFill() {
+  //   const myChart = echarts.init(this.needInspectRateLiquidFillElem.nativeElement);
+  //   const myChart1 = echarts.init(this.needScrapRateLiquidFillElem.nativeElement);
+  //   const myChart2 = echarts.init(this.yearOnYearLiquidFillElem.nativeElement);
+  //   const myChart3 = echarts.init(this.monthOnMonthLiquidFillElem.nativeElement);
+  //   // 画图
+  //   myChart.setOption(this.bigScreenService.getBlueLiquidFillOption(this.dataList.partOfGc.completionRateGcNeedInspectCurrentMonth));
+  //   myChart1.setOption(this.bigScreenService.getOrangeLiquidFillOption(this.dataList.partOfDispatch.growthGcDispatchCountYearOnYear));
+  //   myChart2.setOption(this.bigScreenService.getBlueLiquidFillOption(this.dataList.partOfGc.completionRateGcNeedScrapCurrentMonth));
+  //   myChart3.setOption(this.bigScreenService.getOrangeLiquidFillOption(this.dataList.partOfDispatch.growthGcDispatchCountMonthOnMonth));
+  // }
 
   ngOnDestroy() {
     this.resizeListener();

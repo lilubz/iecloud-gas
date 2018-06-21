@@ -1,13 +1,16 @@
 <div class="ui-g-12 content">
   <div style="min-width:500px">
     <h2>储配站气瓶统计</h2>
-    <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
-      <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
-        <label for="" class="search-label">区域选择：</label>
-        <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'120px'}"></p-dropdown>
-      </ng-container>
-      <button pButton type="button" (click)="exportFillingStationStatistic()" class="right" label="导出">
-      </button>
+    <div class="ui-g">
+      <div class="ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1">
+        <ng-container *gasPermissionRole="[RoleType.Government,RoleType.Admin]">
+          <label for="" class="search-label">区域选择：</label>
+          <p-dropdown [options]="regionList" (onChange)="selectStatisticRegion($event.value)" [style]="{'width':'120px'}"></p-dropdown>
+        </ng-container>
+        <div class="ui-g-12">
+          <button pButton type="button" (click)="exportFillingStationStatistic()" class="right" label="导出"></button>
+        </div>
+      </div>
     </div>
     <p-dataTable [value]="storageDistributionFilters" [paginator]="true" [rows]="40" [rowsPerPageOptions]="[10,20,40,80]" [styleClass]="'ui-lg-10 ui-xl-8 ui-xl-offset-2 ui-lg-offset-1'"
       [loading]="cylinderLoading" emptyMessage="未查询到数据">
@@ -25,7 +28,7 @@
       <p-column field="gcCount" header="气瓶数">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
           <span *ngIf="countyCylinder.gcCount<=0">
-              {{ countyCylinder.gcCount || 0 }}
+            {{ countyCylinder.gcCount || 0 }}
           </span>
           <a href="javascript:void(0);" *ngIf="countyCylinder.gcCount>0" [routerLink]="['/archive/cylinder/list']" [queryParams]="{liabilitySubjectId:countyCylinder.stationNumber ||'',liabilitySubjectType:1}"
             class="router-link">{{ countyCylinder.gcCount || 0 }}</a>
@@ -78,8 +81,8 @@
           <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
             dateFormat="yy-mm-dd" [locale]="zh" [style]="{'width':'120px'}" readonlyInput="true"></p-calendar>
         </div>
-        <div class="ui-g-12">
-          <button class="searchBtn" pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()">
+        <div class="ui-g-12 ui-g-nopad">
+          <button pButton type="button" label="查询" (click)="searchStorageDistributionCirculations()">
           </button>
           <button pButton type="button" (click)="exportFillingStationCirculationStatistic()" class="right" label="导出"></button>
         </div>
@@ -102,14 +105,14 @@
     </p-column> -->
       <p-column field="fullBottleSendCount" header="重瓶出库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:1,type:'重出'}"
+          <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:1,type:'重出'}"
             class="router-link">{{ countyCylinder.fullBottleSendCount || 0 }}</a>
         </ng-template>
       </p-column>
       <p-column field="emptyBottleReceiveCount" header="空瓶入库">
         <ng-template let-countyCylinder="rowData" pTemplate="body">
-            <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:1,type:'空入'}"
-            class="router-link">{{ countyCylinder.emptyBottleReceiveCount  || 0 }}</a>
+          <a href="javascript:void(0);" [routerLink]="['/delivery/cylinder-trace/cylinder-record/1']" [queryParams]="{liabilityNumber:countyCylinder.stationNumber ||'',liabilitySubjectType:1,type:'空入'}"
+            class="router-link">{{ countyCylinder.emptyBottleReceiveCount || 0 }}</a>
         </ng-template>
       </p-column>
       <!-- <p-column field="emptyBottleSendCount" header="空瓶出库">

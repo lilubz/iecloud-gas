@@ -43,10 +43,10 @@
           </ng-template>
         </p-column>
         <p-column field="noCheckedUserCount" header="未安检用户数量">
-          <!-- <ng-template let-rowData="rowData" pTemplate="body">
+          <ng-template let-rowData="rowData" pTemplate="body">
             <a href="javascript:void(0);" [routerLink]="['/archive/customer/list']" [queryParams]="{regionId:rowData.regionId,boolIsChecked:false}"
               title="查看未安检用户详情">{{rowData.noCheckedUserCount}}</a>
-          </ng-template> -->
+          </ng-template>
         </p-column>
         <p-column field="gcTotalCount" header="登记钢瓶数量">
           <ng-template let-rowData="rowData" pTemplate="body">

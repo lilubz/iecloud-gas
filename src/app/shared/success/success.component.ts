@@ -26,7 +26,7 @@ export class SuccessComponent implements OnInit,OnDestroy {
       if (second > 0) {
         document.getElementById("totalSecond").innerHTML = second + ''; //每次设置的second的值都不一样了。  
       } else {
-        location.href = oldUrl || '';
+        location.href = ('#'+oldUrl) || '';
       }
     }
   }

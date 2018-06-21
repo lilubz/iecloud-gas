@@ -16,6 +16,7 @@ import { SettingManagementComponent } from './setting-management/setting-managem
 import { GISSettingComponent } from './setting-management/GIS-setting/GIS-setting.component';
 import { BottleOpenComponent } from './bottle-library/bottle-open/bottle-open.component';
 import { BottleListComponent } from './bottle-library/bottle-list/bottle-list.component';
+import { SystemSetGuard } from '../core/systemSet-guard.service';
 
 const routes: Routes = [
   {
@@ -120,6 +121,7 @@ const routes: Routes = [
           },
           {
             path: 'user-search',
+            canActivate:[SystemSetGuard],
             component: UserSearchComponent,
             data: {
               title: '政府账号概览'

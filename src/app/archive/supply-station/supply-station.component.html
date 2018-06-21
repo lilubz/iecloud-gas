@@ -124,12 +124,12 @@
               <span>{{rowdata.effectiveTimeStart | date:'yyyy/MM/dd'}}-{{rowdata.effectiveTimeEnd | date:'yyyy/MM/dd'}}</span>
             </ng-template>
           </p-column>
-          <p-column [style]="{'width':'140px'}" header="操作" *gasPermissionRole="[RoleType.Admin]">
+          <p-column [style]="{'width':'140px'}" header="操作" *gasPermissionRole="[RoleType.Admin,RoleType.Government]">
             <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
               <button pButton type="button" label="变更归属企业" style="width:120px" (click)="showChangeDialog(data)"></button>
             </ng-template>
           </p-column>
-          <p-column [style]="{'width':'140px'}" header="编辑" *gasPermissionRole="[RoleType.Admin]">
+          <p-column [style]="{'width':'140px'}" header="编辑" *gasPermissionRole="[RoleType.Admin,RoleType.Government]">
             <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
               <button pButton type="button" label="编辑" style="width:120px" (click)="showEditDialog(data)"></button>
             </ng-template>
@@ -224,7 +224,7 @@
           <label for="" class="search-label">发证日期
             <b style="color:red;">*</b>
           </label>
-          <p-calendar [locale]="cn" [(ngModel)]="editForm.releaseTime" appendTo="body" [showButtonBar]="true" placeholder="" readonlyInput="true"
+          <p-calendar [locale]="cn" [(ngModel)]="editForm.releaseTime" appendTo="body" baseZIndex="1000" [showButtonBar]="true" placeholder="" readonlyInput="true"
             dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
             yearRange="1970:2050" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
         </div>
@@ -234,7 +234,7 @@
           <label for="" class="search-label">有效期
             <b style="color:red;">*</b>
           </label>
-          <p-calendar [locale]="cn" #startDate [(ngModel)]="editForm.effectiveTimeStart" appendTo="body" #startDate [showButtonBar]="true"
+          <p-calendar [locale]="cn" #startDate [(ngModel)]="editForm.effectiveTimeStart" baseZIndex="1000" appendTo="body" #startDate [showButtonBar]="true"
             placeholder="" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
             [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
         </div>
@@ -244,7 +244,7 @@
           <label for="" class="search-label">至
             <b style="color:red;">*</b>
           </label>
-          <p-calendar [locale]="cn" #endDate [(ngModel)]="editForm.effectiveTimeEnd" appendTo="body" #endDate [showButtonBar]="true"
+          <p-calendar [locale]="cn" #endDate [(ngModel)]="editForm.effectiveTimeEnd" baseZIndex="1000" appendTo="body" #endDate [showButtonBar]="true"
             placeholder="" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
             [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
         </div>
@@ -367,7 +367,7 @@
           <label for="" class="search-label">发证日期
             <b style="color:red;">*</b>
           </label>
-          <p-calendar [locale]="cn" #date [(ngModel)]="addForm.releaseTime" appendTo="body" [showButtonBar]="true" placeholder="请输入发证日期"
+          <p-calendar [locale]="cn" #date [(ngModel)]="addForm.releaseTime" baseZIndex="1000" appendTo="body"  [showButtonBar]="true" placeholder="请输入发证日期"
             readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
             [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
         </div>
@@ -377,7 +377,7 @@
           <label for="" class="search-label">有效期
             <b style="color:red;">*</b>
           </label>
-          <p-calendar [locale]="cn" #startDates [(ngModel)]="addForm.effectiveTimeStart" appendTo="body" #startDate [showButtonBar]="true"
+          <p-calendar [locale]="cn" #startDates [(ngModel)]="addForm.effectiveTimeStart" baseZIndex="1000" appendTo="body" #startDate [showButtonBar]="true"
             placeholder="请输入有效起始时间" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" [maxDate]="endDates.value?endDates.value:today"
             selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
         </div>
@@ -387,7 +387,7 @@
           <label for="" class="search-label">至
             <b style="color:red;">*</b>
           </label>
-          <p-calendar [locale]="cn" #endDates [(ngModel)]="addForm.effectiveTimeEnd" appendTo="body" #endDate [showButtonBar]="true"
+          <p-calendar [locale]="cn" #endDates baseZIndex="1000" [(ngModel)]="addForm.effectiveTimeEnd" appendTo="body" #endDate [showButtonBar]="true"
             placeholder="请输入有效结束时间" readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" [minDate]="startDates.value"
             selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px','display':'inline-block'}"></p-calendar>
         </div>

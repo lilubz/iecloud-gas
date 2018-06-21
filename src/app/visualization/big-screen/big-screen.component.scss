@@ -233,6 +233,18 @@
         width: 201px;
         height: 153px;
       }
+      .LiquidFill-left{
+        text-align: center;
+        line-height: 153px;
+        color:#3b4df1;
+        font-size: 50px
+      }
+      .LiquidFill-right{
+        text-align: center;
+        line-height: 153px;
+        color:#ff4e00;
+        font-size: 50px
+      }
       .title-chart {
         position: absolute;
         left: 80px;
@@ -520,7 +532,8 @@
         left: 1452px;
         top: 280px;
         width: 456px;
-        height: 237px;
+        height: 250px;
+        // background-color: black
       }
       .danger {
         position: absolute;

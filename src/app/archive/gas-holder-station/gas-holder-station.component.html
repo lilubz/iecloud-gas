@@ -117,7 +117,7 @@
               <span>{{rowdata.effectiveTimeStart | date:'yyyy/MM/dd'}}-{{rowdata.effectiveTimeEnd | date:'yyyy/MM/dd'}}</span>
             </ng-template>
           </p-column> -->
-          <p-column [style]="{'width':'200px'}" header="操作" *gasPermissionRole="[RoleType.Admin]">
+          <p-column [style]="{'width':'200px'}" header="操作" *gasPermissionRole="[RoleType.Admin,RoleType.Government]">
             <ng-template let-data="rowData" let-index="rowIndex" pTemplate="body">
               <button pButton type="button" label="变更归属企业" style="width:120px" (click)="showChangeDialog(data)"></button>
             </ng-template>
@@ -272,7 +272,7 @@
           <input maxlength="250" type="text" disabled="disabled" [(ngModel)]="change.supplyStationName" style="width:300px" pInputText placeholder="">
         </div>
       </div>
-      <div class="ui-g-12" *gasPermissionRole="[RoleType.Admin]">
+      <div class="ui-g-12" *gasPermissionRole="[RoleType.Admin,RoleType.Government]">
         <div class="inputgroup">
           <label for="" class="search-label">所属企业</label>
           <p-dropdown [options]="changeEnterpriseDrop" appendTo="body" [(ngModel)]="change.enterpriseNumber" [style]="{'width':'300px'}"></p-dropdown>

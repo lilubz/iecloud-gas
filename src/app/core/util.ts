@@ -121,9 +121,10 @@ export class Util {
     if (!window.location.origin) {
       var originIE = window.location.protocol + "//"
         + window.location.hostname
-        + (window.location.port ? ':' + window.location.port : '') + '/#/result';
+        + (window.location.port ? ':' + window.location.port : '') + '/wenzhou/#/result';
     } else {
-      originIE = location.origin + '/#/result';
+      originIE = location.origin + '/wenzhou/#/result';
+      
     }
     const firstURl = encodeURIComponent(location.hash.replace(/#/g,''));
     const secondUrl = originIE + '?url=' + firstURl;
