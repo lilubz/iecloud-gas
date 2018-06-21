@@ -38,6 +38,7 @@
         </p-column>
         <p-column [style]="{'width':'150px'}" field="userName" header="用户名"></p-column>
         <p-column [style]="{'width':'150px'}" field="organizationName" header="组织名称"></p-column>
+        <p-column [style]="{'width':'150px'}" field="phone" header="手机号"></p-column>
         <p-column [style]="{'width':'150px'}" field="roleName" header="角色名">
           <ng-template pTemplate="header">
             角色名
@@ -66,8 +67,13 @@
             <div *ngIf="data.userName">
               <p-toggleButton onLabel="冻结" offLabel="启用" [(ngModel)]="!data.isfreezed" (click)="changeStatus(data)" [style]="{'width':'84px'}"></p-toggleButton>
             </div>
-            <button pButton type="button" label="重置密码" class="ui-button-secondary" (click)="
-                confirmReset(data.userId)"></button>
+            <div>
+              <button pButton type="button" label="重置密码" class="ui-button-secondary" (click)="
+                  confirmReset(data.userId)"></button>
+            </div>
+            <div>
+              <button pButton type="button" label="编辑" class="ui-button-secondary" (click)="showChangePhone(data)" style="width:84px"></button>
+            </div>
           </ng-template>
         </p-column>
         <ng-template pTemplate="emptymessage">
@@ -84,3 +90,31 @@
 
 </div>
 <p-confirmDialog acceptLabel="是" rejectLabel="否"></p-confirmDialog>
+<p-dialog [visible]="changePhoneVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
+  [width]="500 " [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
+  <h3 class="dialogtitle" style="text-align:center">编辑手机号码</h3>
+  <form [formGroup]="formModel">
+    <div class="ui-g-8">
+      <div class="ui-g-12 ui-g-offset-4">
+        <div class="inputgroup">
+          <label for="" class="search-label">原手机号
+          </label>
+          <input type="text" style="width: 150px" pInputText disabled [value]="formModel.userPhone">
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-8">
+      <div class="ui-g-12 ui-g-offset-4">
+        <div class="inputgroup">
+          <label for="" class="search-label">手机号
+          </label>
+          <input type="text" style="width: 150px" maxlength="11" formControlName="phone" pInputText placeholder="请输入手机号">
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+    <button type="button" pButton label="确认新增" (click)="changePhone()"></button>
+    <button type="button" pButton (click)="closechangePhone() " label="关闭 "></button>
+  </p-footer>
+</p-dialog>

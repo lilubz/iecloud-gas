@@ -290,6 +290,7 @@ export const API = {
   'getGovSysUsers': URL + 'sysUserPermissions/user/getGovSysUsers.do', // 查询
   'getGovOrganzations': URL + 'sysUserPermissions/user/getGovOrganzations.do', // 组织ID
   'getRoles': URL + 'sysUserPermissions/user/getRoles.do', // 角色ID
+  'updateUserPhone': URL + 'sysUserPermissions/user/updateUserPhone.do', // 更改手机号码
   // 充装秤
   /**
    * 监管数据统计分析

@@ -61,7 +61,7 @@ export class UserOpeningComponent implements OnInit, OnDestroy {
         this.dropdown.organization = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    })
+    });
   }
   onChangeOrganzation(event) {
     this.dropdown.role = this.dropdown.default;
@@ -89,7 +89,7 @@ export class UserOpeningComponent implements OnInit, OnDestroy {
         this.dropdown.role = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    })
+    });
   }
   addSystemUser() {
     if (this.formModel.valid) {
@@ -107,7 +107,7 @@ export class UserOpeningComponent implements OnInit, OnDestroy {
         } else {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
-      })
+      });
     } else {
       for (const key in this.formModel.controls) {
         if (this.formModel.controls[key].errors) {

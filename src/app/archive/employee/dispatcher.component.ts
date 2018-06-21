@@ -55,7 +55,7 @@ export class DispatcherComponent implements OnInit {
     regionId: '',
     pageSize: this.dataTable.option[2],
     pageNumber: 1,
-    dispatcherNumber : '',    
+    dispatcherNumber : '',
   };
   constructor(
     private dispatcherService: DispatcherService,

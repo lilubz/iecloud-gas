@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, } from '@angular/core';
 import { UserSearchService, } from './user-search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ConfirmationService } from 'primeng/primeng';
+import { FormBuilder } from '@angular/forms';
+import { validator } from '../../../common/validator';
 
 @Component({
   selector: 's-user-search',
@@ -9,6 +11,10 @@ import { ConfirmationService } from 'primeng/primeng';
   styleUrls: ['./user-search.component.scss']
 })
 export class UserSearchComponent implements OnInit, OnDestroy {
+  formModel: any = this.fb.group({
+    userPhone: '',
+    phone: ['', validator.phone],
+  });
   pages: {
     pageNumber?: number;
     pageSize?: number;
@@ -50,10 +56,13 @@ export class UserSearchComponent implements OnInit, OnDestroy {
     userName: ''
   };
   loading = false;
+  changePhoneVisible = false;
+  userId: any;
   constructor(
     private _service: UserSearchService,
-    private messageService: MessageService, 
+    private messageService: MessageService,
     private confirmationService: ConfirmationService,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -67,12 +76,12 @@ export class UserSearchComponent implements OnInit, OnDestroy {
         pageSize: Number,
         pageNumber: Number
       } = {
-          pageSize: event.rows,
-          pageNumber: event.first / event.rows + 1
-        };
+        pageSize: event.rows,
+        pageNumber: event.first / event.rows + 1
+      };
       this.getSystemUserList(page);
       this.changeStatusPage = page;
-    }
+    };
   }
   getGovOrganzationsDrop() {
     this._service.getGovOrganzations({}).then(data => {
@@ -85,7 +94,7 @@ export class UserSearchComponent implements OnInit, OnDestroy {
         this.dropdown.organzation = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    })
+    });
   }
   onChangeOrganzation(event) {
     this.dropdown.role = this.dropdown.default;
@@ -109,7 +118,7 @@ export class UserSearchComponent implements OnInit, OnDestroy {
         this.dropdown.role = this.dropdown.default;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    })
+    });
   }
   getSystemUserList(page?) {
     this.loading = true;
@@ -136,7 +145,7 @@ export class UserSearchComponent implements OnInit, OnDestroy {
         this.pages.total = 0;
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    })
+    });
   }
   changeStatus(status) {
     this._service.freezeAccount({ userid: status.userId }).then(data => {
@@ -151,8 +160,39 @@ export class UserSearchComponent implements OnInit, OnDestroy {
       } else {
         this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
       }
-    })
+    });
 
+  }
+  showChangePhone = (data) => {
+    this.changePhoneVisible = true;
+    this.userId = data.userId;
+    this.formModel.userPhone = data.phone;
+  }
+  changePhone = () => {
+    if (this.formModel.valid && this.formModel.value.phone) {
+      this._service.updateUserPhone(
+        {
+          userId: this.userId,
+          phone: this.formModel.value.phone
+        }
+      ).then(
+        data => {
+          if (data.status === 0) {
+            this.messageService.add({ severity: 'succes', summary: '响应消息', detail: data.msg });
+            this.closechangePhone();
+            this.getSystemUserList();
+          } else {
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+          }
+        }
+      );
+    } else {
+      this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入正确的手机号码' });
+    }
+  }
+  closechangePhone = () => {
+    this.changePhoneVisible = false;
+    this.formModel.phone = '';
   }
 
   confirmReset(userId) {

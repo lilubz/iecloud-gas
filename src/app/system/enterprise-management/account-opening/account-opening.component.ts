@@ -24,6 +24,7 @@ export class AccountOpeningComponent implements OnInit, OnDestroy {
     enterpriseNumber: ['', [validator.enterpriseNumber]],
     isfreezed: ['', [validator.isfreezed]],
     gender: [''],
+    phone: ['', validator.phone],
   });
   category: SelectItem[] = [  // 证件类别
     {

@@ -5,6 +5,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { CommonRequestService } from '../../../core/common-request.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ConfirmationService } from 'primeng/primeng';
+import { FormBuilder } from '@angular/forms';
+import { validator } from '../../../common/validator';
 
 
 @Component({
@@ -13,7 +15,10 @@ import { ConfirmationService } from 'primeng/primeng';
   styleUrls: ['./account-detail.component.scss']
 })
 export class AccountDetailComponent implements OnInit, OnDestroy {
-
+  formModel: any = this.fb.group({
+    userPhone: '',
+    phone: ['', validator.phone],
+  });
   areaDrop: SelectItem[] = [
     {
       label: '全部',
@@ -48,12 +53,14 @@ export class AccountDetailComponent implements OnInit, OnDestroy {
       username: '',
     };
   changeStatusPage: any;
+  changePhoneVisible = false;
+  userId: any;
   constructor(
     private _service: AccountDetailService,
     private commonRequestService: CommonRequestService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -140,6 +147,38 @@ export class AccountDetailComponent implements OnInit, OnDestroy {
     }).catch(error => {
       this.messageService.add({ severity: 'error', summary: '服务器错误,错误码:', detail: error.status });
     });
+  }
+  showChangePhone = (data) => {
+    console.log(data);
+    this.changePhoneVisible = true;
+    this.userId = data.userId;
+    this.formModel.userPhone = data.phoneNumber;
+  }
+  changePhone = () => {
+    if (this.formModel.valid && this.formModel.value.phone) {
+      this._service.updateUserPhone(
+        {
+          userId: this.userId,
+          phone: this.formModel.value.phone
+        }
+      ).then(
+        data => {
+          if (data.status === 0) {
+            this.messageService.add({ severity: 'succes', summary: '响应消息', detail: data.msg });
+            this.closechangePhone();
+            this.searchAccount();
+          } else {
+            this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
+          }
+        }
+      );
+    } else {
+      this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请输入正确的手机号码' });
+    }
+  }
+  closechangePhone = () => {
+    this.changePhoneVisible = false;
+    this.formModel.phone = '';
   }
 
   confirmReset(userId) {

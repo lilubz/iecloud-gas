@@ -21,6 +21,9 @@ export class UserSearchService {
   resetPassword(params?: { userId: number }): Promise<any> {
     return this.httpService.getRequest(API.resetPassword, params);
   }
+  updateUserPhone(params: any): Promise<any> {
+    return this.httpService.getRequest(API.updateUserPhone, params);
+  }
 
 
 }
