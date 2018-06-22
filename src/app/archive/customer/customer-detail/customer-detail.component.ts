@@ -30,7 +30,7 @@ export class CustomerDetailComponent implements OnInit {
     title: string,
   }[] = [];
   visible = false;
-  imgArray = [];
+  imgArray:object[] = [{}];
   constructor(
     private route: ActivatedRoute,
     private _service: CustomerDetailService,
@@ -66,6 +66,7 @@ export class CustomerDetailComponent implements OnInit {
       this.loading = false;
     });
   }
+
   showImg(imageUrl) {
     this.visible = true;
     this.imgArray = imageUrl.split(',');

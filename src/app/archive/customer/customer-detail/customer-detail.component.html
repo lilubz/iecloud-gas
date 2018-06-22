@@ -99,8 +99,8 @@
     <div class="ui-g-4 ">
       <span class="ui-g-6 content title" title="证件附件">证件附件</span>
       <span class="ui-g-6 content" title="查看证件附件">
-        <button pButton (click)="showImg(customerDetailList.certificateAppendixUrl);" label="查看图片" *ngIf="customerDetailList.certificateAppendixUrl"></button>
-        <button pButton label="无附件" *ngIf="!customerDetailList.certificateAppendixUrl" disabled></button>
+        <button pButton (click)="showImg(customerDetailList?.certificateAppendixUrl);" label="查看图片" *ngIf="customerDetailList?.certificateAppendixUrl"></button>
+        <button pButton label="无附件" *ngIf="!customerDetailList?.certificateAppendixUrl" disabled></button>
       </span>
     </div>
     <div class="ui-g-4 ">
@@ -132,21 +132,19 @@
     </div>
   </div>
 </div>
-<!-- </div>
-</div> -->
+<!-- 对话框 + 轮播图 -->
 <p-dialog [visible]="visible" [showHeader]="false" [positionTop]="90" [closeOnEscape]="false" [width]="400" [contentStyle]="{'padding':'0','overflow':'visible'}"
-  [minWidth]="400" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+[minWidth]="400" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
 
-  <p-carousel *ngIf="visible" headerText="图片附件查看" [value]="imgArray" numVisible="1" [firstVisible]="0">
-    <ng-template let-user pTemplate="item">
-      <div class="text-center">
-        <img src="{{user.url}}" alt="" style="max-width:400px; max-height:400px;">
-      </div>
-    </ng-template>
-  </p-carousel>
+<p-carousel  headerText="图片附件查看" [value]="imgArray" numVisible="1" [firstVisible]="0">
+  <ng-template let-user pTemplate="item">
+    <div class="text-center">
+      <img src="{{user.url}}" alt="" style="max-width:400px; max-height:400px;">
+    </div>
+  </ng-template>
+</p-carousel>
 
-  <p-footer>
-    <button type="button" pButton icon="fa-check" (click)="visible=false" label="确定"></button>
-  </p-footer>
-
+<p-footer>
+  <button type="button" pButton icon="fa-check" (click)="visible=false" label="确定"></button>
+</p-footer>
 </p-dialog>

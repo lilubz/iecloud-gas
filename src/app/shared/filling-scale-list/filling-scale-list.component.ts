@@ -43,19 +43,21 @@ export class FillingScaleListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.routerInfo.queryParams.subscribe((queryParams) => {
+    // this.routerInfo.queryParams.subscribe((queryParams) => {
+      const queryParams = this.routerInfo.queryParams['value'];
       if (JSON.stringify(queryParams) !== '{}') { // 查询参数不为空
         this.enterpriseNumber = queryParams.enterpriseNumber || '';
         this.balanceNumber = queryParams.balanceNumber || '';
         this.getBalanceList();
       }
-    });
+    // });
     this.commonRequestService.listCorpInflatableStation().then(data => {
       if (data.status === 0) {
         if (data.data.length > 0) {
           this.enterpriseList = data.data.map(
             item => ({ label: item.inflatableName, value: item.inflatableStationNumber })
-          )
+          );
+          this.enterpriseList.unshift({ label: '全部', value: '' });
         }
       }
     })
@@ -79,7 +81,7 @@ export class FillingScaleListComponent implements OnInit {
     // if (this.checkForm()) {
     this.loading = true;
     this.fillingScaleService.listBalanceInfo({
-      enterpriseNumber: this.enterpriseNumber,
+      inflatableStationNumber: this.enterpriseNumber,
       balanceNumber: this.balanceNumber,
       pageSize: this.pageSize,
       pageNumber: this.pageNumber

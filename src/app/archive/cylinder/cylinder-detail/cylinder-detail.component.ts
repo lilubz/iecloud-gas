@@ -15,7 +15,7 @@ import * as $ from 'jquery';
 export class CylinderDetailComponent implements OnInit {
   loading = false;
   visible = false;
-  imgArray = [];
+  imgArray:object[] = [{}];
   detailList: any = new CylinderList();
   currentImgUrl = '';
   constructor(
@@ -48,7 +48,7 @@ export class CylinderDetailComponent implements OnInit {
     this.imgArray = imageUrl.split(',');
     this.imgArray = this.imgArray.map(item => ({
       url: item
-    }));
+    })); 
   }
   // showImg(event, url, overlaypanel) {
   //   this.currentImgUrl = '';

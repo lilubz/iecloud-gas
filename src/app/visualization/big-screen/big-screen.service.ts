@@ -195,7 +195,7 @@ export class BigScreenService {
           name: '执法',
           type: 'pie',
           radius: [50, 60],
-          center: ['40%', '30%'],
+          center: ['40%', '50%'],
           roseType: 'radius',
           selectedMode: 'single',
           data: [
@@ -205,13 +205,13 @@ export class BigScreenService {
               label: {
                 normal: {
                   textStyle: {
-                    // color: 'rgba(255, 255, 255, 1)',
-                    // fontSize: 20,
+                    color: 'rgba(255, 255, 255, 1)',
+                    fontSize: 20,
                     align: 'center',
                   },
                   formatter: [
-                    '{title|{c}%}',
-                    '{nu|{b}}',
+                    '{c}%',
+                    '{b}',
                   ].join('\n'),
                   rich: {
                     title: {

@@ -138,21 +138,22 @@
       <img src="" *ngIf="detailList.gcBasicUrl"
         style="max-width: 262px" />
     </p-overlayPanel> -->
-    <p-dialog [visible]="visible" [showHeader]="false" [positionTop]="90" [closeOnEscape]="false" [width]="400" [contentStyle]="{'padding':'0','overflow':'visible'}"
-      [minWidth]="400" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+      <!-- 对话框 + 轮播图 -->
+      <p-dialog [visible]="visible" [showHeader]="false"  [positionTop]="90" [closeOnEscape]="false" [width]="400" [contentStyle]="{'padding':'0','overflow':'visible'}"
+        [minWidth]="400" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
+      
+        <p-carousel  headerText="图片附件查看" [value]="imgArray" numVisible="1" [firstVisible]="0">
+          <ng-template let-cylinder pTemplate="item">
+            <div class="text-center">
+              <img src="{{cylinder.url}}" alt="" style="max-width:400px; max-height:400px;">
+            </div>
+          </ng-template>
+        </p-carousel>
 
-      <p-carousel *ngIf="visible" headerText="图片附件查看" [value]="imgArray" numVisible="1" [firstVisible]="0">
-        <ng-template let-cylinder pTemplate="item">
-          <div class="text-center">
-            <img src="{{cylinder.url}}" alt="" style="max-width:400px; max-height:400px;">
-          </div>
-        </ng-template>
-      </p-carousel>
+        <p-footer>
+          <button type="button" pButton icon="fa-check" (click)="visible=false" label="确定"></button>
+        </p-footer>
 
-      <p-footer>
-        <button type="button" pButton icon="fa-check" (click)="visible=false" label="确定"></button>
-      </p-footer>
-
-    </p-dialog>
+      </p-dialog>
   </div>
 </div>

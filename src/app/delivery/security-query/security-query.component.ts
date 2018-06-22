@@ -200,7 +200,7 @@ export class SecurityQueryComponent implements OnInit {
     this.imgArray = imageUrl.split(',');
     this.imgArray = this.imgArray.map(item => ({
       url: item
-    }));
+    })); 
   }
 
   getDataTableList(param?) {
