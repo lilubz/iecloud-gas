@@ -139,7 +139,7 @@ export class CustomerListComponent implements OnInit {
       boolIsChecked: '',
       jobNumber: '',
       phoneNumber: '',
-      userNumber:''
+      userNumber: ''
     };
   willDeleteCustomer;
   willEditCustomer = {
@@ -216,7 +216,7 @@ export class CustomerListComponent implements OnInit {
       for (const key in this.formModel.controls) {
         if (this.formModel.controls[key].errors) {
           const msg = this.formModel.controls[key].errors.msg;
-          this.messageService.add({ severity: 'warn', summary: '响应消息', detail: msg });
+          this.messageService.add({ severity: 'warn', summary: '错误响应消息', detail: msg });
           return;
         }
       }

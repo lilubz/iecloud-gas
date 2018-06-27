@@ -93,7 +93,7 @@ export class FillingScaleListComponent implements OnInit {
       } else {
         this.balanceList = [];
         this.total = 0;
-        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
+        this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
       }
     });
     // }
@@ -137,7 +137,7 @@ export class FillingScaleListComponent implements OnInit {
           if (data.status === 0) {
             this.selectedScaleStatus = Object.assign({}, this.selectedScaleStatus, data.data);
           } else {
-            this.messageService.add({ severity: 'warn', summary: '', detail: data.msg })
+            this.messageService.add({ severity: 'warn', summary: '', detail: data.msg });
           }
         });
       }

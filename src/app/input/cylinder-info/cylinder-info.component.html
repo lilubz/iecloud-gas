@@ -157,7 +157,7 @@
         <div class="ui-g-12">
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>&nbsp;上次检测单位</span>
+              <span><b style="color:red;">*</b>上次检测单位</span>
               <p-dropdown [options]="lastTestUnit" name="inspectionOrganizationName" [(ngModel)]="cylinderInfo.inspectionOrganizationName"
                editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
             </div>
@@ -172,7 +172,7 @@
         <div class="ui-g-12">
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>&nbsp;上次检测日期</span>
+              <span><b style="color:red;">*</b>上次检测日期</span>
               <p-calendar [locale]="cn" name="lastInspectionTime" [(ngModel)]="lastTestDateInit" (onClearClick)="clearLastTestDate($event)"
                 (onSelect)="selectedLastTestDate($event)" [maxDate]="nextTestDateInit" [showButtonBar]="true" readonlyInput="true"
                 placeholder="2017-10-1" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
@@ -181,7 +181,7 @@
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span>&nbsp;下次检测日期</span>
+              <span><b style="color:red;">*</b>下次检测日期</span>
               <p-calendar [locale]="cn" name="nextInspectionTime" [(ngModel)]="nextTestDateInit" (onClearClick)="clearNextTestDate($event)"
                 (onSelect)="selectedNextTestDate($event)" [showButtonBar]="true" placeholder="2018-10-01" [minDate]="lastTestDateInit"
                 readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"

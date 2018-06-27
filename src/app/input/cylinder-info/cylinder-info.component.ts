@@ -377,6 +377,16 @@ export class CylinderInfoComponent implements OnInit {
       return false;
     } else if (this.IMG()) {
       this.showMessage('warn', '提示信息', '最多上传两张图片！');
+      return false;
+    } else if (!this.cylinderInfo.lastInspectionTime) {
+      this.showMessage('warn', '提示信息', '上次检测日期不能为空');
+      return false;
+    }else if (!this.cylinderInfo.nextInspectionTime) {
+      this.showMessage('warn', '提示信息', '下次检测日期不能为空');
+      return false;
+    }else if (!this.cylinderInfo.inspectionOrganizationName) {
+      this.showMessage('warn', '提示信息', '上次检测单位不能为空');
+      return false;
     }
     return true;
   }
@@ -391,7 +401,7 @@ export class CylinderInfoComponent implements OnInit {
     }
   }
   SubmitFile(form) {
-    if (!$("#gasCylinderExcel").val()) {
+    if (!$('#gasCylinderExcel').val()) {
       this.showMessage('warn', '提示信息', '请上传文件！');
     } else {
       this.FIle.nativeElement.submit();

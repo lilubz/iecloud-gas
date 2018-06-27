@@ -1,3 +1,4 @@
+html, body {height:100%;overflow:auto;margin: 0;}
 .add-affairs{
   h1{
     // background: #006699;
@@ -31,14 +32,14 @@
         line-height: 29px;
         overflow: hidden;
         white-space: nowrap;
-        text-overflow:ellipsis; 
+        text-overflow:ellipsis;
       }
     }
     .warn{
       color:#f00;
     }
     .border-right{
-      border-right:1px dashed #666; 
+      border-right:1px dashed #666;
     }
     input{
       width:auto;

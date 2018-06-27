@@ -4,6 +4,9 @@ import { AddCustomerStatisticService } from './add-customer.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Customer } from '../../input/user-info/Customer.model';
 import { SelectItem } from 'primeng/primeng';
+import * as moment from 'moment';
+import { zh_CN } from '../../common/date-localization';
+import { Util } from '../../core/util';
 
 @Component({
   selector: 'gas-add-customer',
@@ -12,6 +15,11 @@ import { SelectItem } from 'primeng/primeng';
   providers: [AddCustomerStatisticService]
 })
 export class AddCustomerComponent implements OnInit {
+
+  zh = zh_CN;
+  circulationBeginTime: Date = moment().subtract(30, 'days').toDate();
+  circulationEndTime: Date = new Date();
+
   // 企业统计分页参数
   statisticPageSize = 40;
   statisticPageNumber = 1;
@@ -37,7 +45,9 @@ export class AddCustomerComponent implements OnInit {
   constructor(
     private commonRequestService: CommonRequestService,
     private addCustomerService: AddCustomerStatisticService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private util: Util
+  ) { }
 
   ngOnInit() {
     this.getEnterpriseStatistic();
@@ -60,6 +70,8 @@ export class AddCustomerComponent implements OnInit {
     this.loading = true;
     this.addCustomerService.getUserCountRecentlyRegister({
       regionId: this.selectedRegionId,
+      beginTime: this.util.formatTime(this.circulationBeginTime, 'start'),
+      endTime: this.util.formatTime(this.circulationEndTime, 'end'),
       pageNumber: this.statisticPageNumber,
       pageSize: this.statisticPageSize
     }).then(data => {

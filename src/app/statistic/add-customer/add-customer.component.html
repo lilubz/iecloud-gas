@@ -2,14 +2,29 @@
   <div class="card">
     <div class="ui-g-12 customer">
       <div style="min-width: 550px;">
-        <div class="ui-g-12">
+        <div class="ui-g-12 ui-xl-4">
           <label for="" class="search-label">所在区</label>
-          <p-dropdown [options]="regions" [(ngModel)]="selectedRegionId" [style]="{'width':'100px'}" (onChange)="search()"></p-dropdown>
+          <p-dropdown [options]="regions" [(ngModel)]="selectedRegionId" [style]="{'width':'100px'}"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-xl-4">
+          <label for="" class="search-label">时间范围</label>
+          <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
+            dateFormat="yy-mm-dd" [locale]="zh" [style]="{'width':'120px'}" readonlyInput="true">
+          </p-calendar>
+        </div>
+        <div class="ui-g-12 ui-xl-4">
+          <label for="" class="search-label"> 至</label>
+          <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
+            dateFormat="yy-mm-dd" [locale]="zh" [style]="{'width':'120px'}" readonlyInput="true"></p-calendar>
+        </div>
+        <div class="ui-g-12 ui-g-nopad">
+          <button pButton type="button" label="查询" (click)="search()">
+          </button>
         </div>
         <div class="ui-g-12">
-          <p-dataTable [value]="enterpriseRegisterStatistic" emptyMessage="未查询到数据" [paginator]="true" [rows]="statisticPageSize" [lazy]="true" [loading]="loading"
-            [(first)]="statisticFirst" (onLazyLoad)="onStatisticPageChange($event)" [scrollable]="false" [totalRecords]="statisticTotal"
-            [rowsPerPageOptions]="[10,20,40,80]">
+          <p-dataTable [value]="enterpriseRegisterStatistic" emptyMessage="未查询到数据" [paginator]="true" [rows]="statisticPageSize" [lazy]="true"
+            [loading]="loading" [(first)]="statisticFirst" (onLazyLoad)="onStatisticPageChange($event)" [scrollable]="false"
+            [totalRecords]="statisticTotal" [rowsPerPageOptions]="[10,20,40,80]">
             <p-column header="序号" [style]="{'width':'50px'}">
               <ng-template pTemplate="body" let-index="rowIndex">
                 {{index + 1}}

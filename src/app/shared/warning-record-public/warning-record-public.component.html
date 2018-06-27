@@ -40,8 +40,23 @@
             supplyStationNumber: rowData.supplyStationNumber?rowData.supplyStationNumber:'',
             checkState: 0
           }">
-            {{rowData.count}}
+            {{rowData.securityCheckWarning}}
           </a>
+        </ng-template>
+      </p-column>
+      <p-column header="未安检数量">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <a href="javascript:0;" [routerLink]="['/archive/customer/list']" [queryParams]="{
+            enterpriseID: rowData.enterpriseNumber,
+            regionId: rowData.regionId,
+            userName: '',
+            boolIsChecked:false
+          }">{{rowData.distributionOfNonSecurity}}</a>
+        </ng-template>
+      </p-column>
+      <p-column header="近期未安检数量">
+        <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
+          <a href="javascript:0;">{{rowData.countUserNoSecurity}}</a>
         </ng-template>
       </p-column>
 

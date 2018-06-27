@@ -82,7 +82,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
       this.objValue = this.dropdown.objValue[0];
       this.Admin = false; // 非admin
     } else {
-      this.objValue = this.dropdown.objValue.splice(4,1);
+      this.objValue = this.dropdown.objValue.splice(4, 1);
       this.objValue = this.dropdown.objValue[0];
       this.unable = true;
     }
@@ -126,7 +126,7 @@ export class RedirectionPageComponent implements OnInit, OnDestroy {
 
     const queryParams = {
       'regionId': this.Region ? this.Region.value : ''
-    }
+    };
     if (queryParams.regionId === '') {
       this.router.navigate(['/statistic/search-overview/city-overview']);
     } else {

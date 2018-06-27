@@ -60,7 +60,8 @@
         设置联锁：
       </div>
       <div class="ui-g-6 ui-g-nopad">
-        <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetInterLock" (onChange)="setInnerLock($event.checked)"></p-inputSwitch>
+        <p-toggleButton onLabel="开" offLabel="关" onIcon="fa-check" offIcon="fa-close" [(ngModel)]="selectedScaleStatus.boolIsSetInterLock" (onChange)="setInnerLock($event.checked)"></p-toggleButton>
+        <!-- <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetInterLock" (onChange)="setInnerLock($event.checked)"></p-inputSwitch> -->
       </div>
     </div>
     <div class="ui-g-12">
@@ -68,7 +69,8 @@
         设置锁：
       </div>
       <div class="ui-g-6 ui-g-nopad">
-        <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetOuterLock" (onChange)="setLock($event.checked)"></p-inputSwitch>
+        <p-toggleButton onLabel="开" offLabel="关" onIcon="fa-check" offIcon="fa-close" [(ngModel)]="selectedScaleStatus.boolIsSetOuterLock" (onChange)="setLock($event.checked)"></p-toggleButton>
+        <!-- <p-inputSwitch onLabel="开" offLabel="关" [(ngModel)]="selectedScaleStatus.boolIsSetOuterLock" (onChange)="setLock($event.checked)"></p-inputSwitch> -->
       </div>
     </div>
   </div>

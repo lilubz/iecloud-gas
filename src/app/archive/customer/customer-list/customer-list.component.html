@@ -1,5 +1,5 @@
 <div class="ui-g-12 customer-list">
-  <form class="ui-g padding" [formGroup]="formModel" (submit)="onSearch();">
+  <form class="ui-g-12 padding" [formGroup]="formModel" (submit)="onSearch();">
     <div class="ui-g">
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 所在区域：</span>
@@ -13,11 +13,11 @@
       </div>
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label">用户名称：</span>
-        <input maxlength="250" class="textInput" type="text" pInputText formControlName="userName">
+        <input maxlength="250" minlength="2" class="textInput" type="text" pInputText formControlName="userName">
       </div>
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label">地&#12288;&#12288;址：</span>
-        <input maxlength="250" class="textInput" type="text" pInputText formControlName="address">
+        <input maxlength="250" minlength="2" class="textInput" type="text" pInputText formControlName="address">
       </div>
       <div class="ui-g-12 ui-lg-6">
         <span class="search-label"> 客户类别：
@@ -33,8 +33,9 @@
         <button pButton type="submit" label="查询" class="searchBtn"></button>
       </div>
     </div>
+    
   </form>
-  <div class="ui-g">
+  <div class="ui-g-12">
     <!-- <div class="ui-g-12"> -->
     <p-dataTable [value]="dataTable.list" [lazy]="true" dataKey="userNumber" [paginator]="true" [rows]="dataTable.option[2]"
       [scrollable]="false" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
@@ -47,8 +48,7 @@
       <p-column [style]="{'width':'150px'}" field="userIdentityCardNumber" header="用户卡号"></p-column>
       <p-column [style]="{'width':'80px'}" field="userName" header="燃气用户">
         <ng-template let-col let-user="rowData" pTemplate="body">
-          <a href="javascript:0;" [routerLink]="['../detail/customerDetail']" [queryParams]="{userNumber:user.userNumber}"
-            title="点击查看用户祥情">
+          <a href="javascript:0;" [routerLink]="['../detail/customerDetail']" [queryParams]="{userNumber:user.userNumber}" title="点击查看用户祥情">
             {{ user.userName }}
           </a>
         </ng-template>
@@ -98,7 +98,6 @@
           <a [href]="rowData.contractAppendixUrl" target="_blank" *ngIf="rowData.contractAppendixUrl">查看图片</a>
         </ng-template>
       </p-column>
-
       <ng-template pTemplate="emptymessage">
         <div class="text-left">
           未查询到数据
@@ -112,7 +111,7 @@
   </div>
 
   <!-- 修改功能 -->
-  <div class="ui-g">
+  <div class="ui-g-12">
     <p-dialog [(visible)]="displayEditDialog" [showHeader]="false" [closeOnEscape]="false" [width]="800" [contentStyle]="{'padding':'0','overflow':'visible'}"
       [minWidth]="800" [modal]="true" [style]="{'border':'none','background':'#f2f2f2'}">
       <form class="dialog">
@@ -143,7 +142,8 @@
           <label for="inputEmail3" class="ui-g-4 text-right ui-g-nopad">
             <span class="warn" *ngIf="!willEditCustomer.userIdentityCardNumberIsEmpty">*</span>用户卡编号：</label>
           <div class="ui-g-4 ui-g-nopad">
-            <input maxlength="250" type="number" pInputText [(ngModel)]="willEditCustomer.userIdentityCardNumber" name="userIdentityCardNumber" />
+            <input maxlength="250" type="number" pInputText [(ngModel)]="willEditCustomer.userIdentityCardNumber" name="userIdentityCardNumber"
+            />
           </div>
         </div>
 

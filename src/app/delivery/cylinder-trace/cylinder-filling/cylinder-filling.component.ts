@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cylinder-filling.component.scss']
 })
 export class CylinderFillingComponent implements OnInit {
+  loading = true;
   zh = zh_CN;
   pageSize = 40;
   pageNumber = 1;
@@ -68,10 +69,12 @@ export class CylinderFillingComponent implements OnInit {
         this.total = 0;
         this.cylinderFillingHistoryList = [];
       }
+      this.loading = false;
     });
   }
 
   search() {
+    this.loading = true;
     this.pageNumber = 1;
     this.pageFirst = 0;
     this.listFillingInfo();

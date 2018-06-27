@@ -70,6 +70,7 @@ export class IndustryAnalyzeComponent implements OnInit {
       enterpriseNumber: this.formModel.corpId,
       range: this.formModel.range
     });
+    this.charts.instance.resize();
   }
   drawingCharts(xData, yData) {
     this.charts.option = {
@@ -117,6 +118,7 @@ export class IndustryAnalyzeComponent implements OnInit {
     };
     this.charts.instance.setOption(this.charts.option);
     this.charts.element.style.display = xData.length <= 0 ? 'none' : 'block';
+    this.charts.instance.resize();
   }
   onChangeAreaID(event) {
     this.dropdown.corp = this.dropdown.default;

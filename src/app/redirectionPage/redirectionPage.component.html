@@ -32,7 +32,7 @@
                   </div>
                   <div class="ui-g-12 ui-lg-12">
                     <span class="search-label">请输入查询文字</span>
-                    <input maxlength="250" type="text" [(ngModel)]="searchValue" class="textInput" (keyup.enter)="searchObj()" [placeholder]="objValue?.placeholder"
+                    <input maxlength="250" minlength="2" type="text" [(ngModel)]="searchValue" class="textInput" (keyup.enter)="searchObj()" [placeholder]="objValue?.placeholder"
                       pInputText>
                     <button pButton type="button" label="查询" (click)="searchObj()" class="searchBtn"></button>
                   </div>

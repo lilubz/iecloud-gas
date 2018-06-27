@@ -348,7 +348,7 @@ export class SupplyStationComponent implements OnInit, OnDestroy {
       }
       this.addForm.releaseTime = this.util.formatTime(this.addForm.releaseTime, 'start');
       this.addForm.effectiveTimeStart = this.util.formatTime(this.addForm.effectiveTimeStart, 'start');
-      this.addForm.effectiveTimeEnd = this.util.formatTime(this.addForm.effectiveTimeEnd, 'end');;
+      this.addForm.effectiveTimeEnd = this.util.formatTime(this.addForm.effectiveTimeEnd, 'end');
       for (const key in this.addForm) {
         if (key) {
           if (!this.addForm[key]) {
