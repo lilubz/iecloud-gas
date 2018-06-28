@@ -326,6 +326,7 @@ export class MapService {
         Point,
       ]) => {
         return this.initMap(mapEl).then(() => {
+          this.getStationLocation();
           if (this.gisSettingService.getMapSetting() === 'shiliang') {
             this.map.addLayer(this.shiliangLayer);
             this.basemapGallery.select('shiliang');
@@ -356,7 +357,6 @@ export class MapService {
           this.dispatcherLocationLayer.setInfoTemplate(this.dispatcherPathPointTemplate);
           this.sellingCarPathPointLayer.setInfoTemplate(this.sellingCarPathPointTemplate);
 
-          this.getStationLocation();
         });
       });
     });
@@ -592,6 +592,7 @@ export class MapService {
         this.listLocationInfo({
           searchType: ''
         }).then(data => {
+          console.log(data);
           if (data.status === 0) {
             data.data.forEach(marker => {
               const coordinates = proj4(this.proj4SpatialReferenceStr, [marker.longitude, marker.latitude]);
@@ -692,11 +693,13 @@ export class MapService {
     let y = 3098169.9151149886;
     let zoom = 3;
     RegionCenterCoordinates.forEach(item => {
-      if (item.regionId === user.regionId.toString()) {
-        x = item.x;
-        y = item.y;
-        zoom = 4;
-        return;
+      if (user.regionId) {
+        if (item.regionId === user.regionId.toString()) {
+          x = item.x;
+          y = item.y;
+          zoom = 4;
+          return;
+        }
       }
     });
     return {
