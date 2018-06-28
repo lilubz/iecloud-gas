@@ -3,7 +3,6 @@
     <h2>按综合条件查询</h2>
   </div>
   <form class="ui-g-12" (submit)="onSearch()">
-    <!-- <div class="ui-g-12 ui-lg-6"> -->
     <div class="form-group ui-g-12 ui-lg-6">
       <label for="" class="search-label">发起时间：</label>
       <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
@@ -16,50 +15,32 @@
         name="endTime">
       </p-calendar>
     </div>
-    <!-- </div> -->
-
-    <!-- <div class="ui-g-12 ui-lg-6 "> -->
-    <div class="form-group ui-g ui-g-12 ui-lg-6">
+    <div class="form-group ui-g-12 ui-lg-6">
       <p-radioButton class="ui-g-12 ui-lg-4" name="role" value="1" label="我发起的事务" [(ngModel)]="formModel.role"></p-radioButton>
       <p-radioButton class="ui-g-12 ui-lg-4" name="role" value="2" label="我参与的事务" [(ngModel)]="formModel.role"></p-radioButton>
       <p-radioButton class="ui-g-12 ui-lg-4" name="role" value="3" label="全部" [(ngModel)]="formModel.role"></p-radioButton>
     </div>
-    <!-- </div> -->
-
-    <!-- <div class="ui-g-12 ui-lg-6 "> -->
     <div class="form-group ui-g-12 ui-lg-6">
       <label for="" class="search-label">所属区域：</label>
       <p-dropdown [options]="dropdown.region" [(ngModel)]="formModel.region" [style]="{'width':'180px'}" name="region"></p-dropdown>
     </div>
-    <!-- </div> -->
-
-    <!-- <div class="ui-g-12 ui-lg-6"> -->
     <div class="form-group ui-g-12 ui-lg-6">
       <label for="" class="search-label">事务类别：</label>
       <p-dropdown [options]="dropdown.affairsType" [(ngModel)]="formModel.affairType" [style]="{'width':'180px'}" name="affairType"></p-dropdown>
     </div>
-    <!-- </div> -->
-
-    <!-- <div class="ui-g-12 ui-lg-6"> -->
     <div class="form-group ui-g-12 ui-lg-6">
       <label for="" class="search-label">事务来源：</label>
       <p-dropdown [options]="dropdown.origin" [(ngModel)]="formModel.origin" [style]="{'width':'180px'}" name="source"></p-dropdown>
     </div>
-    <!-- </div> -->
-
-    <!-- <div class="ui-g-12 ui-lg-6"> -->
     <div class="form-group ui-g-12 ui-lg-6">
       <label for="" class="search-label">事务状态：</label>
       <p-dropdown [options]="dropdown.status" [(ngModel)]="formModel.status" [style]="{'width':'180px'}" name="status"></p-dropdown>
     </div>
-    <!-- </div> -->
-
-    <!-- <div class="ui-g-12 ui-lg-6 "> -->
     <div class="form-group ui-g-12 ui-lg-6">
       <button pButton type="submit" label="查询" class="searchBtn" style="margin-left:30px"></button>
     </div>
-    <!-- </div> -->
   </form>
+
   <div class="ui-g-12">
     <p-dataTable [value]="dataTable.list" dataKey="idNumber" [paginator]="true" [rows]="dataTable.option[2]" [scrollable]="false"
       scrollHeight="510px" [lazy]="true" [rowsPerPageOptions]="dataTable.option" [totalRecords]="dataTable.total" (onLazyLoad)="onPageChange($event)"
@@ -85,11 +66,6 @@
         </ng-template>
       </p-column>
       <p-column field="description" header="描述"></p-column>
-      <!-- <p-column header="处理情况">
-        <ng-template let-rowData="rowData" pTemplate="body">
-          <span>{{rowData.boolIsHandle?'正在办理':'已经完结'}}</span>
-        </ng-template>
-      </p-column> -->
       <p-column [style]="{'width':'95px'}" header="是否超期" field="">
         <ng-template let-rowData="rowData" pTemplate="body">
           <span>{{rowData.boolIsOverdue? '是' : '否'}}</span>
