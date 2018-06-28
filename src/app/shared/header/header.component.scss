@@ -1,8 +1,9 @@
-sub{
+sub {
     display: inline;
     position: absolute;
-    top: 25px;
+    top: 45px;
+    line-height: 25px;
     font-size: 16px;
-    color:#bbb;
+    color: #bbb;
     z-index: -10;
 }
