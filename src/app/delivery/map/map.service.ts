@@ -592,7 +592,6 @@ export class MapService {
         this.listLocationInfo({
           searchType: ''
         }).then(data => {
-          console.log(data);
           if (data.status === 0) {
             data.data.forEach(marker => {
               const coordinates = proj4(this.proj4SpatialReferenceStr, [marker.longitude, marker.latitude]);
