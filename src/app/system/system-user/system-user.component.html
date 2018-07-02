@@ -1,19 +1,18 @@
 <div class="sidebar">
-    <div class="ui-g ui-g-nopad group">
-      <div class="ui-g-12" *gasPermissionRole="[RoleType.Admin]">
-        <button pButton type="button" label="政府账号信息概览" [routerLink]="['./user-search']" routerLinkActive="link-active" ></button>
-      </div>
-      <div class="ui-g-12">
-        <button pButton type="button" label="企业账号信息概览" [routerLink]="['../enterprise-management/account-detail']" routerLinkActive="link-active"></button>
-      </div>
-      <div class="ui-g-12">
-        <button pButton type="button" label="供应站账号信息概览" [routerLink]="['../bottle-library']" routerLinkActive="link-active"></button>
-      </div>
+  <div class="ui-g ui-g-nopad group">
+    <div class="ui-g-12" *gasPermissionRole="[RoleType.Admin]">
+      <button pButton type="button" label="政府账号信息概览" [routerLink]="['./user-search']" routerLinkActive="link-active"></button>
     </div>
-
-  </div>
-  <div class="main">
-    <div class="card">
-      <router-outlet></router-outlet>
+    <div class="ui-g-12">
+      <button pButton type="button" label="企业账号信息概览" [routerLink]="['../enterprise-management/account-detail']" routerLinkActive="link-active"></button>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="button" label="供应站账号信息概览" [routerLink]="['../bottle-library']" routerLinkActive="link-active"></button>
     </div>
   </div>
+</div>
+<div class="main">
+  <div class="card">
+    <router-outlet></router-outlet>
+  </div>
+</div>

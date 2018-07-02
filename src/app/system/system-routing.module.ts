@@ -91,7 +91,7 @@ const routes: Routes = [
               title: '供应站账号开通'
             },
           },
-            {
+          {
             path: 'bottle-list',
             component: BottleListComponent,
             data: {
@@ -121,7 +121,7 @@ const routes: Routes = [
           },
           {
             path: 'user-search',
-            canActivate:[SystemSetGuard],
+            canActivate: [SystemSetGuard],
             component: UserSearchComponent,
             data: {
               title: '政府账号概览'

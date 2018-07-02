@@ -6,7 +6,7 @@ import { RoleType } from '../../common/RoleType';
   styleUrls: ['./bottle-library.component.scss']
 })
 export class BottleLibraryComponent implements OnInit, OnDestroy {
-  RoleType=RoleType;
+  RoleType = RoleType;
   ngOnInit() {
   }
   ngOnDestroy() {
