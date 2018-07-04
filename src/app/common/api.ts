@@ -151,6 +151,9 @@ export const API = {
   'getGcLabelInfo': URL + 'basicInformation/gasCylinder/getGcLabelInfo.do',
   'getGcBasicInfo': URL + 'basicInformation/gasCylinder/listGcBasicInfo.do',
   'sendTagBinding': URL + 'basicInformation/gasCylinder/listTagBinding.do',
+  // 架构管理
+  'getOrganzationTree': URL + 'sysUserPermissions/user/getOrganzationTree.do',
+  'addOrganzation': URL + 'sysUserPermissions/user/addOrganzation.do',
 
   // 配送人员信息
   'getDispatcherInfo': URL + 'basicInformation/corpInfo/listDispatcherInfo.do',

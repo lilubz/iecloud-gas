@@ -17,6 +17,8 @@ import { GISSettingComponent } from './setting-management/GIS-setting/GIS-settin
 import { BottleOpenComponent } from './bottle-library/bottle-open/bottle-open.component';
 import { BottleListComponent } from './bottle-library/bottle-list/bottle-list.component';
 import { SystemSetGuard } from '../core/systemSet-guard.service';
+import { ArchitectureManagementComponent } from './architecture-management/architecture-management.component';
+import { MangeMentComponent } from './architecture-management/mange-ment/mange-ment.component';
 
 const routes: Routes = [
   {
@@ -91,12 +93,30 @@ const routes: Routes = [
               title: '供应站账号开通'
             },
           },
-            {
+          {
             path: 'bottle-list',
             component: BottleListComponent,
             data: {
               title: '供应站账号概览'
             },
+          }
+        ]
+      },
+      {
+        path: 'architecture-management',
+        component: ArchitectureManagementComponent,
+        data: {
+          title: '架构管理'
+        },
+        children: [
+          {
+            path: '',
+            redirectTo: 'mange-ment',
+            pathMatch: 'full'
+          },
+          {
+            path: 'mange-ment',
+            component: MangeMentComponent,
           }
         ]
       },
@@ -121,7 +141,7 @@ const routes: Routes = [
           },
           {
             path: 'user-search',
-            canActivate:[SystemSetGuard],
+            canActivate: [SystemSetGuard],
             component: UserSearchComponent,
             data: {
               title: '政府账号概览'

@@ -76,7 +76,7 @@ export class BottleListComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private commonRequestService: CommonRequestService,
     private confirmationService: ConfirmationService,
-    
+
   ) { }
 
   ngOnInit() {

@@ -14,11 +14,11 @@ const PROXY_CONFIG = [
     context: [
       "/wenZhouGas",
     ],
-    target: "http://192.168.1.26:8080/wenZhouGas",// 费峰
+    target: "http://192.168.1.26:8080",// 费峰
     secure: false,
-    "pathRewrite": {
-      "^/wenZhouGas": ""
-    }
+    // "pathRewrite": {
+    //   "^/wenZhouGas": ""
+    // }
   },
   // {
   //   context: [

@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PermissionGuard } from './core/permission-guard.service';
 import { RedirectionPageComponent } from './redirectionPage/redirectionPage.component';
 import { LayoutComponent } from './layout/layout.component';
-import {PubServiceModule} from './pub-service/pub-service.module';
+import { PubServiceModule } from './pub-service/pub-service.module';
 import { SuccessComponent } from './shared/success/success.component';
 import { FailComponent } from './shared/fail/fail.component';
 
@@ -67,7 +67,7 @@ const routes: Routes = [
         component: RedirectionPageComponent,
         data: {
           title: '导航页',
-          keep:true,
+          keep: true,
         }
       },
     ]
@@ -75,7 +75,7 @@ const routes: Routes = [
   {
     path: 'success',
     component: SuccessComponent,
-    canActivate: [AuthGuard],  
+    canActivate: [AuthGuard],
     data: {
       title: '成功页'
     }
@@ -91,8 +91,8 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    data:{
-      clear:true
+    data: {
+      clear: true
     }
   },
   {

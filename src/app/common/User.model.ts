@@ -10,6 +10,7 @@ export class User {
   regionId?: number; // 所在区域id
   regionName?: string; // 所在区域名
   roleId?: number; // 用户角色id
+  roleTypeId?: number;
   roleName?: string; // 用户角色名
   userId?: string; // 用户id
   username?: string; // 用户名

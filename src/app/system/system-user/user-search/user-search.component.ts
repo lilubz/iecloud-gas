@@ -6,7 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { validator } from '../../../common/validator';
 
 @Component({
-  selector: 's-user-search',
+  selector: 'gas-user-search',
   templateUrl: './user-search.component.html',
   styleUrls: ['./user-search.component.scss']
 })
@@ -110,9 +110,10 @@ export class UserSearchComponent implements OnInit, OnDestroy {
   getRolesDrop(param) {
     this._service.getRoles({ organizationid: param }).then(data => {
       if (data.status === 0) {
+        console.log(data);
         this.dropdown.role = this.dropdown.role.concat(data.data.map((item) => ({
           label: item.name,
-          value: item.roleId
+          value: item.roleTypeId
         })));
       } else {
         this.dropdown.role = this.dropdown.default;
@@ -125,7 +126,7 @@ export class UserSearchComponent implements OnInit, OnDestroy {
     const params = {
       username: this.searchParams.userName,
       organizationId: this.searchParams.organization,
-      roleId: this.searchParams.role,
+      roleTypeId: this.searchParams.role,
       pageNumber: 1,
       pageSize: 40
     };
