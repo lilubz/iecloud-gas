@@ -113,7 +113,6 @@ export class ArchitectureManagementComponent implements OnInit {
     this.chooseCorp = [];
     this._service.getDropdownForCorpInfoInRegion(params).then(data => {
       if (data.status === 0) {
-        console.log(data);
         const list = data.data.map((item) => {
           return {
             label: item.enterpriseName,
