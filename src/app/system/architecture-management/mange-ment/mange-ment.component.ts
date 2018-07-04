@@ -160,5 +160,10 @@ export class MangeMentComponent implements OnInit {
       this.messageService.add({ severity: 'warn', summary: '响应消息', detail: '请填写完善' });
     }
   }
+  reset = () => {
+    this.nodeSelectVisible = false;
+    this.name = '';
+    this.chooseCorp = [];
+  }
 
 }
