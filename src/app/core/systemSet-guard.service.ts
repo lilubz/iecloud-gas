@@ -42,7 +42,7 @@ export class SystemSetGuard implements CanActivate {
     const path = route.routeConfig.path;
     if (Role === RoleType.Government) {
       if (path === 'user-search') {
-        this.router.navigate(['/system/enterprise-management/account-detail'], { relativeTo: this.activatedRoute })
+        this.router.navigate(['/system/enterprise-management/account-detail'], { relativeTo: this.activatedRoute });
         return false;
       }
     }

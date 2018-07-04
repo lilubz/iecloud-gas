@@ -16,6 +16,7 @@
 </div>
 <div class="main">
   <div class="card bottle-library ui-g-12">
+    <h1 *ngIf="filesTree">数据加载中</h1>
     <p-tree [value]="filesTree" layout="horizontal" selectionMode="single" (onNodeSelect)="nodeSelect($event)"></p-tree>
     <p-dialog [visible]="nodeSelectVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
       [width]="700" [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">

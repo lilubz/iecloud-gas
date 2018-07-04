@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { RoleType } from '../../common/RoleType';
 import { TreeNode, SelectItem } from 'primeng/primeng';
-import { ArchitectureManagementService } from './architecture-management.service';
+import { ArchitectureManagementService } from '../architecture-management.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { CommonRequestService } from '../../core/common-request.service';
+import { CommonRequestService } from '../../../core/common-request.service';
+
 
 @Component({
-  selector: 'gas-architecture-management',
-  templateUrl: './architecture-management.component.html',
-  styleUrls: ['./architecture-management.component.scss'],
+  selector: 'gas-mange-ment',
+  templateUrl: './mange-ment.component.html',
+  styleUrls: ['./mange-ment.component.scss'],
   providers: [ArchitectureManagementService]
 })
-export class ArchitectureManagementComponent implements OnInit {
-  RoleType = RoleType;
+export class MangeMentComponent implements OnInit {
+
   filesTree: TreeNode[] = [];
   nodeSelectVisible = false;
   chooseDate: any;
@@ -33,6 +33,7 @@ export class ArchitectureManagementComponent implements OnInit {
   corpDrop: SelectItem[] = [];
   defaultcorpDrop: SelectItem[] = [];
   chooseCorp: any = [];
+
   constructor(
     private _service: ArchitectureManagementService,
     private commonRequestService: CommonRequestService,
@@ -110,7 +111,6 @@ export class ArchitectureManagementComponent implements OnInit {
   // 获取企业
   getDropdownForCorpInfoInRegion(params?) {
     this.corpDrop = [];
-    this.chooseCorp = [];
     this._service.getDropdownForCorpInfoInRegion(params).then(data => {
       if (data.status === 0) {
         console.log(data);
