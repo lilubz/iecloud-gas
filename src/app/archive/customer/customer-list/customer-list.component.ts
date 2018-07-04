@@ -115,6 +115,7 @@ export class CustomerListComponent implements OnInit {
   pageParams: {
     regionId?: string;
     enterpriseNumber?: string;
+    supplyStationNumber?: string;
     haveContract?: boolean;
     userName?: string;
     address?: string;
@@ -129,6 +130,7 @@ export class CustomerListComponent implements OnInit {
   } = {
       regionId: '',
       enterpriseNumber: '',
+      supplyStationNumber: '',
       haveContract: false,
       userName: '',
       address: '',
@@ -184,8 +186,14 @@ export class CustomerListComponent implements OnInit {
       this.pageParams.jobNumber = queryParams.jobNumber || '';
       this.pageParams.phoneNumber = queryParams.phoneNumber || '';
       this.pageParams.userNumber = queryParams.liabilityNumber || '';
+      this.pageParams.supplyStationNumber = queryParams.supplyStationNumber || '';
       Object.assign(this.pageParams, this.formModel.value);
       this.getCustomerList();
+      if (queryParams.regionId) {
+        this.getDropdownForCorpInfoInRegion({
+          regionId: queryParams.regionId
+        });
+      }
     }
   }
 
@@ -211,6 +219,7 @@ export class CustomerListComponent implements OnInit {
       this.pageParams.jobNumber = '';
       this.pageParams.phoneNumber = '';
       this.pageParams.userNumber = '';
+      this.pageParams.supplyStationNumber = '';
       this.getCustomerList();
     } else { // 没有通过验证
       for (const key in this.formModel.controls) {

@@ -47,9 +47,10 @@
       <p-column header="未安检数量">
         <ng-template let-rowData="rowData" let-index="rowIndex" pTemplate="body">
           <a href="javascript:0;" [routerLink]="['/archive/customer/list']" [queryParams]="{
-            enterpriseID: rowData.enterpriseNumber,
+            enterpriseID: rowData.enterpriseNumber || '',
             regionId: rowData.regionId,
             userName: '',
+            supplyStationNumber: rowData.supplyStationNumber || '',
             boolIsChecked:false
           }">{{rowData.userNoSecurityCheck}}</a>
         </ng-template>
