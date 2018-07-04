@@ -18,7 +18,8 @@
             <h3 class="first">公告文件
               <gas-explanation tooltip="上传政府最近要发布的重要公告文件" position="bottom"></gas-explanation>
             </h3>
-            <input type="file" id="file" name="file">
+            <h3>请上传doc、docx、pdf格式文件</h3>
+            <input type="file" id="file" #file name="file">
           </div>
           <div class="ui-g-12">
             <button type="button" class="searchBtn" (click)="submit(this.form)" pButton label="发布" ></button>

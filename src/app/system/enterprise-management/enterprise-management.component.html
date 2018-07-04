@@ -9,6 +9,9 @@
         <div class="ui-g-12">
           <button pButton type="button" label="供应站账号信息概览" [routerLink]="['../bottle-library']" routerLinkActive="link-active"></button>
         </div>
+        <div class="ui-g-12" *gasPermissionRole="[RoleType.Admin]">
+          <button pButton type="button" label="架构管理" [routerLink]="['../architecture-management']" routerLinkActive="link-active"></button>
+        </div>
   </div>
 </div>
 <div class="main">

@@ -14,14 +14,14 @@
       <div class="ui-g-12 ui-lg-6 ">
         <label for="" class="search-label"> 开始时间</label>
         <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'280px'}" [selectOtherMonths]="true"
-          [(ngModel)]="beginTime" [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime"
+          [(ngModel)]="beginTime" [showButtonBar]="true" dateFormat=" yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime"
           readonlyInput="true"></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-lg-6">
         <label for="" class="search-label">结束时间</label>
         <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'280px'}" [selectOtherMonths]="true"
-          [(ngModel)]="endTime" [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime"
+          [(ngModel)]="endTime" [showButtonBar]="true" dateFormat=" yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime"
           [maxDate]="today" readonlyInput="true"></p-calendar>
       </div>
 

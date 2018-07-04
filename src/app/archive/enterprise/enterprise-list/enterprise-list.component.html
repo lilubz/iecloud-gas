@@ -14,7 +14,7 @@
     </div>
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
       <span class="search-label">发证日期</span>
-      <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+      <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat=" yy-mm-dd"
         [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true" [style]="{'width':'180px','height':'35px'}"
         name="startTime">
       </p-calendar>
@@ -23,7 +23,7 @@
     </div>
     <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
       <span class="search-label">&#12288;&#12288;至&#12288;</span>
-      <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+      <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat=" yy-mm-dd"
         [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true" [style]="{'width':'180px','height':'35px'}"
         name="endTime">
       </p-calendar>

@@ -6,12 +6,12 @@
     <div class="ui-g">
       <div class="form-group ui-g-12">
         <label for="" style="width:130px;display:inline-block;">发起时间：</label>
-        <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+        <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat=" yy-mm-dd"
           [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true"
           [style]="{'width':'200px'}" name="startTime">
         </p-calendar>
         <span>到</span>
-        <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+        <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat=" yy-mm-dd"
           [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
           [style]="{'width':'200px'}" name="endTime">
         </p-calendar>

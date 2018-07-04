@@ -54,12 +54,12 @@
         <div class="ui-g-12 ui-xl-4">
           <label for="" class="search-label">时间范围：</label>
           <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationBeginTime"
-            dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" [style]="{'width':'120px'}"></p-calendar>
+            dateFormat=" yy-mm-dd" [locale]="zh" readonlyInput="true" [style]="{'width':'120px'}"></p-calendar>
         </div>
         <div class="ui-g-12 ui-xl-4">
           <label for="" class="search-label text-right">至：</label>
           <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" [(ngModel)]="circulationEndTime"
-            dateFormat="yy-mm-dd" [locale]="zh" readonlyInput="true" [style]="{'width':'120px'}"></p-calendar>
+            dateFormat=" yy-mm-dd" [locale]="zh" readonlyInput="true" [style]="{'width':'120px'}"></p-calendar>
         </div>
         <div class="ui-g-12 ui-lg-12">
           <button pButton type="button" label="查询" (click)="searchCylinderStorageCirculations()">

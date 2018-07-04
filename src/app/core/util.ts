@@ -113,7 +113,7 @@ export class Util {
   }
   /**
    * IE9下获取当前ip地址和端口
-   * @returns {string} 
+   * @returns {string}
    * @memberof Util
    */
   getReturnUrl(param): string {
@@ -124,7 +124,7 @@ export class Util {
         + (window.location.port ? ':' + window.location.port : '') + '/wenzhou/#/result';
     } else {
       originIE = location.origin + '/wenzhou/#/result';
-      
+
     }
     const firstURl = encodeURIComponent(location.hash.replace(/#/g,''));
     const secondUrl = originIE + '?url=' + firstURl;
@@ -132,8 +132,8 @@ export class Util {
   }
   /**
    * 限制只在IE9中显示
-   * 
-   * @returns {boolean} 
+   *
+   * @returns {boolean}
    * @memberof Util
    */
   isIE9(): boolean {
@@ -153,9 +153,9 @@ export class Util {
   }
   /**
    * IE9中获取文件格式类型名
-   * 
-   * @param {any} Path 
-   * @returns 
+   *
+   * @param {any} Path
+   * @returns
    * @memberof Util
    */
   getFileType(Path): string {
@@ -165,10 +165,10 @@ export class Util {
     else return "";
   }
   /**
-   * 
-   * 
-   * @param {any} filePath 
-   * @returns {boolean} 
+   *
+   *
+   * @param {any} filePath
+   * @returns {boolean}
    * @memberof Util
    */
 

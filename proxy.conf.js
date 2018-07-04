@@ -16,20 +16,20 @@ const PROXY_CONFIG = [
   //   ],
   //   target: "http://192.168.1.26:8080",// 费峰
   //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
-  //   }
+  //   // "pathRewrite": {
+  //   //   "^/wenZhouGas": ""
+  //   // }
   // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //   ],
-  //   target: "http://192.168.1.8:8080", // 妮娜
-  //   secure: false,
-  //   "pathRewrite": {
-  //     "^/wenZhouGas": ""
-  //   }
-  // },
+  {
+    context: [
+      "/wenZhouGas",
+    ],
+    target: "http://192.168.1.8:8080", // 妮娜
+    secure: false,
+    "pathRewrite": {
+      "^/wenZhouGas": ""
+    }
+  },
   // {
   //   context: [
   //     "/wenZhouGas",
@@ -52,17 +52,17 @@ const PROXY_CONFIG = [
   //     "^/wenZhouGas": ""
   //   }
   // },
-  {
-    context: [
-      "/wenZhouGas",
-      "/dataImport",
-    ],
-    target: "http://218.75.127.46:18080",// 测试服务器
-    secure: false,
-    // "pathRewrite": {
-    //   "^/wenZhouGas": ""
-    // }
-  },
+  // {
+  //   context: [
+  //     "/wenZhouGas",
+  //     "/dataImport",
+  //   ],
+  //   target: "http://218.75.127.46:18080",// 测试服务器
+  //   secure: false,
+  //   // "pathRewrite": {
+  //   //   "^/wenZhouGas": ""
+  //   // }
+  // },
   // {
   //   context: [
   //     "/wenZhouGas",
