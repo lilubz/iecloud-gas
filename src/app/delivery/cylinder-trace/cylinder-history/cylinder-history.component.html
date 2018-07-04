@@ -1,17 +1,17 @@
 <div class="ui-g-12">
   <div class="ui-g-12 ui-xl-6">
     气瓶条码
-    <input maxlength="250" type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px">
+    <input maxlength="250" type="text" [(ngModel)]="cylinderNumber" pInputText placeholder=" 气瓶条码" style="width:180px">
   </div>
   <div class="ui-g-12 ui-xl-6">
     开始时间
     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px'}" [selectOtherMonths]="true"
-      [(ngModel)]="beginTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
+      [(ngModel)]="beginTime" dateFormat=" yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime" readonlyInput="true"></p-calendar>
   </div>
   <div class="ui-g-12 ui-xl-6">
     结束时间
     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px'}" [selectOtherMonths]="true"
-      [(ngModel)]="endTime" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true"></p-calendar>
+      [(ngModel)]="endTime" dateFormat=" yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="today" readonlyInput="true"></p-calendar>
   </div>
   <div class="ui-g-12">
     <button pButton type="button" label="查询" class="searchBtn" (click)="searchCylinderHistory()"></button>

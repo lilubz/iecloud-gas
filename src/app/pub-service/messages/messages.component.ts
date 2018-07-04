@@ -49,9 +49,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
       pageSize: number,
       pageNumber: number
     } = {
-        pageSize: event.rows,
-        pageNumber: event.first / event.rows + 1
-      };
+      pageSize: event.rows,
+      pageNumber: event.first / event.rows + 1
+    };
     // console.log(event);
   }
   deleteConfirm(deData) {
@@ -152,7 +152,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
   /**
    * IE9下的发布公告
-   * 
+   *
    * @param {any} form 表单验证
    * @memberof MessagesComponent
    */

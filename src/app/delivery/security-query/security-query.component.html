@@ -25,14 +25,14 @@
         </div>
         <div class="ui-g-12 ui-lg-6">
           <span class="search-label">开始时间</span>
-          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          <p-calendar #startTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat=" yy-mm-dd"
             [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.startTime" [maxDate]="endTime.value" readonlyInput="true" [style]="{'width':'280px','height':'35px'}"
             name="startTime">
           </p-calendar>
         </div>
         <div class="ui-g-12 ui-lg-6">
           <span class="search-label">结束时间</span>
-          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat=" yy-mm-dd"
             [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true" [style]="{'width':'280px','height':'35px'}"
             name="endTime">
           </p-calendar>

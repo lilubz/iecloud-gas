@@ -1,30 +1,30 @@
 <div class="ui-g-12">
   <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
     <label for="" class="search-label">充装工姓名</label>
-    <input maxlength="250" type="text" [(ngModel)]="inflator" pInputText placeholder="充装工姓名" style="width:180px">
+    <input maxlength="250" type="text" [(ngModel)]="inflator" pInputText placeholder=" 充装工姓名" style="width:180px">
   </div>
 
   <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
     <label for="" class="search-label">气瓶条码</label>
-    <input maxlength="250" type="text" [(ngModel)]="cylinderNumber" pInputText placeholder="气瓶条码" style="width:180px">
+    <input maxlength="250" type="text" [(ngModel)]="cylinderNumber" pInputText placeholder=" 气瓶条码" style="width:180px">
   </div>
 
   <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
     <label for="" class="search-label">气站名称</label>
-    <input maxlength="250" type="text" [(ngModel)]="stationName" pInputText placeholder="气站名称" style="width:180px">
+    <input maxlength="250" type="text" [(ngModel)]="stationName" pInputText placeholder=" 气站名称" style="width:180px">
   </div>
 
   <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
     <label for="" class="search-label"> 开始时间</label>
     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px'}" [selectOtherMonths]="true"
-      [(ngModel)]="beginTime" [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime"
+      [(ngModel)]="beginTime" [showButtonBar]="true" dateFormat=" yy-mm-dd" [locale]="zh" [showIcon]="false" [maxDate]="endTime"
       readonlyInput="true"></p-calendar>
   </div>
 
   <div class="ui-g-12 ui-lg-6 ui-md-12 ui-xl-4">
     <label for="" class="search-label">结束时间</label>
     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'180px'}" [selectOtherMonths]="true"
-      [(ngModel)]="endTime" [showButtonBar]="true" dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime"
+      [(ngModel)]="endTime" [showButtonBar]="true" dateFormat=" yy-mm-dd" [locale]="zh" [showIcon]="false" [minDate]="beginTime"
       [maxDate]="today" readonlyInput="true"></p-calendar>
   </div>
 

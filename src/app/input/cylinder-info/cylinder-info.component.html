@@ -12,7 +12,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>气瓶条码&#12288;&#12288;</span>
-              <input maxlength="10" type="text" required [(ngModel)]="cylinderInfo.gasLabelNumber" class="textInput" pInputText placeholder="气瓶条码">
+              <input maxlength="10" type="text" required [(ngModel)]="cylinderInfo.gasLabelNumber" class="textInput" pInputText placeholder=" 气瓶条码">
             </div>
           </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>气瓶出厂编号</span>
-              <input maxlength="15" type="text" required [(ngModel)]="cylinderInfo.serialNumber" class="textInput" pInputText placeholder="气瓶出厂编号">
+              <input maxlength="15" type="text" required [(ngModel)]="cylinderInfo.serialNumber" class="textInput" pInputText placeholder=" 气瓶出厂编号">
 
             </div>
           </div>
@@ -30,7 +30,7 @@
               <span>
                 <b style="color:red;">*</b>企业自有编号</span>
               <input maxlength="20" type="text" class="textInput" required (blur)="searchCylinder(cylinderInfo.enterpriseCylinderCode)"
-                [(ngModel)]="cylinderInfo.enterpriseCylinderCode" pInputText placeholder="CYJ118778">
+                [(ngModel)]="cylinderInfo.enterpriseCylinderCode" pInputText placeholder=" CYJ118778">
             </div>
           </div>
         </div>
@@ -48,7 +48,8 @@
             <div class="inputgroup">
               <span>
                 <b style="color:red;">*</b>产权单位&#12288;&#12288;</span>
-              <input maxlength="50" type="text" class="textInput" required pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName" [disabled]="this.selectedProperty">
+              <input maxlength="50" type="text" class="textInput" required pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName"
+                [disabled]="this.selectedProperty">
             </div>
           </div>
         </div>
@@ -67,7 +68,7 @@
                 <b style="color:red;">*</b>进站日期&#12288;&#12288;</span>
               <p-calendar [locale]="cn" name="intoStationDate" [(ngModel)]="intoStationDateInit" (onClearClick)="clearIntoStationDate($event)"
                 (onSelect)="selectedIntoStationDate($event)" [minDate]="timeManufactureInit" [maxDate]="expectedScrapTimeInit"
-                placeholder="2017-10-1" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
+                placeholder=" 2017-10-1" [showButtonBar]="true" dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
                 [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
@@ -79,7 +80,7 @@
                 <b style="color:red;">*</b>制造日期&#12288;&#12288;</span>
               <p-calendar [locale]="cn" name="timeManufacture" [(ngModel)]="timeManufactureInit" (onClearClick)="clearTimeManufacture($event)"
                 (onSelect)="selectedTimeManufacture($event)" [maxDate]="intoStationDateInit" readonlyInput="true" [showButtonBar]="true"
-                placeholder="2017-08-08" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
+                placeholder=" 2017-08-08" dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
                 [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
@@ -136,7 +137,8 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;设计壁厚&#12288;&#12288;</span>
-              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.designWallThickness" class="textInput" pInputText placeholder="" disabled>
+              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.designWallThickness" class="textInput" pInputText placeholder=""
+                disabled>
             </div>
           </div>
         </div>
@@ -144,22 +146,25 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;水压试验压力</span>
-              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.waterPressureTest" class="textInput" pInputText placeholder="" disabled>
+              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.waterPressureTest" class="textInput" pInputText placeholder=""
+                disabled>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>&nbsp;公称工作压力</span>
-              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.nominalWorkingPressure" class="textInput" pInputText placeholder="" disabled>
+              <input maxlength="250" type="text" [(ngModel)]="cylinderInfo.nominalWorkingPressure" class="textInput" pInputText placeholder=""
+                disabled>
             </div>
           </div>
         </div>
         <div class="ui-g-12">
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span><b style="color:red;">*</b>上次检测单位</span>
+              <span>
+                <b style="color:red;">*</b>上次检测单位</span>
               <p-dropdown [options]="lastTestUnit" name="inspectionOrganizationName" [(ngModel)]="cylinderInfo.inspectionOrganizationName"
-               editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
+                editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
@@ -172,19 +177,21 @@
         <div class="ui-g-12">
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span><b style="color:red;">*</b>上次检测日期</span>
+              <span>
+                <b style="color:red;">*</b>上次检测日期</span>
               <p-calendar [locale]="cn" name="lastInspectionTime" [(ngModel)]="lastTestDateInit" (onClearClick)="clearLastTestDate($event)"
                 (onSelect)="selectedLastTestDate($event)" [maxDate]="nextTestDateInit" [showButtonBar]="true" readonlyInput="true"
-                placeholder="2017-10-1" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
+                placeholder=" 2017-10-1 " dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
                 [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
-              <span><b style="color:red;">*</b>下次检测日期</span>
+              <span>
+                <b style="color:red;">*</b>下次检测日期</span>
               <p-calendar [locale]="cn" name="nextInspectionTime" [(ngModel)]="nextTestDateInit" (onClearClick)="clearNextTestDate($event)"
                 (onSelect)="selectedNextTestDate($event)" [showButtonBar]="true" placeholder="2018-10-01" [minDate]="lastTestDateInit"
-                readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
+                readonlyInput="true" dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
                 [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
@@ -231,7 +238,7 @@
 <div class="ui-g cylinder-info card" *ngIf="IE9">
   <div class="ui-g-12">
     <div class="ui-g-9">
-      <form id="IEform"  #IEform action="{{redirectUrl}}" method="POST" enctype="multipart/form-data" ngNoForm>
+      <form id="IEform" #IEform action="{{redirectUrl}}" method="POST" enctype="multipart/form-data" ngNoForm>
         <div class="ui-g-12">
           <div class="">
             <b>气瓶基础信息</b>
@@ -281,8 +288,7 @@
               <div class="inputgroup">
                 <span>
                   <b style="color:red;">*</b>产权单位&#12288;&#12288;</span>
-                <input type="text" class="textInput" name="enterpriseName" maxlength="50" required pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName"
-                  >
+                <input type="text" class="textInput" name="enterpriseName" maxlength="50" required pInputText placeholder="xxx公司" [(ngModel)]="cylinderInfo.enterpriseName">
               </div>
             </div>
           </div>
@@ -300,10 +306,10 @@
                 <span>
                   <b style="color:red;">*</b>进站日期&#12288;&#12288;</span>
                 <input #intoStationDate name="intoStationDate" style="display:none">
-                <p-calendar [locale]="cn" [(ngModel)]="intoStationDateInit" (onClearClick)="clearIntoStationDate($event)"
-                  (onSelect)="selectedIntoStationDate($event)" [minDate]="timeManufactureInit" [maxDate]="expectedScrapTimeInit"
-                  placeholder="2017-10-1" [showButtonBar]="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
-                  [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+                <p-calendar [locale]="cn" [(ngModel)]="intoStationDateInit" (onClearClick)="clearIntoStationDate($event)" (onSelect)="selectedIntoStationDate($event)"
+                  [minDate]="timeManufactureInit" [maxDate]="expectedScrapTimeInit" placeholder="2017-10-1" [showButtonBar]="true"
+                  dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true"
+                  yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
               </div>
             </div>
           </div>
@@ -313,10 +319,10 @@
                 <span>
                   <b style="color:red;">*</b>制造日期&#12288;&#12288;</span>
                 <input #timeManufacture name="timeManufacture" style="display:none">
-                <p-calendar [locale]="cn" [(ngModel)]="timeManufactureInit" (onClearClick)="clearTimeManufacture($event)"
-                  (onSelect)="selectedTimeManufacture($event)" [maxDate]="intoStationDateInit" readonlyInput="true" [showButtonBar]="true"
-                  placeholder="2017-08-08" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
-                  [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+                <p-calendar [locale]="cn" [(ngModel)]="timeManufactureInit" (onClearClick)="clearTimeManufacture($event)" (onSelect)="selectedTimeManufacture($event)"
+                  [maxDate]="intoStationDateInit" readonlyInput="true" [showButtonBar]="true" placeholder="2017-08-08" dateFormat="yy-mm-dd"
+                  showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
+                  [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
               </div>
             </div>
             <div class="ui-g-6 ui-g-nopad">
@@ -324,10 +330,10 @@
                 <span>
                   <b style="color:red;">*</b>报废日期&#12288;&#12288;</span>
                 <input #expectedScrapTime name="expectedScrapTime" style="display:none">
-                <p-calendar [locale]="cn" [(ngModel)]="expectedScrapTimeInit" (onClearClick)="clearExpectedScrapTime($event)"
-                  (onSelect)="selectedExpectedScrapTime($event)" readonlyInput="true" dateFormat="yy-mm-dd" [minDate]="timeManufactureInit"
-                  [showButtonBar]="true" placeholder="2021-01-01" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
-                  [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+                <p-calendar [locale]="cn" [(ngModel)]="expectedScrapTimeInit" (onClearClick)="clearExpectedScrapTime($event)" (onSelect)="selectedExpectedScrapTime($event)"
+                  readonlyInput="true" dateFormat="yy-mm-dd" [minDate]="timeManufactureInit" [showButtonBar]="true" placeholder="2021-01-01"
+                  showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
+                  [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
               </div>
             </div>
           </div>
@@ -399,7 +405,7 @@
               <div class="inputgroup">
                 <span>&nbsp;上次检测单位</span>
                 <p-dropdown [options]="lastTestUnit" name="inspectionOrganizationName" [(ngModel)]="cylinderInfo.inspectionOrganizationName"
-                editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
+                  editable="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-dropdown>
               </div>
             </div>
             <div class="ui-g-6 ui-g-nopad">
@@ -415,20 +421,20 @@
               <div class="inputgroup">
                 <span>&nbsp;上次检测日期</span>
                 <input #lastInspectionTime name="lastInspectionTime" style="display:none">
-                <p-calendar [locale]="cn" [(ngModel)]="lastTestDateInit" (onClearClick)="clearLastTestDate($event)"
-                  (onSelect)="selectedLastTestDate($event)" [maxDate]="nextTestDateInit" [showButtonBar]="true" readonlyInput="true"
-                  placeholder="2017-10-1" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
-                  [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+                <p-calendar [locale]="cn" [(ngModel)]="lastTestDateInit" (onClearClick)="clearLastTestDate($event)" (onSelect)="selectedLastTestDate($event)"
+                  [maxDate]="nextTestDateInit" [showButtonBar]="true" readonlyInput="true" placeholder="2017-10-1" dateFormat="yy-mm-dd"
+                  showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
+                  [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
               </div>
             </div>
             <div class="ui-g-6 ui-g-nopad">
               <div class="inputgroup">
                 <span>&nbsp;下次检测日期</span>
                 <input #nextInspectionTime name="nextInspectionTime" style="display:none">
-                <p-calendar [locale]="cn" [(ngModel)]="nextTestDateInit" (onClearClick)="clearNextTestDate($event)"
-                  (onSelect)="selectedNextTestDate($event)" [showButtonBar]="true" placeholder="2018-10-01" [minDate]="lastTestDateInit"
-                  readonlyInput="true" dateFormat="yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
-                  [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+                <p-calendar [locale]="cn" [(ngModel)]="nextTestDateInit" (onClearClick)="clearNextTestDate($event)" (onSelect)="selectedNextTestDate($event)"
+                  [showButtonBar]="true" placeholder="2018-10-01" [minDate]="lastTestDateInit" readonlyInput="true" dateFormat="yy-mm-dd"
+                  showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050"
+                  [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
               </div>
             </div>
           </div>
@@ -447,7 +453,7 @@
       </form>
     </div>
     <div class="ui-g-3">
-      <form id="FIle"  #FIle action="{{FileUrl}}" method="POST" enctype="multipart/form-data" ngNoForm>
+      <form id="FIle" #FIle action="{{FileUrl}}" method="POST" enctype="multipart/form-data" ngNoForm>
         <div class="ui-g-12 _choose">
           <input type="file" name="gasCylinderExcel" id="gasCylinderExcel">
         </div>

@@ -9,14 +9,14 @@
         </div>
         <div class="ui-g-12 ui-lg-6">
           <span class="search-label">开始时间：</span>
-          <p-calendar #resultStartTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          <p-calendar #resultStartTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat=" yy-mm-dd"
           [locale]="zh" [showIcon]="false" [(ngModel)]="result.formModel.startTime" [maxDate]="resultEndTime.value" readonlyInput="true" [style]="{'width':'280px'}"
           name="resultStartTime">
           </p-calendar>
         </div>
         <div class="ui-g-12 ui-lg-6">
           <span class="search-label"> 结束时间：</span>
-          <p-calendar #resultEndTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
+          <p-calendar #resultEndTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat=" yy-mm-dd"
             [locale]="zh" [showIcon]="false" [(ngModel)]="result.formModel.endTime" [minDate]="resultStartTime.value" readonlyInput="true" [style]="{'width':'280px'}"
             name="resultEndTime">
           </p-calendar>
@@ -55,14 +55,14 @@
         <div class="ui-g-12 ui-lg-6">
           <span class="search-label">开始时间：</span>
           <p-calendar #attrStartTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
-            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="attr.formModel.startTime" [maxDate]="attrEndTime.value"
+            dateFormat=" yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="attr.formModel.startTime" [maxDate]="attrEndTime.value"
             readonlyInput="true" [style]="{'width':'280px'}" name="attrStartTime">
           </p-calendar>
         </div>
         <div class="ui-g-12 ui-lg-6">
           <span class="search-label"> 结束时间：</span>
           <p-calendar #attrEndTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true"
-            dateFormat="yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="attr.formModel.endTime" [minDate]="attrStartTime.value"
+            dateFormat=" yy-mm-dd" [locale]="zh" [showIcon]="false" [(ngModel)]="attr.formModel.endTime" [minDate]="attrStartTime.value"
             readonlyInput="true" [style]="{'width':'280px'}" name="attrEndTime">
           </p-calendar>
         </div>
