@@ -86,8 +86,8 @@ export class BigScreenComponent implements OnInit, OnDestroy {
   }
   PieInit() {
     const pieChart = echarts.init(this.Pie.nativeElement);
-    pieChart.setOption(this.bigScreenService.getAffairPieOption(this.dataList.partOfCase.rateCompletionCase,
-      this.dataList.partOfCase.rateProcessingCase, this.dataList.partOfCase.rateOutOfDateCase));
+    pieChart.setOption(this.bigScreenService.getAffairPieOption(this.dataList.partOfCase.rateCompletionCase || 0,
+      this.dataList.partOfCase.rateProcessingCase || 0, this.dataList.partOfCase.rateOutOfDateCase || 0));
   }
 
   mapInit() {
