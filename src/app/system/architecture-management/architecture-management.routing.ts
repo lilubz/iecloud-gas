@@ -1,6 +1,6 @@
 import { NgModule, } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MangeMentComponent } from './mange-ment/mange-ment.component';
+import { ArchitectureManagementComponent } from './architecture-management.component';
 
 // TODO: import components
 // import { DemoComponent } from './demo/demo.component';
@@ -13,7 +13,7 @@ const routes: Routes = [
     },
     {
         path: 'mange-ment',
-        component: MangeMentComponent,
+        component: ArchitectureManagementComponent,
         data: {
             title: '管理'
         }
