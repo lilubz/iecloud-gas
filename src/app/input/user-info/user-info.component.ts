@@ -29,7 +29,7 @@ export class UserInfoComponent implements OnInit {
   @ViewChild('FIle') FIle: ElementRef;
   @ViewChild('BeginTime') BeginTime: ElementRef;
   @ViewChild('EndTime') EndTime: ElementRef;
-  
+
   zh = zh_CN;
   importGcUserInfoUrl = API.importGcUserInfo;
 
@@ -60,7 +60,7 @@ export class UserInfoComponent implements OnInit {
   IE9: boolean;
   redirectUrl: string;
   FileUrl: string;
-  IDImageUpload?: File[]
+  IDImageUpload?: File[];
   constructor(
     private util: Util,
     private userStateService: UserStateService,
@@ -260,7 +260,7 @@ export class UserInfoComponent implements OnInit {
     }
   }
   SubmitFile(form) {
-    if (!$("#gcUserExcel").val()) {
+    if (!$('#gcUserExcel').val()) {
       this.showMessage('warn', '提示信息', '请上传文件！');
     } else {
       this.FIle.nativeElement.submit();

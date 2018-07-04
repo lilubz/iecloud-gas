@@ -83,7 +83,7 @@ export class UserOpeningComponent implements OnInit, OnDestroy {
       if (data.status === 0) {
         this.dropdown.role = this.dropdown.role.concat(data.data.map((item) => ({
           label: item.name,
-          value: item.roleId
+          value: item.roleTypeId
         })));
       } else {
         this.dropdown.role = this.dropdown.default;
@@ -94,12 +94,13 @@ export class UserOpeningComponent implements OnInit, OnDestroy {
   addSystemUser() {
     if (this.formModel.valid) {
       const formModel = {
-        roleId: this.formModel.value['role'],
+        organizationId: this.formModel.value['organization'],
+        roleTypeId: this.formModel.value['role'],
         username: this.formModel.value['username'],
         password: this.formModel.value['passwords']['password'],
         realname: this.formModel.value['realname'],
         phone: this.formModel.value['phone'],
-      }
+      };
       this._service.addUser(formModel).then(data => {
         if (data.status === 0) {
           this.messageService.add({ severity: 'success', summary: '响应消息', detail: data.msg });

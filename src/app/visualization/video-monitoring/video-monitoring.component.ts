@@ -13,7 +13,7 @@ export class VideoMonitoringComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isAdmin = (this.userStateService.getUser().roleId).toString() === '4' ? true : false;
+    this.isAdmin = ((this.userStateService.getUser().roleType).toString() === '1' || (this.userStateService.getUser().roleType).toString() === '2') ? true : false;
   }
 
   // 浏览器检查
