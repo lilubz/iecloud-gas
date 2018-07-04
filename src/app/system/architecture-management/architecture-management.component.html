@@ -16,6 +16,58 @@
 </div>
 <div class="main">
   <div class="card bottle-library ui-g-12">
-    <router-outlet></router-outlet>
+    <p-tree [value]="filesTree" layout="horizontal" selectionMode="single" (onNodeSelect)="nodeSelect($event)"></p-tree>
+    <p-dialog [visible]="nodeSelectVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
+      [width]="700" [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
+      <h3 class="dialogtitle" style="text-align:center">添加组织</h3>
+      <form>
+        <div class="ui-g-8">
+          <div class="ui-g-12 ui-g-offset-4">
+            <div class="inputgroup">
+              <label for="" class="search-label">上级组织
+              </label>
+              <input type="text" style="width: 150px" pInputText disabled [value]="chooseDate?.node?.label">
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-8">
+          <div class="ui-g-12 ui-g-offset-4">
+            <div class="inputgroup">
+              <label for="" class="search-label">名称
+              </label>
+              <input type="text" style="width: 150px" [(ngModel)]="name" name="name" minlength="5" pInputText placeholder="请输入名称">
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-8" *ngIf="chooseDate?.node?.regionId === 330300">
+          <div class="ui-g-12 ui-g-offset-4">
+            <div class="inputgroup">
+              <label for="" class="search-label">所属辖区
+              </label>
+              <p-dropdown [options]="areaDrop" name="regionId" (onChange)="getDropdownForCorpInfoInRegion({ regionId: regionId })" [(ngModel)]="regionId"
+                [style]="{'width':'150px'}"></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-8">
+          <div class="ui-g-12 ui-g-offset-4">
+            <div class="inputgroup">
+              <p-pickList [source]="corpDrop" [target]="chooseCorp" sourceHeader="企业列表" targetHeader="选择企业" [showSourceControls]="false"
+                [showTargetControls]="false" [responsive]="true" [metaKeySelection]="true" [dragdrop]="true">
+                <ng-template let-corp pTemplate="item">
+                  <div class="ui-helper-clearfix">
+                    <div>{{corp.label}}</div>
+                  </div>
+                </ng-template>
+              </p-pickList>
+            </div>
+          </div>
+        </div>
+      </form>
+      <p-footer>
+        <button type="button" pButton label="确认添加" (click)="addNode()"></button>
+        <button type="button" pButton (click)="reset()" label="关闭 "></button>
+      </p-footer>
+    </p-dialog>
   </div>
 </div>

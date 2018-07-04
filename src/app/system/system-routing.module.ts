@@ -18,7 +18,7 @@ import { BottleOpenComponent } from './bottle-library/bottle-open/bottle-open.co
 import { BottleListComponent } from './bottle-library/bottle-list/bottle-list.component';
 import { SystemSetGuard } from '../core/systemSet-guard.service';
 import { ArchitectureManagementComponent } from './architecture-management/architecture-management.component';
-import { MangeMentComponent } from './architecture-management/mange-ment/mange-ment.component';
+// import { MangeMentComponent } from './architecture-management/mange-ment/mange-ment.component';
 
 const routes: Routes = [
   {
@@ -108,17 +108,17 @@ const routes: Routes = [
         data: {
           title: '架构管理'
         },
-        children: [
-          {
-            path: '',
-            redirectTo: 'mange-ment',
-            pathMatch: 'full'
-          },
-          {
-            path: 'mange-ment',
-            component: MangeMentComponent,
-          }
-        ]
+        // children: [
+        //   {
+        //     path: '',
+        //     redirectTo: 'mange-ment',
+        //     pathMatch: 'full'
+        //   },
+        //   {
+        //     path: 'mange-ment',
+        //     component: MangeMentComponent,
+        //   }
+        // ]
       },
       {
         path: 'gas-business-license',
