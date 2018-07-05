@@ -40,7 +40,6 @@ export class TimeoutSearchComponent implements OnInit {
   }
 
   onSearch() {
-    this.dataTable.pageSize = 1;
     this.dataTable.first = 0;
     Object.assign(this.pageParams, this.formModel);
     this.getDataTableList();

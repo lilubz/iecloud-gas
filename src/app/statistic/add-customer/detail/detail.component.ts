@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from '../../../input/user-info/Customer.model';
 import { calcBindingFlags } from '@angular/core/src/view/util';
 import { AddCustomerStatisticService } from '../add-customer.service';
+import { Util } from '../../../core/util';
 
 @Component({
   selector: 'gas-detail',
@@ -17,6 +18,8 @@ export class DetailComponent implements OnInit {
   recordTotal = 0;
   selectedEnterpriseId;
   regionId;
+  beginTime: any;
+  endTime: any;
   // 某企业某日的用户登记记录
   customerRegisterRecords: Customer[] = [];
   loading = false;
@@ -24,6 +27,7 @@ export class DetailComponent implements OnInit {
     private route: ActivatedRoute,
     private messageService: MessageService,
     private addCustomerService: AddCustomerStatisticService,
+    private util: Util
   ) { }
 
   ngOnInit() {
@@ -31,6 +35,8 @@ export class DetailComponent implements OnInit {
     if (JSON.stringify(queryParams) !== '{}') {
       this.selectedEnterpriseId = queryParams.enterpriseId || '';
       this.regionId = queryParams.regionId || '';
+      this.beginTime = queryParams.circulationBeginTime || '';
+      this.endTime = queryParams.circulationEndTime || '';
       this.getEnterpriseRegisterDetail();
     }
   }
@@ -49,7 +55,9 @@ export class DetailComponent implements OnInit {
       enterpriseId: this.selectedEnterpriseId,
       regionId: this.regionId,
       pageNumber: this.recordPageNumber,
-      pageSize: this.recordPageSize
+      pageSize: this.recordPageSize,
+      beginTime: this.beginTime || '',
+      endTime: this.endTime || ''
     }).then(data => {
       this.loading = false;
       if (data.status === 0) {

@@ -50,7 +50,7 @@ export class AffairComponent implements OnInit {
 
   getAffairStatistic() {
     this.statisticAffairService.getAffairStatistic({
-      regionId: this.selectedRegionId,
+      regionId: this.selectedRegionId || '',
       range: this.selectedDateRange
     }).then(data => {
       if (data.status === 0) {

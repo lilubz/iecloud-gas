@@ -9,19 +9,17 @@
           </label>
           <gas-explanation tooltip="发生的事件和哪个对象有关系" position="bottom"></gas-explanation>
         </div>
-        <div class="ui-g-9 ui-g">
-          <div class="ui-g-12 ui-xl-3 ui-lg-6">
-            <p-radioButton name="objType" [value]=1 label="储配站" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
-          </div>
-          <div class="ui-g-12 ui-xl-3 ui-lg-6">
-            <p-radioButton name="objType" [value]=2 label="供应站" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
-          </div>
-          <div class="ui-g-12 ui-xl-3 ui-lg-6">
-            <p-radioButton name="objType" [value]=3 label="送气工" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
-          </div>
-          <div class="ui-g-12 ui-xl-3 ui-lg-6">
-            <p-radioButton name="objType" [value]=5 label="押送工" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
-          </div>
+        <div class="ui-g-12 ui-g-offset-2">
+          <p-radioButton name="objType" [value]=1 label="储配站" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
+        </div>
+        <div class="ui-g-12 ui-g-offset-2">
+          <p-radioButton name="objType" [value]=2 label="供应站" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
+        </div>
+        <div class="ui-g-12 ui-g-offset-2">
+          <p-radioButton name="objType" [value]=3 label="送气工" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
+        </div>
+        <div class="ui-g-12 ui-g-offset-2">
+          <p-radioButton name="objType" [value]=5 label="押送工" [(ngModel)]="formModel.objType" (onClick)="onObjTypeChange()"></p-radioButton>
         </div>
       </div>
     </div>

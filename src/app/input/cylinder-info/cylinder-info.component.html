@@ -11,8 +11,10 @@
           <div class="ui-g-6 ui-g-nopad">
             <div class="inputgroup">
               <span>
-                <b style="color:red;">*</b>气瓶条码&#12288;&#12288;</span>
-              <input maxlength="10" type="text" required [(ngModel)]="cylinderInfo.gasLabelNumber" class="textInput" pInputText placeholder=" 气瓶条码">
+                <b style="color:red;">*</b>气瓶条码&#12288;&#12288;
+              </span>
+              <input maxlength="10" type="text" required placeholder=" 气瓶条码" [(ngModel)]="cylinderInfo.gasLabelNumber" class="textInput" 
+                pInputText>
             </div>
           </div>
         </div>
@@ -30,7 +32,7 @@
               <span>
                 <b style="color:red;">*</b>企业自有编号</span>
               <input maxlength="20" type="text" class="textInput" required (blur)="searchCylinder(cylinderInfo.enterpriseCylinderCode)"
-                [(ngModel)]="cylinderInfo.enterpriseCylinderCode" pInputText placeholder=" CYJ118778">
+                [(ngModel)]="cylinderInfo.enterpriseCylinderCode" pInputText placeholder=" CYJ118778     ">
             </div>
           </div>
         </div>
@@ -68,8 +70,8 @@
                 <b style="color:red;">*</b>进站日期&#12288;&#12288;</span>
               <p-calendar [locale]="cn" name="intoStationDate" [(ngModel)]="intoStationDateInit" (onClearClick)="clearIntoStationDate($event)"
                 (onSelect)="selectedIntoStationDate($event)" [minDate]="timeManufactureInit" [maxDate]="expectedScrapTimeInit"
-                placeholder=" 2017-10-1" [showButtonBar]="true" dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
-                [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
+                placeholder=" 2017-10-01     " [showButtonBar]="true" dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true"
+                [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" readonlyInput="true" [style]="{'width':'calc(100% - 130px)','max-width':'300px'}"></p-calendar>
             </div>
           </div>
         </div>
@@ -80,7 +82,7 @@
                 <b style="color:red;">*</b>制造日期&#12288;&#12288;</span>
               <p-calendar [locale]="cn" name="timeManufacture" [(ngModel)]="timeManufactureInit" (onClearClick)="clearTimeManufacture($event)"
                 (onSelect)="selectedTimeManufacture($event)" [maxDate]="intoStationDateInit" readonlyInput="true" [showButtonBar]="true"
-                placeholder=" 2017-08-08" dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
+                placeholder=" 2017-08-08    " dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
                 [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
@@ -89,8 +91,8 @@
               <span>
                 <b style="color:red;">*</b>报废日期&#12288;&#12288;</span>
               <p-calendar [locale]="cn" name="expectedScrapTime" [(ngModel)]="expectedScrapTimeInit" (onClearClick)="clearExpectedScrapTime($event)"
-                (onSelect)="selectedExpectedScrapTime($event)" readonlyInput="true" dateFormat="yy-mm-dd" [minDate]="timeManufactureInit"
-                [showButtonBar]="true" placeholder="2021-01-01" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
+                (onSelect)="selectedExpectedScrapTime($event)" readonlyInput="true" dateFormat=" yy-mm-dd" [minDate]="timeManufactureInit"
+                [showButtonBar]="true" placeholder=" 2021-01-01     " showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
                 [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
@@ -181,7 +183,7 @@
                 <b style="color:red;">*</b>上次检测日期</span>
               <p-calendar [locale]="cn" name="lastInspectionTime" [(ngModel)]="lastTestDateInit" (onClearClick)="clearLastTestDate($event)"
                 (onSelect)="selectedLastTestDate($event)" [maxDate]="nextTestDateInit" [showButtonBar]="true" readonlyInput="true"
-                placeholder=" 2017-10-1 " dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
+                placeholder=" 2017-10-1     " dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
                 [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
           </div>
@@ -190,7 +192,7 @@
               <span>
                 <b style="color:red;">*</b>下次检测日期</span>
               <p-calendar [locale]="cn" name="nextInspectionTime" [(ngModel)]="nextTestDateInit" (onClearClick)="clearNextTestDate($event)"
-                (onSelect)="selectedNextTestDate($event)" [showButtonBar]="true" placeholder="2018-10-01" [minDate]="lastTestDateInit"
+                (onSelect)="selectedNextTestDate($event)" [showButtonBar]="true" placeholder=" 2018-10-01     " [minDate]="lastTestDateInit"
                 readonlyInput="true" dateFormat=" yy-mm-dd" showOtherMonths="true" selectOtherMonths="true" [monthNavigator]="true"
                 [yearNavigator]="true" yearRange="1970:2050" [style]="{'width':'100%','max-width':'130px','display':'inline-block'}"></p-calendar>
             </div>
