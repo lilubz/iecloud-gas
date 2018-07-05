@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { Util } from '../../../core/util';
-
 @Component({
   selector: 'gas-enterprise',
   templateUrl: './enterprise-list.component.html',
@@ -116,6 +115,14 @@ export class EnterpriseListComponent implements OnInit {
     }).then(data => {
       this.loading = false;
       Object.assign(this.formModel, this.pageParams);
+      if (this.pageParams.enterpriseName.length === 1) {
+        this.messageService.add({ severity: 'warn', summary: '查询字段过短', });
+        return false;
+      }
+      if (this.pageParams.person.length === 1) {
+        this.messageService.add({ severity: 'warn', summary: '查询字段过短', });
+        return false;
+      }
       if (data.status === 0) {
         this.dataTable.list = data.data.list;
         this.dataTable.total = data.data.total;
