@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject,ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef} from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -106,13 +106,13 @@ export class AddAffairsComponent implements OnInit {
   };
   suggestions = [{}];
   IE9: boolean;
-  redirectUrl:string;
-  obj:any;
+  redirectUrl: string;
+  obj: any;
   @ViewChild('IEform') IEform: ElementRef;
   @ViewChild('InspectionTime') InspectionTime: ElementRef;
 
   @ViewChild('hidden') hidden: ElementRef;
-
+  @ViewChild('collaborativeOrganizationInfoTOS') collaborativeOrganizationInfoTOS: ElementRef;
   ngOnInit() {
     this.getMultiSelectCompany();
     this.getMultiSelectDepartment();
@@ -337,12 +337,22 @@ export class AddAffairsComponent implements OnInit {
           this.messageService.add({ severity: 'warn', summary: '响应消息', detail: data.msg });
         }
       });
-  }  
-  IESubmit(form){
-    if(this.checkForm()){
+  }
+  IESubmit(form) {
+    if (this.checkForm()) {
+      const helpList: any = [];
+      this.formModel.helpCompany.concat(this.formModel.helpDepartment).forEach(item => {
+        helpList.push({
+          organizationId: item.organizationId,
+          expirationDate: moment(item.time).format('YYYY-MM-DD HH:mm:ss'),
+          userId: item.userId,
+        });
+      this.collaborativeOrganizationInfoTOS.nativeElement.value = JSON.stringify(helpList) ;
       this.InspectionTime.nativeElement.value = moment(this.formModel.time).format('YYYY-MM-DD') + ' 00:00:00';
       this.hidden.nativeElement.value = this.formModel.objValue.inflatableStationNumber;
       this.IEform.nativeElement.submit();
+      }
+      );
     }
-}
+  }
 }

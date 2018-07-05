@@ -29,7 +29,6 @@ export class UserInfoComponent implements OnInit {
   @ViewChild('FIle') FIle: ElementRef;
   @ViewChild('BeginTime') BeginTime: ElementRef;
   @ViewChild('EndTime') EndTime: ElementRef;
-
   zh = zh_CN;
   importGcUserInfoUrl = API.importGcUserInfo;
 
@@ -61,6 +60,7 @@ export class UserInfoComponent implements OnInit {
   redirectUrl: string;
   FileUrl: string;
   IDImageUpload?: File[];
+  IDImage?= [];
   constructor(
     private util: Util,
     private userStateService: UserStateService,
@@ -198,6 +198,14 @@ export class UserInfoComponent implements OnInit {
       this.showMessage('warn', '', '请填写联系电话！');
       return false;
     }
+    // else if (this.customer.identity.length === 0) {
+    //   this.showMessage('warn', '', '请选择证件图片！');
+    //   return false;
+    // }
+    // else if (this.customer.identity.length > 2) {
+    //   this.showMessage('warn', '', '证件信息最多上传两张图片！');
+    //   return false;
+    // }
     if (this.customer.userTypeId.toString() !== '0') {
       if (this.customer.enterpriseOrganizationCode === '') {
         this.showMessage('warn', '', '请填写营业执照！');
@@ -250,6 +258,7 @@ export class UserInfoComponent implements OnInit {
       this.showMessage('warn', '上传失败', JSON.parse(event.xhr.responseText).msg);
     }
   }
+
   // 新增IE上传函数
   IESubmit(form) {
     if (this.IEcheckForm()) {
@@ -259,35 +268,35 @@ export class UserInfoComponent implements OnInit {
       this.IEform.nativeElement.submit();
     }
   }
-  SubmitFile(form) {
-    if (!$('#gcUserExcel').val()) {
-      this.showMessage('warn', '提示信息', '请上传文件！');
-    } else {
-      this.FIle.nativeElement.submit();
+    SubmitFile(form) {
+      if (!$('#gcUserExcel').val()) {
+        this.showMessage('warn', '提示信息', '请上传文件！');
+      } else {
+        this.FIle.nativeElement.submit();
+      }
+    }
+    // IMG(): boolean {
+    //   if (this.IE9) {
+    //     return true;
+    //   } else {
+    //     if (this.customer.identity.length > 3) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }
+    // }
+    getDispatcher(regionId ?) {
+      this.commonRequestService.getDispatchers().then(data => {
+        if (data.status === 0) {
+          this.dispatcherList = data.data.map(item => ({ label: item.dispatcherName, value: item.dispatcherNumber }));
+          this.dispatcherList.unshift({ label: '--请选择--', value: '' });
+        } else {
+          this.dispatcherList = [{ label: '--请选择--', value: '' }];
+          this.showMessage('warn', '获取配送员信息失败', data.msg);
+        }
+      }).catch(error => {
+        this.showMessage('error', '', error);
+      });
     }
   }
-  // IMG(): boolean {
-  //   if (this.IE9) {
-  //     return true;
-  //   } else {
-  //     if (this.customer.identity.length > 3) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   }
-  // }
-  getDispatcher(regionId?) {
-    this.commonRequestService.getDispatchers().then(data => {
-      if (data.status === 0) {
-        this.dispatcherList = data.data.map(item => ({ label: item.dispatcherName, value: item.dispatcherNumber }));
-        this.dispatcherList.unshift({ label: '--请选择--', value: '' });
-      } else {
-        this.dispatcherList = [{ label: '--请选择--', value: '' }];
-        this.showMessage('warn', '获取配送员信息失败', data.msg);
-      }
-    }).catch(error => {
-      this.showMessage('error', '', error);
-    });
-  }
-}

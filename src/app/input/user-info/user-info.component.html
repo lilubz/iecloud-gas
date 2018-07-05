@@ -33,7 +33,8 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input maxlength="250" type="text" [(ngModel)]="customer.certificateName" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText disabled>
+              <input maxlength="250" type="text" [(ngModel)]="customer.certificateName" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText
+                disabled>
             </div>
           </div>
           <div class="ui-g-12">
@@ -43,7 +44,8 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input maxlength="50" type="text" [(ngModel)]="customer.principal" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder=" 姓名">
+              <input maxlength="50" type="text" [(ngModel)]="customer.principal" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText
+                placeholder=" 姓名">
             </div>
           </div>
           <div class="ui-g-12">
@@ -53,7 +55,8 @@
               </span>
             </div>
             <div class="ui-g-9 ui-g-nopad">
-              <input maxlength="20" type="text" [(ngModel)]="customer.certificateId" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder=" 证件号码">
+              <input maxlength="20" type="text" [(ngModel)]="customer.certificateId" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText
+                placeholder=" 证件号码">
             </div>
           </div>
         </div>
@@ -76,7 +79,8 @@
                 </span>
               </div>
               <div class="ui-g-9 ui-g-nopad">
-                <input maxlength="50" type="text" [(ngModel)]="customer.enterpriseOrganizationCode" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="营业执照">
+                <input maxlength="50" type="text" [(ngModel)]="customer.enterpriseOrganizationCode" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*"
+                  pInputText placeholder="营业执照">
               </div>
             </div>
             <div class="ui-g-12">
@@ -96,7 +100,8 @@
                 </span>
               </div>
               <div class="ui-g-9 ui-g-nopad">
-                <input maxlength="50" type="text" [(ngModel)]="customer.legalRepresentative" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="法定代表人">
+                <input maxlength="50" type="text" [(ngModel)]="customer.legalRepresentative" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText
+                  placeholder="法定代表人">
               </div>
             </div>
           </div>
@@ -113,8 +118,8 @@
             [county]="customer.certificateId.substring(0,6)" (onSelect)="selectIDAddress($event)"></gas-districts>
         </div>
         <div class="ui-g-10 ui-xl-6 ui-g-offset-2">
-          <input maxlength="250" type="text" [(ngModel)]="certificateDetailAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder=" 证件地址"
-            maxlength="50">
+          <input maxlength="250" type="text" [(ngModel)]="certificateDetailAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText
+            placeholder=" 证件地址" maxlength="50">
         </div>
       </div>
       <hr>
@@ -137,8 +142,8 @@
           </div>
         </div>
         <div class="ui-g-10 ui-xl-6">
-          <input maxlength="250" [(ngModel)]="customer.deliveryAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" type="text" pInputText placeholder=" 详细地址"
-            maxlength="50">
+          <input maxlength="250" [(ngModel)]="customer.deliveryAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" type="text" pInputText
+            placeholder=" 详细地址" maxlength="50">
         </div>
       </div>
       <!-- <div class="ui-g-6 ui-g-nopad">
@@ -394,6 +399,7 @@
               [county]="customer.certificateId.substring(0,6)" (onSelect)="selectIDAddress($event)"></gas-districts>
           </div>
           <div class="ui-g-10 ui-xl-6 ui-g-offset-2">
+            证件详细地址：
             <input type="text" [(ngModel)]="certificateDetailAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" pInputText placeholder="证件地址"
               maxlength="50" name="certificateAddress">
           </div>
@@ -419,6 +425,7 @@
             </div>
           </div>
           <div class="ui-g-10 ui-xl-6">
+            详细地址：
             <input [(ngModel)]="customer.deliveryAddress" name="deliveryAddress" gasInputFilter="[\u4E00-\u9FA5A-Za-z0-9]*" type="text"
               pInputText placeholder="详细地址" maxlength="50">
           </div>
@@ -505,7 +512,9 @@
               </span>
             </div>
             <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
-              <input name="identity" #IDImageUpload type="file" accept="image/*">
+              <!-- <input #IDImageUpload type="file"> -->
+              <input name="identity" type="file" #IDImageUpload accept="image/*">
+              <input name="ieFile" #ieFile type="file" *ngIf="customer.userTypeId!='0'" style="padding-top: 5px" accept="image/*">
               <!-- <p-fileUpload #IDImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
                 invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
                 invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"
@@ -518,7 +527,7 @@
               <span>用户安全供气协议书</span>
             </div>
             <div class="ui-g-6 ui-md-9 ui-xl-6 ui-g-nopad">
-              <input name="others" #OtherImageUpload type="file" accept="image/*">
+              <input name="others" #OtherImageUpload type="file">
               <!-- <p-fileUpload  #OtherImageUpload [auto]="false" name="" mode="advanced" [multiple]="true" accept="image/*" maxFileSize="1000000"
               invalidFileSizeMessageSummary="{0}: 文件过大," invalidFileSizeMessageDetail="最大文件尺寸是 {0}." invalidFileTypeMessageSummary="{0}: 不合法的文件类型,"
               invalidFileTypeMessageDetail="允许的文件类型是: {0}." chooseLabel="选择" uploadLabel="上传" cancelLabel="取消" [showUploadButton]="false"

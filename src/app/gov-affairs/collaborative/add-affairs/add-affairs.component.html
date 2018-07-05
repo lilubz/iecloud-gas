@@ -397,6 +397,7 @@
             协同部门：
           </label>
           <div class="ui-g-9">
+            <input style="display: none" name="collaborativeOrganizationInfoTOS" #collaborativeOrganizationInfoTOS>
             <input style="display: none" name="">
             <p-multiSelect [options]="multiSelect.department" [(ngModel)]="formModel.helpDepartment" name="department" optionLabel="userName"
               [style]="{'width':'100%'}" defaultLabel="点击选择协同部门" maxSelectedLabels="1" selectedItemsLabel="已经选择了{0}个协同部门" [showToggleAll]="false"></p-multiSelect>
