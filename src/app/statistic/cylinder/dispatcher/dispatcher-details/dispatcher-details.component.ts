@@ -129,8 +129,8 @@ export class DispatcherDetailsComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.getDataTableList({
-      startTime: this.util.formatTime(this.formModel.startTime, 'start'),
-      endTime: this.util.formatTime(this.formModel.endTime, 'end'),
+      startTime: this.util.formatTime(this.formModel.startTime),
+      endTime: this.util.formatTime(this.formModel.endTime),
       enterpriseNumber: this.id,
     });
     Object.assign(this.pageParams, this.formModel);
