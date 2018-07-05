@@ -16,7 +16,7 @@ import { SettingManagementModule } from './setting-management/setting-management
 import { BottleOpenComponent } from './bottle-library/bottle-open/bottle-open.component';
 import { BottleListComponent } from './bottle-library/bottle-list/bottle-list.component';
 import { ArchitectureManagementComponent } from './architecture-management/architecture-management.component';
-import { MangeMentComponent } from './architecture-management/mange-ment/mange-ment.component';
+// import { MangeMentComponent } from './architecture-management/mange-ment/mange-ment.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -34,7 +34,7 @@ import { MangeMentComponent } from './architecture-management/mange-ment/mange-m
     BottleOpenComponent,
     BottleListComponent,
     ArchitectureManagementComponent,
-    MangeMentComponent
+    // MangeMentComponent
   ],
   providers: [
     UserService,
