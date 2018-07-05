@@ -20,11 +20,7 @@ export class AddCustomerComponent implements OnInit {
   circulationBeginTime: Date = moment().subtract(30, 'days').toDate();
   circulationEndTime: Date = new Date();
   beginTime = this.util.formatTime(this.circulationBeginTime, 'start');
-<<<<<<< HEAD
   endTime = this.util.formatTime(this.circulationEndTime, 'end');
-=======
-  endTime = this.util.formatTime(this.circulationEndTime, 'start');
->>>>>>> origin/7.5push
 
   // 企业统计分页参数
   statisticPageSize = 40;
