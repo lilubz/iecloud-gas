@@ -88,9 +88,9 @@
       <p-column [style]="{'width':'150px'}" field="phone" header="联系电话"></p-column>
       <!-- <p-column [style]="{'width':'50px'}" field="gcCount" header="在用气瓶数"></p-column> -->
       <p-column [style]="{'width':'150px'}" field="contractNo" header="合同编号"></p-column>
-      <p-column [style]="{'width':'150px'}" header="合同有效期">
+      <p-column [style]="{'width':'150px'}" header="合同截止日期">
         <ng-template let-rowData="rowData" pTemplate="body">
-          <span>{{rowData.contractDeadLine|date:"yyyy-MM-dd"}}</span>
+          <span>{{rowData.contractDeadline|date:"yyyy-MM-dd"}}</span>
         </ng-template>
       </p-column>
       <p-column [style]="{'width':'150px'}" field="contractAppendixUrl" header="合同附件">
