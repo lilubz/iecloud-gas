@@ -12,7 +12,7 @@ export class Customer {
   deliveryRegionId?= ''; // 居住地址行政区域id
   deliveryAddress?= ''; // 居住地址（派送地址）
   phone?= ''; // 联系电话
-  contractNo?= ''; // 合同编号
+  // contractNo?= ''; // 合同编号
   contractEffectiveDate?= ''; // 合同开始日期
   contractDeadline?= ''; // 合同结束日期
   identity?: File[] = []; // 证件信息图片

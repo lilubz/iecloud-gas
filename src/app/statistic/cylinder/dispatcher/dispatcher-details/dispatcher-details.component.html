@@ -24,7 +24,7 @@
             <label for="">结束时间</label>
             <p-calendar #endTime [monthNavigator]="true" [yearNavigator]="true" yearRange="1970:2050" [selectOtherMonths]="true" dateFormat="yy-mm-dd"
               [locale]="zh" [showIcon]="false" [(ngModel)]="formModel.endTime" [minDate]="startTime.value" readonlyInput="true"
-              [style]="{'width':'180px'}" name="endTime">
+              [style]="{'width':'180px'}" name="endTime" (onSelect)="changeEndTime = true">
             </p-calendar>
           </div>
         </div>

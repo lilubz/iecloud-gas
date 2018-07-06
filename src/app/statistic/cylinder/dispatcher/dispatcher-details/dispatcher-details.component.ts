@@ -17,6 +17,7 @@ export class DispatcherDetailsComponent implements OnInit {
 
   loading = false;
   id: any;
+  changeEndTime = false;
   zh = zh_CN;
   currentDate: Date = new Date();
   dropdown: any = {
@@ -120,6 +121,7 @@ export class DispatcherDetailsComponent implements OnInit {
 
   onDropdownTimeTypeChange() {
     if (this.formModel.timeType) {
+      this.changeEndTime = false;
       this.formModel.startTime = moment().subtract(this.formModel.timeType.count, this.formModel.timeType.unit)['_d'];
     } else {
       this.formModel.startTime = moment().subtract(1, 'months')['_d'];
@@ -128,11 +130,19 @@ export class DispatcherDetailsComponent implements OnInit {
   }
   onSubmit() {
     this.loading = true;
-    this.getDataTableList({
-      startTime: this.util.formatTime(this.formModel.startTime),
-      endTime: this.util.formatTime(this.formModel.endTime),
-      enterpriseNumber: this.id,
-    });
+    if (this.changeEndTime) {
+      this.getDataTableList({
+        startTime: this.util.formatTime(this.formModel.startTime),
+        endTime: this.util.formatTime(this.formModel.endTime, 'end'),
+        enterpriseNumber: this.id,
+      });
+    } else {
+      this.getDataTableList({
+        startTime: this.util.formatTime(this.formModel.startTime),
+        endTime: this.util.formatTime(this.formModel.endTime),
+        enterpriseNumber: this.id,
+      });
+    }
     Object.assign(this.pageParams, this.formModel);
   }
   onPageChange($event) {

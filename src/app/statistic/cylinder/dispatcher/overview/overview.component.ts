@@ -18,6 +18,7 @@ import * as moment from 'moment';
 export class OverviewComponent implements OnInit {
   RoleType = RoleType;
   zh = zh_CN;
+  changeEndTime = false;
   dropdown: any = {
     timeType: [
       {
@@ -152,6 +153,7 @@ export class OverviewComponent implements OnInit {
 
   onDropdownTimeTypeChange() {
     if (this.formModel.timeType) {
+      this.changeEndTime = false;
       this.formModel.startTime = moment().subtract(this.formModel.timeType.count, this.formModel.timeType.unit)['_d'];
     } else {
       this.formModel.startTime = moment().subtract(1, 'months')['_d'];
@@ -161,11 +163,19 @@ export class OverviewComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.getDataTableList({
-      startTime: this.utilService.formatTime(this.formModel.startTime),
-      endTime: this.utilService.formatTime(this.formModel.endTime),
-      regionId: this.formModel.regionId,
-    });
+    if (this.changeEndTime) {
+      this.getDataTableList({
+        startTime: this.utilService.formatTime(this.formModel.startTime),
+        endTime: this.utilService.formatTime(this.formModel.endTime, 'end'),
+        regionId: this.formModel.regionId,
+      });
+    }else {
+      this.getDataTableList({
+        startTime: this.utilService.formatTime(this.formModel.startTime),
+        endTime: this.utilService.formatTime(this.formModel.endTime),
+        regionId: this.formModel.regionId,
+      });
+    }
     Object.assign(this.pageParams, this.formModel);
     this.dataTable.first = 0;
   }

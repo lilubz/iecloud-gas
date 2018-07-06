@@ -52,28 +52,28 @@ const PROXY_CONFIG = [
   //     "^/wenZhouGas": ""
   //   }
   // },
-  // {
-  //   context: [
-  //     "/wenZhouGas",
-  //     "/dataImport",
-  //   ],
-  //   target: "http://218.75.127.46:18080",// 测试服务器
-  //   secure: false,
-  //   // "pathRewrite": {
-  //   //   "^/wenZhouGas": ""
-  //   // }
-  // },
   {
     context: [
       "/wenZhouGas",
-      "/upload",
+      "/dataImport",
     ],
-    target: "http://60.190.114.126", // 线上
+    target: "http://218.75.127.46:18080",// 测试服务器
     secure: false,
     // "pathRewrite": {
     //   "^/wenZhouGas": ""
     // }
   },
+  // {
+  //   context: [
+  //     "/wenZhouGas",
+  //     "/upload",
+  //   ],
+  //   target: "http://60.190.114.126", // 线上
+  //   secure: false,
+  //   // "pathRewrite": {
+  //   //   "^/wenZhouGas": ""
+  //   // }
+  // },
 
 
 ];
