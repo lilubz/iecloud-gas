@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" *ngIf="!IE9">
   <!-- <div class="sidebar-container"> -->
   <div class="ui-g-12 group">
     <h3>
@@ -96,8 +96,15 @@
     </div>
   </div>
 </div>
-<div class="main">
+<div class="main" *ngIf="!IE9">
   <div class="ui-g-12 map card" id="esri-map" #map>
     <div id="BasemapToggle"></div>
+  </div>
+</div>
+<div class="main" style="left: 120px" *ngIf="IE9">
+  <div class="ui-g-12 card">
+    <div class="ui-g-12" style="text-align: center">
+      <h3 *ngIf="IE9"> 本功能只能在IE9以上或非IE浏览器中打开，请在IE9以上或非IE浏览器中查看本功能的页面！</h3>
+    </div>
   </div>
 </div>

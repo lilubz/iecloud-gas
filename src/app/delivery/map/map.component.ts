@@ -23,6 +23,7 @@ export class MapComponent implements OnInit, OnDestroy {
   RoleType = RoleType;
   @ViewChild('map') mapEl: ElementRef;
   zh = zh_CN;
+  IE9 = false;
   dateRange: SelectItem[] = [
     {
       label: '今天',
@@ -69,6 +70,7 @@ export class MapComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.IE9 = this.util.isIE9();
     this.loadMap().then(data => {
       this.defaultStations = this.gisSettingService.transformStationData(this.gisSettingService.getMapStationSetting());
       if (this.defaultStations.indexOf('fillingStation') !== -1) {
