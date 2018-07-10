@@ -24,7 +24,13 @@ export class ArchitectureManagementService {
     // }
     addOrganzation(params: any): Promise<any> {
         return this.httpService.formPostRequest(API.addOrganzation, params);
-
+    }
+    updateOrganzation(params: any): Promise<any> {
+        return this.httpService.formPostRequest(API.updateOrganzation, params);
+    }
+    deleteOrganzation(params: any): Promise<any> {
+        return this.httpService
+            .getRequest(API.deleteOrganzation, params);
     }
     getOrganzationTree(params: any): Promise<any> {
         return this.httpService.getRequest(API.getOrganzationTree, params);

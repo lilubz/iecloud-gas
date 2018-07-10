@@ -96,7 +96,7 @@
     </div>
   </div>
 </div>
-<div class="main" *ngIf="!IE9">
+<div class="main" [hidden]="IE9">
   <div class="ui-g-12 map card" id="esri-map" #map>
     <div id="BasemapToggle"></div>
   </div>

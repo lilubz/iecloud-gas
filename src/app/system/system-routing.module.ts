@@ -106,7 +106,7 @@ const routes: Routes = [
         path: 'architecture-management',
         component: ArchitectureManagementComponent,
         data: {
-          title: '架构管理'
+          title: '组织架构管理'
         },
         // children: [
         //   {

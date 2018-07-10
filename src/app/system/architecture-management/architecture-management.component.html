@@ -10,67 +10,145 @@
       <button pButton type="button" label="供应站账号信息概览" [routerLink]="['../bottle-library']" routerLinkActive="link-active"></button>
     </div>
     <div class="ui-g-12" *gasPermissionRole="[RoleType.Admin]">
-      <button pButton type="button" label="架构管理" [routerLink]="['../architecture-management']" routerLinkActive="link-active"></button>
+      <button pButton type="button" label="组织架构管理" [routerLink]="['../architecture-management']" routerLinkActive="link-active"></button>
     </div>
   </div>
 </div>
 <div class="main">
   <div class="card bottle-library ui-g-12">
     <h2 class="title">
-      架构管理
+        组织架构管理
     </h2>
     <p-tree [value]="filesTree" layout="horizontal" selectionMode="single" (onNodeSelect)="nodeSelect($event)"></p-tree>
     <p-dialog [visible]="nodeSelectVisible" [positionTop]="90" [responsive]="true" [showHeader]="false " [modal]="true " [closable]="false"
       [width]="700" [contentStyle]="{ 'padding': '0'} " [style]="{ 'border': 'none'} ">
-      <h3 class="dialogtitle" style="text-align:center">添加组织</h3>
-      <form>
-        <div class="ui-g-8">
-          <div class="ui-g-12 ui-g-offset-4">
-            <div class="inputgroup">
-              <label for="" class="search-label">上级组织
-              </label>
-              <input type="text" style="width: 150px" pInputText disabled [value]="chooseDate?.node?.label">
+      <div class="ui-g-8 ui-g-offset-4" *ngIf="showButton">
+        <button type="button" *ngIf="showAddButton" pButton label="添加组织" (click)="showAdd = true; showRevamp = false; showDelete = false; showButton = false"></button>
+        <button type="button" *ngIf="showRevampButton" pButton label="修改" (click)="showAdd = false; showRevamp = true; showDelete = false; showButton = false"></button>
+        <button type="button" *ngIf="showDeleteButton" pButton label="删除" (click)="showAdd = false; showRevamp = false; showDelete = true; showButton = false"></button>
+        <button type="button" pButton label="关闭弹窗" (click)="reset()"></button>
+      </div>
+      <div *ngIf="showAdd">
+        <h3 class="dialogtitle" style="text-align:center">添加组织</h3>
+        <form>
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <div class="inputgroup">
+                <label for="" class="search-label">上级组织
+                </label>
+                <input type="text" style="width: 150px" pInputText disabled [value]="chooseDate?.node?.label">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="ui-g-8">
-          <div class="ui-g-12 ui-g-offset-4">
-            <div class="inputgroup">
-              <label for="" class="search-label">名称
-              </label>
-              <input type="text" style="width: 150px" [(ngModel)]="name" name="name" minlength="5" pInputText placeholder="请输入名称">
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <div class="inputgroup">
+                <label for="" class="search-label">名称
+                </label>
+                <input type="text" style="width: 150px" [(ngModel)]="name" name="name" minlength="5" pInputText placeholder="请输入名称">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="ui-g-8" *ngIf="chooseDate?.node?.regionId === 330300">
-          <div class="ui-g-12 ui-g-offset-4">
-            <div class="inputgroup">
-              <label for="" class="search-label">所属辖区
-              </label>
-              <p-dropdown [options]="areaDrop" name="regionId" (onChange)="getDropdownForCorpInfoInRegion({ regionId: regionId })" [(ngModel)]="regionId"
-                [style]="{'width':'150px'}"></p-dropdown>
+          <div class="ui-g-8" *ngIf="chooseDate?.node?.regionId === 330300">
+            <div class="ui-g-12 ui-g-offset-4">
+              <div class="inputgroup">
+                <label for="" class="search-label">所属辖区
+                </label>
+                <p-dropdown [options]="areaDrop" name="regionId" (onChange)="getDropdownForCorpInfoInRegion({ regionId: regionId })" [(ngModel)]="regionId"
+                  [style]="{'width':'150px'}"></p-dropdown>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="ui-g-8">
-          <div class="ui-g-12 ui-g-offset-4">
-            <div class="inputgroup">
-              <p-pickList [source]="corpDrop" [target]="chooseCorp" sourceHeader="企业列表" targetHeader="选择企业" [showSourceControls]="false"
-                [showTargetControls]="false" [responsive]="true" [metaKeySelection]="true" [dragdrop]="true">
-                <ng-template let-corp pTemplate="item">
-                  <div class="ui-helper-clearfix">
-                    <div>{{corp.label}}</div>
-                  </div>
-                </ng-template>
-              </p-pickList>
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <div class="inputgroup">
+                <p-pickList [source]="corpDrop" [target]="chooseCorp" sourceHeader="企业列表" targetHeader="选择企业" [showSourceControls]="false"
+                  [showTargetControls]="false" [responsive]="true" [metaKeySelection]="true" [dragdrop]="true">
+                  <ng-template let-corp pTemplate="item">
+                    <div class="ui-helper-clearfix">
+                      <div>{{corp.label}}</div>
+                    </div>
+                  </ng-template>
+                </p-pickList>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-      <p-footer>
-        <button type="button" pButton label="确认添加" (click)="addNode()"></button>
-        <button type="button" pButton (click)="reset()" label="关闭 "></button>
-      </p-footer>
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <button type="button" pButton label="确认添加" (click)="addNode()"></button>
+              <button type="button" pButton (click)="reset()" label="关闭 "></button>
+            </div>
+          </div>
+        </form>
+        <!-- <p-footer>
+          <button type="button" pButton label="确认添加" (click)="addNode()"></button>
+          <button type="button" pButton (click)="reset()" label="关闭 "></button>
+        </p-footer> -->
+      </div>
+      <div *ngIf="showRevamp">
+        <h3 class="dialogtitle" style="text-align:center">修改组织</h3>
+        <form>
+          <!-- <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <div class="inputgroup">
+                <label for="" class="search-label">上级组织
+                </label>
+                <input type="text" style="width: 150px" pInputText disabled [value]="chooseDate?.node?.label">
+              </div>
+            </div>
+          </div> -->
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <div class="inputgroup">
+                <label for="" class="search-label">名称
+                </label>
+                <input type="text" style="width: 150px" [(ngModel)]="revampName" name="revampName" minlength="5" pInputText placeholder="请输入名称">
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <div class="inputgroup">
+                <label for="" class="search-label">所属辖区
+                </label>
+                <p-dropdown [options]="areaDrop" name="regionId" (onChange)="getDropdownForCorpInfoInRegion({ regionId: revampRegionId })" [(ngModel)]="revampRegionId"
+                  [style]="{'width':'150px'}"></p-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <div class="inputgroup">
+                <p-pickList [source]="corpDrop" [target]="revampChooseCorp" sourceHeader="企业列表" targetHeader="选择企业" [showSourceControls]="false"
+                  [showTargetControls]="false" [responsive]="true" [metaKeySelection]="true" [dragdrop]="true">
+                  <ng-template let-corp pTemplate="item">
+                    <div class="ui-helper-clearfix">
+                      <div>{{corp.label}}</div>
+                    </div>
+                  </ng-template>
+                </p-pickList>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <button type="button" pButton label="确认添加" (click)="revampNode()"></button>
+              <button type="button" pButton (click)="reset()" label="关闭 "></button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="showDelete">
+        <h3 class="dialogtitle" style="text-align:center">确认删除组织？</h3>
+        <form>
+          <div class="ui-g-8">
+            <div class="ui-g-12 ui-g-offset-4">
+              <button type="button" pButton (click)="delete()" label="确定 "></button>
+              <button type="button" pButton (click)="reset()" label="关闭 "></button>
+            </div>
+          </div>
+        </form>
+      </div>
     </p-dialog>
   </div>
 </div>

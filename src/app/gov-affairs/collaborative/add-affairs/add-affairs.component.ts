@@ -348,11 +348,10 @@ export class AddAffairsComponent implements OnInit {
           userId: item.userId,
         });
       this.collaborativeOrganizationInfoTOS.nativeElement.value = JSON.stringify(helpList) ;
-      this.InspectionTime.nativeElement.value = moment(this.formModel.time).format('YYYY-MM-DD') + ' 00:00:00';
-      this.hidden.nativeElement.value = this.formModel.objValue.inflatableStationNumber;
-      this.IEform.nativeElement.submit();
-      }
-      );
+    });
+    this.InspectionTime.nativeElement.value = moment(this.formModel.time).format('YYYY-MM-DD') + ' 00:00:00';
+    this.hidden.nativeElement.value = this.formModel.objValue.inflatableStationNumber;
+    this.IEform.nativeElement.submit();
     }
   }
 }

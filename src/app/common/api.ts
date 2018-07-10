@@ -154,6 +154,8 @@ export const API = {
   // 架构管理
   'getOrganzationTree': URL + 'sysUserPermissions/user/getOrganzationTree.do',
   'addOrganzation': URL + 'sysUserPermissions/user/addOrganzation.do',
+  'updateOrganzation': URL + 'sysUserPermissions/user/updateOrganzation.do',
+  'deleteOrganzation': URL + 'sysUserPermissions/user/deleteOrganzation.do',
 
   // 配送人员信息
   'getDispatcherInfo': URL + 'basicInformation/corpInfo/listDispatcherInfo.do',
